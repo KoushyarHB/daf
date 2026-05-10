@@ -1,0 +1,332 @@
+[
+  {
+    "head": "und /ʊnt/",
+    "gloss": [
+      "And (links clauses or items)."
+    ],
+    "notes": [],
+    "examples": [
+      "Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Kaffee und Kuchen (coffee and cake) / Und wie geht es Ihnen? (And how are you?)"
+    ],
+    "createdAt": "2026-05-10T15:23:39Z",
+    "updatedAt": "2026-05-10T15:23:39Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
+    "gloss": [
+      "Secretary (feminine job title)."
+    ],
+    "notes": [],
+    "examples": [
+      "Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Sie ist Sekretärin. (She is a secretary.) / der Sekretär (male secretary)"
+    ],
+    "createdAt": "2026-05-10T15:23:39Z",
+    "updatedAt": "2026-05-10T15:23:39Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "Frau /fraʊ̯/",
+    "gloss": [
+      "Ms. or Mrs. before a surname."
+    ],
+    "notes": [],
+    "examples": [
+      "Frau Lange (Ms. Lange) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Guten Tag, Frau Schulz! (Good day, Ms. Schulz!)"
+    ],
+    "createdAt": "2026-05-10T15:23:39Z",
+    "updatedAt": "2026-05-10T15:23:39Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "aus /aʊ̯s/",
+    "gloss": [
+      "From; out of (+ dative for origin)."
+    ],
+    "notes": [],
+    "examples": [
+      "Ich komme aus Argentinien. (I'm from Argentina.) / Er kommt aus dem Urlaub. (He's back from vacation.) / aus Berlin (from Berlin)"
+    ],
+    "createdAt": "2026-05-10T15:20:26Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "Argentinien /aʁɡɛnˈtiːni̯ən/",
+    "gloss": [
+      "Argentina (country)."
+    ],
+    "notes": [],
+    "examples": [
+      "Ich komme aus Argentinien. (I'm from Argentina.) / Buenos Aires liegt in Argentinien. (Buenos Aires is in Argentina.)"
+    ],
+    "createdAt": "2026-05-10T15:20:26Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "woher /ˈvoheːɐ̯/",
+    "gloss": [],
+    "notes": [],
+    "examples": [
+      "From where (origin).",
+      "Woher kommen Sie? (Where are you from [formal]?) / Ich komme aus Österreich. (I'm from Austria.) / Woher kommt er? (Where does he come from?)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "kommen /ˈkɔmən/",
+    "gloss": [
+      "To come; aus … = from (a place)."
+    ],
+    "notes": [],
+    "examples": [
+      "Woher kommen Sie? (Where do you come from [formal]?) / Sie kommen aus München. (You come from Munich.) / Ich komme aus Argentinien. (I'm from Argentina.) / Kommst du mit? (Are you coming along?)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "Grüß Gott! /ˈɡʁʏs ˈɡɔt/",
+    "gloss": [
+      "Polite daytime hello—typical in Austria and southern Germany."
+    ],
+    "notes": [
+      "• Elsewhere Guten Tag is often the default; Hallo is informal."
+    ],
+    "examples": [
+      "Grüß Gott! (Good day — hello!) / Grüß Gott, Frau Schmid! (Hello, Ms. Schmid!)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "ergänzen /ˈʔɛʁɡɛntsən/",
+    "gloss": [
+      "To complete / fill in blanks."
+    ],
+    "notes": [],
+    "examples": [
+      "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue, then supply the missing parts / fill everything in.) / Ergänzen Sie die Lücken mit den passenden Wörtern. (Fill in the gaps with suitable words.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "lesen /ˈleːzən/",
+    "gloss": [
+      "To read (+ object in accusative)."
+    ],
+    "notes": [],
+    "examples": [
+      "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue [aloud/on the page], then finish / fill it in.) / Lesen Sie die Überschrift zu Beginn der Übung. (Read the headline at the start of the exercise.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "sagen /ˈzaːɡən/",
+    "gloss": [
+      "To say or tell."
+    ],
+    "notes": [],
+    "examples": [
+      "Was sagen die Personen? (What are the people saying?) / Er sagt kurz „Nein“. (He briefly says “no”.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "die Person /pɛʁˈzoːn/",
+    "gloss": [
+      "Feminine singular: person (pl. Personen)."
+    ],
+    "notes": [],
+    "examples": [
+      "Viele Personen warten. (Many people are waiting.) / Zwei Kinder hören das Gespräch. (Two children listen to the dialogue.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "was /vas/",
+    "gloss": [
+      "Interrogative “what” (Was …?)."
+    ],
+    "notes": [],
+    "examples": [
+      "Was sagen die Personen? (What are the people saying?) / Was trinken die Kinder? (What are the children drinking?)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "passen /ˈpasən/",
+    "gloss": [
+      "To fit; match; suit."
+    ],
+    "notes": [],
+    "examples": [
+      "Welches Foto passt? (Which photo fits / matches?) / Das Bild passt zu diesem Text. (The picture goes with / fits this text passage.) / Das zweite Foto passt nicht. (The second photo does not fit / is wrong.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "welcher · welche · welches /ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs/",
+    "gloss": [
+      "Which (pick by gender: m./f./n.)."
+    ],
+    "notes": [],
+    "examples": [
+      "Welches Foto passt? (Which photo fits / matches?) / Welche Farbe ist das? (What / which color is that?) / Welche Antwort passt? (Which answer fits / is correct?)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "das Foto /ˈfoːto/",
+    "gloss": [
+      "Photo; picture (neuter; pl. Fotos)."
+    ],
+    "notes": [],
+    "examples": [
+      "Welches Foto passt? (Which photo fits / matches?) / Das Foto ist scharf. (The photo is sharp / in focus.) / Ich sehe drei Fotos. (I see three photos.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "ankreuzen /ˈankʁɔʏtsən/",
+    "gloss": [
+      "Separable: tick a box (… an)."
+    ],
+    "notes": [
+      "• The prefix an- moves to the end of the clause: Kreuzen Sie die richtige Lösung an.",
+      "• Participle angekreuzt (perfect often: habe … angekreuzt)."
+    ],
+    "examples": [
+      "Kreuzen Sie die richtige Lösung an. (Please tick the correct answer / solution.) / Kreuzen Sie an, was stimmt. (Tick / mark what is correct.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "hören /ˈhøːʁən/",
+    "gloss": [
+      "To hear; listen to (+ acc.)."
+    ],
+    "notes": [],
+    "examples": [
+      "Hören Sie das Gespräch. (Listen to the dialogue [polite / formal “you”].) / Ich höre morgens Radio. (I listen to the radio in the mornings.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "das Gespräch /ɡəˈʃpʁɛːç/",
+    "gloss": [
+      "Conversation; spoken dialogue."
+    ],
+    "notes": [],
+    "examples": [
+      "Das Gespräch ist kurz. (The dialogue is short.) / Hören Sie bitte noch einmal das Gespräch. (Please listen to the dialogue one more time.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "neu /nɔʏ/",
+    "gloss": [
+      "New (opposite alt); before a noun, add an ending."
+    ],
+    "notes": [],
+    "examples": [
+      "der neue Praktikant (the new intern) / Ein neues Auto steht da. (A new car is parked there.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "sein /zaɪn/",
+    "gloss": [
+      "To be (am / is / are)."
+    ],
+    "notes": [
+      "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
+    ],
+    "examples": [
+      "Ich bin der neue Praktikant. (I'm the new intern.) / Er ist Arzt. (He's a doctor.) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Wir sind müde. (We're tired.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "der Praktikant /pʁaktiˈkant/",
+    "gloss": [
+      "Intern; Praktikantin is the feminine form."
+    ],
+    "notes": [],
+    "examples": [
+      "Ich mache ein Praktikum in Deutschland. (I am doing an internship in Germany.) / Er ist Praktikant bei dieser Firma. (He is an intern at this company.) / Anna ist Praktikantin. (Anna is an intern [female form].) / Ich bin der neue Praktikant. (I'm the new intern.)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  },
+  {
+    "head": "Guten Tag! /ˈɡuːtən ˈtaːk/",
+    "gloss": [
+      "Good day; hello (formal daytime)."
+    ],
+    "notes": [
+      "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
+    ],
+    "examples": [
+      "Guten Tag, Frau Lange! (Good afternoon / hello, Ms. Lange!) / Guten Tag, wie geht es Ihnen? (Hello / good day — how are you [formal]?)"
+    ],
+    "createdAt": "2026-05-10T15:15:02Z",
+    "updatedAt": "2026-05-10T15:22:15Z",
+    "lektion": null,
+    "level": "A1"
+  }
+]

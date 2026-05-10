@@ -1,0 +1,97 @@
+---
+description: DaF vocab.docx; keyword “dissect” = explain + add lemmas; layout + full-sentence example translations
+alwaysApply: true
+---
+
+# DaF vocabulary (`vocab.docx`)
+
+Use the **`daf_vocab/`** helpers + **`python-docx`**.
+
+### Canonical file and order
+
+- **`vocab.docx` is the source of truth** — the user edits it manually in Word.
+- **`vocab.manifest.json` is a mirror** for bulk edits and agent diffs. Before changing the manifest in any automated update, **refresh it from Word** so JSON matches the saved document.
+- **New cards belong at the top** of the deck: **prepend** lemma objects to the **front** of the manifest array (first item = first card under the title in `vocab.docx` = newest additions).
+- **Primary sync (Word → JSON):** run **`python -m daf_vocab sync`** from the repo root. (Legacy: **`python -m daf_vocab export`**; helper script: **`python sync_manifest_from_docx.py`**.) Then edit JSON if needed, then **`python -m daf_vocab build`** to regenerate **`vocab.docx`** from the manifest.
+
+## Look & typography
+
+- Heading 1 **`daf — vocabulary`**, sans-serif (**Calibri 11** body).
+- Heading color RGB **`(47, 111, 184)`**.
+- **`Normal` body:** Calibri **11 pt**.
+
+## Vertical spacing between cards
+
+- Exactly **one empty `Normal` paragraph** between lexical cards (**one typed “Enter” worth of whitespace** — no stacked extra spacer paragraphs).
+
+## Distinct styling for German **examples**
+
+Examples must remain visually distinct from glosses / explanatory English:
+
+- Same **`left_indent` ≈ `Inches(0.4)`** as explanatory text.
+- Prefix **`›`** then German; **each German sentence/unit** ends with **`(English translation)`** wrapping a **full idiomatic gloss** — **not word-by-word inline glosses**.
+- When giving **several variants** inside one **`›`** line, join with **` / `**. After **each slash-separated German chunk**, attach its **`(English …)`**.
+- Runs: **Calibri ~10.5 pt**, **italic**, muted slate RGB **`rgb(48, 96, 140)`**.
+- Gloss / explanation paragraphs: **Calibri 11 pt**, **roman (non-italic)** default (English meta about the lemma).
+- Keep optional **`Pt(2)`** top spacing before an example paragraph for separation from explanations.
+
+## Card layout (one lemma / fixed phrase per card)
+
+1. **Head line:** German **bold**, then IPA in slashes on the same line (`WORD /…/`).
+
+   - Fixed greetings stay as-is: **`Guten Tag!`** (**no forced article**).
+   - **Nouns** must headline with article: **`der` / `die` / `das`** + Lemma (e.g. **`das Gespräch`**, **`der Praktikant`**).
+
+2. **English gloss** (Calibri 11 pt, indented): **one short line**—what a human flashcard would say, not a textbook paragraph. Aim for **under ~12 words** unless the lemma is genuinely inseparable in fewer. No laundry lists; patterns and “also / often / textbook” detail belong in **`›` examples** or, rarely, **`notes`**. In the JSON manifest, **do not** use Markdown `*` / `**`—Word does not render them; use plain wording instead.
+
+3. **Grammar / extra note (only when needed):** small italic ~10 pt, gray-ish RGB **`(64, 64, 64)`**, same indent; usually prefixed **`•`**. **Default: omit** (empty **`notes`** in JSON / no note paragraph in Word). Add a note only for a **non-obvious** point the gloss would overload—e.g. exam traps, spelling (ß/umlaut), separable-verb behavior, case pattern that isn’t clear from the gloss, or a **short** contrast learners often confuse. **Do not** add notes on every new card “for completeness.”
+
+4. **German examples**: follow **`## Distinct styling for German examples`** (`›`, italic, muted color, **` / `** between alternatives).
+
+## Keyword: **dissect** (user shorthand)
+
+When the user says **`dissect …`** about German (with or without “this sentence”), it means **both**:
+
+1. **In chat:** a clear morphosyntax breakdown (fixes for OCR-ish errors, capitalization like **`Sie`**, umlauts, separable verbs, word order, punctuation).
+2. **In `vocab.docx`:** **prepend** **new lemma cards** (newest at the top) for what the line teaches—using this rule’s layout, spacing, example styling, and **full-sentence translations in parentheses** (see **`## Example translations (mandatory)`**). Use **`notes`** only when a card truly needs them (see **Card layout §3**).
+
+**Still do not** add the **entire original line** as **one** vocabulary headword. Split into **lemmas**: nouns with **`der/die/das`**, verbs/infinitives as needed (e.g. separables), interrogatives/chunks worth memorizing—**reuse** lemmas already present when possible instead of duplicates.
+
+## Example translations (mandatory)
+
+In every **`›`** example line:
+
+- Write **clean German** (no interrupted parenthetical gloss after individual words).
+- After **each German sentence** (or **each slash-separated unit** if several are combined on one line), append **one** set of parentheses containing a **natural full English translation/gloss of that entire German unit** — not word-by-word cribbing.
+- Separate multiple practice units on the same line with **` / `** — **each** carries its own trailing **`( … )`**.
+
+This replaces the old rule of glosing unknown words immediately after each German token.
+
+## Scaling to large decks
+
+- **`vocab.docx`** stays canonical; **`python -m daf_vocab sync`** (or legacy **`export`**) writes **`vocab.manifest.json`** from Word — run this **at the start of an agent update** so the JSON reflects the latest manual edits.
+- Export uses **English gloss-prefix heuristics** in `daf_vocab/docx_cards.py → gloss_heuristic`: if your gloss wording does not match those prefixes, paragraphs can be misclassified until the tuple is extended.
+- Add new lemma objects **at the beginning** of the JSON array (**prepend**), then **`python -m daf_vocab build`** regenerates **`vocab.docx`** from the manifest with that order.
+
+Each JSON entry:
+
+- **`head`**: single string exactly as printed in bold + IPA (**`lemma /…/`**)
+- **`gloss`**, **`notes`**: string arrays; **`notes`** is often **`[]`**—add bullets only when necessary (see **Card layout §3**).
+- **`examples`**: string array rendered as **`›`** lines (**omit** the **`›`** prefix itself). Each element is **`DE (English) / DE2 (English2)`** when multiple variants ride on one **`›`** line **or split into separate `examples` strings**—both are acceptable.  
+- Optional **`example_units`**: `[["German","English"], …]` helpers call `daf_vocab.format_example_chunks` for you instead of handwriting `examples`.
+- **Metadata** (required on every card; tooling fills defaults if missing):
+  - **`createdAt`**: ISO 8601 UTC string (e.g. `2026-05-10T14:30:00Z`) — set when the card first appears; preserved across **`sync`** when the same **`head`** existed before.
+  - **`updatedAt`**: ISO 8601 UTC — refreshed on every **`sync`** (Word snapshot); **`build`** normalizes missing fields and rewrites the manifest with canonical metadata.
+  - **`lektion`**: integer lesson number, or **`null`** if not tied to a lesson yet.
+  - **`level`**: CEFR label; default **`A1`** for this course (constant in `daf_vocab.docx_cards.DEFAULT_LEVEL`).
+
+Keep **`requirements-vocab.txt`** (`python-docx`) installed in any environment that runs these scripts.
+
+## Implementation notes
+
+- **Rebuild or patch** programmatically rather than manual OOXML hacks (`daf_vocab/` package centralizes typography helpers).
+- For bulk layout reflows (spacing + **`›`** styling only), run **`python -m daf_vocab rebuild`** (`daf_vocab.docx_cards.rebuild_vocab_layout`).
+- For authoring at scale: **`python -m daf_vocab sync`** → edit **`vocab.manifest.json`** (prepend new cards) → **`python -m daf_vocab build`**.
+- **`python -m daf_vocab build`** overwrites **`vocab.docx`** and rewrites **`vocab.manifest.json`** with **normalized metadata** on every card (stable key order).
+- **Do not strip** unrelated existing cards unless asked.
+- If persisting workflows outside this repo (no `.cursor/rules`), mirror this file into **User Rules** or a Cursor **Skill**—this project uses **rules**, not custom MCP servers, by default.
