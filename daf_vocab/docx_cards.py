@@ -19,6 +19,8 @@ HEADING_BLUE = RGBColor(0x2F, 0x6F, 0xB8)
 IND = Inches(0.4)
 NOTE_GRAY = RGBColor(0x40, 0x40, 0x40)
 EXAMPLE_COLOR = RGBColor(0x30, 0x60, 0x8C)
+# English gloss in parentheses after German in › lines (distinct from blue German):
+EXAMPLE_TRANSLATION_COLOR = NOTE_GRAY
 
 EXAMPLE_PREFIX = "\u203a "
 
@@ -275,18 +277,49 @@ def _new_base_document():
     return doc
 
 
+def split_example_chunk_translation(chunk: str) -> tuple[str, str | None]:
+    """Split ``German (English)`` into German text and ``(English)``, or return whole chunk as German."""
+
+    chunk = chunk.strip()
+    if not chunk:
+        return "", None
+    if chunk.endswith(")") and " (" in chunk:
+        i = chunk.rfind(" (")
+        if i >= 0:
+            return chunk[:i].strip(), chunk[i + 1 :].strip()
+    return chunk, None
+
+
 def add_example_line(doc: Document, *, body_without_prefix: str):
-    paragraph = doc.add_paragraph()
-    paragraph.paragraph_format.left_indent = IND
-    paragraph.paragraph_format.space_before = Pt(2)
-    paragraph.paragraph_format.space_after = Pt(6)
-    body = body_without_prefix.lstrip()
-    paragraph.text = ""
-    for chunk in (EXAMPLE_PREFIX, body):
-        run = paragraph.add_run(chunk)
-        run.font.size = Pt(10.5)
-        run.font.italic = True
-        run.font.color.rgb = EXAMPLE_COLOR
+    """One or more indented › paragraphs: German in slate blue, ``(English)`` in gray. Chunks joined by `` / `` in JSON become separate lines."""
+
+    body = body_without_prefix.strip()
+    if not body:
+        return
+    chunks = [c.strip() for c in body.split(" / ") if c.strip()]
+    if not chunks:
+        return
+    n = len(chunks)
+    for idx, ch in enumerate(chunks):
+        de, en = split_example_chunk_translation(ch)
+        paragraph = doc.add_paragraph()
+        paragraph.paragraph_format.left_indent = IND
+        paragraph.paragraph_format.space_before = Pt(2) if idx == 0 else Pt(0)
+        paragraph.paragraph_format.space_after = Pt(6) if idx == n - 1 else Pt(3)
+
+        for piece, color in (
+            (EXAMPLE_PREFIX, EXAMPLE_COLOR),
+            (de, EXAMPLE_COLOR),
+        ):
+            run = paragraph.add_run(piece)
+            run.font.size = Pt(10.5)
+            run.font.italic = True
+            run.font.color.rgb = color
+        if en:
+            run_en = paragraph.add_run(" " + en)
+            run_en.font.size = Pt(10.5)
+            run_en.font.italic = True
+            run_en.font.color.rgb = EXAMPLE_TRANSLATION_COLOR
 
 
 def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):

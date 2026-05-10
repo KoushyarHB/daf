@@ -29,11 +29,11 @@ Use the **`daf_vocab/`** helpers + **`python-docx`**.
 Examples must remain visually distinct from glosses / explanatory English:
 
 - Same **`left_indent` ≈ `Inches(0.4)`** as explanatory text.
-- Prefix **`›`** then German; **each German sentence/unit** ends with **`(English translation)`** wrapping a **full idiomatic gloss** — **not word-by-word inline glosses**.
-- When giving **several variants** inside one **`›`** line, join with **` / `**. After **each slash-separated German chunk**, attach its **`(English …)`**.
-- Runs: **Calibri ~10.5 pt**, **italic**, muted slate RGB **`rgb(48, 96, 140)`**.
+- Prefix **`›`** on **each** example line. German stays **Calibri ~10.5 pt**, **italic**, muted slate RGB **`rgb(48, 96, 140)`**. The **parenthetical English** after the German is the **same size and italic**, but **gray** RGB **`rgb(64, 64, 64)`** so it is not the same color as the German.
+- **Each** German + **`(English)`** unit is on **its own paragraph** (next line). In the JSON manifest you may still join several units with **` / `** on one string; **`build`** splits on **` / `** into separate **`›`** lines in Word.
+- **Full-sentence English in parentheses** — not word-by-word inline glosses after each German token.
 - Gloss / explanation paragraphs: **Calibri 11 pt**, **roman (non-italic)** default (English meta about the lemma).
-- Keep optional **`Pt(2)`** top spacing before an example paragraph for separation from explanations.
+- Keep optional **`Pt(2)`** top spacing before the first example paragraph in a card.
 
 ## Card layout (one lemma / fixed phrase per card)
 
@@ -46,7 +46,7 @@ Examples must remain visually distinct from glosses / explanatory English:
 
 3. **Grammar / extra note (only when needed):** small italic ~10 pt, gray-ish RGB **`(64, 64, 64)`**, same indent; usually prefixed **`•`**. **Default: omit** (empty **`notes`** in JSON / no note paragraph in Word). Add a note only for a **non-obvious** point the gloss would overload—e.g. exam traps, spelling (ß/umlaut), separable-verb behavior, case pattern that isn’t clear from the gloss, or a **short** contrast learners often confuse. **Do not** add notes on every new card “for completeness.”
 
-4. **German examples**: follow **`## Distinct styling for German examples`** (`›`, italic, muted color, **` / `** between alternatives).
+4. **German examples**: **`›`** lines per **`## Distinct styling for German examples`** (German blue-gray italic; parenthetical English gray italic; one example unit per line in Word).
 
 ## Keyword: **dissect** (user shorthand)
 
@@ -59,11 +59,11 @@ When the user says **`dissect …`** about German (with or without “this sente
 
 ## Example translations (mandatory)
 
-In every **`›`** example line:
+In every **`›`** example **paragraph** (each slash-separated unit in the manifest becomes its own paragraph in Word):
 
 - Write **clean German** (no interrupted parenthetical gloss after individual words).
-- After **each German sentence** (or **each slash-separated unit** if several are combined on one line), append **one** set of parentheses containing a **natural full English translation/gloss of that entire German unit** — not word-by-word cribbing.
-- Separate multiple practice units on the same line with **` / `** — **each** carries its own trailing **`( … )`**.
+- After each German unit, append **one** set of parentheses with a **natural full English** gloss of that unit — not word-by-word cribbing.
+- Still store multiple units in one manifest string joined by **` / `** if you like; **`python -m daf_vocab build`** turns each slash-separated unit into its own **`›`** paragraph; the parenthetical English is rendered **gray**, German **blue-slate** (see **`## Distinct styling for German examples`**).
 
 This replaces the old rule of glosing unknown words immediately after each German token.
 

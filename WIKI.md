@@ -5,6 +5,8 @@
 - **`vocab.docx`** is the **primary source of truth**. Edit vocabulary in Word and save.
 - **`vocab.manifest.json`** is a **derived mirror** for diffs, bulk edits, and tooling. Refresh it from the Word file whenever the JSON should match what you last saved.
 
+**Example lines in Word:** each `DE (English)` unit is built from slash-separated strings in JSON (`a / b / c`). German runs are blue-slate italic; the parenthetical English is gray italic (`daf_vocab.docx_cards`).
+
 ## Manifest card metadata
 
 Every object in **`vocab.manifest.json`** includes:
