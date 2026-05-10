@@ -172,6 +172,15 @@ def gloss_heuristic(text: str) -> bool:
         "From;",
         "Argentina",
         "To come",
+        "Everything",
+        "Correct",
+        "Grammar",
+        "At a",
+        "Glance",
+        "Verb",
+        "Collect",
+        "Table (",
+        "Verb form",
     )
     return s.startswith(prefixes)
 
