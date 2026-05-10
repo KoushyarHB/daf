@@ -1,19 +1,5 @@
 [
   {
-    "head": "und /ʊnt/",
-    "gloss": [
-      "And (links clauses or items)."
-    ],
-    "notes": [],
-    "examples": [
-      "Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Kaffee und Kuchen (coffee and cake) / Und wie geht es Ihnen? (And how are you?)"
-    ],
-    "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-10T15:23:39Z",
-    "lektion": null,
-    "level": "A1"
-  },
-  {
     "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
     "gloss": [
       "Secretary (feminine job title)."
@@ -23,8 +9,8 @@
       "Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Sie ist Sekretärin. (She is a secretary.) / der Sekretär (male secretary)"
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-10T15:23:39Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -37,8 +23,8 @@
       "Frau Lange (Ms. Lange) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Guten Tag, Frau Schulz! (Good day, Ms. Schulz!)"
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-10T15:23:39Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -51,8 +37,8 @@
       "Ich komme aus Argentinien. (I'm from Argentina.) / Er kommt aus dem Urlaub. (He's back from vacation.) / aus Berlin (from Berlin)"
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -65,8 +51,8 @@
       "Ich komme aus Argentinien. (I'm from Argentina.) / Buenos Aires liegt in Argentinien. (Buenos Aires is in Argentina.)"
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -78,8 +64,8 @@
       "Woher kommen Sie? (Where are you from [formal]?) / Ich komme aus Österreich. (I'm from Austria.) / Woher kommt er? (Where does he come from?)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -92,8 +78,8 @@
       "Woher kommen Sie? (Where do you come from [formal]?) / Sie kommen aus München. (You come from Munich.) / Ich komme aus Argentinien. (I'm from Argentina.) / Kommst du mit? (Are you coming along?)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -108,8 +94,8 @@
       "Grüß Gott! (Good day — hello!) / Grüß Gott, Frau Schmid! (Hello, Ms. Schmid!)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -122,8 +108,8 @@
       "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue, then supply the missing parts / fill everything in.) / Ergänzen Sie die Lücken mit den passenden Wörtern. (Fill in the gaps with suitable words.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -136,8 +122,8 @@
       "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue [aloud/on the page], then finish / fill it in.) / Lesen Sie die Überschrift zu Beginn der Übung. (Read the headline at the start of the exercise.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -150,8 +136,8 @@
       "Was sagen die Personen? (What are the people saying?) / Er sagt kurz „Nein“. (He briefly says “no”.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -164,8 +150,8 @@
       "Viele Personen warten. (Many people are waiting.) / Zwei Kinder hören das Gespräch. (Two children listen to the dialogue.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -178,8 +164,8 @@
       "Was sagen die Personen? (What are the people saying?) / Was trinken die Kinder? (What are the children drinking?)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -192,8 +178,8 @@
       "Welches Foto passt? (Which photo fits / matches?) / Das Bild passt zu diesem Text. (The picture goes with / fits this text passage.) / Das zweite Foto passt nicht. (The second photo does not fit / is wrong.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -206,8 +192,8 @@
       "Welches Foto passt? (Which photo fits / matches?) / Welche Farbe ist das? (What / which color is that?) / Welche Antwort passt? (Which answer fits / is correct?)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -220,8 +206,8 @@
       "Welches Foto passt? (Which photo fits / matches?) / Das Foto ist scharf. (The photo is sharp / in focus.) / Ich sehe drei Fotos. (I see three photos.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -237,8 +223,8 @@
       "Kreuzen Sie die richtige Lösung an. (Please tick the correct answer / solution.) / Kreuzen Sie an, was stimmt. (Tick / mark what is correct.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -251,8 +237,8 @@
       "Hören Sie das Gespräch. (Listen to the dialogue [polite / formal “you”].) / Ich höre morgens Radio. (I listen to the radio in the mornings.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -265,8 +251,8 @@
       "Das Gespräch ist kurz. (The dialogue is short.) / Hören Sie bitte noch einmal das Gespräch. (Please listen to the dialogue one more time.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -279,8 +265,8 @@
       "der neue Praktikant (the new intern) / Ein neues Auto steht da. (A new car is parked there.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -295,8 +281,8 @@
       "Ich bin der neue Praktikant. (I'm the new intern.) / Er ist Arzt. (He's a doctor.) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Wir sind müde. (We're tired.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -309,8 +295,8 @@
       "Ich mache ein Praktikum in Deutschland. (I am doing an internship in Germany.) / Er ist Praktikant bei dieser Firma. (He is an intern at this company.) / Anna ist Praktikantin. (Anna is an intern [female form].) / Ich bin der neue Praktikant. (I'm the new intern.)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   },
   {
@@ -325,8 +311,8 @@
       "Guten Tag, Frau Lange! (Good afternoon / hello, Ms. Lange!) / Guten Tag, wie geht es Ihnen? (Hello / good day — how are you [formal]?)"
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:22:15Z",
-    "lektion": null,
+    "updatedAt": "2026-05-10T15:29:35Z",
+    "lektion": 1,
     "level": "A1"
   }
 ]
