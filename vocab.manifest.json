@@ -1,15 +1,24 @@
 [
   {
     "head": "sammeln /ˈzaməln/",
-    "gloss": [
-      "To collect; gather (+ acc.)."
-    ],
+    "gloss": [],
     "notes": [],
     "examples": [
-      "Sammeln Sie die Verbformen in die Tabelle. (Collect the verb forms into the table [class instruction].) / Wir sammeln Daten. (We collect data.)"
+      {
+        "german": "To collect; gather (+ acc.).",
+        "english": null
+      },
+      {
+        "german": "Sammeln Sie die Verbformen in die Tabelle.",
+        "english": "Collect the verb forms into the table [class instruction]."
+      },
+      {
+        "german": "Wir sammeln Daten.",
+        "english": "We collect data."
+      }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-10T15:41:58Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -20,10 +29,17 @@
     ],
     "notes": [],
     "examples": [
-      "Sammeln Sie die Verbformen in die Tabelle. (Collect the verb forms into the table.) / Schreiben Sie das in die Tabelle. (Write that in the table.)"
+      {
+        "german": "Sammeln Sie die Verbformen in die Tabelle.",
+        "english": "Collect the verb forms into the table."
+      },
+      {
+        "german": "Schreiben Sie das in die Tabelle.",
+        "english": "Write that in the table."
+      }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-10T15:41:58Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -36,10 +52,17 @@
       "• Misread Verbendung: the word is Verbformen."
     ],
     "examples": [
-      "Sammeln Sie die Verbformen in die Tabelle. (Collect the verb forms into the table.) / die Verbform von essen (the verb form of essen)"
+      {
+        "german": "Sammeln Sie die Verbformen in die Tabelle.",
+        "english": "Collect the verb forms into the table."
+      },
+      {
+        "german": "die Verbform von essen",
+        "english": "the verb form of essen"
+      }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-10T15:41:58Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -50,10 +73,17 @@
     ],
     "notes": [],
     "examples": [
-      "Grammatik auf einen Blick: Verben (Grammar at a glance: verbs) / Ich lerne Grammatik. (I'm learning grammar.)"
+      {
+        "german": "Grammatik auf einen Blick: Verben",
+        "english": "Grammar at a glance: verbs"
+      },
+      {
+        "german": "Ich lerne Grammatik.",
+        "english": "I'm learning grammar."
+      }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -64,10 +94,17 @@
     ],
     "notes": [],
     "examples": [
-      "Grammatik auf einen Blick: Verben (Grammar at a glance: verbs) / Das ist die Übersicht auf einen Blick. (That's the overview at a glance.)"
+      {
+        "german": "Grammatik auf einen Blick: Verben",
+        "english": "Grammar at a glance: verbs"
+      },
+      {
+        "german": "Das ist die Übersicht auf einen Blick.",
+        "english": "That's the overview at a glance."
+      }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -78,10 +115,21 @@
     ],
     "notes": [],
     "examples": [
-      "auf einen Blick (at a glance) / einen Blick werfen (to cast a glance) / Der erste Blick (the first glance)"
+      {
+        "german": "auf einen Blick",
+        "english": "at a glance"
+      },
+      {
+        "german": "einen Blick werfen",
+        "english": "to cast a glance"
+      },
+      {
+        "german": "Der erste Blick",
+        "english": "the first glance"
+      }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -92,10 +140,21 @@
     ],
     "notes": [],
     "examples": [
-      "Grammatik auf einen Blick: Verben (Grammar at a glance: verbs) / essen ist ein Verb. (essen is a verb.) / starke und schwache Verben (strong and weak verbs)"
+      {
+        "german": "Grammatik auf einen Blick: Verben",
+        "english": "Grammar at a glance: verbs"
+      },
+      {
+        "german": "essen ist ein Verb.",
+        "english": "essen is a verb."
+      },
+      {
+        "german": "starke und schwache Verben",
+        "english": "strong and weak verbs"
+      }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -106,10 +165,21 @@
     ],
     "notes": [],
     "examples": [
-      "Ist alles richtig? (Is everything correct?) / Alles klar? (All clear? / OK?) / Ich verstehe alles. (I understand everything.)"
+      {
+        "german": "Ist alles richtig?",
+        "english": "Is everything correct?"
+      },
+      {
+        "german": "Alles klar?",
+        "english": "All clear? / OK?"
+      },
+      {
+        "german": "Ich verstehe alles.",
+        "english": "I understand everything."
+      }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -120,10 +190,21 @@
     ],
     "notes": [],
     "examples": [
-      "Ist alles richtig? (Is everything correct?) / Das ist richtig. (That's right.) / Die richtige Antwort (the correct answer)"
+      {
+        "german": "Ist alles richtig?",
+        "english": "Is everything correct?"
+      },
+      {
+        "german": "Das ist richtig.",
+        "english": "That's right."
+      },
+      {
+        "german": "Die richtige Antwort",
+        "english": "the correct answer"
+      }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -134,10 +215,21 @@
     ],
     "notes": [],
     "examples": [
-      "Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Sie ist Sekretärin. (She is a secretary.) / der Sekretär (male secretary)"
+      {
+        "german": "Und ich bin Frau Lange, die Sekretärin.",
+        "english": "And I am Ms. Lange, the secretary."
+      },
+      {
+        "german": "Sie ist Sekretärin.",
+        "english": "She is a secretary."
+      },
+      {
+        "german": "der Sekretär",
+        "english": "male secretary"
+      }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -148,10 +240,21 @@
     ],
     "notes": [],
     "examples": [
-      "Frau Lange (Ms. Lange) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Guten Tag, Frau Schulz! (Good day, Ms. Schulz!)"
+      {
+        "german": "Frau Lange",
+        "english": "Ms. Lange"
+      },
+      {
+        "german": "Und ich bin Frau Lange, die Sekretärin.",
+        "english": "And I am Ms. Lange, the secretary."
+      },
+      {
+        "german": "Guten Tag, Frau Schulz!",
+        "english": "Good day, Ms. Schulz!"
+      }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -162,10 +265,21 @@
     ],
     "notes": [],
     "examples": [
-      "Ich komme aus Argentinien. (I'm from Argentina.) / Er kommt aus dem Urlaub. (He's back from vacation.) / aus Berlin (from Berlin)"
+      {
+        "german": "Ich komme aus Argentinien.",
+        "english": "I'm from Argentina."
+      },
+      {
+        "german": "Er kommt aus dem Urlaub.",
+        "english": "He's back from vacation."
+      },
+      {
+        "german": "aus Berlin",
+        "english": "from Berlin"
+      }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -176,10 +290,17 @@
     ],
     "notes": [],
     "examples": [
-      "Ich komme aus Argentinien. (I'm from Argentina.) / Buenos Aires liegt in Argentinien. (Buenos Aires is in Argentina.)"
+      {
+        "german": "Ich komme aus Argentinien.",
+        "english": "I'm from Argentina."
+      },
+      {
+        "german": "Buenos Aires liegt in Argentinien.",
+        "english": "Buenos Aires is in Argentina."
+      }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -190,10 +311,21 @@
     ],
     "notes": [],
     "examples": [
-      "Woher kommen Sie? (Where are you from [formal]?) / Ich komme aus Österreich. (I'm from Austria.) / Woher kommt er? (Where does he come from?)"
+      {
+        "german": "Woher kommen Sie?",
+        "english": "Where are you from [formal]?"
+      },
+      {
+        "german": "Ich komme aus Österreich.",
+        "english": "I'm from Austria."
+      },
+      {
+        "german": "Woher kommt er?",
+        "english": "Where does he come from?"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -204,10 +336,25 @@
     ],
     "notes": [],
     "examples": [
-      "Woher kommen Sie? (Where do you come from [formal]?) / Sie kommen aus München. (You come from Munich.) / Ich komme aus Argentinien. (I'm from Argentina.) / Kommst du mit? (Are you coming along?)"
+      {
+        "german": "Woher kommen Sie?",
+        "english": "Where do you come from [formal]?"
+      },
+      {
+        "german": "Sie kommen aus München.",
+        "english": "You come from Munich."
+      },
+      {
+        "german": "Ich komme aus Argentinien.",
+        "english": "I'm from Argentina."
+      },
+      {
+        "german": "Kommst du mit?",
+        "english": "Are you coming along?"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -220,10 +367,17 @@
       "• Elsewhere Guten Tag is often the default; Hallo is informal."
     ],
     "examples": [
-      "Grüß Gott! (Good day — hello!) / Grüß Gott, Frau Schmid! (Hello, Ms. Schmid!)"
+      {
+        "german": "Grüß Gott!",
+        "english": "Good day — hello!"
+      },
+      {
+        "german": "Grüß Gott, Frau Schmid!",
+        "english": "Hello, Ms. Schmid!"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -234,10 +388,17 @@
     ],
     "notes": [],
     "examples": [
-      "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue, then supply the missing parts / fill everything in.) / Ergänzen Sie die Lücken mit den passenden Wörtern. (Fill in the gaps with suitable words.)"
+      {
+        "german": "Lesen Sie das Gespräch und ergänzen Sie.",
+        "english": "Read the dialogue, then supply the missing parts / fill everything in."
+      },
+      {
+        "german": "Ergänzen Sie die Lücken mit den passenden Wörtern.",
+        "english": "Fill in the gaps with suitable words."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -248,10 +409,17 @@
     ],
     "notes": [],
     "examples": [
-      "Lesen Sie das Gespräch und ergänzen Sie. (Read the dialogue [aloud/on the page], then finish / fill it in.) / Lesen Sie die Überschrift zu Beginn der Übung. (Read the headline at the start of the exercise.)"
+      {
+        "german": "Lesen Sie das Gespräch und ergänzen Sie.",
+        "english": "Read the dialogue [aloud/on the page], then finish / fill it in."
+      },
+      {
+        "german": "Lesen Sie die Überschrift zu Beginn der Übung.",
+        "english": "Read the headline at the start of the exercise."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -262,10 +430,17 @@
     ],
     "notes": [],
     "examples": [
-      "Was sagen die Personen? (What are the people saying?) / Er sagt kurz „Nein“. (He briefly says “no”.)"
+      {
+        "german": "Was sagen die Personen?",
+        "english": "What are the people saying?"
+      },
+      {
+        "german": "Er sagt kurz „Nein“.",
+        "english": "He briefly says “no”."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -276,10 +451,17 @@
     ],
     "notes": [],
     "examples": [
-      "Viele Personen warten. (Many people are waiting.) / Zwei Kinder hören das Gespräch. (Two children listen to the dialogue.)"
+      {
+        "german": "Viele Personen warten.",
+        "english": "Many people are waiting."
+      },
+      {
+        "german": "Zwei Kinder hören das Gespräch.",
+        "english": "Two children listen to the dialogue."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -290,10 +472,17 @@
     ],
     "notes": [],
     "examples": [
-      "Was sagen die Personen? (What are the people saying?) / Was trinken die Kinder? (What are the children drinking?)"
+      {
+        "german": "Was sagen die Personen?",
+        "english": "What are the people saying?"
+      },
+      {
+        "german": "Was trinken die Kinder?",
+        "english": "What are the children drinking?"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -304,10 +493,21 @@
     ],
     "notes": [],
     "examples": [
-      "Welches Foto passt? (Which photo fits / matches?) / Das Bild passt zu diesem Text. (The picture goes with / fits this text passage.) / Das zweite Foto passt nicht. (The second photo does not fit / is wrong.)"
+      {
+        "german": "Welches Foto passt?",
+        "english": "Which photo fits / matches?"
+      },
+      {
+        "german": "Das Bild passt zu diesem Text.",
+        "english": "The picture goes with / fits this text passage."
+      },
+      {
+        "german": "Das zweite Foto passt nicht.",
+        "english": "The second photo does not fit / is wrong."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -318,10 +518,21 @@
     ],
     "notes": [],
     "examples": [
-      "Welches Foto passt? (Which photo fits / matches?) / Welche Farbe ist das? (What / which color is that?) / Welche Antwort passt? (Which answer fits / is correct?)"
+      {
+        "german": "Welches Foto passt?",
+        "english": "Which photo fits / matches?"
+      },
+      {
+        "german": "Welche Farbe ist das?",
+        "english": "What / which color is that?"
+      },
+      {
+        "german": "Welche Antwort passt?",
+        "english": "Which answer fits / is correct?"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -332,10 +543,21 @@
     ],
     "notes": [],
     "examples": [
-      "Welches Foto passt? (Which photo fits / matches?) / Das Foto ist scharf. (The photo is sharp / in focus.) / Ich sehe drei Fotos. (I see three photos.)"
+      {
+        "german": "Welches Foto passt?",
+        "english": "Which photo fits / matches?"
+      },
+      {
+        "german": "Das Foto ist scharf.",
+        "english": "The photo is sharp / in focus."
+      },
+      {
+        "german": "Ich sehe drei Fotos.",
+        "english": "I see three photos."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -349,10 +571,17 @@
       "• Participle angekreuzt (perfect often: habe … angekreuzt)."
     ],
     "examples": [
-      "Kreuzen Sie die richtige Lösung an. (Please tick the correct answer / solution.) / Kreuzen Sie an, was stimmt. (Tick / mark what is correct.)"
+      {
+        "german": "Kreuzen Sie die richtige Lösung an.",
+        "english": "Please tick the correct answer / solution."
+      },
+      {
+        "german": "Kreuzen Sie an, was stimmt.",
+        "english": "Tick / mark what is correct."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -363,10 +592,17 @@
     ],
     "notes": [],
     "examples": [
-      "Hören Sie das Gespräch. (Listen to the dialogue [polite / formal “you”].) / Ich höre morgens Radio. (I listen to the radio in the mornings.)"
+      {
+        "german": "Hören Sie das Gespräch.",
+        "english": "Listen to the dialogue [polite / formal “you”]."
+      },
+      {
+        "german": "Ich höre morgens Radio.",
+        "english": "I listen to the radio in the mornings."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -377,10 +613,17 @@
     ],
     "notes": [],
     "examples": [
-      "Das Gespräch ist kurz. (The dialogue is short.) / Hören Sie bitte noch einmal das Gespräch. (Please listen to the dialogue one more time.)"
+      {
+        "german": "Das Gespräch ist kurz.",
+        "english": "The dialogue is short."
+      },
+      {
+        "german": "Hören Sie bitte noch einmal das Gespräch.",
+        "english": "Please listen to the dialogue one more time."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -391,10 +634,17 @@
     ],
     "notes": [],
     "examples": [
-      "der neue Praktikant (the new intern) / Ein neues Auto steht da. (A new car is parked there.)"
+      {
+        "german": "der neue Praktikant",
+        "english": "the new intern"
+      },
+      {
+        "german": "Ein neues Auto steht da.",
+        "english": "A new car is parked there."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -407,10 +657,29 @@
       "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
     ],
     "examples": [
-      "Ich bin der neue Praktikant. (I'm the new intern.) / Er ist Arzt. (He's a doctor.) / Ist alles richtig? (Is everything correct?) / Und ich bin Frau Lange, die Sekretärin. (And I am Ms. Lange, the secretary.) / Wir sind müde. (We're tired.)"
+      {
+        "german": "Ich bin der neue Praktikant.",
+        "english": "I'm the new intern."
+      },
+      {
+        "german": "Er ist Arzt.",
+        "english": "He's a doctor."
+      },
+      {
+        "german": "Ist alles richtig?",
+        "english": "Is everything correct?"
+      },
+      {
+        "german": "Und ich bin Frau Lange, die Sekretärin.",
+        "english": "And I am Ms. Lange, the secretary."
+      },
+      {
+        "german": "Wir sind müde.",
+        "english": "We're tired."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -421,10 +690,25 @@
     ],
     "notes": [],
     "examples": [
-      "Ich mache ein Praktikum in Deutschland. (I am doing an internship in Germany.) / Er ist Praktikant bei dieser Firma. (He is an intern at this company.) / Anna ist Praktikantin. (Anna is an intern [female form].) / Ich bin der neue Praktikant. (I'm the new intern.)"
+      {
+        "german": "Ich mache ein Praktikum in Deutschland.",
+        "english": "I am doing an internship in Germany."
+      },
+      {
+        "german": "Er ist Praktikant bei dieser Firma.",
+        "english": "He is an intern at this company."
+      },
+      {
+        "german": "Anna ist Praktikantin.",
+        "english": "Anna is an intern [female form]."
+      },
+      {
+        "german": "Ich bin der neue Praktikant.",
+        "english": "I'm the new intern."
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   },
@@ -437,10 +721,17 @@
       "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
     ],
     "examples": [
-      "Guten Tag, Frau Lange! (Good afternoon / hello, Ms. Lange!) / Guten Tag, wie geht es Ihnen? (Hello / good day — how are you [formal]?)"
+      {
+        "german": "Guten Tag, Frau Lange!",
+        "english": "Good afternoon / hello, Ms. Lange!"
+      },
+      {
+        "german": "Guten Tag, wie geht es Ihnen?",
+        "english": "Hello / good day — how are you [formal]?"
+      }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-10T15:40:44Z",
+    "updatedAt": "2026-05-11T07:16:36Z",
     "lektion": 1,
     "level": "A1"
   }

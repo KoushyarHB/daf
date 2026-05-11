@@ -5,7 +5,7 @@
 - **`vocab.docx`** is the **primary source of truth**. Edit vocabulary in Word and save.
 - **`vocab.manifest.json`** is a **derived mirror** for diffs, bulk edits, and tooling. Refresh it from the Word file whenever the JSON should match what you last saved.
 
-**Example lines in Word:** each `DE (English)` unit is built from slash-separated strings in JSON (`a / b / c`). Only **` / ` outside parentheses** splits multiple examples — English may contain **` / `** inside the gloss (e.g. *Good afternoon / hello*). German runs are blue-slate italic; the parenthetical English is gray italic (`daf_vocab.docx_cards`).
+**Example lines in Word:** each `DE (English)` pair is one object in the manifest **`examples`** array: **`{ "german": "...", "english": "..." }`**. English is the full-sentence gloss **without** wrapping parentheses (tooling adds `(…)` in Word and HTML). Use **`"english": null`** for German-only lines. Legacy manifests used slash-joined strings or **`example_units`**; **`sync`** / **`build`** normalize to objects.
 
 ## Manifest card metadata
 
@@ -13,6 +13,7 @@ Every object in **`vocab.manifest.json`** includes:
 
 | Field | Meaning |
 |--------|--------|
+| **`examples`** | Array of **`{ "german": "…", "english": "…" \| null }`** — one **`›`** line per object in Word; English is stored without parentheses. |
 | **`createdAt`** | UTC ISO 8601 timestamp when the card first appeared; preserved when **`sync`** matches an existing **`head`**. |
 | **`updatedAt`** | UTC ISO 8601 — set to “now” on every **`sync`** for each exported card. |
 | **`lektion`** | Lesson number (integer) or **`null`** if not assigned. |

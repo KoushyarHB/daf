@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .docx_cards import split_example_body_units, split_example_chunk_translation
+from .docx_cards import normalize_examples_from_card
 
 
 TITLE_PAGE = "daf — vocabulary"
@@ -83,12 +83,6 @@ footer {
 """
 
 
-def _example_lines_from_string(s: str) -> list[tuple[str, str | None]]:
-    return [
-        split_example_chunk_translation(c) for c in split_example_body_units(s)
-    ]
-
-
 def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     parts: list[str] = [
         "<!DOCTYPE html>",
@@ -136,34 +130,22 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             if isinstance(n, str) and n.strip():
                 parts.append(f'<div class="notes">{html.escape(n.strip())}</div>')
 
-        ex_strings: list[str] = []
-        units = card.get("example_units")
-        if isinstance(units, list) and units:
-            for pair in units:
-                if (
-                    isinstance(pair, (list, tuple))
-                    and len(pair) >= 2
-                    and isinstance(pair[0], str)
-                    and isinstance(pair[1], str)
-                ):
-                    ex_strings.append(f"{pair[0].strip()} ({pair[1].strip()})")
-        for legacy in card.get("examples") or []:
-            if isinstance(legacy, str) and legacy.strip():
-                ex_strings.append(legacy.strip())
-
-        if ex_strings:
+        examples = normalize_examples_from_card(card)
+        if examples:
             parts.append('<div class="ex-block">')
-            for raw in ex_strings:
-                for de, en in _example_lines_from_string(raw):
-                    if not de and not en:
-                        continue
-                    parts.append('<div class="ex-line">')
-                    parts.append('<span class="chevr">›</span>')
-                    parts.append(f'<span class="ex-de">{html.escape(de)}</span>')
-                    if en:
-                        parts.append(" ")
-                        parts.append(f'<span class="ex-en">{html.escape(en)}</span>')
-                    parts.append("</div>")
+            for ex in examples:
+                de = (ex.get("german") or "").strip()
+                en = ex.get("english")
+                if not de and not en:
+                    continue
+                parts.append('<div class="ex-line">')
+                parts.append('<span class="chevr">›</span>')
+                parts.append(f'<span class="ex-de">{html.escape(de)}</span>')
+                if en:
+                    parts.append(" ")
+                    inner = str(en).strip()
+                    parts.append(f'<span class="ex-en">({html.escape(inner)})</span>')
+                parts.append("</div>")
             parts.append("</div>")
 
         parts.append("</article>")

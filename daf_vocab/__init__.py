@@ -21,6 +21,7 @@ from .docx_cards import (
     export_manifest_file,
     format_example_chunks,
     normalize_card_meta,
+    normalize_examples_from_card,
     rebuild_vocab_layout,
     utc_now_iso,
 )
@@ -35,6 +36,7 @@ __all__ = [
     "build_vocab_from_manifest_file",
     "rebuild_vocab_layout",
     "normalize_card_meta",
+    "normalize_examples_from_card",
     "utc_now_iso",
     "render_vocab_html",
     "write_vocab_preview",

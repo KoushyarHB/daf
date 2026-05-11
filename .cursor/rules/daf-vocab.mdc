@@ -30,7 +30,7 @@ Examples must remain visually distinct from glosses / explanatory English:
 
 - Same **`left_indent` ≈ `Inches(0.4)`** as explanatory text.
 - Prefix **`›`** on **each** example line. German stays **Calibri ~10.5 pt**, **italic**, muted slate RGB **`rgb(48, 96, 140)`**. The **parenthetical English** after the German is the **same size and italic**, but **gray** RGB **`rgb(64, 64, 64)`** so it is not the same color as the German.
-- **Each** German + **`(English)`** unit is on **its own paragraph** (next line). In the JSON manifest you may still join several units with **` / `** on one string; **`build`** splits on **` / `** into separate **`›`** lines in Word.
+- **Each** German + **`(English)`** unit is on **its own paragraph** (next line). In **`vocab.manifest.json`**, each unit is one object **`{ "german", "english" }`** in **`examples`**; **`build`** / **`sync`** emit one **`›`** line per object.
 - **Full-sentence English in parentheses** — not word-by-word inline glosses after each German token.
 - Gloss / explanation paragraphs: **Calibri 11 pt**, **roman (non-italic)** default (English meta about the lemma).
 - Keep optional **`Pt(2)`** top spacing before the first example paragraph in a card.
@@ -59,11 +59,11 @@ When the user says **`dissect …`** about German (with or without “this sente
 
 ## Example translations (mandatory)
 
-In every **`›`** example **paragraph** (each slash-separated unit in the manifest becomes its own paragraph in Word):
+In every **`›`** example **paragraph** (each object in **`examples`** becomes its own paragraph in Word):
 
 - Write **clean German** (no interrupted parenthetical gloss after individual words).
 - After each German unit, append **one** set of parentheses with a **natural full English** gloss of that unit — not word-by-word cribbing.
-- Still store multiple units in one manifest string joined by **` / `** if you like; **`python -m daf_vocab build`** turns each slash-separated unit into its own **`›`** paragraph; the parenthetical English is rendered **gray**, German **blue-slate** (see **`## Distinct styling for German examples`**).
+- Add multiple units as multiple **`examples`** objects; **`python -m daf_vocab build`** turns each into its own **`›`** paragraph. The parenthetical English is rendered **gray**, German **blue-slate** (see **`## Distinct styling for German examples`**).
 
 This replaces the old rule of glosing unknown words immediately after each German token.
 
@@ -77,8 +77,7 @@ Each JSON entry:
 
 - **`head`**: single string exactly as printed in bold + IPA (**`lemma /…/`**)
 - **`gloss`**, **`notes`**: string arrays; **`notes`** is often **`[]`**—add bullets only when necessary (see **Card layout §3**).
-- **`examples`**: string array rendered as **`›`** lines (**omit** the **`›`** prefix itself). Each element is **`DE (English) / DE2 (English2)`** when multiple variants ride on one **`›`** line **or split into separate `examples` strings**—both are acceptable.  
-- Optional **`example_units`**: `[["German","English"], …]` helpers call `daf_vocab.format_example_chunks` for you instead of handwriting `examples`.
+- **`examples`**: array of **`{ "german": "…", "english": "…" | null }`** — one **`›`** line each in Word (omit the **`›`** prefix in JSON). English is stored **without** outer parentheses; tooling prints **`(English)`** in gray.
 - **Metadata** (required on every card; tooling fills defaults if missing):
   - **`createdAt`**: ISO 8601 UTC string (e.g. `2026-05-10T14:30:00Z`) — set when the card first appears; preserved across **`sync`** when the same **`head`** existed before.
   - **`updatedAt`**: ISO 8601 UTC — refreshed on every **`sync`** (Word snapshot); **`build`** normalizes missing fields and rewrites the manifest with canonical metadata.

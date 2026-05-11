@@ -50,22 +50,96 @@ def _coerce_lektion(value: Any) -> int | None:
         return None
 
 
+def ordered_example_object(ex: dict[str, Any]) -> dict[str, Any]:
+    """Stable keys: ``german``, ``english`` (null when no gloss)."""
+
+    g = (ex.get("german") or "").strip()
+    e = ex.get("english")
+    if e is None:
+        en_out: str | None = None
+    elif isinstance(e, str):
+        en_out = e.strip() or None
+    else:
+        en_out = str(e).strip() or None
+    return {"german": g, "english": en_out}
+
+
 def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     """Stable key order for JSON: content fields, then metadata."""
 
+    ex_raw = c.get("examples") or []
+    examples_ord = [ordered_example_object(x) for x in ex_raw if isinstance(x, dict)]
     od: dict[str, Any] = {
         "head": c["head"],
         "gloss": c["gloss"],
         "notes": c["notes"],
-        "examples": c["examples"],
+        "examples": examples_ord,
     }
-    if "example_units" in c and c["example_units"]:
-        od["example_units"] = c["example_units"]
     od["createdAt"] = c["createdAt"]
     od["updatedAt"] = c["updatedAt"]
     od["lektion"] = c["lektion"]
     od["level"] = c["level"]
     return od
+
+
+def english_gloss_inner(en: str | None) -> str | None:
+    """Canonical manifest stores English without wrapping parentheses; migrate legacy ``(English)``."""
+
+    if en is None:
+        return None
+    s = str(en).strip()
+    if not s:
+        return None
+    if len(s) >= 2 and s[0] == "(" and s[-1] == ")":
+        return s[1:-1].strip() or None
+    return s
+
+
+def _examples_from_legacy_string(s: str) -> list[dict[str, Any]]:
+    """One legacy manifest string (possibly with `` / `` between units) → example objects."""
+
+    s = s.strip()
+    if not s:
+        return []
+    out: list[dict[str, Any]] = []
+    for chunk in split_example_body_units(s):
+        de, en = split_example_chunk_translation(chunk)
+        de = (de or "").strip()
+        en_in = english_gloss_inner(en) if en else None
+        if de or en_in:
+            out.append({"german": de, "english": en_in})
+    return out
+
+
+def normalize_examples_from_card(card: dict[str, Any]) -> list[dict[str, Any]]:
+    """Canonical ``examples``: ``[{ \"german\", \"english\" }, ...]``; migrate strings and ``example_units``."""
+
+    out: list[dict[str, Any]] = []
+    units = card.get("example_units")
+    if isinstance(units, list) and units:
+        for pair in units:
+            if not isinstance(pair, (list, tuple)) or len(pair) < 2:
+                continue
+            g = str(pair[0]).strip()
+            raw_e = str(pair[1]).strip() if pair[1] is not None else ""
+            e = english_gloss_inner(raw_e) if raw_e else None
+            if g or e:
+                out.append({"german": g, "english": e})
+    for item in card.get("examples") or []:
+        if isinstance(item, dict):
+            g = (item.get("german") or "").strip()
+            e = item.get("english")
+            if e is None:
+                en_out = None
+            elif isinstance(e, str):
+                en_out = english_gloss_inner(e)
+            else:
+                en_out = english_gloss_inner(str(e))
+            if g or en_out:
+                out.append({"german": g, "english": en_out})
+        elif isinstance(item, str):
+            out.extend(_examples_from_legacy_string(item))
+    return out
 
 
 def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
@@ -75,7 +149,7 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     head = (card.get("head") or "").strip()
     gloss = [x for x in (card.get("gloss") or []) if isinstance(x, str)]
     notes = [x for x in (card.get("notes") or []) if isinstance(x, str)]
-    examples = [x for x in (card.get("examples") or []) if isinstance(x, str)]
+    examples = normalize_examples_from_card(card)
     created = card.get("createdAt")
     updated = card.get("updatedAt")
     if not created:
@@ -96,8 +170,6 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
         "lektion": _coerce_lektion(card.get("lektion")),
         "level": level,
     }
-    if isinstance(card.get("example_units"), list) and card["example_units"]:
-        out["example_units"] = card["example_units"]
     return ordered_manifest_card(out)
 
 
@@ -121,7 +193,7 @@ def merge_parsed_cards_with_previous_manifest(
             "head": h,
             "gloss": list(c.get("gloss") or []),
             "notes": list(c.get("notes") or []),
-            "examples": list(c.get("examples") or []),
+            "examples": normalize_examples_from_card(c),
         }
         if prev:
             merged["createdAt"] = prev.get("createdAt") or now
@@ -230,7 +302,13 @@ def parse_vocab_document(doc_path: Path) -> list[dict[str, Any]]:
         elif rr == "note":
             cur["notes"].append(txt)
         else:
-            cur.setdefault("examples", []).append(strip_example_surface(txt))
+            body = strip_example_surface(txt)
+            for chunk in split_example_body_units(body):
+                de, en = split_example_chunk_translation(chunk)
+                de = (de or "").strip()
+                en_in = english_gloss_inner(en) if en else None
+                if de or en_in:
+                    cur.setdefault("examples", []).append({"german": de, "english": en_in})
 
     if cur:
         cards.append(cur)
@@ -320,18 +398,27 @@ def split_example_body_units(body: str) -> list[str]:
     return [u for u in units if u]
 
 
-def add_example_line(doc: Document, *, body_without_prefix: str):
-    """One or more indented › paragraphs: German in slate blue, ``(English)`` in gray. Chunks joined by `` / `` in JSON become separate lines."""
+def add_example_objects(doc: Document, objects: list[dict[str, Any]]) -> None:
+    """One indented ``›`` paragraph per example (German slate blue; optional ``(English)`` gray)."""
 
-    body = body_without_prefix.strip()
-    if not body:
+    objs: list[dict[str, Any]] = []
+    for obj in objects:
+        de = (obj.get("german") or "").strip()
+        e = obj.get("english")
+        if e is None:
+            en: str | None = None
+        elif isinstance(e, str):
+            en = e.strip() or None
+        else:
+            en = str(e).strip() or None
+        if de or en:
+            objs.append({"german": de, "english": en})
+    n = len(objs)
+    if not n:
         return
-    chunks = split_example_body_units(body)
-    if not chunks:
-        return
-    n = len(chunks)
-    for idx, ch in enumerate(chunks):
-        de, en = split_example_chunk_translation(ch)
+    for idx, obj in enumerate(objs):
+        de = obj["german"]
+        en = obj["english"]
         paragraph = doc.add_paragraph()
         paragraph.paragraph_format.left_indent = IND
         paragraph.paragraph_format.space_before = Pt(2) if idx == 0 else Pt(0)
@@ -346,7 +433,7 @@ def add_example_line(doc: Document, *, body_without_prefix: str):
             run.font.italic = True
             run.font.color.rgb = color
         if en:
-            run_en = paragraph.add_run(" " + en)
+            run_en = paragraph.add_run(" (" + en + ")")
             run_en.font.size = Pt(10.5)
             run_en.font.italic = True
             run_en.font.color.rgb = EXAMPLE_TRANSLATION_COLOR
@@ -380,21 +467,7 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
         r.font.italic = True
         r.font.color.rgb = NOTE_GRAY
 
-    examples = []
-    units = card.get("example_units")
-    if isinstance(units, list) and units:
-        flat: list[tuple[str, str]] = []
-        for pair in units:
-            if isinstance(pair, (list, tuple)) and len(pair) >= 2 and all(isinstance(x, str) for x in pair[:2]):
-                flat.append((pair[0], pair[1]))
-        if flat:
-            examples.append(format_example_chunks(flat))
-    for legacy in card.get("examples") or []:
-        if isinstance(legacy, str) and legacy.strip():
-            examples.append(legacy.strip())
-
-    for raw in examples:
-        add_example_line(doc, body_without_prefix=raw)
+    add_example_objects(doc, normalize_examples_from_card(card))
 
 
 def build_vocab_document(cards: list[dict[str, Any]]) -> Document:
