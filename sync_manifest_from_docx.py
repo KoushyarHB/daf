@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Snapshot ``vocab.manifest.json`` from ``vocab.docx`` (canonical source).
+"""Import Word edits into the canonical manifest.
 
-Run from the repo root before editing the JSON in an automated pass, so the
-manifest matches what you last saved in Word::
+Run from the repo root after saving ``vocab.docx``, so the JSON matches Word::
 
     python sync_manifest_from_docx.py
 

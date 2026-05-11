@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 """Helpers for scaling `vocab.docx` (lesson-style dictionary cards).
 
-`vocab.docx` is canonical; use **`python -m daf_vocab sync`** to mirror it into
-`vocab.manifest.json`.
-Prepend new entries to the manifest, then `python -m daf_vocab build`.
+**``vocab.manifest.json`` is canonical** for deck content. Edit it directly, or
+edit ``vocab.docx`` in Word and run **`python -m daf_vocab sync`** to refresh
+the JSON from the saved document (metadata for known heads is merged from the
+existing manifest). After JSON-only edits, run **`python -m daf_vocab build`**
+to regenerate Word.
 
 CLI (repo root, same folder as `daf_vocab/`):
-- **`python -m daf_vocab sync`** (canonical; docx → manifest) — or legacy `export`, or `python sync_manifest_from_docx.py`
+- **`python -m daf_vocab sync`** — Word → manifest (import your Word edits into JSON)
 - Edit `vocab.manifest.json` (new cards at **top** of the array)
-- `python -m daf_vocab build`
-- Optional: `python -m daf_vocab serve` (manifest → `vocab-preview/index.html` + local HTTP server)
-- Optional: `python -m daf_vocab rebuild` (spacing/`›` only for vocab)
+- **`python -m daf_vocab build`** — manifest → Word + normalized JSON rewrite
+- Optional: **`python -m daf_vocab serve`** (manifest → local HTML preview)
+- Optional: **`python -m daf_vocab rebuild`** (spacing/`›` only, from current Word)
 """
 
 from .docx_cards import (

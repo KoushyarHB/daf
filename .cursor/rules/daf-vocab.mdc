@@ -7,12 +7,13 @@ alwaysApply: true
 
 Use the **`daf_vocab/`** helpers + **`python-docx`**.
 
-### Canonical file and order
+### Canonical file and bidirectional workflow
 
-- **`vocab.docx` is the source of truth** — the user edits it manually in Word.
-- **`vocab.manifest.json` is a mirror** for bulk edits and agent diffs. Before changing the manifest in any automated update, **refresh it from Word** so JSON matches the saved document.
-- **New cards belong at the top** of the deck: **prepend** lemma objects to the **front** of the manifest array (first item = first card under the title in `vocab.docx` = newest additions).
-- **Primary sync (Word → JSON):** run **`python -m daf_vocab sync`** from the repo root. (Legacy: **`python -m daf_vocab export`**; helper script: **`python sync_manifest_from_docx.py`**.) Then edit JSON if needed, then **`python -m daf_vocab build`** to regenerate **`vocab.docx`** from the manifest.
+- **`vocab.manifest.json` is canonical** — the deck git tracks, agents edit, and **GitHub Pages** renders (from the committed file).
+- **`vocab.docx`** is for **manual editing** in Word. Save, then **`python -m daf_vocab sync`** to **import Word into the manifest** (content from Word; metadata merged from existing JSON where **`head`** matches).
+- **JSON-only edits**: prepend or patch **`vocab.manifest.json`**, then **`python -m daf_vocab build`** to regenerate Word and normalize JSON.
+- **New cards belong at the top**: prepend lemma objects to the **front** of the manifest array (same order as cards under the title after **`build`**).
+
 
 ## Look & typography
 
@@ -69,8 +70,8 @@ This replaces the old rule of glosing unknown words immediately after each Germa
 
 ## Scaling to large decks
 
-- **`vocab.docx`** stays canonical; **`python -m daf_vocab sync`** (or legacy **`export`**) writes **`vocab.manifest.json`** from Word — run this **at the start of an agent update** so the JSON reflects the latest manual edits.
-- Export uses **English gloss-prefix heuristics** in `daf_vocab/docx_cards.py → gloss_heuristic`: if your gloss wording does not match those prefixes, paragraphs can be misclassified until the tuple is extended.
+- **`vocab.manifest.json`** stays canonical for git and **Pages**. Run **`sync`** whenever **Word** was edited so JSON catches up **before** agent/bulk passes on the manifest.
+- **`sync`** / **`export`** uses **English gloss-prefix heuristics** in `daf_vocab/docx_cards.py → gloss_heuristic`: if your gloss wording does not match those prefixes, paragraphs can be misclassified until the tuple is extended.
 - Add new lemma objects **at the beginning** of the JSON array (**prepend**), then **`python -m daf_vocab build`** regenerates **`vocab.docx`** from the manifest with that order.
 
 Each JSON entry:
@@ -90,7 +91,7 @@ Keep **`requirements-vocab.txt`** (`python-docx`) installed in any environment t
 
 - **Rebuild or patch** programmatically rather than manual OOXML hacks (`daf_vocab/` package centralizes typography helpers).
 - For bulk layout reflows (spacing + **`›`** styling only), run **`python -m daf_vocab rebuild`** (`daf_vocab.docx_cards.rebuild_vocab_layout`).
-- For authoring at scale: **`python -m daf_vocab sync`** → edit **`vocab.manifest.json`** (prepend new cards) → **`python -m daf_vocab build`**.
+- For authoring at scale: if you used Word, **`sync`** first; edit **`vocab.manifest.json`** (prepend new cards); **`build`** refreshes **`vocab.docx`** from canonical JSON.
 - **`python -m daf_vocab build`** overwrites **`vocab.docx`** and rewrites **`vocab.manifest.json`** with **normalized metadata** on every card (stable key order).
 - **Do not strip** unrelated existing cards unless asked.
 - If persisting workflows outside this repo (no `.cursor/rules`), mirror this file into **User Rules** or a Cursor **Skill**—this project uses **rules**, not custom MCP servers, by default.

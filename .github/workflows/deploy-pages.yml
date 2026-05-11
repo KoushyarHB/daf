@@ -1,4 +1,4 @@
-# Build vocab-preview/index.html from vocab.manifest.json and deploy to GitHub Pages.
+# Build static HTML from committed vocab.manifest.json (canonical deck). GitHub does not run sync from Word.
 # Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
 
 name: Deploy vocab preview to GitHub Pages

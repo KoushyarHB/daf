@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-"""python-docx helpers for DaF vocab cards (+ JSON manifest rebuild)."""
+"""python-docx helpers for DaF vocab cards.
+
+``vocab.manifest.json`` holds canonical deck content. ``export_manifest_file``
+(``sync``) merges a Word snapshot into the manifest (card text from Word,
+metadata merged from the previous JSON). ``build_vocab_from_manifest_file``
+(``build``) regenerates Word from the manifest and rewrites normalized JSON.
+"""
 
 from __future__ import annotations
 
@@ -491,6 +497,8 @@ def export_manifest_file(
     vocab_path: Path = DEFAULT_VOCAB_PATH,
     manifest_path: Path = MANIFEST_PATH,
 ) -> Path:
+    """Merge a Word snapshot into ``manifest_path`` (canonical JSON on disk)."""
+
     parsed = parse_vocab_document(vocab_path)
     previous: list[dict[str, Any]] | None = None
     if manifest_path.exists():

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """CLI entry: run from repo root, e.g. ``python -m daf_vocab sync``.
 
-``sync`` (and legacy ``export``) writes ``vocab.manifest.json`` from the
-canonical ``vocab.docx``. ``serve`` writes ``vocab-preview/index.html`` and
-starts a local HTTP server.
+``sync`` (and legacy ``export``) **updates** ``vocab.manifest.json`` from the
+current ``vocab.docx`` (Word is a manual editor; JSON remains canonical).
+``build`` writes ``vocab.docx`` from the manifest. ``serve`` writes
+``vocab-preview/index.html`` and starts a local HTTP server.
 """
 
 from __future__ import annotations
@@ -46,22 +47,22 @@ def main(argv: list[str] | None = None) -> None:
 
     p_sync = sub.add_parser(
         "sync",
-        help="Copy vocab.docx → vocab.manifest.json (Word is the source of truth)",
+        help="Merge vocab.docx → vocab.manifest.json (import Word edits into canonical JSON)",
     )
     p_sync.add_argument(
         "--docx",
         type=Path,
         default=DEFAULT_VOCAB_PATH,
-        help=f"Word file (canonical source; default: {DEFAULT_VOCAB_PATH})",
+        help=f"Word file to read (default: {DEFAULT_VOCAB_PATH})",
     )
     p_sync.add_argument(
         "--manifest",
         type=Path,
         default=MANIFEST_PATH,
-        help=f"JSON mirror to write (default: {MANIFEST_PATH})",
+        help=f"Canonical JSON output (default: {MANIFEST_PATH})",
     )
 
-    p_build = sub.add_parser("build", help="Rebuild vocab.docx from vocab.manifest.json")
+    p_build = sub.add_parser("build", help="Render vocab.docx from canonical vocab.manifest.json")
     p_build.add_argument(
         "--manifest",
         type=Path,
@@ -111,7 +112,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.cmd in ("export", "sync"):
         out = export_manifest_file(Path(args.docx), Path(args.manifest))
         if args.cmd == "sync":
-            print(f"Synced manifest ← canonical {args.docx} → {out}")
+            print(f"Synced manifest ← Word {args.docx} → {out}")
         else:
             print(f"Wrote manifest → {out}")
     elif args.cmd == "build":

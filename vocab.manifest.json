@@ -1,9 +1,13 @@
 [
   {
     "head": "sammeln /ˈzaməln/",
-    "gloss": ["To collect; gather (+ acc.)."],
+    "gloss": [],
     "notes": [],
     "examples": [
+      {
+        "german": "To collect; gather (+ acc.).",
+        "english": null
+      },
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
         "english": "Collect the verb forms into the table [class instruction]."
@@ -14,13 +18,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "die Tabelle /taˈbɛlə/",
-    "gloss": ["Table (grid for answers; worksheet)."],
+    "gloss": [
+      "Table (grid for answers; worksheet)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -33,14 +39,18 @@
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "die Verbform /ˈfɔʁm/",
-    "gloss": ["Verb form; pl. die Verbformen (inflected shapes)."],
-    "notes": ["• Misread Verbendung: the word is Verbformen."],
+    "gloss": [
+      "Verb form; pl. die Verbformen (inflected shapes)."
+    ],
+    "notes": [
+      "• Misread Verbendung: the word is Verbformen."
+    ],
     "examples": [
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
@@ -52,13 +62,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "die Grammatik /ɡʁaˈmaːtɪk/",
-    "gloss": ["Grammar (rules of the language)."],
+    "gloss": [
+      "Grammar (rules of the language)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -71,13 +83,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "auf einen Blick /aʊ̯f ˈaɪ̯nən ˈblɪk/",
-    "gloss": ["At a glance (overview; textbook headings)."],
+    "gloss": [
+      "At a glance (overview; textbook headings)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -90,13 +104,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "der Blick /blɪk/",
-    "gloss": ["Glance; look (masculine)."],
+    "gloss": [
+      "Glance; look (masculine)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -113,13 +129,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "das Verb /vɛʁp/",
-    "gloss": ["Verb; plural die Verben."],
+    "gloss": [
+      "Verb; plural die Verben."
+    ],
     "notes": [],
     "examples": [
       {
@@ -136,13 +154,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "alles /ˈaləs/",
-    "gloss": ["Everything (pronoun; all of it)."],
+    "gloss": [
+      "Everything (pronoun; all of it)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -159,13 +179,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "richtig /ˈʁɪçtɪç/",
-    "gloss": ["Correct; right; true."],
+    "gloss": [
+      "Correct; right; true."
+    ],
     "notes": [],
     "examples": [
       {
@@ -182,13 +204,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
-    "gloss": ["Secretary (feminine job title)."],
+    "gloss": [
+      "Secretary (feminine job title)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -205,13 +229,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "Frau /fraʊ̯/",
-    "gloss": ["Ms. or Mrs. before a surname."],
+    "gloss": [
+      "Ms. or Mrs. before a surname."
+    ],
     "notes": [],
     "examples": [
       {
@@ -228,13 +254,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "aus /aʊ̯s/",
-    "gloss": ["From; out of (+ dative for origin)."],
+    "gloss": [
+      "From; out of (+ dative for origin)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -251,13 +279,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "Argentinien /aʁɡɛnˈtiːni̯ən/",
-    "gloss": ["Argentina (country)."],
+    "gloss": [
+      "Argentina (country)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -270,13 +300,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "woher /ˈvoheːɐ̯/",
-    "gloss": ["From where (origin)."],
+    "gloss": [
+      "From where (origin)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -293,13 +325,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "kommen /ˈkɔmən/",
-    "gloss": ["To come; aus … = from (a place)."],
+    "gloss": [
+      "To come; aus … = from (a place)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -320,14 +354,18 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "Grüß Gott! /ˈɡʁʏs ˈɡɔt/",
-    "gloss": ["Polite daytime hello—typical in Austria and southern Germany."],
-    "notes": ["• Elsewhere Guten Tag is often the default; Hallo is informal."],
+    "gloss": [
+      "Polite daytime hello—typical in Austria and southern Germany."
+    ],
+    "notes": [
+      "• Elsewhere Guten Tag is often the default; Hallo is informal."
+    ],
     "examples": [
       {
         "german": "Grüß Gott!",
@@ -339,13 +377,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "ergänzen /ˈʔɛʁɡɛntsən/",
-    "gloss": ["To complete / fill in blanks."],
+    "gloss": [
+      "To complete / fill in blanks."
+    ],
     "notes": [],
     "examples": [
       {
@@ -358,13 +398,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "lesen /ˈleːzən/",
-    "gloss": ["To read (+ object in accusative)."],
+    "gloss": [
+      "To read (+ object in accusative)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -377,13 +419,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "sagen /ˈzaːɡən/",
-    "gloss": ["To say or tell."],
+    "gloss": [
+      "To say or tell."
+    ],
     "notes": [],
     "examples": [
       {
@@ -396,13 +440,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "die Person /pɛʁˈzoːn/",
-    "gloss": ["Feminine singular: person (pl. Personen)."],
+    "gloss": [
+      "Feminine singular: person (pl. Personen)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -415,13 +461,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "was /vas/",
-    "gloss": ["Interrogative “what” (Was …?)."],
+    "gloss": [
+      "Interrogative “what” (Was …?)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -434,13 +482,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "passen /ˈpasən/",
-    "gloss": ["To fit; match; suit."],
+    "gloss": [
+      "To fit; match; suit."
+    ],
     "notes": [],
     "examples": [
       {
@@ -457,13 +507,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "welcher · welche · welches /ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs/",
-    "gloss": ["Which (pick by gender: m./f./n.)."],
+    "gloss": [
+      "Which (pick by gender: m./f./n.)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -480,13 +532,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "das Foto /ˈfoːto/",
-    "gloss": ["Photo; picture (neuter; pl. Fotos)."],
+    "gloss": [
+      "Photo; picture (neuter; pl. Fotos)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -503,13 +557,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "ankreuzen /ˈankʁɔʏtsən/",
-    "gloss": ["Separable: tick a box (… an)."],
+    "gloss": [
+      "Separable: tick a box (… an)."
+    ],
     "notes": [
       "• The prefix an- moves to the end of the clause: Kreuzen Sie die richtige Lösung an.",
       "• Participle angekreuzt (perfect often: habe … angekreuzt)."
@@ -525,13 +581,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "hören /ˈhøːʁən/",
-    "gloss": ["To hear; listen to (+ acc.)."],
+    "gloss": [
+      "To hear; listen to (+ acc.)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -544,13 +602,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "das Gespräch /ɡəˈʃpʁɛːç/",
-    "gloss": ["Conversation; spoken dialogue."],
+    "gloss": [
+      "Conversation; spoken dialogue."
+    ],
     "notes": [],
     "examples": [
       {
@@ -563,13 +623,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "neu /nɔʏ/",
-    "gloss": ["New (opposite alt); before a noun, add an ending."],
+    "gloss": [
+      "New (opposite alt); before a noun, add an ending."
+    ],
     "notes": [],
     "examples": [
       {
@@ -582,13 +644,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "sein /zaɪn/",
-    "gloss": ["To be (am / is / are)."],
+    "gloss": [
+      "To be (am / is / are)."
+    ],
     "notes": [
       "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
     ],
@@ -615,13 +679,15 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "der Praktikant /pʁaktiˈkant/",
-    "gloss": ["Intern; Praktikantin is the feminine form."],
+    "gloss": [
+      "Intern; Praktikantin is the feminine form."
+    ],
     "notes": [],
     "examples": [
       {
@@ -642,14 +708,18 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   },
   {
     "head": "Guten Tag! /ˈɡuːtən ˈtaːk/",
-    "gloss": ["Good day; hello (formal daytime)."],
-    "notes": ["• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."],
+    "gloss": [
+      "Good day; hello (formal daytime)."
+    ],
+    "notes": [
+      "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
+    ],
     "examples": [
       {
         "german": "Guten Tag, Frau Lange!",
@@ -661,7 +731,7 @@
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T07:33:23Z",
+    "updatedAt": "2026-05-11T09:42:46Z",
     "lektion": 1,
     "level": "A1"
   }

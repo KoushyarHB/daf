@@ -2,8 +2,9 @@
 
 ## Vocabulary: source of truth
 
-- **`vocab.docx`** is the **primary source of truth**. Edit vocabulary in Word and save.
-- **`vocab.manifest.json`** is a **derived mirror** for diffs, bulk edits, and tooling. Refresh it from the Word file whenever the JSON should match what you last saved.
+- **`vocab.manifest.json`** is the **canonical deck** (what git, agents, and **GitHub Pages** use). The website is built from the **committed manifest**, not from regenerating Word on the server.
+- **`vocab.docx`** is your **human editor** in Word. After you edit and save Word, run **`python -m daf_vocab sync`** so **JSON absorbs your changes** (tooling merges **content** from Word and **preserves / freshens metadata** like timestamps and `lektion` for known **`head`** strings).
+- After you edit **JSON** only (prepend cards, bulk fixes), run **`python -m daf_vocab build`** so **Word catches up** with the manifest and the manifest is normalized.
 
 **Example lines in Word:** each `DE (English)` pair is one object in the manifest **`examples`** array: **`{ "german": "...", "english": "..." }`**. English is the full-sentence gloss **without** wrapping parentheses (tooling adds `(…)` in Word and HTML). Use **`"english": null`** for German-only lines. Legacy manifests used slash-joined strings or **`example_units`**; **`sync`** / **`build`** normalize to objects.
 
@@ -19,17 +20,19 @@ Every object in **`vocab.manifest.json`** includes:
 | **`lektion`** | Lesson number (integer) or **`null`** if not assigned. |
 | **`level`** | CEFR level; default **`A1`** (`daf_vocab.docx_cards.DEFAULT_LEVEL`). |
 
-`python -m daf_vocab build` normalizes every card (fills missing meta) and **rewrites the manifest** with stable field order; it does not render these fields into Word.
+`python -m daf_vocab build` normalizes metadata, regenerates **`vocab.docx`** from the manifest, and rewrites **`vocab.manifest.json`** with stable key order. Fields like **`lektion`** live in JSON; **`sync`** carries them forward when **`head`** still matches after a Word edit.
 
-## Sync command (docx → manifest)
+## Sync command (Word → manifest)
 
-The command that **pulls the canonical Word file into the manifest** is:
+Run when you **edited and saved** **`vocab.docx`** and want the **canonical JSON** to reflect that:
 
 ```bash
 python -m daf_vocab sync
 ```
 
-Run it from the **repository root** (the folder that contains `vocab.docx` and `daf_vocab/`).
+This **updates** **`vocab.manifest.json`** from **`vocab.docx`**, reusing existing metadata for cards that still share the same **`head`**. It does **not** change the rule that JSON is canonical for what you commit and publish.
+
+Run from the **repository root** (folder that contains `vocab.docx`, `vocab.manifest.json`, and `daf_vocab/`).
 
 Options:
 
@@ -54,21 +57,19 @@ python -m daf_vocab serve
 - `--no-browser` — do not open your default browser automatically
 - `--out PATH` — HTML file path (default: `vocab-preview/index.html` next to the manifest)
 
-Run **`sync`** first if Word was edited so the mirror matches the document.
+Run **`sync`** after Word edits to refresh the manifest; run **`build`** after JSON-only edits to refresh Word. For the public site, **commit and push `vocab.manifest.json`** (Pages workflow reads that file).
 
 ### GitHub Pages (public URL)
 
-The workflow **`.github/workflows/deploy-pages.yml`** builds **`vocab-preview/index.html`** from committed **`vocab.manifest.json`** on every push to **`master`** (and on manual **workflow dispatch**).
+The workflow **`.github/workflows/deploy-pages.yml`** renders **`vocab-preview/index.html`** from **committed `vocab.manifest.json`** on every push to **`master`** (and via **workflow dispatch**). It does **not** consume **`vocab.docx`** on GitHub — only the manifest matters for the live site.
 
-**One-time on GitHub:** **Settings → Pages → Source:** **GitHub Actions**.
+**One-time:** **Settings → Pages → Source:** **GitHub Actions**.
 
-After the first successful run (**Actions** tab), **Settings → Pages** shows the site URL (typically `https://<user>.github.io/<repo>/`). Commit an updated **`vocab.manifest.json`** whenever you want the live site refreshed.
+If your default branch uses a different name, edit **`on.push.branches`** in that workflow file.
 
-If your default branch uses a different name, edit the workflow’s **`on.push.branches`** list in **`.github/workflows/deploy-pages.yml`**.
+## Reverse direction (canonical JSON → Word)
 
-## Reverse direction (manifest → docx)
-
-After editing `vocab.manifest.json` (for example prepending new cards), regenerate Word:
+After editing **`vocab.manifest.json`**, regenerate **`vocab.docx`** so Word matches the manifest:
 
 ```bash
 python -m daf_vocab build
@@ -77,13 +78,13 @@ python -m daf_vocab build
 ## Typical workflows
 
 1. **You edited Word only**  
-   `python -m daf_vocab sync` → JSON now matches the document.
+   **`python -m daf_vocab sync`** → JSON updated from the document → **commit `vocab.manifest.json`** (and optionally **`vocab.docx`**) so git and **Pages** match.
 
-2. **You / the agent edited JSON, then rebuild Word**  
-   `python -m daf_vocab build` → writes **`vocab.docx`** and rewrites **`vocab.manifest.json`** with normalized metadata.
+2. **You edited JSON only** (agents, bulk edits)  
+   **`python -m daf_vocab build`** → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
 
-3. **Agents updating the deck**  
-   Start with `sync` so JSON reflects your hand edits, then change the manifest, then `build`.
+3. **Alternating**  
+   Start from whichever file you changed last: **Word** → **`sync`** → commit JSON; **JSON** → **`build`** → commit Word + JSON.
 
 ## Dependencies
 
