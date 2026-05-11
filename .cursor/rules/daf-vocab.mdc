@@ -92,6 +92,6 @@ Keep **`requirements-vocab.txt`** (`python-docx`) installed in any environment t
 - **Rebuild or patch** programmatically rather than manual OOXML hacks (`daf_vocab/` package centralizes typography helpers).
 - For bulk layout reflows (spacing + **`›`** styling only), run **`python -m daf_vocab rebuild`** (`daf_vocab.docx_cards.rebuild_vocab_layout`).
 - For authoring at scale: if you used Word, **`sync`** first; edit **`vocab.manifest.json`** (prepend new cards); **`build`** refreshes **`vocab.docx`** from canonical JSON.
-- **`python -m daf_vocab build`** overwrites **`vocab.docx`** and rewrites **`vocab.manifest.json`** with **normalized metadata** on every card (stable key order).
+- **`python -m daf_vocab build`** (alias **`reverse-sync`**) overwrites **`vocab.docx`** and rewrites **`vocab.manifest.json`** with **normalized metadata** on every card (stable key order).
 - **Do not strip** unrelated existing cards unless asked.
 - If persisting workflows outside this repo (no `.cursor/rules`), mirror this file into **User Rules** or a Cursor **Skill**—this project uses **rules**, not custom MCP servers, by default.

@@ -75,13 +75,21 @@ After editing **`vocab.manifest.json`**, regenerate **`vocab.docx`** so Word mat
 python -m daf_vocab build
 ```
 
+Same operation (optional name for “reverse sync”):
+
+```bash
+python -m daf_vocab reverse-sync
+```
+
+Both accept **`--manifest`** and **`--docx`** like **`build`**.
+
 ## Typical workflows
 
 1. **You edited Word only**  
    **`python -m daf_vocab sync`** → JSON updated from the document → **commit `vocab.manifest.json`** (and optionally **`vocab.docx`**) so git and **Pages** match.
 
 2. **You edited JSON only** (agents, bulk edits)  
-   **`python -m daf_vocab build`** → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
+   **`python -m daf_vocab build`** (or **`reverse-sync`**) → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
 
 3. **Alternating**  
    Start from whichever file you changed last: **Word** → **`sync`** → commit JSON; **JSON** → **`build`** → commit Word + JSON.
