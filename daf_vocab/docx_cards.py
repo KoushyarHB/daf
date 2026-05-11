@@ -290,13 +290,43 @@ def split_example_chunk_translation(chunk: str) -> tuple[str, str | None]:
     return chunk, None
 
 
+def split_example_body_units(body: str) -> list[str]:
+    """Split merged example text on `` / `` only outside ``(...)``.
+
+    English inside parentheses may contain `` / `` (e.g. *Good afternoon / hello*).
+    """
+
+    s = body.strip()
+    if not s:
+        return []
+    units: list[str] = []
+    start = 0
+    depth = 0
+    n = len(s)
+    i = 0
+    while i < n:
+        c = s[i]
+        if c == "(":
+            depth += 1
+        elif c == ")":
+            depth = max(0, depth - 1)
+        elif depth == 0 and i + 3 <= n and s[i : i + 3] == " / ":
+            units.append(s[start:i].strip())
+            start = i + 3
+            i += 3
+            continue
+        i += 1
+    units.append(s[start:].strip())
+    return [u for u in units if u]
+
+
 def add_example_line(doc: Document, *, body_without_prefix: str):
     """One or more indented › paragraphs: German in slate blue, ``(English)`` in gray. Chunks joined by `` / `` in JSON become separate lines."""
 
     body = body_without_prefix.strip()
     if not body:
         return
-    chunks = [c.strip() for c in body.split(" / ") if c.strip()]
+    chunks = split_example_body_units(body)
     if not chunks:
         return
     n = len(chunks)

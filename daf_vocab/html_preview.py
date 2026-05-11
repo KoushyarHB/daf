@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .docx_cards import split_example_body_units, split_example_chunk_translation
+
 
 TITLE_PAGE = "daf — vocabulary"
 
@@ -81,20 +83,10 @@ footer {
 """
 
 
-def _split_example_chunk(chunk: str) -> tuple[str, str | None]:
-    chunk = chunk.strip()
-    if not chunk:
-        return "", None
-    if chunk.endswith(")") and " (" in chunk:
-        i = chunk.rfind(" (")
-        if i >= 0:
-            return chunk[:i].strip(), chunk[i + 1 :].strip()
-    return chunk, None
-
-
 def _example_lines_from_string(s: str) -> list[tuple[str, str | None]]:
-    chunks = [c.strip() for c in s.split(" / ") if c.strip()]
-    return [_split_example_chunk(c) for c in chunks]
+    return [
+        split_example_chunk_translation(c) for c in split_example_body_units(s)
+    ]
 
 
 def render_vocab_html(cards: list[dict[str, Any]]) -> str:
