@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """python-docx helpers for DaF vocab cards.
 
-``vocab.manifest.json`` holds canonical deck content. ``export_manifest_file``
-(``pull`` / legacy ``export``) merges a Word snapshot into the manifest.
-``build_vocab_from_manifest_file`` (``sync`` / legacy ``build``) regenerates
-Word from the manifest and rewrites normalized JSON.
+``vocab.manifest.json`` holds canonical deck content. ``export_manifest_file`` (``manual-edit-from-docx`` / legacy ``pull``, ``export``)
+merges a Word snapshot into the manifest.
+``build_vocab_from_manifest_file`` (``manual-edit-from-manifest`` / legacy ``sync``,
+``build``) regenerates Word from the manifest and rewrites normalized JSON.
 """
 
 from __future__ import annotations

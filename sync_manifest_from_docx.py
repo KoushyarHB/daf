@@ -6,7 +6,7 @@ Run from the repo root after saving ``vocab.docx``, so the JSON matches Word::
 
     python sync_manifest_from_docx.py
 
-Equivalent to: ``python -m daf_vocab pull`` (or legacy ``export``).
+Equivalent to: ``python -m daf_vocab manual-edit-from-docx`` (legacy ``pull``, ``export``).
 """
 
 from __future__ import annotations

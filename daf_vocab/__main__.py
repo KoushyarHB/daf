@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""CLI entry: run from repo root, e.g. ``python -m daf_vocab sync``.
+"""CLI entry: run from repo root, e.g. ``python -m daf_vocab manual-edit-from-manifest``.
 
-``sync`` (legacy ``build``) writes ``vocab.docx`` from canonical
-``vocab.manifest.json``.
-``pull`` (legacy ``export``) updates ``vocab.manifest.json`` from the current
-``vocab.docx``. ``serve`` writes ``vocab-preview/index.html`` and starts a local
-HTTP server.
+``manual-edit-from-manifest`` (legacy ``sync``, ``build``) writes ``vocab.docx``
+from canonical ``vocab.manifest.json``.
+``manual-edit-from-docx`` (legacy ``pull``, ``export``) updates
+``vocab.manifest.json`` from the current ``vocab.docx``.
+``serve`` writes ``vocab-preview/index.html`` and starts a local HTTP server.
 """
 
 from __future__ import annotations
@@ -24,44 +24,47 @@ from .docx_cards import (
     rebuild_vocab_layout,
 )
 
-
 from .html_preview import write_vocab_preview
+
+
+CMD_FROM_DOCX = "manual-edit-from-docx"
+CMD_FROM_MANIFEST = "manual-edit-from-manifest"
 
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="daf_vocab", description="DaF vocab.docx toolchain")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p_pull = sub.add_parser(
-        "pull",
-        aliases=["export"],
-        help="Pull vocab.docx → vocab.manifest.json (import Word into canonical JSON)",
+    p_from_docx = sub.add_parser(
+        CMD_FROM_DOCX,
+        aliases=["pull", "export"],
+        help="Import vocab.docx → vocab.manifest.json (manual Word edits → canonical JSON)",
     )
-    p_pull.add_argument(
+    p_from_docx.add_argument(
         "--docx",
         type=Path,
         default=DEFAULT_VOCAB_PATH,
         help=f"Word file to read (default: {DEFAULT_VOCAB_PATH})",
     )
-    p_pull.add_argument(
+    p_from_docx.add_argument(
         "--manifest",
         type=Path,
         default=MANIFEST_PATH,
         help=f"Canonical JSON output (default: {MANIFEST_PATH})",
     )
 
-    p_sync = sub.add_parser(
-        "sync",
-        aliases=["build"],
-        help="Sync vocab.manifest.json → vocab.docx (render Word from canonical JSON)",
+    p_from_manifest = sub.add_parser(
+        CMD_FROM_MANIFEST,
+        aliases=["sync", "build"],
+        help="Render vocab.manifest.json → vocab.docx (manual manifest edits → Word)",
     )
-    p_sync.add_argument(
+    p_from_manifest.add_argument(
         "--manifest",
         type=Path,
         default=MANIFEST_PATH,
         help=f"JSON input (default: {MANIFEST_PATH})",
     )
-    p_sync.add_argument(
+    p_from_manifest.add_argument(
         "--docx",
         type=Path,
         default=DEFAULT_VOCAB_PATH,
@@ -96,17 +99,21 @@ def main(argv: list[str] | None = None) -> None:
     p_serve.add_argument(
         "--no-browser",
         action="store_true",
+        dest="no_browser",
         help="Do not open the system browser automatically",
     )
 
     args = parser.parse_args(argv)
 
-    if args.cmd in ("pull", "export"):
+    docx_cmds = (CMD_FROM_DOCX, "pull", "export")
+    manifest_cmds = (CMD_FROM_MANIFEST, "sync", "build")
+
+    if args.cmd in docx_cmds:
         out = export_manifest_file(Path(args.docx), Path(args.manifest))
-        print(f"Pulled manifest ← Word {args.docx} → {out}")
-    elif args.cmd in ("sync", "build"):
+        print(f"Updated manifest ← Word {args.docx} → {out}")
+    elif args.cmd in manifest_cmds:
         out = build_vocab_from_manifest_file(Path(args.manifest), Path(args.docx))
-        print(f"Synced Word ← manifest {args.manifest} → {out}")
+        print(f"Updated Word ← manifest {args.manifest} → {out}")
     elif args.cmd == "rebuild":
         out = rebuild_vocab_layout(Path(args.docx))
         print(out)

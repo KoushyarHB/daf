@@ -1,5 +1,5 @@
-# Build static HTML from committed vocab.manifest.json (canonical deck). GitHub does not run sync from Word.
-# Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+# Generate static HTML from committed vocab.manifest.json. No daf_vocab “build” CLI is run here — only write_vocab_preview.
+# Repo → Settings → Pages → Source: GitHub Actions.
 
 name: Deploy vocab preview to GitHub Pages
 
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  generate_site:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,15 +26,13 @@ jobs:
       - run: pip install -r requirements-vocab.txt
       - name: Generate static site
         run: >
-          python -c "from daf_vocab import write_vocab_preview;
-          from daf_vocab.docx_cards import MANIFEST_PATH;
-          write_vocab_preview(MANIFEST_PATH, MANIFEST_PATH.parent / 'vocab-preview' / 'index.html')"
+          python -c "from pathlib import Path; from daf_vocab.docx_cards import MANIFEST_PATH; from daf_vocab.html_preview import write_vocab_preview; write_vocab_preview(MANIFEST_PATH, MANIFEST_PATH.parent / 'vocab-preview' / 'index.html')"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: vocab-preview
 
   deploy:
-    needs: build
+    needs: generate_site
     runs-on: ubuntu-latest
     permissions:
       pages: write

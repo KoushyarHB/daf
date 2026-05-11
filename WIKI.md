@@ -3,10 +3,10 @@
 ## Vocabulary: source of truth
 
 - **`vocab.manifest.json`** is the **canonical deck** (what git, agents, and **GitHub Pages** use). The website is built from the **committed manifest**, not from regenerating Word on the server.
-- **`vocab.docx`** is your **human editor** in Word. After you edit and save Word, run **`python -m daf_vocab pull`** so **JSON absorbs your changes** (tooling merges **content** from Word and **preserves / freshens metadata** like timestamps and `lektion` for known **`head`** strings).
-- After you edit **JSON** only (prepend cards, bulk fixes), run **`python -m daf_vocab sync`** so **Word catches up** with the manifest and the manifest is normalized.
+- **`vocab.docx`** is your **human editor** in Word. After you edit and save Word, run **`python -m daf_vocab manual-edit-from-docx`** so **JSON absorbs your changes** (tooling merges **content** from Word and **preserves / freshens metadata** like timestamps and `lektion` for known **`head`** strings).
+- After you edit **JSON** only (prepend cards, bulk fixes), run **`python -m daf_vocab manual-edit-from-manifest`** so **Word catches up** with the manifest and the manifest is normalized.
 
-**Example lines in Word:** each `DE (English)` pair is one object in the manifest **`examples`** array: **`{ "german": "...", "english": "..." }`**. English is the full-sentence gloss **without** wrapping parentheses (tooling adds `(…)` in Word and HTML). Use **`"english": null`** for German-only lines. Legacy manifests used slash-joined strings or **`example_units`**; **`pull`** / **`sync`** normalize to objects.
+**Example lines in Word:** each `DE (English)` pair is one object in the manifest **`examples`** array: **`{ "german": "...", "english": "..." }`**. English is the full-sentence gloss **without** wrapping parentheses (tooling adds `(…)` in Word and HTML). Use **`"english": null`** for German-only lines. Legacy manifests used slash-joined strings or **`example_units`**; **`manual-edit-from-docx`** / **`manual-edit-from-manifest`** normalize to objects.
 
 ## Manifest card metadata
 
@@ -15,19 +15,19 @@ Every object in **`vocab.manifest.json`** includes:
 | Field | Meaning |
 |--------|--------|
 | **`examples`** | Array of **`{ "german": "…", "english": "…" \| null }`** — one **`›`** line per object in Word; English is stored without parentheses. |
-| **`createdAt`** | UTC ISO 8601 timestamp when the card first appeared; preserved when **`pull`** matches an existing **`head`**. |
-| **`updatedAt`** | UTC ISO 8601 — set to “now” on every **`pull`** for each exported card. |
+| **`createdAt`** | UTC ISO 8601 timestamp when the card first appeared; preserved when **`manual-edit-from-docx`** matches an existing **`head`** (legacy: **`pull`**). |
+| **`updatedAt`** | UTC ISO 8601 — set to “now” on every **`manual-edit-from-docx`** for each exported card. |
 | **`lektion`** | Lesson number (integer) or **`null`** if not assigned. |
 | **`level`** | CEFR level; default **`A1`** (`daf_vocab.docx_cards.DEFAULT_LEVEL`). |
 
-`python -m daf_vocab sync` normalizes metadata, regenerates **`vocab.docx`** from the manifest, and rewrites **`vocab.manifest.json`** with stable key order. Fields like **`lektion`** live in JSON; **`pull`** carries them forward when **`head`** still matches after a Word edit.
+**`python -m daf_vocab manual-edit-from-manifest`** normalizes metadata, regenerates **`vocab.docx`** from the manifest, and rewrites **`vocab.manifest.json`** with stable key order. Fields like **`lektion`** live in JSON; **`manual-edit-from-docx`** carries them forward when **`head`** still matches after a Word edit.
 
-## Pull command (Word → manifest)
+## `manual-edit-from-docx` (Word → manifest)
 
 Run when you **edited and saved** **`vocab.docx`** and want the **canonical JSON** to reflect that:
 
 ```bash
-python -m daf_vocab pull
+python -m daf_vocab manual-edit-from-docx
 ```
 
 This **updates** **`vocab.manifest.json`** from **`vocab.docx`**, reusing existing metadata for cards that still share the same **`head`**. It does **not** change the rule that JSON is canonical for what you commit and publish.
@@ -39,22 +39,19 @@ Options:
 - `--docx PATH` — Word file (default: `vocab.docx` in the repo root)
 - `--manifest PATH` — JSON output (default: `vocab.manifest.json` in the repo root)
 
-Equivalent:
+Legacy aliases: **`pull`**, **`export`**. Helper: **`python sync_manifest_from_docx.py`** (same as **`manual-edit-from-docx`**).
 
-- **`python -m daf_vocab export`** — legacy alias for **`pull`** (same behavior)
-- **`python sync_manifest_from_docx.py`** — thin wrapper around **`pull`**
+**Paragraph roles when importing from Word:** indented lines whose text starts with **`›`** become **examples**; lines starting **`•`** (bullet) become **notes**; other indented lines become **gloss**. Every German example must begin with **`›`**. Regenerating Word with **`manual-edit-from-manifest`** restores **`›`** on examples.
 
-**Paragraph roles when pulling:** indented lines whose text starts with **`›`** become **examples**; lines starting **`•`** (bullet) become **notes**; other indented lines become **gloss**. Every German example must begin with **`›`**. Regenerating Word with **`sync`** restores **`›`** on examples.
-
-## Sync command (manifest → Word)
+## `manual-edit-from-manifest` (manifest → Word)
 
 After editing **`vocab.manifest.json`**, regenerate **`vocab.docx`** so Word matches the manifest:
 
 ```bash
-python -m daf_vocab sync
+python -m daf_vocab manual-edit-from-manifest
 ```
 
-Legacy alias: **`python -m daf_vocab build`** (same as **`sync`**).
+Legacy aliases: **`sync`**, **`build`**.
 
 Options **`--manifest`** and **`--docx`** use repo-root defaults (`vocab.manifest.json`, `vocab.docx`).
 
@@ -71,11 +68,11 @@ python -m daf_vocab serve
 - `--no-browser` — do not open your default browser automatically
 - `--out PATH` — HTML output file path (default: `vocab-preview/index.html` next to the manifest)
 
-Run **`pull`** after Word edits to refresh the manifest; run **`sync`** after JSON-only edits to refresh Word. For the public site, **commit and push `vocab.manifest.json`** (Pages workflow reads that file).
+Run **`manual-edit-from-docx`** after Word edits to refresh the manifest; run **`manual-edit-from-manifest`** after JSON-only edits to refresh Word. For the public site, **commit and push `vocab.manifest.json`** (Pages workflow reads that file).
 
 ### GitHub Pages (public URL)
 
-The workflow **`.github/workflows/deploy-pages.yml`** renders **`vocab-preview/index.html`** from **committed `vocab.manifest.json`** on every push to **`master`** (and via **workflow dispatch**). It does **not** consume **`vocab.docx`** on GitHub — only the manifest matters for the live site.
+The workflow **`.github/workflows/deploy-pages.yml`** renders **`vocab-preview/index.html`** from **committed `vocab.manifest.json`** on every push to **`master`**. It runs a job **`generate_site`** (HTML only)—**not** the **`manual-edit-from-manifest`** CLI—so deployments do not depend on rewriting **`vocab.docx`** on GitHub.
 
 **One-time:** **Settings → Pages → Source:** **GitHub Actions**.
 
@@ -84,13 +81,13 @@ If your default branch uses a different name, edit **`on.push.branches`** in tha
 ## Typical workflows
 
 1. **You edited Word only**  
-   **`python -m daf_vocab pull`** → JSON updated from the document → **commit `vocab.manifest.json`** (and optionally **`vocab.docx`**) so git and **Pages** match.
+   **`python -m daf_vocab manual-edit-from-docx`** → JSON updated from the document → **commit `vocab.manifest.json`** (and optionally **`vocab.docx`**) so git and **Pages** match.
 
 2. **You edited JSON only** (agents, bulk edits)  
-   **`python -m daf_vocab sync`** → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
+   **`python -m daf_vocab manual-edit-from-manifest`** → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
 
 3. **Alternating**  
-   Start from whichever file you changed last: **Word** → **`pull`** → commit JSON; **JSON** → **`sync`** → commit Word + JSON.
+   Start from whichever file you changed last: **Word** → **`manual-edit-from-docx`** → commit JSON; **JSON** → **`manual-edit-from-manifest`** → commit Word + JSON.
 
 ## Dependencies
 
