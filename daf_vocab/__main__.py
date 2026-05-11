@@ -3,7 +3,7 @@
 
 ``sync`` (and legacy ``export``) **updates** ``vocab.manifest.json`` from the
 current ``vocab.docx`` (Word is a manual editor; JSON remains canonical).
-``build`` (alias: ``reverse-sync``) writes ``vocab.docx`` from the manifest. ``serve`` writes
+``build`` writes ``vocab.docx`` from the manifest. ``serve`` writes
 ``vocab-preview/index.html`` and starts a local HTTP server.
 """
 
@@ -64,8 +64,7 @@ def main(argv: list[str] | None = None) -> None:
 
     p_build = sub.add_parser(
         "build",
-        aliases=["reverse-sync"],
-        help="Render vocab.docx from canonical vocab.manifest.json (reverse of sync)",
+        help="Render vocab.docx from canonical vocab.manifest.json",
     )
     p_build.add_argument(
         "--manifest",
@@ -119,10 +118,9 @@ def main(argv: list[str] | None = None) -> None:
             print(f"Synced manifest ← Word {args.docx} → {out}")
         else:
             print(f"Wrote manifest → {out}")
-    elif args.cmd in ("build", "reverse-sync"):
+    elif args.cmd == "build":
         out = build_vocab_from_manifest_file(Path(args.manifest), Path(args.docx))
-        verb = "Reverse-synced" if args.cmd == "reverse-sync" else "Built vocabulary"
-        print(f"{verb} → {out}")
+        print(f"Built vocabulary → {out}")
     elif args.cmd == "rebuild":
         out = rebuild_vocab_layout(Path(args.docx))
         print(out)

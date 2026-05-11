@@ -219,50 +219,15 @@ def indented(p) -> bool:
     return bool(p.paragraph_format.left_indent)
 
 
-def gloss_heuristic(text: str) -> bool:
+def _is_example_paragraph(text: str) -> bool:
+    """Examples are indented lines that begin with ``›`` (U+203A); glosses never use this marker."""
+
     s = text.lstrip()
-    prefixes = (
-        "Good day",
-        "The conversation",
-        "To be",
-        "To hear",
-        "To fit",
-        "To say",
-        "New;",
-        "New (",
-        "Intern",
-        "Separabl",
-        "Which (",
-        "Photo;",
-        "Regional-polite",
-        "Separable",
-        "Conversation",
-        "Polite",
-        "To complete",
-        "To read",
-        "Interrogative",
-        "Feminine singular",
-        "How",
-        "To be called",
-        "Please",
-        "From where",
-        "And",
-        "Secretary",
-        "Ms.",
-        "From;",
-        "Argentina",
-        "To come",
-        "Everything",
-        "Correct",
-        "Grammar",
-        "At a",
-        "Glance",
-        "Verb",
-        "Collect",
-        "Table (",
-        "Verb form",
-    )
-    return s.startswith(prefixes)
+    if not s:
+        return False
+    if s.startswith("\u203a"):
+        return True
+    return s.startswith("›")
 
 
 def role(p) -> str:
@@ -277,11 +242,12 @@ def role(p) -> str:
         return "title"
     if not indented(p):
         return "head"
-    if t.lstrip().startswith("\u2022"):
+    tl = t.lstrip()
+    if tl.startswith("\u2022") or tl.startswith("•"):
         return "note"
-    if gloss_heuristic(t):
-        return "gloss"
-    return "example"
+    if _is_example_paragraph(t):
+        return "example"
+    return "gloss"
 
 
 def parse_vocab_document(doc_path: Path) -> list[dict[str, Any]]:

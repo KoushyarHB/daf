@@ -44,6 +44,8 @@ Equivalent paths:
 - `python -m daf_vocab export` — same behavior as `sync` (kept as a legacy name)
 - `python sync_manifest_from_docx.py` — thin wrapper around the same sync
 
+**Paragraph roles when syncing:** indented lines whose text starts with **`›`** become **examples**; lines starting **`•`** (bullet) become **notes**; other indented lines become **gloss**. If English gloss lines were wrongly ending up under **examples**, the usual fix is ensuring every German example paragraph begins with **`›`** (styled by **`build`**), not guessing from English prefixes.
+
 ## Preview in the browser (manifest → HTML)
 
 Regenerate a static page from the manifest and serve it locally (default **http://127.0.0.1:8765/**):
@@ -75,13 +77,7 @@ After editing **`vocab.manifest.json`**, regenerate **`vocab.docx`** so Word mat
 python -m daf_vocab build
 ```
 
-Same operation (optional name for “reverse sync”):
-
-```bash
-python -m daf_vocab reverse-sync
-```
-
-Both accept **`--manifest`** and **`--docx`** like **`build`**.
+Options **`--manifest`** and **`--docx`** match the defaults above.
 
 ## Typical workflows
 
@@ -89,7 +85,7 @@ Both accept **`--manifest`** and **`--docx`** like **`build`**.
    **`python -m daf_vocab sync`** → JSON updated from the document → **commit `vocab.manifest.json`** (and optionally **`vocab.docx`**) so git and **Pages** match.
 
 2. **You edited JSON only** (agents, bulk edits)  
-   **`python -m daf_vocab build`** (or **`reverse-sync`**) → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
+   **`python -m daf_vocab build`** → **`vocab.docx`** regenerated and manifest normalized → commit both as needed.
 
 3. **Alternating**  
    Start from whichever file you changed last: **Word** → **`sync`** → commit JSON; **JSON** → **`build`** → commit Word + JSON.

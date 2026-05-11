@@ -10,7 +10,7 @@ to regenerate Word.
 CLI (repo root, same folder as `daf_vocab/`):
 - **`python -m daf_vocab sync`** — Word → manifest (import your Word edits into JSON)
 - Edit `vocab.manifest.json` (new cards at **top** of the array)
-- **`python -m daf_vocab build`** — manifest → Word + normalized JSON rewrite (alias: **`python -m daf_vocab reverse-sync`** — same command, for “sync JSON into Word”)
+- **`python -m daf_vocab build`** — manifest → Word + normalized JSON rewrite
 - Optional: **`python -m daf_vocab serve`** (manifest → local HTML preview)
 - Optional: **`python -m daf_vocab rebuild`** (spacing/`›` only, from current Word)
 """
