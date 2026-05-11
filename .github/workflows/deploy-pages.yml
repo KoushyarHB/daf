@@ -1,0 +1,47 @@
+# Build vocab-preview/index.html from vocab.manifest.json and deploy to GitHub Pages.
+# Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+
+name: Deploy vocab preview to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-vocab.txt
+      - name: Generate static site
+        run: >
+          python -c "from daf_vocab import write_vocab_preview;
+          from daf_vocab.docx_cards import MANIFEST_PATH;
+          write_vocab_preview(MANIFEST_PATH, MANIFEST_PATH.parent / 'vocab-preview' / 'index.html')"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: vocab-preview
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
