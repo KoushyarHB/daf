@@ -58,13 +58,13 @@ Run **`sync`** first if Word was edited so the mirror matches the document.
 
 ### GitHub Pages (public URL)
 
-The workflow **`.github/workflows/deploy-pages.yml`** builds **`vocab-preview/index.html`** from committed **`vocab.manifest.json`** on every push to **`main`** (and on manual **workflow dispatch**).
+The workflow **`.github/workflows/deploy-pages.yml`** builds **`vocab-preview/index.html`** from committed **`vocab.manifest.json`** on every push to **`master`** (and on manual **workflow dispatch**).
 
 **One-time on GitHub:** **Settings → Pages → Source:** **GitHub Actions**.
 
 After the first successful run (**Actions** tab), **Settings → Pages** shows the site URL (typically `https://<user>.github.io/<repo>/`). Commit an updated **`vocab.manifest.json`** whenever you want the live site refreshed.
 
-If your default branch is not **`main`**, edit the workflow’s **`on.push.branches`** list to match.
+If your default branch uses a different name, edit the workflow’s **`on.push.branches`** list in **`.github/workflows/deploy-pages.yml`**.
 
 ## Reverse direction (manifest → docx)
 
