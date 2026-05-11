@@ -40,6 +40,21 @@ Equivalent paths:
 - `python -m daf_vocab export` — same behavior as `sync` (kept as a legacy name)
 - `python sync_manifest_from_docx.py` — thin wrapper around the same sync
 
+## Preview in the browser (manifest → HTML)
+
+Regenerate a static page from the manifest and serve it locally (default **http://127.0.0.1:8765/**):
+
+```bash
+python -m daf_vocab serve
+```
+
+- `--manifest PATH` — JSON input (default: `vocab.manifest.json`)
+- `--port N` — port for the built-in server (default: 8765)
+- `--no-browser` — do not open your default browser automatically
+- `--out PATH` — HTML file path (default: `vocab-preview/index.html` next to the manifest)
+
+Run **`sync`** first if Word was edited so the mirror matches the document.
+
 ## Reverse direction (manifest → docx)
 
 After editing `vocab.manifest.json` (for example prepending new cards), regenerate Word:

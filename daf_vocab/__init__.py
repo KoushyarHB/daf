@@ -9,6 +9,7 @@ CLI (repo root, same folder as `daf_vocab/`):
 - **`python -m daf_vocab sync`** (canonical; docx → manifest) — or legacy `export`, or `python sync_manifest_from_docx.py`
 - Edit `vocab.manifest.json` (new cards at **top** of the array)
 - `python -m daf_vocab build`
+- Optional: `python -m daf_vocab serve` (manifest → `vocab-preview/index.html` + local HTTP server)
 - Optional: `python -m daf_vocab rebuild` (spacing/`›` only for vocab)
 """
 
@@ -23,6 +24,7 @@ from .docx_cards import (
     rebuild_vocab_layout,
     utc_now_iso,
 )
+from .html_preview import render_vocab_html, write_vocab_preview
 
 __all__ = [
     "DEFAULT_LEVEL",
@@ -34,4 +36,6 @@ __all__ = [
     "rebuild_vocab_layout",
     "normalize_card_meta",
     "utc_now_iso",
+    "render_vocab_html",
+    "write_vocab_preview",
 ]
