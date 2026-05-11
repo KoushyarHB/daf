@@ -6,7 +6,7 @@ Run from the repo root after saving ``vocab.docx``, so the JSON matches Word::
 
     python sync_manifest_from_docx.py
 
-Equivalent to: ``python -m daf_vocab sync`` (or legacy ``export``).
+Equivalent to: ``python -m daf_vocab pull`` (or legacy ``export``).
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from daf_vocab.docx_cards import DEFAULT_VOCAB_PATH, MANIFEST_PATH, export_manif
 
 def main() -> None:
     out = export_manifest_file(DEFAULT_VOCAB_PATH, MANIFEST_PATH)
-    print(f"Synced manifest from {DEFAULT_VOCAB_PATH} → {out}")
+    print(f"Pulled manifest ← Word {DEFAULT_VOCAB_PATH} → {out}")
 
 
 if __name__ == "__main__":
