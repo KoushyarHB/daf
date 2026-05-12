@@ -22,6 +22,7 @@ MANIFEST_PATH = Path(__file__).resolve().parent.parent / "vocab.manifest.json"
 
 TITLE = "daf — vocabulary"
 HEADING_BLUE = RGBColor(0x2F, 0x6F, 0xB8)
+# Plural line: textbook ``die Antwort, -en`` (roman, same size as gloss).
 IND = Inches(0.4)
 NOTE_GRAY = RGBColor(0x40, 0x40, 0x40)
 EXAMPLE_COLOR = RGBColor(0x30, 0x60, 0x8C)
@@ -31,6 +32,84 @@ EXAMPLE_TRANSLATION_COLOR = NOTE_GRAY
 EXAMPLE_PREFIX = "\u203a "
 
 DEFAULT_LEVEL = "A1"
+
+# Legacy manifests used full ``die …`` NPs; map (lemma, plural NP) to textbook suffix fragment.
+_LEGACY_LEMMA_PLURAL_TO_SUFFIX: dict[tuple[str, str], str] = {
+    ("die W-Frage", "die W-Fragen"): "-n",
+    ("die Antwort", "die Antworten"): "-en",
+    ("die Tabelle", "die Tabellen"): "-n",
+    ("die Verbform", "die Verbformen"): "-en",
+    ("die Grammatik", "die Grammatiken"): "-en",
+    ("der Blick", "die Blicke"): "-e",
+    ("das Verb", "die Verben"): "-en",
+    ("die Sekretärin", "die Sekretärinnen"): "-nen",
+    ("Frau", "die Frauen"): "-en",
+    ("die Frau", "die Frauen"): "-en",
+    ("die Person", "die Personen"): "-en",
+    ("das Foto", "die Fotos"): "-s",
+    ("das Gespräch", "die Gespräche"): "-e",
+    ("der Praktikant", "die Praktikanten"): "-en / die Praktikantin, -nen",
+}
+
+
+def parse_plural_field_from_word_line(text: str, head_line: str | None) -> str | None:
+    """If an indented line is plural metadata, return the stored ``plural`` field (suffix side).
+
+    Accepts textbook ``{lemma}, -en`` round-trip, shorthand ``→ -en``, or legacy ``lemma → die Plural`` from older Word.
+    """
+
+    s = (text or "").strip()
+    if not s or not head_line:
+        return None
+    lemma_guess, _ipa = split_head(head_line.strip())
+    lemma_key = lemma_guess.strip()
+
+    arrow = "\u2192"
+    if s.startswith(arrow):
+        rhs = s[len(arrow) :].strip()
+        return rhs or None
+    if s.startswith("->"):
+        rhs = s[2:].lstrip()
+        return rhs or None
+
+    for legacy_sep in (" \u2192 ", " → "):
+        if legacy_sep in s:
+            left, right = [x.strip() for x in s.split(legacy_sep, 1)]
+            if left == lemma_key and right:
+                return right
+
+    if not lemma_key:
+        return None
+    for pref in (lemma_key + ", ", lemma_key + " , "):
+        if s.startswith(pref):
+            frag = s[len(pref) :].strip()
+            return frag or None
+    return None
+
+
+def canonicalize_plural_field(head: str, raw: str) -> str:
+    """Normalize ``plural`` JSON to textbook suffix notation (possibly with `` / …`` pairs)."""
+
+    s = str(raw).strip()
+    if not s:
+        return ""
+    lemma, _ = split_head(head.strip())
+    lemma_key = lemma.strip()
+
+    if s.startswith("-"):
+        return s
+
+    for legacy_sep in (" \u2192 ", " → "):
+        if legacy_sep in s:
+            left, right = [x.strip() for x in s.split(legacy_sep, 1)]
+            if left == lemma_key and right:
+                return canonicalize_plural_field(head, right)
+
+    if s.startswith("die "):
+        key = (lemma_key, s)
+        if key in _LEGACY_LEMMA_PLURAL_TO_SUFFIX:
+            return _LEGACY_LEMMA_PLURAL_TO_SUFFIX[key]
+    return s
 
 
 def utc_now_iso() -> str:
@@ -75,12 +154,13 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
 
     ex_raw = c.get("examples") or []
     examples_ord = [ordered_example_object(x) for x in ex_raw if isinstance(x, dict)]
-    od: dict[str, Any] = {
-        "head": c["head"],
-        "gloss": c["gloss"],
-        "notes": c["notes"],
-        "examples": examples_ord,
-    }
+    plural = (c.get("plural") or "").strip()
+    od: dict[str, Any] = {"head": c["head"]}
+    if plural:
+        od["plural"] = plural
+    od["gloss"] = c["gloss"]
+    od["notes"] = c["notes"]
+    od["examples"] = examples_ord
     od["createdAt"] = c["createdAt"]
     od["updatedAt"] = c["updatedAt"]
     od["lektion"] = c["lektion"]
@@ -166,6 +246,10 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     level = str(level_raw).strip() if level_raw else DEFAULT_LEVEL
     if not level:
         level = DEFAULT_LEVEL
+    plural_raw = card.get("plural")
+    plural_str = str(plural_raw).strip() if plural_raw else ""
+    if plural_str:
+        plural_str = canonicalize_plural_field(head, plural_str)
     out: dict[str, Any] = {
         "head": head,
         "gloss": gloss,
@@ -176,6 +260,8 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
         "lektion": _coerce_lektion(card.get("lektion")),
         "level": level,
     }
+    if plural_str:
+        out["plural"] = plural_str
     return ordered_manifest_card(out)
 
 
@@ -201,6 +287,13 @@ def merge_parsed_cards_with_previous_manifest(
             "notes": list(c.get("notes") or []),
             "examples": normalize_examples_from_card(c),
         }
+        pl_new = (c.get("plural") or "").strip()
+        if pl_new:
+            merged["plural"] = pl_new
+        elif prev:
+            pl_keep = (prev.get("plural") or "").strip()
+            if pl_keep:
+                merged["plural"] = pl_keep
         if prev:
             merged["createdAt"] = prev.get("createdAt") or now
             merged["updatedAt"] = now
@@ -270,6 +363,10 @@ def parse_vocab_document(doc_path: Path) -> list[dict[str, Any]]:
             continue
         txt = (p.text or "").strip()
         if rr == "gloss":
+            pl_try = parse_plural_field_from_word_line(txt, cur.get("head"))
+            if pl_try:
+                cur["plural"] = pl_try
+                continue
             cur["gloss"].append(txt)
         elif rr == "note":
             cur["notes"].append(txt)
@@ -424,6 +521,15 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
     head_p.add_run(lemma).bold = True
     if ipa:
         head_p.add_run(" " + ipa)
+
+    plural = (card.get("plural") or "").strip()
+    if plural:
+        plural_line = f"{lemma}, {plural}"
+        pl_p = doc.add_paragraph()
+        pl_p.paragraph_format.left_indent = IND
+        pl_p.paragraph_format.space_after = Pt(4)
+        r_pl = pl_p.add_run(plural_line)
+        r_pl.font.size = Pt(11)
 
     for g in card.get("gloss") or []:
         g_p = doc.add_paragraph(g)

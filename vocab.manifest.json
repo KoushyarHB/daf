@@ -1,5 +1,99 @@
 [
   {
+    "head": "markieren /maʁˈkiːʁən/",
+    "gloss": [
+      "To mark; highlight verbs or phrases in the text (+ acc.)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Markieren Sie die Verben.",
+        "english": "Mark / highlight the verbs [class instruction]."
+      },
+      {
+        "german": "Markieren Sie den Infinitiv im Text.",
+        "english": "Mark the infinitive in the passage [instruction]."
+      }
+    ],
+    "createdAt": "2026-05-14T14:30:00Z",
+    "updatedAt": "2026-05-15T18:20:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "heißen /ˈhaɪ̯sn̩/",
+    "gloss": [
+      "To be called; one’s name is (3rd sg. er/sie/es heißt)."
+    ],
+    "notes": [
+      "• OCR often miswrites heißen as heisen; spelling is heißen (ß after long diphthong)."
+    ],
+    "examples": [
+      {
+        "german": "Wie heißen Sie?",
+        "english": "What is your name? [formal]"
+      },
+      {
+        "german": "Ich heiße Ana.",
+        "english": "My name is Ana."
+      },
+      {
+        "german": "Er heißt Tomas.",
+        "english": "His name is Tomas."
+      }
+    ],
+    "createdAt": "2026-05-14T14:30:00Z",
+    "updatedAt": "2026-05-14T14:30:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die W-Frage /ˈveːˌfraːɡə/",
+    "plural": "-n",
+    "gloss": [
+      "WH-question: starts with Wer, Was, Wo, wie, Wann …"
+    ],
+    "notes": [
+      "• The question word fills slot 1; the finite verb is still second (verb-second), then the rest."
+    ],
+    "examples": [
+      {
+        "german": "Was ist das?",
+        "english": "What is that?"
+      },
+      {
+        "german": "Wo wohnen Sie?",
+        "english": "Where do you live? [formal]"
+      }
+    ],
+    "createdAt": "2026-05-12T16:00:00Z",
+    "updatedAt": "2026-05-12T16:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Antwort /ˈantˌvɔʁt/",
+    "plural": "-en",
+    "gloss": [
+      "Answer; reply (to a question or task)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Die Antwort ist richtig.",
+        "english": "The answer is correct."
+      },
+      {
+        "german": "Schreiben Sie die Antwort in den Satz.",
+        "english": "Write the answer into the sentence."
+      }
+    ],
+    "createdAt": "2026-05-12T16:00:00Z",
+    "updatedAt": "2026-05-12T16:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "sammeln /ˈzaməln/",
     "gloss": [
       "To collect; gather (+ acc.)."
@@ -22,6 +116,7 @@
   },
   {
     "head": "die Tabelle /taˈbɛlə/",
+    "plural": "-n",
     "gloss": [
       "Table (grid for answers; worksheet)."
     ],
@@ -43,8 +138,9 @@
   },
   {
     "head": "die Verbform /ˈfɔʁm/",
+    "plural": "-en",
     "gloss": [
-      "Verb form; pl. die Verbformen (inflected shapes)."
+      "Verb form (inflected shape of a lemma)."
     ],
     "notes": [
       "• Misread Verbendung: the word is Verbformen."
@@ -66,6 +162,7 @@
   },
   {
     "head": "die Grammatik /ɡʁaˈmaːtɪk/",
+    "plural": "-en",
     "gloss": [
       "Grammar (rules of the language)."
     ],
@@ -108,6 +205,7 @@
   },
   {
     "head": "der Blick /blɪk/",
+    "plural": "-e",
     "gloss": [
       "Glance; look (masculine)."
     ],
@@ -133,8 +231,9 @@
   },
   {
     "head": "das Verb /vɛʁp/",
+    "plural": "-en",
     "gloss": [
-      "Verb; plural die Verben."
+      "Verb (word class for actions and states)."
     ],
     "notes": [],
     "examples": [
@@ -208,6 +307,7 @@
   },
   {
     "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
+    "plural": "-nen",
     "gloss": [
       "Secretary (feminine job title)."
     ],
@@ -232,7 +332,8 @@
     "level": "A1"
   },
   {
-    "head": "Frau /fraʊ̯/",
+    "head": "die Frau /fraʊ̯/",
+    "plural": "-en",
     "gloss": [
       "Ms. or Mrs. before a surname."
     ],
@@ -444,6 +545,7 @@
   },
   {
     "head": "die Person /pɛʁˈzoːn/",
+    "plural": "-en",
     "gloss": [
       "Feminine singular: person (pl. Personen)."
     ],
@@ -536,6 +638,7 @@
   },
   {
     "head": "das Foto /ˈfoːto/",
+    "plural": "-s",
     "gloss": [
       "Photo; picture (neuter; pl. Fotos)."
     ],
@@ -606,6 +709,7 @@
   },
   {
     "head": "das Gespräch /ɡəˈʃpʁɛːç/",
+    "plural": "-e",
     "gloss": [
       "Conversation; spoken dialogue."
     ],
@@ -683,6 +787,7 @@
   },
   {
     "head": "der Praktikant /pʁaktiˈkant/",
+    "plural": "-en / die Praktikantin, -nen",
     "gloss": [
       "Intern; Praktikantin is the feminine form."
     ],

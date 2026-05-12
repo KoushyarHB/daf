@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .docx_cards import normalize_examples_from_card
+from .docx_cards import canonicalize_plural_field, normalize_examples_from_card, split_head
 
 
 TITLE_PAGE = "daf — vocabulary"
@@ -75,6 +75,13 @@ h1 {
 .ex-de { color: var(--blue); }
 .ex-en { color: var(--gray-en); }
 .chevr { color: var(--blue); margin-right: 0.15em; }
+.plural-diagram {
+  margin: 0.25rem 0 0.35rem 0;
+  padding-left: 0.6rem;
+  border-left: 3px solid #ddd;
+  font-size: 11pt;
+  color: #111;
+}
 footer {
   margin-top: 2rem;
   font-size: 0.8rem;
@@ -121,6 +128,15 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         parts.append('<article class="card">')
         parts.append(f'<div class="head">{head}</div>')
         parts.append(meta_html)
+
+        plural_raw = (card.get("plural") or "").strip()
+        if plural_raw:
+            head_plain = str(card.get("head") or "").strip()
+            frag = canonicalize_plural_field(head_plain, plural_raw)
+            if frag:
+                lemma_only, _ipa = split_head(head_plain)
+                diag = f"{lemma_only}, {frag}"
+                parts.append(f'<div class="plural-diagram">{html.escape(diag)}</div>')
 
         for g in card.get("gloss") or []:
             if isinstance(g, str) and g.strip():

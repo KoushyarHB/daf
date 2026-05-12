@@ -42,6 +42,7 @@ Examples must remain visually distinct from glosses / explanatory English:
 
    - Fixed greetings stay as-is: **`Guten Tag!`** (**no forced article**).
    - **Nouns** must headline with article: **`der` / `die` / `das`** + Lemma (e.g. **`das Gespräch`**, **`der Praktikant`**).
+   - **Noun plurals (optional JSON `plural`):** textbook-style **comma + hyphen endings**, like **`die Studentin, -nen`** or **`der Praktikant, -en / die Praktikantin, -nen`**. Stored JSON value is everything **after** the comma (e.g. **`-nen`**, **`-en / die Praktikantin, -nen`**). Tooling prints the full **`lemma, plural`** line as an extra indented paragraph (**Calibri 11 pt**, roman like the gloss) between the **head** and the **gloss**. Plural stems that do not change use **`-`** (as in **`der Partner, -`**).
 
 2. **English gloss** (Calibri 11 pt, indented): **one short line**—what a human flashcard would say, not a textbook paragraph. Aim for **under ~12 words** unless the lemma is genuinely inseparable in fewer. No laundry lists; patterns and “also / often / textbook” detail belong in **`›` examples** or, rarely, **`notes`**. In the JSON manifest, **do not** use Markdown `*` / `**`—Word does not render them; use plain wording instead.
 
@@ -71,12 +72,13 @@ This replaces the old rule of glosing unknown words immediately after each Germa
 ## Scaling to large decks
 
 - **`vocab.manifest.json`** stays canonical for git and **Pages**. Run **`manual-edit-from-docx`** whenever **Word** was edited so JSON catches up **before** agent/bulk passes on the manifest.
-- **`manual-edit-from-docx`** (**`pull`**, **`export`**) classifies indented body lines by structure: **notes** start with **`•`**; **examples** start with **`›`** (U+203A); everything else indented is **gloss**. Every example line in Word must use **`›`** so it is not stored as gloss.
+- **`manual-edit-from-docx`** (**`pull`**, **`export`**) classifies indented body lines by structure: **`plural`** metadata is **`{lemma}, -…`** matching the bold head (**lemma + comma + hyphen suffix**) or shorthand **`→ -…`**; legacy **`lemma → die …`** is still absorbed; **notes** start with **`•`**; **examples** start with **`›`** (U+203A); everything else indented is **gloss**. Every example line in Word must use **`›`** so it is not stored as gloss.
 - Add new lemma objects **at the beginning** of the JSON array (**prepend**), then **`python -m daf_vocab manual-edit-from-manifest`** regenerates **`vocab.docx`** from the manifest with that order.
 
 Each JSON entry:
 
 - **`head`**: single string exactly as printed in bold + IPA (**`lemma /…/`**)
+- **`plural`** (optional): noun only—the **comma tail** showing how plural is built (**`-en`**, **`-nen`**, **`-e`**, **`-n`**, **`-s`**, **`-`** for no ending change). For **gendered pairs**, use **` / `** (**`-en / die Studentin, -nen`**). Rendered like **`die Frau, -en`** (stored value **`-en`**) in Word and Pages. Omit for verbs, adjectives, greetings, formulas, proper names without a useful plural pattern.
 - **`gloss`**, **`notes`**: string arrays; **`notes`** is often **`[]`**—add bullets only when necessary (see **Card layout §3**).
 - **`examples`**: array of **`{ "german": "…", "english": "…" | null }`** — one **`›`** line each in Word (omit the **`›`** prefix in JSON). English is stored **without** outer parentheses; tooling prints **`(English)`** in gray.
 - **Metadata** (required on every card; tooling fills defaults if missing):
