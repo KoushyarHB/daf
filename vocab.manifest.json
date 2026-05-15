@@ -1,5 +1,85 @@
 [
   {
+    "head": "fliegen /ˈfliːɡən/",
+    "gloss": ["To fly; travel by plane (+ nach … / zu …)."],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Wir fliegen nach Deutschland.",
+        "english": "We're flying to Germany."
+      },
+      {
+        "german": "Das Flugzeug fliegt nach Berlin.",
+        "english": "The plane flies to Berlin."
+      }
+    ],
+    "createdAt": "2026-05-15T17:45:00Z",
+    "updatedAt": "2026-05-15T17:45:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "reisen /ˈʁaɪ̯zn̩/",
+    "gloss": ["To travel; go on a trip (+ nach … without article; + in die … when an article appears)."],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Wir reisen nach Deutschland.",
+        "english": "We're traveling to Germany."
+      },
+      {
+        "german": "Wir reisen in die Schweiz.",
+        "english": "We're traveling to Switzerland. [motion + accusative]"
+      }
+    ],
+    "createdAt": "2026-05-15T17:45:00Z",
+    "updatedAt": "2026-05-15T17:45:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "fahren /ˈfaːʁən/",
+    "gloss": ["To drive; ride; go by transport (+ nach … for many destinations)."],
+    "notes": [
+      "• Strong verb: er fährt; Präteritum fuhr — expect this in texts and exams."
+    ],
+    "examples": [
+      {
+        "german": "Wir fahren nach München.",
+        "english": "We're going to Munich by car / bus / train."
+      },
+      {
+        "german": "Wohin fahren Sie?",
+        "english": "Where are you going? [formal, destination ask]"
+      }
+    ],
+    "createdAt": "2026-05-15T17:45:00Z",
+    "updatedAt": "2026-05-15T17:45:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "gehen /ˈɡeːən/",
+    "gloss": ["To go; walk (+ zu / nach / + place; also set phrases)."],
+    "notes": [
+      "• Irregular present: ich gehe, du gehst, er geht; for whole countries people often prefer fahren/reisen/fliegen."
+    ],
+    "examples": [
+      {
+        "german": "Wir gehen nach Hause.",
+        "english": "We're going home."
+      },
+      {
+        "german": "Wohin gehen Sie?",
+        "english": "Where are you going? [formal]"
+      }
+    ],
+    "createdAt": "2026-05-15T17:45:00Z",
+    "updatedAt": "2026-05-15T17:45:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "aber /ˈaːbɐ/",
     "gloss": ["but; however — introduces a contrast or exception"],
     "notes": [
