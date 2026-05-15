@@ -70,12 +70,16 @@
     ],
     "examples": [
       {
-        "german": "Ihr Land ist groß.",
-        "english": "Your country is large. [formal]"
+        "german": "Ihre Sprache ist schön.",
+        "english": "Your language is beautiful. [formal; nominative]"
+      },
+      {
+        "german": "Ich lerne Ihre Sprache.",
+        "english": "I am learning your language. [formal; accusative]"
       },
       {
         "german": "Ich spreche in Ihrer Sprache.",
-        "english": "I am speaking in your language. [formal]"
+        "english": "I speak in your language. [formal; dative]"
       }
     ],
     "createdAt": "2026-05-15T19:19:00Z",
