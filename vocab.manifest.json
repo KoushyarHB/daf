@@ -1,5 +1,26 @@
 [
   {
+    "head": "aber /ˈaːbɐ/",
+    "gloss": ["but; however — introduces a contrast or exception"],
+    "notes": [
+      "• Coordinating conjunction: word order in the following clause is unchanged (verb stays in position 2)."
+    ],
+    "examples": [
+      {
+        "german": "Ich komme aus Deutschland, aber er kommt aus der Schweiz.",
+        "english": "I come from Germany, but he comes from Switzerland."
+      },
+      {
+        "german": "Die meisten Länder haben keinen Artikel — aber die Schweiz, die Türkei und die Niederlande schon.",
+        "english": "Most countries have no article — but Switzerland, Turkey, and the Netherlands do."
+      }
+    ],
+    "createdAt": "2026-05-15T13:33:00Z",
+    "updatedAt": "2026-05-15T13:33:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "auffallen /ˈaʊ̯fˌfalən/",
     "gloss": ["To stand out; be noticeable / catch the eye."],
     "notes": [
