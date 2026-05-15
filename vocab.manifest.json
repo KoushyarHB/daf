@@ -1,5 +1,89 @@
 [
   {
+    "head": "Wie heißt ...? /viː haɪ̯st/",
+    "gloss": ["What is ... called?"],
+    "notes": [
+      "• W-question pattern: Wie is position 1, the finite verb heißt is position 2."
+    ],
+    "examples": [
+      {
+        "german": "Wie heißt Ihr Land in Ihrer Sprache?",
+        "english": "What is your country called in your language? [formal]"
+      },
+      {
+        "german": "Wie heißt das auf Deutsch?",
+        "english": "What is that called in German?"
+      }
+    ],
+    "createdAt": "2026-05-15T19:19:00Z",
+    "updatedAt": "2026-05-15T19:19:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Land /lant/",
+    "plural": "Länder",
+    "gloss": ["Country; land."],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Ihr Land heißt Iran.",
+        "english": "Your country is called Iran. [formal]"
+      },
+      {
+        "german": "Wie heißt Ihr Land?",
+        "english": "What is your country called? [formal]"
+      }
+    ],
+    "createdAt": "2026-05-15T19:19:00Z",
+    "updatedAt": "2026-05-15T19:19:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Sprache /ˈʃpʁaːxə/",
+    "plural": "-n",
+    "gloss": ["Language."],
+    "notes": [
+      "• Feminine noun: die Sprache; after static in, use dative: in der Sprache / in Ihrer Sprache."
+    ],
+    "examples": [
+      {
+        "german": "In Ihrer Sprache heißt das anders.",
+        "english": "In your language, that is called something different. [formal]"
+      },
+      {
+        "german": "Ich lerne die deutsche Sprache.",
+        "english": "I am learning the German language."
+      }
+    ],
+    "createdAt": "2026-05-15T19:19:00Z",
+    "updatedAt": "2026-05-15T19:19:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Ihr- /iːɐ̯/",
+    "gloss": ["Your; formal possessive stem."],
+    "notes": [
+      "• Capitalized Ihr- means formal your. Endings follow ein-words: Ihr Land, Ihre Sprache, in Ihrer Sprache."
+    ],
+    "examples": [
+      {
+        "german": "Ihr Land ist groß.",
+        "english": "Your country is large. [formal]"
+      },
+      {
+        "german": "Ich spreche in Ihrer Sprache.",
+        "english": "I am speaking in your language. [formal]"
+      }
+    ],
+    "createdAt": "2026-05-15T19:19:00Z",
+    "updatedAt": "2026-05-15T19:19:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "fliegen /ˈfliːɡən/",
     "gloss": ["To fly; travel by plane (+ nach … / zu …)."],
     "notes": [],

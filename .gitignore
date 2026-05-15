@@ -5,3 +5,4 @@ venv/
 .env
 ~$*.docx
 vocab-preview/
+.cursor/mcp.json
