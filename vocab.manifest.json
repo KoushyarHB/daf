@@ -1,5 +1,32 @@
 [
   {
+    "head": "Freut mich /fʁɔʏ̯t mɪç/",
+    "gloss": ["Nice to meet you; pleased to meet you."],
+    "notes": [
+      "• Short for Es freut mich: literally, it pleases me.",
+      "• mich is a personal pronoun in the accusative here, not reflexive; the hidden subject is es.",
+      "• Contrast: Ich freue mich means I am happy / pleased; there mich is reflexive because ich and mich refer to the same person."
+    ],
+    "examples": [
+      {
+        "german": "Freut mich.",
+        "english": "Nice to meet you. [personal-pronoun mich, accusative]"
+      },
+      {
+        "german": "Ich freue mich.",
+        "english": "I am happy / pleased. [reflexive mich]"
+      },
+      {
+        "german": "Guten Tag, ich heiße Ali. Freut mich.",
+        "english": "Good day, my name is Ali. Nice to meet you."
+      }
+    ],
+    "createdAt": "2026-05-16T06:16:00Z",
+    "updatedAt": "2026-05-16T06:16:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "Reflexivpronomen /ʁeflɛˈksiːfˌpʁoːnoːmən/",
     "gloss": ["Reflexive pronouns: myself, yourself, himself, etc."],
     "notes": [
