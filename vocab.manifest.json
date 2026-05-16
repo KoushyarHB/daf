@@ -1,5 +1,94 @@
 [
   {
+    "head": "Reflexivpronomen /ʁeflɛˈksiːfˌpʁoːnoːmən/",
+    "gloss": ["Reflexive pronouns: myself, yourself, himself, etc."],
+    "notes": [
+      "• Reflexive means the subject and object are the same person: Ich wasche mich.",
+      "• They follow person and case, not grammatical gender: er/sie/es all use sich.",
+      "• Akkusativ forms: mich, dich, sich, sich, sich, uns, euch, sich, sich.",
+      "• Dativ forms: mir, dir, sich, sich, sich, uns, euch, sich, sich.",
+      "• Use accusative when the reflexive pronoun is the direct object; use dative when another accusative object is present: Ich wasche mich vs. Ich wasche mir die Hände."
+    ],
+    "examples": [
+      {
+        "german": "Ich wasche mich.",
+        "english": "I wash myself. [mich; accusative reflexive]"
+      },
+      {
+        "german": "Du wäschst dich.",
+        "english": "You wash yourself. [dich; accusative reflexive]"
+      },
+      {
+        "german": "Er stellt sich vor.",
+        "english": "He introduces himself. [sich; accusative reflexive]"
+      },
+      {
+        "german": "Sie stellt sich vor.",
+        "english": "She introduces herself. [sich; accusative reflexive]"
+      },
+      {
+        "german": "Es bewegt sich.",
+        "english": "It moves itself. [sich; accusative reflexive]"
+      },
+      {
+        "german": "Wir stellen uns vor.",
+        "english": "We introduce ourselves. [uns; accusative reflexive]"
+      },
+      {
+        "german": "Ihr stellt euch vor.",
+        "english": "You all introduce yourselves. [euch; accusative reflexive]"
+      },
+      {
+        "german": "Sie stellen sich vor.",
+        "english": "They introduce themselves. [sich; accusative reflexive]"
+      },
+      {
+        "german": "Stellen Sie sich vor.",
+        "english": "Introduce yourself. [sich; formal accusative reflexive]"
+      },
+      {
+        "german": "Ich wasche mir die Hände.",
+        "english": "I wash my hands. [mir; dative reflexive]"
+      },
+      {
+        "german": "Du kaufst dir ein Buch.",
+        "english": "You buy yourself a book. [dir; dative reflexive]"
+      },
+      {
+        "german": "Er stellt sich Berlin vor.",
+        "english": "He imagines Berlin. [sich; dative reflexive]"
+      },
+      {
+        "german": "Sie kauft sich einen Kaffee.",
+        "english": "She buys herself a coffee. [sich; dative reflexive]"
+      },
+      {
+        "german": "Es wäscht sich die Hände.",
+        "english": "It washes its hands. [sich; dative reflexive]"
+      },
+      {
+        "german": "Wir stellen uns eine Reise vor.",
+        "english": "We imagine a trip. [uns; dative reflexive]"
+      },
+      {
+        "german": "Ihr kauft euch Tickets.",
+        "english": "You all buy yourselves tickets. [euch; dative reflexive]"
+      },
+      {
+        "german": "Sie kaufen sich Tickets.",
+        "english": "They buy themselves tickets. [sich; dative reflexive]"
+      },
+      {
+        "german": "Stellen Sie sich eine Stadt vor.",
+        "english": "Imagine a city. [sich; formal dative reflexive]"
+      }
+    ],
+    "createdAt": "2026-05-16T06:02:00Z",
+    "updatedAt": "2026-05-16T06:02:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "Personalpronomen /pɛʁzoˈnaːlˌpʁoːnoːmən/",
     "gloss": ["Personal pronouns: ich, mich, mir; du, dich, dir; etc."],
     "notes": [
