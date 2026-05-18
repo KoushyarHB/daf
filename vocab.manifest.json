@@ -1,5 +1,32 @@
 [
   {
+    "head": "in /ɪn/",
+    "gloss": [
+      "In; inside; on a team (+ dative for location)."
+    ],
+    "notes": [
+      "• Wo? uses dative: in einem Team. Wohin? uses accusative: in ein Team."
+    ],
+    "examples": [
+      {
+        "german": "Ihr seid in einem Team.",
+        "english": "You all are on a team."
+      },
+      {
+        "german": "Ich bin in Berlin.",
+        "english": "I am in Berlin."
+      },
+      {
+        "german": "Ihr kommt in ein Team.",
+        "english": "You all are joining / going into a team. [accusative: direction]"
+      }
+    ],
+    "createdAt": "2026-05-18T12:11:00Z",
+    "updatedAt": "2026-05-18T12:14:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "auch /aʊ̯x/",
     "gloss": [
       "Also; too; as well."
@@ -1402,10 +1429,14 @@
       {
         "german": "Wir sind müde.",
         "english": "We're tired."
+      },
+      {
+        "german": "Ihr seid in einem Team.",
+        "english": "You all are on a team."
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
-    "updatedAt": "2026-05-11T13:30:14Z",
+    "updatedAt": "2026-05-18T12:11:00Z",
     "lektion": 1,
     "level": "A1"
   },
