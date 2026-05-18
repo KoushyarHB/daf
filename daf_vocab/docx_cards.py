@@ -10,11 +10,14 @@ merges a Word snapshot into the manifest.
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 from docx import Document
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 DEFAULT_VOCAB_PATH = Path(__file__).resolve().parent.parent / "vocab.docx"
@@ -28,6 +31,14 @@ NOTE_GRAY = RGBColor(0x40, 0x40, 0x40)
 EXAMPLE_COLOR = RGBColor(0x30, 0x60, 0x8C)
 # English gloss in parentheses after German in › lines (distinct from blue German):
 EXAMPLE_TRANSLATION_COLOR = NOTE_GRAY
+
+# Strong adjective suffix (after ``neu``) in optional grammar tables.
+ADJ_SUFFIX_BLUE = RGBColor(0x1F, 0x4F, 0x8C)
+GRAMMAR_HEADER_FILL = "EFF6FC"
+GRAMMAR_DIFF_FILL = "FFF3CD"
+GRAMMAR_CASE_COL_TWIPS = 680
+
+_RE_NEU_ADJ = re.compile(r"\b(neu)(en|em|es|er|e)\b", re.IGNORECASE)
 
 EXAMPLE_PREFIX = "\u203a "
 
@@ -149,6 +160,160 @@ def ordered_example_object(ex: dict[str, Any]) -> dict[str, Any]:
     return {"german": g, "english": en_out}
 
 
+def normalize_grammar_table(raw: Any) -> dict[str, Any] | None:
+    """Optional ``grammarTable`` block: ``{ \"columns\": [...], \"rows\": [[...], ...] }`` for Word + HTML."""
+
+    if not isinstance(raw, dict):
+        return None
+    cols_raw = raw.get("columns")
+    rows_raw = raw.get("rows")
+    if not isinstance(cols_raw, list) or not cols_raw:
+        return None
+    if not isinstance(rows_raw, list) or not rows_raw:
+        return None
+    columns: list[str] = []
+    for c in cols_raw:
+        columns.append("" if c is None else str(c).strip())
+    n = len(columns)
+    if not n:
+        return None
+    rows: list[list[str]] = []
+    for row in rows_raw:
+        if not isinstance(row, list):
+            return None
+        cells: list[str] = []
+        for i in range(n):
+            v = row[i] if i < len(row) else None
+            cells.append("" if v is None else str(v).strip())
+        rows.append(cells)
+    return {"columns": columns, "rows": rows}
+
+
+def iter_grammar_adj_suffix_runs(text: str) -> Iterator[tuple[str, bool]]:
+    """Split cell text into runs; booleans mark the adjective ending right after ``neu``."""
+
+    if not text:
+        return
+    yield from _iter_grammar_adj_suffix_runs_impl(text)
+
+
+def _iter_grammar_adj_suffix_runs_impl(text: str) -> Iterator[tuple[str, bool]]:
+    last = 0
+    matched = False
+    for m in _RE_NEU_ADJ.finditer(text):
+        matched = True
+        if m.start() > last:
+            yield text[last:m.start()], False
+        yield m.group(1), False
+        yield m.group(2), True
+        last = m.end()
+    if not matched:
+        yield text, False
+    elif last < len(text):
+        yield text[last:], False
+
+
+def extract_np_adjective_token(phrase: str) -> str | None:
+    """Lowercased adjective token after the article (``der neue …`` → ``neue``)."""
+
+    parts = (phrase or "").strip().split()
+    if len(parts) < 2:
+        return None
+    w = parts[1].lower().rstrip(",.;:)")
+    if not w.startswith("neu"):
+        return None
+    return w
+
+
+def grammar_row_diff_mask(row: list[str], n_cols: int) -> list[bool]:
+    """True for data cells whose adjective token differs from the masculine column in the same row."""
+
+    masks = [False] * n_cols
+    if n_cols < 2 or len(row) < 2:
+        return masks
+    base = extract_np_adjective_token(row[1])
+    if base is None:
+        return masks
+    for j in range(2, min(n_cols, len(row))):
+        t = extract_np_adjective_token(row[j])
+        masks[j] = t is not None and t != base
+    return masks
+
+
+def _set_tbl_left_indent(tbl, twips: int) -> None:
+    tbl_pr = tbl._tbl.tblPr
+    tbl_ind = OxmlElement("w:tblInd")
+    tbl_ind.set(qn("w:w"), str(twips))
+    tbl_ind.set(qn("w:type"), "dxa")
+    tbl_pr.append(tbl_ind)
+
+
+def _set_cell_width_twips(tc_pr, twips: int) -> None:
+    tag = qn("w:tcW")
+    for child in list(tc_pr):
+        if child.tag == tag:
+            tc_pr.remove(child)
+    tc_w = OxmlElement("w:tcW")
+    tc_w.set(qn("w:w"), str(twips))
+    tc_w.set(qn("w:type"), "dxa")
+    tc_pr.append(tc_w)
+
+
+def _set_cell_fill_shading(tc_pr, fill: str) -> None:
+    tag_shd = qn("w:shd")
+    for child in list(tc_pr):
+        if child.tag == tag_shd:
+            tc_pr.remove(child)
+    shading = OxmlElement("w:shd")
+    shading.set(qn("w:val"), "clear")
+    shading.set(qn("w:color"), "auto")
+    shading.set(qn("w:fill"), fill)
+    tc_pr.append(shading)
+
+
+def _fill_docx_grammar_cell(
+    cell,
+    text: str,
+    *,
+    point_size: float,
+    role: str,
+    diff_highlight: bool,
+) -> None:
+    tc = cell._tc
+    tc_pr = tc.get_or_add_tcPr()
+    cell.text = ""
+    p = cell.paragraphs[0]
+    p.paragraph_format.space_after = Pt(2)
+
+    if role == "hdr":
+        r = p.add_run(text)
+        r.font.name = "Calibri"
+        r.font.size = Pt(point_size)
+        r.bold = True
+        r.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
+        _set_cell_fill_shading(tc_pr, GRAMMAR_HEADER_FILL)
+        return
+
+    if role == "case":
+        r = p.add_run(text)
+        r.font.name = "Calibri"
+        r.font.size = Pt(point_size)
+        r.font.color.rgb = NOTE_GRAY
+        return
+
+    for chunk, is_suffix in iter_grammar_adj_suffix_runs(text):
+        if chunk == "":
+            continue
+        run = p.add_run(chunk)
+        run.font.name = "Calibri"
+        run.font.size = Pt(point_size)
+        run.font.color.rgb = ADJ_SUFFIX_BLUE if is_suffix else NOTE_GRAY
+        if is_suffix:
+            run.bold = True
+    if diff_highlight:
+        _set_cell_fill_shading(tc_pr, GRAMMAR_DIFF_FILL)
+
+
 def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     """Stable key order for JSON: content fields, then metadata."""
 
@@ -159,6 +324,9 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     if plural:
         od["plural"] = plural
     od["gloss"] = c["gloss"]
+    grammar_table = normalize_grammar_table(c.get("grammarTable"))
+    if grammar_table:
+        od["grammarTable"] = grammar_table
     od["notes"] = c["notes"]
     od["examples"] = examples_ord
     od["createdAt"] = c["createdAt"]
@@ -262,6 +430,9 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     }
     if plural_str:
         out["plural"] = plural_str
+    grammar_table = normalize_grammar_table(card.get("grammarTable"))
+    if grammar_table:
+        out["grammarTable"] = grammar_table
     return ordered_manifest_card(out)
 
 
@@ -287,6 +458,13 @@ def merge_parsed_cards_with_previous_manifest(
             "notes": list(c.get("notes") or []),
             "examples": normalize_examples_from_card(c),
         }
+        gt_new = normalize_grammar_table(c.get("grammarTable"))
+        if gt_new:
+            merged["grammarTable"] = gt_new
+        elif prev:
+            gt_keep = normalize_grammar_table(prev.get("grammarTable"))
+            if gt_keep:
+                merged["grammarTable"] = gt_keep
         pl_new = (c.get("plural") or "").strip()
         if pl_new:
             merged["plural"] = pl_new
@@ -508,6 +686,53 @@ def add_example_objects(doc: Document, objects: list[dict[str, Any]]) -> None:
             run_en.font.color.rgb = EXAMPLE_TRANSLATION_COLOR
 
 
+def add_grammar_table_word(doc: Document, grammar_table: dict[str, Any]) -> None:
+    cols = grammar_table.get("columns") or []
+    rows = grammar_table.get("rows") or []
+    if not cols or not rows:
+        return
+    nc = len(cols)
+    table = doc.add_table(rows=len(rows) + 1, cols=nc)
+    try:
+        table.style = "Table Grid"
+    except (KeyError, ValueError):
+        pass
+    _set_tbl_left_indent(table, int(IND.twips))
+
+    hdr_cells = table.rows[0].cells
+    for j in range(nc):
+        tc_pr = hdr_cells[j]._tc.get_or_add_tcPr()
+        if j == 0:
+            _set_cell_width_twips(tc_pr, GRAMMAR_CASE_COL_TWIPS)
+        _fill_docx_grammar_cell(
+            hdr_cells[j],
+            cols[j],
+            point_size=10,
+            role="hdr",
+            diff_highlight=False,
+        )
+
+    for ri, row_vals in enumerate(rows, start=1):
+        masks = grammar_row_diff_mask(row_vals, nc)
+        row_cells = table.rows[ri].cells
+        for j in range(nc):
+            tc_pr = row_cells[j]._tc.get_or_add_tcPr()
+            if j == 0:
+                _set_cell_width_twips(tc_pr, GRAMMAR_CASE_COL_TWIPS)
+            txt = row_vals[j] if j < len(row_vals) else ""
+            role = "case" if j == 0 else "phrase"
+            _fill_docx_grammar_cell(
+                row_cells[j],
+                txt,
+                point_size=9.5,
+                role=role,
+                diff_highlight=bool(role == "phrase" and masks[j]),
+            )
+    spacer = doc.add_paragraph("")
+    spacer.paragraph_format.space_before = Pt(2)
+    spacer.paragraph_format.space_after = Pt(6)
+
+
 def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
     if not is_first:
         spacer = doc.add_paragraph("")
@@ -544,6 +769,10 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
         r.font.size = Pt(10)
         r.font.italic = True
         r.font.color.rgb = NOTE_GRAY
+
+    grammar_block = normalize_grammar_table(card.get("grammarTable"))
+    if grammar_block:
+        add_grammar_table_word(doc, grammar_block)
 
     add_example_objects(doc, normalize_examples_from_card(card))
 

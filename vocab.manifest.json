@@ -1,5 +1,72 @@
 [
   {
+    "head": "der neue Praktikant /deːɐ̯ ˈnɔʏə pʁaktiˈkant/",
+    "gloss": [
+      "The new intern; pattern for adjective endings after der."
+    ],
+    "grammarTable": {
+      "columns": [
+        "",
+        "m.",
+        "f.",
+        "n.",
+        "pl."
+      ],
+      "rows": [
+        [
+          "Nom",
+          "der neue Praktikant",
+          "die neue Sekretärin",
+          "das neue Team",
+          "die neuen Praktikanten"
+        ],
+        [
+          "Akk",
+          "den neuen Praktikanten",
+          "die neue Sekretärin",
+          "das neue Team",
+          "die neuen Praktikanten"
+        ],
+        [
+          "Dat",
+          "dem neuen Praktikanten",
+          "der neuen Sekretärin",
+          "dem neuen Team",
+          "den neuen Praktikanten"
+        ],
+        [
+          "Gen",
+          "des neuen Praktikanten",
+          "der neuen Sekretärin",
+          "des neuen Teams",
+          "der neuen Praktikanten"
+        ]
+      ]
+    },
+    "notes": [
+      "• neu becomes neue because it stands before a masculine nominative noun with der.",
+      "• After der/die/das, use -e in nominative singular; use -en in most other definite-article forms."
+    ],
+    "examples": [
+      {
+        "german": "Das ist der neue Praktikant.",
+        "english": "That is the new intern."
+      },
+      {
+        "german": "Der Praktikant ist neu.",
+        "english": "The intern is new. [after sein: no adjective ending]"
+      },
+      {
+        "german": "Ich sehe den neuen Praktikanten.",
+        "english": "I see the new intern. [accusative masculine: den neuen]"
+      }
+    ],
+    "createdAt": "2026-05-18T13:35:00Z",
+    "updatedAt": "2026-05-18T13:35:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "in /ɪn/",
     "gloss": [
       "In; inside; on a team (+ dative for location)."

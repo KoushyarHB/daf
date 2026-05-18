@@ -8,7 +8,14 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .docx_cards import canonicalize_plural_field, normalize_examples_from_card, split_head
+from .docx_cards import (
+    canonicalize_plural_field,
+    grammar_row_diff_mask,
+    iter_grammar_adj_suffix_runs,
+    normalize_examples_from_card,
+    normalize_grammar_table,
+    split_head,
+)
 
 
 TITLE_PAGE = "daf — vocabulary"
@@ -82,12 +89,85 @@ h1 {
   font-size: 11pt;
   color: #111;
 }
+.grammar-table-wrap {
+  margin: 0.35rem 0 0.65rem 0;
+  padding-left: 0.6rem;
+  border-left: 3px solid #ddd;
+}
+.grammar-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 9.5pt;
+}
+.grammar-col-case {
+  width: 3.25rem;
+}
+.grammar-adj-sfx {
+  color: var(--blue);
+  font-weight: 700;
+}
+.grammar-diff {
+  background: #fff3cd;
+}
+.grammar-table th,
+.grammar-table td {
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.45rem;
+  text-align: left;
+  vertical-align: top;
+}
+.grammar-table th {
+  font-weight: 600;
+  background: #f1f6fc;
+  color: #333;
+}
 footer {
   margin-top: 2rem;
   font-size: 0.8rem;
   color: #888;
 }
 """
+
+
+def format_grammar_phrase_cell_html(text: str) -> str:
+    parts: list[str] = []
+    for chunk, is_suffix in iter_grammar_adj_suffix_runs(text):
+        if chunk == "":
+            continue
+        esc = html.escape(chunk)
+        if is_suffix:
+            parts.append(f'<strong class="grammar-adj-sfx">{esc}</strong>')
+        else:
+            parts.append(esc)
+    return "".join(parts)
+
+
+def grammar_table_block_html(gt: dict[str, Any]) -> str:
+    cols = gt["columns"]
+    rows = gt["rows"]
+    nc = len(cols)
+    cg_bits = ["<colgroup>", '<col class="grammar-col-case" />']
+    if nc > 1:
+        cg_bits.append(f'<col span="{nc - 1}" />')
+    cg_bits.append("</colgroup>")
+    thead = "<thead><tr>" + "".join(f"<th>{html.escape(str(c))}</th>" for c in cols) + "</tr></thead>"
+    tbody_parts = ["<tbody>"]
+    for row in rows:
+        masks = grammar_row_diff_mask(row, nc)
+        tbody_parts.append("<tr>")
+        for j in range(nc):
+            raw = row[j] if j < len(row) else ""
+            inner = html.escape(str(raw)) if j == 0 else format_grammar_phrase_cell_html(str(raw))
+            clsattr = ""
+            if j >= 2 and masks[j]:
+                clsattr = ' class="grammar-diff"'
+            tbody_parts.append(f"<td{clsattr}>{inner}</td>")
+        tbody_parts.append("</tr>")
+    tbody_parts.append("</tbody>")
+    inner_tbl = "".join(cg_bits) + thead + "".join(tbody_parts)
+    return f'<div class="grammar-table-wrap"><table class="grammar-table">{inner_tbl}</table></div>'
 
 
 def render_vocab_html(cards: list[dict[str, Any]]) -> str:
@@ -145,6 +225,10 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         for n in card.get("notes") or []:
             if isinstance(n, str) and n.strip():
                 parts.append(f'<div class="notes">{html.escape(n.strip())}</div>')
+
+        gt_render = normalize_grammar_table(card.get("grammarTable"))
+        if gt_render:
+            parts.append(grammar_table_block_html(gt_render))
 
         examples = normalize_examples_from_card(card)
         if examples:

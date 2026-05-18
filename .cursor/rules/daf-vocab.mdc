@@ -79,6 +79,7 @@ Each JSON entry:
 
 - **`head`**: single string exactly as printed in bold + IPA (**`lemma /…/`**)
 - **`plural`** (optional): noun only—the **comma tail** showing how plural is built (**`-en`**, **`-nen`**, **`-e`**, **`-n`**, **`-s`**, **`-`** for no ending change). For **gendered pairs**, use **` / `** (**`-en / die Studentin, -nen`**). Rendered like **`die Frau, -en`** (stored value **`-en`**) in Word and Pages. Omit for verbs, adjectives, greetings, formulas, proper names without a useful plural pattern.
+- **`grammarTable`** (optional): small HTML-style table for grammar cards: **`{ "columns": […], "rows": [[cell, …], …] }`**. Emitted as a real table in Word and in the HTML preview. Not round-tripped by **`manual-edit-from-docx`**; keep it in JSON only.
 - **`gloss`**, **`notes`**: string arrays; **`notes`** is often **`[]`**—add bullets only when necessary (see **Card layout §3**).
 - **`examples`**: array of **`{ "german": "…", "english": "…" | null }`** — one **`›`** line each in Word (omit the **`›`** prefix in JSON). English is stored **without** outer parentheses; tooling prints **`(English)`** in gray.
 - **Metadata** (required on every card; tooling fills defaults if missing):
