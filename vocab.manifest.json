@@ -1,5 +1,49 @@
 [
   {
+    "head": "Wie geht’s? /viː ɡeːts/",
+    "gloss": ["How’s it going? / How are you?"],
+    "notes": [
+      "• Short for: Wie geht es? Full informal form: Wie geht es dir?",
+      "• Common response: Und dir? (= Und wie geht es dir?)",
+      "• Another common response: Mir geht’s gut. (= I’m doing well.)",
+      "• Formally: Wie geht es Ihnen?"
+    ],
+    "examples": [
+      {
+        "german": "Wie geht’s?",
+        "english": "How’s it going? / How are you?"
+      },
+      {
+        "german": "Gut, danke. Und dir?",
+        "english": "Good, thanks. And you?"
+      },
+      {
+        "german": "Mir geht’s gut.",
+        "english": "I’m doing well."
+      },
+      {
+        "german": "Sehr gut.",
+        "english": "Very well."
+      },
+      {
+        "german": "Es geht.",
+        "english": "It’s okay / so-so."
+      },
+      {
+        "german": "Nicht so gut.",
+        "english": "Not so well."
+      },
+      {
+        "german": "Schlecht.",
+        "english": "Bad / not well."
+      }
+    ],
+    "createdAt": "2026-05-18T11:20:00Z",
+    "updatedAt": "2026-05-18T11:23:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "Freut mich /fʁɔʏ̯t mɪç/",
     "gloss": ["Nice to meet you; pleased to meet you."],
     "notes": [
@@ -417,7 +461,9 @@
   },
   {
     "head": "reisen /ˈʁaɪ̯zn̩/",
-    "gloss": ["To travel; go on a trip (+ nach … without article; + in die … when an article appears)."],
+    "gloss": [
+      "To travel; go on a trip (+ nach … without article; + in die … when an article appears)."
+    ],
     "notes": [],
     "examples": [
       {
@@ -436,7 +482,9 @@
   },
   {
     "head": "fahren /ˈfaːʁən/",
-    "gloss": ["To drive; ride; go by transport (+ nach … for many destinations)."],
+    "gloss": [
+      "To drive; ride; go by transport (+ nach … for many destinations)."
+    ],
     "notes": [
       "• Strong verb: er fährt; Präteritum fuhr — expect this in texts and exams."
     ],
