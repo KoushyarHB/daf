@@ -1,5 +1,131 @@
 [
   {
+    "head": "Viel Spaß! /fiːl ʃpaːs/",
+    "gloss": [
+      "Have fun! Enjoy yourself!"
+    ],
+    "notes": [
+      "• Correct spelling in standard German: Spaß with ß, not spas."
+    ],
+    "examples": [
+      {
+        "german": "Viel Spaß!",
+        "english": "Have fun!"
+      },
+      {
+        "german": "Viel Spaß beim Deutschlernen!",
+        "english": "Have fun learning German!"
+      }
+    ],
+    "createdAt": "2026-05-19T10:40:00Z",
+    "updatedAt": "2026-05-19T10:40:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Spaß /ʃpaːs/",
+    "plural": "-äße",
+    "gloss": [
+      "Fun; enjoyment."
+    ],
+    "notes": [
+      "• Long a + sharp s: Spaß. In Switzerland, ß is usually written ss: Spass."
+    ],
+    "examples": [
+      {
+        "german": "Deutsch macht Spaß.",
+        "english": "German is fun."
+      },
+      {
+        "german": "Das macht viel Spaß.",
+        "english": "That is a lot of fun."
+      }
+    ],
+    "createdAt": "2026-05-19T10:40:00Z",
+    "updatedAt": "2026-05-19T10:40:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "viel /fiːl/",
+    "gloss": [
+      "Much; a lot; many before plural nouns."
+    ],
+    "notes": [
+      "• In Viel Spaß!, viel intensifies the wish: literally much fun, naturally have fun."
+    ],
+    "examples": [
+      {
+        "german": "Ich habe viel Zeit.",
+        "english": "I have a lot of time."
+      },
+      {
+        "german": "Viele Personen warten.",
+        "english": "Many people are waiting."
+      }
+    ],
+    "createdAt": "2026-05-19T10:40:00Z",
+    "updatedAt": "2026-05-19T10:40:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "zusammen /tsuˈzamən/",
+    "gloss": [
+      "Together; as a group (adverb)."
+    ],
+    "notes": [
+      "• Spelling: zwei m und -en at the end — not zusamen (common typo/OCR).",
+      "• In Hoi zusammen!, zusammen means “everyone / all of you” — like English “Hi all!”"
+    ],
+    "examples": [
+      {
+        "german": "Hoi zusammen!",
+        "english": "Hi, everyone!"
+      },
+      {
+        "german": "Wir lernen zusammen Deutsch.",
+        "english": "We are learning German together."
+      },
+      {
+        "german": "Kommt alle zusammen!",
+        "english": "Everyone come together! / Gather round!"
+      }
+    ],
+    "createdAt": "2026-05-19T19:00:00Z",
+    "updatedAt": "2026-05-19T19:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Hoi /hɔɪ/",
+    "gloss": [
+      "Informal hi or hey; especially typical in Switzerland."
+    ],
+    "notes": [
+      "• One-word greeting (interjection), like Hallo or Servus — no article, no plural, no verb endings.",
+      "• Very common in Swiss German contexts; also heard in casual speech elsewhere; not the standard classroom default."
+    ],
+    "examples": [
+      {
+        "german": "Hoi!",
+        "english": "Hi! / Hey!"
+      },
+      {
+        "german": "Hoi, wie geht's?",
+        "english": "Hey, how's it going?"
+      },
+      {
+        "german": "Hoi zusammen!",
+        "english": "Hi, everyone!"
+      }
+    ],
+    "createdAt": "2026-05-19T18:00:00Z",
+    "updatedAt": "2026-05-19T18:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Argentinierin /aʁɡɛnˈtsiːnəʁɪn/",
     "plural": "-nen / der Argentinier, -",
     "gloss": [
