@@ -293,10 +293,10 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     if plural:
         od["plural"] = plural
     od["gloss"] = c["gloss"]
+    od["notes"] = c["notes"]
     grammar_table = normalize_grammar_table(c.get("grammarTable"))
     if grammar_table:
         od["grammarTable"] = grammar_table
-    od["notes"] = c["notes"]
     od["examples"] = examples_ord
     od["createdAt"] = c["createdAt"]
     od["updatedAt"] = c["updatedAt"]
@@ -667,11 +667,12 @@ def add_grammar_table_word(doc: Document, grammar_table: dict[str, Any]) -> None
     except (KeyError, ValueError):
         pass
     _set_tbl_left_indent(table, int(IND.twips))
+    narrow_first_col = bool(cols and str(cols[0]).strip() == "")
 
     hdr_cells = table.rows[0].cells
     for j in range(nc):
         tc_pr = hdr_cells[j]._tc.get_or_add_tcPr()
-        if j == 0:
+        if narrow_first_col and j == 0:
             _set_cell_width_twips(tc_pr, GRAMMAR_CASE_COL_TWIPS)
         _fill_docx_grammar_cell(
             hdr_cells[j],
@@ -684,7 +685,7 @@ def add_grammar_table_word(doc: Document, grammar_table: dict[str, Any]) -> None
         row_cells = table.rows[ri].cells
         for j in range(nc):
             tc_pr = row_cells[j]._tc.get_or_add_tcPr()
-            if j == 0:
+            if narrow_first_col and j == 0:
                 _set_cell_width_twips(tc_pr, GRAMMAR_CASE_COL_TWIPS)
             txt = row_vals[j] if j < len(row_vals) else ""
             role = "case" if j == 0 else "phrase"

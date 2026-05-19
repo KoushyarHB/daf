@@ -144,9 +144,14 @@ def grammar_table_block_html(gt: dict[str, Any]) -> str:
     cols = gt["columns"]
     rows = gt["rows"]
     nc = len(cols)
-    cg_bits = ["<colgroup>", '<col class="grammar-col-case" />']
-    if nc > 1:
-        cg_bits.append(f'<col span="{nc - 1}" />')
+    narrow_first_col = nc > 0 and str(cols[0]).strip() == ""
+    cg_bits = ["<colgroup>"]
+    if narrow_first_col:
+        cg_bits.append('<col class="grammar-col-case" />')
+        if nc > 1:
+            cg_bits.append(f'<col span="{nc - 1}" />')
+    elif nc:
+        cg_bits.append(f'<col span="{nc}" />')
     cg_bits.append("</colgroup>")
     thead = "<thead><tr>" + "".join(f"<th>{html.escape(str(c))}</th>" for c in cols) + "</tr></thead>"
     tbody_parts = ["<tbody>"]
