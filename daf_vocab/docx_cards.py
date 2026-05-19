@@ -35,7 +35,6 @@ EXAMPLE_TRANSLATION_COLOR = NOTE_GRAY
 # Strong adjective suffix (after ``neu``) in optional grammar tables.
 ADJ_SUFFIX_BLUE = RGBColor(0x1F, 0x4F, 0x8C)
 GRAMMAR_HEADER_FILL = "EFF6FC"
-GRAMMAR_DIFF_FILL = "FFF3CD"
 GRAMMAR_CASE_COL_TWIPS = 680
 
 _RE_NEU_ADJ = re.compile(r"\b(neu)(en|em|es|er|e)\b", re.IGNORECASE)
@@ -213,33 +212,6 @@ def _iter_grammar_adj_suffix_runs_impl(text: str) -> Iterator[tuple[str, bool]]:
         yield text[last:], False
 
 
-def extract_np_adjective_token(phrase: str) -> str | None:
-    """Lowercased adjective token after the article (``der neue …`` → ``neue``)."""
-
-    parts = (phrase or "").strip().split()
-    if len(parts) < 2:
-        return None
-    w = parts[1].lower().rstrip(",.;:)")
-    if not w.startswith("neu"):
-        return None
-    return w
-
-
-def grammar_row_diff_mask(row: list[str], n_cols: int) -> list[bool]:
-    """True for data cells whose adjective token differs from the masculine column in the same row."""
-
-    masks = [False] * n_cols
-    if n_cols < 2 or len(row) < 2:
-        return masks
-    base = extract_np_adjective_token(row[1])
-    if base is None:
-        return masks
-    for j in range(2, min(n_cols, len(row))):
-        t = extract_np_adjective_token(row[j])
-        masks[j] = t is not None and t != base
-    return masks
-
-
 def _set_tbl_left_indent(tbl, twips: int) -> None:
     tbl_pr = tbl._tbl.tblPr
     tbl_ind = OxmlElement("w:tblInd")
@@ -277,7 +249,6 @@ def _fill_docx_grammar_cell(
     *,
     point_size: float,
     role: str,
-    diff_highlight: bool,
 ) -> None:
     tc = cell._tc
     tc_pr = tc.get_or_add_tcPr()
@@ -310,8 +281,6 @@ def _fill_docx_grammar_cell(
         run.font.color.rgb = ADJ_SUFFIX_BLUE if is_suffix else NOTE_GRAY
         if is_suffix:
             run.bold = True
-    if diff_highlight:
-        _set_cell_fill_shading(tc_pr, GRAMMAR_DIFF_FILL)
 
 
 def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
@@ -709,11 +678,9 @@ def add_grammar_table_word(doc: Document, grammar_table: dict[str, Any]) -> None
             cols[j],
             point_size=10,
             role="hdr",
-            diff_highlight=False,
         )
 
     for ri, row_vals in enumerate(rows, start=1):
-        masks = grammar_row_diff_mask(row_vals, nc)
         row_cells = table.rows[ri].cells
         for j in range(nc):
             tc_pr = row_cells[j]._tc.get_or_add_tcPr()
@@ -726,7 +693,6 @@ def add_grammar_table_word(doc: Document, grammar_table: dict[str, Any]) -> None
                 txt,
                 point_size=9.5,
                 role=role,
-                diff_highlight=bool(role == "phrase" and masks[j]),
             )
     spacer = doc.add_paragraph("")
     spacer.paragraph_format.space_before = Pt(2)

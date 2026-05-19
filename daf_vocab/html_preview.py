@@ -10,7 +10,6 @@ from typing import Any
 
 from .docx_cards import (
     canonicalize_plural_field,
-    grammar_row_diff_mask,
     iter_grammar_adj_suffix_runs,
     normalize_examples_from_card,
     normalize_grammar_table,
@@ -92,7 +91,7 @@ h1 {
 .grammar-table-wrap {
   margin: 0.35rem 0 0.65rem 0;
   padding-left: 0.6rem;
-  border-left: 3px solid #ddd;
+  border-left: 3px solid transparent;
 }
 .grammar-table {
   width: 100%;
@@ -107,9 +106,6 @@ h1 {
 .grammar-adj-sfx {
   color: var(--blue);
   font-weight: 700;
-}
-.grammar-diff {
-  background: #fff3cd;
 }
 .grammar-table th,
 .grammar-table td {
@@ -155,15 +151,11 @@ def grammar_table_block_html(gt: dict[str, Any]) -> str:
     thead = "<thead><tr>" + "".join(f"<th>{html.escape(str(c))}</th>" for c in cols) + "</tr></thead>"
     tbody_parts = ["<tbody>"]
     for row in rows:
-        masks = grammar_row_diff_mask(row, nc)
         tbody_parts.append("<tr>")
         for j in range(nc):
             raw = row[j] if j < len(row) else ""
             inner = html.escape(str(raw)) if j == 0 else format_grammar_phrase_cell_html(str(raw))
-            clsattr = ""
-            if j >= 2 and masks[j]:
-                clsattr = ' class="grammar-diff"'
-            tbody_parts.append(f"<td{clsattr}>{inner}</td>")
+            tbody_parts.append(f"<td>{inner}</td>")
         tbody_parts.append("</tr>")
     tbody_parts.append("</tbody>")
     inner_tbl = "".join(cg_bits) + thead + "".join(tbody_parts)
