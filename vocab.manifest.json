@@ -178,20 +178,40 @@
     },
     "examples": [
       {
-        "german": "Noch mehr Zahlen!",
-        "english": "Even more numbers!"
+        "german": "127 = einhundertsiebenundzwanzig",
+        "english": "127 = one hundred twenty-seven."
       },
       {
-        "german": "Hören Sie die Zahlen und sprechen Sie mit.",
-        "english": "Listen to the numbers and speak along."
+        "german": "111 = einhundertelf",
+        "english": "111 = one hundred eleven."
       },
       {
-        "german": "Sie hören oft zwo für zwei, hundert für einhundert und tausend für eintausend.",
-        "english": "You often hear zwo for zwei, hundert for einhundert, and tausend for eintausend."
+        "german": "1637 = eintausendsechshundertsiebenunddreißig",
+        "english": "1637 = one thousand six hundred thirty-seven."
+      },
+      {
+        "german": "8463 = achttausendvierhundertdreiundsechzig",
+        "english": "8463 = eight thousand four hundred sixty-three."
+      },
+      {
+        "german": "90901 = neunzigtausendneunhunderteins",
+        "english": "90901 = ninety thousand nine hundred one."
+      },
+      {
+        "german": "305 = dreihundertfünf",
+        "english": "305 = three hundred five."
+      },
+      {
+        "german": "2014 = zweitausendvierzehn",
+        "english": "2014 = two thousand fourteen."
+      },
+      {
+        "german": "1000000 = eine Million",
+        "english": "1000000 = one million."
       }
     ],
     "createdAt": "2026-05-20T11:36:00Z",
-    "updatedAt": "2026-05-20T11:36:00Z",
+    "updatedAt": "2026-05-20T11:52:00Z",
     "lektion": 1,
     "level": "A1"
   },
