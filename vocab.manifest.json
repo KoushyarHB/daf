@@ -1,5 +1,33 @@
 [
   {
+    "head": "dann /dan/",
+    "gloss": [
+      "Then; after that."
+    ],
+    "notes": [
+      "• Use dann to order actions in time: first one thing, then the next.",
+      "• In a normal statement, dann can stand first; the conjugated verb then comes right after it."
+    ],
+    "examples": [
+      {
+        "german": "Zuerst lernen wir Zahlen, dann lesen wir den Text.",
+        "english": "First we learn numbers, then we read the text."
+      },
+      {
+        "german": "Ich trinke Kaffee, dann gehe ich zum Kurs.",
+        "english": "I drink coffee, then I go to the course."
+      },
+      {
+        "german": "Wenn du Zeit hast, dann komm bitte.",
+        "english": "If you have time, then please come."
+      }
+    ],
+    "createdAt": "2026-05-20T09:18:00Z",
+    "updatedAt": "2026-05-20T09:18:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Vorwahl /ˈfoːɐ̯vaːl/",
     "plural": "-en",
     "gloss": [
