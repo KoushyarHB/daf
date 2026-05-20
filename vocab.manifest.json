@@ -18,12 +18,16 @@
         "english": "We exchange phone numbers."
       },
       {
+        "german": "Tauschen Sie die Notizzettel. Fragen Sie: Wie ist die Telefonnummer von Anne?",
+        "english": "Exchange the note sheets. Ask: What is Anne's phone number?"
+      },
+      {
         "german": "Tauschen Sie die Antworten mit einem Partner.",
         "english": "Exchange the answers with a partner. [formal you]"
       }
     ],
     "createdAt": "2026-05-20T12:41:00Z",
-    "updatedAt": "2026-05-20T12:48:00Z",
+    "updatedAt": "2026-05-20T12:51:00Z",
     "lektion": 1,
     "level": "A1"
   },
