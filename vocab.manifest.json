@@ -1,5 +1,65 @@
 [
   {
+    "head": "wiederholen /viːdɐˈhoːlən/",
+    "gloss": [
+      "To repeat; say or do again."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Bitte wiederholen Sie das.",
+        "english": "Please repeat that."
+      },
+      {
+        "german": "Wiederholen Sie bitte die Frage.",
+        "english": "Please repeat the question. [formal you]"
+      },
+      {
+        "german": "Du wiederholst den Satz.",
+        "english": "You repeat the sentence. [informal you]"
+      },
+      {
+        "german": "Er wiederholt die Regel.",
+        "english": "He repeats the rule."
+      }
+    ],
+    "createdAt": "2026-05-20T06:00:00Z",
+    "updatedAt": "2026-05-20T06:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "wieder /ˈviːdɐ/",
+    "gloss": [
+      "Again; back again."
+    ],
+    "notes": [
+      "• Do not confuse wieder (again) with wider (against)."
+    ],
+    "examples": [
+      {
+        "german": "Noch einmal, bitte.",
+        "english": "One more time, please."
+      },
+      {
+        "german": "Bitte wiederholen Sie das.",
+        "english": "Please repeat that."
+      },
+      {
+        "german": "Ich bin wieder da.",
+        "english": "I'm back again."
+      },
+      {
+        "german": "Bis morgen! Wir sehen uns wieder.",
+        "english": "See you tomorrow! We'll see each other again."
+      }
+    ],
+    "createdAt": "2026-05-20T05:56:00Z",
+    "updatedAt": "2026-05-20T05:56:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Telefonnummer /teˈlefoːnˌnʊmɐ/",
     "plural": "-n",
     "gloss": [
@@ -311,66 +371,6 @@
     ],
     "createdAt": "2026-05-20T06:21:00Z",
     "updatedAt": "2026-05-20T06:21:00Z",
-    "lektion": 1,
-    "level": "A1"
-  },
-  {
-    "head": "wiederholen /viːdɐˈhoːlən/",
-    "gloss": [
-      "To repeat; say or do again."
-    ],
-    "notes": [],
-    "examples": [
-      {
-        "german": "Bitte wiederholen Sie das.",
-        "english": "Please repeat that."
-      },
-      {
-        "german": "Wiederholen Sie bitte die Frage.",
-        "english": "Please repeat the question. [formal you]"
-      },
-      {
-        "german": "Du wiederholst den Satz.",
-        "english": "You repeat the sentence. [informal you]"
-      },
-      {
-        "german": "Er wiederholt die Regel.",
-        "english": "He repeats the rule."
-      }
-    ],
-    "createdAt": "2026-05-20T06:00:00Z",
-    "updatedAt": "2026-05-20T06:00:00Z",
-    "lektion": 1,
-    "level": "A1"
-  },
-  {
-    "head": "wieder /ˈviːdɐ/",
-    "gloss": [
-      "Again; back again."
-    ],
-    "notes": [
-      "• Do not confuse wieder (again) with wider (against)."
-    ],
-    "examples": [
-      {
-        "german": "Noch einmal, bitte.",
-        "english": "One more time, please."
-      },
-      {
-        "german": "Bitte wiederholen Sie das.",
-        "english": "Please repeat that."
-      },
-      {
-        "german": "Ich bin wieder da.",
-        "english": "I'm back again."
-      },
-      {
-        "german": "Bis morgen! Wir sehen uns wieder.",
-        "english": "See you tomorrow! We'll see each other again."
-      }
-    ],
-    "createdAt": "2026-05-20T05:56:00Z",
-    "updatedAt": "2026-05-20T05:56:00Z",
     "lektion": 1,
     "level": "A1"
   },
