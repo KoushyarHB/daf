@@ -1,9 +1,7 @@
 [
   {
     "head": "tauschen /ˈtaʊ̯ʃən/",
-    "gloss": [
-      "To exchange; swap."
-    ],
+    "gloss": ["To exchange; swap."],
     "notes": [
       "• Formal command: Tauschen Sie ... = Exchange ... / Swap ...; verb first, Sie capitalized.",
       "• With tauschen, the thing exchanged is accusative. For plural nouns, nominative and accusative look the same: die ... stays die ...."
@@ -32,67 +30,9 @@
     "level": "A1"
   },
   {
-    "head": "fragen /ˈfʁaːɡən/",
-    "gloss": [
-      "To ask."
-    ],
-    "notes": [
-      "• Formal command: Fragen Sie ... = Ask ...; verb first, Sie capitalized.",
-      "• The person you ask is accusative: einen Partner / eine Partnerin."
-    ],
-    "examples": [
-      {
-        "german": "Fragen Sie einen Partner / eine Partnerin.",
-        "english": "Ask a male partner / a female partner."
-      },
-      {
-        "german": "Wie ist die Telefonnummer von Anne?",
-        "english": "What is Anne's phone number?"
-      },
-      {
-        "german": "Ich frage Maria.",
-        "english": "I ask Maria."
-      }
-    ],
-    "createdAt": "2026-05-20T12:41:00Z",
-    "updatedAt": "2026-05-20T12:41:00Z",
-    "lektion": 1,
-    "level": "A1"
-  },
-  {
-    "head": "antworten /ˈantvɔʁtn̩/",
-    "gloss": [
-      "To answer; reply."
-    ],
-    "notes": [
-      "• Formal command: Antworten Sie ... = Answer ... / Reply ...; verb first, Sie capitalized.",
-      "• Related noun: die Antwort = the answer."
-    ],
-    "examples": [
-      {
-        "german": "Fragen und antworten Sie.",
-        "english": "Ask and answer. [formal you]"
-      },
-      {
-        "german": "Die Telefonnummer von Anne ist 0621 / 53487.",
-        "english": "Anne's phone number is 0621 / 53487."
-      },
-      {
-        "german": "Bitte antworten Sie.",
-        "english": "Please answer. [formal you]"
-      }
-    ],
-    "createdAt": "2026-05-20T12:41:00Z",
-    "updatedAt": "2026-05-20T12:41:00Z",
-    "lektion": 1,
-    "level": "A1"
-  },
-  {
     "head": "der Kurs /kʊʁs/",
     "plural": "-e",
-    "gloss": [
-      "Course; class."
-    ],
+    "gloss": ["Course; class."],
     "notes": [
       "• im Kurs = in dem Kurs = in class / in the course.",
       "• Location with in uses dative: in dem Kurs becomes im Kurs."
@@ -119,9 +59,7 @@
   {
     "head": "die Handynummer /ˈhɛndiˌnʊmɐ/",
     "plural": "-n",
-    "gloss": [
-      "Mobile phone number; cell phone number."
-    ],
+    "gloss": ["Mobile phone number; cell phone number."],
     "notes": [
       "• das Handy = mobile phone / cell phone; die Nummer = number as an ID/code.",
       "• die Handynummer is specifically a mobile number; die Telefonnummer can be any phone number."
@@ -147,9 +85,7 @@
   },
   {
     "head": "die Zahlen ab 11 /diː ˈtsaːlən ap ɛlf/",
-    "gloss": [
-      "Numbers from 11 upward."
-    ],
+    "gloss": ["Numbers from 11 upward."],
     "notes": [
       "• 13-19 mostly use -zehn: dreizehn, vierzehn, fünfzehn; watch the shortened forms sechzehn and siebzehn.",
       "• 21-99 put the small number first, then und, then the ten: einundzwanzig = one-and-twenty = twenty-one.",
@@ -157,169 +93,34 @@
       "• Million and Milliarde are nouns, so they use eine: eine Million, eine Milliarde."
     ],
     "grammarTable": {
-      "columns": [
-        "Bereich",
-        "Zahl",
-        "Deutsch",
-        "Muster / Tipp"
-      ],
+      "columns": ["Bereich", "Zahl", "Deutsch", "Muster / Tipp"],
       "rows": [
-        [
-          "11-12",
-          "11",
-          "elf",
-          "special form"
-        ],
-        [
-          "11-12",
-          "12",
-          "zwölf",
-          "special form"
-        ],
-        [
-          "13-19",
-          "13",
-          "dreizehn",
-          "drei + zehn"
-        ],
-        [
-          "13-19",
-          "14",
-          "vierzehn",
-          "vier + zehn"
-        ],
-        [
-          "13-19",
-          "15",
-          "fünfzehn",
-          "fünf + zehn"
-        ],
-        [
-          "13-19",
-          "16",
-          "sechzehn",
-          "not sechszehn"
-        ],
-        [
-          "13-19",
-          "17",
-          "siebzehn",
-          "not siebenzehn"
-        ],
-        [
-          "13-19",
-          "18",
-          "achtzehn",
-          "acht + zehn"
-        ],
-        [
-          "13-19",
-          "19",
-          "neunzehn",
-          "neun + zehn"
-        ],
-        [
-          "tens",
-          "20",
-          "zwanzig",
-          "-zig ending"
-        ],
-        [
-          "21-99",
-          "21",
-          "einundzwanzig",
-          "ein + und + zwanzig"
-        ],
-        [
-          "tens",
-          "30",
-          "dreißig",
-          "irregular: ß, not z"
-        ],
-        [
-          "tens",
-          "40",
-          "vierzig",
-          "vier + zig"
-        ],
-        [
-          "tens",
-          "50",
-          "fünfzig",
-          "fünf + zig"
-        ],
-        [
-          "tens",
-          "60",
-          "sechzig",
-          "not sechszig"
-        ],
-        [
-          "tens",
-          "70",
-          "siebzig",
-          "not siebenzig"
-        ],
-        [
-          "tens",
-          "80",
-          "achtzig",
-          "acht + zig"
-        ],
-        [
-          "tens",
-          "90",
-          "neunzig",
-          "neun + zig"
-        ],
-        [
-          "hundreds",
-          "100",
-          "einhundert",
-          "often heard as hundert"
-        ],
-        [
-          "hundreds",
-          "101",
-          "einhunderteins",
-          "hundert + eins"
-        ],
-        [
-          "hundreds",
-          "200",
-          "zweihundert",
-          "zwei + hundert"
-        ],
-        [
-          "thousands",
-          "1.000",
-          "eintausend",
-          "often heard as tausend"
-        ],
-        [
-          "thousands",
-          "10.000",
-          "zehntausend",
-          "zehn + tausend"
-        ],
-        [
-          "thousands",
-          "100.000",
-          "einhunderttausend",
-          "hundert + tausend"
-        ],
-        [
-          "large",
-          "1.000.000",
-          "eine Million",
-          "noun: die Million"
-        ],
-        [
-          "large",
-          "1.000.000.000",
-          "eine Milliarde",
-          "noun: die Milliarde"
-        ]
+        ["11-12", "11", "elf", "special form"],
+        ["11-12", "12", "zwölf", "special form"],
+        ["13-19", "13", "dreizehn", "drei + zehn"],
+        ["13-19", "14", "vierzehn", "vier + zehn"],
+        ["13-19", "15", "fünfzehn", "fünf + zehn"],
+        ["13-19", "16", "sechzehn", "not sechszehn"],
+        ["13-19", "17", "siebzehn", "not siebenzehn"],
+        ["13-19", "18", "achtzehn", "acht + zehn"],
+        ["13-19", "19", "neunzehn", "neun + zehn"],
+        ["tens", "20", "zwanzig", "-zig ending"],
+        ["21-99", "21", "einundzwanzig", "ein + und + zwanzig"],
+        ["tens", "30", "dreißig", "irregular: ß, not z"],
+        ["tens", "40", "vierzig", "vier + zig"],
+        ["tens", "50", "fünfzig", "fünf + zig"],
+        ["tens", "60", "sechzig", "not sechszig"],
+        ["tens", "70", "siebzig", "not siebenzig"],
+        ["tens", "80", "achtzig", "acht + zig"],
+        ["tens", "90", "neunzig", "neun + zig"],
+        ["hundreds", "100", "einhundert", "often heard as hundert"],
+        ["hundreds", "101", "einhunderteins", "hundert + eins"],
+        ["hundreds", "200", "zweihundert", "zwei + hundert"],
+        ["thousands", "1.000", "eintausend", "often heard as tausend"],
+        ["thousands", "10.000", "zehntausend", "zehn + tausend"],
+        ["thousands", "100.000", "einhunderttausend", "hundert + tausend"],
+        ["large", "1.000.000", "eine Million", "noun: die Million"],
+        ["large", "1.000.000.000", "eine Milliarde", "noun: die Milliarde"]
       ]
     },
     "examples": [
@@ -363,9 +164,7 @@
   },
   {
     "head": "mehr /meːɐ̯/",
-    "gloss": [
-      "More."
-    ],
+    "gloss": ["More."],
     "notes": [
       "• mehr adds quantity: mehr Zahlen = more numbers.",
       "• Opposite idea: weniger = less / fewer."
@@ -391,9 +190,7 @@
   },
   {
     "head": "noch einmal /nɔx ˈaɪ̯nmaːl/",
-    "gloss": [
-      "One more time; once again."
-    ],
+    "gloss": ["One more time; once again."],
     "notes": [
       "• noch = still / yet / additionally; einmal = once / one time.",
       "• Together, noch einmal means one more time or again. Casual shorter form: nochmal."
@@ -424,9 +221,7 @@
   {
     "head": "der Notizzettel /noˈtiːtsˌtsɛtl̩/",
     "plural": "-",
-    "gloss": [
-      "Note slip; small note sheet."
-    ],
+    "gloss": ["Note slip; small note sheet."],
     "notes": [
       "• Correct spelling: Notizzettel, not notizzetel/nottizetel.",
       "• die Notiz = note; der Zettel = slip/piece of paper. Together: der Notizzettel = a note sheet."
@@ -452,9 +247,7 @@
   },
   {
     "head": "Tschüss /tʃʏs/",
-    "gloss": [
-      "Bye; casual goodbye."
-    ],
+    "gloss": ["Bye; casual goodbye."],
     "notes": [
       "• Tschüss is the common German casual goodbye, especially in everyday speech."
     ],
@@ -479,9 +272,7 @@
   },
   {
     "head": "Tschau /tʃaʊ/",
-    "gloss": [
-      "Bye; informal farewell."
-    ],
+    "gloss": ["Bye; informal farewell."],
     "notes": [
       "• Tschau is the German spelling of Italian ciao; it is casual, like English bye.",
       "• Tschüss and Tschau feel similar because both are casual goodbyes and both start with tsch, but they are different words."
@@ -503,9 +294,7 @@
   },
   {
     "head": "später /ˈʃpɛːtɐ/",
-    "gloss": [
-      "Later."
-    ],
+    "gloss": ["Later."],
     "notes": [
       "• Opposite idea: früh = early; später = later. Related adjective: spät = late.",
       "• In bis später, German literally says until later; natural English is see you later."
@@ -531,9 +320,7 @@
   },
   {
     "head": "bis /bɪs/",
-    "gloss": [
-      "Until; till; by."
-    ],
+    "gloss": ["Until; till; by."],
     "notes": [
       "• In farewell formulas, bis means until: bis später = until later / see you later."
     ],
@@ -558,9 +345,7 @@
   },
   {
     "head": "dann /dan/",
-    "gloss": [
-      "Then; after that."
-    ],
+    "gloss": ["Then; after that."],
     "notes": [
       "• Use dann to order actions in time: first one thing, then the next.",
       "• In a normal statement, dann can stand first; the conjugated verb then comes right after it."
@@ -587,9 +372,7 @@
   {
     "head": "die Vorwahl /ˈfoːɐ̯vaːl/",
     "plural": "-en",
-    "gloss": [
-      "Area code; dialing prefix."
-    ],
+    "gloss": ["Area code; dialing prefix."],
     "notes": [
       "• One compound word: Vorwahl, not two words.",
       "• In 0621 / 53487, 0621 is the Vorwahl and 53487 is the local number."
@@ -615,28 +398,16 @@
   },
   {
     "head": "können /ˈkœnən/",
-    "gloss": [
-      "Can; be able to (modal verb)."
-    ],
+    "gloss": ["Can; be able to (modal verb)."],
     "notes": [
       "• Modal-verb pattern: the conjugated modal verb takes the normal verb position, and the main verb stays as an infinitive at the end.",
       "• In yes/no questions, the conjugated modal comes first: Kannst du ... wiederholen?",
       "• In Kannst du das bitte wiederholen?, das is the object (مفعول) of the sentence (جمله): the thing being repeated. Bitte means please and can move around."
     ],
     "grammarTable": {
-      "columns": [
-        "Person",
-        "Form",
-        "Example",
-        "Pattern"
-      ],
+      "columns": ["Person", "Form", "Example", "Pattern"],
       "rows": [
-        [
-          "ich",
-          "kann",
-          "Ich kann Deutsch sprechen.",
-          "kann + ... + sprechen"
-        ],
+        ["ich", "kann", "Ich kann Deutsch sprechen.", "kann + ... + sprechen"],
         [
           "du",
           "kannst",
@@ -655,12 +426,7 @@
           "Wir können zusammen lernen.",
           "können + ... + lernen"
         ],
-        [
-          "ihr",
-          "könnt",
-          "Könnt ihr das lesen?",
-          "Könnt + ihr + ... + lesen?"
-        ],
+        ["ihr", "könnt", "Könnt ihr das lesen?", "Könnt + ihr + ... + lesen?"],
         [
           "sie/Sie",
           "können",
@@ -694,9 +460,7 @@
   },
   {
     "head": "wiederholen /viːdɐˈhoːlən/",
-    "gloss": [
-      "To repeat; say or do again."
-    ],
+    "gloss": ["To repeat; say or do again."],
     "notes": [],
     "examples": [
       {
@@ -723,12 +487,8 @@
   },
   {
     "head": "wieder /ˈviːdɐ/",
-    "gloss": [
-      "Again; back again."
-    ],
-    "notes": [
-      "• Do not confuse wieder (again) with wider (against)."
-    ],
+    "gloss": ["Again; back again."],
+    "notes": ["• Do not confuse wieder (again) with wider (against)."],
     "examples": [
       {
         "german": "Noch einmal, bitte.",
@@ -755,9 +515,7 @@
   {
     "head": "die Telefonnummer /teˈlefoːnˌnʊmɐ/",
     "plural": "-n",
-    "gloss": [
-      "Telephone number; phone number."
-    ],
+    "gloss": ["Telephone number; phone number."],
     "notes": [
       "• die Nummer + das Telefon becomes die Telefonnummer: a compound noun with the gender of Nummer.",
       "• In German, ask Wie ist deine Telefonnummer? literally: How is your phone number?"
@@ -784,9 +542,7 @@
   {
     "head": "die Straße /ˈʃtʁaːsə/",
     "plural": "-n",
-    "gloss": [
-      "Street; road."
-    ],
+    "gloss": ["Street; road."],
     "notes": [
       "• Standard German spelling uses ß: Straße. In Switzerland, it is usually written Strasse.",
       "• In der Bergstraße uses Dativ: wohnen answers where?; with location, in + feminine die Straße becomes in der Straße."
@@ -812,9 +568,7 @@
   },
   {
     "head": "wohnen /ˈvoːnən/",
-    "gloss": [
-      "To live; reside."
-    ],
+    "gloss": ["To live; reside."],
     "notes": [
       "• Use wohnen for where someone lives: Ich wohne in Berlin.",
       "• Common question: Wo wohnen Sie? = Where do you live? [formal you]"
@@ -840,9 +594,7 @@
   },
   {
     "head": "gern /ɡɛʁn/",
-    "gloss": [
-      "Gladly; like to do something."
-    ],
+    "gloss": ["Gladly; like to do something."],
     "notes": [
       "• gern and gerne mean the same thing; gerne sounds a little fuller/softer.",
       "• With a verb, gern often translates naturally as like to: Ich lerne gern = I like learning."
@@ -876,9 +628,7 @@
   },
   {
     "head": "heute /ˈhɔʏtə/",
-    "gloss": [
-      "Today."
-    ],
+    "gloss": ["Today."],
     "notes": [],
     "examples": [
       {
@@ -901,9 +651,7 @@
   },
   {
     "head": "zum /tsʊm/",
-    "gloss": [
-      "To the; for the; contraction of zu + dem."
-    ],
+    "gloss": ["To the; for the; contraction of zu + dem."],
     "notes": [
       "• zum = zu + dem, used before masculine or neuter dative nouns.",
       "• In zum Essen, Essen is used as a noun: for the meal / to eat."
@@ -929,9 +677,7 @@
   },
   {
     "head": "essen /ˈɛsn̩/",
-    "gloss": [
-      "To eat; food or meal when capitalized as Essen."
-    ],
+    "gloss": ["To eat; food or meal when capitalized as Essen."],
     "notes": [
       "• Lowercase essen is the verb: to eat.",
       "• Capitalized Essen is a noun: food or a meal. So write zum Essen, not zum essen."
@@ -957,63 +703,25 @@
   },
   {
     "head": "die Zahlen 0-10 /diː ˈtsaːlən nʊl bɪs tseːn/",
-    "gloss": [
-      "Numbers from zero to ten."
-    ],
+    "gloss": ["Numbers from zero to ten."],
     "notes": [
       "• eins is the counting form for 1; before a noun it usually becomes ein/eine.",
       "• In phone numbers, digits are often spoken one by one: 0612 = null sechs eins zwei."
     ],
     "grammarTable": {
-      "columns": [
-        "Zahl",
-        "Wort"
-      ],
+      "columns": ["Zahl", "Wort"],
       "rows": [
-        [
-          "0",
-          "null"
-        ],
-        [
-          "1",
-          "eins"
-        ],
-        [
-          "2",
-          "zwei"
-        ],
-        [
-          "3",
-          "drei"
-        ],
-        [
-          "4",
-          "vier"
-        ],
-        [
-          "5",
-          "fünf"
-        ],
-        [
-          "6",
-          "sechs"
-        ],
-        [
-          "7",
-          "sieben"
-        ],
-        [
-          "8",
-          "acht"
-        ],
-        [
-          "9",
-          "neun"
-        ],
-        [
-          "10",
-          "zehn"
-        ]
+        ["0", "null"],
+        ["1", "eins"],
+        ["2", "zwei"],
+        ["3", "drei"],
+        ["4", "vier"],
+        ["5", "fünf"],
+        ["6", "sechs"],
+        ["7", "sieben"],
+        ["8", "acht"],
+        ["9", "neun"],
+        ["10", "zehn"]
       ]
     },
     "examples": [
@@ -1038,9 +746,7 @@
   {
     "head": "die Nummer /ˈnʊmɐ/",
     "plural": "-en",
-    "gloss": [
-      "Number as a label, code, or identifier."
-    ],
+    "gloss": ["Number as a label, code, or identifier."],
     "notes": [
       "• Nummer is a number used as an ID or label: Telefonnummer, Hausnummer, Zimmer Nummer 12.",
       "• Difference: Zahl = numerical value/counting/math; Nummer = assigned number/code/identifier."
@@ -1067,9 +773,7 @@
   {
     "head": "die Zahl /tsaːl/",
     "plural": "-en",
-    "gloss": [
-      "Number as a value; numeral."
-    ],
+    "gloss": ["Number as a value; numeral."],
     "notes": [
       "• Zahl is a number as a value: counting, math, or a number you hear/write.",
       "• Compare Nummer: an assigned label/code/ID, as in Telefonnummer, Hausnummer, Zimmer Nummer 12."
@@ -1095,9 +799,7 @@
   },
   {
     "head": "von /fɔn/",
-    "gloss": [
-      "Of; from; belonging to."
-    ],
+    "gloss": ["Of; from; belonging to."],
     "notes": [
       "• In die Adresse von Anne, von shows whose address it is: Anne's address.",
       "• von always takes dative, but with names like Anne there is no visible article change."
@@ -1127,9 +829,7 @@
   },
   {
     "head": "stehen /ˈʃteːən/",
-    "gloss": [
-      "To stand; be located or positioned."
-    ],
+    "gloss": ["To stand; be located or positioned."],
     "notes": [
       "• In word-order rules, stehen means a word “stands” or “goes” in a certain sentence position.",
       "• Das Verb steht auf Position 1 means the verb comes first; Position 2 means it comes second."
@@ -1156,9 +856,7 @@
   {
     "head": "die Regel /ˈʁeːɡl̩/",
     "plural": "-n",
-    "gloss": [
-      "Rule."
-    ],
+    "gloss": ["Rule."],
     "notes": [
       "• die Regeln is plural accusative here: the rules being completed."
     ],
@@ -1183,9 +881,7 @@
   },
   {
     "head": "schreiben /ˈʃʁaɪ̯bən/",
-    "gloss": [
-      "To write."
-    ],
+    "gloss": ["To write."],
     "notes": [
       "• Formal command: Schreiben Sie ... = Write ...; verb first, Sie capitalized."
     ],
@@ -1211,9 +907,7 @@
   {
     "head": "der Satz /zats/",
     "plural": "-ätze",
-    "gloss": [
-      "Sentence."
-    ],
+    "gloss": ["Sentence."],
     "notes": [
       "• die Sätze is plural accusative here: the sentences being written.",
       "• Correct spelling: Sätze with ä, not Satze."
@@ -1239,65 +933,27 @@
   },
   {
     "head": "Länder, Sprachen, Nationalitäten /ˈlɛndɐ ˈʃpʁaːxən natsi̯onaliˈtɛːtən/",
-    "gloss": [
-      "Countries, languages, and nationalities."
-    ],
+    "gloss": ["Countries, languages, and nationalities."],
     "notes": [
       "• Nationality nouns are capitalized in German: der Schweizer, die Schweizerin.",
       "• Textbook shorthand Spanier/in means der Spanier / die Spanierin."
     ],
     "grammarTable": {
-      "columns": [
-        "Länder",
-        "Sprachen",
-        "Nationalitäten"
-      ],
+      "columns": ["Länder", "Sprachen", "Nationalitäten"],
       "rows": [
         [
           "die Schweiz",
           "Deutsch / Französisch / Italienisch",
           "der Schweizer / die Schweizerin"
         ],
-        [
-          "Polen",
-          "Polnisch",
-          "der Pole / die Polin"
-        ],
-        [
-          "Frankreich",
-          "Französisch",
-          "der Franzose / die Französin"
-        ],
-        [
-          "Deutschland",
-          "Deutsch",
-          "der Deutsche / die Deutsche"
-        ],
-        [
-          "Spanien",
-          "Spanisch",
-          "der Spanier / die Spanierin"
-        ],
-        [
-          "Japan",
-          "Japanisch",
-          "der Japaner / die Japanerin"
-        ],
-        [
-          "England",
-          "Englisch",
-          "der Engländer / die Engländerin"
-        ],
-        [
-          "China",
-          "Chinesisch",
-          "der Chinese / die Chinesin"
-        ],
-        [
-          "die Türkei",
-          "Türkisch",
-          "der Türke / die Türkin"
-        ]
+        ["Polen", "Polnisch", "der Pole / die Polin"],
+        ["Frankreich", "Französisch", "der Franzose / die Französin"],
+        ["Deutschland", "Deutsch", "der Deutsche / die Deutsche"],
+        ["Spanien", "Spanisch", "der Spanier / die Spanierin"],
+        ["Japan", "Japanisch", "der Japaner / die Japanerin"],
+        ["England", "Englisch", "der Engländer / die Engländerin"],
+        ["China", "Chinesisch", "der Chinese / die Chinesin"],
+        ["die Türkei", "Türkisch", "der Türke / die Türkin"]
       ]
     },
     "examples": [
@@ -1321,12 +977,8 @@
   },
   {
     "head": "Viel Spaß! /fiːl ʃpaːs/",
-    "gloss": [
-      "Have fun! Enjoy yourself!"
-    ],
-    "notes": [
-      "• Correct spelling in standard German: Spaß with ß, not spas."
-    ],
+    "gloss": ["Have fun! Enjoy yourself!"],
+    "notes": ["• Correct spelling in standard German: Spaß with ß, not spas."],
     "examples": [
       {
         "german": "Viel Spaß!",
@@ -1345,9 +997,7 @@
   {
     "head": "der Spaß /ʃpaːs/",
     "plural": "-äße",
-    "gloss": [
-      "Fun; enjoyment."
-    ],
+    "gloss": ["Fun; enjoyment."],
     "notes": [
       "• Long a + sharp s: Spaß. In Switzerland, ß is usually written ss: Spass."
     ],
@@ -1368,9 +1018,7 @@
   },
   {
     "head": "viel /fiːl/",
-    "gloss": [
-      "Much; a lot; many before plural nouns."
-    ],
+    "gloss": ["Much; a lot; many before plural nouns."],
     "notes": [
       "• In Viel Spaß!, viel intensifies the wish: literally much fun, naturally have fun."
     ],
@@ -1391,9 +1039,7 @@
   },
   {
     "head": "zusammen /tsuˈzamən/",
-    "gloss": [
-      "Together; as a group (adverb)."
-    ],
+    "gloss": ["Together; as a group (adverb)."],
     "notes": [
       "• Spelling: zwei m und -en at the end — not zusamen (common typo/OCR).",
       "• In Hoi zusammen!, zusammen means “everyone / all of you” — like English “Hi all!”"
@@ -1419,9 +1065,7 @@
   },
   {
     "head": "Hoi /hɔɪ/",
-    "gloss": [
-      "Informal hi or hey; especially typical in Switzerland."
-    ],
+    "gloss": ["Informal hi or hey; especially typical in Switzerland."],
     "notes": [
       "• One-word greeting (interjection), like Hallo or Servus — no article, no plural, no verb endings.",
       "• Very common in Swiss German contexts; also heard in casual speech elsewhere; not the standard classroom default."
@@ -1475,9 +1119,7 @@
   },
   {
     "head": "Servus /ˈzɛɐ̯vus/",
-    "gloss": [
-      "Informal hi or bye; strongest in Austria and southern Germany."
-    ],
+    "gloss": ["Informal hi or bye; strongest in Austria and southern Germany."],
     "notes": [
       "• Informal greeting and goodbye; most typical in Austria, Bavaria, and other southern regions.",
       "• From Latin for “your servant”; today it is a casual hi, hey, or bye in one short word.",
@@ -1500,9 +1142,7 @@
   },
   {
     "head": "in /ɪn/",
-    "gloss": [
-      "In; inside; on a team (+ dative for location)."
-    ],
+    "gloss": ["In; inside; on a team (+ dative for location)."],
     "notes": [
       "• Wo? uses dative: in einem Team. Wohin? uses accusative: in ein Team."
     ],
@@ -1527,21 +1167,13 @@
   },
   {
     "head": "der neue Praktikant /deːɐ̯ ˈnɔʏə pʁaktiˈkant/",
-    "gloss": [
-      "The new intern; pattern for adjective endings after der."
-    ],
+    "gloss": ["The new intern; pattern for adjective endings after der."],
     "notes": [
       "• neu becomes neue because it stands before a masculine nominative noun with der.",
       "• After der/die/das, use -e in nominative singular; use -en in most other definite-article forms."
     ],
     "grammarTable": {
-      "columns": [
-        "",
-        "m.",
-        "f.",
-        "n.",
-        "pl."
-      ],
+      "columns": ["", "m.", "f.", "n.", "pl."],
       "rows": [
         [
           "Nom",
@@ -1594,9 +1226,7 @@
   },
   {
     "head": "auch /aʊ̯x/",
-    "gloss": [
-      "Also; too; as well."
-    ],
+    "gloss": ["Also; too; as well."],
     "notes": [
       "• Often comes near what it adds: Ich auch = me too; auch ich = I too / even I."
     ],
@@ -1621,9 +1251,7 @@
   },
   {
     "head": "Wie geht’s? /viː ɡeːts/",
-    "gloss": [
-      "How’s it going? / How are you?"
-    ],
+    "gloss": ["How’s it going? / How are you?"],
     "notes": [
       "• Short for: Wie geht es? Full informal form: Wie geht es dir?",
       "• Common response: Und dir? (= Und wie geht es dir?)",
@@ -1667,9 +1295,7 @@
   },
   {
     "head": "Freut mich /fʁɔʏ̯t mɪç/",
-    "gloss": [
-      "Nice to meet you; pleased to meet you."
-    ],
+    "gloss": ["Nice to meet you; pleased to meet you."],
     "notes": [
       "• Short for Es freut mich: literally, it pleases me.",
       "• mich is a personal pronoun in the accusative here, not reflexive; the hidden subject is es.",
@@ -1696,9 +1322,7 @@
   },
   {
     "head": "Reflexivpronomen /ʁeflɛˈksiːfˌpʁoːnoːmən/",
-    "gloss": [
-      "Reflexive pronouns: myself, yourself, himself, etc."
-    ],
+    "gloss": ["Reflexive pronouns: myself, yourself, himself, etc."],
     "notes": [
       "• Reflexive means the subject and object are the same person: Ich wasche mich.",
       "• They follow person and case, not grammatical gender: er/sie/es all use sich.",
@@ -1787,9 +1411,7 @@
   },
   {
     "head": "Personalpronomen /pɛʁzoˈnaːlˌpʁoːnoːmən/",
-    "gloss": [
-      "Personal pronouns: ich, mich, mir; du, dich, dir; etc."
-    ],
+    "gloss": ["Personal pronouns: ich, mich, mir; du, dich, dir; etc."],
     "notes": [
       "• Pronouns replace nouns: der Mann → er; die Frau → sie; das Kind → es.",
       "• Nominativ marks the subject: ich, du, er, sie, es, wir, ihr, sie.",
@@ -1902,9 +1524,7 @@
   },
   {
     "head": "sich vorstellen /zɪç ˈfoːɐ̯ˌʃtɛlən/",
-    "gloss": [
-      "To introduce oneself; to imagine something."
-    ],
+    "gloss": ["To introduce oneself; to imagine something."],
     "notes": [
       "• Separable reflexive verb: vor moves to the end (Ich stelle mich vor.).",
       "• Introduce oneself uses accusative reflexive pronouns: mich, dich, sich, uns, euch, sich.",
@@ -1939,9 +1559,7 @@
   },
   {
     "head": "begrüßen /bəˈɡʁyːsn̩/",
-    "gloss": [
-      "To greet; say hello to someone."
-    ],
+    "gloss": ["To greet; say hello to someone."],
     "notes": [
       "• Takes an accusative object: Begrüßen Sie Ihren Partner / Ihre Partnerin."
     ],
@@ -1963,9 +1581,7 @@
   {
     "head": "der Partner / die Partnerin /ˈpaʁtnɐ/ /ˈpaʁtnəʁɪn/",
     "plural": "- / die Partnerin, -nen",
-    "gloss": [
-      "Partner; classroom speaking partner."
-    ],
+    "gloss": ["Partner; classroom speaking partner."],
     "notes": [],
     "examples": [
       {
@@ -1988,9 +1604,7 @@
   },
   {
     "head": "Wie heißt ...? /viː haɪ̯st/",
-    "gloss": [
-      "What is ... called?"
-    ],
+    "gloss": ["What is ... called?"],
     "notes": [
       "• W-question pattern: Wie is position 1, the finite verb heißt is position 2."
     ],
@@ -2012,9 +1626,7 @@
   {
     "head": "das Land /lant/",
     "plural": "Länder",
-    "gloss": [
-      "Country; land."
-    ],
+    "gloss": ["Country; land."],
     "notes": [],
     "examples": [
       {
@@ -2034,9 +1646,7 @@
   {
     "head": "die Sprache /ˈʃpʁaːxə/",
     "plural": "-n",
-    "gloss": [
-      "Language."
-    ],
+    "gloss": ["Language."],
     "notes": [
       "• Feminine noun: die Sprache; after static in, use dative: in der Sprache / in Ihrer Sprache."
     ],
@@ -2057,9 +1667,7 @@
   },
   {
     "head": "Ihr- /iːɐ̯/",
-    "gloss": [
-      "Your; formal possessive stem."
-    ],
+    "gloss": ["Your; formal possessive stem."],
     "notes": [
       "• Capitalized Ihr- means formal your. Endings follow ein-words: Ihr Land, Ihre Sprache, in Ihrer Sprache."
     ],
@@ -2084,9 +1692,7 @@
   },
   {
     "head": "fliegen /ˈfliːɡən/",
-    "gloss": [
-      "To fly; travel by plane (+ nach … / zu …)."
-    ],
+    "gloss": ["To fly; travel by plane (+ nach … / zu …)."],
     "notes": [],
     "examples": [
       {
@@ -2149,9 +1755,7 @@
   },
   {
     "head": "gehen /ˈɡeːən/",
-    "gloss": [
-      "To go; walk (+ zu / nach / + place; also set phrases)."
-    ],
+    "gloss": ["To go; walk (+ zu / nach / + place; also set phrases)."],
     "notes": [
       "• Irregular present: ich gehe, du gehst, er geht; for whole countries people often prefer fahren/reisen/fliegen."
     ],
@@ -2172,9 +1776,7 @@
   },
   {
     "head": "aber /ˈaːbɐ/",
-    "gloss": [
-      "but; however — introduces a contrast or exception"
-    ],
+    "gloss": ["but; however — introduces a contrast or exception"],
     "notes": [
       "• Coordinating conjunction: word order in the following clause is unchanged (verb stays in position 2)."
     ],
@@ -2195,9 +1797,7 @@
   },
   {
     "head": "auffallen /ˈaʊ̯fˌfalən/",
-    "gloss": [
-      "To stand out; be noticeable / catch the eye."
-    ],
+    "gloss": ["To stand out; be noticeable / catch the eye."],
     "notes": [
       "• Separable: auf sits at the end of the clause (Was fällt auf?)."
     ],
@@ -2218,9 +1818,7 @@
   },
   {
     "head": "markieren /maʁˈkiːʁən/",
-    "gloss": [
-      "To mark; highlight verbs or phrases in the text (+ acc.)."
-    ],
+    "gloss": ["To mark; highlight verbs or phrases in the text (+ acc.)."],
     "notes": [],
     "examples": [
       {
@@ -2239,9 +1837,7 @@
   },
   {
     "head": "heißen /ˈhaɪ̯sn̩/",
-    "gloss": [
-      "To be called; one’s name is (3rd sg. er/sie/es heißt)."
-    ],
+    "gloss": ["To be called; one’s name is (3rd sg. er/sie/es heißt)."],
     "notes": [
       "• OCR often miswrites heißen as heisen; spelling is heißen (ß after long diphthong)."
     ],
@@ -2267,9 +1863,7 @@
   {
     "head": "die W-Frage /ˈveːˌfraːɡə/",
     "plural": "-n",
-    "gloss": [
-      "WH-question: starts with Wer, Was, Wo, wie, Wann …"
-    ],
+    "gloss": ["WH-question: starts with Wer, Was, Wo, wie, Wann …"],
     "notes": [
       "• The question word fills slot 1; the finite verb is still second (verb-second), then the rest."
     ],
@@ -2291,9 +1885,7 @@
   {
     "head": "die Antwort /ˈantˌvɔʁt/",
     "plural": "-en",
-    "gloss": [
-      "Answer; reply (to a question or task)."
-    ],
+    "gloss": ["Answer; reply (to a question or task)."],
     "notes": [],
     "examples": [
       {
@@ -2312,9 +1904,7 @@
   },
   {
     "head": "sammeln /ˈzaməln/",
-    "gloss": [
-      "To collect; gather (+ acc.)."
-    ],
+    "gloss": ["To collect; gather (+ acc.)."],
     "notes": [],
     "examples": [
       {
@@ -2334,9 +1924,7 @@
   {
     "head": "die Tabelle /taˈbɛlə/",
     "plural": "-n",
-    "gloss": [
-      "Table (grid for answers; worksheet)."
-    ],
+    "gloss": ["Table (grid for answers; worksheet)."],
     "notes": [],
     "examples": [
       {
@@ -2356,12 +1944,8 @@
   {
     "head": "die Verbform /ˈfɔʁm/",
     "plural": "-en",
-    "gloss": [
-      "Verb form (inflected shape of a lemma)."
-    ],
-    "notes": [
-      "• Misread Verbendung: the word is Verbformen."
-    ],
+    "gloss": ["Verb form (inflected shape of a lemma)."],
+    "notes": ["• Misread Verbendung: the word is Verbformen."],
     "examples": [
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
@@ -2380,9 +1964,7 @@
   {
     "head": "die Grammatik /ɡʁaˈmaːtɪk/",
     "plural": "-en",
-    "gloss": [
-      "Grammar (rules of the language)."
-    ],
+    "gloss": ["Grammar (rules of the language)."],
     "notes": [],
     "examples": [
       {
@@ -2401,9 +1983,7 @@
   },
   {
     "head": "auf einen Blick /aʊ̯f ˈaɪ̯nən ˈblɪk/",
-    "gloss": [
-      "At a glance (overview; textbook headings)."
-    ],
+    "gloss": ["At a glance (overview; textbook headings)."],
     "notes": [],
     "examples": [
       {
@@ -2423,9 +2003,7 @@
   {
     "head": "der Blick /blɪk/",
     "plural": "-e",
-    "gloss": [
-      "Glance; look (masculine)."
-    ],
+    "gloss": ["Glance; look (masculine)."],
     "notes": [],
     "examples": [
       {
@@ -2449,9 +2027,7 @@
   {
     "head": "das Verb /vɛʁp/",
     "plural": "-en",
-    "gloss": [
-      "Verb (word class for actions and states)."
-    ],
+    "gloss": ["Verb (word class for actions and states)."],
     "notes": [],
     "examples": [
       {
@@ -2474,9 +2050,7 @@
   },
   {
     "head": "alles /ˈaləs/",
-    "gloss": [
-      "Everything (pronoun; all of it)."
-    ],
+    "gloss": ["Everything (pronoun; all of it)."],
     "notes": [],
     "examples": [
       {
@@ -2499,9 +2073,7 @@
   },
   {
     "head": "richtig /ˈʁɪçtɪç/",
-    "gloss": [
-      "Correct; right; true."
-    ],
+    "gloss": ["Correct; right; true."],
     "notes": [],
     "examples": [
       {
@@ -2525,9 +2097,7 @@
   {
     "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
     "plural": "-nen",
-    "gloss": [
-      "Secretary (feminine job title)."
-    ],
+    "gloss": ["Secretary (feminine job title)."],
     "notes": [],
     "examples": [
       {
@@ -2551,9 +2121,7 @@
   {
     "head": "die Frau /fraʊ̯/",
     "plural": "-en",
-    "gloss": [
-      "Ms. or Mrs. before a surname."
-    ],
+    "gloss": ["Ms. or Mrs. before a surname."],
     "notes": [],
     "examples": [
       {
@@ -2576,9 +2144,7 @@
   },
   {
     "head": "aus /aʊ̯s/",
-    "gloss": [
-      "From; out of (+ dative for origin)."
-    ],
+    "gloss": ["From; out of (+ dative for origin)."],
     "notes": [],
     "examples": [
       {
@@ -2601,9 +2167,7 @@
   },
   {
     "head": "Argentinien /aʁɡɛnˈtiːni̯ən/",
-    "gloss": [
-      "Argentina (country)."
-    ],
+    "gloss": ["Argentina (country)."],
     "notes": [],
     "examples": [
       {
@@ -2622,9 +2186,7 @@
   },
   {
     "head": "woher /ˈvoheːɐ̯/",
-    "gloss": [
-      "From where (origin)."
-    ],
+    "gloss": ["From where (origin)."],
     "notes": [],
     "examples": [
       {
@@ -2647,9 +2209,7 @@
   },
   {
     "head": "kommen /ˈkɔmən/",
-    "gloss": [
-      "To come; aus … = from (a place)."
-    ],
+    "gloss": ["To come; aus … = from (a place)."],
     "notes": [],
     "examples": [
       {
@@ -2676,12 +2236,8 @@
   },
   {
     "head": "Grüß Gott! /ˈɡʁʏs ˈɡɔt/",
-    "gloss": [
-      "Polite daytime hello—typical in Austria and southern Germany."
-    ],
-    "notes": [
-      "• Elsewhere Guten Tag is often the default; Hallo is informal."
-    ],
+    "gloss": ["Polite daytime hello—typical in Austria and southern Germany."],
+    "notes": ["• Elsewhere Guten Tag is often the default; Hallo is informal."],
     "examples": [
       {
         "german": "Grüß Gott!",
@@ -2699,9 +2255,7 @@
   },
   {
     "head": "lesen /ˈleːzən/",
-    "gloss": [
-      "To read (+ object in accusative)."
-    ],
+    "gloss": ["To read (+ object in accusative)."],
     "notes": [],
     "examples": [
       {
@@ -2720,9 +2274,7 @@
   },
   {
     "head": "sagen /ˈzaːɡən/",
-    "gloss": [
-      "To say or tell."
-    ],
+    "gloss": ["To say or tell."],
     "notes": [],
     "examples": [
       {
@@ -2742,9 +2294,7 @@
   {
     "head": "die Person /pɛʁˈzoːn/",
     "plural": "-en",
-    "gloss": [
-      "Feminine singular: person (pl. Personen)."
-    ],
+    "gloss": ["Feminine singular: person (pl. Personen)."],
     "notes": [],
     "examples": [
       {
@@ -2763,9 +2313,7 @@
   },
   {
     "head": "was /vas/",
-    "gloss": [
-      "Interrogative “what” (Was …?)."
-    ],
+    "gloss": ["Interrogative “what” (Was …?)."],
     "notes": [],
     "examples": [
       {
@@ -2784,9 +2332,7 @@
   },
   {
     "head": "passen /ˈpasən/",
-    "gloss": [
-      "To fit; match; suit."
-    ],
+    "gloss": ["To fit; match; suit."],
     "notes": [],
     "examples": [
       {
@@ -2809,9 +2355,7 @@
   },
   {
     "head": "welcher · welche · welches /ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs/",
-    "gloss": [
-      "Which (pick by gender: m./f./n.)."
-    ],
+    "gloss": ["Which (pick by gender: m./f./n.)."],
     "notes": [],
     "examples": [
       {
@@ -2835,9 +2379,7 @@
   {
     "head": "das Foto /ˈfoːto/",
     "plural": "-s",
-    "gloss": [
-      "Photo; picture (neuter; pl. Fotos)."
-    ],
+    "gloss": ["Photo; picture (neuter; pl. Fotos)."],
     "notes": [],
     "examples": [
       {
@@ -2860,9 +2402,7 @@
   },
   {
     "head": "ankreuzen /ˈankʁɔʏtsən/",
-    "gloss": [
-      "Separable: tick a box (… an)."
-    ],
+    "gloss": ["Separable: tick a box (… an)."],
     "notes": [
       "• The prefix an- moves to the end of the clause: Kreuzen Sie die richtige Lösung an.",
       "• Participle angekreuzt (perfect often: habe … angekreuzt)."
@@ -2884,9 +2424,7 @@
   },
   {
     "head": "hören /ˈhøːʁən/",
-    "gloss": [
-      "To hear; listen to (+ acc.)."
-    ],
+    "gloss": ["To hear; listen to (+ acc.)."],
     "notes": [],
     "examples": [
       {
@@ -2906,9 +2444,7 @@
   {
     "head": "das Gespräch /ɡəˈʃpʁɛːç/",
     "plural": "-e",
-    "gloss": [
-      "Conversation; spoken dialogue."
-    ],
+    "gloss": ["Conversation; spoken dialogue."],
     "notes": [],
     "examples": [
       {
@@ -2927,9 +2463,7 @@
   },
   {
     "head": "neu /nɔʏ/",
-    "gloss": [
-      "New (opposite alt); before a noun, add an ending."
-    ],
+    "gloss": ["New (opposite alt); before a noun, add an ending."],
     "notes": [],
     "examples": [
       {
@@ -2948,9 +2482,7 @@
   },
   {
     "head": "sein /zaɪn/",
-    "gloss": [
-      "To be (am / is / are)."
-    ],
+    "gloss": ["To be (am / is / are)."],
     "notes": [
       "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
     ],
@@ -2988,9 +2520,7 @@
   {
     "head": "der Praktikant /pʁaktiˈkant/",
     "plural": "-en / die Praktikantin, -nen",
-    "gloss": [
-      "Intern; Praktikantin is the feminine form."
-    ],
+    "gloss": ["Intern; Praktikantin is the feminine form."],
     "notes": [],
     "examples": [
       {
@@ -3017,12 +2547,8 @@
   },
   {
     "head": "Guten Tag! /ˈɡuːtən ˈtaːk/",
-    "gloss": [
-      "Good day; hello (formal daytime)."
-    ],
-    "notes": [
-      "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
-    ],
+    "gloss": ["Good day; hello (formal daytime)."],
+    "notes": ["• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."],
     "examples": [
       {
         "german": "Guten Tag, Frau Lange!",
