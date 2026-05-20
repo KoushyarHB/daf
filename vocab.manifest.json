@@ -1,5 +1,34 @@
 [
   {
+    "head": "die Handynummer /ˈhɛndiˌnʊmɐ/",
+    "plural": "-n",
+    "gloss": [
+      "Mobile phone number; cell phone number."
+    ],
+    "notes": [
+      "• das Handy = mobile phone / cell phone; die Nummer = number as an ID/code.",
+      "• die Handynummer is specifically a mobile number; die Telefonnummer can be any phone number."
+    ],
+    "examples": [
+      {
+        "german": "Wie ist deine Handynummer?",
+        "english": "What is your mobile number?"
+      },
+      {
+        "german": "Meine Handynummer ist 0176 / 53487.",
+        "english": "My mobile number is 0176 / 53487."
+      },
+      {
+        "german": "Hast du Annes Handynummer?",
+        "english": "Do you have Anne's mobile number?"
+      }
+    ],
+    "createdAt": "2026-05-20T12:28:00Z",
+    "updatedAt": "2026-05-20T12:28:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Zahlen ab 11 /diː ˈtsaːlən ap ɛlf/",
     "gloss": [
       "Numbers from 11 upward."
