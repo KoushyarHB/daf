@@ -12,28 +12,46 @@
     "grammarTable": {
       "columns": [
         "Person",
-        "Form"
+        "Form",
+        "Example",
+        "Pattern"
       ],
       "rows": [
         [
           "ich",
-          "kann"
+          "kann",
+          "Ich kann Deutsch sprechen.",
+          "kann + ... + sprechen"
         ],
         [
           "du",
-          "kannst"
+          "kannst",
+          "Kannst du das wiederholen?",
+          "Kannst + du + ... + wiederholen?"
         ],
         [
           "er/sie/es",
-          "kann"
+          "kann",
+          "Er kann die Frage beantworten.",
+          "kann + ... + beantworten"
         ],
         [
-          "wir/sie/Sie",
-          "können"
+          "wir",
+          "können",
+          "Wir können zusammen lernen.",
+          "können + ... + lernen"
         ],
         [
           "ihr",
-          "könnt"
+          "könnt",
+          "Könnt ihr das lesen?",
+          "Könnt + ihr + ... + lesen?"
+        ],
+        [
+          "sie/Sie",
+          "können",
+          "Können Sie bitte langsam sprechen?",
+          "können + sie/Sie + ... + sprechen"
         ]
       ]
     },
@@ -56,7 +74,7 @@
       }
     ],
     "createdAt": "2026-05-20T08:28:00Z",
-    "updatedAt": "2026-05-20T08:28:00Z",
+    "updatedAt": "2026-05-20T08:35:00Z",
     "lektion": 1,
     "level": "A1"
   },
