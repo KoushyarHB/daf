@@ -1,5 +1,66 @@
 [
   {
+    "head": "können /ˈkœnən/",
+    "gloss": [
+      "Can; be able to (modal verb)."
+    ],
+    "notes": [
+      "• Modal-verb pattern: the conjugated modal verb takes the normal verb position, and the main verb stays as an infinitive at the end.",
+      "• In yes/no questions, the conjugated modal comes first: Kannst du ... wiederholen?",
+      "• In Kannst du das bitte wiederholen?, das is the object (مفعول) of the sentence (جمله): the thing being repeated. Bitte means please and can move around."
+    ],
+    "grammarTable": {
+      "columns": [
+        "Person",
+        "Form"
+      ],
+      "rows": [
+        [
+          "ich",
+          "kann"
+        ],
+        [
+          "du",
+          "kannst"
+        ],
+        [
+          "er/sie/es",
+          "kann"
+        ],
+        [
+          "wir/sie/Sie",
+          "können"
+        ],
+        [
+          "ihr",
+          "könnt"
+        ]
+      ]
+    },
+    "examples": [
+      {
+        "german": "Kannst du das bitte wiederholen?",
+        "english": "Can you please repeat that?"
+      },
+      {
+        "german": "Kannst du das wiederholen, bitte?",
+        "english": "Can you repeat that, please?"
+      },
+      {
+        "german": "Ich kann Deutsch sprechen.",
+        "english": "I can speak German."
+      },
+      {
+        "german": "Können Sie bitte langsam sprechen?",
+        "english": "Can you please speak slowly? [formal you]"
+      }
+    ],
+    "createdAt": "2026-05-20T08:28:00Z",
+    "updatedAt": "2026-05-20T08:28:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "wiederholen /viːdɐˈhoːlən/",
     "gloss": [
       "To repeat; say or do again."
