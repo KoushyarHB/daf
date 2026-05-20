@@ -1,5 +1,117 @@
 [
   {
+    "head": "die Zahlen 0-10 /diː ˈtsaːlən nʊl bɪs tseːn/",
+    "gloss": [
+      "Numbers from zero to ten."
+    ],
+    "notes": [
+      "• eins is the counting form for 1; before a noun it usually becomes ein/eine.",
+      "• In phone numbers, digits are often spoken one by one: 0612 = null sechs eins zwei."
+    ],
+    "grammarTable": {
+      "columns": [
+        "Zahl",
+        "Wort"
+      ],
+      "rows": [
+        [
+          "0",
+          "null"
+        ],
+        [
+          "1",
+          "eins"
+        ],
+        [
+          "2",
+          "zwei"
+        ],
+        [
+          "3",
+          "drei"
+        ],
+        [
+          "4",
+          "vier"
+        ],
+        [
+          "5",
+          "fünf"
+        ],
+        [
+          "6",
+          "sechs"
+        ],
+        [
+          "7",
+          "sieben"
+        ],
+        [
+          "8",
+          "acht"
+        ],
+        [
+          "9",
+          "neun"
+        ],
+        [
+          "10",
+          "zehn"
+        ]
+      ]
+    },
+    "examples": [
+      {
+        "german": "Hören Sie die Zahlen.",
+        "english": "Listen to the numbers."
+      },
+      {
+        "german": "Welche Zahlen hören Sie?",
+        "english": "Which numbers do you hear?"
+      },
+      {
+        "german": "Meine Telefonnummer ist null sechs eins zwei.",
+        "english": "My phone number is zero six one two."
+      }
+    ],
+    "createdAt": "2026-05-20T06:30:00Z",
+    "updatedAt": "2026-05-20T06:30:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "von /fɔn/",
+    "gloss": [
+      "Of; from; belonging to."
+    ],
+    "notes": [
+      "• In die Adresse von Anne, von shows whose address it is: Anne's address.",
+      "• von always takes dative, but with names like Anne there is no visible article change."
+    ],
+    "examples": [
+      {
+        "german": "Die Adresse von Anne ist hier.",
+        "english": "Anne's address is here."
+      },
+      {
+        "german": "Das ist die Telefonnummer von Maria.",
+        "english": "That is Maria's phone number."
+      },
+      {
+        "german": "Ich komme von der Arbeit.",
+        "english": "I am coming from work."
+      },
+      {
+        "german": "die Verbform von essen",
+        "english": "the verb form of essen."
+      }
+    ],
+    "createdAt": "2026-05-20T06:21:00Z",
+    "updatedAt": "2026-05-20T06:21:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "gern /ɡɛʁn/",
     "gloss": [
       "Gladly; like to do something."
