@@ -1,5 +1,111 @@
 [
   {
+    "head": "Tschüss /tʃʏs/",
+    "gloss": [
+      "Bye; casual goodbye."
+    ],
+    "notes": [
+      "• Tschüss is the common German casual goodbye, especially in everyday speech."
+    ],
+    "examples": [
+      {
+        "german": "Ich gehe jetzt. Tschüss!",
+        "english": "I'm leaving now. Bye!"
+      },
+      {
+        "german": "Tschüss, bis morgen!",
+        "english": "Bye, see you tomorrow!"
+      },
+      {
+        "german": "Danke und tschüss!",
+        "english": "Thanks and bye!"
+      }
+    ],
+    "createdAt": "2026-05-20T09:26:00Z",
+    "updatedAt": "2026-05-20T09:28:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Tschau /tʃaʊ/",
+    "gloss": [
+      "Bye; informal farewell."
+    ],
+    "notes": [
+      "• Tschau is the German spelling of Italian ciao; it is casual, like English bye.",
+      "• Tschüss and Tschau feel similar because both are casual goodbyes and both start with tsch, but they are different words."
+    ],
+    "examples": [
+      {
+        "german": "Tschau, bis später!",
+        "english": "Bye, see you later!"
+      },
+      {
+        "german": "Tschau, Anne!",
+        "english": "Bye, Anne!"
+      }
+    ],
+    "createdAt": "2026-05-20T09:21:00Z",
+    "updatedAt": "2026-05-20T09:21:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "später /ˈʃpɛːtɐ/",
+    "gloss": [
+      "Later."
+    ],
+    "notes": [
+      "• Opposite idea: früh = early; später = later. Related adjective: spät = late.",
+      "• In bis später, German literally says until later; natural English is see you later."
+    ],
+    "examples": [
+      {
+        "german": "Bis später!",
+        "english": "See you later!"
+      },
+      {
+        "german": "Ich komme später.",
+        "english": "I am coming later."
+      },
+      {
+        "german": "Heute früh, später am Abend.",
+        "english": "Early today, later in the evening."
+      }
+    ],
+    "createdAt": "2026-05-20T09:21:00Z",
+    "updatedAt": "2026-05-20T09:21:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "bis /bɪs/",
+    "gloss": [
+      "Until; till; by."
+    ],
+    "notes": [
+      "• In farewell formulas, bis means until: bis später = until later / see you later."
+    ],
+    "examples": [
+      {
+        "german": "Bis später!",
+        "english": "See you later!"
+      },
+      {
+        "german": "Bis morgen!",
+        "english": "See you tomorrow!"
+      },
+      {
+        "german": "Ich lerne bis zehn Uhr.",
+        "english": "I study until ten o'clock."
+      }
+    ],
+    "createdAt": "2026-05-20T09:21:00Z",
+    "updatedAt": "2026-05-20T09:21:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "dann /dan/",
     "gloss": [
       "Then; after that."
