@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import html
 import json
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -124,7 +125,191 @@ footer {
   font-size: 0.8rem;
   color: #888;
 }
+.deck-controls {
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 0.9rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.deck-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  align-items: flex-end;
+}
+.deck-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.deck-controls select {
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #111;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fafafa;
+  min-width: 8.5rem;
+}
+.deck-count {
+  margin: 0.55rem 0 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+.card.is-hidden {
+  display: none;
+}
+#deck .card:first-of-type {
+  padding-top: 0;
+}
 """
+
+FILTER_SORT_JS = """\
+(function () {
+  var deck = document.getElementById("deck");
+  if (!deck) return;
+  var cards = Array.from(deck.querySelectorAll(".card"));
+  var countEl = document.getElementById("deck-count");
+  var lektionSel = document.getElementById("filter-lektion");
+  var levelSel = document.getElementById("filter-level");
+  var sortSel = document.getElementById("sort-order");
+  if (!countEl || !lektionSel || !levelSel || !sortSel) return;
+
+  var deckOrder = cards.slice();
+
+  function deckIndex(card) {
+    return deckOrder.indexOf(card);
+  }
+
+  function apply() {
+    var lek = lektionSel.value;
+    var lvl = levelSel.value;
+    var sort = sortSel.value;
+    var visible = cards.filter(function (card) {
+      if (lek !== "all" && card.dataset.lektion !== lek) return false;
+      if (lvl !== "all" && card.dataset.level !== lvl) return false;
+      return true;
+    });
+
+    if (sort === "date-asc") {
+      visible.sort(function (a, b) {
+        return (Number(a.dataset.createdMs) || 0) - (Number(b.dataset.createdMs) || 0);
+      });
+    } else if (sort === "date-desc") {
+      visible.sort(function (a, b) {
+        return (Number(b.dataset.createdMs) || 0) - (Number(a.dataset.createdMs) || 0);
+      });
+    } else {
+      visible.sort(function (a, b) {
+        return deckIndex(a) - deckIndex(b);
+      });
+    }
+
+    cards.forEach(function (card) {
+      card.classList.add("is-hidden");
+    });
+    visible.forEach(function (card) {
+      card.classList.remove("is-hidden");
+      deck.appendChild(card);
+    });
+
+    countEl.textContent = visible.length + " of " + cards.length + " cards";
+  }
+
+  lektionSel.addEventListener("change", apply);
+  levelSel.addEventListener("change", apply);
+  sortSel.addEventListener("change", apply);
+  apply();
+})();
+"""
+
+
+def iso_to_ms(iso: str | None) -> int:
+    """Parse ISO 8601 UTC timestamps for client-side date sort."""
+
+    if not iso or not str(iso).strip():
+        return 0
+    s = str(iso).strip()
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    try:
+        return int(datetime.fromisoformat(s).timestamp() * 1000)
+    except ValueError:
+        return 0
+
+
+def collect_filter_options(cards: list[dict[str, Any]]) -> tuple[list[int], list[str]]:
+    lektions: set[int] = set()
+    levels: set[str] = set()
+    for card in cards:
+        if not isinstance(card, dict):
+            continue
+        lek = card.get("lektion")
+        if isinstance(lek, int):
+            lektions.add(lek)
+        elif lek is not None:
+            try:
+                lektions.add(int(lek))
+            except (TypeError, ValueError):
+                pass
+        lvl = card.get("level")
+        if isinstance(lvl, str) and lvl.strip():
+            levels.add(lvl.strip())
+    return sorted(lektions), sorted(levels)
+
+
+def card_data_attrs(card: dict[str, Any]) -> str:
+    lek = card.get("lektion")
+    lek_attr = ""
+    if lek is not None:
+        lek_attr = str(int(lek)) if isinstance(lek, int) else html.escape(str(lek).strip())
+    level = card.get("level")
+    level_attr = html.escape(str(level).strip()) if level else ""
+    created = card.get("createdAt") or card.get("updatedAt")
+    created_ms = iso_to_ms(str(created) if created else None)
+    return (
+        f' data-lektion="{lek_attr}"'
+        f' data-level="{level_attr}"'
+        f' data-created-ms="{created_ms}"'
+    )
+
+
+def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
+    lek_opts = ['<option value="all">All</option>']
+    for n in lektions:
+        lek_opts.append(f'<option value="{n}">Lektion {n}</option>')
+    lvl_opts = ['<option value="all">All</option>']
+    for lv in levels:
+        esc = html.escape(lv)
+        lvl_opts.append(f'<option value="{esc}">{esc}</option>')
+    return (
+        '<div class="deck-controls" role="region" aria-label="Filter and sort">'
+        '<div class="deck-controls-row">'
+        '<label>Lektion <select id="filter-lektion">'
+        + "".join(lek_opts)
+        + "</select></label>"
+        '<label>Level <select id="filter-level">'
+        + "".join(lvl_opts)
+        + "</select></label>"
+        '<label>Sort <select id="sort-order">'
+        '<option value="deck">Deck order</option>'
+        '<option value="date-desc">Date: newest first</option>'
+        '<option value="date-asc">Date: oldest first</option>'
+        "</select></label>"
+        "</div>"
+        '<p class="deck-count" id="deck-count" aria-live="polite"></p>'
+        "</div>"
+    )
 
 
 def format_grammar_phrase_cell_html(text: str) -> str:
@@ -168,6 +353,9 @@ def grammar_table_block_html(gt: dict[str, Any]) -> str:
 
 
 def render_vocab_html(cards: list[dict[str, Any]]) -> str:
+    valid_cards = [c for c in cards if isinstance(c, dict) and str(c.get("head") or "").strip()]
+    lektions, levels = collect_filter_options(valid_cards)
+
     parts: list[str] = [
         "<!DOCTYPE html>",
         '<html lang="de">',
@@ -181,14 +369,12 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         "</head>",
         "<body>",
         f"<h1>{html.escape(TITLE_PAGE)}</h1>",
+        deck_controls_html(lektions, levels),
+        '<div id="deck">',
     ]
 
-    for card in cards:
-        if not isinstance(card, dict):
-            continue
+    for card in valid_cards:
         head = html.escape(str(card.get("head") or "").strip())
-        if not head:
-            continue
 
         lektion = card.get("lektion")
         level = card.get("level")
@@ -202,7 +388,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             spans = "".join(f"<span>{p}</span>" for p in meta_parts)
             meta_html = f'<div class="meta">{spans}</div>'
 
-        parts.append('<article class="card">')
+        parts.append(f'<article class="card"{card_data_attrs(card)}>')
         parts.append(f'<div class="head">{head}</div>')
         parts.append(meta_html)
 
@@ -247,9 +433,13 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
 
         parts.append("</article>")
 
+    parts.append("</div>")
     parts.append(
         '<footer>Static preview from vocab.manifest.json — run <code>python -m daf_vocab serve</code> to refresh.</footer>'
     )
+    parts.append("<script>")
+    parts.append(FILTER_SORT_JS)
+    parts.append("</script>")
     parts.append("</body></html>")
     return "\n".join(parts)
 
