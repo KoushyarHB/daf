@@ -1,5 +1,201 @@
 [
   {
+    "head": "die Zahlen ab 11 /diː ˈtsaːlən ap ɛlf/",
+    "gloss": [
+      "Numbers from 11 upward."
+    ],
+    "notes": [
+      "• 13-19 mostly use -zehn: dreizehn, vierzehn, fünfzehn; watch the shortened forms sechzehn and siebzehn.",
+      "• 21-99 put the small number first, then und, then the ten: einundzwanzig = one-and-twenty = twenty-one.",
+      "• In listening, zwo may be used for zwei, hundert for einhundert, and tausend for eintausend.",
+      "• Million and Milliarde are nouns, so they use eine: eine Million, eine Milliarde."
+    ],
+    "grammarTable": {
+      "columns": [
+        "Bereich",
+        "Zahl",
+        "Deutsch",
+        "Muster / Tipp"
+      ],
+      "rows": [
+        [
+          "11-12",
+          "11",
+          "elf",
+          "special form"
+        ],
+        [
+          "11-12",
+          "12",
+          "zwölf",
+          "special form"
+        ],
+        [
+          "13-19",
+          "13",
+          "dreizehn",
+          "drei + zehn"
+        ],
+        [
+          "13-19",
+          "14",
+          "vierzehn",
+          "vier + zehn"
+        ],
+        [
+          "13-19",
+          "15",
+          "fünfzehn",
+          "fünf + zehn"
+        ],
+        [
+          "13-19",
+          "16",
+          "sechzehn",
+          "not sechszehn"
+        ],
+        [
+          "13-19",
+          "17",
+          "siebzehn",
+          "not siebenzehn"
+        ],
+        [
+          "13-19",
+          "18",
+          "achtzehn",
+          "acht + zehn"
+        ],
+        [
+          "13-19",
+          "19",
+          "neunzehn",
+          "neun + zehn"
+        ],
+        [
+          "tens",
+          "20",
+          "zwanzig",
+          "-zig ending"
+        ],
+        [
+          "21-99",
+          "21",
+          "einundzwanzig",
+          "ein + und + zwanzig"
+        ],
+        [
+          "tens",
+          "30",
+          "dreißig",
+          "irregular: ß, not z"
+        ],
+        [
+          "tens",
+          "40",
+          "vierzig",
+          "vier + zig"
+        ],
+        [
+          "tens",
+          "50",
+          "fünfzig",
+          "fünf + zig"
+        ],
+        [
+          "tens",
+          "60",
+          "sechzig",
+          "not sechszig"
+        ],
+        [
+          "tens",
+          "70",
+          "siebzig",
+          "not siebenzig"
+        ],
+        [
+          "tens",
+          "80",
+          "achtzig",
+          "acht + zig"
+        ],
+        [
+          "tens",
+          "90",
+          "neunzig",
+          "neun + zig"
+        ],
+        [
+          "hundreds",
+          "100",
+          "einhundert",
+          "often heard as hundert"
+        ],
+        [
+          "hundreds",
+          "101",
+          "einhunderteins",
+          "hundert + eins"
+        ],
+        [
+          "hundreds",
+          "200",
+          "zweihundert",
+          "zwei + hundert"
+        ],
+        [
+          "thousands",
+          "1.000",
+          "eintausend",
+          "often heard as tausend"
+        ],
+        [
+          "thousands",
+          "10.000",
+          "zehntausend",
+          "zehn + tausend"
+        ],
+        [
+          "thousands",
+          "100.000",
+          "einhunderttausend",
+          "hundert + tausend"
+        ],
+        [
+          "large",
+          "1.000.000",
+          "eine Million",
+          "noun: die Million"
+        ],
+        [
+          "large",
+          "1.000.000.000",
+          "eine Milliarde",
+          "noun: die Milliarde"
+        ]
+      ]
+    },
+    "examples": [
+      {
+        "german": "Noch mehr Zahlen!",
+        "english": "Even more numbers!"
+      },
+      {
+        "german": "Hören Sie die Zahlen und sprechen Sie mit.",
+        "english": "Listen to the numbers and speak along."
+      },
+      {
+        "german": "Sie hören oft zwo für zwei, hundert für einhundert und tausend für eintausend.",
+        "english": "You often hear zwo for zwei, hundert for einhundert, and tausend for eintausend."
+      }
+    ],
+    "createdAt": "2026-05-20T11:36:00Z",
+    "updatedAt": "2026-05-20T11:36:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "mehr /meːɐ̯/",
     "gloss": [
       "More."
