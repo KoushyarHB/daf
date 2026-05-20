@@ -1,5 +1,86 @@
 [
   {
+    "head": "heute /ˈhɔʏtə/",
+    "gloss": [
+      "Today."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Georg kommt heute zum Essen.",
+        "english": "Georg is coming for the meal today."
+      },
+      {
+        "german": "Heute lernen wir Deutsch.",
+        "english": "Today we are learning German."
+      },
+      {
+        "german": "Bis heute Abend!",
+        "english": "See you this evening!"
+      }
+    ],
+    "createdAt": "2026-05-20T06:37:00Z",
+    "updatedAt": "2026-05-20T06:37:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "zum /tsʊm/",
+    "gloss": [
+      "To the; for the; contraction of zu + dem."
+    ],
+    "notes": [
+      "• zum = zu + dem, used before masculine or neuter dative nouns.",
+      "• In zum Essen, Essen is used as a noun: for the meal / to eat."
+    ],
+    "examples": [
+      {
+        "german": "Georg kommt heute zum Essen.",
+        "english": "Georg is coming for the meal today."
+      },
+      {
+        "german": "Ich gehe zum Kurs.",
+        "english": "I am going to the course."
+      },
+      {
+        "german": "Zum Beispiel: eins, zwei, drei.",
+        "english": "For example: one, two, three."
+      }
+    ],
+    "createdAt": "2026-05-20T06:37:00Z",
+    "updatedAt": "2026-05-20T06:37:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "essen /ˈɛsn̩/",
+    "gloss": [
+      "To eat; food or meal when capitalized as Essen."
+    ],
+    "notes": [
+      "• Lowercase essen is the verb: to eat.",
+      "• Capitalized Essen is a noun: food or a meal. So write zum Essen, not zum essen."
+    ],
+    "examples": [
+      {
+        "german": "Georg kommt heute zum Essen.",
+        "english": "Georg is coming for the meal today."
+      },
+      {
+        "german": "Wir essen zusammen.",
+        "english": "We are eating together."
+      },
+      {
+        "german": "Das Essen ist gut.",
+        "english": "The food is good."
+      }
+    ],
+    "createdAt": "2026-05-20T06:37:00Z",
+    "updatedAt": "2026-05-20T06:37:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Zahlen 0-10 /diː ˈtsaːlən nʊl bɪs tseːn/",
     "gloss": [
       "Numbers from zero to ten."
