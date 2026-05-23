@@ -1,5 +1,47 @@
 [
   {
+    "head": "die Postleitzahl /ˈpɔstlaɪ̯tˌtsaːl/",
+    "plural": "-n",
+    "gloss": [
+      "Postal code; ZIP code."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Wie ist Ihre Postleitzahl?",
+        "english": "What is your postal code? [formal you]"
+      },
+      {
+        "german": "Meine Postleitzahl ist 80331.",
+        "english": "My postal code is 80331."
+      }
+    ],
+    "createdAt": "2026-05-23T16:00:00Z",
+    "updatedAt": "2026-05-23T16:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Muttersprache /ˈmʊtɐˌʃpʁaːxə/",
+    "plural": "-n",
+    "gloss": [
+      "Native language; mother tongue."
+    ],
+    "notes": [
+      "• Compound noun: die Mutter + die Sprache. The last noun decides the gender: die Sprache → die Muttersprache."
+    ],
+    "examples": [
+      {
+        "german": "Danke. Und welche Sprachen sprechen Sie? Meine Muttersprache ist Spanisch und dann spreche ich noch Deutsch und Englisch.",
+        "english": "Thank you. And which languages do you speak? My native language is Spanish, and I also speak German and English. [formal you]"
+      }
+    ],
+    "createdAt": "2026-05-23T15:00:00Z",
+    "updatedAt": "2026-05-23T15:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "brauchen /ˈbʁaʊ̯xən/",
     "gloss": [
       "To need."
