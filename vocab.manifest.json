@@ -1,5 +1,84 @@
 [
   {
+    "head": "vielen Dank /ˈfiːlən ˈdaŋk/",
+    "gloss": [
+      "Thank you very much."
+    ],
+    "notes": [
+      "• Danke alone is a fixed thanks-word — like saying thanks with no visible noun. vielen Dank is the full phrase: der Dank (masculine noun) = thanks, gratitude.",
+      "• vielen is dative of viel (much). With abstract nouns like Dank, Spaß, Glück, viel often takes dative: vielen Dank, viel Spaß, viel Glück.",
+      "• Same word family as Danke, but fuller and slightly more formal; typical at the end of a phone call."
+    ],
+    "examples": [
+      {
+        "german": "Vielen Dank.",
+        "english": "Thank you very much."
+      },
+      {
+        "german": "Vielen Dank. Auf Wiederhören.",
+        "english": "Thank you very much. Goodbye. [on the phone]"
+      }
+    ],
+    "createdAt": "2026-05-23T21:00:00Z",
+    "updatedAt": "2026-05-23T21:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Auf Wiederhören! /aʊf ˈviːdɐˌhøːʁən/",
+    "gloss": [
+      "Goodbye on the phone."
+    ],
+    "notes": [
+      "• Phone goodbye only; in person use Auf Wiedersehen.",
+      "• auf + accusative: until the next time; wieder + hören: hear (each other) again."
+    ],
+    "examples": [
+      {
+        "german": "Vielen Dank. Auf Wiederhören.",
+        "english": "Thank you very much. Goodbye. [on the phone]"
+      },
+      {
+        "german": "Auf Wiederhören!",
+        "english": "Goodbye! [on the phone]"
+      }
+    ],
+    "createdAt": "2026-05-23T21:00:00Z",
+    "updatedAt": "2026-05-23T21:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Wohnort /ˈvoːnˌɔʁt/",
+    "plural": "-e",
+    "gloss": [
+      "Place of residence; city or town where someone lives."
+    ],
+    "notes": [
+      "• Compound noun: wohnen + der Ort. Gender from der Ort → der Wohnort.",
+      "• On forms like der Personalbogen, Wohnort is usually the city or town, not the full street address.",
+      "• Compare Wo wohnen Sie? (where do you live?) with Wie ist Ihr Wohnort? (what is your place of residence?)."
+    ],
+    "examples": [
+      {
+        "german": "Wie ist Ihr Wohnort?",
+        "english": "What is your place of residence? [formal you]"
+      },
+      {
+        "german": "Mein Wohnort ist Mannheim.",
+        "english": "My place of residence is Mannheim."
+      },
+      {
+        "german": "Der Wohnort steht im Personalbogen.",
+        "english": "The place of residence is on the personal information form."
+      }
+    ],
+    "createdAt": "2026-05-23T20:00:00Z",
+    "updatedAt": "2026-05-23T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die E-Mail-Adresse /ˈiːmeːl aˈdʁɛsə/",
     "plural": "-n",
     "gloss": [
