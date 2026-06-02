@@ -188,6 +188,15 @@ def normalize_grammar_table(raw: Any) -> dict[str, Any] | None:
     return {"columns": columns, "rows": rows}
 
 
+def normalize_image_field(raw: Any) -> str | None:
+    """Optional per-card website image path/URL."""
+
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    return s or None
+
+
 def iter_grammar_adj_suffix_runs(text: str) -> Iterator[tuple[str, bool]]:
     """Split cell text into runs; booleans mark the adjective ending right after ``neu``."""
 
@@ -297,6 +306,9 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     grammar_table = normalize_grammar_table(c.get("grammarTable"))
     if grammar_table:
         od["grammarTable"] = grammar_table
+    image = normalize_image_field(c.get("image"))
+    if image:
+        od["image"] = image
     od["examples"] = examples_ord
     od["createdAt"] = c["createdAt"]
     od["updatedAt"] = c["updatedAt"]
@@ -402,6 +414,9 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     grammar_table = normalize_grammar_table(card.get("grammarTable"))
     if grammar_table:
         out["grammarTable"] = grammar_table
+    image = normalize_image_field(card.get("image"))
+    if image:
+        out["image"] = image
     return ordered_manifest_card(out)
 
 
@@ -434,6 +449,13 @@ def merge_parsed_cards_with_previous_manifest(
             gt_keep = normalize_grammar_table(prev.get("grammarTable"))
             if gt_keep:
                 merged["grammarTable"] = gt_keep
+        image_new = normalize_image_field(c.get("image"))
+        if image_new:
+            merged["image"] = image_new
+        elif prev:
+            image_keep = normalize_image_field(prev.get("image"))
+            if image_keep:
+                merged["image"] = image_keep
         pl_new = (c.get("plural") or "").strip()
         if pl_new:
             merged["plural"] = pl_new

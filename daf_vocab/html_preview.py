@@ -89,6 +89,17 @@ h1 {
   font-size: 11pt;
   color: #111;
 }
+.card-image {
+  margin-top: 0.6rem;
+  padding-left: 0.6rem;
+}
+.card-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
 .grammar-table-wrap {
   margin: 0.35rem 0 0.65rem 0;
   padding-left: 0.6rem;
@@ -429,6 +440,14 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
                     inner = str(en).strip()
                     parts.append(f'<span class="ex-en">({html.escape(inner)})</span>')
                 parts.append("</div>")
+            parts.append("</div>")
+
+        image = str(card.get("image") or "").strip()
+        if image:
+            src = html.escape(image, quote=True)
+            alt = html.escape(f"{str(card.get('head') or '').strip()} image")
+            parts.append('<div class="card-image">')
+            parts.append(f'<img src="{src}" alt="{alt}" loading="lazy" />')
             parts.append("</div>")
 
         parts.append("</article>")
