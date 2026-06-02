@@ -184,6 +184,42 @@ footer {
 #deck .card:first-of-type {
   padding-top: 0;
 }
+.nav-links {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+.nav-links a {
+  color: var(--head-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+.lesson-list {
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lesson-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  padding: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+.lesson-item a {
+  color: var(--head-blue);
+}
+.lesson-item img {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin-top: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
 """
 
 FILTER_SORT_JS = """\
@@ -381,6 +417,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         "</head>",
         "<body>",
         f"<h1>{html.escape(TITLE_PAGE)}</h1>",
+        '<div class="nav-links"><a href="lesson-pages.html">Lesson Pages (Kursbuch S.16–17)</a></div>',
         deck_controls_html(lektions, levels),
         '<div id="deck">',
     ]
@@ -466,6 +503,39 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     return "\n".join(parts)
 
 
+def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
+    parts: list[str] = [
+        "<!DOCTYPE html>",
+        '<html lang="de">',
+        "<head>",
+        '<meta charset="utf-8"/>',
+        '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
+        "<title>daf — lesson pages</title>",
+        "<style>",
+        CSS,
+        "</style>",
+        "</head>",
+        "<body>",
+        "<h1>daf — lesson pages</h1>",
+        '<div class="nav-links"><a href="index.html">← Back to vocabulary</a></div>',
+        "<p>Extracted from DaF-Kompakt-Kursbuch_Feralan.com.pdf.</p>",
+        '<ul class="lesson-list">',
+    ]
+    for label, src in pages:
+        esc_label = html.escape(label)
+        esc_src = html.escape(src, quote=True)
+        parts.extend(
+            [
+                '<li class="lesson-item">',
+                f'<div><a href="{esc_src}" target="_blank" rel="noopener">{esc_label} — open full image</a></div>',
+                f'<img src="{esc_src}" alt="{esc_label}" loading="lazy" />',
+                "</li>",
+            ]
+        )
+    parts.extend(["</ul>", "</body></html>"])
+    return "\n".join(parts)
+
+
 def write_vocab_preview(
     manifest_path: Path,
     out_path: Path | None = None,
@@ -483,6 +553,14 @@ def write_vocab_preview(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_out, encoding="utf-8")
 
+    # Lesson pages UI: links + inline previews for extracted Kursbuch pages.
+    lesson_pages = [
+        ("Kursbuch page 16", "lesson-pages/kursbuch-page-16.png"),
+        ("Kursbuch page 17", "lesson-pages/kursbuch-page-17.png"),
+    ]
+    lesson_html = render_lesson_pages_html(lesson_pages)
+    (out_path.parent / "lesson-pages.html").write_text(lesson_html, encoding="utf-8")
+
     # Preview is served from vocab-preview/, so copy known card images there.
     # Card image values like "/images/foo.png" map to web/public/images/foo.png.
     for card in blob:
@@ -496,5 +574,15 @@ def write_vocab_preview(
         dst = out_path.parent / rel
         if src.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+
+    # Copy extracted lesson page images for lesson-pages.html.
+    lesson_src_dir = manifest_path.parent / "web" / "public" / "lesson-pages"
+    lesson_dst_dir = out_path.parent / "lesson-pages"
+    for _label, rel in lesson_pages:
+        src = manifest_path.parent / "web" / "public" / rel
+        dst = out_path.parent / rel
+        if src.exists():
+            lesson_dst_dir.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
     return out_path
