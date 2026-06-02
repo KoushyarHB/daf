@@ -184,6 +184,64 @@ footer {
 #deck .card:first-of-type {
   padding-top: 0;
 }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.95rem;
+}
+.site-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.site-brand {
+  display: flex;
+  flex-direction: column;
+}
+.site-brand-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--head-blue);
+  letter-spacing: 0.01em;
+}
+.site-brand-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: #666;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1f5fbf;
+  background: #f3f7ff;
+  border: 1px solid #dbe7ff;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  text-decoration: none;
+}
+.site-nav a:hover {
+  background: #eaf2ff;
+}
+.site-nav a.is-active {
+  color: #fff;
+  background: var(--head-blue);
+  border-color: var(--head-blue);
+}
 .nav-links {
   margin: 0 0 1rem;
   font-size: 0.95rem;
@@ -452,8 +510,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         "</style>",
         "</head>",
         "<body>",
-        f"<h1>{html.escape(TITLE_PAGE)}</h1>",
-        '<div class="nav-links"><a href="lesson-pages.html">Lesson Pages (Kursbuch S.16–17)</a></div>',
+        site_header_html(active="vocab"),
         deck_controls_html(lektions, levels),
         '<div id="deck">',
     ]
@@ -572,6 +629,27 @@ def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
     return "\n".join(parts)
 
 
+def site_header_html(*, active: str) -> str:
+    """Shared top header for all preview pages."""
+
+    vocab_cls = "is-active" if active == "vocab" else ""
+    lesson_cls = "is-active" if active == "lessons" else ""
+    return (
+        '<header class="site-header" role="banner">'
+        '<div class="site-header-row">'
+        '<div class="site-brand">'
+        '<p class="site-brand-title">daf — vocabulary</p>'
+        '<p class="site-brand-sub">Deck preview and lesson resources</p>'
+        "</div>"
+        '<nav class="site-nav" aria-label="Preview pages">'
+        f'<a class="{vocab_cls}" href="index.html">Vocabulary</a>'
+        f'<a class="{lesson_cls}" href="lesson-pages.html">Lesson Pages</a>'
+        "</nav>"
+        "</div>"
+        "</header>"
+    )
+
+
 def default_lesson_pages_manifest() -> list[dict[str, Any]]:
     """Fallback lesson-page structure when no manifest exists yet."""
 
@@ -685,10 +763,7 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
         "</style>",
         "</head>",
         "<body>",
-        '<header class="lesson-header">',
-        "<h1>daf — lesson pages</h1>",
-        '<div class="nav-links"><a href="index.html">← Back to vocabulary</a></div>',
-        "</header>",
+        site_header_html(active="lessons"),
         '<section class="lesson-links">',
         "<h2>Lesson Links</h2>",
         "<ul>",
