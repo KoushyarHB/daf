@@ -189,10 +189,13 @@ footer {
   top: 0;
   z-index: 20;
   background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   margin-bottom: 1rem;
-  padding: 0.75rem 0.95rem;
+  padding: 0.7rem 1.1rem;
 }
 .site-header-row {
   display: flex;
@@ -203,44 +206,33 @@ footer {
 }
 .site-brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
-.site-brand-title {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--head-blue);
-  letter-spacing: 0.01em;
-}
-.site-brand-sub {
-  margin: 0.2rem 0 0;
-  font-size: 0.78rem;
-  color: #666;
+.site-brand img {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: min(56vw, 420px);
 }
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
 }
 .site-nav a {
-  display: inline-block;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  color: #1f5fbf;
-  background: #f3f7ff;
-  border: 1px solid #dbe7ff;
-  border-radius: 999px;
-  padding: 0.3rem 0.65rem;
-  text-decoration: none;
+  color: #2b64b8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
 }
 .site-nav a:hover {
-  background: #eaf2ff;
+  color: #1a4f99;
 }
 .site-nav a.is-active {
-  color: #fff;
-  background: var(--head-blue);
-  border-color: var(--head-blue);
+  text-decoration-thickness: 2.5px;
 }
 .nav-links {
   margin: 0 0 1rem;
@@ -638,8 +630,7 @@ def site_header_html(*, active: str) -> str:
         '<header class="site-header" role="banner">'
         '<div class="site-header-row">'
         '<div class="site-brand">'
-        '<p class="site-brand-title">daf — vocabulary</p>'
-        '<p class="site-brand-sub">Deck preview and lesson resources</p>'
+        '<img src="images/header-title.png" alt="DaF kompakt — Deutsch als Fremdsprache" />'
         "</div>"
         '<nav class="site-nav" aria-label="Preview pages">'
         f'<a class="{vocab_cls}" href="index.html">Vocabulary</a>'
@@ -817,6 +808,13 @@ def write_vocab_preview(
         if src.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
+
+    # Shared header logo image.
+    logo_src = manifest_path.parent / "web" / "public" / "images" / "header-title.png"
+    logo_dst = out_path.parent / "images" / "header-title.png"
+    if logo_src.exists():
+        logo_dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(logo_src, logo_dst)
 
     # Copy lesson page images used by the lesson-pages hub.
     for lesson in lessons:
