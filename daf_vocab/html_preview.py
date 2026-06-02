@@ -445,7 +445,9 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
 
         image = str(card.get("image") or "").strip()
         if image:
-            src = html.escape(image, quote=True)
+            # Use relative paths so GitHub Pages project sites resolve correctly.
+            src_path = image.lstrip("/") if image.startswith("/") else image
+            src = html.escape(src_path, quote=True)
             alt = html.escape(f"{str(card.get('head') or '').strip()} image")
             parts.append('<div class="card-image">')
             parts.append(f'<img src="{src}" alt="{alt}" loading="lazy" />')
