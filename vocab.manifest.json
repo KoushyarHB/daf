@@ -398,6 +398,31 @@
     "level": "A1"
   },
   {
+    "head": "E-Mail-Adressen sprechen /ˈiːmeːl aˌdʁɛsn̩ ˈʃpʁɛçən/",
+    "gloss": [
+      "How to say email symbols aloud."
+    ],
+    "notes": [
+      "• In this lesson: - = minus, _ = Unterstrich, . = Punkt, @ = at.",
+      "• Use this pattern when dictating an address on the phone."
+    ],
+    "image": "/images/email-tip.png",
+    "examples": [
+      {
+        "german": "carlos punkt rodriguez at techno minus design punkt de",
+        "english": "carlos.rodriguez@techno-design.de (spoken form)"
+      },
+      {
+        "german": "anna Unterstrich meier at firma punkt de",
+        "english": "anna_meier@firma.de (spoken form)"
+      }
+    ],
+    "createdAt": "2026-06-02T12:35:00Z",
+    "updatedAt": "2026-06-02T12:35:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die E-Mail-Adresse /ˈiːmeːl aˈdʁɛsə/",
     "plural": "-n",
     "gloss": [
