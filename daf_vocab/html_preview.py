@@ -220,6 +220,42 @@ footer {
   border: 1px solid var(--border);
   border-radius: 4px;
 }
+.lesson-header {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+}
+.lesson-header h1 {
+  margin: 0 0 0.4rem 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.lesson-links {
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.lesson-links h2 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.05rem;
+  color: #222;
+}
+.lesson-links ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.lesson-links li {
+  margin: 0.28rem 0;
+}
+.lesson-preview-title {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  color: #222;
+}
 """
 
 FILTER_SORT_JS = """\
@@ -604,6 +640,7 @@ def load_lesson_pages_manifest(repo_root: Path) -> list[dict[str, Any]]:
 
 
 def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
+    link_items: list[str] = []
     cards: list[str] = []
     for lesson in lessons:
         title = html.escape(str(lesson.get("title") or "").strip())
@@ -614,6 +651,10 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
         gp_src = html.escape(str(gp["image"]).lstrip("/"), quote=True)
         wp_lbl = html.escape(str(wp["label"]))
         gp_lbl = html.escape(str(gp["label"]))
+        link_items.append(
+            f'<li>{title}: <a href="{wp_src}" target="_blank" rel="noopener">{wp_lbl}</a> · '
+            f'<a href="{gp_src}" target="_blank" rel="noopener">{gp_lbl}</a></li>'
+        )
         cards.append(
             (
                 '<li class="lesson-item">'
@@ -644,12 +685,22 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
         "</style>",
         "</head>",
         "<body>",
+        '<header class="lesson-header">',
         "<h1>daf — lesson pages</h1>",
         '<div class="nav-links"><a href="index.html">← Back to vocabulary</a></div>',
-        "<p>Per lesson: one Words page and one Grammar page.</p>",
+        "</header>",
+        '<section class="lesson-links">',
+        "<h2>Lesson Links</h2>",
+        "<ul>",
+        *link_items,
+        "</ul>",
+        "</section>",
+        '<section class="lesson-previews">',
+        '<h2 class="lesson-preview-title">Page Previews</h2>',
         '<ul class="lesson-list">',
         *cards,
         "</ul>",
+        "</section>",
         "</body></html>",
     ]
     return "\n".join(parts)
