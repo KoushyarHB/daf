@@ -187,22 +187,25 @@ footer {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 100;
   background: #fff;
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   margin-bottom: 1rem;
-  padding: 0.7rem 1.1rem;
+  padding: 0.85rem clamp(2.5rem, 8vw, 6.5rem);
 }
 .site-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 .site-brand {
   display: flex;
@@ -217,22 +220,23 @@ footer {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 2.25rem;
   flex-wrap: wrap;
 }
 .site-nav a {
   font-size: 0.92rem;
   font-weight: 600;
   color: #2b64b8;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
+  text-decoration: none;
 }
 .site-nav a:hover {
   color: #1a4f99;
 }
 .site-nav a.is-active {
-  text-decoration-thickness: 2.5px;
+  text-decoration: underline;
+  text-decoration-color: rgba(43, 100, 184, 0.45);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
 }
 .nav-links {
   margin: 0 0 1rem;
