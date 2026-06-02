@@ -27,17 +27,25 @@ CSS = """\
   --gray-en: rgb(64, 64, 64);
   --head-blue: rgb(47, 111, 184);
   --border: #e0e0e0;
+  --site-content-max: 44rem;
+  --site-pad-x: 1rem;
 }
 * { box-sizing: border-box; }
+html {
+  margin: 0;
+}
 body {
   font-family: Calibri, "Segoe UI", Roboto, sans-serif;
   font-size: 11pt;
   line-height: 1.45;
-  max-width: 44rem;
+  max-width: var(--site-content-max);
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 0 var(--site-pad-x) 3rem;
   color: #111;
   background: #fafafa;
+}
+.site-header + * {
+  margin-top: 1.25rem;
 }
 h1 {
   font-size: 1.25rem;
@@ -194,8 +202,9 @@ footer {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  margin-bottom: 1rem;
-  padding: 0.85rem clamp(2.5rem, 8vw, 6.5rem);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.85rem 0;
 }
 .site-header-row {
   display: flex;
@@ -203,9 +212,11 @@ footer {
   justify-content: space-between;
   gap: 1.2rem;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: var(--site-content-max);
   margin: 0 auto;
   width: 100%;
+  padding: 0 var(--site-pad-x);
+  box-sizing: border-box;
 }
 .site-brand {
   display: flex;
