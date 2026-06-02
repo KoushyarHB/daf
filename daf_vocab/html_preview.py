@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import html
 import json
+import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -479,4 +480,19 @@ def write_vocab_preview(
     html_out = render_vocab_html(blob)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_out, encoding="utf-8")
+
+    # Preview is served from vocab-preview/, so copy known card images there.
+    # Card image values like "/images/foo.png" map to web/public/images/foo.png.
+    for card in blob:
+        if not isinstance(card, dict):
+            continue
+        image = str(card.get("image") or "").strip()
+        if not image.startswith("/images/"):
+            continue
+        rel = image.lstrip("/")
+        src = manifest_path.parent / "web" / "public" / rel
+        dst = out_path.parent / rel
+        if src.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
     return out_path
