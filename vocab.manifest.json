@@ -1,5 +1,156 @@
 [
   {
+    "head": "Kontinente /kɔntiˈnɛntə/",
+    "gloss": ["Continents."],
+    "notes": [
+      "• Origin with aus + continent (no article): Aus Europa, aus Asien.",
+      "• Pattern: Aus Europa kommen 137.000 Studenten. / Die Studenten kommen aus Europa."
+    ],
+    "examples": [
+      {
+        "german": "Woher kommen die Studenten? Sprechen Sie.",
+        "english": "Where do the students come from? Speak. [formal you]"
+      },
+      {
+        "german": "Aus Europa kommen 137.000 Studenten.",
+        "english": "137,000 students come from Europe."
+      },
+      {
+        "german": "Aus Asien kommen 70.000 Studenten.",
+        "english": "70,000 students come from Asia."
+      },
+      {
+        "german": "Aus Afrika kommen 22.000 Studenten.",
+        "english": "22,000 students come from Africa."
+      },
+      {
+        "german": "Aus Amerika kommen 15.000 Studenten.",
+        "english": "15,000 students come from the Americas."
+      },
+      {
+        "german": "Aus Australien kommen 500 Studenten.",
+        "english": "500 students come from Australia."
+      }
+    ],
+    "createdAt": "2026-06-02T13:00:00Z",
+    "updatedAt": "2026-06-02T13:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Student /ʃtuˈdɛnt/",
+    "plural": "-en",
+    "gloss": ["Student (male); student (generic plural Studenten)."],
+    "notes": [
+      "• die Studentin = female student. Plural die Studenten covers mixed groups."
+    ],
+    "examples": [
+      {
+        "german": "Woher kommen die Studenten?",
+        "english": "Where do the students come from?"
+      },
+      {
+        "german": "Studenten aus der ganzen Welt",
+        "english": "students from all over the world"
+      }
+    ],
+    "createdAt": "2026-06-02T13:00:00Z",
+    "updatedAt": "2026-06-02T13:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "vorstellen /foːɐ̯ˈʃtɛlən/",
+    "gloss": [
+      "To introduce (someone); to present."
+    ],
+    "notes": [
+      "• Separable verb: stellen ... vor. In commands with Sie: Stellen Sie ... vor.",
+      "• Contrast with sich vorstellen: introduce yourself."
+    ],
+    "examples": [
+      {
+        "german": "Stellen Sie Ihren Partner dem anderen Team vor.",
+        "english": "Introduce your partner to the other team. [formal you]"
+      },
+      {
+        "german": "Ich stelle meine Partnerin vor.",
+        "english": "I introduce my partner."
+      }
+    ],
+    "createdAt": "2026-06-02T12:10:00Z",
+    "updatedAt": "2026-06-02T12:10:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Gruppe /ˈɡʁʊpə/",
+    "plural": "-n",
+    "gloss": [
+      "Group."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Arbeiten Sie in Gruppen mit vier Personen.",
+        "english": "Work in groups of four people. [formal you]"
+      },
+      {
+        "german": "Wir arbeiten in einer Gruppe.",
+        "english": "We work in a group."
+      }
+    ],
+    "createdAt": "2026-06-02T12:10:00Z",
+    "updatedAt": "2026-06-02T12:10:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Team /tiːm/",
+    "plural": "-s",
+    "gloss": [
+      "Team."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Zwei Personen sind ein Team.",
+        "english": "Two people are one team."
+      },
+      {
+        "german": "Das andere Team stellt seinen Partner vor.",
+        "english": "The other team introduces its partner."
+      }
+    ],
+    "createdAt": "2026-06-02T12:10:00Z",
+    "updatedAt": "2026-06-02T12:10:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Auf Wiedersehen! /aʊf ˈviːdɐˌzeːən/",
+    "gloss": [
+      "Goodbye (in person)."
+    ],
+    "notes": [
+      "• In-person farewell; on the phone use Auf Wiederhören."
+    ],
+    "examples": [
+      {
+        "german": "Freut mich. Auf Wiedersehen.",
+        "english": "Nice to meet you. Goodbye."
+      },
+      {
+        "german": "Auf Wiedersehen. Tschüss.",
+        "english": "Goodbye. Bye."
+      }
+    ],
+    "createdAt": "2026-06-02T12:10:00Z",
+    "updatedAt": "2026-06-02T12:10:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "das Heft /hɛft/",
     "plural": "-e",
     "gloss": [
