@@ -536,6 +536,125 @@ def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
     return "\n".join(parts)
 
 
+def default_lesson_pages_manifest() -> list[dict[str, Any]]:
+    """Fallback lesson-page structure when no manifest exists yet."""
+
+    return [
+        {
+            "lektion": 1,
+            "title": "Lektion 1",
+            "wordPage": {
+                "label": "Words page",
+                "image": "/lesson-pages/kursbuch-page-16.png",
+            },
+            "grammarPage": {
+                "label": "Grammar page",
+                "image": "/lesson-pages/kursbuch-page-17.png",
+            },
+        }
+    ]
+
+
+def load_lesson_pages_manifest(repo_root: Path) -> list[dict[str, Any]]:
+    """Read lesson page metadata for scalable per-lesson rendering."""
+
+    manifest_path = repo_root / "lesson-pages.manifest.json"
+    if not manifest_path.exists():
+        return default_lesson_pages_manifest()
+    try:
+        blob = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return default_lesson_pages_manifest()
+    if not isinstance(blob, list):
+        return default_lesson_pages_manifest()
+    out: list[dict[str, Any]] = []
+    for item in blob:
+        if not isinstance(item, dict):
+            continue
+        lek = item.get("lektion")
+        if not isinstance(lek, int):
+            try:
+                lek = int(lek)
+            except (TypeError, ValueError):
+                continue
+        title = str(item.get("title") or f"Lektion {lek}").strip() or f"Lektion {lek}"
+        wp = item.get("wordPage")
+        gp = item.get("grammarPage")
+        if not isinstance(wp, dict) or not isinstance(gp, dict):
+            continue
+        wp_img = str(wp.get("image") or "").strip()
+        gp_img = str(gp.get("image") or "").strip()
+        if not wp_img or not gp_img:
+            continue
+        out.append(
+            {
+                "lektion": lek,
+                "title": title,
+                "wordPage": {
+                    "label": str(wp.get("label") or "Words page").strip() or "Words page",
+                    "image": wp_img,
+                },
+                "grammarPage": {
+                    "label": str(gp.get("label") or "Grammar page").strip() or "Grammar page",
+                    "image": gp_img,
+                },
+            }
+        )
+    return sorted(out, key=lambda x: int(x["lektion"])) or default_lesson_pages_manifest()
+
+
+def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
+    cards: list[str] = []
+    for lesson in lessons:
+        title = html.escape(str(lesson.get("title") or "").strip())
+        lek = html.escape(str(lesson.get("lektion")))
+        wp = lesson["wordPage"]
+        gp = lesson["grammarPage"]
+        wp_src = html.escape(str(wp["image"]).lstrip("/"), quote=True)
+        gp_src = html.escape(str(gp["image"]).lstrip("/"), quote=True)
+        wp_lbl = html.escape(str(wp["label"]))
+        gp_lbl = html.escape(str(gp["label"]))
+        cards.append(
+            (
+                '<li class="lesson-item">'
+                f"<h2>{title}</h2>"
+                f'<div class="meta"><span>Lektion {lek}</span></div>'
+                '<div class="deck-controls-row">'
+                "<div>"
+                f'<div><a href="{wp_src}" target="_blank" rel="noopener">{wp_lbl} — open full image</a></div>'
+                f'<img src="{wp_src}" alt="{title} words page" loading="lazy" />'
+                "</div>"
+                "<div>"
+                f'<div><a href="{gp_src}" target="_blank" rel="noopener">{gp_lbl} — open full image</a></div>'
+                f'<img src="{gp_src}" alt="{title} grammar page" loading="lazy" />'
+                "</div>"
+                "</div>"
+                "</li>"
+            )
+        )
+    parts: list[str] = [
+        "<!DOCTYPE html>",
+        '<html lang="de">',
+        "<head>",
+        '<meta charset="utf-8"/>',
+        '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
+        "<title>daf — lesson pages</title>",
+        "<style>",
+        CSS,
+        "</style>",
+        "</head>",
+        "<body>",
+        "<h1>daf — lesson pages</h1>",
+        '<div class="nav-links"><a href="index.html">← Back to vocabulary</a></div>',
+        "<p>Per lesson: one Words page and one Grammar page.</p>",
+        '<ul class="lesson-list">',
+        *cards,
+        "</ul>",
+        "</body></html>",
+    ]
+    return "\n".join(parts)
+
+
 def write_vocab_preview(
     manifest_path: Path,
     out_path: Path | None = None,
@@ -553,12 +672,9 @@ def write_vocab_preview(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_out, encoding="utf-8")
 
-    # Lesson pages UI: links + inline previews for extracted Kursbuch pages.
-    lesson_pages = [
-        ("Kursbuch page 16", "lesson-pages/kursbuch-page-16.png"),
-        ("Kursbuch page 17", "lesson-pages/kursbuch-page-17.png"),
-    ]
-    lesson_html = render_lesson_pages_html(lesson_pages)
+    # Lesson pages hub: scalable per lesson (words + grammar).
+    lessons = load_lesson_pages_manifest(manifest_path.parent)
+    lesson_html = render_lesson_hub_html(lessons)
     (out_path.parent / "lesson-pages.html").write_text(lesson_html, encoding="utf-8")
 
     # Preview is served from vocab-preview/, so copy known card images there.
@@ -576,13 +692,19 @@ def write_vocab_preview(
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
 
-    # Copy extracted lesson page images for lesson-pages.html.
-    lesson_src_dir = manifest_path.parent / "web" / "public" / "lesson-pages"
-    lesson_dst_dir = out_path.parent / "lesson-pages"
-    for _label, rel in lesson_pages:
-        src = manifest_path.parent / "web" / "public" / rel
-        dst = out_path.parent / rel
-        if src.exists():
-            lesson_dst_dir.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src, dst)
+    # Copy lesson page images used by the lesson-pages hub.
+    for lesson in lessons:
+        for block_key in ("wordPage", "grammarPage"):
+            block = lesson.get(block_key)
+            if not isinstance(block, dict):
+                continue
+            rel_raw = str(block.get("image") or "").strip()
+            if not rel_raw:
+                continue
+            rel = rel_raw.lstrip("/")
+            src = manifest_path.parent / "web" / "public" / rel
+            dst = out_path.parent / rel
+            if src.exists():
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dst)
     return out_path

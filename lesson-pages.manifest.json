@@ -1,0 +1,14 @@
+[
+  {
+    "lektion": 1,
+    "title": "Lektion 1",
+    "wordPage": {
+      "label": "Words page",
+      "image": "/lesson-pages/kursbuch-page-16.png"
+    },
+    "grammarPage": {
+      "label": "Grammar page",
+      "image": "/lesson-pages/kursbuch-page-17.png"
+    }
+  }
+]
