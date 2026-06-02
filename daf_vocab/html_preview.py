@@ -279,7 +279,7 @@ footer {
 .lesson-item img {
   display: block;
   width: 100%;
-  max-width: 760px;
+  max-width: 100%;
   height: auto;
   margin-top: 0.6rem;
   border: 1px solid var(--border);
@@ -501,9 +501,8 @@ def grammar_table_block_html(gt: dict[str, Any]) -> str:
     return f'<div class="grammar-table-wrap"><table class="grammar-table">{inner_tbl}</table></div>'
 
 
-def render_vocab_html(cards: list[dict[str, Any]]) -> str:
-    valid_cards = [c for c in cards if isinstance(c, dict) and str(c.get("head") or "").strip()]
-    lektions, levels = collect_filter_options(valid_cards)
+def render_preview_page_html(*, title: str, active: str, body: list[str]) -> str:
+    """Full HTML document with shared site header and stylesheet."""
 
     parts: list[str] = [
         "<!DOCTYPE html>",
@@ -511,13 +510,24 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         "<head>",
         '<meta charset="utf-8"/>',
         '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
-        f"<title>{html.escape(TITLE_PAGE)}</title>",
+        f"<title>{html.escape(title)}</title>",
         "<style>",
         CSS,
         "</style>",
         "</head>",
         "<body>",
-        site_header_html(active="vocab"),
+        site_header_html(active=active),
+        *body,
+        "</body></html>",
+    ]
+    return "\n".join(parts)
+
+
+def render_vocab_html(cards: list[dict[str, Any]]) -> str:
+    valid_cards = [c for c in cards if isinstance(c, dict) and str(c.get("head") or "").strip()]
+    lektions, levels = collect_filter_options(valid_cards)
+
+    parts: list[str] = [
         deck_controls_html(lektions, levels),
         '<div id="deck">',
     ]
@@ -599,32 +609,18 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     parts.append("<script>")
     parts.append(FILTER_SORT_JS)
     parts.append("</script>")
-    parts.append("</body></html>")
-    return "\n".join(parts)
+    return render_preview_page_html(title=TITLE_PAGE, active="vocab", body=parts)
+
+
+LESSON_PAGES_TITLE = "daf — lesson pages"
 
 
 def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
-    parts: list[str] = [
-        "<!DOCTYPE html>",
-        '<html lang="de">',
-        "<head>",
-        '<meta charset="utf-8"/>',
-        '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
-        "<title>daf — lesson pages</title>",
-        "<style>",
-        CSS,
-        "</style>",
-        "</head>",
-        "<body>",
-        "<h1>daf — lesson pages</h1>",
-        '<div class="nav-links"><a href="index.html">← Back to vocabulary</a></div>',
-        "<p>Extracted from DaF-Kompakt-Kursbuch_Feralan.com.pdf.</p>",
-        '<ul class="lesson-list">',
-    ]
+    items: list[str] = ['<ul class="lesson-list">']
     for label, src in pages:
         esc_label = html.escape(label)
         esc_src = html.escape(src, quote=True)
-        parts.extend(
+        items.extend(
             [
                 '<li class="lesson-item">',
                 f'<div><a href="{esc_src}" target="_blank" rel="noopener">{esc_label} — open full image</a></div>',
@@ -632,8 +628,8 @@ def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
                 "</li>",
             ]
         )
-    parts.extend(["</ul>", "</body></html>"])
-    return "\n".join(parts)
+    items.append("</ul>")
+    return render_preview_page_html(title=LESSON_PAGES_TITLE, active="lessons", body=items)
 
 
 def site_header_html(*, active: str) -> str:
@@ -757,19 +753,7 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
                 "</li>"
             )
         )
-    parts: list[str] = [
-        "<!DOCTYPE html>",
-        '<html lang="de">',
-        "<head>",
-        '<meta charset="utf-8"/>',
-        '<meta name="viewport" content="width=device-width, initial-scale=1"/>',
-        "<title>daf — lesson pages</title>",
-        "<style>",
-        CSS,
-        "</style>",
-        "</head>",
-        "<body>",
-        site_header_html(active="lessons"),
+    body = [
         '<section class="lesson-links">',
         "<h2>Lesson Links</h2>",
         "<ul>",
@@ -782,16 +766,15 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
         *cards,
         "</ul>",
         "</section>",
-        "</body></html>",
     ]
-    return "\n".join(parts)
+    return render_preview_page_html(title=LESSON_PAGES_TITLE, active="lessons", body=body)
 
 
 def write_vocab_preview(
     manifest_path: Path,
     out_path: Path | None = None,
 ) -> Path:
-    """Read manifest JSON and write a single HTML file."""
+    """Read manifest JSON and write ``index.html`` and ``lesson-pages.html``."""
 
     manifest_path = Path(manifest_path)
     if out_path is None:

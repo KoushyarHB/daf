@@ -816,4 +816,7 @@ def build_vocab_from_manifest_file(
     doc = build_vocab_document(cards)
     doc.save(str(vocab_path))
     manifest_path.write_text(json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    from .html_preview import write_vocab_preview
+
+    write_vocab_preview(manifest_path)
     return vocab_path

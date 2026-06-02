@@ -123,7 +123,9 @@ def main(argv: list[str] | None = None) -> None:
         url = f"http://127.0.0.1:{args.port}/"
         if not args.no_browser:
             webbrowser.open(url)
+        lesson_path = html_path.parent / "lesson-pages.html"
         print(f"Preview written → {html_path}")
+        print(f"Lesson pages → {lesson_path}")
         print(f"Open: {url}")
         print("Press Ctrl+C to stop the server.")
         try:
