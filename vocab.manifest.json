@@ -1,5 +1,292 @@
 [
   {
+    "head": "das Wörterbuch /ˈvœʁtɐˌbuːx/",
+    "plural": "-¨er",
+    "gloss": [
+      "Dictionary (word book)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Das Wörterbuch steht in der Spalte Bücher.",
+        "english": "The dictionary goes in the Books column."
+      },
+      {
+        "german": "Ich schlage das Wort im Wörterbuch nach.",
+        "english": "I look up the word in the dictionary."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Kursbuch /ˈkʊʁsbuːx/",
+    "plural": "-¨er",
+    "gloss": [
+      "Coursebook; class textbook."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Das Kursbuch steht in der Spalte Bücher.",
+        "english": "The coursebook goes in the Books column."
+      },
+      {
+        "german": "Öffnen Sie das Kursbuch auf Seite 10.",
+        "english": "Open the coursebook to page 10. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Papier /paˈpiːɐ̯/",
+    "gloss": [
+      "Paper (sheets)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Das Papier steht in der Spalte Schreiben.",
+        "english": "Paper goes in the Writing column."
+      },
+      {
+        "german": "Ich brauche ein Blatt Papier.",
+        "english": "I need a sheet of paper."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Textmarker /ˈtɛkstˌmaʁkɐ/",
+    "plural": "-",
+    "gloss": [
+      "Highlighter; text marker pen."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der Textmarker steht in der Spalte Schreiben.",
+        "english": "The highlighter goes in the Writing column."
+      },
+      {
+        "german": "Markieren Sie die Wörter mit dem Textmarker.",
+        "english": "Highlight the words with the highlighter. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Kugelschreiber /ˈkuːɡl̩ˌʃʁaɪ̯bɐ/",
+    "plural": "-",
+    "gloss": [
+      "Ballpoint pen."
+    ],
+    "notes": [
+      "• Kugel + Schreiber (ball + writer)."
+    ],
+    "examples": [
+      {
+        "german": "Der Kugelschreiber steht in der Spalte Schreiben.",
+        "english": "The ballpoint pen goes in the Writing column."
+      },
+      {
+        "german": "Schreiben Sie mit dem Kugelschreiber.",
+        "english": "Write with the ballpoint pen. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Bleistift /ˈblaɪ̯ʃtɪft/",
+    "plural": "-e",
+    "gloss": [
+      "Pencil."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der Bleistift steht in der Spalte Schreiben.",
+        "english": "The pencil goes in the Writing column."
+      },
+      {
+        "german": "Ich schreibe mit dem Bleistift.",
+        "english": "I write with the pencil."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Overheadprojektor /ˈoːvɐˌhɛptpʁoˌjɛktoːɐ̯/",
+    "plural": "-en",
+    "gloss": [
+      "Overhead projector (OHP)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der Overheadprojektor steht in der Spalte Medien.",
+        "english": "The overhead projector goes in the Media column."
+      },
+      {
+        "german": "Der Lehrer benutzt den Overheadprojektor.",
+        "english": "The teacher uses the overhead projector."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Computer /kɔmˈpuːtɐ/",
+    "plural": "-",
+    "gloss": [
+      "Computer."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der Computer steht in der Spalte Medien.",
+        "english": "The computer goes in the Media column."
+      },
+      {
+        "german": "Der Computer steht auf dem Tisch.",
+        "english": "The computer is on the table."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Fernseher /ˈfɛʁnˌzeːɐ̯/",
+    "plural": "-",
+    "gloss": [
+      "Television; TV set."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der Fernseher steht in der Spalte Medien.",
+        "english": "The TV goes in the Media column."
+      },
+      {
+        "german": "Im Kursraum gibt es einen Fernseher.",
+        "english": "There is a TV in the classroom."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der DVD-Player /ˈdeːfaʊˌpleːɐ̯/",
+    "plural": "-",
+    "gloss": [
+      "DVD player."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der DVD-Player steht in der Spalte Medien.",
+        "english": "The DVD player goes in the Media column."
+      },
+      {
+        "german": "Legen Sie die DVD in den DVD-Player.",
+        "english": "Put the DVD in the DVD player. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die DVD /ˈdeːfaʊ/",
+    "plural": "-s",
+    "gloss": [
+      "DVD (disc)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Die DVD steht in der Spalte Medien.",
+        "english": "The DVD goes in the Media column."
+      },
+      {
+        "german": "Wir schauen eine DVD im Kurs.",
+        "english": "We watch a DVD in class."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der CD-Player /ˈtseːdeːˌpleːɐ̯/",
+    "plural": "-",
+    "gloss": [
+      "CD player."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Der CD-Player steht in der Spalte Medien.",
+        "english": "The CD player goes in the Media column."
+      },
+      {
+        "german": "Der CD-Player steht im Kursraum.",
+        "english": "The CD player is in the classroom."
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die CD /ˈtseːˈdeː/",
+    "plural": "-s",
+    "gloss": [
+      "CD (disc)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Die CD steht in der Spalte Medien.",
+        "english": "The CD goes in the Media column."
+      },
+      {
+        "german": "Hören Sie den Text auf der CD.",
+        "english": "Listen to the text on the CD. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T20:00:00Z",
+    "updatedAt": "2026-06-03T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "der Raum /ʁaʊm/",
     "plural": "-¨e",
     "gloss": [
