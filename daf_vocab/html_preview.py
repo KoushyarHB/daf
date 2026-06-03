@@ -109,6 +109,15 @@ h1 {
   border: 1px solid var(--border);
   border-radius: 4px;
 }
+.card-audio {
+  margin: 0.35rem 0 0.5rem 0;
+  padding-left: 0.6rem;
+}
+.card-audio audio {
+  width: 100%;
+  max-width: 18rem;
+  height: 2rem;
+}
 .grammar-table-wrap {
   margin: 0.35rem 0 0.65rem 0;
   padding-left: 0.6rem;
@@ -433,6 +442,19 @@ def card_data_attrs(card: dict[str, Any]) -> str:
     )
 
 
+def card_audio_block_html(card: dict[str, Any]) -> str:
+    audio = str(card.get("audio") or "").strip()
+    if not audio:
+        return ""
+    src_path = audio.lstrip("/") if audio.startswith("/") else audio
+    src = html.escape(src_path, quote=True)
+    return (
+        '<div class="card-audio">'
+        f'<audio controls preload="none" src="{src}"></audio>'
+        "</div>"
+    )
+
+
 def card_image_block_html(card: dict[str, Any]) -> str:
     image = str(card.get("image") or "").strip()
     if not image:
@@ -563,6 +585,9 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
 
         parts.append(f'<article class="card"{card_data_attrs(card)}>')
         parts.append(f'<div class="head">{head}</div>')
+        audio_block = card_audio_block_html(card)
+        if audio_block:
+            parts.append(audio_block)
         parts.append(meta_html)
 
         plural_raw = (card.get("plural") or "").strip()
@@ -806,14 +831,21 @@ def write_vocab_preview(
         if not isinstance(card, dict):
             continue
         image = str(card.get("image") or "").strip()
-        if not image.startswith("/images/"):
-            continue
-        rel = image.lstrip("/")
-        src = manifest_path.parent / "web" / "public" / rel
-        dst = out_path.parent / rel
-        if src.exists():
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src, dst)
+        if image.startswith("/images/"):
+            rel = image.lstrip("/")
+            src = manifest_path.parent / "web" / "public" / rel
+            dst = out_path.parent / rel
+            if src.exists():
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dst)
+        audio = str(card.get("audio") or "").strip()
+        if audio.startswith("/audio/"):
+            rel = audio.lstrip("/")
+            src = manifest_path.parent / "web" / "public" / rel
+            dst = out_path.parent / rel
+            if src.exists():
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dst)
 
     # Shared header logo image.
     logo_src = manifest_path.parent / "web" / "public" / "images" / "header-title.png"

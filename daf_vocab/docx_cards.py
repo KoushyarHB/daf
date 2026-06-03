@@ -197,6 +197,15 @@ def normalize_image_field(raw: Any) -> str | None:
     return s or None
 
 
+def normalize_audio_field(raw: Any) -> str | None:
+    """Optional per-card pronunciation audio path (e.g. ``/audio/lemma.mp3``)."""
+
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    return s or None
+
+
 def iter_grammar_adj_suffix_runs(text: str) -> Iterator[tuple[str, bool]]:
     """Split cell text into runs; booleans mark the adjective ending right after ``neu``."""
 
@@ -309,6 +318,9 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     image = normalize_image_field(c.get("image"))
     if image:
         od["image"] = image
+    audio = normalize_audio_field(c.get("audio"))
+    if audio:
+        od["audio"] = audio
     od["examples"] = examples_ord
     od["createdAt"] = c["createdAt"]
     od["updatedAt"] = c["updatedAt"]
@@ -417,6 +429,9 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     image = normalize_image_field(card.get("image"))
     if image:
         out["image"] = image
+    audio = normalize_audio_field(card.get("audio"))
+    if audio:
+        out["audio"] = audio
     return ordered_manifest_card(out)
 
 
@@ -456,6 +471,13 @@ def merge_parsed_cards_with_previous_manifest(
             image_keep = normalize_image_field(prev.get("image"))
             if image_keep:
                 merged["image"] = image_keep
+        audio_new = normalize_audio_field(c.get("audio"))
+        if audio_new:
+            merged["audio"] = audio_new
+        elif prev:
+            audio_keep = normalize_audio_field(prev.get("audio"))
+            if audio_keep:
+                merged["audio"] = audio_keep
         pl_new = (c.get("plural") or "").strip()
         if pl_new:
             merged["plural"] = pl_new
