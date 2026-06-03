@@ -60,9 +60,52 @@ h1 {
   padding: 0.9rem 0;
 }
 .card:first-of-type { padding-top: 0; }
+.head-line {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.head-line .head {
+  margin-bottom: 0;
+}
 .head {
   font-weight: 700;
   margin-bottom: 0.35rem;
+}
+.pronounce-btn {
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  border: 1px solid rgba(47, 111, 184, 0.32);
+  background: rgba(241, 246, 252, 0.95);
+  color: var(--head-blue);
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.pronounce-btn:hover {
+  background: #e8f0fa;
+  border-color: rgba(47, 111, 184, 0.55);
+}
+.pronounce-btn:focus-visible {
+  outline: 2px solid rgba(47, 111, 184, 0.45);
+  outline-offset: 2px;
+}
+.pronounce-btn:active {
+  transform: scale(0.92);
+}
+.pronounce-btn svg {
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-left: 0.05rem;
+  fill: currentColor;
 }
 .meta {
   font-size: 0.75rem;
@@ -108,15 +151,6 @@ h1 {
   height: auto;
   border: 1px solid var(--border);
   border-radius: 4px;
-}
-.card-audio {
-  margin: 0.35rem 0 0.5rem 0;
-  padding-left: 0.6rem;
-}
-.card-audio audio {
-  width: 100%;
-  max-width: 18rem;
-  height: 2rem;
 }
 .grammar-table-wrap {
   margin: 0.35rem 0 0.65rem 0;
@@ -332,6 +366,22 @@ footer {
 }
 """
 
+PRONOUNCE_JS = """\
+(function () {
+  var player = new Audio();
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".pronounce-btn");
+    if (!btn) return;
+    var src = btn.getAttribute("data-audio");
+    if (!src) return;
+    e.preventDefault();
+    player.pause();
+    player.src = src;
+    player.play().catch(function () {});
+  });
+})();
+"""
+
 FILTER_SORT_JS = """\
 (function () {
   var deck = document.getElementById("deck");
@@ -442,16 +492,21 @@ def card_data_attrs(card: dict[str, Any]) -> str:
     )
 
 
-def card_audio_block_html(card: dict[str, Any]) -> str:
-    audio = str(card.get("audio") or "").strip()
+def pronounce_button_html(audio_path: str | None) -> str:
+    """Small round play button; ``audio_path`` like ``/audio/lemma.mp3``."""
+
+    audio = str(audio_path or "").strip()
     if not audio:
         return ""
     src_path = audio.lstrip("/") if audio.startswith("/") else audio
     src = html.escape(src_path, quote=True)
     return (
-        '<div class="card-audio">'
-        f'<audio controls preload="none" src="{src}"></audio>'
-        "</div>"
+        '<button type="button" class="pronounce-btn" data-audio="'
+        + src
+        + '" aria-label="Play pronunciation" title="Listen">'
+        '<svg viewBox="0 0 12 12" aria-hidden="true">'
+        '<path d="M3 2.5v7l6.5-3.5L3 2.5z"/>'
+        "</svg></button>"
     )
 
 
@@ -584,10 +639,11 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             meta_html = f'<div class="meta">{spans}</div>'
 
         parts.append(f'<article class="card"{card_data_attrs(card)}>')
-        parts.append(f'<div class="head">{head}</div>')
-        audio_block = card_audio_block_html(card)
-        if audio_block:
-            parts.append(audio_block)
+        audio_btn = pronounce_button_html(str(card.get("audio") or ""))
+        if audio_btn:
+            parts.append(f'<div class="head-line"><div class="head">{head}</div>{audio_btn}</div>')
+        else:
+            parts.append(f'<div class="head">{head}</div>')
         parts.append(meta_html)
 
         plural_raw = (card.get("plural") or "").strip()
@@ -640,6 +696,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         '<footer>Static preview from vocab.manifest.json — run <code>python -m daf_vocab serve</code> to refresh.</footer>'
     )
     parts.append("<script>")
+    parts.append(PRONOUNCE_JS)
     parts.append(FILTER_SORT_JS)
     parts.append("</script>")
     return render_preview_page_html(title=TITLE_PAGE, active="vocab", body=parts)
