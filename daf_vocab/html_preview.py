@@ -433,6 +433,20 @@ def card_data_attrs(card: dict[str, Any]) -> str:
     )
 
 
+def card_image_block_html(card: dict[str, Any]) -> str:
+    image = str(card.get("image") or "").strip()
+    if not image:
+        return ""
+    src_path = image.lstrip("/") if image.startswith("/") else image
+    src = html.escape(src_path, quote=True)
+    alt = html.escape(f"{str(card.get('head') or '').strip()} image")
+    return (
+        '<div class="card-image">'
+        f'<img src="{src}" alt="{alt}" loading="lazy" />'
+        "</div>"
+    )
+
+
 def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
     lek_opts = ['<option value="all">All</option>']
     for n in lektions:
@@ -564,6 +578,10 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             if isinstance(g, str) and g.strip():
                 parts.append(f'<p class="gloss">{html.escape(g.strip())}</p>')
 
+        img_block = card_image_block_html(card)
+        if img_block:
+            parts.append(img_block)
+
         for n in card.get("notes") or []:
             if isinstance(n, str) and n.strip():
                 parts.append(f'<div class="notes">{html.escape(n.strip())}</div>')
@@ -588,16 +606,6 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
                     inner = str(en).strip()
                     parts.append(f'<span class="ex-en">({html.escape(inner)})</span>')
                 parts.append("</div>")
-            parts.append("</div>")
-
-        image = str(card.get("image") or "").strip()
-        if image:
-            # Use relative paths so GitHub Pages project sites resolve correctly.
-            src_path = image.lstrip("/") if image.startswith("/") else image
-            src = html.escape(src_path, quote=True)
-            alt = html.escape(f"{str(card.get('head') or '').strip()} image")
-            parts.append('<div class="card-image">')
-            parts.append(f'<img src="{src}" alt="{alt}" loading="lazy" />')
             parts.append("</div>")
 
         parts.append("</article>")

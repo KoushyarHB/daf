@@ -1,5 +1,74 @@
 [
   {
+    "head": "zuordnen /tsuˈʔɔʁdnən/",
+    "gloss": [
+      "To match; assign (separable: zuordnen → ordnen … zu)."
+    ],
+    "notes": [
+      "• Imperative: Ordnen Sie zu. Textbook Arbeitsanweisungen 2."
+    ],
+    "image": "/images/arbeitsanweisungen-2.png",
+    "examples": [
+      {
+        "german": "Arbeitsanweisungen 2: Ordnen Sie zu.",
+        "english": "Work instructions 2: Match them. [formal you]"
+      },
+      {
+        "german": "Ordnen Sie die Nummern den Buchstaben zu.",
+        "english": "Match the numbers to the letters. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-03T16:00:00Z",
+    "updatedAt": "2026-06-03T16:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Arbeitsanweisungen /ˈaʁbaɪ̯tsˌanvaɪ̯zʊŋən/",
+    "gloss": [
+      "Work instructions; exercise directions (in the textbook)."
+    ],
+    "notes": [
+      "• Compound: die Arbeit + die Anweisungen. Singular: die Arbeitsanweisung."
+    ],
+    "examples": [
+      {
+        "german": "Arbeitsanweisungen 1: Was passt? Notieren Sie.",
+        "english": "Work instructions 1: What matches? Write it down. [formal you]"
+      },
+      {
+        "german": "Lesen Sie die Arbeitsanweisungen.",
+        "english": "Read the work instructions. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-02T20:00:00Z",
+    "updatedAt": "2026-06-02T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Anweisung /anˈvaɪ̯zʊŋ/",
+    "plural": "-en",
+    "gloss": [
+      "Instruction; direction (what you should do)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Arbeitsanweisungen 1: Was passt?",
+        "english": "Work instructions 1: What matches?"
+      },
+      {
+        "german": "Folgen Sie der Anweisung.",
+        "english": "Follow the instruction. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-02T20:00:00Z",
+    "updatedAt": "2026-06-02T20:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "der Teilnehmer / die Teilnehmerin /ˈtaɪ̯lˌneːmɐ/ /ˈtaɪ̯lˌneːməʁɪn/",
     "plural": "- / die Teilnehmerin, -nen",
     "gloss": [
