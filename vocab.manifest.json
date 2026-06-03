@@ -1,5 +1,266 @@
 [
   {
+    "head": "herumgehen /hɛˈʁʊmˌɡeːən/",
+    "gloss": [
+      "To go around; move about (separable: … gehen … herum)."
+    ],
+    "notes": [
+      "• Kursleiter/in: Gehen Sie im Kurs herum. (walk around during pair work.)"
+    ],
+    "examples": [
+      {
+        "german": "Gehen Sie im Kurs herum.",
+        "english": "Walk around the class. [formal you, teacher]"
+      },
+      {
+        "german": "Der Lehrer geht im Kursraum herum.",
+        "english": "The teacher walks around the classroom."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Frage /ˈfʁaːɡə/",
+    "plural": "-n",
+    "gloss": [
+      "Question."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Ich habe eine Frage.",
+        "english": "I have a question. [student]"
+      },
+      {
+        "german": "Wiederholen Sie bitte die Frage.",
+        "english": "Please repeat the question. [formal you, teacher]"
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "erklären /ɛɐ̯ˈklɛːʁən/",
+    "gloss": [
+      "To explain."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Erklären Sie das bitte.",
+        "english": "Please explain that. [formal you, teacher]"
+      },
+      {
+        "german": "Der Kursleiter erklärt die Grammatik.",
+        "english": "The course instructor explains the grammar."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "verstehen /fɛɐ̯ˈʃteːən/",
+    "gloss": [
+      "To understand."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Ich verstehe das nicht.",
+        "english": "I do not understand that. [student]"
+      },
+      {
+        "german": "Verstehen Sie die Aufgabe?",
+        "english": "Do you understand the task? [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "nachschauen /ˈnaːxˌʃaʊ̯ən/",
+    "gloss": [
+      "To look up; check (separable: … schauen … nach)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Schauen Sie im Wörterbuch nach.",
+        "english": "Look it up in the dictionary. [formal you, teacher]"
+      },
+      {
+        "german": "Ich schaue das Wort im Wörterbuch nach.",
+        "english": "I look up the word in the dictionary."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "aufschlagen /ˈaʊ̯fˌʃlaːɡən/",
+    "gloss": [
+      "To open (a book); turn to a page (separable: … schlagen … auf)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Schlagen Sie bitte das Kursbuch auf Seite 11 auf.",
+        "english": "Please open the coursebook to page 11. [formal you, teacher]"
+      },
+      {
+        "german": "Schlagen Sie das Buch auf Seite 8 auf.",
+        "english": "Open the book to page 8. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "arbeiten /ˈaʁbaɪ̯tən/",
+    "gloss": [
+      "To work (on a task, in pairs/groups)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Arbeiten Sie in Gruppen.",
+        "english": "Work in groups. [formal you, teacher]"
+      },
+      {
+        "german": "Wir arbeiten in einer Gruppe.",
+        "english": "We work in a group."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "langsam /ˈlaŋzam/",
+    "gloss": [
+      "Slow; slowly."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Sprechen Sie bitte langsam.",
+        "english": "Please speak slowly. [formal you, teacher]"
+      },
+      {
+        "german": "Können Sie bitte langsam sprechen?",
+        "english": "Can you please speak slowly? [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Tafel /ˈtaːfl̩/",
+    "plural": "-n",
+    "gloss": [
+      "Board (whiteboard/blackboard)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Schreiben Sie das Wort bitte an die Tafel.",
+        "english": "Please write the word on the board. [formal you, teacher]"
+      },
+      {
+        "german": "Die Tafel steht in der Spalte Medien.",
+        "english": "The board goes in the Media column."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Übungsbuch /ˈyːbʊŋsˌbuːx/",
+    "plural": "-¨er",
+    "gloss": [
+      "Workbook; exercise book (companion to the coursebook)."
+    ],
+    "notes": [
+      "• Übung + Buch. Often abbreviated in homework lines."
+    ],
+    "examples": [
+      {
+        "german": "Hausaufgabe ist: Übungsbuch, Seite 8, Übung 2.",
+        "english": "Homework is: workbook, page 8, exercise 2. [teacher]"
+      },
+      {
+        "german": "Öffnen Sie das Übungsbuch auf Seite 8.",
+        "english": "Open the workbook to page 8. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Wie bitte? /viː ˈbɪtə/",
+    "gloss": [
+      "Sorry? Pardon? (did not hear or understand)."
+    ],
+    "notes": [
+      "• Kursteilnehmer/in: polite when you missed something."
+    ],
+    "examples": [
+      {
+        "german": "Wie bitte? Welche Seite?",
+        "english": "Pardon? Which page?"
+      },
+      {
+        "german": "Wie bitte? Ich habe das nicht verstanden.",
+        "english": "Sorry? I did not understand that."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "Entschuldigung! /ɛntˈʃʊldɪɡʊŋ/",
+    "gloss": [
+      "Excuse me; sorry (to get attention or apologise)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Entschuldigung, welche Seite?",
+        "english": "Excuse me, which page? [student]"
+      },
+      {
+        "german": "Entschuldigung, ich habe eine Frage.",
+        "english": "Excuse me, I have a question."
+      }
+    ],
+    "createdAt": "2026-06-04T14:00:00Z",
+    "updatedAt": "2026-06-04T14:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "die Kurssprache /ˈkʊʁsˌʃpʁaːxə/",
     "gloss": [
       "Course language; classroom/course vocabulary."
