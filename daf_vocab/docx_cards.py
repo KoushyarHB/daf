@@ -146,7 +146,7 @@ def _coerce_lektion(value: Any) -> int | None:
 
 
 def ordered_example_object(ex: dict[str, Any]) -> dict[str, Any]:
-    """Stable keys: ``german``, ``english`` (null when no gloss)."""
+    """Stable keys: ``german``, ``english`` (null when no gloss), optional ``audio``."""
 
     g = (ex.get("german") or "").strip()
     e = ex.get("english")
@@ -156,7 +156,11 @@ def ordered_example_object(ex: dict[str, Any]) -> dict[str, Any]:
         en_out = e.strip() or None
     else:
         en_out = str(e).strip() or None
-    return {"german": g, "english": en_out}
+    out: dict[str, Any] = {"german": g, "english": en_out}
+    audio = normalize_audio_field(ex.get("audio"))
+    if audio:
+        out["audio"] = audio
+    return out
 
 
 def normalize_grammar_table(raw: Any) -> dict[str, Any] | None:
@@ -383,7 +387,11 @@ def normalize_examples_from_card(card: dict[str, Any]) -> list[dict[str, Any]]:
             else:
                 en_out = english_gloss_inner(str(e))
             if g or en_out:
-                out.append({"german": g, "english": en_out})
+                blob: dict[str, Any] = {"german": g, "english": en_out}
+                aud = normalize_audio_field(item.get("audio"))
+                if aud:
+                    blob["audio"] = aud
+                out.append(ordered_example_object(blob))
         elif isinstance(item, str):
             out.extend(_examples_from_legacy_string(item))
     return out

@@ -127,9 +127,25 @@ h1 {
 }
 .ex-block { margin-top: 0.45rem; padding-left: 0.6rem; }
 .ex-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.32rem;
   font-size: 10.5pt;
   font-style: italic;
   margin: 0.25rem 0;
+}
+.ex-line-text {
+  flex: 1;
+  min-width: 0;
+}
+.pronounce-btn--ex {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.08rem;
+}
+.pronounce-btn--ex svg {
+  width: 0.55rem;
+  height: 0.55rem;
 }
 .ex-de { color: var(--blue); }
 .ex-en { color: var(--gray-en); }
@@ -492,7 +508,7 @@ def card_data_attrs(card: dict[str, Any]) -> str:
     )
 
 
-def pronounce_button_html(audio_path: str | None) -> str:
+def pronounce_button_html(audio_path: str | None, *, compact: bool = False) -> str:
     """Small round play button; ``audio_path`` like ``/audio/lemma.mp3``."""
 
     audio = str(audio_path or "").strip()
@@ -500,8 +516,9 @@ def pronounce_button_html(audio_path: str | None) -> str:
         return ""
     src_path = audio.lstrip("/") if audio.startswith("/") else audio
     src = html.escape(src_path, quote=True)
+    cls = "pronounce-btn pronounce-btn--ex" if compact else "pronounce-btn"
     return (
-        '<button type="button" class="pronounce-btn" data-audio="'
+        f'<button type="button" class="{cls}" data-audio="'
         + src
         + '" aria-label="Play pronunciation" title="Listen">'
         '<svg viewBox="0 0 12 12" aria-hidden="true">'
@@ -680,13 +697,17 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
                 if not de and not en:
                     continue
                 parts.append('<div class="ex-line">')
+                ex_btn = pronounce_button_html(str(ex.get("audio") or ""), compact=True)
+                if ex_btn:
+                    parts.append(ex_btn)
+                parts.append('<span class="ex-line-text">')
                 parts.append('<span class="chevr">›</span>')
                 parts.append(f'<span class="ex-de">{html.escape(de)}</span>')
                 if en:
                     parts.append(" ")
                     inner = str(en).strip()
                     parts.append(f'<span class="ex-en">({html.escape(inner)})</span>')
-                parts.append("</div>")
+                parts.append("</span></div>")
             parts.append("</div>")
 
         parts.append("</article>")

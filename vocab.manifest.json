@@ -11,11 +11,13 @@
     "examples": [
       {
         "german": "Gehen Sie im Kurs herum.",
-        "english": "Walk around the class. [formal you, teacher]"
+        "english": "Walk around the class. [formal you, teacher]",
+        "audio": "/audio/herumgehen-ex01.mp3"
       },
       {
         "german": "Der Lehrer geht im Kursraum herum.",
-        "english": "The teacher walks around the classroom."
+        "english": "The teacher walks around the classroom.",
+        "audio": "/audio/herumgehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -30,14 +32,17 @@
       "Question."
     ],
     "notes": [],
+    "audio": "/audio/die_Frage.mp3",
     "examples": [
       {
         "german": "Ich habe eine Frage.",
-        "english": "I have a question. [student]"
+        "english": "I have a question. [student]",
+        "audio": "/audio/die_Frage-ex01.mp3"
       },
       {
         "german": "Wiederholen Sie bitte die Frage.",
-        "english": "Please repeat the question. [formal you, teacher]"
+        "english": "Please repeat the question. [formal you, teacher]",
+        "audio": "/audio/die_Frage-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -51,14 +56,17 @@
       "To explain."
     ],
     "notes": [],
+    "audio": "/audio/erklären.mp3",
     "examples": [
       {
         "german": "Erklären Sie das bitte.",
-        "english": "Please explain that. [formal you, teacher]"
+        "english": "Please explain that. [formal you, teacher]",
+        "audio": "/audio/erklären-ex01.mp3"
       },
       {
         "german": "Der Kursleiter erklärt die Grammatik.",
-        "english": "The course instructor explains the grammar."
+        "english": "The course instructor explains the grammar.",
+        "audio": "/audio/erklären-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -72,14 +80,17 @@
       "To understand."
     ],
     "notes": [],
+    "audio": "/audio/verstehen.mp3",
     "examples": [
       {
         "german": "Ich verstehe das nicht.",
-        "english": "I do not understand that. [student]"
+        "english": "I do not understand that. [student]",
+        "audio": "/audio/verstehen-ex01.mp3"
       },
       {
         "german": "Verstehen Sie die Aufgabe?",
-        "english": "Do you understand the task? [formal you]"
+        "english": "Do you understand the task? [formal you]",
+        "audio": "/audio/verstehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -93,14 +104,17 @@
       "To look up; check (separable: … schauen … nach)."
     ],
     "notes": [],
+    "audio": "/audio/nachschauen.mp3",
     "examples": [
       {
         "german": "Schauen Sie im Wörterbuch nach.",
-        "english": "Look it up in the dictionary. [formal you, teacher]"
+        "english": "Look it up in the dictionary. [formal you, teacher]",
+        "audio": "/audio/nachschauen-ex01.mp3"
       },
       {
         "german": "Ich schaue das Wort im Wörterbuch nach.",
-        "english": "I look up the word in the dictionary."
+        "english": "I look up the word in the dictionary.",
+        "audio": "/audio/nachschauen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -114,14 +128,17 @@
       "To open (a book); turn to a page (separable: … schlagen … auf)."
     ],
     "notes": [],
+    "audio": "/audio/aufschlagen.mp3",
     "examples": [
       {
         "german": "Schlagen Sie bitte das Kursbuch auf Seite 11 auf.",
-        "english": "Please open the coursebook to page 11. [formal you, teacher]"
+        "english": "Please open the coursebook to page 11. [formal you, teacher]",
+        "audio": "/audio/aufschlagen-ex01.mp3"
       },
       {
         "german": "Schlagen Sie das Buch auf Seite 8 auf.",
-        "english": "Open the book to page 8. [formal you]"
+        "english": "Open the book to page 8. [formal you]",
+        "audio": "/audio/aufschlagen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -135,14 +152,17 @@
       "To work (on a task, in pairs/groups)."
     ],
     "notes": [],
+    "audio": "/audio/arbeiten.mp3",
     "examples": [
       {
         "german": "Arbeiten Sie in Gruppen.",
-        "english": "Work in groups. [formal you, teacher]"
+        "english": "Work in groups. [formal you, teacher]",
+        "audio": "/audio/arbeiten-ex01.mp3"
       },
       {
         "german": "Wir arbeiten in einer Gruppe.",
-        "english": "We work in a group."
+        "english": "We work in a group.",
+        "audio": "/audio/arbeiten-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -156,14 +176,17 @@
       "Slow; slowly."
     ],
     "notes": [],
+    "audio": "/audio/langsam.mp3",
     "examples": [
       {
         "german": "Sprechen Sie bitte langsam.",
-        "english": "Please speak slowly. [formal you, teacher]"
+        "english": "Please speak slowly. [formal you, teacher]",
+        "audio": "/audio/langsam-ex01.mp3"
       },
       {
         "german": "Können Sie bitte langsam sprechen?",
-        "english": "Can you please speak slowly? [formal you]"
+        "english": "Can you please speak slowly? [formal you]",
+        "audio": "/audio/langsam-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -178,14 +201,17 @@
       "Board (whiteboard/blackboard)."
     ],
     "notes": [],
+    "audio": "/audio/die_Tafel.mp3",
     "examples": [
       {
         "german": "Schreiben Sie das Wort bitte an die Tafel.",
-        "english": "Please write the word on the board. [formal you, teacher]"
+        "english": "Please write the word on the board. [formal you, teacher]",
+        "audio": "/audio/die_Tafel-ex01.mp3"
       },
       {
         "german": "Die Tafel steht in der Spalte Medien.",
-        "english": "The board goes in the Media column."
+        "english": "The board goes in the Media column.",
+        "audio": "/audio/die_Tafel-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -203,14 +229,17 @@
       "• Compound: Übung + Buch (singular stem), not Übungenbuch.",
       "• The -s- in Übungs- is Fugen-s (linking s): from genitive der Übung → Übungs-; it glues the two nouns. Not plural -en."
     ],
+    "audio": "/audio/das_Übungsbuch.mp3",
     "examples": [
       {
         "german": "Hausaufgabe ist: Übungsbuch, Seite 8, Übung 2.",
-        "english": "Homework is: workbook, page 8, exercise 2. [teacher]"
+        "english": "Homework is: workbook, page 8, exercise 2. [teacher]",
+        "audio": "/audio/das_Übungsbuch-ex01.mp3"
       },
       {
         "german": "Öffnen Sie das Übungsbuch auf Seite 8.",
-        "english": "Open the workbook to page 8. [formal you]"
+        "english": "Open the workbook to page 8. [formal you]",
+        "audio": "/audio/das_Übungsbuch-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
