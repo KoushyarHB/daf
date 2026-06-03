@@ -1,5 +1,302 @@
 [
   {
+    "head": "die Kurssprache /ˈkʊʁsˌʃpʁaːxə/",
+    "gloss": [
+      "Course language; classroom/course vocabulary."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "3 Kurssprache: Arbeiten Sie mit dem Wörterbuch.",
+        "english": "3 Course language: Work with the dictionary. [formal you]"
+      },
+      {
+        "german": "Kurssprache sind Wörter für den Deutschkurs.",
+        "english": "Course language means words for the German class."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Pause /ˈpaʊ̯zə/",
+    "plural": "-n",
+    "gloss": [
+      "Break; pause (e.g. between lessons)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Nach dem Unterricht ist Pause.",
+        "english": "After class there is a break."
+      },
+      {
+        "german": "In der Pause trinken wir Kaffee.",
+        "english": "During the break we drink coffee."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Unterricht /ˈʊntɐˌʁɪçt/",
+    "plural": "-e",
+    "gloss": [
+      "Lesson(s); instruction; class time when teaching happens."
+    ],
+    "notes": [
+      "• Not the same as der Kurs (the whole course)."
+    ],
+    "examples": [
+      {
+        "german": "Der Unterricht beginnt um neun Uhr.",
+        "english": "Lessons start at nine o'clock."
+      },
+      {
+        "german": "Im Unterricht sprechen wir Deutsch.",
+        "english": "In class we speak German."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Aufgabe /ˈaʊ̯fˌɡaːbə/",
+    "plural": "-n",
+    "gloss": [
+      "Task; assignment; numbered exercise."
+    ],
+    "notes": [
+      "• Near die Übung; Aufgabe stresses the task itself."
+    ],
+    "examples": [
+      {
+        "german": "Lesen Sie die Aufgabe 3.",
+        "english": "Read task 3. [formal you]"
+      },
+      {
+        "german": "Die Hausaufgabe ist eine Aufgabe für zu Hause.",
+        "english": "Homework is a task for home."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Übung /ˈyːbʊŋ/",
+    "plural": "-en",
+    "gloss": [
+      "Exercise; practice (in class or book)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Machen Sie die Übung im Buch.",
+        "english": "Do the exercise in the book. [formal you]"
+      },
+      {
+        "german": "Übung 2 trainiert die Verben.",
+        "english": "Exercise 2 practises the verbs."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Seite /ˈzaɪ̯tə/",
+    "plural": "-n",
+    "gloss": [
+      "Page (of a book)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Öffnen Sie das Buch auf Seite 18.",
+        "english": "Open the book to page 18. [formal you]"
+      },
+      {
+        "german": "Was steht auf Seite 10?",
+        "english": "What is on page 10?"
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Dialog /diaˈloːk/",
+    "plural": "-e",
+    "gloss": [
+      "Dialogue (structured spoken text in the book)."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Hören Sie den Dialog und lesen Sie mit.",
+        "english": "Listen to the dialogue and read along. [formal you]"
+      },
+      {
+        "german": "Der Dialog ist in Lektion 1.",
+        "english": "The dialogue is in lesson 1."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Artikel /aʁˈtiːkl̩/",
+    "plural": "-",
+    "gloss": [
+      "Article (grammar); also newspaper article."
+    ],
+    "notes": [
+      "• Kurssprache: der/die/das or ein-words, not only newspaper text."
+    ],
+    "examples": [
+      {
+        "german": "Welcher Artikel passt: der, die oder das?",
+        "english": "Which article fits: der, die, or das?"
+      },
+      {
+        "german": "Lernen wir die Artikel heute.",
+        "english": "We are learning articles today."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Text /tɛkst/",
+    "plural": "-e",
+    "gloss": [
+      "Text; written passage."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Lesen Sie den Text laut.",
+        "english": "Read the text aloud. [formal you]"
+      },
+      {
+        "german": "Der Text ist auf Deutsch.",
+        "english": "The text is in German."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "das Wort /vɔʁt/",
+    "plural": "-¨er",
+    "gloss": [
+      "Word."
+    ],
+    "notes": [],
+    "examples": [
+      {
+        "german": "Arbeiten Sie mit dem Wörterbuch. Was passt nicht?",
+        "english": "Work with the dictionary. Which word does not fit? [formal you]"
+      },
+      {
+        "german": "Ich lerne zehn neue Wörter.",
+        "english": "I am learning ten new words."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Kursteilnehmer / die Kursteilnehmerin /ˈkʊʁs.taɪ̯lˌneːmɐ/ /ˈkʊʁs.taɪ̯lˌneːməʁɪn/",
+    "plural": "- / die Kursteilnehmerin, -nen",
+    "gloss": [
+      "Course participant; student in the class."
+    ],
+    "notes": [
+      "• Kurs + Teilnehmer. See also der Teilnehmer / die Teilnehmerin."
+    ],
+    "examples": [
+      {
+        "german": "Die Kursteilnehmer kommen aus vielen Ländern.",
+        "english": "The course participants come from many countries."
+      },
+      {
+        "german": "Sind Sie Kursteilnehmerin?",
+        "english": "Are you a course participant? [formal you, female]"
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "die Hausaufgabe /ˈhaʊ̯sˌʔaʊ̯fˌɡaːbə/",
+    "plural": "-n",
+    "gloss": [
+      "Homework."
+    ],
+    "notes": [
+      "• Haus + Aufgabe. Odd one out with Kursleiter/Kursteilnehmer (people)."
+    ],
+    "examples": [
+      {
+        "german": "Machen Sie die Hausaufgabe für morgen.",
+        "english": "Do the homework for tomorrow. [formal you]"
+      },
+      {
+        "german": "Die Hausaufgabe ist Aufgabe 4 im Buch.",
+        "english": "The homework is task 4 in the book."
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
+    "head": "der Kursleiter / die Kursleiterin /ˈkʊʁsˌlaɪ̯tɐ/",
+    "plural": "- / die Kursleiterin, -nen",
+    "gloss": [
+      "Course instructor; teacher of the class."
+    ],
+    "notes": [
+      "• Kurs + Leiter (leader). Often the Deutschlehrer/in."
+    ],
+    "examples": [
+      {
+        "german": "Der Kursleiter erklärt die Grammatik.",
+        "english": "The course instructor explains the grammar."
+      },
+      {
+        "german": "Fragen Sie die Kursleiterin.",
+        "english": "Ask the course instructor. [formal you]"
+      }
+    ],
+    "createdAt": "2026-06-04T12:00:00Z",
+    "updatedAt": "2026-06-04T12:00:00Z",
+    "lektion": 1,
+    "level": "A1"
+  },
+  {
     "head": "das Wörterbuch /ˈvœʁtɐˌbuːx/",
     "plural": "-¨er",
     "gloss": [
