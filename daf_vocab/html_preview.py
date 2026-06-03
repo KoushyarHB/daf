@@ -881,6 +881,19 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
     return render_preview_page_html(title=LESSON_PAGES_TITLE, active="lessons", body=body)
 
 
+def _copy_web_public_asset(manifest_root: Path, preview_root: Path, url_path: str) -> None:
+    """Copy ``/images/…`` or ``/audio/…`` from ``web/public`` into the preview tree."""
+
+    rel = str(url_path or "").strip().lstrip("/")
+    if not rel.startswith(("images/", "audio/")):
+        return
+    src = manifest_root / "web" / "public" / rel
+    dst = preview_root / rel
+    if src.exists():
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+
+
 def write_vocab_preview(
     manifest_path: Path,
     out_path: Path | None = None,
@@ -903,27 +916,16 @@ def write_vocab_preview(
     lesson_html = render_lesson_hub_html(lessons)
     (out_path.parent / "lesson-pages.html").write_text(lesson_html, encoding="utf-8")
 
-    # Preview is served from vocab-preview/, so copy known card images there.
-    # Card image values like "/images/foo.png" map to web/public/images/foo.png.
+    # Preview is served from vocab-preview/, so copy assets referenced by cards.
+    preview_root = out_path.parent
+    repo_root = manifest_path.parent
     for card in blob:
         if not isinstance(card, dict):
             continue
-        image = str(card.get("image") or "").strip()
-        if image.startswith("/images/"):
-            rel = image.lstrip("/")
-            src = manifest_path.parent / "web" / "public" / rel
-            dst = out_path.parent / rel
-            if src.exists():
-                dst.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(src, dst)
-        audio = str(card.get("audio") or "").strip()
-        if audio.startswith("/audio/"):
-            rel = audio.lstrip("/")
-            src = manifest_path.parent / "web" / "public" / rel
-            dst = out_path.parent / rel
-            if src.exists():
-                dst.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(src, dst)
+        _copy_web_public_asset(repo_root, preview_root, str(card.get("image") or ""))
+        _copy_web_public_asset(repo_root, preview_root, str(card.get("audio") or ""))
+        for ex in normalize_examples_from_card(card):
+            _copy_web_public_asset(repo_root, preview_root, str(ex.get("audio") or ""))
 
     # Shared header logo image.
     logo_src = manifest_path.parent / "web" / "public" / "images" / "header-title.png"
