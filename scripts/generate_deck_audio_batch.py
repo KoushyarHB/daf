@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Generate head + example MP3s for the first N deck cards; update vocab.manifest.json."""
+"""Generate head + example MP3s for deck cards; assign stable ``id`` + ``/audio/{id}…`` paths."""
 
 from __future__ import annotations
 
 import argparse
 import asyncio
 import json
-import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -14,23 +14,30 @@ REPO = Path(__file__).resolve().parent.parent
 MANIFEST = REPO / "vocab.manifest.json"
 AUDIO_DIR = REPO / "web" / "public" / "audio"
 VOICE = "de-DE-KatjaNeural"
+MIN_BYTES = 500
 
 
-def _import_split_head():
+def _import_helpers():
     sys.path.insert(0, str(REPO))
-    from daf_vocab.docx_cards import split_head
+    from daf_vocab.audio_cards import (
+        assign_ids_to_deck,
+        ensure_card_id,
+        example_audio_url,
+        head_audio_url,
+        legacy_audio_slug,
+        speak_text_for_head,
+    )
+    from daf_vocab.docx_cards import normalize_examples_from_card
 
-    return split_head
-
-
-def audio_slug(head: str) -> str:
-    split_head = _import_split_head()
-    lemma, _ = split_head(head.strip())
-    s = lemma.replace("!", "").replace("?", "").strip()
-    s = re.sub(r"\s*/\s*", "_", s)
-    s = re.sub(r"[^\wäöüÄÖÜß]+", "_", s)
-    s = re.sub(r"_+", "_", s).strip("_")
-    return s or "card"
+    return (
+        assign_ids_to_deck,
+        ensure_card_id,
+        example_audio_url,
+        head_audio_url,
+        legacy_audio_slug,
+        speak_text_for_head,
+        normalize_examples_from_card,
+    )
 
 
 async def _tts(text: str, dest: Path, voice: str) -> None:
@@ -40,59 +47,142 @@ async def _tts(text: str, dest: Path, voice: str) -> None:
     await edge_tts.Communicate(text.strip(), voice).save(str(dest))
 
 
-async def _run_batch(jobs: list[tuple[str, Path]], voice: str) -> None:
-    for text, dest in jobs:
-        if dest.exists() and dest.stat().st_size > 500:
-            continue
-        await _tts(text, dest, voice)
+def _should_skip(dest: Path, *, force: bool) -> bool:
+    return (
+        not force
+        and dest.exists()
+        and dest.stat().st_size > MIN_BYTES
+    )
 
 
-def assign_audio(cards: list[dict], count: int, voice: str) -> None:
-    split_head = _import_split_head()
+def _migrate_legacy_file(legacy: Path, dest: Path) -> bool:
+    if dest.exists() or not legacy.exists():
+        return False
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(legacy, dest)
+    return True
+
+
+async def _run_jobs(
+    jobs: list[tuple[str, Path]],
+    voice: str,
+    *,
+    force: bool,
+    concurrency: int,
+) -> tuple[int, int]:
+    sem = asyncio.Semaphore(max(1, concurrency))
+    done = 0
+    skipped = 0
+
+    async def one(text: str, dest: Path) -> None:
+        nonlocal done, skipped
+        if _should_skip(dest, force=force):
+            skipped += 1
+            return
+        async with sem:
+            await _tts(text, dest, voice)
+            done += 1
+
+    await asyncio.gather(*[one(t, d) for t, d in jobs])
+    return done, skipped
+
+
+def assign_audio(
+    cards: list[dict],
+    *,
+    count: int | None,
+    voice: str,
+    force: bool,
+    concurrency: int,
+) -> tuple[int, int, int]:
+    (
+        assign_ids_to_deck,
+        ensure_card_id,
+        example_audio_url,
+        head_audio_url,
+        legacy_audio_slug,
+        speak_text_for_head,
+        normalize_examples_from_card,
+    ) = _import_helpers()
+
+    used: set[str] = set()
+    subset = cards if count is None else cards[:count]
     jobs: list[tuple[str, Path]] = []
 
-    for card in cards[:count]:
+    for card in subset:
         if not isinstance(card, dict):
             continue
         head = str(card.get("head") or "").strip()
         if not head:
             continue
-        slug = audio_slug(head)
-        lemma, _ = split_head(head)
-        speak_head = lemma.strip() or head.split("/")[0].strip()
+        cid = ensure_card_id(card, used)
+        legacy = legacy_audio_slug(head)
 
-        head_rel = f"/audio/{slug}.mp3"
-        card["audio"] = head_rel
-        jobs.append((speak_head, AUDIO_DIR / f"{slug}.mp3"))
+        speak_head = speak_text_for_head(head)
+        head_dest = AUDIO_DIR / f"{cid}.mp3"
+        card["audio"] = head_audio_url(cid)
+        _migrate_legacy_file(AUDIO_DIR / f"{legacy}.mp3", head_dest)
+        jobs.append((speak_head, head_dest))
 
-        examples = card.get("examples") or []
-        if not isinstance(examples, list):
-            continue
+        examples = normalize_examples_from_card(card)
+        card["examples"] = examples
         for i, ex in enumerate(examples, start=1):
-            if not isinstance(ex, dict):
-                continue
             de = str(ex.get("german") or "").strip()
             if not de:
                 continue
-            ex_rel = f"/audio/{slug}-ex{i:02d}.mp3"
-            ex["audio"] = ex_rel
-            jobs.append((de, AUDIO_DIR / f"{slug}-ex{i:02d}.mp3"))
+            ex_dest = AUDIO_DIR / f"{cid}-ex{i:02d}.mp3"
+            ex["audio"] = example_audio_url(cid, i)
+            _migrate_legacy_file(AUDIO_DIR / f"{legacy}-ex{i:02d}.mp3", ex_dest)
+            jobs.append((de, ex_dest))
 
-    asyncio.run(_run_batch(jobs, voice))
+    generated, skipped = asyncio.run(
+        _run_jobs(jobs, voice, force=force, concurrency=concurrency)
+    )
+    return len(subset), generated, skipped
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-n", "--count", type=int, default=10)
+    parser = argparse.ArgumentParser(
+        description="Assign card ids and generate pronunciation MP3s for heads + examples.",
+    )
+    parser.add_argument(
+        "-n",
+        "--count",
+        type=int,
+        default=0,
+        help="Number of deck cards from the top (0 = entire deck)",
+    )
     parser.add_argument("--voice", default=VOICE)
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Regenerate MP3s even when files already exist",
+    )
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        default=4,
+        help="Parallel TTS requests (default: 4)",
+    )
     args = parser.parse_args()
 
     blob = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if not isinstance(blob, list):
         raise SystemExit("Manifest must be a JSON array")
-    assign_audio(blob, args.count, args.voice)
+
+    count = None if args.count <= 0 else args.count
+    n_cards, generated, skipped = assign_audio(
+        blob,
+        count=count,
+        voice=args.voice,
+        force=args.force,
+        concurrency=args.concurrency,
+    )
     MANIFEST.write_text(json.dumps(blob, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Updated {args.count} cards in {MANIFEST}")
+    print(
+        f"Updated {n_cards} cards in {MANIFEST.name}: "
+        f"{generated} MP3s generated, {skipped} skipped (already present)."
+    )
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterator
 
+from .audio_cards import assign_ids_to_deck, ensure_card_id, normalize_card_id
 from docx import Document
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -312,6 +313,9 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     examples_ord = [ordered_example_object(x) for x in ex_raw if isinstance(x, dict)]
     plural = (c.get("plural") or "").strip()
     od: dict[str, Any] = {"head": c["head"]}
+    cid = normalize_card_id(c.get("id"))
+    if cid:
+        od["id"] = cid
     if plural:
         od["plural"] = plural
     od["gloss"] = c["gloss"]
@@ -397,11 +401,17 @@ def normalize_examples_from_card(card: dict[str, Any]) -> list[dict[str, Any]]:
     return out
 
 
-def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
+def normalize_card_meta(
+    card: dict[str, Any],
+    *,
+    used_ids: set[str] | None = None,
+) -> dict[str, Any]:
     """Fill required manifest metadata; coerce types. Word export code paths should call this before writing JSON."""
 
     now = utc_now_iso()
     head = (card.get("head") or "").strip()
+    if used_ids is not None:
+        ensure_card_id(card, used_ids)
     gloss = [x for x in (card.get("gloss") or []) if isinstance(x, str)]
     notes = [x for x in (card.get("notes") or []) if isinstance(x, str)]
     examples = normalize_examples_from_card(card)
@@ -419,6 +429,7 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
     plural_str = str(plural_raw).strip() if plural_raw else ""
     if plural_str:
         plural_str = canonicalize_plural_field(head, plural_str)
+    cid = normalize_card_id(card.get("id"))
     out: dict[str, Any] = {
         "head": head,
         "gloss": gloss,
@@ -429,6 +440,8 @@ def normalize_card_meta(card: dict[str, Any]) -> dict[str, Any]:
         "lektion": _coerce_lektion(card.get("lektion")),
         "level": level,
     }
+    if cid:
+        out["id"] = cid
     if plural_str:
         out["plural"] = plural_str
     grammar_table = normalize_grammar_table(card.get("grammarTable"))
@@ -456,6 +469,7 @@ def merge_parsed_cards_with_previous_manifest(
             if isinstance(c, dict) and c.get("head"):
                 prev_by_head[str(c["head"]).strip()] = c
     out: list[dict[str, Any]] = []
+    used_ids: set[str] = set()
     for c in parsed:
         h = (c.get("head") or "").strip()
         prev = prev_by_head.get(h)
@@ -486,6 +500,13 @@ def merge_parsed_cards_with_previous_manifest(
             audio_keep = normalize_audio_field(prev.get("audio"))
             if audio_keep:
                 merged["audio"] = audio_keep
+        id_new = normalize_card_id(c.get("id"))
+        if id_new:
+            merged["id"] = id_new
+        elif prev:
+            id_keep = normalize_card_id(prev.get("id"))
+            if id_keep:
+                merged["id"] = id_keep
         pl_new = (c.get("plural") or "").strip()
         if pl_new:
             merged["plural"] = pl_new
@@ -503,7 +524,7 @@ def merge_parsed_cards_with_previous_manifest(
             merged["updatedAt"] = now
             merged["lektion"] = None
             merged["level"] = DEFAULT_LEVEL
-        out.append(normalize_card_meta(merged))
+        out.append(normalize_card_meta(merged, used_ids=used_ids))
     return out
 
 
@@ -840,7 +861,10 @@ def build_vocab_from_manifest_file(
     blob = json.loads(manifest_path.read_text(encoding="utf-8"))
     if not isinstance(blob, list):
         raise ValueError("Manifest must be a JSON array of card objects")
-    cards = [normalize_card_meta(c) for c in blob if isinstance(c, dict)]
+    used_ids: set[str] = set()
+    cards = [
+        normalize_card_meta(c, used_ids=used_ids) for c in blob if isinstance(c, dict)
+    ]
     if len(cards) != len(blob):
         raise ValueError("Manifest must contain only JSON objects (card dicts)")
     doc = build_vocab_document(cards)

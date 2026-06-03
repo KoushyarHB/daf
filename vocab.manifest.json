@@ -1,23 +1,24 @@
 [
   {
     "head": "herumgehen /hɛˈʁʊmˌɡeːən/",
+    "id": "v-herumgehen",
     "gloss": [
       "To go around; move about (separable: … gehen … herum)."
     ],
     "notes": [
       "• Kursleiter/in: Gehen Sie im Kurs herum. (walk around during pair work.)"
     ],
-    "audio": "/audio/herumgehen.mp3",
+    "audio": "/audio/v-herumgehen.mp3",
     "examples": [
       {
         "german": "Gehen Sie im Kurs herum.",
         "english": "Walk around the class. [formal you, teacher]",
-        "audio": "/audio/herumgehen-ex01.mp3"
+        "audio": "/audio/v-herumgehen-ex01.mp3"
       },
       {
         "german": "Der Lehrer geht im Kursraum herum.",
         "english": "The teacher walks around the classroom.",
-        "audio": "/audio/herumgehen-ex02.mp3"
+        "audio": "/audio/v-herumgehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -27,22 +28,23 @@
   },
   {
     "head": "die Frage /ˈfʁaːɡə/",
+    "id": "v-die-frage",
     "plural": "-n",
     "gloss": [
       "Question."
     ],
     "notes": [],
-    "audio": "/audio/die_Frage.mp3",
+    "audio": "/audio/v-die-frage.mp3",
     "examples": [
       {
         "german": "Ich habe eine Frage.",
         "english": "I have a question. [student]",
-        "audio": "/audio/die_Frage-ex01.mp3"
+        "audio": "/audio/v-die-frage-ex01.mp3"
       },
       {
         "german": "Wiederholen Sie bitte die Frage.",
         "english": "Please repeat the question. [formal you, teacher]",
-        "audio": "/audio/die_Frage-ex02.mp3"
+        "audio": "/audio/v-die-frage-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -52,21 +54,22 @@
   },
   {
     "head": "erklären /ɛɐ̯ˈklɛːʁən/",
+    "id": "v-erkl-ren",
     "gloss": [
       "To explain."
     ],
     "notes": [],
-    "audio": "/audio/erklären.mp3",
+    "audio": "/audio/v-erklären.mp3",
     "examples": [
       {
         "german": "Erklären Sie das bitte.",
         "english": "Please explain that. [formal you, teacher]",
-        "audio": "/audio/erklären-ex01.mp3"
+        "audio": "/audio/v-erklären-ex01.mp3"
       },
       {
         "german": "Der Kursleiter erklärt die Grammatik.",
         "english": "The course instructor explains the grammar.",
-        "audio": "/audio/erklären-ex02.mp3"
+        "audio": "/audio/v-erklären-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -76,21 +79,22 @@
   },
   {
     "head": "verstehen /fɛɐ̯ˈʃteːən/",
+    "id": "v-verstehen",
     "gloss": [
       "To understand."
     ],
     "notes": [],
-    "audio": "/audio/verstehen.mp3",
+    "audio": "/audio/v-verstehen.mp3",
     "examples": [
       {
         "german": "Ich verstehe das nicht.",
         "english": "I do not understand that. [student]",
-        "audio": "/audio/verstehen-ex01.mp3"
+        "audio": "/audio/v-verstehen-ex01.mp3"
       },
       {
         "german": "Verstehen Sie die Aufgabe?",
         "english": "Do you understand the task? [formal you]",
-        "audio": "/audio/verstehen-ex02.mp3"
+        "audio": "/audio/v-verstehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -100,21 +104,22 @@
   },
   {
     "head": "nachschauen /ˈnaːxˌʃaʊ̯ən/",
+    "id": "v-nachschauen",
     "gloss": [
       "To look up; check (separable: … schauen … nach)."
     ],
     "notes": [],
-    "audio": "/audio/nachschauen.mp3",
+    "audio": "/audio/v-nachschauen.mp3",
     "examples": [
       {
         "german": "Schauen Sie im Wörterbuch nach.",
         "english": "Look it up in the dictionary. [formal you, teacher]",
-        "audio": "/audio/nachschauen-ex01.mp3"
+        "audio": "/audio/v-nachschauen-ex01.mp3"
       },
       {
         "german": "Ich schaue das Wort im Wörterbuch nach.",
         "english": "I look up the word in the dictionary.",
-        "audio": "/audio/nachschauen-ex02.mp3"
+        "audio": "/audio/v-nachschauen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -124,21 +129,22 @@
   },
   {
     "head": "aufschlagen /ˈaʊ̯fˌʃlaːɡən/",
+    "id": "v-aufschlagen",
     "gloss": [
       "To open (a book); turn to a page (separable: … schlagen … auf)."
     ],
     "notes": [],
-    "audio": "/audio/aufschlagen.mp3",
+    "audio": "/audio/v-aufschlagen.mp3",
     "examples": [
       {
         "german": "Schlagen Sie bitte das Kursbuch auf Seite 11 auf.",
         "english": "Please open the coursebook to page 11. [formal you, teacher]",
-        "audio": "/audio/aufschlagen-ex01.mp3"
+        "audio": "/audio/v-aufschlagen-ex01.mp3"
       },
       {
         "german": "Schlagen Sie das Buch auf Seite 8 auf.",
         "english": "Open the book to page 8. [formal you]",
-        "audio": "/audio/aufschlagen-ex02.mp3"
+        "audio": "/audio/v-aufschlagen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -148,21 +154,22 @@
   },
   {
     "head": "arbeiten /ˈaʁbaɪ̯tən/",
+    "id": "v-arbeiten",
     "gloss": [
       "To work (on a task, in pairs/groups)."
     ],
     "notes": [],
-    "audio": "/audio/arbeiten.mp3",
+    "audio": "/audio/v-arbeiten.mp3",
     "examples": [
       {
         "german": "Arbeiten Sie in Gruppen.",
         "english": "Work in groups. [formal you, teacher]",
-        "audio": "/audio/arbeiten-ex01.mp3"
+        "audio": "/audio/v-arbeiten-ex01.mp3"
       },
       {
         "german": "Wir arbeiten in einer Gruppe.",
         "english": "We work in a group.",
-        "audio": "/audio/arbeiten-ex02.mp3"
+        "audio": "/audio/v-arbeiten-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -172,21 +179,22 @@
   },
   {
     "head": "langsam /ˈlaŋzam/",
+    "id": "v-langsam",
     "gloss": [
       "Slow; slowly."
     ],
     "notes": [],
-    "audio": "/audio/langsam.mp3",
+    "audio": "/audio/v-langsam.mp3",
     "examples": [
       {
         "german": "Sprechen Sie bitte langsam.",
         "english": "Please speak slowly. [formal you, teacher]",
-        "audio": "/audio/langsam-ex01.mp3"
+        "audio": "/audio/v-langsam-ex01.mp3"
       },
       {
         "german": "Können Sie bitte langsam sprechen?",
         "english": "Can you please speak slowly? [formal you]",
-        "audio": "/audio/langsam-ex02.mp3"
+        "audio": "/audio/v-langsam-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -196,22 +204,23 @@
   },
   {
     "head": "die Tafel /ˈtaːfl̩/",
+    "id": "v-die-tafel",
     "plural": "-n",
     "gloss": [
       "Board (whiteboard/blackboard)."
     ],
     "notes": [],
-    "audio": "/audio/die_Tafel.mp3",
+    "audio": "/audio/v-die-tafel.mp3",
     "examples": [
       {
         "german": "Schreiben Sie das Wort bitte an die Tafel.",
         "english": "Please write the word on the board. [formal you, teacher]",
-        "audio": "/audio/die_Tafel-ex01.mp3"
+        "audio": "/audio/v-die-tafel-ex01.mp3"
       },
       {
         "german": "Die Tafel steht in der Spalte Medien.",
         "english": "The board goes in the Media column.",
-        "audio": "/audio/die_Tafel-ex02.mp3"
+        "audio": "/audio/v-die-tafel-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -221,6 +230,7 @@
   },
   {
     "head": "das Übungsbuch /ˈyːbʊŋsˌbuːx/",
+    "id": "v-das-bungsbuch",
     "plural": "-¨er",
     "gloss": [
       "Workbook; exercise book (companion to the coursebook)."
@@ -229,17 +239,17 @@
       "• Compound: Übung + Buch (singular stem), not Übungenbuch.",
       "• The -s- in Übungs- is Fugen-s (linking s): from genitive der Übung → Übungs-; it glues the two nouns. Not plural -en."
     ],
-    "audio": "/audio/das_Übungsbuch.mp3",
+    "audio": "/audio/v-das-übungsbuch.mp3",
     "examples": [
       {
         "german": "Hausaufgabe ist: Übungsbuch, Seite 8, Übung 2.",
         "english": "Homework is: workbook, page 8, exercise 2. [teacher]",
-        "audio": "/audio/das_Übungsbuch-ex01.mp3"
+        "audio": "/audio/v-das-übungsbuch-ex01.mp3"
       },
       {
         "german": "Öffnen Sie das Übungsbuch auf Seite 8.",
         "english": "Open the workbook to page 8. [formal you]",
-        "audio": "/audio/das_Übungsbuch-ex02.mp3"
+        "audio": "/audio/v-das-übungsbuch-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -249,20 +259,24 @@
   },
   {
     "head": "Wie bitte? /viː ˈbɪtə/",
+    "id": "v-wie-bitte",
     "gloss": [
       "Sorry? Pardon? (did not hear or understand)."
     ],
     "notes": [
       "• Kursteilnehmer/in: polite when you missed something."
     ],
+    "audio": "/audio/v-wie-bitte.mp3",
     "examples": [
       {
         "german": "Wie bitte? Welche Seite?",
-        "english": "Pardon? Which page?"
+        "english": "Pardon? Which page?",
+        "audio": "/audio/v-wie-bitte-ex01.mp3"
       },
       {
         "german": "Wie bitte? Ich habe das nicht verstanden.",
-        "english": "Sorry? I did not understand that."
+        "english": "Sorry? I did not understand that.",
+        "audio": "/audio/v-wie-bitte-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -272,18 +286,22 @@
   },
   {
     "head": "Entschuldigung! /ɛntˈʃʊldɪɡʊŋ/",
+    "id": "v-entschuldigung",
     "gloss": [
       "Excuse me; sorry (to get attention or apologise)."
     ],
     "notes": [],
+    "audio": "/audio/v-entschuldigung.mp3",
     "examples": [
       {
         "german": "Entschuldigung, welche Seite?",
-        "english": "Excuse me, which page? [student]"
+        "english": "Excuse me, which page? [student]",
+        "audio": "/audio/v-entschuldigung-ex01.mp3"
       },
       {
         "german": "Entschuldigung, ich habe eine Frage.",
-        "english": "Excuse me, I have a question."
+        "english": "Excuse me, I have a question.",
+        "audio": "/audio/v-entschuldigung-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T14:00:00Z",
@@ -293,18 +311,22 @@
   },
   {
     "head": "die Kurssprache /ˈkʊʁsˌʃpʁaːxə/",
+    "id": "v-die-kurssprache",
     "gloss": [
       "Course language; classroom/course vocabulary."
     ],
     "notes": [],
+    "audio": "/audio/v-die-kurssprache.mp3",
     "examples": [
       {
         "german": "3 Kurssprache: Arbeiten Sie mit dem Wörterbuch.",
-        "english": "3 Course language: Work with the dictionary. [formal you]"
+        "english": "3 Course language: Work with the dictionary. [formal you]",
+        "audio": "/audio/v-die-kurssprache-ex01.mp3"
       },
       {
         "german": "Kurssprache sind Wörter für den Deutschkurs.",
-        "english": "Course language means words for the German class."
+        "english": "Course language means words for the German class.",
+        "audio": "/audio/v-die-kurssprache-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -314,19 +336,23 @@
   },
   {
     "head": "die Pause /ˈpaʊ̯zə/",
+    "id": "v-die-pause",
     "plural": "-n",
     "gloss": [
       "Break; pause (e.g. between lessons)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-pause.mp3",
     "examples": [
       {
         "german": "Nach dem Unterricht ist Pause.",
-        "english": "After class there is a break."
+        "english": "After class there is a break.",
+        "audio": "/audio/v-die-pause-ex01.mp3"
       },
       {
         "german": "In der Pause trinken wir Kaffee.",
-        "english": "During the break we drink coffee."
+        "english": "During the break we drink coffee.",
+        "audio": "/audio/v-die-pause-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -336,6 +362,7 @@
   },
   {
     "head": "der Unterricht /ˈʊntɐˌʁɪçt/",
+    "id": "v-der-unterricht",
     "plural": "-e",
     "gloss": [
       "Lesson(s); instruction; class time when teaching happens."
@@ -343,14 +370,17 @@
     "notes": [
       "• Not the same as der Kurs (the whole course)."
     ],
+    "audio": "/audio/v-der-unterricht.mp3",
     "examples": [
       {
         "german": "Der Unterricht beginnt um neun Uhr.",
-        "english": "Lessons start at nine o'clock."
+        "english": "Lessons start at nine o'clock.",
+        "audio": "/audio/v-der-unterricht-ex01.mp3"
       },
       {
         "german": "Im Unterricht sprechen wir Deutsch.",
-        "english": "In class we speak German."
+        "english": "In class we speak German.",
+        "audio": "/audio/v-der-unterricht-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -360,6 +390,7 @@
   },
   {
     "head": "die Aufgabe /ˈaʊ̯fˌɡaːbə/",
+    "id": "v-die-aufgabe",
     "plural": "-n",
     "gloss": [
       "Task; assignment; numbered exercise."
@@ -367,14 +398,17 @@
     "notes": [
       "• Near die Übung; Aufgabe stresses the task itself."
     ],
+    "audio": "/audio/v-die-aufgabe.mp3",
     "examples": [
       {
         "german": "Lesen Sie die Aufgabe 3.",
-        "english": "Read task 3. [formal you]"
+        "english": "Read task 3. [formal you]",
+        "audio": "/audio/v-die-aufgabe-ex01.mp3"
       },
       {
         "german": "Die Hausaufgabe ist eine Aufgabe für zu Hause.",
-        "english": "Homework is a task for home."
+        "english": "Homework is a task for home.",
+        "audio": "/audio/v-die-aufgabe-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -384,6 +418,7 @@
   },
   {
     "head": "die Übung /ˈyːbʊŋ/",
+    "id": "v-die-bung",
     "plural": "-en",
     "gloss": [
       "Exercise; practice (in class or book)."
@@ -391,14 +426,17 @@
     "notes": [
       "• In compounds: Übungsbuch (Fugen-s from genitive der Übung — see das Übungsbuch card)."
     ],
+    "audio": "/audio/v-die-übung.mp3",
     "examples": [
       {
         "german": "Machen Sie die Übung im Buch.",
-        "english": "Do the exercise in the book. [formal you]"
+        "english": "Do the exercise in the book. [formal you]",
+        "audio": "/audio/v-die-übung-ex01.mp3"
       },
       {
         "german": "Übung 2 trainiert die Verben.",
-        "english": "Exercise 2 practises the verbs."
+        "english": "Exercise 2 practises the verbs.",
+        "audio": "/audio/v-die-übung-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -408,19 +446,23 @@
   },
   {
     "head": "die Seite /ˈzaɪ̯tə/",
+    "id": "v-die-seite",
     "plural": "-n",
     "gloss": [
       "Page (of a book)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-seite.mp3",
     "examples": [
       {
         "german": "Öffnen Sie das Buch auf Seite 18.",
-        "english": "Open the book to page 18. [formal you]"
+        "english": "Open the book to page 18. [formal you]",
+        "audio": "/audio/v-die-seite-ex01.mp3"
       },
       {
         "german": "Was steht auf Seite 10?",
-        "english": "What is on page 10?"
+        "english": "What is on page 10?",
+        "audio": "/audio/v-die-seite-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -430,19 +472,23 @@
   },
   {
     "head": "der Dialog /diaˈloːk/",
+    "id": "v-der-dialog",
     "plural": "-e",
     "gloss": [
       "Dialogue (structured spoken text in the book)."
     ],
     "notes": [],
+    "audio": "/audio/v-der-dialog.mp3",
     "examples": [
       {
         "german": "Hören Sie den Dialog und lesen Sie mit.",
-        "english": "Listen to the dialogue and read along. [formal you]"
+        "english": "Listen to the dialogue and read along. [formal you]",
+        "audio": "/audio/v-der-dialog-ex01.mp3"
       },
       {
         "german": "Der Dialog ist in Lektion 1.",
-        "english": "The dialogue is in lesson 1."
+        "english": "The dialogue is in lesson 1.",
+        "audio": "/audio/v-der-dialog-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -452,6 +498,7 @@
   },
   {
     "head": "der Artikel /aʁˈtiːkl̩/",
+    "id": "v-der-artikel",
     "plural": "-",
     "gloss": [
       "Article (grammar); also newspaper article."
@@ -459,14 +506,17 @@
     "notes": [
       "• Kurssprache: der/die/das or ein-words, not only newspaper text."
     ],
+    "audio": "/audio/v-der-artikel.mp3",
     "examples": [
       {
         "german": "Welcher Artikel passt: der, die oder das?",
-        "english": "Which article fits: der, die, or das?"
+        "english": "Which article fits: der, die, or das?",
+        "audio": "/audio/v-der-artikel-ex01.mp3"
       },
       {
         "german": "Lernen wir die Artikel heute.",
-        "english": "We are learning articles today."
+        "english": "We are learning articles today.",
+        "audio": "/audio/v-der-artikel-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -476,19 +526,23 @@
   },
   {
     "head": "der Text /tɛkst/",
+    "id": "v-der-text-t-kst",
     "plural": "-e",
     "gloss": [
       "Text; written passage."
     ],
     "notes": [],
+    "audio": "/audio/v-der-text-tɛkst.mp3",
     "examples": [
       {
         "german": "Lesen Sie den Text laut.",
-        "english": "Read the text aloud. [formal you]"
+        "english": "Read the text aloud. [formal you]",
+        "audio": "/audio/v-der-text-tɛkst-ex01.mp3"
       },
       {
         "german": "Der Text ist auf Deutsch.",
-        "english": "The text is in German."
+        "english": "The text is in German.",
+        "audio": "/audio/v-der-text-tɛkst-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -498,19 +552,23 @@
   },
   {
     "head": "das Wort /vɔʁt/",
+    "id": "v-das-wort",
     "plural": "-¨er",
     "gloss": [
       "Word."
     ],
     "notes": [],
+    "audio": "/audio/v-das-wort.mp3",
     "examples": [
       {
         "german": "Arbeiten Sie mit dem Wörterbuch. Was passt nicht?",
-        "english": "Work with the dictionary. Which word does not fit? [formal you]"
+        "english": "Work with the dictionary. Which word does not fit? [formal you]",
+        "audio": "/audio/v-das-wort-ex01.mp3"
       },
       {
         "german": "Ich lerne zehn neue Wörter.",
-        "english": "I am learning ten new words."
+        "english": "I am learning ten new words.",
+        "audio": "/audio/v-das-wort-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -520,6 +578,7 @@
   },
   {
     "head": "der Kursteilnehmer / die Kursteilnehmerin /ˈkʊʁs.taɪ̯lˌneːmɐ/ /ˈkʊʁs.taɪ̯lˌneːməʁɪn/",
+    "id": "v-der-kursteilnehmer-die-kursteilnehmerin",
     "plural": "- / die Kursteilnehmerin, -nen",
     "gloss": [
       "Course participant; student in the class."
@@ -527,14 +586,17 @@
     "notes": [
       "• Kurs + Teilnehmer. See also der Teilnehmer / die Teilnehmerin."
     ],
+    "audio": "/audio/v-der-kursteilnehmer-die-kursteilnehmerin.mp3",
     "examples": [
       {
         "german": "Die Kursteilnehmer kommen aus vielen Ländern.",
-        "english": "The course participants come from many countries."
+        "english": "The course participants come from many countries.",
+        "audio": "/audio/v-der-kursteilnehmer-die-kursteilnehmerin-ex01.mp3"
       },
       {
         "german": "Sind Sie Kursteilnehmerin?",
-        "english": "Are you a course participant? [formal you, female]"
+        "english": "Are you a course participant? [formal you, female]",
+        "audio": "/audio/v-der-kursteilnehmer-die-kursteilnehmerin-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -544,6 +606,7 @@
   },
   {
     "head": "die Hausaufgabe /ˈhaʊ̯sˌʔaʊ̯fˌɡaːbə/",
+    "id": "v-die-hausaufgabe",
     "plural": "-n",
     "gloss": [
       "Homework."
@@ -551,14 +614,17 @@
     "notes": [
       "• Haus + Aufgabe. Odd one out with Kursleiter/Kursteilnehmer (people)."
     ],
+    "audio": "/audio/v-die-hausaufgabe.mp3",
     "examples": [
       {
         "german": "Machen Sie die Hausaufgabe für morgen.",
-        "english": "Do the homework for tomorrow. [formal you]"
+        "english": "Do the homework for tomorrow. [formal you]",
+        "audio": "/audio/v-die-hausaufgabe-ex01.mp3"
       },
       {
         "german": "Die Hausaufgabe ist Aufgabe 4 im Buch.",
-        "english": "The homework is task 4 in the book."
+        "english": "The homework is task 4 in the book.",
+        "audio": "/audio/v-die-hausaufgabe-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -568,6 +634,7 @@
   },
   {
     "head": "der Kursleiter / die Kursleiterin /ˈkʊʁsˌlaɪ̯tɐ/",
+    "id": "v-der-kursleiter-die-kursleiterin",
     "plural": "- / die Kursleiterin, -nen",
     "gloss": [
       "Course instructor; teacher of the class."
@@ -575,14 +642,17 @@
     "notes": [
       "• Kurs + Leiter (leader). Often the Deutschlehrer/in."
     ],
+    "audio": "/audio/v-der-kursleiter-die-kursleiterin.mp3",
     "examples": [
       {
         "german": "Der Kursleiter erklärt die Grammatik.",
-        "english": "The course instructor explains the grammar."
+        "english": "The course instructor explains the grammar.",
+        "audio": "/audio/v-der-kursleiter-die-kursleiterin-ex01.mp3"
       },
       {
         "german": "Fragen Sie die Kursleiterin.",
-        "english": "Ask the course instructor. [formal you]"
+        "english": "Ask the course instructor. [formal you]",
+        "audio": "/audio/v-der-kursleiter-die-kursleiterin-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-04T12:00:00Z",
@@ -592,19 +662,23 @@
   },
   {
     "head": "das Wörterbuch /ˈvœʁtɐˌbuːx/",
+    "id": "v-das-w-rterbuch",
     "plural": "-¨er",
     "gloss": [
       "Dictionary (word book)."
     ],
     "notes": [],
+    "audio": "/audio/v-das-wörterbuch.mp3",
     "examples": [
       {
         "german": "Das Wörterbuch steht in der Spalte Bücher.",
-        "english": "The dictionary goes in the Books column."
+        "english": "The dictionary goes in the Books column.",
+        "audio": "/audio/v-das-wörterbuch-ex01.mp3"
       },
       {
         "german": "Ich schlage das Wort im Wörterbuch nach.",
-        "english": "I look up the word in the dictionary."
+        "english": "I look up the word in the dictionary.",
+        "audio": "/audio/v-das-wörterbuch-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -614,19 +688,23 @@
   },
   {
     "head": "das Kursbuch /ˈkʊʁsbuːx/",
+    "id": "v-das-kursbuch",
     "plural": "-¨er",
     "gloss": [
       "Coursebook; class textbook."
     ],
     "notes": [],
+    "audio": "/audio/v-das-kursbuch.mp3",
     "examples": [
       {
         "german": "Das Kursbuch steht in der Spalte Bücher.",
-        "english": "The coursebook goes in the Books column."
+        "english": "The coursebook goes in the Books column.",
+        "audio": "/audio/v-das-kursbuch-ex01.mp3"
       },
       {
         "german": "Öffnen Sie das Kursbuch auf Seite 10.",
-        "english": "Open the coursebook to page 10. [formal you]"
+        "english": "Open the coursebook to page 10. [formal you]",
+        "audio": "/audio/v-das-kursbuch-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -636,18 +714,22 @@
   },
   {
     "head": "das Papier /paˈpiːɐ̯/",
+    "id": "v-das-papier",
     "gloss": [
       "Paper (sheets)."
     ],
     "notes": [],
+    "audio": "/audio/v-das-papier.mp3",
     "examples": [
       {
         "german": "Das Papier steht in der Spalte Schreiben.",
-        "english": "Paper goes in the Writing column."
+        "english": "Paper goes in the Writing column.",
+        "audio": "/audio/v-das-papier-ex01.mp3"
       },
       {
         "german": "Ich brauche ein Blatt Papier.",
-        "english": "I need a sheet of paper."
+        "english": "I need a sheet of paper.",
+        "audio": "/audio/v-das-papier-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -657,19 +739,23 @@
   },
   {
     "head": "der Textmarker /ˈtɛkstˌmaʁkɐ/",
+    "id": "v-der-textmarker",
     "plural": "-",
     "gloss": [
       "Highlighter; text marker pen."
     ],
     "notes": [],
+    "audio": "/audio/v-der-textmarker.mp3",
     "examples": [
       {
         "german": "Der Textmarker steht in der Spalte Schreiben.",
-        "english": "The highlighter goes in the Writing column."
+        "english": "The highlighter goes in the Writing column.",
+        "audio": "/audio/v-der-textmarker-ex01.mp3"
       },
       {
         "german": "Markieren Sie die Wörter mit dem Textmarker.",
-        "english": "Highlight the words with the highlighter. [formal you]"
+        "english": "Highlight the words with the highlighter. [formal you]",
+        "audio": "/audio/v-der-textmarker-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -679,6 +765,7 @@
   },
   {
     "head": "der Kugelschreiber /ˈkuːɡl̩ˌʃʁaɪ̯bɐ/",
+    "id": "v-der-kugelschreiber",
     "plural": "-",
     "gloss": [
       "Ballpoint pen."
@@ -686,14 +773,17 @@
     "notes": [
       "• Kugel + Schreiber (ball + writer)."
     ],
+    "audio": "/audio/v-der-kugelschreiber.mp3",
     "examples": [
       {
         "german": "Der Kugelschreiber steht in der Spalte Schreiben.",
-        "english": "The ballpoint pen goes in the Writing column."
+        "english": "The ballpoint pen goes in the Writing column.",
+        "audio": "/audio/v-der-kugelschreiber-ex01.mp3"
       },
       {
         "german": "Schreiben Sie mit dem Kugelschreiber.",
-        "english": "Write with the ballpoint pen. [formal you]"
+        "english": "Write with the ballpoint pen. [formal you]",
+        "audio": "/audio/v-der-kugelschreiber-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -703,19 +793,23 @@
   },
   {
     "head": "der Bleistift /ˈblaɪ̯ʃtɪft/",
+    "id": "v-der-bleistift",
     "plural": "-e",
     "gloss": [
       "Pencil."
     ],
     "notes": [],
+    "audio": "/audio/v-der-bleistift.mp3",
     "examples": [
       {
         "german": "Der Bleistift steht in der Spalte Schreiben.",
-        "english": "The pencil goes in the Writing column."
+        "english": "The pencil goes in the Writing column.",
+        "audio": "/audio/v-der-bleistift-ex01.mp3"
       },
       {
         "german": "Ich schreibe mit dem Bleistift.",
-        "english": "I write with the pencil."
+        "english": "I write with the pencil.",
+        "audio": "/audio/v-der-bleistift-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -725,19 +819,23 @@
   },
   {
     "head": "der Overheadprojektor /ˈoːvɐˌhɛptpʁoˌjɛktoːɐ̯/",
+    "id": "v-der-overheadprojektor",
     "plural": "-en",
     "gloss": [
       "Overhead projector (OHP)."
     ],
     "notes": [],
+    "audio": "/audio/v-der-overheadprojektor.mp3",
     "examples": [
       {
         "german": "Der Overheadprojektor steht in der Spalte Medien.",
-        "english": "The overhead projector goes in the Media column."
+        "english": "The overhead projector goes in the Media column.",
+        "audio": "/audio/v-der-overheadprojektor-ex01.mp3"
       },
       {
         "german": "Der Lehrer benutzt den Overheadprojektor.",
-        "english": "The teacher uses the overhead projector."
+        "english": "The teacher uses the overhead projector.",
+        "audio": "/audio/v-der-overheadprojektor-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -747,19 +845,23 @@
   },
   {
     "head": "der Computer /kɔmˈpuːtɐ/",
+    "id": "v-der-computer",
     "plural": "-",
     "gloss": [
       "Computer."
     ],
     "notes": [],
+    "audio": "/audio/v-der-computer.mp3",
     "examples": [
       {
         "german": "Der Computer steht in der Spalte Medien.",
-        "english": "The computer goes in the Media column."
+        "english": "The computer goes in the Media column.",
+        "audio": "/audio/v-der-computer-ex01.mp3"
       },
       {
         "german": "Der Computer steht auf dem Tisch.",
-        "english": "The computer is on the table."
+        "english": "The computer is on the table.",
+        "audio": "/audio/v-der-computer-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -769,19 +871,23 @@
   },
   {
     "head": "der Fernseher /ˈfɛʁnˌzeːɐ̯/",
+    "id": "v-der-fernseher",
     "plural": "-",
     "gloss": [
       "Television; TV set."
     ],
     "notes": [],
+    "audio": "/audio/v-der-fernseher.mp3",
     "examples": [
       {
         "german": "Der Fernseher steht in der Spalte Medien.",
-        "english": "The TV goes in the Media column."
+        "english": "The TV goes in the Media column.",
+        "audio": "/audio/v-der-fernseher-ex01.mp3"
       },
       {
         "german": "Im Kursraum gibt es einen Fernseher.",
-        "english": "There is a TV in the classroom."
+        "english": "There is a TV in the classroom.",
+        "audio": "/audio/v-der-fernseher-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -791,19 +897,23 @@
   },
   {
     "head": "der DVD-Player /ˈdeːfaʊˌpleːɐ̯/",
+    "id": "v-der-dvd-player",
     "plural": "-",
     "gloss": [
       "DVD player."
     ],
     "notes": [],
+    "audio": "/audio/v-der-dvd-player.mp3",
     "examples": [
       {
         "german": "Der DVD-Player steht in der Spalte Medien.",
-        "english": "The DVD player goes in the Media column."
+        "english": "The DVD player goes in the Media column.",
+        "audio": "/audio/v-der-dvd-player-ex01.mp3"
       },
       {
         "german": "Legen Sie die DVD in den DVD-Player.",
-        "english": "Put the DVD in the DVD player. [formal you]"
+        "english": "Put the DVD in the DVD player. [formal you]",
+        "audio": "/audio/v-der-dvd-player-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -813,19 +923,23 @@
   },
   {
     "head": "die DVD /ˈdeːfaʊ/",
+    "id": "v-die-dvd",
     "plural": "-s",
     "gloss": [
       "DVD (disc)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-dvd.mp3",
     "examples": [
       {
         "german": "Die DVD steht in der Spalte Medien.",
-        "english": "The DVD goes in the Media column."
+        "english": "The DVD goes in the Media column.",
+        "audio": "/audio/v-die-dvd-ex01.mp3"
       },
       {
         "german": "Wir schauen eine DVD im Kurs.",
-        "english": "We watch a DVD in class."
+        "english": "We watch a DVD in class.",
+        "audio": "/audio/v-die-dvd-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -835,19 +949,23 @@
   },
   {
     "head": "der CD-Player /ˈtseːdeːˌpleːɐ̯/",
+    "id": "v-der-cd-player",
     "plural": "-",
     "gloss": [
       "CD player."
     ],
     "notes": [],
+    "audio": "/audio/v-der-cd-player.mp3",
     "examples": [
       {
         "german": "Der CD-Player steht in der Spalte Medien.",
-        "english": "The CD player goes in the Media column."
+        "english": "The CD player goes in the Media column.",
+        "audio": "/audio/v-der-cd-player-ex01.mp3"
       },
       {
         "german": "Der CD-Player steht im Kursraum.",
-        "english": "The CD player is in the classroom."
+        "english": "The CD player is in the classroom.",
+        "audio": "/audio/v-der-cd-player-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -857,19 +975,23 @@
   },
   {
     "head": "die CD /ˈtseːˈdeː/",
+    "id": "v-die-cd",
     "plural": "-s",
     "gloss": [
       "CD (disc)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-cd.mp3",
     "examples": [
       {
         "german": "Die CD steht in der Spalte Medien.",
-        "english": "The CD goes in the Media column."
+        "english": "The CD goes in the Media column.",
+        "audio": "/audio/v-die-cd-ex01.mp3"
       },
       {
         "german": "Hören Sie den Text auf der CD.",
-        "english": "Listen to the text on the CD. [formal you]"
+        "english": "Listen to the text on the CD. [formal you]",
+        "audio": "/audio/v-die-cd-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T20:00:00Z",
@@ -879,6 +1001,7 @@
   },
   {
     "head": "der Raum /ʁaʊm/",
+    "id": "v-der-raum",
     "plural": "-¨e",
     "gloss": [
       "Room; space."
@@ -886,14 +1009,17 @@
     "notes": [
       "• Kursraum = der Kurs + der Raum (classroom)."
     ],
+    "audio": "/audio/v-der-raum.mp3",
     "examples": [
       {
         "german": "Gegenstände im Kursraum: Schreiben Sie die Wörter in die Tabelle.",
-        "english": "Objects in the classroom: Write the words in the table. [formal you]"
+        "english": "Objects in the classroom: Write the words in the table. [formal you]",
+        "audio": "/audio/v-der-raum-ex01.mp3"
       },
       {
         "german": "Der Raum ist groß und hell.",
-        "english": "The room is big and bright."
+        "english": "The room is big and bright.",
+        "audio": "/audio/v-der-raum-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T19:00:00Z",
@@ -903,6 +1029,7 @@
   },
   {
     "head": "der Gegenstand /ˈɡeːɡənˌʃtant/",
+    "id": "v-der-gegenstand",
     "plural": "-¨e",
     "gloss": [
       "Object; item (a physical thing)."
@@ -910,14 +1037,17 @@
     "notes": [
       "• Plural die Gegenstände (umlaut). Textbook: objects in the classroom."
     ],
+    "audio": "/audio/v-der-gegenstand.mp3",
     "examples": [
       {
         "german": "Gegenstände im Kursraum: Schreiben Sie die Wörter in die Tabelle.",
-        "english": "Objects in the classroom: Write the words in the table. [formal you]"
+        "english": "Objects in the classroom: Write the words in the table. [formal you]",
+        "audio": "/audio/v-der-gegenstand-ex01.mp3"
       },
       {
         "german": "Was ist das für ein Gegenstand?",
-        "english": "What kind of object is that?"
+        "english": "What kind of object is that?",
+        "audio": "/audio/v-der-gegenstand-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T19:00:00Z",
@@ -927,19 +1057,23 @@
   },
   {
     "head": "die Strategie /ʃtʁateˈɡiː/",
+    "id": "v-die-strategie",
     "plural": "-n",
     "gloss": [
       "Strategy; planned approach (e.g. for learning)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-strategie.mp3",
     "examples": [
       {
         "german": "Welche Strategie hilft Ihnen beim Lernen?",
-        "english": "Which strategy helps you with learning? [formal you]"
+        "english": "Which strategy helps you with learning? [formal you]",
+        "audio": "/audio/v-die-strategie-ex01.mp3"
       },
       {
         "german": "Eine gute Strategie spart Zeit.",
-        "english": "A good strategy saves time."
+        "english": "A good strategy saves time.",
+        "audio": "/audio/v-die-strategie-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T18:00:00Z",
@@ -949,6 +1083,7 @@
   },
   {
     "head": "der Schlüssel /ˈʃlʏsəl/",
+    "id": "v-der-schl-ssel",
     "plural": "-",
     "gloss": [
       "Key (object); also solution key in exercises."
@@ -956,14 +1091,17 @@
     "notes": [
       "• In Symbole: Was passt? the key icon stands for der Schlüssel (Lösung / Hinweis)."
     ],
+    "audio": "/audio/v-der-schlüssel.mp3",
     "examples": [
       {
         "german": "Im Kursbuch steht ein Schlüssel-Symbol bei den Aufgaben.",
-        "english": "In the coursebook there is a key symbol next to the exercises."
+        "english": "In the coursebook there is a key symbol next to the exercises.",
+        "audio": "/audio/v-der-schlüssel-ex01.mp3"
       },
       {
         "german": "Der Schlüssel liegt auf dem Tisch.",
-        "english": "The key is on the table."
+        "english": "The key is on the table.",
+        "audio": "/audio/v-der-schlüssel-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T18:00:00Z",
@@ -973,6 +1111,7 @@
   },
   {
     "head": "zuordnen /tsuˈʔɔʁdnən/",
+    "id": "v-zuordnen",
     "gloss": [
       "To match; assign (separable: zuordnen → ordnen … zu)."
     ],
@@ -980,14 +1119,17 @@
       "• Imperative: Ordnen Sie zu. Textbook Arbeitsanweisungen 2."
     ],
     "image": "/images/arbeitsanweisungen-2.png",
+    "audio": "/audio/v-zuordnen.mp3",
     "examples": [
       {
         "german": "Arbeitsanweisungen 2: Ordnen Sie zu.",
-        "english": "Work instructions 2: Match them. [formal you]"
+        "english": "Work instructions 2: Match them. [formal you]",
+        "audio": "/audio/v-zuordnen-ex01.mp3"
       },
       {
         "german": "Ordnen Sie die Nummern den Buchstaben zu.",
-        "english": "Match the numbers to the letters. [formal you]"
+        "english": "Match the numbers to the letters. [formal you]",
+        "audio": "/audio/v-zuordnen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-03T16:00:00Z",
@@ -997,20 +1139,24 @@
   },
   {
     "head": "die Arbeitsanweisungen /ˈaʁbaɪ̯tsˌanvaɪ̯zʊŋən/",
+    "id": "v-die-arbeitsanweisungen",
     "gloss": [
       "Work instructions; exercise directions (in the textbook)."
     ],
     "notes": [
       "• Compound: die Arbeit + die Anweisungen. Singular: die Arbeitsanweisung."
     ],
+    "audio": "/audio/v-die-arbeitsanweisungen.mp3",
     "examples": [
       {
         "german": "Arbeitsanweisungen 1: Was passt? Notieren Sie.",
-        "english": "Work instructions 1: What matches? Write it down. [formal you]"
+        "english": "Work instructions 1: What matches? Write it down. [formal you]",
+        "audio": "/audio/v-die-arbeitsanweisungen-ex01.mp3"
       },
       {
         "german": "Lesen Sie die Arbeitsanweisungen.",
-        "english": "Read the work instructions. [formal you]"
+        "english": "Read the work instructions. [formal you]",
+        "audio": "/audio/v-die-arbeitsanweisungen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T20:00:00Z",
@@ -1020,19 +1166,23 @@
   },
   {
     "head": "die Anweisung /anˈvaɪ̯zʊŋ/",
+    "id": "v-die-anweisung",
     "plural": "-en",
     "gloss": [
       "Instruction; direction (what you should do)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-anweisung.mp3",
     "examples": [
       {
         "german": "Arbeitsanweisungen 1: Was passt?",
-        "english": "Work instructions 1: What matches?"
+        "english": "Work instructions 1: What matches?",
+        "audio": "/audio/v-die-anweisung-ex01.mp3"
       },
       {
         "german": "Folgen Sie der Anweisung.",
-        "english": "Follow the instruction. [formal you]"
+        "english": "Follow the instruction. [formal you]",
+        "audio": "/audio/v-die-anweisung-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T20:00:00Z",
@@ -1042,6 +1192,7 @@
   },
   {
     "head": "der Teilnehmer / die Teilnehmerin /ˈtaɪ̯lˌneːmɐ/ /ˈtaɪ̯lˌneːməʁɪn/",
+    "id": "v-der-teilnehmer-die-teilnehmerin",
     "plural": "- / die Teilnehmerin, -nen",
     "gloss": [
       "Participant; course member (male/female)."
@@ -1050,14 +1201,17 @@
       "• Compound: der Teil + der Nehmer (one who takes a part, part-taker). Related verb: teilnehmen.",
       "• Plural die Teilnehmer often covers mixed groups; Teilnehmerinnen = women only."
     ],
+    "audio": "/audio/v-der-teilnehmer-die-teilnehmerin.mp3",
     "examples": [
       {
         "german": "Aus welchen Kontinenten kommen die Teilnehmer und Teilnehmerinnen im Kurs?",
-        "english": "From which continents do the participants in the course come?"
+        "english": "From which continents do the participants in the course come?",
+        "audio": "/audio/v-der-teilnehmer-die-teilnehmerin-ex01.mp3"
       },
       {
         "german": "Die Teilnehmer kommen aus Europa.",
-        "english": "The participants come from Europe."
+        "english": "The participants come from Europe.",
+        "audio": "/audio/v-der-teilnehmer-die-teilnehmerin-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T13:30:00Z",
@@ -1067,6 +1221,7 @@
   },
   {
     "head": "teilnehmen /ˈtaɪ̯lˌneːmən/",
+    "id": "v-teilnehmen",
     "gloss": [
       "To take part; participate."
     ],
@@ -1074,14 +1229,17 @@
       "• Separable verb: Ich nehme an einem Kurs teil. Prefix teil goes to the end.",
       "• Often with an + dative: an einem Kurs teilnehmen."
     ],
+    "audio": "/audio/v-teilnehmen.mp3",
     "examples": [
       {
         "german": "Diesen Winter nehme ich wieder an einem Kurs teil.",
-        "english": "This winter I am taking a course again."
+        "english": "This winter I am taking a course again.",
+        "audio": "/audio/v-teilnehmen-ex01.mp3"
       },
       {
         "german": "Nehmen Sie am Kurs teil?",
-        "english": "Are you taking part in the course? [formal you]"
+        "english": "Are you taking part in the course? [formal you]",
+        "audio": "/audio/v-teilnehmen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T13:30:00Z",
@@ -1091,18 +1249,22 @@
   },
   {
     "head": "zählen /ˈtsɛːlən/",
+    "id": "v-z-hlen",
     "gloss": [
       "To count."
     ],
     "notes": [],
+    "audio": "/audio/v-zählen.mp3",
     "examples": [
       {
         "german": "Zählen Sie.",
-        "english": "Count. [formal you]"
+        "english": "Count. [formal you]",
+        "audio": "/audio/v-zählen-ex01.mp3"
       },
       {
         "german": "Aus welchen Kontinenten kommen die Teilnehmer im Kurs? Zählen Sie.",
-        "english": "From which continents do the participants in the course come? Count. [formal you]"
+        "english": "From which continents do the participants in the course come? Count. [formal you]",
+        "audio": "/audio/v-zählen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T13:30:00Z",
@@ -1112,6 +1274,7 @@
   },
   {
     "head": "der Kontinent /kɔntiˈnɛnt/",
+    "id": "v-der-kontinent",
     "plural": "-e",
     "gloss": [
       "Continent."
@@ -1120,30 +1283,37 @@
       "• Origin with aus + continent (no article): Aus Europa, aus Asien.",
       "• Pattern: Aus Europa kommen 137.000 Studenten. / Die Studenten kommen aus Europa."
     ],
+    "audio": "/audio/v-der-kontinent.mp3",
     "examples": [
       {
         "german": "Woher kommen die Studenten? Sprechen Sie.",
-        "english": "Where do the students come from? Speak. [formal you]"
+        "english": "Where do the students come from? Speak. [formal you]",
+        "audio": "/audio/v-der-kontinent-ex01.mp3"
       },
       {
         "german": "Aus Europa kommen 137.000 Studenten.",
-        "english": "137,000 students come from Europe."
+        "english": "137,000 students come from Europe.",
+        "audio": "/audio/v-der-kontinent-ex02.mp3"
       },
       {
         "german": "Aus Asien kommen 70.000 Studenten.",
-        "english": "70,000 students come from Asia."
+        "english": "70,000 students come from Asia.",
+        "audio": "/audio/v-der-kontinent-ex03.mp3"
       },
       {
         "german": "Aus Afrika kommen 22.000 Studenten.",
-        "english": "22,000 students come from Africa."
+        "english": "22,000 students come from Africa.",
+        "audio": "/audio/v-der-kontinent-ex04.mp3"
       },
       {
         "german": "Aus Amerika kommen 15.000 Studenten.",
-        "english": "15,000 students come from the Americas."
+        "english": "15,000 students come from the Americas.",
+        "audio": "/audio/v-der-kontinent-ex05.mp3"
       },
       {
         "german": "Aus Australien kommen 500 Studenten.",
-        "english": "500 students come from Australia."
+        "english": "500 students come from Australia.",
+        "audio": "/audio/v-der-kontinent-ex06.mp3"
       }
     ],
     "createdAt": "2026-06-02T13:00:00Z",
@@ -1153,6 +1323,7 @@
   },
   {
     "head": "der Student /ʃtuˈdɛnt/",
+    "id": "v-der-student",
     "plural": "-en",
     "gloss": [
       "Student (male); student (generic plural Studenten)."
@@ -1160,14 +1331,17 @@
     "notes": [
       "• die Studentin = female student. Plural die Studenten covers mixed groups."
     ],
+    "audio": "/audio/v-der-student.mp3",
     "examples": [
       {
         "german": "Woher kommen die Studenten?",
-        "english": "Where do the students come from?"
+        "english": "Where do the students come from?",
+        "audio": "/audio/v-der-student-ex01.mp3"
       },
       {
         "german": "Studenten aus der ganzen Welt",
-        "english": "students from all over the world"
+        "english": "students from all over the world",
+        "audio": "/audio/v-der-student-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T13:00:00Z",
@@ -1177,6 +1351,7 @@
   },
   {
     "head": "vorstellen /foːɐ̯ˈʃtɛlən/",
+    "id": "v-vorstellen",
     "gloss": [
       "To introduce (someone); to present."
     ],
@@ -1184,14 +1359,17 @@
       "• Separable verb: stellen ... vor. In commands with Sie: Stellen Sie ... vor.",
       "• Contrast with sich vorstellen: introduce yourself."
     ],
+    "audio": "/audio/v-vorstellen.mp3",
     "examples": [
       {
         "german": "Stellen Sie Ihren Partner dem anderen Team vor.",
-        "english": "Introduce your partner to the other team. [formal you]"
+        "english": "Introduce your partner to the other team. [formal you]",
+        "audio": "/audio/v-vorstellen-ex01.mp3"
       },
       {
         "german": "Ich stelle meine Partnerin vor.",
-        "english": "I introduce my partner."
+        "english": "I introduce my partner.",
+        "audio": "/audio/v-vorstellen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T12:10:00Z",
@@ -1201,19 +1379,23 @@
   },
   {
     "head": "die Gruppe /ˈɡʁʊpə/",
+    "id": "v-die-gruppe",
     "plural": "-n",
     "gloss": [
       "Group."
     ],
     "notes": [],
+    "audio": "/audio/v-die-gruppe.mp3",
     "examples": [
       {
         "german": "Arbeiten Sie in Gruppen mit vier Personen.",
-        "english": "Work in groups of four people. [formal you]"
+        "english": "Work in groups of four people. [formal you]",
+        "audio": "/audio/v-die-gruppe-ex01.mp3"
       },
       {
         "german": "Wir arbeiten in einer Gruppe.",
-        "english": "We work in a group."
+        "english": "We work in a group.",
+        "audio": "/audio/v-die-gruppe-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T12:10:00Z",
@@ -1223,19 +1405,23 @@
   },
   {
     "head": "das Team /tiːm/",
+    "id": "v-das-team",
     "plural": "-s",
     "gloss": [
       "Team."
     ],
     "notes": [],
+    "audio": "/audio/v-das-team.mp3",
     "examples": [
       {
         "german": "Zwei Personen sind ein Team.",
-        "english": "Two people are one team."
+        "english": "Two people are one team.",
+        "audio": "/audio/v-das-team-ex01.mp3"
       },
       {
         "german": "Das andere Team stellt seinen Partner vor.",
-        "english": "The other team introduces its partner."
+        "english": "The other team introduces its partner.",
+        "audio": "/audio/v-das-team-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T12:10:00Z",
@@ -1245,20 +1431,24 @@
   },
   {
     "head": "Auf Wiedersehen! /aʊf ˈviːdɐˌzeːən/",
+    "id": "v-auf-wiedersehen",
     "gloss": [
       "Goodbye (in person)."
     ],
     "notes": [
       "• In-person farewell; on the phone use Auf Wiederhören."
     ],
+    "audio": "/audio/v-auf-wiedersehen.mp3",
     "examples": [
       {
         "german": "Freut mich. Auf Wiedersehen.",
-        "english": "Nice to meet you. Goodbye."
+        "english": "Nice to meet you. Goodbye.",
+        "audio": "/audio/v-auf-wiedersehen-ex01.mp3"
       },
       {
         "german": "Auf Wiedersehen. Tschüss.",
-        "english": "Goodbye. Bye."
+        "english": "Goodbye. Bye.",
+        "audio": "/audio/v-auf-wiedersehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T12:10:00Z",
@@ -1268,6 +1458,7 @@
   },
   {
     "head": "das Heft /hɛft/",
+    "id": "v-das-heft-h-ft",
     "plural": "-e",
     "gloss": [
       "Notebook; exercise book."
@@ -1276,14 +1467,17 @@
       "• In classroom instructions, in Ihr Heft means write it in your notebook (not in the textbook)."
     ],
     "image": "/images/heft-form.png",
+    "audio": "/audio/v-das-heft-hɛft.mp3",
     "examples": [
       {
         "german": "Schreiben Sie das Formular von 3a in Ihr Heft.",
-        "english": "Write the form from 3a in your notebook. [formal you]"
+        "english": "Write the form from 3a in your notebook. [formal you]",
+        "audio": "/audio/v-das-heft-hɛft-ex01.mp3"
       },
       {
         "german": "Ich schreibe die neuen Wörter in mein Heft.",
-        "english": "I write the new words in my notebook."
+        "english": "I write the new words in my notebook.",
+        "audio": "/audio/v-das-heft-hɛft-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:55:00Z",
@@ -1293,20 +1487,24 @@
   },
   {
     "head": "wer /veːɐ̯/",
+    "id": "v-wer",
     "gloss": [
       "Who?"
     ],
     "notes": [
       "• Question word for persons: Wer bist du? / Wer sind Sie?"
     ],
+    "audio": "/audio/v-wer.mp3",
     "examples": [
       {
         "german": "Wer bin ich? Wer bist du?",
-        "english": "Who am I? Who are you?"
+        "english": "Who am I? Who are you?",
+        "audio": "/audio/v-wer-ex01.mp3"
       },
       {
         "german": "Wer ist das?",
-        "english": "Who is that?"
+        "english": "Who is that?",
+        "audio": "/audio/v-wer-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:45:00Z",
@@ -1316,20 +1514,24 @@
   },
   {
     "head": "ergänzen /ɛʁˈɡɛntsən/",
+    "id": "v-erg-nzen",
     "gloss": [
       "To complete; fill in."
     ],
     "notes": [
       "• Common classroom/form instruction: Ergänzen Sie ... = Complete / fill in ..."
     ],
+    "audio": "/audio/v-ergänzen.mp3",
     "examples": [
       {
         "german": "Ergänzen Sie das Formular mit Ihren Informationen.",
-        "english": "Complete the form with your information. [formal you]"
+        "english": "Complete the form with your information. [formal you]",
+        "audio": "/audio/v-ergänzen-ex01.mp3"
       },
       {
         "german": "Ergänzen Sie die Sätze.",
-        "english": "Complete the sentences. [formal you]"
+        "english": "Complete the sentences. [formal you]",
+        "audio": "/audio/v-ergänzen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:45:00Z",
@@ -1339,19 +1541,23 @@
   },
   {
     "head": "das Formular /fɔʁmuˈlaːɐ̯/",
+    "id": "v-das-formular",
     "plural": "-e",
     "gloss": [
       "Form (document)."
     ],
     "notes": [],
+    "audio": "/audio/v-das-formular.mp3",
     "examples": [
       {
         "german": "Ergänzen Sie das Formular mit Ihren Informationen.",
-        "english": "Complete the form with your information. [formal you]"
+        "english": "Complete the form with your information. [formal you]",
+        "audio": "/audio/v-das-formular-ex01.mp3"
       },
       {
         "german": "Das Formular ist auf Seite 10.",
-        "english": "The form is on page 10."
+        "english": "The form is on page 10.",
+        "audio": "/audio/v-das-formular-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:45:00Z",
@@ -1361,6 +1567,7 @@
   },
   {
     "head": "die Information /ɪnfɔʁmaˈtsi̯oːn/",
+    "id": "v-die-information",
     "plural": "-en",
     "gloss": [
       "Information; piece of information."
@@ -1368,14 +1575,17 @@
     "notes": [
       "• In mit Ihren Informationen, mit takes dative plural."
     ],
+    "audio": "/audio/v-die-information.mp3",
     "examples": [
       {
         "german": "Ergänzen Sie das Formular mit Ihren Informationen.",
-        "english": "Complete the form with your information. [formal you]"
+        "english": "Complete the form with your information. [formal you]",
+        "audio": "/audio/v-die-information-ex01.mp3"
       },
       {
         "german": "Ich brauche noch Informationen.",
-        "english": "I still need information."
+        "english": "I still need information.",
+        "audio": "/audio/v-die-information-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:45:00Z",
@@ -1385,20 +1595,24 @@
   },
   {
     "head": "das Alphabet /alfaˈbeːt/",
+    "id": "v-das-alphabet",
     "plural": "-e",
     "gloss": [
       "Alphabet."
     ],
     "notes": [],
     "image": "/images/das-alphabet.png",
+    "audio": "/audio/v-das-alphabet.mp3",
     "examples": [
       {
         "german": "Das Alphabet hat 26 Buchstaben.",
-        "english": "The alphabet has 26 letters."
+        "english": "The alphabet has 26 letters.",
+        "audio": "/audio/v-das-alphabet-ex01.mp3"
       },
       {
         "german": "Wir lernen heute das deutsche Alphabet.",
-        "english": "Today we are learning the German alphabet."
+        "english": "Today we are learning the German alphabet.",
+        "audio": "/audio/v-das-alphabet-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:20:00Z",
@@ -1408,19 +1622,23 @@
   },
   {
     "head": "der Buchstabe /ˈbuːxʃtaːbə/",
+    "id": "v-der-buchstabe",
     "plural": "-n",
     "gloss": [
       "Letter (of the alphabet)."
     ],
     "notes": [],
+    "audio": "/audio/v-der-buchstabe.mp3",
     "examples": [
       {
         "german": "Hören Sie die Buchstaben und sprechen Sie mit.",
-        "english": "Listen to the letters and repeat along. [formal you]"
+        "english": "Listen to the letters and repeat along. [formal you]",
+        "audio": "/audio/v-der-buchstabe-ex01.mp3"
       },
       {
         "german": "Sprechen Sie die Buchstaben in 2a.",
-        "english": "Say the letters in 2a. [formal you]"
+        "english": "Say the letters in 2a. [formal you]",
+        "audio": "/audio/v-der-buchstabe-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:20:00Z",
@@ -1430,20 +1648,24 @@
   },
   {
     "head": "sprechen /ˈʃpʁɛçən/",
+    "id": "v-sprechen",
     "gloss": [
       "To speak; talk."
     ],
     "notes": [
       "• sprechen Sie is the formal/plural imperative: Speak / Say ..."
     ],
+    "audio": "/audio/v-sprechen.mp3",
     "examples": [
       {
         "german": "Sprechen Sie die Buchstaben in 2a.",
-        "english": "Say the letters in 2a. [formal you]"
+        "english": "Say the letters in 2a. [formal you]",
+        "audio": "/audio/v-sprechen-ex01.mp3"
       },
       {
         "german": "Wir sprechen im Kurs Deutsch.",
-        "english": "We speak German in class."
+        "english": "We speak German in class.",
+        "audio": "/audio/v-sprechen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:20:00Z",
@@ -1453,20 +1675,24 @@
   },
   {
     "head": "mitsprechen /ˈmɪtˌʃpʁɛçən/",
+    "id": "v-mitsprechen",
     "gloss": [
       "To speak along; repeat along."
     ],
     "notes": [
       "• Separable verb: mit + sprechen. In imperative with Sie: Sprechen Sie mit."
     ],
+    "audio": "/audio/v-mitsprechen.mp3",
     "examples": [
       {
         "german": "Hören Sie die Buchstaben und sprechen Sie mit.",
-        "english": "Listen to the letters and repeat along. [formal you]"
+        "english": "Listen to the letters and repeat along. [formal you]",
+        "audio": "/audio/v-mitsprechen-ex01.mp3"
       },
       {
         "german": "Sprechen Sie bitte laut mit.",
-        "english": "Please repeat along loudly. [formal you]"
+        "english": "Please repeat along loudly. [formal you]",
+        "audio": "/audio/v-mitsprechen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:20:00Z",
@@ -1476,18 +1702,22 @@
   },
   {
     "head": "buchstabieren /buχʃtaˈbiːʁən/",
+    "id": "v-buchstabieren",
     "gloss": [
       "To spell (out)."
     ],
     "notes": [],
+    "audio": "/audio/v-buchstabieren.mp3",
     "examples": [
       {
         "german": "Buchstabieren Sie Ihren Namen.",
-        "english": "Spell your name. [formal you]"
+        "english": "Spell your name. [formal you]",
+        "audio": "/audio/v-buchstabieren-ex01.mp3"
       },
       {
         "german": "Wie buchstabiert man „Rodriguez“?",
-        "english": "How do you spell \"Rodriguez\"?"
+        "english": "How do you spell \"Rodriguez\"?",
+        "audio": "/audio/v-buchstabieren-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T11:20:00Z",
@@ -1497,20 +1727,24 @@
   },
   {
     "head": "enden /ˈɛndn̩/",
+    "id": "v-enden",
     "gloss": [
       "To end; finish."
     ],
     "notes": [
       "• In Sprachen enden ... auf -isch, enden takes auf to mark the ending pattern."
     ],
+    "audio": "/audio/v-enden.mp3",
     "examples": [
       {
         "german": "Sprachen enden fast immer auf -isch.",
-        "english": "Languages almost always end in -isch."
+        "english": "Languages almost always end in -isch.",
+        "audio": "/audio/v-enden-ex01.mp3"
       },
       {
         "german": "Der Kurs endet um 18 Uhr.",
-        "english": "The course ends at 6 p.m."
+        "english": "The course ends at 6 p.m.",
+        "audio": "/audio/v-enden-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T08:45:00Z",
@@ -1520,18 +1754,22 @@
   },
   {
     "head": "fast /fast/",
+    "id": "v-fast-fast",
     "gloss": [
       "Almost; nearly."
     ],
     "notes": [],
+    "audio": "/audio/v-fast-fast.mp3",
     "examples": [
       {
         "german": "Sprachen enden fast immer auf -isch.",
-        "english": "Languages almost always end in -isch."
+        "english": "Languages almost always end in -isch.",
+        "audio": "/audio/v-fast-fast-ex01.mp3"
       },
       {
         "german": "Ich bin fast fertig.",
-        "english": "I am almost finished."
+        "english": "I am almost finished.",
+        "audio": "/audio/v-fast-fast-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T08:45:00Z",
@@ -1541,18 +1779,22 @@
   },
   {
     "head": "immer /ˈɪmɐ/",
+    "id": "v-immer",
     "gloss": [
       "Always."
     ],
     "notes": [],
+    "audio": "/audio/v-immer.mp3",
     "examples": [
       {
         "german": "Sprachen enden fast immer auf -isch.",
-        "english": "Languages almost always end in -isch."
+        "english": "Languages almost always end in -isch.",
+        "audio": "/audio/v-immer-ex01.mp3"
       },
       {
         "german": "Er kommt immer pünktlich.",
-        "english": "He always comes on time."
+        "english": "He always comes on time.",
+        "audio": "/audio/v-immer-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T08:45:00Z",
@@ -1562,6 +1804,7 @@
   },
   {
     "head": "gern geschehen /ɡɛʁn ɡəˈʃeːən/",
+    "id": "v-gern-geschehen",
     "gloss": [
       "You're welcome; my pleasure."
     ],
@@ -1570,14 +1813,17 @@
       "• gern = gladly; geschehen = to happen — literally it happened gladly, i.e. I was glad to do it.",
       "• gern is already in the deck; here it combines with geschehen as one set phrase."
     ],
+    "audio": "/audio/v-gern-geschehen.mp3",
     "examples": [
       {
         "german": "Bitte, gern geschehen.",
-        "english": "You're welcome. / My pleasure."
+        "english": "You're welcome. / My pleasure.",
+        "audio": "/audio/v-gern-geschehen-ex01.mp3"
       },
       {
         "german": "Gern geschehen!",
-        "english": "My pleasure!"
+        "english": "My pleasure!",
+        "audio": "/audio/v-gern-geschehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-23T22:00:00Z",
@@ -1587,6 +1833,7 @@
   },
   {
     "head": "vielen Dank /ˈfiːlən ˈdaŋk/",
+    "id": "v-vielen-dank",
     "gloss": [
       "Thank you very much."
     ],
@@ -1595,14 +1842,17 @@
       "• vielen is dative of viel (much). With abstract nouns like Dank, Spaß, Glück, viel often takes dative: vielen Dank, viel Spaß, viel Glück.",
       "• Same word family as Danke, but fuller and slightly more formal; typical at the end of a phone call."
     ],
+    "audio": "/audio/v-vielen-dank.mp3",
     "examples": [
       {
         "german": "Vielen Dank.",
-        "english": "Thank you very much."
+        "english": "Thank you very much.",
+        "audio": "/audio/v-vielen-dank-ex01.mp3"
       },
       {
         "german": "Vielen Dank. Auf Wiederhören.",
-        "english": "Thank you very much. Goodbye. [on the phone]"
+        "english": "Thank you very much. Goodbye. [on the phone]",
+        "audio": "/audio/v-vielen-dank-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-23T21:00:00Z",
@@ -1612,6 +1862,7 @@
   },
   {
     "head": "Auf Wiederhören! /aʊf ˈviːdɐˌhøːʁən/",
+    "id": "v-auf-wiederh-ren",
     "gloss": [
       "Goodbye on the phone."
     ],
@@ -1619,14 +1870,17 @@
       "• Phone goodbye only; in person use Auf Wiedersehen.",
       "• auf + accusative: until the next time; wieder + hören: hear (each other) again."
     ],
+    "audio": "/audio/v-auf-wiederhören.mp3",
     "examples": [
       {
         "german": "Vielen Dank. Auf Wiederhören.",
-        "english": "Thank you very much. Goodbye. [on the phone]"
+        "english": "Thank you very much. Goodbye. [on the phone]",
+        "audio": "/audio/v-auf-wiederhören-ex01.mp3"
       },
       {
         "german": "Auf Wiederhören!",
-        "english": "Goodbye! [on the phone]"
+        "english": "Goodbye! [on the phone]",
+        "audio": "/audio/v-auf-wiederhören-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-23T21:00:00Z",
@@ -1636,6 +1890,7 @@
   },
   {
     "head": "der Wohnort /ˈvoːnˌɔʁt/",
+    "id": "v-der-wohnort",
     "plural": "-e",
     "gloss": [
       "Place of residence; city or town where someone lives."
@@ -1645,18 +1900,22 @@
       "• On forms like der Personalbogen, Wohnort is usually the city or town, not the full street address.",
       "• Compare Wo wohnen Sie? (where do you live?) with Wie ist Ihr Wohnort? (what is your place of residence?)."
     ],
+    "audio": "/audio/v-der-wohnort.mp3",
     "examples": [
       {
         "german": "Wie ist Ihr Wohnort?",
-        "english": "What is your place of residence? [formal you]"
+        "english": "What is your place of residence? [formal you]",
+        "audio": "/audio/v-der-wohnort-ex01.mp3"
       },
       {
         "german": "Mein Wohnort ist Mannheim.",
-        "english": "My place of residence is Mannheim."
+        "english": "My place of residence is Mannheim.",
+        "audio": "/audio/v-der-wohnort-ex02.mp3"
       },
       {
         "german": "Der Wohnort steht im Personalbogen.",
-        "english": "The place of residence is on the personal information form."
+        "english": "The place of residence is on the personal information form.",
+        "audio": "/audio/v-der-wohnort-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-23T20:00:00Z",
@@ -1666,6 +1925,7 @@
   },
   {
     "head": "E-Mail-Adressen sprechen /ˈiːmeːl aˌdʁɛsn̩ ˈʃpʁɛçən/",
+    "id": "v-e-mail-adressen-sprechen",
     "gloss": [
       "How to say email symbols aloud."
     ],
@@ -1674,14 +1934,17 @@
       "• Use this pattern when dictating an address on the phone."
     ],
     "image": "/images/email-tip.png",
+    "audio": "/audio/v-e-mail-adressen-sprechen.mp3",
     "examples": [
       {
         "german": "carlos punkt rodriguez at techno minus design punkt de",
-        "english": "carlos.rodriguez@techno-design.de (spoken form)"
+        "english": "carlos.rodriguez@techno-design.de (spoken form)",
+        "audio": "/audio/v-e-mail-adressen-sprechen-ex01.mp3"
       },
       {
         "german": "anna Unterstrich meier at firma punkt de",
-        "english": "anna_meier@firma.de (spoken form)"
+        "english": "anna_meier@firma.de (spoken form)",
+        "audio": "/audio/v-e-mail-adressen-sprechen-ex02.mp3"
       }
     ],
     "createdAt": "2026-06-02T12:35:00Z",
@@ -1691,6 +1954,7 @@
   },
   {
     "head": "die E-Mail-Adresse /ˈiːmeːl aˈdʁɛsə/",
+    "id": "v-die-e-mail-adresse",
     "plural": "-n",
     "gloss": [
       "Email address."
@@ -1700,18 +1964,22 @@
       "• Hyphens mark the borrowed chunk E-Mail (English import); native pairs like Postadresse are one word.",
       "• Informal shorthand: Mail-Adresse; Duden standard for the thing itself is E-Mail."
     ],
+    "audio": "/audio/v-die-e-mail-adresse.mp3",
     "examples": [
       {
         "german": "Wie ist Ihre E-Mail-Adresse?",
-        "english": "What is your email address? [formal you]"
+        "english": "What is your email address? [formal you]",
+        "audio": "/audio/v-die-e-mail-adresse-ex01.mp3"
       },
       {
         "german": "Wie schreibt man „carlos.rodriguez@technodesign.de“?",
-        "english": "How do you spell \"carlos.rodriguez@technodesign.de\"?"
+        "english": "How do you spell \"carlos.rodriguez@technodesign.de\"?",
+        "audio": "/audio/v-die-e-mail-adresse-ex02.mp3"
       },
       {
         "german": "Meine E-Mail-Adresse steht im Personalbogen.",
-        "english": "My email address is on the personal information form."
+        "english": "My email address is on the personal information form.",
+        "audio": "/audio/v-die-e-mail-adresse-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-23T19:00:00Z",
@@ -1721,14 +1989,17 @@
   },
   {
     "head": "genau /ɡəˈnaʊ̯/",
+    "id": "v-genau",
     "gloss": [
       "Exactly; that's right."
     ],
     "notes": [],
+    "audio": "/audio/v-genau.mp3",
     "examples": [
       {
         "german": "Also Telefon: 0621 / 34421. Ja, genau.",
-        "english": "So the phone number is 0621 / 34421. Yes, exactly."
+        "english": "So the phone number is 0621 / 34421. Yes, exactly.",
+        "audio": "/audio/v-genau-ex01.mp3"
       }
     ],
     "createdAt": "2026-05-23T18:00:00Z",
@@ -1738,19 +2009,23 @@
   },
   {
     "head": "die Postleitzahl /ˈpɔstlaɪ̯tˌtsaːl/",
+    "id": "v-die-postleitzahl",
     "plural": "-n",
     "gloss": [
       "Postal code; ZIP code."
     ],
     "notes": [],
+    "audio": "/audio/v-die-postleitzahl.mp3",
     "examples": [
       {
         "german": "Wie ist Ihre Postleitzahl?",
-        "english": "What is your postal code? [formal you]"
+        "english": "What is your postal code? [formal you]",
+        "audio": "/audio/v-die-postleitzahl-ex01.mp3"
       },
       {
         "german": "Meine Postleitzahl ist 80331.",
-        "english": "My postal code is 80331."
+        "english": "My postal code is 80331.",
+        "audio": "/audio/v-die-postleitzahl-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-23T16:00:00Z",
@@ -1760,6 +2035,7 @@
   },
   {
     "head": "die Muttersprache /ˈmʊtɐˌʃpʁaːxə/",
+    "id": "v-die-muttersprache",
     "plural": "-n",
     "gloss": [
       "Native language; mother tongue."
@@ -1767,10 +2043,12 @@
     "notes": [
       "• Compound noun: die Mutter + die Sprache. The last noun decides the gender: die Sprache → die Muttersprache."
     ],
+    "audio": "/audio/v-die-muttersprache.mp3",
     "examples": [
       {
         "german": "Danke. Und welche Sprachen sprechen Sie? Meine Muttersprache ist Spanisch und dann spreche ich noch Deutsch und Englisch.",
-        "english": "Thank you. And which languages do you speak? My native language is Spanish, and I also speak German and English. [formal you]"
+        "english": "Thank you. And which languages do you speak? My native language is Spanish, and I also speak German and English. [formal you]",
+        "audio": "/audio/v-die-muttersprache-ex01.mp3"
       }
     ],
     "createdAt": "2026-05-23T15:00:00Z",
@@ -1780,22 +2058,27 @@
   },
   {
     "head": "brauchen /ˈbʁaʊ̯xən/",
+    "id": "v-brauchen",
     "gloss": [
       "To need."
     ],
     "notes": [],
+    "audio": "/audio/v-brauchen.mp3",
     "examples": [
       {
         "german": "Ich brauche noch Informationen für den Personalbogen.",
-        "english": "I still need information for the personal information form."
+        "english": "I still need information for the personal information form.",
+        "audio": "/audio/v-brauchen-ex01.mp3"
       },
       {
         "german": "Ich brauche Hilfe.",
-        "english": "I need help."
+        "english": "I need help.",
+        "audio": "/audio/v-brauchen-ex02.mp3"
       },
       {
         "german": "Brauchen Sie etwas?",
-        "english": "Do you need something? [formal you]"
+        "english": "Do you need something? [formal you]",
+        "audio": "/audio/v-brauchen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-23T14:00:00Z",
@@ -1805,15 +2088,18 @@
   },
   {
     "head": "der Herr /hɛʁ/",
+    "id": "v-der-herr",
     "plural": "-en",
     "gloss": [
       "Mr. before a surname."
     ],
     "notes": [],
+    "audio": "/audio/v-der-herr.mp3",
     "examples": [
       {
         "german": "Guten Tag Herr Rodriguez. Hier: Jung, Techno Design, Personalbüro. Wie schreibt man bitte “Rodriguez”?",
-        "english": "Good day, Mr. Rodriguez. Here: Jung, Techno Design, personnel office. How do you write “Rodriguez” please?"
+        "english": "Good day, Mr. Rodriguez. Here: Jung, Techno Design, personnel office. How do you write “Rodriguez” please?",
+        "audio": "/audio/v-der-herr-ex01.mp3"
       }
     ],
     "createdAt": "2026-05-23T12:00:00Z",
@@ -1823,6 +2109,7 @@
   },
   {
     "head": "das Telefongespräch /teˈlefoːnɡəˌʃpʁɛːç/",
+    "id": "v-das-telefongespr-ch",
     "plural": "-e",
     "gloss": [
       "Telephone conversation; phone call."
@@ -1830,18 +2117,22 @@
     "notes": [
       "• Compound noun: das Telefon + das Gespräch. The last noun decides the gender: das Gespräch → das Telefongespräch."
     ],
+    "audio": "/audio/v-das-telefongespräch.mp3",
     "examples": [
       {
         "german": "Hören Sie das Telefongespräch.",
-        "english": "Listen to the telephone conversation. [formal you]"
+        "english": "Listen to the telephone conversation. [formal you]",
+        "audio": "/audio/v-das-telefongespräch-ex01.mp3"
       },
       {
         "german": "Hören Sie das Telefongespräch und ergänzen Sie den Personalbogen.",
-        "english": "Listen to the phone call and complete the personal information form."
+        "english": "Listen to the phone call and complete the personal information form.",
+        "audio": "/audio/v-das-telefongespräch-ex02.mp3"
       },
       {
         "german": "Das Telefongespräch ist kurz.",
-        "english": "The phone call is short."
+        "english": "The phone call is short.",
+        "audio": "/audio/v-das-telefongespräch-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T13:28:00Z",
@@ -1851,6 +2142,7 @@
   },
   {
     "head": "korrigieren /kɔʁiˈɡiːʁən/",
+    "id": "v-korrigieren",
     "gloss": [
       "To correct."
     ],
@@ -1858,18 +2150,22 @@
       "• Formal command: Korrigieren Sie ... = Correct ...; verb first, Sie capitalized.",
       "• The thing corrected is accusative: den Personalbogen, die Antwort, die Sätze."
     ],
+    "audio": "/audio/v-korrigieren.mp3",
     "examples": [
       {
         "german": "Korrigieren Sie den Personalbogen.",
-        "english": "Correct the personal information form. [formal you]"
+        "english": "Correct the personal information form. [formal you]",
+        "audio": "/audio/v-korrigieren-ex01.mp3"
       },
       {
         "german": "Hören Sie das Telefongespräch. Korrigieren und ergänzen Sie den Personalbogen.",
-        "english": "Listen to the phone call. Correct and complete the personal information form."
+        "english": "Listen to the phone call. Correct and complete the personal information form.",
+        "audio": "/audio/v-korrigieren-ex02.mp3"
       },
       {
         "german": "Korrigieren Sie die Antwort.",
-        "english": "Correct the answer. [formal you]"
+        "english": "Correct the answer. [formal you]",
+        "audio": "/audio/v-korrigieren-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T13:28:00Z",
@@ -1879,6 +2175,7 @@
   },
   {
     "head": "der Personalbogen /pɛʁzoˈnaːlˌboːɡn̩/",
+    "id": "v-der-personalbogen",
     "plural": "-bögen",
     "gloss": [
       "Personal information form."
@@ -1887,18 +2184,22 @@
       "• Compound noun: Personal = personal/personnel; der Bogen = sheet/form. The last noun decides the gender: der Bogen → der Personalbogen.",
       "• Usually a form for name, address, phone number, nationality, and other personal details."
     ],
+    "audio": "/audio/v-der-personalbogen.mp3",
     "examples": [
       {
         "german": "Füllen Sie den Personalbogen aus.",
-        "english": "Fill out the personal information form. [formal you]"
+        "english": "Fill out the personal information form. [formal you]",
+        "audio": "/audio/v-der-personalbogen-ex01.mp3"
       },
       {
         "german": "Schreiben Sie Ihre Telefonnummer in den Personalbogen.",
-        "english": "Write your phone number in the personal information form. [formal you]"
+        "english": "Write your phone number in the personal information form. [formal you]",
+        "audio": "/audio/v-der-personalbogen-ex02.mp3"
       },
       {
         "german": "Der Personalbogen fragt nach Name und Adresse.",
-        "english": "The personal information form asks for name and address."
+        "english": "The personal information form asks for name and address.",
+        "audio": "/audio/v-der-personalbogen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T13:24:00Z",
@@ -1908,6 +2209,7 @@
   },
   {
     "head": "die Bürokratie /byʁokʁaˈtiː/",
+    "id": "v-die-b-rokratie",
     "plural": "-n",
     "gloss": [
       "Bureaucracy; administration and paperwork."
@@ -1915,18 +2217,22 @@
     "notes": [
       "• Correct spelling: Bürokratie, not Burokrative. It has ü and ends in -ie."
     ],
+    "audio": "/audio/v-die-bürokratie.mp3",
     "examples": [
       {
         "german": "Bürokratie von A bis Z",
-        "english": "Bureaucracy from A to Z."
+        "english": "Bureaucracy from A to Z.",
+        "audio": "/audio/v-die-bürokratie-ex01.mp3"
       },
       {
         "german": "Die Bürokratie in Deutschland ist manchmal kompliziert.",
-        "english": "The bureaucracy in Germany is sometimes complicated."
+        "english": "The bureaucracy in Germany is sometimes complicated.",
+        "audio": "/audio/v-die-bürokratie-ex02.mp3"
       },
       {
         "german": "Wir lernen Wörter zur Bürokratie.",
-        "english": "We are learning words about bureaucracy."
+        "english": "We are learning words about bureaucracy.",
+        "audio": "/audio/v-die-bürokratie-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T13:21:00Z",
@@ -1936,6 +2242,7 @@
   },
   {
     "head": "von A bis Z /fɔn aː bɪs tsɛt/",
+    "id": "v-von-a-bis-z-f-n-a-b-s-ts-t",
     "gloss": [
       "From A to Z; completely, start to finish."
     ],
@@ -1943,18 +2250,22 @@
       "• Fixed phrase: von ... bis ... = from ... to/until ...",
       "• German says Z as zett. Von A bis Z means the whole topic, from beginning to end."
     ],
+    "audio": "/audio/v-von-a-bis-z-fɔn-aː-bɪs-tsɛt.mp3",
     "examples": [
       {
         "german": "Bürokratie von A bis Z",
-        "english": "Bureaucracy from A to Z."
+        "english": "Bureaucracy from A to Z.",
+        "audio": "/audio/v-von-a-bis-z-fɔn-aː-bɪs-tsɛt-ex01.mp3"
       },
       {
         "german": "Deutsch von A bis Z",
-        "english": "German from A to Z."
+        "english": "German from A to Z.",
+        "audio": "/audio/v-von-a-bis-z-fɔn-aː-bɪs-tsɛt-ex02.mp3"
       },
       {
         "german": "Wir erklären das Thema von A bis Z.",
-        "english": "We explain the topic from start to finish."
+        "english": "We explain the topic from start to finish.",
+        "audio": "/audio/v-von-a-bis-z-fɔn-aː-bɪs-tsɛt-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T13:21:00Z",
@@ -1964,6 +2275,7 @@
   },
   {
     "head": "tauschen /ˈtaʊ̯ʃən/",
+    "id": "v-tauschen",
     "gloss": [
       "To exchange; swap."
     ],
@@ -1971,22 +2283,27 @@
       "• Formal command: Tauschen Sie ... = Exchange ... / Swap ...; verb first, Sie capitalized.",
       "• With tauschen, the thing exchanged is accusative. For plural nouns, nominative and accusative look the same: die ... stays die ...."
     ],
+    "audio": "/audio/v-tauschen.mp3",
     "examples": [
       {
         "german": "Tauschen Sie die Notizzettel im Kurs.",
-        "english": "Exchange the note sheets in class."
+        "english": "Exchange the note sheets in class.",
+        "audio": "/audio/v-tauschen-ex01.mp3"
       },
       {
         "german": "Wir tauschen die Telefonnummern.",
-        "english": "We exchange phone numbers."
+        "english": "We exchange phone numbers.",
+        "audio": "/audio/v-tauschen-ex02.mp3"
       },
       {
         "german": "Tauschen Sie die Notizzettel. Fragen Sie: Wie ist die Telefonnummer von Anne?",
-        "english": "Exchange the note sheets. Ask: What is Anne's phone number?"
+        "english": "Exchange the note sheets. Ask: What is Anne's phone number?",
+        "audio": "/audio/v-tauschen-ex03.mp3"
       },
       {
         "german": "Tauschen Sie die Antworten mit einem Partner.",
-        "english": "Exchange the answers with a partner. [formal you]"
+        "english": "Exchange the answers with a partner. [formal you]",
+        "audio": "/audio/v-tauschen-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T12:41:00Z",
@@ -1996,6 +2313,7 @@
   },
   {
     "head": "der Kurs /kʊʁs/",
+    "id": "v-der-kurs",
     "plural": "-e",
     "gloss": [
       "Course; class."
@@ -2004,18 +2322,22 @@
       "• im Kurs = in dem Kurs = in class / in the course.",
       "• Location with in uses dative: in dem Kurs becomes im Kurs."
     ],
+    "audio": "/audio/v-der-kurs.mp3",
     "examples": [
       {
         "german": "Tauschen Sie die Notizzettel im Kurs.",
-        "english": "Exchange the note sheets in class."
+        "english": "Exchange the note sheets in class.",
+        "audio": "/audio/v-der-kurs-ex01.mp3"
       },
       {
         "german": "Wir sprechen im Kurs Deutsch.",
-        "english": "We speak German in class."
+        "english": "We speak German in class.",
+        "audio": "/audio/v-der-kurs-ex02.mp3"
       },
       {
         "german": "Ich gehe zum Kurs.",
-        "english": "I am going to the course."
+        "english": "I am going to the course.",
+        "audio": "/audio/v-der-kurs-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T12:41:00Z",
@@ -2025,6 +2347,7 @@
   },
   {
     "head": "die Handynummer /ˈhɛndiˌnʊmɐ/",
+    "id": "v-die-handynummer",
     "plural": "-n",
     "gloss": [
       "Mobile phone number; cell phone number."
@@ -2033,18 +2356,22 @@
       "• das Handy = mobile phone / cell phone; die Nummer = number as an ID/code.",
       "• die Handynummer is specifically a mobile number; die Telefonnummer can be any phone number."
     ],
+    "audio": "/audio/v-die-handynummer.mp3",
     "examples": [
       {
         "german": "Wie ist deine Handynummer?",
-        "english": "What is your mobile number?"
+        "english": "What is your mobile number?",
+        "audio": "/audio/v-die-handynummer-ex01.mp3"
       },
       {
         "german": "Meine Handynummer ist 0176 / 53487.",
-        "english": "My mobile number is 0176 / 53487."
+        "english": "My mobile number is 0176 / 53487.",
+        "audio": "/audio/v-die-handynummer-ex02.mp3"
       },
       {
         "german": "Hast du Annes Handynummer?",
-        "english": "Do you have Anne's mobile number?"
+        "english": "Do you have Anne's mobile number?",
+        "audio": "/audio/v-die-handynummer-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T12:28:00Z",
@@ -2054,6 +2381,7 @@
   },
   {
     "head": "die Zahlen ab 11 /diː ˈtsaːlən ap ɛlf/",
+    "id": "v-die-zahlen-ab-11",
     "gloss": [
       "Numbers from 11 upward."
     ],
@@ -2229,38 +2557,47 @@
         ]
       ]
     },
+    "audio": "/audio/v-die-zahlen-ab-11.mp3",
     "examples": [
       {
         "german": "127 = einhundertsiebenundzwanzig",
-        "english": "127 = one hundred twenty-seven."
+        "english": "127 = one hundred twenty-seven.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex01.mp3"
       },
       {
         "german": "111 = einhundertelf",
-        "english": "111 = one hundred eleven."
+        "english": "111 = one hundred eleven.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex02.mp3"
       },
       {
         "german": "1637 = eintausendsechshundertsiebenunddreißig",
-        "english": "1637 = one thousand six hundred thirty-seven."
+        "english": "1637 = one thousand six hundred thirty-seven.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex03.mp3"
       },
       {
         "german": "8463 = achttausendvierhundertdreiundsechzig",
-        "english": "8463 = eight thousand four hundred sixty-three."
+        "english": "8463 = eight thousand four hundred sixty-three.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex04.mp3"
       },
       {
         "german": "90901 = neunzigtausendneunhunderteins",
-        "english": "90901 = ninety thousand nine hundred one."
+        "english": "90901 = ninety thousand nine hundred one.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex05.mp3"
       },
       {
         "german": "305 = dreihundertfünf",
-        "english": "305 = three hundred five."
+        "english": "305 = three hundred five.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex06.mp3"
       },
       {
         "german": "2014 = zweitausendvierzehn",
-        "english": "2014 = two thousand fourteen."
+        "english": "2014 = two thousand fourteen.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex07.mp3"
       },
       {
         "german": "1000000 = eine Million",
-        "english": "1000000 = one million."
+        "english": "1000000 = one million.",
+        "audio": "/audio/v-die-zahlen-ab-11-ex08.mp3"
       }
     ],
     "createdAt": "2026-05-20T11:36:00Z",
@@ -2270,6 +2607,7 @@
   },
   {
     "head": "mehr /meːɐ̯/",
+    "id": "v-mehr",
     "gloss": [
       "More."
     ],
@@ -2277,18 +2615,22 @@
       "• mehr adds quantity: mehr Zahlen = more numbers.",
       "• Opposite idea: weniger = less / fewer."
     ],
+    "audio": "/audio/v-mehr.mp3",
     "examples": [
       {
         "german": "Noch mehr Zahlen?",
-        "english": "More numbers again? / Even more numbers?"
+        "english": "More numbers again? / Even more numbers?",
+        "audio": "/audio/v-mehr-ex01.mp3"
       },
       {
         "german": "Ich möchte mehr Kaffee.",
-        "english": "I would like more coffee."
+        "english": "I would like more coffee.",
+        "audio": "/audio/v-mehr-ex02.mp3"
       },
       {
         "german": "Wir lernen mehr Wörter.",
-        "english": "We are learning more words."
+        "english": "We are learning more words.",
+        "audio": "/audio/v-mehr-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T11:23:00Z",
@@ -2298,6 +2640,7 @@
   },
   {
     "head": "noch einmal /nɔx ˈaɪ̯nmaːl/",
+    "id": "v-noch-einmal",
     "gloss": [
       "One more time; once again."
     ],
@@ -2305,22 +2648,27 @@
       "• noch = still / yet / additionally; einmal = once / one time.",
       "• Together, noch einmal means one more time or again. Casual shorter form: nochmal."
     ],
+    "audio": "/audio/v-noch-einmal.mp3",
     "examples": [
       {
         "german": "Noch einmal, bitte.",
-        "english": "One more time, please."
+        "english": "One more time, please.",
+        "audio": "/audio/v-noch-einmal-ex01.mp3"
       },
       {
         "german": "Hören Sie das Gespräch noch einmal.",
-        "english": "Listen to the conversation one more time."
+        "english": "Listen to the conversation one more time.",
+        "audio": "/audio/v-noch-einmal-ex02.mp3"
       },
       {
         "german": "Bitte wiederholen Sie das noch einmal.",
-        "english": "Please repeat that one more time."
+        "english": "Please repeat that one more time.",
+        "audio": "/audio/v-noch-einmal-ex03.mp3"
       },
       {
         "german": "Noch mehr Zahlen?",
-        "english": "More numbers again? / Even more numbers?"
+        "english": "More numbers again? / Even more numbers?",
+        "audio": "/audio/v-noch-einmal-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T10:10:00Z",
@@ -2330,6 +2678,7 @@
   },
   {
     "head": "der Notizzettel /noˈtiːtsˌtsɛtl̩/",
+    "id": "v-der-notizzettel",
     "plural": "-",
     "gloss": [
       "Note slip; small note sheet."
@@ -2338,18 +2687,22 @@
       "• Correct spelling: Notizzettel, not notizzetel/nottizetel.",
       "• die Notiz = note; der Zettel = slip/piece of paper. Together: der Notizzettel = a note sheet."
     ],
+    "audio": "/audio/v-der-notizzettel.mp3",
     "examples": [
       {
         "german": "Ergänzen Sie den Notizzettel. (den because masculine + accusative.)",
-        "english": "Complete the note sheet."
+        "english": "Complete the note sheet.",
+        "audio": "/audio/v-der-notizzettel-ex01.mp3"
       },
       {
         "german": "Hören Sie das Gespräch noch einmal und ergänzen Sie den Notizzettel.",
-        "english": "Listen to the conversation one more time and complete the note sheet."
+        "english": "Listen to the conversation one more time and complete the note sheet.",
+        "audio": "/audio/v-der-notizzettel-ex02.mp3"
       },
       {
         "german": "Der Notizzettel liegt auf dem Tisch.",
-        "english": "The note slip is on the table."
+        "english": "The note slip is on the table.",
+        "audio": "/audio/v-der-notizzettel-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T10:10:00Z",
@@ -2359,24 +2712,29 @@
   },
   {
     "head": "Tschüss /tʃʏs/",
+    "id": "v-tsch-ss",
     "gloss": [
       "Bye; casual goodbye."
     ],
     "notes": [
       "• Tschüss is the common German casual goodbye, especially in everyday speech."
     ],
+    "audio": "/audio/v-tschüss.mp3",
     "examples": [
       {
         "german": "Ich gehe jetzt. Tschüss!",
-        "english": "I'm leaving now. Bye!"
+        "english": "I'm leaving now. Bye!",
+        "audio": "/audio/v-tschüss-ex01.mp3"
       },
       {
         "german": "Tschüss, bis morgen!",
-        "english": "Bye, see you tomorrow!"
+        "english": "Bye, see you tomorrow!",
+        "audio": "/audio/v-tschüss-ex02.mp3"
       },
       {
         "german": "Danke und tschüss!",
-        "english": "Thanks and bye!"
+        "english": "Thanks and bye!",
+        "audio": "/audio/v-tschüss-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T09:26:00Z",
@@ -2386,6 +2744,7 @@
   },
   {
     "head": "Tschau /tʃaʊ/",
+    "id": "v-tschau",
     "gloss": [
       "Bye; informal farewell."
     ],
@@ -2393,14 +2752,17 @@
       "• Tschau is the German spelling of Italian ciao; it is casual, like English bye.",
       "• Tschüss and Tschau feel similar because both are casual goodbyes and both start with tsch, but they are different words."
     ],
+    "audio": "/audio/v-tschau.mp3",
     "examples": [
       {
         "german": "Tschau, bis später!",
-        "english": "Bye, see you later!"
+        "english": "Bye, see you later!",
+        "audio": "/audio/v-tschau-ex01.mp3"
       },
       {
         "german": "Tschau, Anne!",
-        "english": "Bye, Anne!"
+        "english": "Bye, Anne!",
+        "audio": "/audio/v-tschau-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-20T09:21:00Z",
@@ -2410,6 +2772,7 @@
   },
   {
     "head": "später /ˈʃpɛːtɐ/",
+    "id": "v-sp-ter",
     "gloss": [
       "Later."
     ],
@@ -2417,18 +2780,22 @@
       "• Opposite idea: früh = early; später = later. Related adjective: spät = late.",
       "• In bis später, German literally says until later; natural English is see you later."
     ],
+    "audio": "/audio/v-später.mp3",
     "examples": [
       {
         "german": "Bis später!",
-        "english": "See you later!"
+        "english": "See you later!",
+        "audio": "/audio/v-später-ex01.mp3"
       },
       {
         "german": "Ich komme später.",
-        "english": "I am coming later."
+        "english": "I am coming later.",
+        "audio": "/audio/v-später-ex02.mp3"
       },
       {
         "german": "Heute früh, später am Abend.",
-        "english": "Early today, later in the evening."
+        "english": "Early today, later in the evening.",
+        "audio": "/audio/v-später-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T09:21:00Z",
@@ -2438,24 +2805,29 @@
   },
   {
     "head": "bis /bɪs/",
+    "id": "v-bis",
     "gloss": [
       "Until; till; by."
     ],
     "notes": [
       "• In farewell formulas, bis means until: bis später = until later / see you later."
     ],
+    "audio": "/audio/v-bis.mp3",
     "examples": [
       {
         "german": "Bis später!",
-        "english": "See you later!"
+        "english": "See you later!",
+        "audio": "/audio/v-bis-ex01.mp3"
       },
       {
         "german": "Bis morgen!",
-        "english": "See you tomorrow!"
+        "english": "See you tomorrow!",
+        "audio": "/audio/v-bis-ex02.mp3"
       },
       {
         "german": "Ich lerne bis zehn Uhr.",
-        "english": "I study until ten o'clock."
+        "english": "I study until ten o'clock.",
+        "audio": "/audio/v-bis-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T09:21:00Z",
@@ -2465,6 +2837,7 @@
   },
   {
     "head": "dann /dan/",
+    "id": "v-dann",
     "gloss": [
       "Then; after that."
     ],
@@ -2472,18 +2845,22 @@
       "• Use dann to order actions in time: first one thing, then the next.",
       "• In a normal statement, dann can stand first; the conjugated verb then comes right after it."
     ],
+    "audio": "/audio/v-dann.mp3",
     "examples": [
       {
         "german": "Zuerst lernen wir Zahlen, dann lesen wir den Text.",
-        "english": "First we learn numbers, then we read the text."
+        "english": "First we learn numbers, then we read the text.",
+        "audio": "/audio/v-dann-ex01.mp3"
       },
       {
         "german": "Ich trinke Kaffee, dann gehe ich zum Kurs.",
-        "english": "I drink coffee, then I go to the course."
+        "english": "I drink coffee, then I go to the course.",
+        "audio": "/audio/v-dann-ex02.mp3"
       },
       {
         "german": "Wenn du Zeit hast, dann komm bitte.",
-        "english": "If you have time, then please come."
+        "english": "If you have time, then please come.",
+        "audio": "/audio/v-dann-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T09:18:00Z",
@@ -2493,6 +2870,7 @@
   },
   {
     "head": "die Vorwahl /ˈfoːɐ̯vaːl/",
+    "id": "v-die-vorwahl",
     "plural": "-en",
     "gloss": [
       "Area code; dialing prefix."
@@ -2501,18 +2879,22 @@
       "• One compound word: Vorwahl, not two words.",
       "• In 0621 / 53487, 0621 is the Vorwahl and 53487 is the local number."
     ],
+    "audio": "/audio/v-die-vorwahl.mp3",
     "examples": [
       {
         "german": "Die Vorwahl von Mannheim ist 0621.",
-        "english": "Mannheim's area code is 0621."
+        "english": "Mannheim's area code is 0621.",
+        "audio": "/audio/v-die-vorwahl-ex01.mp3"
       },
       {
         "german": "Anne: Meine Telefonnummer ist 0621 / 53487.",
-        "english": "Anne: My phone number is 0621 / 53487."
+        "english": "Anne: My phone number is 0621 / 53487.",
+        "audio": "/audio/v-die-vorwahl-ex02.mp3"
       },
       {
         "german": "Welche Vorwahl hat Berlin?",
-        "english": "What area code does Berlin have?"
+        "english": "What area code does Berlin have?",
+        "audio": "/audio/v-die-vorwahl-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T08:53:00Z",
@@ -2522,6 +2904,7 @@
   },
   {
     "head": "können /ˈkœnən/",
+    "id": "v-k-nnen",
     "gloss": [
       "Can; be able to (modal verb)."
     ],
@@ -2576,22 +2959,27 @@
         ]
       ]
     },
+    "audio": "/audio/v-können.mp3",
     "examples": [
       {
         "german": "Kannst du das bitte wiederholen?",
-        "english": "Can you please repeat that?"
+        "english": "Can you please repeat that?",
+        "audio": "/audio/v-können-ex01.mp3"
       },
       {
         "german": "Kannst du das wiederholen, bitte?",
-        "english": "Can you repeat that, please?"
+        "english": "Can you repeat that, please?",
+        "audio": "/audio/v-können-ex02.mp3"
       },
       {
         "german": "Ich kann Deutsch sprechen.",
-        "english": "I can speak German."
+        "english": "I can speak German.",
+        "audio": "/audio/v-können-ex03.mp3"
       },
       {
         "german": "Können Sie bitte langsam sprechen?",
-        "english": "Can you please speak slowly? [formal you]"
+        "english": "Can you please speak slowly? [formal you]",
+        "audio": "/audio/v-können-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T08:28:00Z",
@@ -2601,26 +2989,32 @@
   },
   {
     "head": "wiederholen /viːdɐˈhoːlən/",
+    "id": "v-wiederholen",
     "gloss": [
       "To repeat; say or do again."
     ],
     "notes": [],
+    "audio": "/audio/v-wiederholen.mp3",
     "examples": [
       {
         "german": "Bitte wiederholen Sie das.",
-        "english": "Please repeat that."
+        "english": "Please repeat that.",
+        "audio": "/audio/v-wiederholen-ex01.mp3"
       },
       {
         "german": "Wiederholen Sie bitte die Frage.",
-        "english": "Please repeat the question. [formal you]"
+        "english": "Please repeat the question. [formal you]",
+        "audio": "/audio/v-wiederholen-ex02.mp3"
       },
       {
         "german": "Du wiederholst den Satz.",
-        "english": "You repeat the sentence. [informal you]"
+        "english": "You repeat the sentence. [informal you]",
+        "audio": "/audio/v-wiederholen-ex03.mp3"
       },
       {
         "german": "Er wiederholt die Regel.",
-        "english": "He repeats the rule."
+        "english": "He repeats the rule.",
+        "audio": "/audio/v-wiederholen-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:00:00Z",
@@ -2630,28 +3024,34 @@
   },
   {
     "head": "wieder /ˈviːdɐ/",
+    "id": "v-wieder",
     "gloss": [
       "Again; back again."
     ],
     "notes": [
       "• Do not confuse wieder (again) with wider (against)."
     ],
+    "audio": "/audio/v-wieder.mp3",
     "examples": [
       {
         "german": "Noch einmal, bitte.",
-        "english": "One more time, please."
+        "english": "One more time, please.",
+        "audio": "/audio/v-wieder-ex01.mp3"
       },
       {
         "german": "Bitte wiederholen Sie das.",
-        "english": "Please repeat that."
+        "english": "Please repeat that.",
+        "audio": "/audio/v-wieder-ex02.mp3"
       },
       {
         "german": "Ich bin wieder da.",
-        "english": "I'm back again."
+        "english": "I'm back again.",
+        "audio": "/audio/v-wieder-ex03.mp3"
       },
       {
         "german": "Bis morgen! Wir sehen uns wieder.",
-        "english": "See you tomorrow! We'll see each other again."
+        "english": "See you tomorrow! We'll see each other again.",
+        "audio": "/audio/v-wieder-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T05:56:00Z",
@@ -2661,6 +3061,7 @@
   },
   {
     "head": "die Telefonnummer /teˈlefoːnˌnʊmɐ/",
+    "id": "v-die-telefonnummer",
     "plural": "-n",
     "gloss": [
       "Telephone number; phone number."
@@ -2669,18 +3070,22 @@
       "• die Nummer + das Telefon becomes die Telefonnummer: a compound noun with the gender of Nummer.",
       "• In German, ask Wie ist deine Telefonnummer? literally: How is your phone number?"
     ],
+    "audio": "/audio/v-die-telefonnummer.mp3",
     "examples": [
       {
         "german": "Wie ist deine Telefonnummer?",
-        "english": "What is your phone number?"
+        "english": "What is your phone number?",
+        "audio": "/audio/v-die-telefonnummer-ex01.mp3"
       },
       {
         "german": "Anne: Meine Telefonnummer ist 0621 / 53487.",
-        "english": "Anne: My phone number is 0621 / 53487."
+        "english": "Anne: My phone number is 0621 / 53487.",
+        "audio": "/audio/v-die-telefonnummer-ex02.mp3"
       },
       {
         "german": "Das ist die Telefonnummer von Maria.",
-        "english": "That is Maria's phone number."
+        "english": "That is Maria's phone number.",
+        "audio": "/audio/v-die-telefonnummer-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T07:09:00Z",
@@ -2690,6 +3095,7 @@
   },
   {
     "head": "die Straße /ˈʃtʁaːsə/",
+    "id": "v-die-stra-e",
     "plural": "-n",
     "gloss": [
       "Street; road."
@@ -2698,18 +3104,22 @@
       "• Standard German spelling uses ß: Straße. In Switzerland, it is usually written Strasse.",
       "• In der Bergstraße uses Dativ: wohnen answers where?; with location, in + feminine die Straße becomes in der Straße."
     ],
+    "audio": "/audio/v-die-straße.mp3",
     "examples": [
       {
         "german": "Ich wohne in Mannheim in der Bergstraße 10.",
-        "english": "I live in Mannheim at 10 Bergstraße."
+        "english": "I live in Mannheim at 10 Bergstraße.",
+        "audio": "/audio/v-die-straße-ex01.mp3"
       },
       {
         "german": "Die Straße ist lang.",
-        "english": "The street is long."
+        "english": "The street is long.",
+        "audio": "/audio/v-die-straße-ex02.mp3"
       },
       {
         "german": "Wie heißt die Straße?",
-        "english": "What is the street called?"
+        "english": "What is the street called?",
+        "audio": "/audio/v-die-straße-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T07:02:00Z",
@@ -2719,6 +3129,7 @@
   },
   {
     "head": "wohnen /ˈvoːnən/",
+    "id": "v-wohnen",
     "gloss": [
       "To live; reside."
     ],
@@ -2726,18 +3137,22 @@
       "• Use wohnen for where someone lives: Ich wohne in Berlin.",
       "• Common question: Wo wohnen Sie? = Where do you live? [formal you]"
     ],
+    "audio": "/audio/v-wohnen.mp3",
     "examples": [
       {
         "german": "Wo wohnen Sie?",
-        "english": "Where do you live? [formal you]"
+        "english": "Where do you live? [formal you]",
+        "audio": "/audio/v-wohnen-ex01.mp3"
       },
       {
         "german": "Ich wohne in Berlin.",
-        "english": "I live in Berlin."
+        "english": "I live in Berlin.",
+        "audio": "/audio/v-wohnen-ex02.mp3"
       },
       {
         "german": "Er wohnt in München.",
-        "english": "He lives in Munich."
+        "english": "He lives in Munich.",
+        "audio": "/audio/v-wohnen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:59:00Z",
@@ -2747,6 +3162,7 @@
   },
   {
     "head": "gern /ɡɛʁn/",
+    "id": "v-gern",
     "gloss": [
       "Gladly; like to do something."
     ],
@@ -2754,26 +3170,32 @@
       "• gern and gerne mean the same thing; gerne sounds a little fuller/softer.",
       "• With a verb, gern often translates naturally as like to: Ich lerne gern = I like learning."
     ],
+    "audio": "/audio/v-gern.mp3",
     "examples": [
       {
         "german": "Ich lerne gern Deutsch.",
-        "english": "I like learning German."
+        "english": "I like learning German.",
+        "audio": "/audio/v-gern-ex01.mp3"
       },
       {
         "german": "Ich trinke gern Kaffee.",
-        "english": "I like drinking coffee."
+        "english": "I like drinking coffee.",
+        "audio": "/audio/v-gern-ex02.mp3"
       },
       {
         "german": "Kommst du gern hierher?",
-        "english": "Do you like coming here?"
+        "english": "Do you like coming here?",
+        "audio": "/audio/v-gern-ex03.mp3"
       },
       {
         "german": "Ja, gern!",
-        "english": "Yes, gladly! / Yes, sure!"
+        "english": "Yes, gladly! / Yes, sure!",
+        "audio": "/audio/v-gern-ex04.mp3"
       },
       {
         "german": "Gern!",
-        "english": "Gladly! / Sure! / With pleasure!"
+        "english": "Gladly! / Sure! / With pleasure!",
+        "audio": "/audio/v-gern-ex05.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:15:00Z",
@@ -2783,22 +3205,27 @@
   },
   {
     "head": "heute /ˈhɔʏtə/",
+    "id": "v-heute",
     "gloss": [
       "Today."
     ],
     "notes": [],
+    "audio": "/audio/v-heute.mp3",
     "examples": [
       {
         "german": "Georg kommt heute zum Essen.",
-        "english": "Georg is coming for the meal today."
+        "english": "Georg is coming for the meal today.",
+        "audio": "/audio/v-heute-ex01.mp3"
       },
       {
         "german": "Heute lernen wir Deutsch.",
-        "english": "Today we are learning German."
+        "english": "Today we are learning German.",
+        "audio": "/audio/v-heute-ex02.mp3"
       },
       {
         "german": "Bis heute Abend!",
-        "english": "See you this evening!"
+        "english": "See you this evening!",
+        "audio": "/audio/v-heute-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:37:00Z",
@@ -2808,6 +3235,7 @@
   },
   {
     "head": "zum /tsʊm/",
+    "id": "v-zum",
     "gloss": [
       "To the; for the; contraction of zu + dem."
     ],
@@ -2815,18 +3243,22 @@
       "• zum = zu + dem, used before masculine or neuter dative nouns.",
       "• In zum Essen, Essen is used as a noun: for the meal / to eat."
     ],
+    "audio": "/audio/v-zum.mp3",
     "examples": [
       {
         "german": "Georg kommt heute zum Essen.",
-        "english": "Georg is coming for the meal today."
+        "english": "Georg is coming for the meal today.",
+        "audio": "/audio/v-zum-ex01.mp3"
       },
       {
         "german": "Ich gehe zum Kurs.",
-        "english": "I am going to the course."
+        "english": "I am going to the course.",
+        "audio": "/audio/v-zum-ex02.mp3"
       },
       {
         "german": "Zum Beispiel: eins, zwei, drei.",
-        "english": "For example: one, two, three."
+        "english": "For example: one, two, three.",
+        "audio": "/audio/v-zum-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:37:00Z",
@@ -2836,6 +3268,7 @@
   },
   {
     "head": "essen /ˈɛsn̩/",
+    "id": "v-essen",
     "gloss": [
       "To eat; food or meal when capitalized as Essen."
     ],
@@ -2843,18 +3276,22 @@
       "• Lowercase essen is the verb: to eat.",
       "• Capitalized Essen is a noun: food or a meal. So write zum Essen, not zum essen."
     ],
+    "audio": "/audio/v-essen.mp3",
     "examples": [
       {
         "german": "Georg kommt heute zum Essen.",
-        "english": "Georg is coming for the meal today."
+        "english": "Georg is coming for the meal today.",
+        "audio": "/audio/v-essen-ex01.mp3"
       },
       {
         "german": "Wir essen zusammen.",
-        "english": "We are eating together."
+        "english": "We are eating together.",
+        "audio": "/audio/v-essen-ex02.mp3"
       },
       {
         "german": "Das Essen ist gut.",
-        "english": "The food is good."
+        "english": "The food is good.",
+        "audio": "/audio/v-essen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:37:00Z",
@@ -2864,6 +3301,7 @@
   },
   {
     "head": "die Zahlen 0-10 /diː ˈtsaːlən nʊl bɪs tseːn/",
+    "id": "v-die-zahlen-0-10",
     "gloss": [
       "Numbers from zero to ten."
     ],
@@ -2923,18 +3361,22 @@
         ]
       ]
     },
+    "audio": "/audio/v-die-zahlen-0-10.mp3",
     "examples": [
       {
         "german": "Hören Sie die Zahlen.",
-        "english": "Listen to the numbers."
+        "english": "Listen to the numbers.",
+        "audio": "/audio/v-die-zahlen-0-10-ex01.mp3"
       },
       {
         "german": "Welche Zahlen hören Sie?",
-        "english": "Which numbers do you hear?"
+        "english": "Which numbers do you hear?",
+        "audio": "/audio/v-die-zahlen-0-10-ex02.mp3"
       },
       {
         "german": "Meine Telefonnummer ist null sechs eins zwei.",
-        "english": "My phone number is zero six one two."
+        "english": "My phone number is zero six one two.",
+        "audio": "/audio/v-die-zahlen-0-10-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:30:00Z",
@@ -2944,6 +3386,7 @@
   },
   {
     "head": "die Nummer /ˈnʊmɐ/",
+    "id": "v-die-nummer",
     "plural": "-en",
     "gloss": [
       "Number as a label, code, or identifier."
@@ -2952,18 +3395,22 @@
       "• Nummer is a number used as an ID or label: Telefonnummer, Hausnummer, Zimmer Nummer 12.",
       "• Difference: Zahl = numerical value/counting/math; Nummer = assigned number/code/identifier."
     ],
+    "audio": "/audio/v-die-nummer.mp3",
     "examples": [
       {
         "german": "Wie ist deine Telefonnummer?",
-        "english": "What is your phone number?"
+        "english": "What is your phone number?",
+        "audio": "/audio/v-die-nummer-ex01.mp3"
       },
       {
         "german": "Meine Nummer ist 53487.",
-        "english": "My number is 53487."
+        "english": "My number is 53487.",
+        "audio": "/audio/v-die-nummer-ex02.mp3"
       },
       {
         "german": "Zimmer Nummer 12 ist frei.",
-        "english": "Room number 12 is free."
+        "english": "Room number 12 is free.",
+        "audio": "/audio/v-die-nummer-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T11:20:00Z",
@@ -2973,6 +3420,7 @@
   },
   {
     "head": "die Zahl /tsaːl/",
+    "id": "v-die-zahl",
     "plural": "-en",
     "gloss": [
       "Number as a value; numeral."
@@ -2981,18 +3429,22 @@
       "• Zahl is a number as a value: counting, math, or a number you hear/write.",
       "• Compare Nummer: an assigned label/code/ID, as in Telefonnummer, Hausnummer, Zimmer Nummer 12."
     ],
+    "audio": "/audio/v-die-zahl.mp3",
     "examples": [
       {
         "german": "Welche Zahl hören Sie?",
-        "english": "Which number do you hear?"
+        "english": "Which number do you hear?",
+        "audio": "/audio/v-die-zahl-ex01.mp3"
       },
       {
         "german": "Die Zahl ist sechs.",
-        "english": "The number is six."
+        "english": "The number is six.",
+        "audio": "/audio/v-die-zahl-ex02.mp3"
       },
       {
         "german": "Die Zahl 10 ist größer als 5.",
-        "english": "The number 10 is greater than 5."
+        "english": "The number 10 is greater than 5.",
+        "audio": "/audio/v-die-zahl-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-20T11:10:00Z",
@@ -3002,6 +3454,7 @@
   },
   {
     "head": "von /fɔn/",
+    "id": "v-von",
     "gloss": [
       "Of; from; belonging to."
     ],
@@ -3009,22 +3462,27 @@
       "• In die Adresse von Anne, von shows whose address it is: Anne's address.",
       "• von always takes dative, but with names like Anne there is no visible article change."
     ],
+    "audio": "/audio/v-von.mp3",
     "examples": [
       {
         "german": "Die Adresse von Anne ist hier.",
-        "english": "Anne's address is here."
+        "english": "Anne's address is here.",
+        "audio": "/audio/v-von-ex01.mp3"
       },
       {
         "german": "Das ist die Telefonnummer von Maria.",
-        "english": "That is Maria's phone number."
+        "english": "That is Maria's phone number.",
+        "audio": "/audio/v-von-ex02.mp3"
       },
       {
         "german": "Ich komme von der Arbeit.",
-        "english": "I am coming from work."
+        "english": "I am coming from work.",
+        "audio": "/audio/v-von-ex03.mp3"
       },
       {
         "german": "die Verbform von essen",
-        "english": "the verb form of essen."
+        "english": "the verb form of essen.",
+        "audio": "/audio/v-von-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-20T06:21:00Z",
@@ -3034,6 +3492,7 @@
   },
   {
     "head": "stehen /ˈʃteːən/",
+    "id": "v-stehen",
     "gloss": [
       "To stand; be located or positioned."
     ],
@@ -3041,18 +3500,22 @@
       "• In word-order rules, stehen means a word “stands” or “goes” in a certain sentence position.",
       "• Das Verb steht auf Position 1 means the verb comes first; Position 2 means it comes second."
     ],
+    "audio": "/audio/v-stehen.mp3",
     "examples": [
       {
         "german": "In Ja-/Nein-Fragen steht das Verb auf Position 1.",
-        "english": "In yes/no questions, the verb comes first."
+        "english": "In yes/no questions, the verb comes first.",
+        "audio": "/audio/v-stehen-ex01.mp3"
       },
       {
         "german": "In Antworten und W-Fragen steht das Verb auf Position 2.",
-        "english": "In answers and W-questions, the verb comes second."
+        "english": "In answers and W-questions, the verb comes second.",
+        "audio": "/audio/v-stehen-ex02.mp3"
       },
       {
         "german": "Ein neues Auto steht da.",
-        "english": "A new car is parked there."
+        "english": "A new car is parked there.",
+        "audio": "/audio/v-stehen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T13:58:00Z",
@@ -3062,6 +3525,7 @@
   },
   {
     "head": "die Regel /ˈʁeːɡl̩/",
+    "id": "v-die-regel",
     "plural": "-n",
     "gloss": [
       "Rule."
@@ -3069,18 +3533,22 @@
     "notes": [
       "• die Regeln is plural accusative here: the rules being completed."
     ],
+    "audio": "/audio/v-die-regel.mp3",
     "examples": [
       {
         "german": "Ergänzen Sie die Regeln.",
-        "english": "Complete the rules."
+        "english": "Complete the rules.",
+        "audio": "/audio/v-die-regel-ex01.mp3"
       },
       {
         "german": "Die Regel ist einfach.",
-        "english": "The rule is simple."
+        "english": "The rule is simple.",
+        "audio": "/audio/v-die-regel-ex02.mp3"
       },
       {
         "german": "Lesen Sie die Regeln.",
-        "english": "Read the rules. [formal you]"
+        "english": "Read the rules. [formal you]",
+        "audio": "/audio/v-die-regel-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T13:44:00Z",
@@ -3090,24 +3558,29 @@
   },
   {
     "head": "schreiben /ˈʃʁaɪ̯bən/",
+    "id": "v-schreiben",
     "gloss": [
       "To write."
     ],
     "notes": [
       "• Formal command: Schreiben Sie ... = Write ...; verb first, Sie capitalized."
     ],
+    "audio": "/audio/v-schreiben.mp3",
     "examples": [
       {
         "german": "Schreiben Sie die Sätze.",
-        "english": "Write the sentences. [formal you]"
+        "english": "Write the sentences. [formal you]",
+        "audio": "/audio/v-schreiben-ex01.mp3"
       },
       {
         "german": "Ich schreibe die Antwort.",
-        "english": "I write the answer."
+        "english": "I write the answer.",
+        "audio": "/audio/v-schreiben-ex02.mp3"
       },
       {
         "german": "Schreiben Sie das in die Tabelle.",
-        "english": "Write that in the table. [formal you]"
+        "english": "Write that in the table. [formal you]",
+        "audio": "/audio/v-schreiben-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T13:40:00Z",
@@ -3117,6 +3590,7 @@
   },
   {
     "head": "der Satz /zats/",
+    "id": "v-der-satz",
     "plural": "-ätze",
     "gloss": [
       "Sentence."
@@ -3125,18 +3599,22 @@
       "• die Sätze is plural accusative here: the sentences being written.",
       "• Correct spelling: Sätze with ä, not Satze."
     ],
+    "audio": "/audio/v-der-satz.mp3",
     "examples": [
       {
         "german": "Schreiben Sie die Sätze.",
-        "english": "Write the sentences."
+        "english": "Write the sentences.",
+        "audio": "/audio/v-der-satz-ex01.mp3"
       },
       {
         "german": "Der Satz ist kurz.",
-        "english": "The sentence is short."
+        "english": "The sentence is short.",
+        "audio": "/audio/v-der-satz-ex02.mp3"
       },
       {
         "german": "Lesen Sie die Sätze noch einmal.",
-        "english": "Read the sentences one more time. [formal you]"
+        "english": "Read the sentences one more time. [formal you]",
+        "audio": "/audio/v-der-satz-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T13:40:00Z",
@@ -3146,6 +3624,7 @@
   },
   {
     "head": "Länder, Sprachen, Nationalitäten /ˈlɛndɐ ˈʃpʁaːxən natsi̯onaliˈtɛːtən/",
+    "id": "v-l-nder-sprachen-nationalit-ten",
     "gloss": [
       "Countries, languages, and nationalities."
     ],
@@ -3207,18 +3686,22 @@
         ]
       ]
     },
+    "audio": "/audio/v-länder-sprachen-nationalitäten.mp3",
     "examples": [
       {
         "german": "Sie kommt aus Frankreich und spricht Französisch.",
-        "english": "She comes from France and speaks French."
+        "english": "She comes from France and speaks French.",
+        "audio": "/audio/v-länder-sprachen-nationalitäten-ex01.mp3"
       },
       {
         "german": "Er ist Schweizer, sie ist Schweizerin.",
-        "english": "He is Swiss; she is Swiss."
+        "english": "He is Swiss; she is Swiss.",
+        "audio": "/audio/v-länder-sprachen-nationalitäten-ex02.mp3"
       },
       {
         "german": "Er ist Spanier, sie ist Spanierin.",
-        "english": "He is Spanish; she is Spanish."
+        "english": "He is Spanish; she is Spanish.",
+        "audio": "/audio/v-länder-sprachen-nationalitäten-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T10:45:00Z",
@@ -3228,20 +3711,24 @@
   },
   {
     "head": "Viel Spaß! /fiːl ʃpaːs/",
+    "id": "v-viel-spa",
     "gloss": [
       "Have fun! Enjoy yourself!"
     ],
     "notes": [
       "• Correct spelling in standard German: Spaß with ß, not spas."
     ],
+    "audio": "/audio/v-viel-spaß.mp3",
     "examples": [
       {
         "german": "Viel Spaß!",
-        "english": "Have fun!"
+        "english": "Have fun!",
+        "audio": "/audio/v-viel-spaß-ex01.mp3"
       },
       {
         "german": "Viel Spaß beim Deutschlernen!",
-        "english": "Have fun learning German!"
+        "english": "Have fun learning German!",
+        "audio": "/audio/v-viel-spaß-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-19T10:40:00Z",
@@ -3251,6 +3738,7 @@
   },
   {
     "head": "der Spaß /ʃpaːs/",
+    "id": "v-der-spa",
     "plural": "-äße",
     "gloss": [
       "Fun; enjoyment."
@@ -3258,14 +3746,17 @@
     "notes": [
       "• Long a + sharp s: Spaß. In Switzerland, ß is usually written ss: Spass."
     ],
+    "audio": "/audio/v-der-spaß.mp3",
     "examples": [
       {
         "german": "Deutsch macht Spaß.",
-        "english": "German is fun."
+        "english": "German is fun.",
+        "audio": "/audio/v-der-spaß-ex01.mp3"
       },
       {
         "german": "Das macht viel Spaß.",
-        "english": "That is a lot of fun."
+        "english": "That is a lot of fun.",
+        "audio": "/audio/v-der-spaß-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-19T10:40:00Z",
@@ -3275,20 +3766,24 @@
   },
   {
     "head": "viel /fiːl/",
+    "id": "v-viel",
     "gloss": [
       "Much; a lot; many before plural nouns."
     ],
     "notes": [
       "• In Viel Spaß!, viel intensifies the wish: literally much fun, naturally have fun."
     ],
+    "audio": "/audio/v-viel.mp3",
     "examples": [
       {
         "german": "Ich habe viel Zeit.",
-        "english": "I have a lot of time."
+        "english": "I have a lot of time.",
+        "audio": "/audio/v-viel-ex01.mp3"
       },
       {
         "german": "Viele Personen warten.",
-        "english": "Many people are waiting."
+        "english": "Many people are waiting.",
+        "audio": "/audio/v-viel-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-19T10:40:00Z",
@@ -3298,6 +3793,7 @@
   },
   {
     "head": "zusammen /tsuˈzamən/",
+    "id": "v-zusammen",
     "gloss": [
       "Together; as a group (adverb)."
     ],
@@ -3305,18 +3801,22 @@
       "• Spelling: zwei m und -en at the end — not zusamen (common typo/OCR).",
       "• In Hoi zusammen!, zusammen means “everyone / all of you” — like English “Hi all!”"
     ],
+    "audio": "/audio/v-zusammen.mp3",
     "examples": [
       {
         "german": "Hoi zusammen!",
-        "english": "Hi, everyone!"
+        "english": "Hi, everyone!",
+        "audio": "/audio/v-zusammen-ex01.mp3"
       },
       {
         "german": "Wir lernen zusammen Deutsch.",
-        "english": "We are learning German together."
+        "english": "We are learning German together.",
+        "audio": "/audio/v-zusammen-ex02.mp3"
       },
       {
         "german": "Kommt alle zusammen!",
-        "english": "Everyone come together! / Gather round!"
+        "english": "Everyone come together! / Gather round!",
+        "audio": "/audio/v-zusammen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T19:00:00Z",
@@ -3326,6 +3826,7 @@
   },
   {
     "head": "Hoi /hɔɪ/",
+    "id": "v-hoi",
     "gloss": [
       "Informal hi or hey; especially typical in Switzerland."
     ],
@@ -3333,18 +3834,22 @@
       "• One-word greeting (interjection), like Hallo or Servus — no article, no plural, no verb endings.",
       "• Very common in Swiss German contexts; also heard in casual speech elsewhere; not the standard classroom default."
     ],
+    "audio": "/audio/v-hoi.mp3",
     "examples": [
       {
         "german": "Hoi!",
-        "english": "Hi! / Hey!"
+        "english": "Hi! / Hey!",
+        "audio": "/audio/v-hoi-ex01.mp3"
       },
       {
         "german": "Hoi, wie geht's?",
-        "english": "Hey, how's it going?"
+        "english": "Hey, how's it going?",
+        "audio": "/audio/v-hoi-ex02.mp3"
       },
       {
         "german": "Hoi zusammen!",
-        "english": "Hi, everyone!"
+        "english": "Hi, everyone!",
+        "audio": "/audio/v-hoi-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T18:00:00Z",
@@ -3354,6 +3859,7 @@
   },
   {
     "head": "die Argentinierin /aʁɡɛnˈtsiːnəʁɪn/",
+    "id": "v-die-argentinierin",
     "plural": "-nen / der Argentinier, -",
     "gloss": [
       "An Argentine; feminine die Argentinierin, masculine der Argentinier."
@@ -3361,18 +3867,22 @@
     "notes": [
       "• Same pattern as die Schweizerin (from die Schweiz): demonyms from Argentinien, the country name in German."
     ],
+    "audio": "/audio/v-die-argentinierin.mp3",
     "examples": [
       {
         "german": "Er ist Schweizer, sie ist Schweizerin; er ist Argentinier, sie ist Argentinierin.",
-        "english": "He is Swiss, she is Swiss; he is Argentine, she is Argentine."
+        "english": "He is Swiss, she is Swiss; he is Argentine, she is Argentine.",
+        "audio": "/audio/v-die-argentinierin-ex01.mp3"
       },
       {
         "german": "Sie ist Argentinierin und lebt in Berlin.",
-        "english": "She is Argentine and lives in Berlin."
+        "english": "She is Argentine and lives in Berlin.",
+        "audio": "/audio/v-die-argentinierin-ex02.mp3"
       },
       {
         "german": "Zwei Argentinierinnen und ein Argentinier arbeiten hier.",
-        "english": "Two Argentine women and one Argentine man work here."
+        "english": "Two Argentine women and one Argentine man work here.",
+        "audio": "/audio/v-die-argentinierin-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-19T14:00:00Z",
@@ -3382,6 +3892,7 @@
   },
   {
     "head": "Servus /ˈzɛɐ̯vus/",
+    "id": "v-servus",
     "gloss": [
       "Informal hi or bye; strongest in Austria and southern Germany."
     ],
@@ -3390,14 +3901,17 @@
       "• From Latin for “your servant”; today it is a casual hi, hey, or bye in one short word.",
       "• Not the everyday norm everywhere in Germany; in the north people more often say Hallo or Tschüss."
     ],
+    "audio": "/audio/v-servus.mp3",
     "examples": [
       {
         "german": "Servus!",
-        "english": "Hi! / Bye! [informal, southern]"
+        "english": "Hi! / Bye! [informal, southern]",
+        "audio": "/audio/v-servus-ex01.mp3"
       },
       {
         "german": "Servus, wie geht's?",
-        "english": "Hey — how's it going?"
+        "english": "Hey — how's it going?",
+        "audio": "/audio/v-servus-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-19T12:00:00Z",
@@ -3407,24 +3921,29 @@
   },
   {
     "head": "in /ɪn/",
+    "id": "v-in-n",
     "gloss": [
       "In; inside; on a team (+ dative for location)."
     ],
     "notes": [
       "• Wo? uses dative: in einem Team. Wohin? uses accusative: in ein Team."
     ],
+    "audio": "/audio/v-in-ɪn.mp3",
     "examples": [
       {
         "german": "Ihr seid in einem Team.",
-        "english": "You all are on a team."
+        "english": "You all are on a team.",
+        "audio": "/audio/v-in-ɪn-ex01.mp3"
       },
       {
         "german": "Ich bin in Berlin.",
-        "english": "I am in Berlin."
+        "english": "I am in Berlin.",
+        "audio": "/audio/v-in-ɪn-ex02.mp3"
       },
       {
         "german": "Ihr kommt in ein Team.",
-        "english": "You all are joining / going into a team. [accusative: direction]"
+        "english": "You all are joining / going into a team. [accusative: direction]",
+        "audio": "/audio/v-in-ɪn-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-18T12:11:00Z",
@@ -3434,6 +3953,7 @@
   },
   {
     "head": "der neue Praktikant /deːɐ̯ ˈnɔʏə pʁaktiˈkant/",
+    "id": "v-der-neue-praktikant",
     "gloss": [
       "The new intern; pattern for adjective endings after der."
     ],
@@ -3480,18 +4000,22 @@
         ]
       ]
     },
+    "audio": "/audio/v-der-neue-praktikant.mp3",
     "examples": [
       {
         "german": "Das ist der neue Praktikant.",
-        "english": "That is the new intern."
+        "english": "That is the new intern.",
+        "audio": "/audio/v-der-neue-praktikant-ex01.mp3"
       },
       {
         "german": "Der Praktikant ist neu.",
-        "english": "The intern is new. [after sein: no adjective ending]"
+        "english": "The intern is new. [after sein: no adjective ending]",
+        "audio": "/audio/v-der-neue-praktikant-ex02.mp3"
       },
       {
         "german": "Ich sehe den neuen Praktikanten.",
-        "english": "I see the new intern. [accusative masculine: den neuen]"
+        "english": "I see the new intern. [accusative masculine: den neuen]",
+        "audio": "/audio/v-der-neue-praktikant-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-18T13:35:00Z",
@@ -3501,24 +4025,29 @@
   },
   {
     "head": "auch /aʊ̯x/",
+    "id": "v-auch",
     "gloss": [
       "Also; too; as well."
     ],
     "notes": [
       "• Often comes near what it adds: Ich auch = me too; auch ich = I too / even I."
     ],
+    "audio": "/audio/v-auch.mp3",
     "examples": [
       {
         "german": "Ich auch.",
-        "english": "Me too."
+        "english": "Me too.",
+        "audio": "/audio/v-auch-ex01.mp3"
       },
       {
         "german": "Mir geht’s auch gut.",
-        "english": "I’m also doing well."
+        "english": "I’m also doing well.",
+        "audio": "/audio/v-auch-ex02.mp3"
       },
       {
         "german": "Er kommt auch aus Berlin.",
-        "english": "He also comes from Berlin."
+        "english": "He also comes from Berlin.",
+        "audio": "/audio/v-auch-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-18T12:01:00Z",
@@ -3528,6 +4057,7 @@
   },
   {
     "head": "Wie geht’s? /viː ɡeːts/",
+    "id": "v-wie-geht-s",
     "gloss": [
       "How’s it going? / How are you?"
     ],
@@ -3537,34 +4067,42 @@
       "• Another common response: Mir geht’s gut. (= I’m doing well.)",
       "• Formally: Wie geht es Ihnen?"
     ],
+    "audio": "/audio/v-wie-geht-s.mp3",
     "examples": [
       {
         "german": "Wie geht’s?",
-        "english": "How’s it going? / How are you?"
+        "english": "How’s it going? / How are you?",
+        "audio": "/audio/v-wie-geht-s-ex01.mp3"
       },
       {
         "german": "Gut, danke. Und dir?",
-        "english": "Good, thanks. And you?"
+        "english": "Good, thanks. And you?",
+        "audio": "/audio/v-wie-geht-s-ex02.mp3"
       },
       {
         "german": "Mir geht’s gut.",
-        "english": "I’m doing well."
+        "english": "I’m doing well.",
+        "audio": "/audio/v-wie-geht-s-ex03.mp3"
       },
       {
         "german": "Sehr gut.",
-        "english": "Very well."
+        "english": "Very well.",
+        "audio": "/audio/v-wie-geht-s-ex04.mp3"
       },
       {
         "german": "Es geht.",
-        "english": "It’s okay / so-so."
+        "english": "It’s okay / so-so.",
+        "audio": "/audio/v-wie-geht-s-ex05.mp3"
       },
       {
         "german": "Nicht so gut.",
-        "english": "Not so well."
+        "english": "Not so well.",
+        "audio": "/audio/v-wie-geht-s-ex06.mp3"
       },
       {
         "german": "Schlecht.",
-        "english": "Bad / not well."
+        "english": "Bad / not well.",
+        "audio": "/audio/v-wie-geht-s-ex07.mp3"
       }
     ],
     "createdAt": "2026-05-18T11:20:00Z",
@@ -3574,6 +4112,7 @@
   },
   {
     "head": "Freut mich /fʁɔʏ̯t mɪç/",
+    "id": "v-freut-mich",
     "gloss": [
       "Nice to meet you; pleased to meet you."
     ],
@@ -3582,18 +4121,22 @@
       "• mich is a personal pronoun in the accusative here, not reflexive; the hidden subject is es.",
       "• Contrast: Ich freue mich means I am happy / pleased; there mich is reflexive because ich and mich refer to the same person."
     ],
+    "audio": "/audio/v-freut-mich.mp3",
     "examples": [
       {
         "german": "Freut mich.",
-        "english": "Nice to meet you. [personal-pronoun mich, accusative]"
+        "english": "Nice to meet you. [personal-pronoun mich, accusative]",
+        "audio": "/audio/v-freut-mich-ex01.mp3"
       },
       {
         "german": "Ich freue mich.",
-        "english": "I am happy / pleased. [reflexive mich]"
+        "english": "I am happy / pleased. [reflexive mich]",
+        "audio": "/audio/v-freut-mich-ex02.mp3"
       },
       {
         "german": "Guten Tag, ich heiße Ali. Freut mich.",
-        "english": "Good day, my name is Ali. Nice to meet you."
+        "english": "Good day, my name is Ali. Nice to meet you.",
+        "audio": "/audio/v-freut-mich-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-16T06:16:00Z",
@@ -3603,6 +4146,7 @@
   },
   {
     "head": "Reflexivpronomen /ʁeflɛˈksiːfˌpʁoːnoːmən/",
+    "id": "v-reflexivpronomen",
     "gloss": [
       "Reflexive pronouns: myself, yourself, himself, etc."
     ],
@@ -3613,78 +4157,97 @@
       "• Dativ forms: mir, dir, sich, sich, sich, uns, euch, sich, sich.",
       "• Use accusative when the reflexive pronoun is the direct object; use dative when another accusative object is present: Ich wasche mich vs. Ich wasche mir die Hände."
     ],
+    "audio": "/audio/v-reflexivpronomen.mp3",
     "examples": [
       {
         "german": "Ich wasche mich.",
-        "english": "I wash myself. [mich; accusative reflexive]"
+        "english": "I wash myself. [mich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex01.mp3"
       },
       {
         "german": "Du wäschst dich.",
-        "english": "You wash yourself. [dich; accusative reflexive]"
+        "english": "You wash yourself. [dich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex02.mp3"
       },
       {
         "german": "Er stellt sich vor.",
-        "english": "He introduces himself. [sich; accusative reflexive]"
+        "english": "He introduces himself. [sich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex03.mp3"
       },
       {
         "german": "Sie stellt sich vor.",
-        "english": "She introduces herself. [sich; accusative reflexive]"
+        "english": "She introduces herself. [sich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex04.mp3"
       },
       {
         "german": "Es bewegt sich.",
-        "english": "It moves itself. [sich; accusative reflexive]"
+        "english": "It moves itself. [sich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex05.mp3"
       },
       {
         "german": "Wir stellen uns vor.",
-        "english": "We introduce ourselves. [uns; accusative reflexive]"
+        "english": "We introduce ourselves. [uns; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex06.mp3"
       },
       {
         "german": "Ihr stellt euch vor.",
-        "english": "You all introduce yourselves. [euch; accusative reflexive]"
+        "english": "You all introduce yourselves. [euch; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex07.mp3"
       },
       {
         "german": "Sie stellen sich vor.",
-        "english": "They introduce themselves. [sich; accusative reflexive]"
+        "english": "They introduce themselves. [sich; accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex08.mp3"
       },
       {
         "german": "Stellen Sie sich vor.",
-        "english": "Introduce yourself. [sich; formal accusative reflexive]"
+        "english": "Introduce yourself. [sich; formal accusative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex09.mp3"
       },
       {
         "german": "Ich wasche mir die Hände.",
-        "english": "I wash my hands. [mir; dative reflexive]"
+        "english": "I wash my hands. [mir; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex10.mp3"
       },
       {
         "german": "Du kaufst dir ein Buch.",
-        "english": "You buy yourself a book. [dir; dative reflexive]"
+        "english": "You buy yourself a book. [dir; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex11.mp3"
       },
       {
         "german": "Er stellt sich Berlin vor.",
-        "english": "He imagines Berlin. [sich; dative reflexive]"
+        "english": "He imagines Berlin. [sich; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex12.mp3"
       },
       {
         "german": "Sie kauft sich einen Kaffee.",
-        "english": "She buys herself a coffee. [sich; dative reflexive]"
+        "english": "She buys herself a coffee. [sich; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex13.mp3"
       },
       {
         "german": "Es wäscht sich die Hände.",
-        "english": "It washes its hands. [sich; dative reflexive]"
+        "english": "It washes its hands. [sich; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex14.mp3"
       },
       {
         "german": "Wir stellen uns eine Reise vor.",
-        "english": "We imagine a trip. [uns; dative reflexive]"
+        "english": "We imagine a trip. [uns; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex15.mp3"
       },
       {
         "german": "Ihr kauft euch Tickets.",
-        "english": "You all buy yourselves tickets. [euch; dative reflexive]"
+        "english": "You all buy yourselves tickets. [euch; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex16.mp3"
       },
       {
         "german": "Sie kaufen sich Tickets.",
-        "english": "They buy themselves tickets. [sich; dative reflexive]"
+        "english": "They buy themselves tickets. [sich; dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex17.mp3"
       },
       {
         "german": "Stellen Sie sich eine Stadt vor.",
-        "english": "Imagine a city. [sich; formal dative reflexive]"
+        "english": "Imagine a city. [sich; formal dative reflexive]",
+        "audio": "/audio/v-reflexivpronomen-ex18.mp3"
       }
     ],
     "createdAt": "2026-05-16T06:02:00Z",
@@ -3694,6 +4257,7 @@
   },
   {
     "head": "Personalpronomen /pɛʁzoˈnaːlˌpʁoːnoːmən/",
+    "id": "v-personalpronomen",
     "gloss": [
       "Personal pronouns: ich, mich, mir; du, dich, dir; etc."
     ],
@@ -3704,102 +4268,127 @@
       "• Dativ marks the indirect object or object after dative verbs/prepositions: mir, dir, ihm, ihr, ihm, uns, euch, ihnen.",
       "• Reflexive pronouns can look the same as personal pronouns, but the subject and object are the same person: Ich liebe dich vs. Du liebst dich."
     ],
+    "audio": "/audio/v-personalpronomen.mp3",
     "examples": [
       {
         "german": "Ich komme aus dem Iran.",
-        "english": "I come from Iran. [ich; nominative]"
+        "english": "I come from Iran. [ich; nominative]",
+        "audio": "/audio/v-personalpronomen-ex01.mp3"
       },
       {
         "german": "Er sieht mich.",
-        "english": "He sees me. [mich; accusative]"
+        "english": "He sees me. [mich; accusative]",
+        "audio": "/audio/v-personalpronomen-ex02.mp3"
       },
       {
         "german": "Er hilft mir.",
-        "english": "He helps me. [mir; dative]"
+        "english": "He helps me. [mir; dative]",
+        "audio": "/audio/v-personalpronomen-ex03.mp3"
       },
       {
         "german": "Du lernst Deutsch.",
-        "english": "You learn German. [du; nominative]"
+        "english": "You learn German. [du; nominative]",
+        "audio": "/audio/v-personalpronomen-ex04.mp3"
       },
       {
         "german": "Ich sehe dich.",
-        "english": "I see you. [dich; accusative]"
+        "english": "I see you. [dich; accusative]",
+        "audio": "/audio/v-personalpronomen-ex05.mp3"
       },
       {
         "german": "Ich helfe dir.",
-        "english": "I help you. [dir; dative]"
+        "english": "I help you. [dir; dative]",
+        "audio": "/audio/v-personalpronomen-ex06.mp3"
       },
       {
         "german": "Er wohnt in Berlin.",
-        "english": "He lives in Berlin. [er; nominative]"
+        "english": "He lives in Berlin. [er; nominative]",
+        "audio": "/audio/v-personalpronomen-ex07.mp3"
       },
       {
         "german": "Ich kenne ihn.",
-        "english": "I know him. [ihn; accusative]"
+        "english": "I know him. [ihn; accusative]",
+        "audio": "/audio/v-personalpronomen-ex08.mp3"
       },
       {
         "german": "Ich helfe ihm.",
-        "english": "I help him. [ihm; dative]"
+        "english": "I help him. [ihm; dative]",
+        "audio": "/audio/v-personalpronomen-ex09.mp3"
       },
       {
         "german": "Sie spricht Deutsch.",
-        "english": "She speaks German. [sie; nominative]"
+        "english": "She speaks German. [sie; nominative]",
+        "audio": "/audio/v-personalpronomen-ex10.mp3"
       },
       {
         "german": "Ich sehe sie.",
-        "english": "I see her. [sie; accusative]"
+        "english": "I see her. [sie; accusative]",
+        "audio": "/audio/v-personalpronomen-ex11.mp3"
       },
       {
         "german": "Ich helfe ihr.",
-        "english": "I help her. [ihr; dative]"
+        "english": "I help her. [ihr; dative]",
+        "audio": "/audio/v-personalpronomen-ex12.mp3"
       },
       {
         "german": "Es ist schön.",
-        "english": "It is beautiful. [es; nominative]"
+        "english": "It is beautiful. [es; nominative]",
+        "audio": "/audio/v-personalpronomen-ex13.mp3"
       },
       {
         "german": "Ich sehe es.",
-        "english": "I see it. [es; accusative]"
+        "english": "I see it. [es; accusative]",
+        "audio": "/audio/v-personalpronomen-ex14.mp3"
       },
       {
         "german": "Ich helfe ihm.",
-        "english": "I help it. [ihm; dative for a neuter noun]"
+        "english": "I help it. [ihm; dative for a neuter noun]",
+        "audio": "/audio/v-personalpronomen-ex15.mp3"
       },
       {
         "german": "Wir lernen Deutsch.",
-        "english": "We learn German. [wir; nominative]"
+        "english": "We learn German. [wir; nominative]",
+        "audio": "/audio/v-personalpronomen-ex16.mp3"
       },
       {
         "german": "Er sieht uns.",
-        "english": "He sees us. [uns; accusative]"
+        "english": "He sees us. [uns; accusative]",
+        "audio": "/audio/v-personalpronomen-ex17.mp3"
       },
       {
         "german": "Er hilft uns.",
-        "english": "He helps us. [uns; dative]"
+        "english": "He helps us. [uns; dative]",
+        "audio": "/audio/v-personalpronomen-ex18.mp3"
       },
       {
         "german": "Ihr seid hier.",
-        "english": "You all are here. [ihr; nominative]"
+        "english": "You all are here. [ihr; nominative]",
+        "audio": "/audio/v-personalpronomen-ex19.mp3"
       },
       {
         "german": "Ich sehe euch.",
-        "english": "I see you all. [euch; accusative]"
+        "english": "I see you all. [euch; accusative]",
+        "audio": "/audio/v-personalpronomen-ex20.mp3"
       },
       {
         "german": "Ich helfe euch.",
-        "english": "I help you all. [euch; dative]"
+        "english": "I help you all. [euch; dative]",
+        "audio": "/audio/v-personalpronomen-ex21.mp3"
       },
       {
         "german": "Sie kommen aus Deutschland.",
-        "english": "They come from Germany. [sie; nominative plural]"
+        "english": "They come from Germany. [sie; nominative plural]",
+        "audio": "/audio/v-personalpronomen-ex22.mp3"
       },
       {
         "german": "Ich sehe sie.",
-        "english": "I see them. [sie; accusative plural]"
+        "english": "I see them. [sie; accusative plural]",
+        "audio": "/audio/v-personalpronomen-ex23.mp3"
       },
       {
         "german": "Ich helfe ihnen.",
-        "english": "I help them. [ihnen; dative plural]"
+        "english": "I help them. [ihnen; dative plural]",
+        "audio": "/audio/v-personalpronomen-ex24.mp3"
       }
     ],
     "createdAt": "2026-05-16T05:59:00Z",
@@ -3809,6 +4398,7 @@
   },
   {
     "head": "sich vorstellen /zɪç ˈfoːɐ̯ˌʃtɛlən/",
+    "id": "v-sich-vorstellen",
     "gloss": [
       "To introduce oneself; to imagine something."
     ],
@@ -3817,26 +4407,32 @@
       "• Introduce oneself uses accusative reflexive pronouns: mich, dich, sich, uns, euch, sich.",
       "• Imagine something uses dative reflexive pronouns with an object: mir, dir, sich, uns, euch, sich."
     ],
+    "audio": "/audio/v-sich-vorstellen.mp3",
     "examples": [
       {
         "german": "Ich stelle mich vor.",
-        "english": "I introduce myself. [accusative reflexive]"
+        "english": "I introduce myself. [accusative reflexive]",
+        "audio": "/audio/v-sich-vorstellen-ex01.mp3"
       },
       {
         "german": "Stellen Sie sich vor.",
-        "english": "Introduce yourself. [formal instruction]"
+        "english": "Introduce yourself. [formal instruction]",
+        "audio": "/audio/v-sich-vorstellen-ex02.mp3"
       },
       {
         "german": "Wir stellen uns im Kurs vor.",
-        "english": "We introduce ourselves in class."
+        "english": "We introduce ourselves in class.",
+        "audio": "/audio/v-sich-vorstellen-ex03.mp3"
       },
       {
         "german": "Ich stelle mir Berlin vor.",
-        "english": "I imagine Berlin. [dative reflexive]"
+        "english": "I imagine Berlin. [dative reflexive]",
+        "audio": "/audio/v-sich-vorstellen-ex04.mp3"
       },
       {
         "german": "Stellen Sie sich eine Stadt vor.",
-        "english": "Imagine a city. [formal instruction]"
+        "english": "Imagine a city. [formal instruction]",
+        "audio": "/audio/v-sich-vorstellen-ex05.mp3"
       }
     ],
     "createdAt": "2026-05-15T20:22:00Z",
@@ -3846,20 +4442,24 @@
   },
   {
     "head": "begrüßen /bəˈɡʁyːsn̩/",
+    "id": "v-begr-en",
     "gloss": [
       "To greet; say hello to someone."
     ],
     "notes": [
       "• Takes an accusative object: Begrüßen Sie Ihren Partner / Ihre Partnerin."
     ],
+    "audio": "/audio/v-begrüßen.mp3",
     "examples": [
       {
         "german": "Begrüßen Sie Ihren Partner.",
-        "english": "Greet your partner. [male partner; formal instruction]"
+        "english": "Greet your partner. [male partner; formal instruction]",
+        "audio": "/audio/v-begrüßen-ex01.mp3"
       },
       {
         "german": "Begrüßen Sie Ihre Partnerin.",
-        "english": "Greet your partner. [female partner; formal instruction]"
+        "english": "Greet your partner. [female partner; formal instruction]",
+        "audio": "/audio/v-begrüßen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:49:00Z",
@@ -3869,23 +4469,28 @@
   },
   {
     "head": "der Partner / die Partnerin /ˈpaʁtnɐ/ /ˈpaʁtnəʁɪn/",
+    "id": "v-der-partner-die-partnerin",
     "plural": "- / die Partnerin, -nen",
     "gloss": [
       "Partner; classroom speaking partner."
     ],
     "notes": [],
+    "audio": "/audio/v-der-partner-die-partnerin.mp3",
     "examples": [
       {
         "german": "Ihr Partner ist hier.",
-        "english": "Your partner is here. [male partner; nominative]"
+        "english": "Your partner is here. [male partner; nominative]",
+        "audio": "/audio/v-der-partner-die-partnerin-ex01.mp3"
       },
       {
         "german": "Begrüßen Sie Ihren Partner.",
-        "english": "Greet your partner. [male partner; accusative]"
+        "english": "Greet your partner. [male partner; accusative]",
+        "audio": "/audio/v-der-partner-die-partnerin-ex02.mp3"
       },
       {
         "german": "Begrüßen Sie Ihre Partnerin.",
-        "english": "Greet your partner. [female partner; accusative]"
+        "english": "Greet your partner. [female partner; accusative]",
+        "audio": "/audio/v-der-partner-die-partnerin-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:49:00Z",
@@ -3895,20 +4500,24 @@
   },
   {
     "head": "Wie heißt ...? /viː haɪ̯st/",
+    "id": "v-wie-hei-t",
     "gloss": [
       "What is ... called?"
     ],
     "notes": [
       "• W-question pattern: Wie is position 1, the finite verb heißt is position 2."
     ],
+    "audio": "/audio/v-wie-heißt.mp3",
     "examples": [
       {
         "german": "Wie heißt Ihr Land in Ihrer Sprache?",
-        "english": "What is your country called in your language? [formal]"
+        "english": "What is your country called in your language? [formal]",
+        "audio": "/audio/v-wie-heißt-ex01.mp3"
       },
       {
         "german": "Wie heißt das auf Deutsch?",
-        "english": "What is that called in German?"
+        "english": "What is that called in German?",
+        "audio": "/audio/v-wie-heißt-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:19:00Z",
@@ -3918,19 +4527,23 @@
   },
   {
     "head": "das Land /lant/",
+    "id": "v-das-land",
     "plural": "Länder",
     "gloss": [
       "Country; land."
     ],
     "notes": [],
+    "audio": "/audio/v-das-land.mp3",
     "examples": [
       {
         "german": "Ihr Land heißt Iran.",
-        "english": "Your country is called Iran. [formal]"
+        "english": "Your country is called Iran. [formal]",
+        "audio": "/audio/v-das-land-ex01.mp3"
       },
       {
         "german": "Wie heißt Ihr Land?",
-        "english": "What is your country called? [formal]"
+        "english": "What is your country called? [formal]",
+        "audio": "/audio/v-das-land-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:19:00Z",
@@ -3940,6 +4553,7 @@
   },
   {
     "head": "die Sprache /ˈʃpʁaːxə/",
+    "id": "v-die-sprache",
     "plural": "-n",
     "gloss": [
       "Language."
@@ -3947,14 +4561,17 @@
     "notes": [
       "• Feminine noun: die Sprache; after static in, use dative: in der Sprache / in Ihrer Sprache."
     ],
+    "audio": "/audio/v-die-sprache.mp3",
     "examples": [
       {
         "german": "In Ihrer Sprache heißt das anders.",
-        "english": "In your language, that is called something different. [formal]"
+        "english": "In your language, that is called something different. [formal]",
+        "audio": "/audio/v-die-sprache-ex01.mp3"
       },
       {
         "german": "Ich lerne die deutsche Sprache.",
-        "english": "I am learning the German language."
+        "english": "I am learning the German language.",
+        "audio": "/audio/v-die-sprache-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:19:00Z",
@@ -3964,24 +4581,29 @@
   },
   {
     "head": "Ihr- /iːɐ̯/",
+    "id": "v-ihr",
     "gloss": [
       "Your; formal possessive stem."
     ],
     "notes": [
       "• Capitalized Ihr- means formal your. Endings follow ein-words: Ihr Land, Ihre Sprache, in Ihrer Sprache."
     ],
+    "audio": "/audio/v-ihr.mp3",
     "examples": [
       {
         "german": "Ihre Sprache ist schön.",
-        "english": "Your language is beautiful. [formal; nominative]"
+        "english": "Your language is beautiful. [formal; nominative]",
+        "audio": "/audio/v-ihr-ex01.mp3"
       },
       {
         "german": "Ich lerne Ihre Sprache.",
-        "english": "I am learning your language. [formal; accusative]"
+        "english": "I am learning your language. [formal; accusative]",
+        "audio": "/audio/v-ihr-ex02.mp3"
       },
       {
         "german": "Ich spreche in Ihrer Sprache.",
-        "english": "I speak in your language. [formal; dative]"
+        "english": "I speak in your language. [formal; dative]",
+        "audio": "/audio/v-ihr-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-15T19:19:00Z",
@@ -3991,18 +4613,22 @@
   },
   {
     "head": "fliegen /ˈfliːɡən/",
+    "id": "v-fliegen",
     "gloss": [
       "To fly; travel by plane (+ nach … / zu …)."
     ],
     "notes": [],
+    "audio": "/audio/v-fliegen.mp3",
     "examples": [
       {
         "german": "Wir fliegen nach Deutschland.",
-        "english": "We're flying to Germany."
+        "english": "We're flying to Germany.",
+        "audio": "/audio/v-fliegen-ex01.mp3"
       },
       {
         "german": "Das Flugzeug fliegt nach Berlin.",
-        "english": "The plane flies to Berlin."
+        "english": "The plane flies to Berlin.",
+        "audio": "/audio/v-fliegen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T17:45:00Z",
@@ -4012,18 +4638,22 @@
   },
   {
     "head": "reisen /ˈʁaɪ̯zn̩/",
+    "id": "v-reisen",
     "gloss": [
       "To travel; go on a trip (+ nach … without article; + in die … when an article appears)."
     ],
     "notes": [],
+    "audio": "/audio/v-reisen.mp3",
     "examples": [
       {
         "german": "Wir reisen nach Deutschland.",
-        "english": "We're traveling to Germany."
+        "english": "We're traveling to Germany.",
+        "audio": "/audio/v-reisen-ex01.mp3"
       },
       {
         "german": "Wir reisen in die Schweiz.",
-        "english": "We're traveling to Switzerland. [motion + accusative]"
+        "english": "We're traveling to Switzerland. [motion + accusative]",
+        "audio": "/audio/v-reisen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T17:45:00Z",
@@ -4033,20 +4663,24 @@
   },
   {
     "head": "fahren /ˈfaːʁən/",
+    "id": "v-fahren",
     "gloss": [
       "To drive; ride; go by transport (+ nach … for many destinations)."
     ],
     "notes": [
       "• Strong verb: er fährt; Präteritum fuhr — expect this in texts and exams."
     ],
+    "audio": "/audio/v-fahren.mp3",
     "examples": [
       {
         "german": "Wir fahren nach München.",
-        "english": "We're going to Munich by car / bus / train."
+        "english": "We're going to Munich by car / bus / train.",
+        "audio": "/audio/v-fahren-ex01.mp3"
       },
       {
         "german": "Wohin fahren Sie?",
-        "english": "Where are you going? [formal, destination ask]"
+        "english": "Where are you going? [formal, destination ask]",
+        "audio": "/audio/v-fahren-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T17:45:00Z",
@@ -4056,20 +4690,24 @@
   },
   {
     "head": "gehen /ˈɡeːən/",
+    "id": "v-gehen",
     "gloss": [
       "To go; walk (+ zu / nach / + place; also set phrases)."
     ],
     "notes": [
       "• Irregular present: ich gehe, du gehst, er geht; for whole countries people often prefer fahren/reisen/fliegen."
     ],
+    "audio": "/audio/v-gehen.mp3",
     "examples": [
       {
         "german": "Wir gehen nach Hause.",
-        "english": "We're going home."
+        "english": "We're going home.",
+        "audio": "/audio/v-gehen-ex01.mp3"
       },
       {
         "german": "Wohin gehen Sie?",
-        "english": "Where are you going? [formal]"
+        "english": "Where are you going? [formal]",
+        "audio": "/audio/v-gehen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T17:45:00Z",
@@ -4079,20 +4717,24 @@
   },
   {
     "head": "aber /ˈaːbɐ/",
+    "id": "v-aber",
     "gloss": [
       "but; however — introduces a contrast or exception"
     ],
     "notes": [
       "• Coordinating conjunction: word order in the following clause is unchanged (verb stays in position 2)."
     ],
+    "audio": "/audio/v-aber.mp3",
     "examples": [
       {
         "german": "Ich komme aus Deutschland, aber er kommt aus der Schweiz.",
-        "english": "I come from Germany, but he comes from Switzerland."
+        "english": "I come from Germany, but he comes from Switzerland.",
+        "audio": "/audio/v-aber-ex01.mp3"
       },
       {
         "german": "Die meisten Länder haben keinen Artikel — aber die Schweiz, die Türkei und die Niederlande schon.",
-        "english": "Most countries have no article — but Switzerland, Turkey, and the Netherlands do."
+        "english": "Most countries have no article — but Switzerland, Turkey, and the Netherlands do.",
+        "audio": "/audio/v-aber-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-15T13:33:00Z",
@@ -4102,20 +4744,24 @@
   },
   {
     "head": "auffallen /ˈaʊ̯fˌfalən/",
+    "id": "v-auffallen",
     "gloss": [
       "To stand out; be noticeable / catch the eye."
     ],
     "notes": [
       "• Separable: auf sits at the end of the clause (Was fällt auf?)."
     ],
+    "audio": "/audio/v-auffallen.mp3",
     "examples": [
       {
         "german": "Was fällt auf?",
-        "english": "What do you notice? / What stands out? [reflection question]"
+        "english": "What do you notice? / What stands out? [reflection question]",
+        "audio": "/audio/v-auffallen-ex01.mp3"
       },
       {
         "german": "Das Foto fällt auf.",
-        "english": "The photo stands out; it catches your eye."
+        "english": "The photo stands out; it catches your eye.",
+        "audio": "/audio/v-auffallen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-13T12:05:00Z",
@@ -4125,18 +4771,22 @@
   },
   {
     "head": "markieren /maʁˈkiːʁən/",
+    "id": "v-markieren",
     "gloss": [
       "To mark; highlight verbs or phrases in the text (+ acc.)."
     ],
     "notes": [],
+    "audio": "/audio/v-markieren.mp3",
     "examples": [
       {
         "german": "Markieren Sie die Verben.",
-        "english": "Mark / highlight the verbs [class instruction]."
+        "english": "Mark / highlight the verbs [class instruction].",
+        "audio": "/audio/v-markieren-ex01.mp3"
       },
       {
         "german": "Markieren Sie den Infinitiv im Text.",
-        "english": "Mark the infinitive in the passage [instruction]."
+        "english": "Mark the infinitive in the passage [instruction].",
+        "audio": "/audio/v-markieren-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-14T14:30:00Z",
@@ -4146,24 +4796,29 @@
   },
   {
     "head": "heißen /ˈhaɪ̯sn̩/",
+    "id": "v-hei-en",
     "gloss": [
       "To be called; one’s name is (3rd sg. er/sie/es heißt)."
     ],
     "notes": [
       "• OCR often miswrites heißen as heisen; spelling is heißen (ß after long diphthong)."
     ],
+    "audio": "/audio/v-heißen.mp3",
     "examples": [
       {
         "german": "Wie heißen Sie?",
-        "english": "What is your name? [formal]"
+        "english": "What is your name? [formal]",
+        "audio": "/audio/v-heißen-ex01.mp3"
       },
       {
         "german": "Ich heiße Ana.",
-        "english": "My name is Ana."
+        "english": "My name is Ana.",
+        "audio": "/audio/v-heißen-ex02.mp3"
       },
       {
         "german": "Er heißt Tomas.",
-        "english": "His name is Tomas."
+        "english": "His name is Tomas.",
+        "audio": "/audio/v-heißen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-14T14:30:00Z",
@@ -4173,6 +4828,7 @@
   },
   {
     "head": "die W-Frage /ˈveːˌfraːɡə/",
+    "id": "v-die-w-frage",
     "plural": "-n",
     "gloss": [
       "WH-question: starts with Wer, Was, Wo, wie, Wann …"
@@ -4180,14 +4836,17 @@
     "notes": [
       "• The question word fills slot 1; the finite verb is still second (verb-second), then the rest."
     ],
+    "audio": "/audio/v-die-w-frage.mp3",
     "examples": [
       {
         "german": "Was ist das?",
-        "english": "What is that?"
+        "english": "What is that?",
+        "audio": "/audio/v-die-w-frage-ex01.mp3"
       },
       {
         "german": "Wo wohnen Sie?",
-        "english": "Where do you live? [formal]"
+        "english": "Where do you live? [formal]",
+        "audio": "/audio/v-die-w-frage-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-12T16:00:00Z",
@@ -4197,19 +4856,23 @@
   },
   {
     "head": "die Antwort /ˈantˌvɔʁt/",
+    "id": "v-die-antwort",
     "plural": "-en",
     "gloss": [
       "Answer; reply (to a question or task)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-antwort.mp3",
     "examples": [
       {
         "german": "Die Antwort ist richtig.",
-        "english": "The answer is correct."
+        "english": "The answer is correct.",
+        "audio": "/audio/v-die-antwort-ex01.mp3"
       },
       {
         "german": "Schreiben Sie die Antwort in den Satz.",
-        "english": "Write the answer into the sentence."
+        "english": "Write the answer into the sentence.",
+        "audio": "/audio/v-die-antwort-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-12T16:00:00Z",
@@ -4219,18 +4882,22 @@
   },
   {
     "head": "sammeln /ˈzaməln/",
+    "id": "v-sammeln",
     "gloss": [
       "To collect; gather (+ acc.)."
     ],
     "notes": [],
+    "audio": "/audio/v-sammeln.mp3",
     "examples": [
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
-        "english": "Collect the verb forms into the table [class instruction]."
+        "english": "Collect the verb forms into the table [class instruction].",
+        "audio": "/audio/v-sammeln-ex01.mp3"
       },
       {
         "german": "Wir sammeln Daten.",
-        "english": "We collect data."
+        "english": "We collect data.",
+        "audio": "/audio/v-sammeln-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
@@ -4240,19 +4907,23 @@
   },
   {
     "head": "die Tabelle /taˈbɛlə/",
+    "id": "v-die-tabelle",
     "plural": "-n",
     "gloss": [
       "Table (grid for answers; worksheet)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-tabelle.mp3",
     "examples": [
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
-        "english": "Collect the verb forms into the table."
+        "english": "Collect the verb forms into the table.",
+        "audio": "/audio/v-die-tabelle-ex01.mp3"
       },
       {
         "german": "Schreiben Sie das in die Tabelle.",
-        "english": "Write that in the table."
+        "english": "Write that in the table.",
+        "audio": "/audio/v-die-tabelle-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
@@ -4262,6 +4933,7 @@
   },
   {
     "head": "die Verbform /ˈfɔʁm/",
+    "id": "v-die-verbform",
     "plural": "-en",
     "gloss": [
       "Verb form (inflected shape of a lemma)."
@@ -4269,14 +4941,17 @@
     "notes": [
       "• Misread Verbendung: the word is Verbformen."
     ],
+    "audio": "/audio/v-die-verbform.mp3",
     "examples": [
       {
         "german": "Sammeln Sie die Verbformen in die Tabelle.",
-        "english": "Collect the verb forms into the table."
+        "english": "Collect the verb forms into the table.",
+        "audio": "/audio/v-die-verbform-ex01.mp3"
       },
       {
         "german": "die Verbform von essen",
-        "english": "the verb form of essen"
+        "english": "the verb form of essen",
+        "audio": "/audio/v-die-verbform-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:41:58Z",
@@ -4286,19 +4961,23 @@
   },
   {
     "head": "die Grammatik /ɡʁaˈmaːtɪk/",
+    "id": "v-die-grammatik",
     "plural": "-en",
     "gloss": [
       "Grammar (rules of the language)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-grammatik.mp3",
     "examples": [
       {
         "german": "Grammatik auf einen Blick: Verben",
-        "english": "Grammar at a glance: verbs"
+        "english": "Grammar at a glance: verbs",
+        "audio": "/audio/v-die-grammatik-ex01.mp3"
       },
       {
         "german": "Ich lerne Grammatik.",
-        "english": "I'm learning grammar."
+        "english": "I'm learning grammar.",
+        "audio": "/audio/v-die-grammatik-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
@@ -4308,18 +4987,22 @@
   },
   {
     "head": "auf einen Blick /aʊ̯f ˈaɪ̯nən ˈblɪk/",
+    "id": "v-auf-einen-blick",
     "gloss": [
       "At a glance (overview; textbook headings)."
     ],
     "notes": [],
+    "audio": "/audio/v-auf-einen-blick.mp3",
     "examples": [
       {
         "german": "Grammatik auf einen Blick: Verben",
-        "english": "Grammar at a glance: verbs"
+        "english": "Grammar at a glance: verbs",
+        "audio": "/audio/v-auf-einen-blick-ex01.mp3"
       },
       {
         "german": "Das ist die Übersicht auf einen Blick.",
-        "english": "That's the overview at a glance."
+        "english": "That's the overview at a glance.",
+        "audio": "/audio/v-auf-einen-blick-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
@@ -4329,23 +5012,28 @@
   },
   {
     "head": "der Blick /blɪk/",
+    "id": "v-der-blick",
     "plural": "-e",
     "gloss": [
       "Glance; look (masculine)."
     ],
     "notes": [],
+    "audio": "/audio/v-der-blick.mp3",
     "examples": [
       {
         "german": "auf einen Blick",
-        "english": "at a glance"
+        "english": "at a glance",
+        "audio": "/audio/v-der-blick-ex01.mp3"
       },
       {
         "german": "einen Blick werfen",
-        "english": "to cast a glance"
+        "english": "to cast a glance",
+        "audio": "/audio/v-der-blick-ex02.mp3"
       },
       {
         "german": "Der erste Blick",
-        "english": "the first glance"
+        "english": "the first glance",
+        "audio": "/audio/v-der-blick-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
@@ -4355,23 +5043,28 @@
   },
   {
     "head": "das Verb /vɛʁp/",
+    "id": "v-das-verb",
     "plural": "-en",
     "gloss": [
       "Verb (word class for actions and states)."
     ],
     "notes": [],
+    "audio": "/audio/v-das-verb.mp3",
     "examples": [
       {
         "german": "Grammatik auf einen Blick: Verben",
-        "english": "Grammar at a glance: verbs"
+        "english": "Grammar at a glance: verbs",
+        "audio": "/audio/v-das-verb-ex01.mp3"
       },
       {
         "german": "essen ist ein Verb.",
-        "english": "essen is a verb."
+        "english": "essen is a verb.",
+        "audio": "/audio/v-das-verb-ex02.mp3"
       },
       {
         "german": "starke und schwache Verben",
-        "english": "strong and weak verbs"
+        "english": "strong and weak verbs",
+        "audio": "/audio/v-das-verb-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:38:58Z",
@@ -4381,22 +5074,27 @@
   },
   {
     "head": "alles /ˈaləs/",
+    "id": "v-alles",
     "gloss": [
       "Everything (pronoun; all of it)."
     ],
     "notes": [],
+    "audio": "/audio/v-alles.mp3",
     "examples": [
       {
         "german": "Ist alles richtig?",
-        "english": "Is everything correct?"
+        "english": "Is everything correct?",
+        "audio": "/audio/v-alles-ex01.mp3"
       },
       {
         "german": "Alles klar?",
-        "english": "All clear? / OK?"
+        "english": "All clear? / OK?",
+        "audio": "/audio/v-alles-ex02.mp3"
       },
       {
         "german": "Ich verstehe alles.",
-        "english": "I understand everything."
+        "english": "I understand everything.",
+        "audio": "/audio/v-alles-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
@@ -4406,22 +5104,27 @@
   },
   {
     "head": "richtig /ˈʁɪçtɪç/",
+    "id": "v-richtig",
     "gloss": [
       "Correct; right; true."
     ],
     "notes": [],
+    "audio": "/audio/v-richtig.mp3",
     "examples": [
       {
         "german": "Ist alles richtig?",
-        "english": "Is everything correct?"
+        "english": "Is everything correct?",
+        "audio": "/audio/v-richtig-ex01.mp3"
       },
       {
         "german": "Das ist richtig.",
-        "english": "That's right."
+        "english": "That's right.",
+        "audio": "/audio/v-richtig-ex02.mp3"
       },
       {
         "german": "Die richtige Antwort",
-        "english": "the correct answer"
+        "english": "the correct answer",
+        "audio": "/audio/v-richtig-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:34:16Z",
@@ -4431,23 +5134,28 @@
   },
   {
     "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
+    "id": "v-die-sekret-rin",
     "plural": "-nen",
     "gloss": [
       "Secretary (feminine job title)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-sekretärin.mp3",
     "examples": [
       {
         "german": "Und ich bin Frau Lange, die Sekretärin.",
-        "english": "And I am Ms. Lange, the secretary."
+        "english": "And I am Ms. Lange, the secretary.",
+        "audio": "/audio/v-die-sekretärin-ex01.mp3"
       },
       {
         "german": "Sie ist Sekretärin.",
-        "english": "She is a secretary."
+        "english": "She is a secretary.",
+        "audio": "/audio/v-die-sekretärin-ex02.mp3"
       },
       {
         "german": "der Sekretär",
-        "english": "male secretary"
+        "english": "male secretary",
+        "audio": "/audio/v-die-sekretärin-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
@@ -4457,23 +5165,28 @@
   },
   {
     "head": "die Frau /fraʊ̯/",
+    "id": "v-die-frau",
     "plural": "-en",
     "gloss": [
       "Ms. or Mrs. before a surname."
     ],
     "notes": [],
+    "audio": "/audio/v-die-frau.mp3",
     "examples": [
       {
         "german": "Frau Lange",
-        "english": "Ms. Lange"
+        "english": "Ms. Lange",
+        "audio": "/audio/v-die-frau-ex01.mp3"
       },
       {
         "german": "Und ich bin Frau Lange, die Sekretärin.",
-        "english": "And I am Ms. Lange, the secretary."
+        "english": "And I am Ms. Lange, the secretary.",
+        "audio": "/audio/v-die-frau-ex02.mp3"
       },
       {
         "german": "Guten Tag, Frau Schulz!",
-        "english": "Good day, Ms. Schulz!"
+        "english": "Good day, Ms. Schulz!",
+        "audio": "/audio/v-die-frau-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:23:39Z",
@@ -4483,22 +5196,27 @@
   },
   {
     "head": "aus /aʊ̯s/",
+    "id": "v-aus",
     "gloss": [
       "From; out of (+ dative for origin)."
     ],
     "notes": [],
+    "audio": "/audio/v-aus.mp3",
     "examples": [
       {
         "german": "Ich komme aus Argentinien.",
-        "english": "I'm from Argentina."
+        "english": "I'm from Argentina.",
+        "audio": "/audio/v-aus-ex01.mp3"
       },
       {
         "german": "Er kommt aus dem Urlaub.",
-        "english": "He's back from vacation."
+        "english": "He's back from vacation.",
+        "audio": "/audio/v-aus-ex02.mp3"
       },
       {
         "german": "aus Berlin",
-        "english": "from Berlin"
+        "english": "from Berlin",
+        "audio": "/audio/v-aus-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
@@ -4508,18 +5226,22 @@
   },
   {
     "head": "Argentinien /aʁɡɛnˈtiːni̯ən/",
+    "id": "v-argentinien",
     "gloss": [
       "Argentina (country)."
     ],
     "notes": [],
+    "audio": "/audio/v-argentinien.mp3",
     "examples": [
       {
         "german": "Ich komme aus Argentinien.",
-        "english": "I'm from Argentina."
+        "english": "I'm from Argentina.",
+        "audio": "/audio/v-argentinien-ex01.mp3"
       },
       {
         "german": "Buenos Aires liegt in Argentinien.",
-        "english": "Buenos Aires is in Argentina."
+        "english": "Buenos Aires is in Argentina.",
+        "audio": "/audio/v-argentinien-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:20:26Z",
@@ -4529,22 +5251,27 @@
   },
   {
     "head": "woher /ˈvoheːɐ̯/",
+    "id": "v-woher",
     "gloss": [
       "From where (origin)."
     ],
     "notes": [],
+    "audio": "/audio/v-woher.mp3",
     "examples": [
       {
         "german": "Woher kommen Sie?",
-        "english": "Where are you from [formal]?"
+        "english": "Where are you from [formal]?",
+        "audio": "/audio/v-woher-ex01.mp3"
       },
       {
         "german": "Ich komme aus Österreich.",
-        "english": "I'm from Austria."
+        "english": "I'm from Austria.",
+        "audio": "/audio/v-woher-ex02.mp3"
       },
       {
         "german": "Woher kommt er?",
-        "english": "Where does he come from?"
+        "english": "Where does he come from?",
+        "audio": "/audio/v-woher-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4554,26 +5281,32 @@
   },
   {
     "head": "kommen /ˈkɔmən/",
+    "id": "v-kommen",
     "gloss": [
       "To come; aus … = from (a place)."
     ],
     "notes": [],
+    "audio": "/audio/v-kommen.mp3",
     "examples": [
       {
         "german": "Woher kommen Sie?",
-        "english": "Where do you come from [formal]?"
+        "english": "Where do you come from [formal]?",
+        "audio": "/audio/v-kommen-ex01.mp3"
       },
       {
         "german": "Sie kommen aus München.",
-        "english": "You come from Munich."
+        "english": "You come from Munich.",
+        "audio": "/audio/v-kommen-ex02.mp3"
       },
       {
         "german": "Ich komme aus Argentinien.",
-        "english": "I'm from Argentina."
+        "english": "I'm from Argentina.",
+        "audio": "/audio/v-kommen-ex03.mp3"
       },
       {
         "german": "Kommst du mit?",
-        "english": "Are you coming along?"
+        "english": "Are you coming along?",
+        "audio": "/audio/v-kommen-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4583,20 +5316,24 @@
   },
   {
     "head": "Grüß Gott! /ˈɡʁʏs ˈɡɔt/",
+    "id": "v-gr-gott",
     "gloss": [
       "Polite daytime hello—typical in Austria and southern Germany."
     ],
     "notes": [
       "• Elsewhere Guten Tag is often the default; Hallo is informal."
     ],
+    "audio": "/audio/v-grüß-gott.mp3",
     "examples": [
       {
         "german": "Grüß Gott!",
-        "english": "Good day — hello!"
+        "english": "Good day — hello!",
+        "audio": "/audio/v-grüß-gott-ex01.mp3"
       },
       {
         "german": "Grüß Gott, Frau Schmid!",
-        "english": "Hello, Ms. Schmid!"
+        "english": "Hello, Ms. Schmid!",
+        "audio": "/audio/v-grüß-gott-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4606,18 +5343,22 @@
   },
   {
     "head": "lesen /ˈleːzən/",
+    "id": "v-lesen",
     "gloss": [
       "To read (+ object in accusative)."
     ],
     "notes": [],
+    "audio": "/audio/v-lesen.mp3",
     "examples": [
       {
         "german": "Lesen Sie das Gespräch und ergänzen Sie.",
-        "english": "Read the dialogue [aloud/on the page], then finish / fill it in."
+        "english": "Read the dialogue [aloud/on the page], then finish / fill it in.",
+        "audio": "/audio/v-lesen-ex01.mp3"
       },
       {
         "german": "Lesen Sie die Überschrift zu Beginn der Übung.",
-        "english": "Read the headline at the start of the exercise."
+        "english": "Read the headline at the start of the exercise.",
+        "audio": "/audio/v-lesen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4627,18 +5368,22 @@
   },
   {
     "head": "sagen /ˈzaːɡən/",
+    "id": "v-sagen",
     "gloss": [
       "To say or tell."
     ],
     "notes": [],
+    "audio": "/audio/v-sagen.mp3",
     "examples": [
       {
         "german": "Was sagen die Personen?",
-        "english": "What are the people saying?"
+        "english": "What are the people saying?",
+        "audio": "/audio/v-sagen-ex01.mp3"
       },
       {
         "german": "Er sagt kurz „Nein“.",
-        "english": "He briefly says “no”."
+        "english": "He briefly says “no”.",
+        "audio": "/audio/v-sagen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4648,19 +5393,23 @@
   },
   {
     "head": "die Person /pɛʁˈzoːn/",
+    "id": "v-die-person",
     "plural": "-en",
     "gloss": [
       "Feminine singular: person (pl. Personen)."
     ],
     "notes": [],
+    "audio": "/audio/v-die-person.mp3",
     "examples": [
       {
         "german": "Viele Personen warten.",
-        "english": "Many people are waiting."
+        "english": "Many people are waiting.",
+        "audio": "/audio/v-die-person-ex01.mp3"
       },
       {
         "german": "Zwei Kinder hören das Gespräch.",
-        "english": "Two children listen to the dialogue."
+        "english": "Two children listen to the dialogue.",
+        "audio": "/audio/v-die-person-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4670,18 +5419,22 @@
   },
   {
     "head": "was /vas/",
+    "id": "v-was-vas",
     "gloss": [
       "Interrogative “what” (Was …?)."
     ],
     "notes": [],
+    "audio": "/audio/v-was-vas.mp3",
     "examples": [
       {
         "german": "Was sagen die Personen?",
-        "english": "What are the people saying?"
+        "english": "What are the people saying?",
+        "audio": "/audio/v-was-vas-ex01.mp3"
       },
       {
         "german": "Was trinken die Kinder?",
-        "english": "What are the children drinking?"
+        "english": "What are the children drinking?",
+        "audio": "/audio/v-was-vas-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4691,22 +5444,27 @@
   },
   {
     "head": "passen /ˈpasən/",
+    "id": "v-passen",
     "gloss": [
       "To fit; match; suit."
     ],
     "notes": [],
+    "audio": "/audio/v-passen.mp3",
     "examples": [
       {
         "german": "Welches Foto passt?",
-        "english": "Which photo fits / matches?"
+        "english": "Which photo fits / matches?",
+        "audio": "/audio/v-passen-ex01.mp3"
       },
       {
         "german": "Das Bild passt zu diesem Text.",
-        "english": "The picture goes with / fits this text passage."
+        "english": "The picture goes with / fits this text passage.",
+        "audio": "/audio/v-passen-ex02.mp3"
       },
       {
         "german": "Das zweite Foto passt nicht.",
-        "english": "The second photo does not fit / is wrong."
+        "english": "The second photo does not fit / is wrong.",
+        "audio": "/audio/v-passen-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4716,28 +5474,34 @@
   },
   {
     "head": "welcher · welche · welches /ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs/",
+    "id": "v-welcher-welche-welches",
     "gloss": [
       "Which (pick by gender: m./f./n.)."
     ],
     "notes": [
       "• After aus, use dative: welchen Kontinenten (plural)."
     ],
+    "audio": "/audio/v-welcher-welche-welches.mp3",
     "examples": [
       {
         "german": "Welches Foto passt?",
-        "english": "Which photo fits / matches?"
+        "english": "Which photo fits / matches?",
+        "audio": "/audio/v-welcher-welche-welches-ex01.mp3"
       },
       {
         "german": "Welche Farbe ist das?",
-        "english": "What / which color is that?"
+        "english": "What / which color is that?",
+        "audio": "/audio/v-welcher-welche-welches-ex02.mp3"
       },
       {
         "german": "Welche Antwort passt?",
-        "english": "Which answer fits / is correct?"
+        "english": "Which answer fits / is correct?",
+        "audio": "/audio/v-welcher-welche-welches-ex03.mp3"
       },
       {
         "german": "Aus welchen Kontinenten kommen die Teilnehmer?",
-        "english": "From which continents do the participants come?"
+        "english": "From which continents do the participants come?",
+        "audio": "/audio/v-welcher-welche-welches-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4747,23 +5511,28 @@
   },
   {
     "head": "das Foto /ˈfoːto/",
+    "id": "v-das-foto",
     "plural": "-s",
     "gloss": [
       "Photo; picture (neuter; pl. Fotos)."
     ],
     "notes": [],
+    "audio": "/audio/v-das-foto.mp3",
     "examples": [
       {
         "german": "Welches Foto passt?",
-        "english": "Which photo fits / matches?"
+        "english": "Which photo fits / matches?",
+        "audio": "/audio/v-das-foto-ex01.mp3"
       },
       {
         "german": "Das Foto ist scharf.",
-        "english": "The photo is sharp / in focus."
+        "english": "The photo is sharp / in focus.",
+        "audio": "/audio/v-das-foto-ex02.mp3"
       },
       {
         "german": "Ich sehe drei Fotos.",
-        "english": "I see three photos."
+        "english": "I see three photos.",
+        "audio": "/audio/v-das-foto-ex03.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4773,6 +5542,7 @@
   },
   {
     "head": "ankreuzen /ˈankʁɔʏtsən/",
+    "id": "v-ankreuzen",
     "gloss": [
       "Separable: tick a box (… an)."
     ],
@@ -4780,14 +5550,17 @@
       "• The prefix an- moves to the end of the clause: Kreuzen Sie die richtige Lösung an.",
       "• Participle angekreuzt (perfect often: habe … angekreuzt)."
     ],
+    "audio": "/audio/v-ankreuzen.mp3",
     "examples": [
       {
         "german": "Kreuzen Sie die richtige Lösung an.",
-        "english": "Please tick the correct answer / solution."
+        "english": "Please tick the correct answer / solution.",
+        "audio": "/audio/v-ankreuzen-ex01.mp3"
       },
       {
         "german": "Kreuzen Sie an, was stimmt.",
-        "english": "Tick / mark what is correct."
+        "english": "Tick / mark what is correct.",
+        "audio": "/audio/v-ankreuzen-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4797,18 +5570,22 @@
   },
   {
     "head": "hören /ˈhøːʁən/",
+    "id": "v-h-ren",
     "gloss": [
       "To hear; listen to (+ acc.)."
     ],
     "notes": [],
+    "audio": "/audio/v-hören.mp3",
     "examples": [
       {
         "german": "Hören Sie das Gespräch.",
-        "english": "Listen to the dialogue [polite / formal “you”]."
+        "english": "Listen to the dialogue [polite / formal “you”].",
+        "audio": "/audio/v-hören-ex01.mp3"
       },
       {
         "german": "Ich höre morgens Radio.",
-        "english": "I listen to the radio in the mornings."
+        "english": "I listen to the radio in the mornings.",
+        "audio": "/audio/v-hören-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4818,19 +5595,23 @@
   },
   {
     "head": "das Gespräch /ɡəˈʃpʁɛːç/",
+    "id": "v-das-gespr-ch",
     "plural": "-e",
     "gloss": [
       "Conversation; spoken dialogue."
     ],
     "notes": [],
+    "audio": "/audio/v-das-gespräch.mp3",
     "examples": [
       {
         "german": "Das Gespräch ist kurz.",
-        "english": "The dialogue is short."
+        "english": "The dialogue is short.",
+        "audio": "/audio/v-das-gespräch-ex01.mp3"
       },
       {
         "german": "Hören Sie bitte noch einmal das Gespräch.",
-        "english": "Please listen to the dialogue one more time."
+        "english": "Please listen to the dialogue one more time.",
+        "audio": "/audio/v-das-gespräch-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4840,18 +5621,22 @@
   },
   {
     "head": "neu /nɔʏ/",
+    "id": "v-neu",
     "gloss": [
       "New (opposite alt); before a noun, add an ending."
     ],
     "notes": [],
+    "audio": "/audio/v-neu.mp3",
     "examples": [
       {
         "german": "der neue Praktikant",
-        "english": "the new intern"
+        "english": "the new intern",
+        "audio": "/audio/v-neu-ex01.mp3"
       },
       {
         "german": "Ein neues Auto steht da.",
-        "english": "A new car is parked there."
+        "english": "A new car is parked there.",
+        "audio": "/audio/v-neu-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4861,36 +5646,44 @@
   },
   {
     "head": "sein /zaɪn/",
+    "id": "v-sein",
     "gloss": [
       "To be (am / is / are)."
     ],
     "notes": [
       "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
     ],
+    "audio": "/audio/v-sein.mp3",
     "examples": [
       {
         "german": "Ich bin der neue Praktikant.",
-        "english": "I'm the new intern."
+        "english": "I'm the new intern.",
+        "audio": "/audio/v-sein-ex01.mp3"
       },
       {
         "german": "Er ist Arzt.",
-        "english": "He's a doctor."
+        "english": "He's a doctor.",
+        "audio": "/audio/v-sein-ex02.mp3"
       },
       {
         "german": "Ist alles richtig?",
-        "english": "Is everything correct?"
+        "english": "Is everything correct?",
+        "audio": "/audio/v-sein-ex03.mp3"
       },
       {
         "german": "Und ich bin Frau Lange, die Sekretärin.",
-        "english": "And I am Ms. Lange, the secretary."
+        "english": "And I am Ms. Lange, the secretary.",
+        "audio": "/audio/v-sein-ex04.mp3"
       },
       {
         "german": "Wir sind müde.",
-        "english": "We're tired."
+        "english": "We're tired.",
+        "audio": "/audio/v-sein-ex05.mp3"
       },
       {
         "german": "Ihr seid in einem Team.",
-        "english": "You all are on a team."
+        "english": "You all are on a team.",
+        "audio": "/audio/v-sein-ex06.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4900,27 +5693,33 @@
   },
   {
     "head": "der Praktikant /pʁaktiˈkant/",
+    "id": "v-der-praktikant",
     "plural": "-en / die Praktikantin, -nen",
     "gloss": [
       "Intern; Praktikantin is the feminine form."
     ],
     "notes": [],
+    "audio": "/audio/v-der-praktikant.mp3",
     "examples": [
       {
         "german": "Ich mache ein Praktikum in Deutschland.",
-        "english": "I am doing an internship in Germany."
+        "english": "I am doing an internship in Germany.",
+        "audio": "/audio/v-der-praktikant-ex01.mp3"
       },
       {
         "german": "Er ist Praktikant bei dieser Firma.",
-        "english": "He is an intern at this company."
+        "english": "He is an intern at this company.",
+        "audio": "/audio/v-der-praktikant-ex02.mp3"
       },
       {
         "german": "Anna ist Praktikantin.",
-        "english": "Anna is an intern [female form]."
+        "english": "Anna is an intern [female form].",
+        "audio": "/audio/v-der-praktikant-ex03.mp3"
       },
       {
         "german": "Ich bin der neue Praktikant.",
-        "english": "I'm the new intern."
+        "english": "I'm the new intern.",
+        "audio": "/audio/v-der-praktikant-ex04.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
@@ -4930,20 +5729,24 @@
   },
   {
     "head": "Guten Tag! /ˈɡuːtən ˈtaːk/",
+    "id": "v-guten-tag",
     "gloss": [
       "Good day; hello (formal daytime)."
     ],
     "notes": [
       "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
     ],
+    "audio": "/audio/v-guten-tag.mp3",
     "examples": [
       {
         "german": "Guten Tag, Frau Lange!",
-        "english": "Good afternoon,  Ms. Lange!"
+        "english": "Good afternoon,  Ms. Lange!",
+        "audio": "/audio/v-guten-tag-ex01.mp3"
       },
       {
         "german": "Guten Tag, wie geht es Ihnen?",
-        "english": "Hello — how are you [formal]?"
+        "english": "Hello — how are you [formal]?",
+        "audio": "/audio/v-guten-tag-ex02.mp3"
       }
     ],
     "createdAt": "2026-05-10T15:15:02Z",
