@@ -252,42 +252,52 @@ footer {
 #deck .card:first-of-type {
   padding-top: 0;
 }
-.card-no {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #888;
-  min-width: 2.1rem;
-  flex-shrink: 0;
-}
 .studied-btn {
   width: 1.65rem;
   height: 1.65rem;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: #bbb;
+  border-radius: 4px;
+  border: 1px solid #c8c8c8;
+  background: #fafafa;
+  color: #9a9a9a;
   cursor: pointer;
   padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 0.95rem;
   line-height: 1;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+}
+.studied-btn svg {
+  width: 0.82rem;
+  height: 0.82rem;
+  display: block;
+}
+.studied-btn .studied-svg-on {
+  display: none;
 }
 .studied-btn:hover {
-  border-color: #9ab87a;
-  color: #6a9a4a;
+  border-color: #8fb86e;
+  color: #5f8f42;
+  background: #f4faf0;
 }
 .studied-btn[aria-pressed="true"] {
-  background: #eef6e8;
-  border-color: #7cb356;
-  color: #4a8a28;
+  background: #5a9e38;
+  border-color: #4a8a28;
+  color: #fff;
+}
+.studied-btn[aria-pressed="true"] .studied-svg-off {
+  display: none;
+}
+.studied-btn[aria-pressed="true"] .studied-svg-on {
+  display: block;
 }
 .studied-btn:focus-visible {
   outline: 2px solid rgba(74, 138, 40, 0.45);
   outline-offset: 2px;
+}
+.studied-btn:active {
+  transform: scale(0.92);
 }
 .view-pane.is-hidden {
   display: none;
@@ -586,7 +596,6 @@ DECK_UI_JS = """\
       btn.setAttribute("aria-pressed", on ? "true" : "false");
       btn.setAttribute("aria-label", on ? "Studied — click to unmark" : "Mark as studied");
       btn.setAttribute("title", on ? "Studied" : "Mark studied");
-      btn.textContent = on ? "\\u2713" : "\\u25CB";
     });
     if (card) card.classList.toggle("is-studied", on);
     if (item) item.classList.toggle("is-studied", on);
@@ -805,6 +814,12 @@ def collect_filter_options(cards: list[dict[str, Any]]) -> tuple[list[int], list
     return sorted(lektions), sorted(levels)
 
 
+def deck_number_for_index(index: int, total: int) -> int:
+    """Display #1 on the last manifest card (oldest); #N on the first (newest prepend)."""
+
+    return total - index
+
+
 def card_dom_id(card: dict[str, Any], deck_no: int) -> str:
     raw = str(card.get("id") or "").strip()
     if raw:
@@ -821,7 +836,16 @@ def card_list_label(card: dict[str, Any]) -> str:
 def studied_button_html() -> str:
     return (
         '<button type="button" class="studied-btn" aria-pressed="false"'
-        ' aria-label="Mark as studied" title="Mark studied">○</button>'
+        ' aria-label="Mark as studied" title="Mark studied">'
+        '<svg class="studied-svg-off" viewBox="0 0 12 12" aria-hidden="true">'
+        '<rect x="1.6" y="1.6" width="8.8" height="8.8" rx="1.6" fill="none"'
+        ' stroke="currentColor" stroke-width="1.15"/>'
+        "</svg>"
+        '<svg class="studied-svg-on" viewBox="0 0 12 12" aria-hidden="true">'
+        '<rect x="1.6" y="1.6" width="8.8" height="8.8" rx="1.6" fill="currentColor"/>'
+        '<path d="M3.4 6.1l1.9 1.9 3.4-3.5" fill="none" stroke="#fff"'
+        ' stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
+        "</svg></button>"
     )
 
 
@@ -864,10 +888,11 @@ def vocab_list_item_html(card: dict[str, Any], deck_no: int) -> str:
 
 
 def vocab_list_html(cards: list[dict[str, Any]]) -> str:
+    valid = [c for c in cards if isinstance(c, dict) and str(c.get("head") or "").strip()]
+    total = len(valid)
     items = [
-        vocab_list_item_html(card, n)
-        for n, card in enumerate(cards, start=1)
-        if isinstance(card, dict) and str(card.get("head") or "").strip()
+        vocab_list_item_html(card, deck_number_for_index(i, total))
+        for i, card in enumerate(valid)
     ]
     return '<ol id="vocab-list" class="vocab-list view-pane is-hidden">' + "".join(items) + "</ol>"
 
@@ -947,11 +972,11 @@ def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
         '<option value="list">List</option>'
         "</select></label>"
         '<label>Per page <select id="page-size">'
+        '<option value="all" selected>All</option>'
         '<option value="10">10</option>'
-        '<option value="25" selected>25</option>'
+        '<option value="25">25</option>'
         '<option value="50">50</option>'
         '<option value="100">100</option>'
-        '<option value="all">All</option>'
         "</select></label>"
         "</div>"
         + pagination_html()
@@ -1032,9 +1057,10 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         '<div id="deck" class="view-pane">',
     ]
 
-    for deck_no, card in enumerate(valid_cards, start=1):
+    deck_total = len(valid_cards)
+    for i, card in enumerate(valid_cards):
+        deck_no = deck_number_for_index(i, deck_total)
         head = html.escape(str(card.get("head") or "").strip())
-        no_html = f'<span class="card-no" title="Deck #{deck_no}">#{deck_no}</span>'
         studied_btn = studied_button_html()
         audio_btn = pronounce_button_html(str(card.get("audio") or ""))
 
@@ -1053,7 +1079,6 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         parts.append(f'<article class="card"{card_data_attrs(card, deck_no=deck_no)}>')
         parts.append(
             '<div class="head-line">'
-            + no_html
             + f'<div class="head">{head}</div>'
             + studied_btn
             + (audio_btn or "")
