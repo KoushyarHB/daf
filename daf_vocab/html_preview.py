@@ -17,6 +17,7 @@ from .docx_cards import (
     normalize_grammar_table,
     split_head,
 )
+from .heroicons import play_icon_svg, studied_off_icon_svg, studied_on_icon_svg
 
 
 TITLE_PAGE = "daf — vocabulary"
@@ -101,10 +102,11 @@ h1 {
 .pronounce-btn:active {
   transform: scale(0.92);
 }
-.pronounce-btn svg {
-  width: 0.62rem;
-  height: 0.62rem;
-  margin-left: 0.05rem;
+.pronounce-btn svg.heroicon {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+.pronounce-btn svg.heroicon--solid {
   fill: currentColor;
 }
 .meta {
@@ -143,9 +145,9 @@ h1 {
   height: 1.4rem;
   margin-top: 0.08rem;
 }
-.pronounce-btn--ex svg {
-  width: 0.55rem;
-  height: 0.55rem;
+.pronounce-btn--ex svg.heroicon {
+  width: 0.8rem;
+  height: 0.8rem;
 }
 .ex-de { color: var(--blue); }
 .ex-en { color: var(--gray-en); }
@@ -268,10 +270,16 @@ footer {
   line-height: 1;
   transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
 }
-.studied-btn svg {
-  width: 0.82rem;
-  height: 0.82rem;
+.studied-btn svg.heroicon {
+  width: 1.05rem;
+  height: 1.05rem;
   display: block;
+}
+.studied-btn svg.heroicon--outline {
+  stroke: currentColor;
+}
+.studied-btn svg.heroicon--solid {
+  fill: currentColor;
 }
 .studied-btn .studied-svg-on {
   display: none;
@@ -837,15 +845,9 @@ def studied_button_html() -> str:
     return (
         '<button type="button" class="studied-btn" aria-pressed="false"'
         ' aria-label="Mark as studied" title="Mark studied">'
-        '<svg class="studied-svg-off" viewBox="0 0 12 12" aria-hidden="true">'
-        '<rect x="1.6" y="1.6" width="8.8" height="8.8" rx="1.6" fill="none"'
-        ' stroke="currentColor" stroke-width="1.15"/>'
-        "</svg>"
-        '<svg class="studied-svg-on" viewBox="0 0 12 12" aria-hidden="true">'
-        '<rect x="1.6" y="1.6" width="8.8" height="8.8" rx="1.6" fill="currentColor"/>'
-        '<path d="M3.4 6.1l1.9 1.9 3.4-3.5" fill="none" stroke="#fff"'
-        ' stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
-        "</svg></button>"
+        + studied_off_icon_svg()
+        + studied_on_icon_svg()
+        + "</button>"
     )
 
 
@@ -920,9 +922,8 @@ def pronounce_button_html(audio_path: str | None, *, compact: bool = False) -> s
         f'<button type="button" class="{cls}" data-audio="'
         + src
         + '" aria-label="Play pronunciation" title="Listen">'
-        '<svg viewBox="0 0 12 12" aria-hidden="true">'
-        '<path d="M3 2.5v7l6.5-3.5L3 2.5z"/>'
-        "</svg></button>"
+        + play_icon_svg()
+        + "</button>"
     )
 
 
