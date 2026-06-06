@@ -21,6 +21,18 @@ ICON_CIRCLE_OUTLINE = (
     'd="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />'
 )
 
+# outline, 24×24 — pagination
+ICON_CHEVRON_LEFT = (
+    '<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />'
+)
+ICON_CHEVRON_RIGHT = (
+    '<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />'
+)
+ICON_CHEVRON_DOUBLE_RIGHT = (
+    '<path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5" />'
+    '<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 4.5l7.5 7.5-7.5 7.5" />'
+)
+
 # solid, 24×24
 ICON_CHECK_CIRCLE_SOLID = (
     '<path fill-rule="evenodd" '
@@ -52,3 +64,25 @@ def studied_off_icon_svg() -> str:
 
 def studied_on_icon_svg() -> str:
     return _svg(paths=ICON_CHECK_CIRCLE_SOLID, solid=True, extra_class="studied-svg-on")
+
+
+def chevron_left_icon_svg() -> str:
+    return _svg(paths=ICON_CHEVRON_LEFT, solid=False)
+
+
+def chevron_right_icon_svg() -> str:
+    return _svg(paths=ICON_CHEVRON_RIGHT, solid=False)
+
+
+def chevron_double_left_icon_svg() -> str:
+    """Mirror of double-right — the hand-authored left paths share a tip and cross on the right arm."""
+
+    return _svg(
+        paths=ICON_CHEVRON_DOUBLE_RIGHT,
+        solid=False,
+        extra_class="heroicon--double heroicon--mirror-x",
+    )
+
+
+def chevron_double_right_icon_svg() -> str:
+    return _svg(paths=ICON_CHEVRON_DOUBLE_RIGHT, solid=False, extra_class="heroicon--double")

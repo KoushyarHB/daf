@@ -785,7 +785,10 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
     head_p.paragraph_format.space_after = Pt(6)
     head_p.add_run(lemma).bold = True
     if ipa:
-        head_p.add_run(" " + ipa)
+        r_ipa = head_p.add_run(" " + ipa)
+        r_ipa.bold = False
+        r_ipa.font.size = Pt(10)
+        r_ipa.font.color.rgb = NOTE_GRAY
 
     plural = (card.get("plural") or "").strip()
     if plural:

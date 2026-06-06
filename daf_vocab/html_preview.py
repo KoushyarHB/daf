@@ -17,7 +17,15 @@ from .docx_cards import (
     normalize_grammar_table,
     split_head,
 )
-from .heroicons import play_icon_svg, studied_off_icon_svg, studied_on_icon_svg
+from .heroicons import (
+    chevron_double_left_icon_svg,
+    chevron_double_right_icon_svg,
+    chevron_left_icon_svg,
+    chevron_right_icon_svg,
+    play_icon_svg,
+    studied_off_icon_svg,
+    studied_on_icon_svg,
+)
 
 
 TITLE_PAGE = "daf — vocabulary"
@@ -34,6 +42,10 @@ CSS = """\
 * { box-sizing: border-box; }
 html {
   margin: 0;
+  scrollbar-gutter: stable;
+}
+body.lightbox-open {
+  overflow: hidden;
 }
 body {
   font-family: Calibri, "Segoe UI", Roboto, sans-serif;
@@ -75,6 +87,11 @@ h1 {
   font-weight: 700;
   margin-bottom: 0.35rem;
 }
+.head-ipa {
+  font-weight: 400;
+  font-size: 0.88em;
+  color: #666;
+}
 .pronounce-btn {
   width: 1.65rem;
   height: 1.65rem;
@@ -105,6 +122,7 @@ h1 {
 .pronounce-btn svg.heroicon {
   width: 0.95rem;
   height: 0.95rem;
+  display: block;
 }
 .pronounce-btn svg.heroicon--solid {
   fill: currentColor;
@@ -130,7 +148,7 @@ h1 {
 .ex-block { margin-top: 0.45rem; padding-left: 0.6rem; }
 .ex-line {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.32rem;
   font-size: 10.5pt;
   font-style: italic;
@@ -143,7 +161,9 @@ h1 {
 .pronounce-btn--ex {
   width: 1.4rem;
   height: 1.4rem;
-  margin-top: 0.08rem;
+  margin-top: 0;
+  flex-shrink: 0;
+  align-self: center;
 }
 .pronounce-btn--ex svg.heroicon {
   width: 0.8rem;
@@ -163,12 +183,69 @@ h1 {
   margin-top: 0.6rem;
   padding-left: 0.6rem;
 }
+.zoomable-image {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  text-align: left;
+}
+.zoomable-image:hover img {
+  border-color: rgba(47, 111, 184, 0.45);
+  box-shadow: 0 0 0 2px rgba(47, 111, 184, 0.12);
+}
+.zoomable-image img,
 .card-image img {
   display: block;
   max-width: 100%;
   height: auto;
   border: 1px solid var(--border);
   border-radius: 4px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(16, 16, 16, 0.88);
+  cursor: zoom-out;
+}
+.image-lightbox.is-open {
+  display: flex;
+}
+.image-lightbox-img {
+  display: block;
+  max-width: min(100%, 72rem);
+  max-height: calc(100vh - 2.5rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  cursor: default;
+}
+.image-lightbox-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.85rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.image-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 .grammar-table-wrap {
   margin: 0.35rem 0 0.65rem 0;
@@ -246,6 +323,38 @@ footer {
   background: #fafafa;
   min-width: 5.75rem;
   max-width: 9.5rem;
+  appearance: auto;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.deck-controls select:focus,
+.deck-controls select:focus-visible,
+.page-size-control select:focus,
+.page-size-control select:focus-visible {
+  outline: none;
+  border-color: rgba(47, 111, 184, 0.45);
+  box-shadow: 0 0 0 2px rgba(47, 111, 184, 0.12);
+}
+.deck-controls select:focus:not(:focus-visible),
+.page-size-control select:focus:not(:focus-visible) {
+  box-shadow: none;
+  border-color: #d8d8d8;
+}
+.page-size-control select,
+#page-size {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #222;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  background: #fafafa;
+  min-width: 0;
+  width: 3.15rem;
+  max-width: 3.75rem;
+  padding: 0.18rem 0.15rem 0.18rem 0.28rem;
+  text-align-last: center;
   transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
 }
 .deck-controls label.is-active select {
@@ -262,18 +371,57 @@ footer {
 }
 .deck-pagination {
   position: sticky;
-  top: 4.55rem;
+  top: var(--site-header-h, 4.55rem);
   z-index: 90;
+  margin: 0 0 0.85rem;
+  padding: 0.45rem 0.55rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.deck-pagination-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
-  margin: 0 0 0.85rem;
-  padding: 0.38rem 0.55rem;
-  background: rgba(255, 255, 255, 0.97);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  min-height: 2.1rem;
+  padding: 0.05rem 0;
+}
+.deck-pagination-size {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  flex-shrink: 0;
+}
+.page-size-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+#page-size-controls-slot {
+  display: contents;
+}
+.deck-pagination-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.page-current {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--head-blue);
+  min-width: 1.75rem;
+  text-align: center;
+  line-height: 1;
+  padding: 0 0.15rem;
 }
 .card.is-hidden,
 .vocab-list-item.is-hidden {
@@ -390,29 +538,45 @@ footer {
 .vocab-list-item.is-studied .vocab-list-lemma {
   color: #555;
 }
-.deck-pagination button {
-  font: inherit;
-  font-size: 0.76rem;
-  padding: 0.22rem 0.55rem;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  background: #fff;
+.deck-pagination-nav button.page-edge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
   color: var(--head-blue);
   cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
 }
-.deck-pagination button:disabled {
-  opacity: 0.45;
-  cursor: default;
-  color: #888;
+.deck-pagination-nav button.page-edge--jump {
+  width: auto;
+  min-width: 1.75rem;
+  padding: 0 0.1rem;
 }
-.deck-pagination button:not(:disabled):hover {
+.deck-pagination-nav button.page-edge svg.heroicon {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  flex-shrink: 0;
+}
+.deck-pagination-nav button.page-edge svg.heroicon--double {
+  width: 1.35rem;
+  height: 1rem;
+}
+.deck-pagination-nav button.page-edge svg.heroicon--mirror-x {
+  transform: scaleX(-1);
+}
+.deck-pagination-nav button.page-edge:not(:disabled):hover {
   background: #f1f6fc;
 }
-#page-info {
-  font-size: 0.76rem;
-  color: #555;
-  min-width: 7rem;
-  text-align: center;
+.deck-pagination-nav button.page-edge:disabled {
+  cursor: default;
+  color: #b8c9de;
 }
 .card.is-studied {
   opacity: 0.92;
@@ -501,7 +665,8 @@ footer {
 .lesson-item a {
   color: var(--head-blue);
 }
-.lesson-item img {
+.lesson-item img,
+.lesson-item .zoomable-image img {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -509,6 +674,10 @@ footer {
   margin-top: 0.6rem;
   border: 1px solid var(--border);
   border-radius: 4px;
+}
+.lesson-item .zoomable-image {
+  width: 100%;
+  margin-top: 0;
 }
 .lesson-header {
   background: #ffffff;
@@ -546,6 +715,20 @@ footer {
   font-size: 1.05rem;
   color: #222;
 }
+@media (max-width: 640px) {
+  .deck-pagination-size {
+    display: none;
+  }
+  .deck-pagination-inner {
+    min-height: 1.85rem;
+  }
+  .site-brand img {
+    height: 44px;
+  }
+  .site-nav {
+    gap: 1.25rem;
+  }
+}
 """
 
 PRONOUNCE_JS = """\
@@ -564,6 +747,57 @@ PRONOUNCE_JS = """\
 })();
 """
 
+IMAGE_LIGHTBOX_JS = """\
+(function () {
+  var lb = document.getElementById("image-lightbox");
+  if (!lb) return;
+  var lbImg = lb.querySelector(".image-lightbox-img");
+  var closeBtn = lb.querySelector(".image-lightbox-close");
+  if (!lbImg || !closeBtn) return;
+
+  function openLightbox(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || "";
+    lb.classList.add("is-open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    lbImg.removeAttribute("src");
+    lbImg.alt = "";
+  }
+
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest(".zoomable-image");
+    if (trigger) {
+      e.preventDefault();
+      var img = trigger.querySelector("img");
+      var src = trigger.getAttribute("data-lightbox-src") || (img && img.getAttribute("src")) || "";
+      var alt = img ? img.getAttribute("alt") || "" : "";
+      if (src) openLightbox(src, alt);
+      return;
+    }
+    if (lb.classList.contains("is-open") && (e.target === lb || e.target === closeBtn)) {
+      closeLightbox();
+    }
+  });
+
+  lbImg.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && lb.classList.contains("is-open")) closeLightbox();
+  });
+})();
+"""
+
+
 DECK_UI_JS = """\
 (function () {
   var STUDIED_KEY = "daf-vocab-studied-v1";
@@ -579,9 +813,11 @@ DECK_UI_JS = """\
   var sortSel = document.getElementById("sort-order");
   var viewSel = document.getElementById("view-mode");
   var pageSizeSel = document.getElementById("page-size");
+  var pageFirst = document.getElementById("page-first");
   var pagePrev = document.getElementById("page-prev");
   var pageNext = document.getElementById("page-next");
-  var pageInfo = document.getElementById("page-info");
+  var pageLast = document.getElementById("page-last");
+  var pageCurrent = document.getElementById("page-current");
   if (!countEl || !lektionSel || !levelSel || !studiedSel || !sortSel || !viewSel || !pageSizeSel) return;
 
   var deckOrder = cards.slice();
@@ -590,6 +826,36 @@ DECK_UI_JS = """\
     if (item.dataset.cardId) listById[item.dataset.cardId] = item;
   });
   var currentPage = 0;
+  var MOBILE_MQ = window.matchMedia("(max-width: 640px)");
+
+  function updateLayoutChrome() {
+    var header = document.querySelector(".site-header");
+    if (header) {
+      document.documentElement.style.setProperty("--site-header-h", header.offsetHeight + "px");
+    }
+    var label = document.getElementById("page-size-label");
+    var controlsSlot = document.getElementById("page-size-controls-slot");
+    var paginationSlot = document.getElementById("page-size-slot");
+    if (label && controlsSlot && paginationSlot) {
+      var mobile = MOBILE_MQ.matches;
+      var target = mobile ? controlsSlot : paginationSlot;
+      if (label.parentElement !== target) target.appendChild(label);
+    }
+  }
+
+  if (window.ResizeObserver) {
+    var headerEl = document.querySelector(".site-header");
+    if (headerEl) {
+      new ResizeObserver(updateLayoutChrome).observe(headerEl);
+    }
+  }
+  window.addEventListener("resize", updateLayoutChrome);
+  if (MOBILE_MQ.addEventListener) {
+    MOBILE_MQ.addEventListener("change", updateLayoutChrome);
+  } else if (MOBILE_MQ.addListener) {
+    MOBILE_MQ.addListener(updateLayoutChrome);
+  }
+  updateLayoutChrome();
 
   function loadStudied() {
     try {
@@ -700,16 +966,20 @@ DECK_UI_JS = """\
       item.classList.toggle("is-hidden", !pageIds[item.dataset.cardId]);
     });
 
-    if (pagePrev) pagePrev.disabled = currentPage <= 0;
-    if (pageNext) pageNext.disabled = currentPage >= pages - 1 || total === 0;
-    if (pageInfo) {
+    if (pageFirst) pageFirst.disabled = currentPage <= 0 || size === 0 || total === 0;
+    if (pagePrev) pagePrev.disabled = currentPage <= 0 || size === 0 || total === 0;
+    if (pageNext) pageNext.disabled = currentPage >= pages - 1 || size === 0 || total === 0;
+    if (pageLast) pageLast.disabled = currentPage >= pages - 1 || size === 0 || total === 0;
+    if (pageCurrent) {
       if (total === 0) {
-        pageInfo.textContent = "No cards";
+        pageCurrent.textContent = "\\u2014";
+        pageCurrent.removeAttribute("aria-current");
       } else if (size === 0) {
-        pageInfo.textContent = "All " + total + " cards";
+        pageCurrent.textContent = "1";
+        pageCurrent.setAttribute("aria-current", "page");
       } else {
-        pageInfo.textContent = "Page " + (currentPage + 1) + " of " + pages
-          + " (" + (start + 1) + "\\u2013" + end + ")";
+        pageCurrent.textContent = String(currentPage + 1);
+        pageCurrent.setAttribute("aria-current", "page");
       }
     }
     return { total: total, start: start, end: end, pages: pages };
@@ -743,7 +1013,7 @@ DECK_UI_JS = """\
       [studiedSel, "all"],
       [sortSel, "deck"],
       [viewSel, "cards"],
-      [pageSizeSel, "all"]
+      [pageSizeSel, "25"]
     ];
     pairs.forEach(function (pair) {
       var sel = pair[0];
@@ -811,6 +1081,11 @@ DECK_UI_JS = """\
     currentPage = 0;
     apply();
   });
+  if (pageFirst) {
+    pageFirst.addEventListener("click", function () {
+      if (currentPage > 0) { currentPage = 0; apply(); }
+    });
+  }
   if (pagePrev) {
     pagePrev.addEventListener("click", function () {
       if (currentPage > 0) { currentPage -= 1; apply(); }
@@ -820,6 +1095,14 @@ DECK_UI_JS = """\
     pageNext.addEventListener("click", function () {
       currentPage += 1;
       apply();
+    });
+  }
+  if (pageLast) {
+    pageLast.addEventListener("click", function () {
+      var visible = filteredCards();
+      var size = pageSizeValue();
+      var pages = size === 0 ? 1 : Math.max(1, Math.ceil(visible.length / size));
+      if (currentPage < pages - 1) { currentPage = pages - 1; apply(); }
     });
   }
 
@@ -882,6 +1165,19 @@ def card_list_label(card: dict[str, Any]) -> str:
     return lemma.strip() or head
 
 
+def head_block_html(head_raw: str) -> str:
+    """Lemma bold; IPA muted (same line, lighter weight and color)."""
+    head_plain = head_raw.strip()
+    lemma, ipa = split_head(head_plain)
+    lemma_esc = html.escape(lemma)
+    if ipa:
+        return (
+            f'<div class="head">{lemma_esc}'
+            f'<span class="head-ipa"> {html.escape(ipa)}</span></div>'
+        )
+    return f'<div class="head">{html.escape(head_plain)}</div>'
+
+
 def studied_button_html() -> str:
     return (
         '<button type="button" class="studied-btn" aria-pressed="false"'
@@ -940,12 +1236,41 @@ def vocab_list_html(cards: list[dict[str, Any]]) -> str:
     return '<ol id="vocab-list" class="vocab-list view-pane is-hidden">' + "".join(items) + "</ol>"
 
 
+def page_size_label_html() -> str:
+    return (
+        '<label id="page-size-label" class="page-size-control">Per page <select id="page-size">'
+        '<option value="10">10</option>'
+        '<option value="25" selected>25</option>'
+        '<option value="50">50</option>'
+        '<option value="100">100</option>'
+        '<option value="all">All</option>'
+        "</select></label>"
+    )
+
+
 def pagination_html() -> str:
     return (
-        '<nav class="deck-pagination" id="pagination" aria-label="Page navigation">'
-        '<button type="button" id="page-prev" disabled>Previous</button>'
-        '<span id="page-info" aria-live="polite">Page 1</span>'
-        '<button type="button" id="page-next">Next</button>'
+        '<nav class="deck-pagination" id="pagination" aria-label="Pagination">'
+        '<div class="deck-pagination-inner">'
+        '<div class="deck-pagination-size" id="page-size-slot">'
+        + page_size_label_html()
+        + "</div>"
+        '<div class="deck-pagination-nav">'
+        '<button type="button" id="page-first" class="page-edge page-edge--jump" disabled aria-label="First page">'
+        + chevron_double_left_icon_svg()
+        + "</button>"
+        '<button type="button" id="page-prev" class="page-edge" disabled aria-label="Previous page">'
+        + chevron_left_icon_svg()
+        + "</button>"
+        '<span class="page-current" id="page-current" aria-live="polite">1</span>'
+        '<button type="button" id="page-next" class="page-edge" aria-label="Next page">'
+        + chevron_right_icon_svg()
+        + "</button>"
+        '<button type="button" id="page-last" class="page-edge page-edge--jump" aria-label="Last page">'
+        + chevron_double_right_icon_svg()
+        + "</button>"
+        "</div>"
+        "</div>"
         "</nav>"
     )
 
@@ -968,17 +1293,40 @@ def pronounce_button_html(audio_path: str | None, *, compact: bool = False) -> s
     )
 
 
+def zoomable_image_html(*, src_path: str, alt: str) -> str:
+    """Thumbnail button that opens a full-size lightbox on click."""
+
+    src = html.escape(src_path, quote=True)
+    alt_esc = html.escape(alt)
+    label = html.escape(f"Open image: {alt}")
+    return (
+        f'<button type="button" class="zoomable-image" data-lightbox-src="{src}" '
+        f'aria-label="{label}">'
+        f'<img src="{src}" alt="{alt_esc}" loading="lazy" />'
+        "</button>"
+    )
+
+
+def image_lightbox_html() -> str:
+    return (
+        '<div id="image-lightbox" class="image-lightbox" aria-hidden="true" role="dialog" '
+        'aria-modal="true" aria-label="Image preview">'
+        '<button type="button" class="image-lightbox-close" aria-label="Close preview">&times;</button>'
+        '<img class="image-lightbox-img" src="" alt="" />'
+        "</div>"
+    )
+
+
 def card_image_block_html(card: dict[str, Any]) -> str:
     image = str(card.get("image") or "").strip()
     if not image:
         return ""
     src_path = image.lstrip("/") if image.startswith("/") else image
-    src = html.escape(src_path, quote=True)
-    alt = html.escape(f"{str(card.get('head') or '').strip()} image")
+    alt = f"{str(card.get('head') or '').strip()} image"
     return (
         '<div class="card-image">'
-        f'<img src="{src}" alt="{alt}" loading="lazy" />'
-        "</div>"
+        + zoomable_image_html(src_path=src_path, alt=alt)
+        + "</div>"
     )
 
 
@@ -1013,13 +1361,7 @@ def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
         '<option value="cards">Cards</option>'
         '<option value="list">List</option>'
         "</select></label>"
-        '<label>Per page <select id="page-size">'
-        '<option value="all" selected>All</option>'
-        '<option value="10">10</option>'
-        '<option value="25">25</option>'
-        '<option value="50">50</option>'
-        '<option value="100">100</option>'
-        "</select></label>"
+        '<div id="page-size-controls-slot"></div>'
         "</div>"
         '<p class="deck-count" id="deck-count" aria-live="polite"></p>'
         "</div>"
@@ -1083,6 +1425,10 @@ def render_preview_page_html(*, title: str, active: str, body: list[str]) -> str
         "<body>",
         site_header_html(active=active),
         *body,
+        image_lightbox_html(),
+        "<script>",
+        IMAGE_LIGHTBOX_JS,
+        "</script>",
         "</body></html>",
     ]
     return "\n".join(parts)
@@ -1102,7 +1448,6 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     deck_total = len(valid_cards)
     for i, card in enumerate(valid_cards):
         deck_no = deck_number_for_index(i, deck_total)
-        head = html.escape(str(card.get("head") or "").strip())
         studied_btn = studied_button_html()
         audio_btn = pronounce_button_html(str(card.get("audio") or ""))
 
@@ -1121,7 +1466,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         parts.append(f'<article class="card"{card_data_attrs(card, deck_no=deck_no)}>')
         parts.append(
             '<div class="head-line">'
-            + f'<div class="head">{head}</div>'
+            + head_block_html(str(card.get("head") or ""))
             + studied_btn
             + (audio_btn or "")
             + "</div>"
@@ -1195,12 +1540,12 @@ def render_lesson_pages_html(pages: list[tuple[str, str]]) -> str:
     items: list[str] = ['<ul class="lesson-list">']
     for label, src in pages:
         esc_label = html.escape(label)
-        esc_src = html.escape(src, quote=True)
+        src_path = src.lstrip("/") if src.startswith("/") else src
         items.extend(
             [
                 '<li class="lesson-item">',
-                f'<div><a href="{esc_src}" target="_blank" rel="noopener">{esc_label} — open full image</a></div>',
-                f'<img src="{esc_src}" alt="{esc_label}" loading="lazy" />',
+                f'<div><a href="{html.escape(src_path, quote=True)}" target="_blank" rel="noopener">{esc_label} — open full image</a></div>',
+                zoomable_image_html(src_path=src_path, alt=label),
                 "</li>",
             ]
         )
@@ -1305,6 +1650,9 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
         gp = lesson["grammarPage"]
         wp_src = html.escape(str(wp["image"]).lstrip("/"), quote=True)
         gp_src = html.escape(str(gp["image"]).lstrip("/"), quote=True)
+        wp_path = str(wp["image"]).lstrip("/")
+        gp_path = str(gp["image"]).lstrip("/")
+        title_plain = str(lesson.get("title") or "").strip()
         wp_lbl = html.escape(str(wp["label"]))
         gp_lbl = html.escape(str(gp["label"]))
         link_items.append(
@@ -1319,12 +1667,12 @@ def render_lesson_hub_html(lessons: list[dict[str, Any]]) -> str:
                 '<div class="deck-controls-row">'
                 "<div>"
                 f'<div><a href="{wp_src}" target="_blank" rel="noopener">{wp_lbl} — open full image</a></div>'
-                f'<img src="{wp_src}" alt="{title} words page" loading="lazy" />'
-                "</div>"
+                + zoomable_image_html(src_path=wp_path, alt=f"{title_plain} words page")
+                + "</div>"
                 "<div>"
                 f'<div><a href="{gp_src}" target="_blank" rel="noopener">{gp_lbl} — open full image</a></div>'
-                f'<img src="{gp_src}" alt="{title} grammar page" loading="lazy" />'
-                "</div>"
+                + zoomable_image_html(src_path=gp_path, alt=f"{title_plain} grammar page")
+                + "</div>"
                 "</div>"
                 "</li>"
             )
