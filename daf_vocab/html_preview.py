@@ -207,8 +207,8 @@ footer {
   color: #888;
 }
 .deck-controls {
-  margin: 0 0 1.25rem;
-  padding: 0.85rem 0.9rem;
+  margin: 0 0 0.45rem;
+  padding: 0.45rem 0.55rem;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -216,36 +216,64 @@ footer {
 .deck-controls-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem 1rem;
+  gap: 0.35rem 0.55rem;
   align-items: flex-end;
 }
 .deck-controls label {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  font-size: 0.72rem;
+  gap: 0.1rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  color: #555;
+  color: #777;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  transition: color 0.15s;
+}
+.deck-controls label.is-active {
+  color: var(--head-blue);
 }
 .deck-controls select {
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   font-weight: 400;
   text-transform: none;
   letter-spacing: normal;
-  color: #111;
-  padding: 0.35rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  color: #222;
+  padding: 0.18rem 0.32rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
   background: #fafafa;
-  min-width: 8.5rem;
+  min-width: 5.75rem;
+  max-width: 9.5rem;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.deck-controls label.is-active select {
+  border-color: rgba(47, 111, 184, 0.52);
+  background: #eef4fc;
+  color: #1a4a85;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(47, 111, 184, 0.14);
 }
 .deck-count {
-  margin: 0.55rem 0 0;
-  font-size: 0.8rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.72rem;
   color: #666;
+}
+.deck-pagination {
+  position: sticky;
+  top: 4.55rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0 0 0.85rem;
+  padding: 0.38rem 0.55rem;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 .card.is-hidden,
 .vocab-list-item.is-hidden {
@@ -362,36 +390,28 @@ footer {
 .vocab-list-item.is-studied .vocab-list-lemma {
   color: #555;
 }
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
-  padding: 0.55rem 0;
-}
-.pagination button {
+.deck-pagination button {
   font: inherit;
-  font-size: 0.88rem;
-  padding: 0.35rem 0.75rem;
+  font-size: 0.76rem;
+  padding: 0.22rem 0.55rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 3px;
   background: #fff;
   color: var(--head-blue);
   cursor: pointer;
 }
-.pagination button:disabled {
+.deck-pagination button:disabled {
   opacity: 0.45;
   cursor: default;
   color: #888;
 }
-.pagination button:not(:disabled):hover {
+.deck-pagination button:not(:disabled):hover {
   background: #f1f6fc;
 }
 #page-info {
-  font-size: 0.85rem;
+  font-size: 0.76rem;
   color: #555;
-  min-width: 8rem;
+  min-width: 7rem;
   text-align: center;
 }
 .card.is-studied {
@@ -713,6 +733,25 @@ DECK_UI_JS = """\
     }
     if (studiedCount > 0) parts.push(studiedCount + " studied in view");
     countEl.textContent = parts.join(" \\u00b7 ");
+    syncFilterStyles();
+  }
+
+  function syncFilterStyles() {
+    var pairs = [
+      [lektionSel, "all"],
+      [levelSel, "all"],
+      [studiedSel, "all"],
+      [sortSel, "deck"],
+      [viewSel, "cards"],
+      [pageSizeSel, "all"]
+    ];
+    pairs.forEach(function (pair) {
+      var sel = pair[0];
+      var def = pair[1];
+      if (!sel) return;
+      var label = sel.closest("label");
+      if (label) label.classList.toggle("is-active", sel.value !== def);
+    });
   }
 
   function toggleStudied(id) {
@@ -903,7 +942,7 @@ def vocab_list_html(cards: list[dict[str, Any]]) -> str:
 
 def pagination_html() -> str:
     return (
-        '<nav class="pagination" id="pagination" aria-label="Page navigation">'
+        '<nav class="deck-pagination" id="pagination" aria-label="Page navigation">'
         '<button type="button" id="page-prev" disabled>Previous</button>'
         '<span id="page-info" aria-live="polite">Page 1</span>'
         '<button type="button" id="page-next">Next</button>'
@@ -982,8 +1021,7 @@ def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
         '<option value="100">100</option>'
         "</select></label>"
         "</div>"
-        + pagination_html()
-        + '<p class="deck-count" id="deck-count" aria-live="polite"></p>'
+        '<p class="deck-count" id="deck-count" aria-live="polite"></p>'
         "</div>"
     )
 
@@ -1056,6 +1094,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
 
     parts: list[str] = [
         deck_controls_html(lektions, levels),
+        pagination_html(),
         vocab_list_html(valid_cards),
         '<div id="deck" class="view-pane">',
     ]
