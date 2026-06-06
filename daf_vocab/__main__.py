@@ -11,7 +11,6 @@ from canonical ``vocab.manifest.json``.
 from __future__ import annotations
 
 import argparse
-import subprocess
 import sys
 import webbrowser
 from pathlib import Path
@@ -25,6 +24,7 @@ from .docx_cards import (
 )
 
 from .html_preview import write_vocab_preview
+from .preview_server import run_preview_server
 
 
 CMD_FROM_DOCX = "manual-edit-from-docx"
@@ -118,7 +118,8 @@ def main(argv: list[str] | None = None) -> None:
         out = rebuild_vocab_layout(Path(args.docx))
         print(out)
     elif args.cmd == "serve":
-        html_path = write_vocab_preview(Path(args.manifest), Path(args.out) if args.out else None)
+        manifest_path = Path(args.manifest)
+        html_path = write_vocab_preview(manifest_path, Path(args.out) if args.out else None)
         preview_dir = html_path.parent
         url = f"http://127.0.0.1:{args.port}/"
         if not args.no_browser:
@@ -126,21 +127,10 @@ def main(argv: list[str] | None = None) -> None:
         lesson_path = html_path.parent / "lesson-pages.html"
         print(f"Preview written → {html_path}")
         print(f"Lesson pages → {lesson_path}")
+        print(f"Manifest API → POST {url}api/vocab/studied")
         print(f"Open: {url}")
         print("Press Ctrl+C to stop the server.")
-        try:
-            subprocess.run(
-                [
-                    sys.executable,
-                    "-m",
-                    "http.server",
-                    str(args.port),
-                    "--directory",
-                    str(preview_dir),
-                ],
-            )
-        except KeyboardInterrupt:
-            pass
+        run_preview_server(directory=preview_dir, manifest_path=manifest_path, port=args.port)
 
 
 if __name__ == "__main__":

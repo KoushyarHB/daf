@@ -800,7 +800,6 @@ IMAGE_LIGHTBOX_JS = """\
 
 DECK_UI_JS = """\
 (function () {
-  var STUDIED_KEY = "daf-vocab-studied-v1";
   var deck = document.getElementById("deck");
   var list = document.getElementById("vocab-list");
   if (!deck) return;
@@ -827,6 +826,7 @@ DECK_UI_JS = """\
   });
   var currentPage = 0;
   var MOBILE_MQ = window.matchMedia("(max-width: 640px)");
+  var studiedSaveFailed = false;
 
   function updateLayoutChrome() {
     var header = document.querySelector(".site-header");
@@ -857,28 +857,15 @@ DECK_UI_JS = """\
   }
   updateLayoutChrome();
 
-  function loadStudied() {
-    try {
-      return JSON.parse(localStorage.getItem(STUDIED_KEY) || "{}") || {};
-    } catch (e) {
-      return {};
-    }
-  }
-
-  function saveStudied(map) {
-    try {
-      localStorage.setItem(STUDIED_KEY, JSON.stringify(map));
-    } catch (e) {}
-  }
-
-  var studiedMap = loadStudied();
-
   function cardIdFor(el) {
     return el.dataset.cardId || "";
   }
 
   function isStudied(id) {
-    return !!(id && studiedMap[id]);
+    var card = document.getElementById("card-" + id);
+    if (card) return card.dataset.studied === "true";
+    var item = listById[id];
+    return !!(item && item.dataset.studied === "true");
   }
 
   function setStudiedUi(id, on) {
@@ -893,15 +880,14 @@ DECK_UI_JS = """\
       btn.setAttribute("aria-label", on ? "Studied — click to unmark" : "Mark as studied");
       btn.setAttribute("title", on ? "Studied" : "Mark studied");
     });
-    if (card) card.classList.toggle("is-studied", on);
-    if (item) item.classList.toggle("is-studied", on);
-  }
-
-  function syncAllStudiedUi() {
-    cards.forEach(function (card) {
-      var id = cardIdFor(card);
-      if (id) setStudiedUi(id, isStudied(id));
-    });
+    if (card) {
+      card.dataset.studied = on ? "true" : "false";
+      card.classList.toggle("is-studied", on);
+    }
+    if (item) {
+      item.dataset.studied = on ? "true" : "false";
+      item.classList.toggle("is-studied", on);
+    }
   }
 
   function deckIndex(card) {
@@ -944,6 +930,37 @@ DECK_UI_JS = """\
     return visible;
   }
 
+  function cardsNeedReorder(pageSlice) {
+    var shown = Array.from(deck.querySelectorAll(".card:not(.is-hidden)"));
+    if (shown.length !== pageSlice.length) return true;
+    for (var i = 0; i < pageSlice.length; i++) {
+      if (shown[i] !== pageSlice[i]) return true;
+    }
+    return false;
+  }
+
+  function refreshDeckCount(visible) {
+    if (!visible) visible = filteredCards();
+    var studiedCount = visible.filter(function (c) { return isStudied(cardIdFor(c)); }).length;
+    var size = pageSizeValue();
+    var total = visible.length;
+    var pages = size === 0 ? 1 : Math.max(1, Math.ceil(total / size));
+    if (currentPage >= pages) currentPage = Math.max(0, pages - 1);
+    var start = size === 0 ? 0 : currentPage * size;
+    var end = size === 0 ? total : Math.min(start + size, total);
+    var parts = [];
+    if (total === 0) {
+      parts.push("0 of " + cards.length + " cards");
+    } else if (size === 0) {
+      parts.push(total + " of " + cards.length + " cards");
+    } else {
+      parts.push("Showing " + (start + 1) + "\\u2013" + end + " of " + total
+        + " (deck " + cards.length + ")");
+    }
+    if (studiedCount > 0) parts.push(studiedCount + " studied in view");
+    countEl.textContent = parts.join(" \\u00b7 ");
+  }
+
   function applyPagination(visible) {
     var size = pageSizeValue();
     var total = visible.length;
@@ -960,8 +977,12 @@ DECK_UI_JS = """\
     cards.forEach(function (card) {
       var show = pageIds[cardIdFor(card)];
       card.classList.toggle("is-hidden", !show);
-      if (show) deck.appendChild(card);
     });
+    if (cardsNeedReorder(pageSlice)) {
+      pageSlice.forEach(function (card) {
+        deck.appendChild(card);
+      });
+    }
     listItems.forEach(function (item) {
       item.classList.toggle("is-hidden", !pageIds[item.dataset.cardId]);
     });
@@ -986,24 +1007,16 @@ DECK_UI_JS = """\
   }
 
   function apply() {
+    var scrollX = window.scrollX;
+    var scrollY = window.scrollY;
     var visible = filteredCards();
-    var studiedCount = visible.filter(function (c) { return isStudied(cardIdFor(c)); }).length;
     var pg = applyPagination(visible);
     var view = viewSel.value;
     deck.classList.toggle("is-hidden", view !== "cards");
     if (list) list.classList.toggle("is-hidden", view !== "list");
-    var parts = [];
-    if (pg.total === 0) {
-      parts.push("0 of " + cards.length + " cards");
-    } else if (pageSizeValue() === 0) {
-      parts.push(pg.total + " of " + cards.length + " cards");
-    } else {
-      parts.push("Showing " + (pg.start + 1) + "\\u2013" + pg.end + " of " + pg.total
-        + " (deck " + cards.length + ")");
-    }
-    if (studiedCount > 0) parts.push(studiedCount + " studied in view");
-    countEl.textContent = parts.join(" \\u00b7 ");
+    refreshDeckCount(visible);
     syncFilterStyles();
+    window.scrollTo(scrollX, scrollY);
   }
 
   function syncFilterStyles() {
@@ -1026,11 +1039,31 @@ DECK_UI_JS = """\
 
   function toggleStudied(id) {
     if (!id) return;
-    if (studiedMap[id]) delete studiedMap[id];
-    else studiedMap[id] = true;
-    saveStudied(studiedMap);
-    setStudiedUi(id, isStudied(id));
-    apply();
+    var next = !isStudied(id);
+    setStudiedUi(id, next);
+    if (studiedSel.value === "all") {
+      refreshDeckCount();
+    } else {
+      apply();
+    }
+    fetch("/api/vocab/studied", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id, studied: next })
+    }).then(function (res) {
+      if (!res.ok) throw new Error("studied save failed");
+    }).catch(function () {
+      setStudiedUi(id, !next);
+      if (studiedSel.value === "all") {
+        refreshDeckCount();
+      } else {
+        apply();
+      }
+      if (!studiedSaveFailed) {
+        studiedSaveFailed = true;
+        console.warn("Could not save studied flag to vocab.manifest.json (read-only host). Use: python -m daf_vocab serve");
+      }
+    });
   }
 
   function goToCard(id) {
@@ -1055,6 +1088,7 @@ DECK_UI_JS = """\
     var studiedBtn = e.target.closest(".studied-btn");
     if (studiedBtn) {
       e.preventDefault();
+      e.stopPropagation();
       var host = studiedBtn.closest("[data-card-id]");
       if (host) toggleStudied(host.dataset.cardId);
       return;
@@ -1106,7 +1140,6 @@ DECK_UI_JS = """\
     });
   }
 
-  syncAllStudiedUi();
   apply();
 })();
 """
@@ -1178,10 +1211,17 @@ def head_block_html(head_raw: str) -> str:
     return f'<div class="head">{html.escape(head_plain)}</div>'
 
 
-def studied_button_html() -> str:
+def card_studied_flag(card: dict[str, Any]) -> bool:
+    return bool(card.get("studied"))
+
+
+def studied_button_html(*, studied: bool = False) -> str:
+    pressed = "true" if studied else "false"
+    label = "Studied — click to unmark" if studied else "Mark as studied"
+    title = "Studied" if studied else "Mark studied"
     return (
-        '<button type="button" class="studied-btn" aria-pressed="false"'
-        ' aria-label="Mark as studied" title="Mark studied">'
+        f'<button type="button" class="studied-btn" aria-pressed="{pressed}"'
+        f' aria-label="{html.escape(label)}" title="{html.escape(title)}">'
         + studied_off_icon_svg()
         + studied_on_icon_svg()
         + "</button>"
@@ -1198,6 +1238,7 @@ def card_data_attrs(card: dict[str, Any], *, deck_no: int) -> str:
     created = card.get("createdAt") or card.get("updatedAt")
     created_ms = iso_to_ms(str(created) if created else None)
     cid = html.escape(card_dom_id(card, deck_no), quote=True)
+    studied = "true" if card_studied_flag(card) else "false"
     return (
         f' id="card-{cid}"'
         f' data-card-id="{cid}"'
@@ -1205,6 +1246,7 @@ def card_data_attrs(card: dict[str, Any], *, deck_no: int) -> str:
         f' data-lektion="{lek_attr}"'
         f' data-level="{level_attr}"'
         f' data-created-ms="{created_ms}"'
+        f' data-studied="{studied}"'
     )
 
 
@@ -1212,14 +1254,18 @@ def vocab_list_item_html(card: dict[str, Any], deck_no: int) -> str:
     cid = html.escape(card_dom_id(card, deck_no), quote=True)
     label = html.escape(card_list_label(card))
     lek = card.get("lektion")
+    studied = card_studied_flag(card)
+    item_cls = "vocab-list-item is-studied" if studied else "vocab-list-item"
+    studied_attr = "true" if studied else "false"
     lek_badge = ""
     if lek is not None:
         lek_badge = f'<span class="vocab-list-meta">L{html.escape(str(lek))}</span>'
     return (
-        f'<li class="vocab-list-item" data-card-id="{cid}" data-deck-no="{deck_no}"'
-        f' data-lektion="{html.escape(str(lek)) if lek is not None else ""}">'
-        f"{studied_button_html()}"
-        f'<a class="vocab-list-link" href="#card-{cid}">'
+        f'<li class="{item_cls}" data-card-id="{cid}" data-deck-no="{deck_no}"'
+        f' data-lektion="{html.escape(str(lek)) if lek is not None else ""}"'
+        f' data-studied="{studied_attr}">'
+        + studied_button_html(studied=studied)
+        + f'<a class="vocab-list-link" href="#card-{cid}">'
         f'<span class="vocab-list-no">{deck_no}</span>'
         f'<span class="vocab-list-lemma">{label}</span>'
         f"</a>{lek_badge}</li>"
@@ -1448,7 +1494,8 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     deck_total = len(valid_cards)
     for i, card in enumerate(valid_cards):
         deck_no = deck_number_for_index(i, deck_total)
-        studied_btn = studied_button_html()
+        studied = card_studied_flag(card)
+        studied_btn = studied_button_html(studied=studied)
         audio_btn = pronounce_button_html(str(card.get("audio") or ""))
 
         lektion = card.get("lektion")
@@ -1463,7 +1510,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             spans = "".join(f"<span>{p}</span>" for p in meta_parts)
             meta_html = f'<div class="meta">{spans}</div>'
 
-        parts.append(f'<article class="card"{card_data_attrs(card, deck_no=deck_no)}>')
+        parts.append(f'<article class="card{" is-studied" if studied else ""}"{card_data_attrs(card, deck_no=deck_no)}>')
         parts.append(
             '<div class="head-line">'
             + head_block_html(str(card.get("head") or ""))
@@ -1722,7 +1769,10 @@ def write_vocab_preview(
         raise ValueError("Manifest must be a JSON array")
     html_out = render_vocab_html(blob)
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    preview_root = out_path.parent
     out_path.write_text(html_out, encoding="utf-8")
+
+    shutil.copy2(manifest_path, preview_root / "vocab.manifest.json")
 
     # Lesson pages hub: scalable per lesson (words + grammar).
     lessons = load_lesson_pages_manifest(manifest_path.parent)

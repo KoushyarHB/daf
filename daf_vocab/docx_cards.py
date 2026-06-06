@@ -334,6 +334,7 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     od["updatedAt"] = c["updatedAt"]
     od["lektion"] = c["lektion"]
     od["level"] = c["level"]
+    od["studied"] = bool(c.get("studied"))
     return od
 
 
@@ -439,6 +440,7 @@ def normalize_card_meta(
         "updatedAt": str(updated),
         "lektion": _coerce_lektion(card.get("lektion")),
         "level": level,
+        "studied": bool(card.get("studied")),
     }
     if cid:
         out["id"] = cid
@@ -519,11 +521,13 @@ def merge_parsed_cards_with_previous_manifest(
             merged["updatedAt"] = now
             merged["lektion"] = _coerce_lektion(prev.get("lektion"))
             merged["level"] = str(prev.get("level") or DEFAULT_LEVEL).strip() or DEFAULT_LEVEL
+            merged["studied"] = bool(prev.get("studied"))
         else:
             merged["createdAt"] = now
             merged["updatedAt"] = now
             merged["lektion"] = None
             merged["level"] = DEFAULT_LEVEL
+            merged["studied"] = False
         out.append(normalize_card_meta(merged, used_ids=used_ids))
     return out
 
@@ -877,3 +881,35 @@ def build_vocab_from_manifest_file(
 
     write_vocab_preview(manifest_path)
     return vocab_path
+
+
+def set_card_studied_flag(manifest_path: Path, card_id: str, studied: bool) -> bool:
+    """Update one card's ``studied`` flag in ``vocab.manifest.json`` (matched by ``id``)."""
+
+    card_id = str(card_id or "").strip()
+    if not card_id:
+        return False
+    manifest_path = Path(manifest_path)
+    try:
+        blob = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return False
+    if not isinstance(blob, list):
+        return False
+    found = False
+    for raw in blob:
+        if not isinstance(raw, dict):
+            continue
+        cid = normalize_card_id(raw.get("id"))
+        if cid != card_id:
+            continue
+        raw["studied"] = bool(studied)
+        raw["updatedAt"] = utc_now_iso()
+        found = True
+        break
+    if not found:
+        return False
+    used_ids: set[str] = set()
+    cards = [normalize_card_meta(c, used_ids=used_ids) for c in blob if isinstance(c, dict)]
+    manifest_path.write_text(json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return True
