@@ -273,7 +273,6 @@ footer {
 .studied-btn svg.heroicon {
   width: 1.05rem;
   height: 1.05rem;
-  display: block;
 }
 .studied-btn svg.heroicon--outline {
   stroke: currentColor;
@@ -281,7 +280,10 @@ footer {
 .studied-btn svg.heroicon--solid {
   fill: currentColor;
 }
-.studied-btn .studied-svg-on {
+.studied-btn svg.studied-svg-off {
+  display: block;
+}
+.studied-btn svg.studied-svg-on {
   display: none;
 }
 .studied-btn:hover {
@@ -294,10 +296,10 @@ footer {
   border-color: #4a8a28;
   color: #fff;
 }
-.studied-btn[aria-pressed="true"] .studied-svg-off {
+.studied-btn[aria-pressed="true"] svg.studied-svg-off {
   display: none;
 }
-.studied-btn[aria-pressed="true"] .studied-svg-on {
+.studied-btn[aria-pressed="true"] svg.studied-svg-on {
   display: block;
 }
 .studied-btn:focus-visible {
