@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any, Iterator
 
 from .audio_cards import assign_ids_to_deck, ensure_card_id, normalize_card_id
+from .plural_forms import compact_plural_rule, format_plural_line, normalize_plural_fields
 from docx import Document
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -59,8 +60,25 @@ _LEGACY_LEMMA_PLURAL_TO_SUFFIX: dict[tuple[str, str], str] = {
     ("die Person", "die Personen"): "-en",
     ("das Foto", "die Fotos"): "-s",
     ("das Gespräch", "die Gespräche"): "-e",
-    ("der Praktikant", "die Praktikanten"): "-en / die Praktikantin, -nen",
+    ("der Praktikant", "die Praktikanten"): "-en / -nen",
 }
+
+
+def parse_plural_line_from_word(text: str, head_line: str | None) -> tuple[str | None, str | None]:
+    """Parse ``pluralRule · plural`` or legacy suffix-only plural lines from Word."""
+
+    s = (text or "").strip()
+    if not s or not head_line:
+        return None, None
+
+    if " · " in s:
+        rule_part, form_part = [x.strip() for x in s.split(" · ", 1)]
+        return compact_plural_rule(rule_part) or rule_part or None, form_part or None
+
+    suffix = parse_plural_field_from_word_line(text, head_line)
+    if suffix:
+        return compact_plural_rule(suffix) or suffix, None
+    return None, None
 
 
 def parse_plural_field_from_word_line(text: str, head_line: str | None) -> str | None:
@@ -311,16 +329,18 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
 
     ex_raw = c.get("examples") or []
     examples_ord = [ordered_example_object(x) for x in ex_raw if isinstance(x, dict)]
-    plural = (c.get("plural") or "").strip()
     head, ipa = normalize_head_ipa_fields(c)
+    plural_rule, plural_form = normalize_plural_fields(c, head)
     od: dict[str, Any] = {"head": head}
     if ipa:
         od["ipa"] = ipa
     cid = normalize_card_id(c.get("id"))
     if cid:
         od["id"] = cid
-    if plural:
-        od["plural"] = plural
+    if plural_rule:
+        od["pluralRule"] = plural_rule
+    if plural_form:
+        od["plural"] = plural_form
     od["gloss"] = c["gloss"]
     od["notes"] = c["notes"]
     grammar_table = normalize_grammar_table(c.get("grammarTable"))
@@ -430,9 +450,16 @@ def normalize_card_meta(
     if not level:
         level = DEFAULT_LEVEL
     plural_raw = card.get("plural")
-    plural_str = str(plural_raw).strip() if plural_raw else ""
-    if plural_str:
-        plural_str = canonicalize_plural_field(head, plural_str)
+    plural_rule_raw = card.get("pluralRule")
+    plural_rule, plural_form = normalize_plural_fields(
+        {
+            **card,
+            "head": head,
+            "pluralRule": plural_rule_raw,
+            "plural": plural_raw,
+        },
+        head,
+    )
     cid = normalize_card_id(card.get("id"))
     out: dict[str, Any] = {
         "head": head,
@@ -449,8 +476,10 @@ def normalize_card_meta(
         out["ipa"] = ipa
     if cid:
         out["id"] = cid
-    if plural_str:
-        out["plural"] = plural_str
+    if plural_rule:
+        out["pluralRule"] = plural_rule
+    if plural_form:
+        out["plural"] = plural_form
     grammar_table = normalize_grammar_table(card.get("grammarTable"))
     if grammar_table:
         out["grammarTable"] = grammar_table
@@ -524,6 +553,13 @@ def merge_parsed_cards_with_previous_manifest(
             pl_keep = (prev.get("plural") or "").strip()
             if pl_keep:
                 merged["plural"] = pl_keep
+        pl_rule_new = (c.get("pluralRule") or "").strip()
+        if pl_rule_new:
+            merged["pluralRule"] = pl_rule_new
+        elif prev:
+            pl_rule_keep = (prev.get("pluralRule") or "").strip()
+            if pl_rule_keep:
+                merged["pluralRule"] = pl_rule_keep
         if prev:
             merged["createdAt"] = prev.get("createdAt") or now
             merged["updatedAt"] = now
@@ -624,9 +660,12 @@ def parse_vocab_document(doc_path: Path) -> list[dict[str, Any]]:
             continue
         txt = (p.text or "").strip()
         if rr == "gloss":
-            pl_try = parse_plural_field_from_word_line(txt, cur.get("head"))
-            if pl_try:
-                cur["plural"] = pl_try
+            pl_rule, pl_form = parse_plural_line_from_word(txt, cur.get("head"))
+            if pl_rule or pl_form:
+                if pl_rule:
+                    cur["pluralRule"] = pl_rule
+                if pl_form:
+                    cur["plural"] = pl_form
                 continue
             cur["gloss"].append(txt)
         elif rr == "note":
@@ -934,9 +973,9 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
         r_ipa.font.size = Pt(10)
         r_ipa.font.color.rgb = NOTE_GRAY
 
-    plural = (card.get("plural") or "").strip()
-    if plural:
-        plural_line = f"{head}, {plural}"
+    plural_rule, plural_form = normalize_plural_fields(card, head)
+    if plural_rule and plural_form:
+        plural_line = format_plural_line(plural_rule, plural_form)
         pl_p = doc.add_paragraph()
         pl_p.paragraph_format.left_indent = IND
         pl_p.paragraph_format.space_after = Pt(4)

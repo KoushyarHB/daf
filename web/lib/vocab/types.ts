@@ -16,6 +16,7 @@ export type VocabCard = {
   gloss: string[];
   notes: string[];
   examples: VocabExample[];
+  pluralRule?: string;
   plural?: string;
   grammarTable?: GrammarTable | null;
   image?: string;

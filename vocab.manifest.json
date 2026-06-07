@@ -32,7 +32,8 @@
     "head": "die Frage",
     "ipa": "ˈfʁaːɡə",
     "id": "v-die-frage",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Fragen",
     "gloss": [
       "Question."
     ],
@@ -222,7 +223,8 @@
     "head": "die Tafel",
     "ipa": "ˈtaːfl̩",
     "id": "v-die-tafel",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Tafeln",
     "gloss": [
       "Board (whiteboard/blackboard)."
     ],
@@ -250,7 +252,8 @@
     "head": "das Übungsbuch",
     "ipa": "ˈyːbʊŋsˌbuːx",
     "id": "v-das-bungsbuch",
-    "plural": "-¨er",
+    "pluralRule": "-¨er",
+    "plural": "die Übungsbücher",
     "gloss": [
       "Workbook; exercise book (companion to the coursebook)."
     ],
@@ -364,7 +367,8 @@
     "head": "die Pause",
     "ipa": "ˈpaʊ̯zə",
     "id": "v-die-pause",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Pausen",
     "gloss": [
       "Break; pause (e.g. between lessons)."
     ],
@@ -392,7 +396,8 @@
     "head": "der Unterricht",
     "ipa": "ˈʊntɐˌʁɪçt",
     "id": "v-der-unterricht",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Unterrichte",
     "gloss": [
       "Lesson(s); instruction; class time when teaching happens."
     ],
@@ -422,7 +427,8 @@
     "head": "die Aufgabe",
     "ipa": "ˈaʊ̯fˌɡaːbə",
     "id": "v-die-aufgabe",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Aufgaben",
     "gloss": [
       "Task; assignment; numbered exercise."
     ],
@@ -452,7 +458,8 @@
     "head": "die Übung",
     "ipa": "ˈyːbʊŋ",
     "id": "v-die-bung",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Übungen",
     "gloss": [
       "Exercise; practice (in class or book)."
     ],
@@ -482,7 +489,8 @@
     "head": "die Seite",
     "ipa": "ˈzaɪ̯tə",
     "id": "v-die-seite",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Seiten",
     "gloss": [
       "Page (of a book)."
     ],
@@ -510,7 +518,8 @@
     "head": "der Dialog",
     "ipa": "diaˈloːk",
     "id": "v-der-dialog",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Dialoge",
     "gloss": [
       "Dialogue (structured spoken text in the book)."
     ],
@@ -538,7 +547,8 @@
     "head": "der Artikel",
     "ipa": "aʁˈtiːkl̩",
     "id": "v-der-artikel",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Artikel",
     "gloss": [
       "Article (grammar); also newspaper article."
     ],
@@ -568,7 +578,8 @@
     "head": "der Text",
     "ipa": "tɛkst",
     "id": "v-der-text-t-kst",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Texte",
     "gloss": [
       "Text; written passage."
     ],
@@ -596,7 +607,8 @@
     "head": "das Wort",
     "ipa": "vɔʁt",
     "id": "v-das-wort",
-    "plural": "-¨er",
+    "pluralRule": "-¨er",
+    "plural": "die Wörter",
     "gloss": [
       "Word."
     ],
@@ -624,7 +636,8 @@
     "head": "der Kursteilnehmer / die Kursteilnehmerin",
     "ipa": "ˈkʊʁs.taɪ̯lˌneːmɐ ˈkʊʁs.taɪ̯lˌneːməʁɪn",
     "id": "v-der-kursteilnehmer-die-kursteilnehmerin",
-    "plural": "- / die Kursteilnehmerin, -nen",
+    "pluralRule": "- / -nen",
+    "plural": "die Kursteilnehmer, die Kursteilnehmerinnen",
     "gloss": [
       "Course participant; student in the class."
     ],
@@ -654,7 +667,8 @@
     "head": "die Hausaufgabe",
     "ipa": "ˈhaʊ̯sˌʔaʊ̯fˌɡaːbə",
     "id": "v-die-hausaufgabe",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Hausaufgaben",
     "gloss": [
       "Homework."
     ],
@@ -684,7 +698,8 @@
     "head": "der Kursleiter / die Kursleiterin",
     "ipa": "ˈkʊʁsˌlaɪ̯tɐ",
     "id": "v-der-kursleiter-die-kursleiterin",
-    "plural": "- / die Kursleiterin, -nen",
+    "pluralRule": "- / -nen",
+    "plural": "die Kursleiter, die Kursleiterinnen",
     "gloss": [
       "Course instructor; teacher of the class."
     ],
@@ -714,7 +729,8 @@
     "head": "das Wörterbuch",
     "ipa": "ˈvœʁtɐˌbuːx",
     "id": "v-das-w-rterbuch",
-    "plural": "-¨er",
+    "pluralRule": "-¨er",
+    "plural": "die Wörterbücher",
     "gloss": [
       "Dictionary (word book)."
     ],
@@ -742,7 +758,8 @@
     "head": "das Kursbuch",
     "ipa": "ˈkʊʁsbuːx",
     "id": "v-das-kursbuch",
-    "plural": "-¨er",
+    "pluralRule": "-¨er",
+    "plural": "die Kursbücher",
     "gloss": [
       "Coursebook; class textbook."
     ],
@@ -797,7 +814,8 @@
     "head": "der Textmarker",
     "ipa": "ˈtɛkstˌmaʁkɐ",
     "id": "v-der-textmarker",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Textmarker",
     "gloss": [
       "Highlighter; text marker pen."
     ],
@@ -825,7 +843,8 @@
     "head": "der Kugelschreiber",
     "ipa": "ˈkuːɡl̩ˌʃʁaɪ̯bɐ",
     "id": "v-der-kugelschreiber",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Kugelschreiber",
     "gloss": [
       "Ballpoint pen."
     ],
@@ -855,7 +874,8 @@
     "head": "der Bleistift",
     "ipa": "ˈblaɪ̯ʃtɪft",
     "id": "v-der-bleistift",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Bleistifte",
     "gloss": [
       "Pencil."
     ],
@@ -883,7 +903,8 @@
     "head": "der Overheadprojektor",
     "ipa": "ˈoːvɐˌhɛptpʁoˌjɛktoːɐ̯",
     "id": "v-der-overheadprojektor",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Overheadprojektoren",
     "gloss": [
       "Overhead projector (OHP)."
     ],
@@ -911,7 +932,8 @@
     "head": "der Computer",
     "ipa": "kɔmˈpuːtɐ",
     "id": "v-der-computer",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Computer",
     "gloss": [
       "Computer."
     ],
@@ -939,7 +961,8 @@
     "head": "der Fernseher",
     "ipa": "ˈfɛʁnˌzeːɐ̯",
     "id": "v-der-fernseher",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Fernseher",
     "gloss": [
       "Television; TV set."
     ],
@@ -967,7 +990,8 @@
     "head": "der DVD-Player",
     "ipa": "ˈdeːfaʊˌpleːɐ̯",
     "id": "v-der-dvd-player",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die DVD-Player",
     "gloss": [
       "DVD player."
     ],
@@ -995,7 +1019,8 @@
     "head": "die DVD",
     "ipa": "ˈdeːfaʊ",
     "id": "v-die-dvd",
-    "plural": "-s",
+    "pluralRule": "-s",
+    "plural": "die DVDs",
     "gloss": [
       "DVD (disc)."
     ],
@@ -1023,7 +1048,8 @@
     "head": "der CD-Player",
     "ipa": "ˈtseːdeːˌpleːɐ̯",
     "id": "v-der-cd-player",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die CD-Player",
     "gloss": [
       "CD player."
     ],
@@ -1051,7 +1077,8 @@
     "head": "die CD",
     "ipa": "ˈtseːˈdeː",
     "id": "v-die-cd",
-    "plural": "-s",
+    "pluralRule": "-s",
+    "plural": "die CDs",
     "gloss": [
       "CD (disc)."
     ],
@@ -1079,7 +1106,8 @@
     "head": "der Raum",
     "ipa": "ʁaʊm",
     "id": "v-der-raum",
-    "plural": "-¨e",
+    "pluralRule": "-¨e",
+    "plural": "die Räume",
     "gloss": [
       "Room; space."
     ],
@@ -1109,7 +1137,8 @@
     "head": "der Gegenstand",
     "ipa": "ˈɡeːɡənˌʃtant",
     "id": "v-der-gegenstand",
-    "plural": "-¨e",
+    "pluralRule": "-¨e",
+    "plural": "die Gegenstände",
     "gloss": [
       "Object; item (a physical thing)."
     ],
@@ -1139,7 +1168,8 @@
     "head": "die Strategie",
     "ipa": "ʃtʁateˈɡiː",
     "id": "v-die-strategie",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Strategien",
     "gloss": [
       "Strategy; planned approach (e.g. for learning)."
     ],
@@ -1167,7 +1197,8 @@
     "head": "der Schlüssel",
     "ipa": "ˈʃlʏsəl",
     "id": "v-der-schl-ssel",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Schlüssel",
     "gloss": [
       "Key (object); also solution key in exercises."
     ],
@@ -1256,7 +1287,8 @@
     "head": "die Anweisung",
     "ipa": "anˈvaɪ̯zʊŋ",
     "id": "v-die-anweisung",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Anweisungen",
     "gloss": [
       "Instruction; direction (what you should do)."
     ],
@@ -1284,7 +1316,8 @@
     "head": "der Teilnehmer / die Teilnehmerin",
     "ipa": "ˈtaɪ̯lˌneːmɐ ˈtaɪ̯lˌneːməʁɪn",
     "id": "v-der-teilnehmer-die-teilnehmerin",
-    "plural": "- / die Teilnehmerin, -nen",
+    "pluralRule": "- / -nen",
+    "plural": "die Teilnehmer, die Teilnehmerinnen",
     "gloss": [
       "Participant; course member (male/female)."
     ],
@@ -1372,7 +1405,8 @@
     "head": "der Kontinent",
     "ipa": "kɔntiˈnɛnt",
     "id": "v-der-kontinent",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Kontinente",
     "gloss": [
       "Continent."
     ],
@@ -1423,7 +1457,8 @@
     "head": "der Student",
     "ipa": "ʃtuˈdɛnt",
     "id": "v-der-student",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Studenten",
     "gloss": [
       "Student (male); student (generic plural Studenten)."
     ],
@@ -1483,7 +1518,8 @@
     "head": "die Gruppe",
     "ipa": "ˈɡʁʊpə",
     "id": "v-die-gruppe",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Gruppen",
     "gloss": [
       "Group."
     ],
@@ -1511,7 +1547,8 @@
     "head": "das Team",
     "ipa": "tiːm",
     "id": "v-das-team",
-    "plural": "-s",
+    "pluralRule": "-s",
+    "plural": "die Teams",
     "gloss": [
       "Team."
     ],
@@ -1568,7 +1605,8 @@
     "head": "das Heft",
     "ipa": "hɛft",
     "id": "v-das-heft-h-ft",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Hefte",
     "gloss": [
       "Notebook; exercise book."
     ],
@@ -1657,7 +1695,8 @@
     "head": "das Formular",
     "ipa": "fɔʁmuˈlaːɐ̯",
     "id": "v-das-formular",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Formulare",
     "gloss": [
       "Form (document)."
     ],
@@ -1685,7 +1724,8 @@
     "head": "die Information",
     "ipa": "ɪnfɔʁmaˈtsi̯oːn",
     "id": "v-die-information",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Informationen",
     "gloss": [
       "Information; piece of information."
     ],
@@ -1715,7 +1755,8 @@
     "head": "das Alphabet",
     "ipa": "alfaˈbeːt",
     "id": "v-das-alphabet",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Alphabete",
     "gloss": [
       "Alphabet."
     ],
@@ -1744,7 +1785,8 @@
     "head": "der Buchstabe",
     "ipa": "ˈbuːxʃtaːbə",
     "id": "v-der-buchstabe",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Buchstaben",
     "gloss": [
       "Letter (of the alphabet)."
     ],
@@ -2031,7 +2073,8 @@
     "head": "der Wohnort",
     "ipa": "ˈvoːnˌɔʁt",
     "id": "v-der-wohnort",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Wohnorte",
     "gloss": [
       "Place of residence; city or town where someone lives."
     ],
@@ -2099,7 +2142,8 @@
     "head": "die E-Mail-Adresse",
     "ipa": "ˈiːmeːl aˈdʁɛsə",
     "id": "v-die-e-mail-adresse",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die E-Mail-Adressen",
     "gloss": [
       "Email address."
     ],
@@ -2158,7 +2202,8 @@
     "head": "die Postleitzahl",
     "ipa": "ˈpɔstlaɪ̯tˌtsaːl",
     "id": "v-die-postleitzahl",
-    "plural": "-n",
+    "pluralRule": "-en",
+    "plural": "die Postleitzahlen",
     "gloss": [
       "Postal code; ZIP code."
     ],
@@ -2186,7 +2231,8 @@
     "head": "die Muttersprache",
     "ipa": "ˈmʊtɐˌʃpʁaːxə",
     "id": "v-die-muttersprache",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Muttersprachen",
     "gloss": [
       "Native language; mother tongue."
     ],
@@ -2243,7 +2289,8 @@
     "head": "der Herr",
     "ipa": "hɛʁ",
     "id": "v-der-herr",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Herren",
     "gloss": [
       "Mr. before a surname."
     ],
@@ -2266,7 +2313,8 @@
     "head": "das Telefongespräch",
     "ipa": "teˈlefoːnɡəˌʃpʁɛːç",
     "id": "v-das-telefongespr-ch",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Telefongespräche",
     "gloss": [
       "Telephone conversation; phone call."
     ],
@@ -2336,7 +2384,8 @@
     "head": "der Personalbogen",
     "ipa": "pɛʁzoˈnaːlˌboːɡn̩",
     "id": "v-der-personalbogen",
-    "plural": "-bögen",
+    "pluralRule": "-bögen",
+    "plural": "die Personalbögen",
     "gloss": [
       "Personal information form."
     ],
@@ -2372,7 +2421,8 @@
     "head": "die Bürokratie",
     "ipa": "byʁokʁaˈtiː",
     "id": "v-die-b-rokratie",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Bürokratien",
     "gloss": [
       "Bureaucracy; administration and paperwork."
     ],
@@ -2482,7 +2532,8 @@
     "head": "der Kurs",
     "ipa": "kʊʁs",
     "id": "v-der-kurs",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Kurse",
     "gloss": [
       "Course; class."
     ],
@@ -2518,7 +2569,8 @@
     "head": "die Handynummer",
     "ipa": "ˈhɛndiˌnʊmɐ",
     "id": "v-die-handynummer",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Handynummern",
     "gloss": [
       "Mobile phone number; cell phone number."
     ],
@@ -2857,7 +2909,8 @@
     "head": "der Notizzettel",
     "ipa": "noˈtiːtsˌtsɛtl̩",
     "id": "v-der-notizzettel",
-    "plural": "-",
+    "pluralRule": "-",
+    "plural": "die Notizzettel",
     "gloss": [
       "Note slip; small note sheet."
     ],
@@ -3060,7 +3113,8 @@
     "head": "die Vorwahl",
     "ipa": "ˈfoːɐ̯vaːl",
     "id": "v-die-vorwahl",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Vorwahlen",
     "gloss": [
       "Area code; dialing prefix."
     ],
@@ -3259,7 +3313,8 @@
     "head": "die Telefonnummer",
     "ipa": "teˈlefoːnˌnʊmɐ",
     "id": "v-die-telefonnummer",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Telefonnummern",
     "gloss": [
       "Telephone number; phone number."
     ],
@@ -3295,7 +3350,8 @@
     "head": "die Straße",
     "ipa": "ˈʃtʁaːsə",
     "id": "v-die-stra-e",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Straßen",
     "gloss": [
       "Street; road."
     ],
@@ -3600,7 +3656,8 @@
     "head": "die Nummer",
     "ipa": "ˈnʊmɐ",
     "id": "v-die-nummer",
-    "plural": "-en",
+    "pluralRule": "-n",
+    "plural": "die Nummern",
     "gloss": [
       "Number as a label, code, or identifier."
     ],
@@ -3636,7 +3693,8 @@
     "head": "die Zahl",
     "ipa": "tsaːl",
     "id": "v-die-zahl",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Zahlen",
     "gloss": [
       "Number as a value; numeral."
     ],
@@ -3747,7 +3805,8 @@
     "head": "die Regel",
     "ipa": "ˈʁeːɡl̩",
     "id": "v-die-regel",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Regeln",
     "gloss": [
       "Rule."
     ],
@@ -3813,9 +3872,10 @@
     "studied": false
   },
   {
-    "head": "der Satz /zats/",
+    "head": "der Satz",
     "id": "v-der-satz",
-    "plural": "-ätze",
+    "pluralRule": "-ätze",
+    "plural": "die Sätze",
     "gloss": [
       "Sentence."
     ],
@@ -3969,7 +4029,8 @@
     "head": "der Spaß",
     "ipa": "ʃpaːs",
     "id": "v-der-spa",
-    "plural": "-äße",
+    "pluralRule": "-äße",
+    "plural": "die Spaße",
     "gloss": [
       "Fun; enjoyment."
     ],
@@ -4098,7 +4159,8 @@
     "head": "die Argentinierin",
     "ipa": "aʁɡɛnˈtsiːnəʁɪn",
     "id": "v-die-argentinierin",
-    "plural": "-nen / der Argentinier, -",
+    "pluralRule": "-nen / -",
+    "plural": "die Argentinierinnen, die Argentinier",
     "gloss": [
       "An Argentine; feminine die Argentinierin, masculine der Argentinier."
     ],
@@ -4730,7 +4792,8 @@
     "head": "der Partner / die Partnerin",
     "ipa": "ˈpaʁtnɐ ˈpaʁtnəʁɪn",
     "id": "v-der-partner-die-partnerin",
-    "plural": "- / die Partnerin, -nen",
+    "pluralRule": "- / -nen",
+    "plural": "die Partner, die Partnerinnen",
     "gloss": [
       "Partner; classroom speaking partner."
     ],
@@ -4789,9 +4852,10 @@
     "studied": false
   },
   {
-    "head": "das Land /lant/",
+    "head": "das Land",
     "id": "v-das-land",
-    "plural": "Länder",
+    "pluralRule": "-¨er",
+    "plural": "die Länder",
     "gloss": [
       "Country; land."
     ],
@@ -4819,7 +4883,8 @@
     "head": "die Sprache",
     "ipa": "ˈʃpʁaːxə",
     "id": "v-die-sprache",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Sprachen",
     "gloss": [
       "Language."
     ],
@@ -5114,7 +5179,8 @@
     "head": "die W-Frage",
     "ipa": "ˈveːˌfraːɡə",
     "id": "v-die-w-frage",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die W-Fragen",
     "gloss": [
       "WH-question: starts with Wer, Was, Wo, wie, Wann …"
     ],
@@ -5144,7 +5210,8 @@
     "head": "die Antwort",
     "ipa": "ˈantˌvɔʁt",
     "id": "v-die-antwort",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Antworten",
     "gloss": [
       "Answer; reply (to a question or task)."
     ],
@@ -5199,7 +5266,8 @@
     "head": "die Tabelle",
     "ipa": "taˈbɛlə",
     "id": "v-die-tabelle",
-    "plural": "-n",
+    "pluralRule": "-n",
+    "plural": "die Tabellen",
     "gloss": [
       "Table (grid for answers; worksheet)."
     ],
@@ -5227,7 +5295,8 @@
     "head": "die Verbform",
     "ipa": "ˈfɔʁm",
     "id": "v-die-verbform",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Verbformen",
     "gloss": [
       "Verb form (inflected shape of a lemma)."
     ],
@@ -5257,7 +5326,8 @@
     "head": "die Grammatik",
     "ipa": "ɡʁaˈmaːtɪk",
     "id": "v-die-grammatik",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Grammatiken",
     "gloss": [
       "Grammar (rules of the language)."
     ],
@@ -5312,7 +5382,8 @@
     "head": "der Blick",
     "ipa": "blɪk",
     "id": "v-der-blick",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Blicke",
     "gloss": [
       "Glance; look (masculine)."
     ],
@@ -5345,7 +5416,8 @@
     "head": "das Verb",
     "ipa": "vɛʁp",
     "id": "v-das-verb",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Verben",
     "gloss": [
       "Verb (word class for actions and states)."
     ],
@@ -5442,7 +5514,8 @@
     "head": "die Sekretärin",
     "ipa": "zekʁeˈtɛːʁɪn",
     "id": "v-die-sekret-rin",
-    "plural": "-nen",
+    "pluralRule": "-nen",
+    "plural": "die Sekretärinnen",
     "gloss": [
       "Secretary (feminine job title)."
     ],
@@ -5475,7 +5548,8 @@
     "head": "die Frau",
     "ipa": "fraʊ̯",
     "id": "v-die-frau",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Frauen",
     "gloss": [
       "Ms. or Mrs. before a surname."
     ],
@@ -5719,7 +5793,8 @@
     "head": "die Person",
     "ipa": "pɛʁˈzoːn",
     "id": "v-die-person",
-    "plural": "-en",
+    "pluralRule": "-en",
+    "plural": "die Personen",
     "gloss": [
       "Feminine singular: person (pl. Personen)."
     ],
@@ -5844,7 +5919,8 @@
     "head": "das Foto",
     "ipa": "ˈfoːto",
     "id": "v-das-foto",
-    "plural": "-s",
+    "pluralRule": "-s",
+    "plural": "die Fotos",
     "gloss": [
       "Photo; picture (neuter; pl. Fotos)."
     ],
@@ -5934,7 +6010,8 @@
     "head": "das Gespräch",
     "ipa": "ɡəˈʃpʁɛːç",
     "id": "v-das-gespr-ch",
-    "plural": "-e",
+    "pluralRule": "-e",
+    "plural": "die Gespräche",
     "gloss": [
       "Conversation; spoken dialogue."
     ],
@@ -6038,7 +6115,8 @@
     "head": "der Praktikant",
     "ipa": "pʁaktiˈkant",
     "id": "v-der-praktikant",
-    "plural": "-en / die Praktikantin, -nen",
+    "pluralRule": "-en / -nen",
+    "plural": "die Praktikanten",
     "gloss": [
       "Intern; Praktikantin is the feminine form."
     ],

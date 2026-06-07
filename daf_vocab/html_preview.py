@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 from .docx_cards import (
-    canonicalize_plural_field,
     format_ipa_display,
     iter_grammar_adj_suffix_runs,
     normalize_examples_from_card,
@@ -19,6 +18,7 @@ from .docx_cards import (
     normalize_head_ipa_fields,
     normalize_ipa_storage,
 )
+from .plural_forms import format_plural_line, normalize_plural_fields
 from .heroicons import (
     chevron_double_left_icon_svg,
     chevron_double_right_icon_svg,
@@ -1527,13 +1527,10 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         )
         parts.append(meta_html)
 
-        plural_raw = (card.get("plural") or "").strip()
-        if plural_raw:
-            head_plain = str(card.get("head") or "").strip()
-            frag = canonicalize_plural_field(head_plain, plural_raw)
-            if frag:
-                diag = f"{head_plain}, {frag}"
-                parts.append(f'<div class="plural-diagram">{html.escape(diag)}</div>')
+        plural_rule, plural_form = normalize_plural_fields(card)
+        if plural_rule and plural_form:
+            diag = format_plural_line(plural_rule, plural_form)
+            parts.append(f'<div class="plural-diagram">{html.escape(diag)}</div>')
 
         for g in card.get("gloss") or []:
             if isinstance(g, str) and g.strip():
