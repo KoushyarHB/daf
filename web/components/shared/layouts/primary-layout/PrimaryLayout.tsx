@@ -1,17 +1,20 @@
 "use client";
 
 import { ReactNode } from "react";
-import Navbar from "../navbar/Navbar";
-import Footer from "../footer/Footer";
+import Navbar from "@/components/shared/layouts/navbar/Navbar";
+import { LightboxProvider } from "@/components/shared/ImageLightbox";
 
 type LayoutProps = { children: ReactNode };
 
 export default function PrimaryLayout({ children }: LayoutProps) {
-    return (
-        <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <div className="flex flex-1 flex-col">{children}</div>
-            <Footer />
-        </div>
-    );
+  return (
+    <LightboxProvider>
+      <Navbar />
+      <main>{children}</main>
+      <footer className="site-footer">
+        Vocabulary from vocab.manifest.json — run{" "}
+        <code>npm run dev</code> in <code>web/</code> to preview.
+      </footer>
+    </LightboxProvider>
+  );
 }

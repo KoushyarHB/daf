@@ -1,5 +1,11 @@
-import Home from "@/components/pages/home/Home";
+import { loadVocabCards } from "@/lib/vocab/load-manifest";
+import VocabularyDeck from "@/components/pages/vocabulary/VocabularyDeck";
 
-export default function HomePage() {
-  return <Home />;
+export const metadata = {
+  title: "daf — vocabulary",
+};
+
+export default function VocabularyPage() {
+  const cards = loadVocabCards();
+  return <VocabularyDeck cards={cards} />;
 }
