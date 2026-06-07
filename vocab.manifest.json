@@ -1,6 +1,7 @@
 [
   {
-    "head": "herumgehen /hɛˈʁʊmˌɡeːən/",
+    "head": "herumgehen",
+    "ipa": "hɛˈʁʊmˌɡeːən",
     "id": "v-herumgehen",
     "gloss": [
       "To go around; move about (separable: … gehen … herum)."
@@ -28,7 +29,8 @@
     "studied": false
   },
   {
-    "head": "die Frage /ˈfʁaːɡə/",
+    "head": "die Frage",
+    "ipa": "ˈfʁaːɡə",
     "id": "v-die-frage",
     "plural": "-n",
     "gloss": [
@@ -55,7 +57,8 @@
     "studied": false
   },
   {
-    "head": "erklären /ɛɐ̯ˈklɛːʁən/",
+    "head": "erklären",
+    "ipa": "ɛɐ̯ˈklɛːʁən",
     "id": "v-erkl-ren",
     "gloss": [
       "To explain."
@@ -81,7 +84,8 @@
     "studied": false
   },
   {
-    "head": "verstehen /fɛɐ̯ˈʃteːən/",
+    "head": "verstehen",
+    "ipa": "fɛɐ̯ˈʃteːən",
     "id": "v-verstehen",
     "gloss": [
       "To understand."
@@ -107,7 +111,8 @@
     "studied": false
   },
   {
-    "head": "nachschauen /ˈnaːxˌʃaʊ̯ən/",
+    "head": "nachschauen",
+    "ipa": "ˈnaːxˌʃaʊ̯ən",
     "id": "v-nachschauen",
     "gloss": [
       "To look up; check (separable: … schauen … nach)."
@@ -133,7 +138,8 @@
     "studied": true
   },
   {
-    "head": "aufschlagen /ˈaʊ̯fˌʃlaːɡən/",
+    "head": "aufschlagen",
+    "ipa": "ˈaʊ̯fˌʃlaːɡən",
     "id": "v-aufschlagen",
     "gloss": [
       "To open (a book); turn to a page (separable: … schlagen … auf)."
@@ -159,7 +165,8 @@
     "studied": false
   },
   {
-    "head": "arbeiten /ˈaʁbaɪ̯tən/",
+    "head": "arbeiten",
+    "ipa": "ˈaʁbaɪ̯tən",
     "id": "v-arbeiten",
     "gloss": [
       "To work (on a task, in pairs/groups)."
@@ -185,7 +192,8 @@
     "studied": false
   },
   {
-    "head": "langsam /ˈlaŋzam/",
+    "head": "langsam",
+    "ipa": "ˈlaŋzam",
     "id": "v-langsam",
     "gloss": [
       "Slow; slowly."
@@ -211,7 +219,8 @@
     "studied": true
   },
   {
-    "head": "die Tafel /ˈtaːfl̩/",
+    "head": "die Tafel",
+    "ipa": "ˈtaːfl̩",
     "id": "v-die-tafel",
     "plural": "-n",
     "gloss": [
@@ -238,7 +247,8 @@
     "studied": false
   },
   {
-    "head": "das Übungsbuch /ˈyːbʊŋsˌbuːx/",
+    "head": "das Übungsbuch",
+    "ipa": "ˈyːbʊŋsˌbuːx",
     "id": "v-das-bungsbuch",
     "plural": "-¨er",
     "gloss": [
@@ -268,7 +278,8 @@
     "studied": false
   },
   {
-    "head": "Wie bitte? /viː ˈbɪtə/",
+    "head": "Wie bitte?",
+    "ipa": "viː ˈbɪtə",
     "id": "v-wie-bitte",
     "gloss": [
       "Sorry? Pardon? (did not hear or understand)."
@@ -296,7 +307,8 @@
     "studied": false
   },
   {
-    "head": "Entschuldigung! /ɛntˈʃʊldɪɡʊŋ/",
+    "head": "Entschuldigung!",
+    "ipa": "ɛntˈʃʊldɪɡʊŋ",
     "id": "v-entschuldigung",
     "gloss": [
       "Excuse me; sorry (to get attention or apologise)."
@@ -322,7 +334,8 @@
     "studied": true
   },
   {
-    "head": "die Kurssprache /ˈkʊʁsˌʃpʁaːxə/",
+    "head": "die Kurssprache",
+    "ipa": "ˈkʊʁsˌʃpʁaːxə",
     "id": "v-die-kurssprache",
     "gloss": [
       "Course language; classroom/course vocabulary."
@@ -348,7 +361,8 @@
     "studied": false
   },
   {
-    "head": "die Pause /ˈpaʊ̯zə/",
+    "head": "die Pause",
+    "ipa": "ˈpaʊ̯zə",
     "id": "v-die-pause",
     "plural": "-n",
     "gloss": [
@@ -375,7 +389,8 @@
     "studied": false
   },
   {
-    "head": "der Unterricht /ˈʊntɐˌʁɪçt/",
+    "head": "der Unterricht",
+    "ipa": "ˈʊntɐˌʁɪçt",
     "id": "v-der-unterricht",
     "plural": "-e",
     "gloss": [
@@ -404,7 +419,8 @@
     "studied": false
   },
   {
-    "head": "die Aufgabe /ˈaʊ̯fˌɡaːbə/",
+    "head": "die Aufgabe",
+    "ipa": "ˈaʊ̯fˌɡaːbə",
     "id": "v-die-aufgabe",
     "plural": "-n",
     "gloss": [
@@ -433,7 +449,8 @@
     "studied": false
   },
   {
-    "head": "die Übung /ˈyːbʊŋ/",
+    "head": "die Übung",
+    "ipa": "ˈyːbʊŋ",
     "id": "v-die-bung",
     "plural": "-en",
     "gloss": [
@@ -462,7 +479,8 @@
     "studied": false
   },
   {
-    "head": "die Seite /ˈzaɪ̯tə/",
+    "head": "die Seite",
+    "ipa": "ˈzaɪ̯tə",
     "id": "v-die-seite",
     "plural": "-n",
     "gloss": [
@@ -489,7 +507,8 @@
     "studied": false
   },
   {
-    "head": "der Dialog /diaˈloːk/",
+    "head": "der Dialog",
+    "ipa": "diaˈloːk",
     "id": "v-der-dialog",
     "plural": "-e",
     "gloss": [
@@ -516,7 +535,8 @@
     "studied": false
   },
   {
-    "head": "der Artikel /aʁˈtiːkl̩/",
+    "head": "der Artikel",
+    "ipa": "aʁˈtiːkl̩",
     "id": "v-der-artikel",
     "plural": "-",
     "gloss": [
@@ -545,7 +565,8 @@
     "studied": true
   },
   {
-    "head": "der Text /tɛkst/",
+    "head": "der Text",
+    "ipa": "tɛkst",
     "id": "v-der-text-t-kst",
     "plural": "-e",
     "gloss": [
@@ -572,7 +593,8 @@
     "studied": false
   },
   {
-    "head": "das Wort /vɔʁt/",
+    "head": "das Wort",
+    "ipa": "vɔʁt",
     "id": "v-das-wort",
     "plural": "-¨er",
     "gloss": [
@@ -599,7 +621,8 @@
     "studied": false
   },
   {
-    "head": "der Kursteilnehmer / die Kursteilnehmerin /ˈkʊʁs.taɪ̯lˌneːmɐ/ /ˈkʊʁs.taɪ̯lˌneːməʁɪn/",
+    "head": "der Kursteilnehmer / die Kursteilnehmerin",
+    "ipa": "ˈkʊʁs.taɪ̯lˌneːmɐ ˈkʊʁs.taɪ̯lˌneːməʁɪn",
     "id": "v-der-kursteilnehmer-die-kursteilnehmerin",
     "plural": "- / die Kursteilnehmerin, -nen",
     "gloss": [
@@ -628,7 +651,8 @@
     "studied": false
   },
   {
-    "head": "die Hausaufgabe /ˈhaʊ̯sˌʔaʊ̯fˌɡaːbə/",
+    "head": "die Hausaufgabe",
+    "ipa": "ˈhaʊ̯sˌʔaʊ̯fˌɡaːbə",
     "id": "v-die-hausaufgabe",
     "plural": "-n",
     "gloss": [
@@ -657,7 +681,8 @@
     "studied": false
   },
   {
-    "head": "der Kursleiter / die Kursleiterin /ˈkʊʁsˌlaɪ̯tɐ/",
+    "head": "der Kursleiter / die Kursleiterin",
+    "ipa": "ˈkʊʁsˌlaɪ̯tɐ",
     "id": "v-der-kursleiter-die-kursleiterin",
     "plural": "- / die Kursleiterin, -nen",
     "gloss": [
@@ -686,7 +711,8 @@
     "studied": false
   },
   {
-    "head": "das Wörterbuch /ˈvœʁtɐˌbuːx/",
+    "head": "das Wörterbuch",
+    "ipa": "ˈvœʁtɐˌbuːx",
     "id": "v-das-w-rterbuch",
     "plural": "-¨er",
     "gloss": [
@@ -713,7 +739,8 @@
     "studied": false
   },
   {
-    "head": "das Kursbuch /ˈkʊʁsbuːx/",
+    "head": "das Kursbuch",
+    "ipa": "ˈkʊʁsbuːx",
     "id": "v-das-kursbuch",
     "plural": "-¨er",
     "gloss": [
@@ -740,7 +767,8 @@
     "studied": false
   },
   {
-    "head": "das Papier /paˈpiːɐ̯/",
+    "head": "das Papier",
+    "ipa": "paˈpiːɐ̯",
     "id": "v-das-papier",
     "gloss": [
       "Paper (sheets)."
@@ -766,7 +794,8 @@
     "studied": false
   },
   {
-    "head": "der Textmarker /ˈtɛkstˌmaʁkɐ/",
+    "head": "der Textmarker",
+    "ipa": "ˈtɛkstˌmaʁkɐ",
     "id": "v-der-textmarker",
     "plural": "-",
     "gloss": [
@@ -793,7 +822,8 @@
     "studied": false
   },
   {
-    "head": "der Kugelschreiber /ˈkuːɡl̩ˌʃʁaɪ̯bɐ/",
+    "head": "der Kugelschreiber",
+    "ipa": "ˈkuːɡl̩ˌʃʁaɪ̯bɐ",
     "id": "v-der-kugelschreiber",
     "plural": "-",
     "gloss": [
@@ -822,7 +852,8 @@
     "studied": false
   },
   {
-    "head": "der Bleistift /ˈblaɪ̯ʃtɪft/",
+    "head": "der Bleistift",
+    "ipa": "ˈblaɪ̯ʃtɪft",
     "id": "v-der-bleistift",
     "plural": "-e",
     "gloss": [
@@ -849,7 +880,8 @@
     "studied": false
   },
   {
-    "head": "der Overheadprojektor /ˈoːvɐˌhɛptpʁoˌjɛktoːɐ̯/",
+    "head": "der Overheadprojektor",
+    "ipa": "ˈoːvɐˌhɛptpʁoˌjɛktoːɐ̯",
     "id": "v-der-overheadprojektor",
     "plural": "-en",
     "gloss": [
@@ -876,7 +908,8 @@
     "studied": false
   },
   {
-    "head": "der Computer /kɔmˈpuːtɐ/",
+    "head": "der Computer",
+    "ipa": "kɔmˈpuːtɐ",
     "id": "v-der-computer",
     "plural": "-",
     "gloss": [
@@ -903,7 +936,8 @@
     "studied": false
   },
   {
-    "head": "der Fernseher /ˈfɛʁnˌzeːɐ̯/",
+    "head": "der Fernseher",
+    "ipa": "ˈfɛʁnˌzeːɐ̯",
     "id": "v-der-fernseher",
     "plural": "-",
     "gloss": [
@@ -930,7 +964,8 @@
     "studied": false
   },
   {
-    "head": "der DVD-Player /ˈdeːfaʊˌpleːɐ̯/",
+    "head": "der DVD-Player",
+    "ipa": "ˈdeːfaʊˌpleːɐ̯",
     "id": "v-der-dvd-player",
     "plural": "-",
     "gloss": [
@@ -957,7 +992,8 @@
     "studied": false
   },
   {
-    "head": "die DVD /ˈdeːfaʊ/",
+    "head": "die DVD",
+    "ipa": "ˈdeːfaʊ",
     "id": "v-die-dvd",
     "plural": "-s",
     "gloss": [
@@ -984,7 +1020,8 @@
     "studied": false
   },
   {
-    "head": "der CD-Player /ˈtseːdeːˌpleːɐ̯/",
+    "head": "der CD-Player",
+    "ipa": "ˈtseːdeːˌpleːɐ̯",
     "id": "v-der-cd-player",
     "plural": "-",
     "gloss": [
@@ -1011,7 +1048,8 @@
     "studied": false
   },
   {
-    "head": "die CD /ˈtseːˈdeː/",
+    "head": "die CD",
+    "ipa": "ˈtseːˈdeː",
     "id": "v-die-cd",
     "plural": "-s",
     "gloss": [
@@ -1038,7 +1076,8 @@
     "studied": false
   },
   {
-    "head": "der Raum /ʁaʊm/",
+    "head": "der Raum",
+    "ipa": "ʁaʊm",
     "id": "v-der-raum",
     "plural": "-¨e",
     "gloss": [
@@ -1067,7 +1106,8 @@
     "studied": false
   },
   {
-    "head": "der Gegenstand /ˈɡeːɡənˌʃtant/",
+    "head": "der Gegenstand",
+    "ipa": "ˈɡeːɡənˌʃtant",
     "id": "v-der-gegenstand",
     "plural": "-¨e",
     "gloss": [
@@ -1096,7 +1136,8 @@
     "studied": false
   },
   {
-    "head": "die Strategie /ʃtʁateˈɡiː/",
+    "head": "die Strategie",
+    "ipa": "ʃtʁateˈɡiː",
     "id": "v-die-strategie",
     "plural": "-n",
     "gloss": [
@@ -1123,7 +1164,8 @@
     "studied": false
   },
   {
-    "head": "der Schlüssel /ˈʃlʏsəl/",
+    "head": "der Schlüssel",
+    "ipa": "ˈʃlʏsəl",
     "id": "v-der-schl-ssel",
     "plural": "-",
     "gloss": [
@@ -1152,7 +1194,8 @@
     "studied": false
   },
   {
-    "head": "zuordnen /tsuˈʔɔʁdnən/",
+    "head": "zuordnen",
+    "ipa": "tsuˈʔɔʁdnən",
     "id": "v-zuordnen",
     "gloss": [
       "To match; assign (separable: zuordnen → ordnen … zu)."
@@ -1181,7 +1224,8 @@
     "studied": false
   },
   {
-    "head": "die Arbeitsanweisungen /ˈaʁbaɪ̯tsˌanvaɪ̯zʊŋən/",
+    "head": "die Arbeitsanweisungen",
+    "ipa": "ˈaʁbaɪ̯tsˌanvaɪ̯zʊŋən",
     "id": "v-die-arbeitsanweisungen",
     "gloss": [
       "Work instructions; exercise directions (in the textbook)."
@@ -1209,7 +1253,8 @@
     "studied": false
   },
   {
-    "head": "die Anweisung /anˈvaɪ̯zʊŋ/",
+    "head": "die Anweisung",
+    "ipa": "anˈvaɪ̯zʊŋ",
     "id": "v-die-anweisung",
     "plural": "-en",
     "gloss": [
@@ -1236,7 +1281,8 @@
     "studied": false
   },
   {
-    "head": "der Teilnehmer / die Teilnehmerin /ˈtaɪ̯lˌneːmɐ/ /ˈtaɪ̯lˌneːməʁɪn/",
+    "head": "der Teilnehmer / die Teilnehmerin",
+    "ipa": "ˈtaɪ̯lˌneːmɐ ˈtaɪ̯lˌneːməʁɪn",
     "id": "v-der-teilnehmer-die-teilnehmerin",
     "plural": "- / die Teilnehmerin, -nen",
     "gloss": [
@@ -1266,7 +1312,8 @@
     "studied": false
   },
   {
-    "head": "teilnehmen /ˈtaɪ̯lˌneːmən/",
+    "head": "teilnehmen",
+    "ipa": "ˈtaɪ̯lˌneːmən",
     "id": "v-teilnehmen",
     "gloss": [
       "To take part; participate."
@@ -1295,7 +1342,8 @@
     "studied": false
   },
   {
-    "head": "zählen /ˈtsɛːlən/",
+    "head": "zählen",
+    "ipa": "ˈtsɛːlən",
     "id": "v-z-hlen",
     "gloss": [
       "To count."
@@ -1321,7 +1369,8 @@
     "studied": false
   },
   {
-    "head": "der Kontinent /kɔntiˈnɛnt/",
+    "head": "der Kontinent",
+    "ipa": "kɔntiˈnɛnt",
     "id": "v-der-kontinent",
     "plural": "-e",
     "gloss": [
@@ -1371,7 +1420,8 @@
     "studied": false
   },
   {
-    "head": "der Student /ʃtuˈdɛnt/",
+    "head": "der Student",
+    "ipa": "ʃtuˈdɛnt",
     "id": "v-der-student",
     "plural": "-en",
     "gloss": [
@@ -1400,7 +1450,8 @@
     "studied": false
   },
   {
-    "head": "vorstellen /foːɐ̯ˈʃtɛlən/",
+    "head": "vorstellen",
+    "ipa": "foːɐ̯ˈʃtɛlən",
     "id": "v-vorstellen",
     "gloss": [
       "To introduce (someone); to present."
@@ -1429,7 +1480,8 @@
     "studied": false
   },
   {
-    "head": "die Gruppe /ˈɡʁʊpə/",
+    "head": "die Gruppe",
+    "ipa": "ˈɡʁʊpə",
     "id": "v-die-gruppe",
     "plural": "-n",
     "gloss": [
@@ -1456,7 +1508,8 @@
     "studied": false
   },
   {
-    "head": "das Team /tiːm/",
+    "head": "das Team",
+    "ipa": "tiːm",
     "id": "v-das-team",
     "plural": "-s",
     "gloss": [
@@ -1483,7 +1536,8 @@
     "studied": false
   },
   {
-    "head": "Auf Wiedersehen! /aʊf ˈviːdɐˌzeːən/",
+    "head": "Auf Wiedersehen!",
+    "ipa": "aʊf ˈviːdɐˌzeːən",
     "id": "v-auf-wiedersehen",
     "gloss": [
       "Goodbye (in person)."
@@ -1511,7 +1565,8 @@
     "studied": false
   },
   {
-    "head": "das Heft /hɛft/",
+    "head": "das Heft",
+    "ipa": "hɛft",
     "id": "v-das-heft-h-ft",
     "plural": "-e",
     "gloss": [
@@ -1541,7 +1596,8 @@
     "studied": false
   },
   {
-    "head": "wer /veːɐ̯/",
+    "head": "wer",
+    "ipa": "veːɐ̯",
     "id": "v-wer",
     "gloss": [
       "Who?"
@@ -1569,7 +1625,8 @@
     "studied": false
   },
   {
-    "head": "ergänzen /ɛʁˈɡɛntsən/",
+    "head": "ergänzen",
+    "ipa": "ɛʁˈɡɛntsən",
     "id": "v-erg-nzen",
     "gloss": [
       "To complete; fill in."
@@ -1597,7 +1654,8 @@
     "studied": false
   },
   {
-    "head": "das Formular /fɔʁmuˈlaːɐ̯/",
+    "head": "das Formular",
+    "ipa": "fɔʁmuˈlaːɐ̯",
     "id": "v-das-formular",
     "plural": "-e",
     "gloss": [
@@ -1624,7 +1682,8 @@
     "studied": false
   },
   {
-    "head": "die Information /ɪnfɔʁmaˈtsi̯oːn/",
+    "head": "die Information",
+    "ipa": "ɪnfɔʁmaˈtsi̯oːn",
     "id": "v-die-information",
     "plural": "-en",
     "gloss": [
@@ -1653,7 +1712,8 @@
     "studied": false
   },
   {
-    "head": "das Alphabet /alfaˈbeːt/",
+    "head": "das Alphabet",
+    "ipa": "alfaˈbeːt",
     "id": "v-das-alphabet",
     "plural": "-e",
     "gloss": [
@@ -1681,7 +1741,8 @@
     "studied": false
   },
   {
-    "head": "der Buchstabe /ˈbuːxʃtaːbə/",
+    "head": "der Buchstabe",
+    "ipa": "ˈbuːxʃtaːbə",
     "id": "v-der-buchstabe",
     "plural": "-n",
     "gloss": [
@@ -1708,7 +1769,8 @@
     "studied": false
   },
   {
-    "head": "sprechen /ˈʃpʁɛçən/",
+    "head": "sprechen",
+    "ipa": "ˈʃpʁɛçən",
     "id": "v-sprechen",
     "gloss": [
       "To speak; talk."
@@ -1736,7 +1798,8 @@
     "studied": false
   },
   {
-    "head": "mitsprechen /ˈmɪtˌʃpʁɛçən/",
+    "head": "mitsprechen",
+    "ipa": "ˈmɪtˌʃpʁɛçən",
     "id": "v-mitsprechen",
     "gloss": [
       "To speak along; repeat along."
@@ -1764,7 +1827,8 @@
     "studied": false
   },
   {
-    "head": "buchstabieren /buχʃtaˈbiːʁən/",
+    "head": "buchstabieren",
+    "ipa": "buχʃtaˈbiːʁən",
     "id": "v-buchstabieren",
     "gloss": [
       "To spell (out)."
@@ -1790,7 +1854,8 @@
     "studied": false
   },
   {
-    "head": "enden /ˈɛndn̩/",
+    "head": "enden",
+    "ipa": "ˈɛndn̩",
     "id": "v-enden",
     "gloss": [
       "To end; finish."
@@ -1844,7 +1909,8 @@
     "studied": false
   },
   {
-    "head": "immer /ˈɪmɐ/",
+    "head": "immer",
+    "ipa": "ˈɪmɐ",
     "id": "v-immer",
     "gloss": [
       "Always."
@@ -1870,7 +1936,8 @@
     "studied": false
   },
   {
-    "head": "gern geschehen /ɡɛʁn ɡəˈʃeːən/",
+    "head": "gern geschehen",
+    "ipa": "ɡɛʁn ɡəˈʃeːən",
     "id": "v-gern-geschehen",
     "gloss": [
       "You're welcome; my pleasure."
@@ -1900,7 +1967,8 @@
     "studied": false
   },
   {
-    "head": "vielen Dank /ˈfiːlən ˈdaŋk/",
+    "head": "vielen Dank",
+    "ipa": "ˈfiːlən ˈdaŋk",
     "id": "v-vielen-dank",
     "gloss": [
       "Thank you very much."
@@ -1930,7 +1998,8 @@
     "studied": false
   },
   {
-    "head": "Auf Wiederhören! /aʊf ˈviːdɐˌhøːʁən/",
+    "head": "Auf Wiederhören!",
+    "ipa": "aʊf ˈviːdɐˌhøːʁən",
     "id": "v-auf-wiederh-ren",
     "gloss": [
       "Goodbye on the phone."
@@ -1959,7 +2028,8 @@
     "studied": false
   },
   {
-    "head": "der Wohnort /ˈvoːnˌɔʁt/",
+    "head": "der Wohnort",
+    "ipa": "ˈvoːnˌɔʁt",
     "id": "v-der-wohnort",
     "plural": "-e",
     "gloss": [
@@ -1995,7 +2065,8 @@
     "studied": false
   },
   {
-    "head": "E-Mail-Adressen sprechen /ˈiːmeːl aˌdʁɛsn̩ ˈʃpʁɛçən/",
+    "head": "E-Mail-Adressen sprechen",
+    "ipa": "ˈiːmeːl aˌdʁɛsn̩ ˈʃpʁɛçən",
     "id": "v-e-mail-adressen-sprechen",
     "gloss": [
       "How to say email symbols aloud."
@@ -2025,7 +2096,8 @@
     "studied": false
   },
   {
-    "head": "die E-Mail-Adresse /ˈiːmeːl aˈdʁɛsə/",
+    "head": "die E-Mail-Adresse",
+    "ipa": "ˈiːmeːl aˈdʁɛsə",
     "id": "v-die-e-mail-adresse",
     "plural": "-n",
     "gloss": [
@@ -2061,7 +2133,8 @@
     "studied": false
   },
   {
-    "head": "genau /ɡəˈnaʊ̯/",
+    "head": "genau",
+    "ipa": "ɡəˈnaʊ̯",
     "id": "v-genau",
     "gloss": [
       "Exactly; that's right."
@@ -2082,7 +2155,8 @@
     "studied": false
   },
   {
-    "head": "die Postleitzahl /ˈpɔstlaɪ̯tˌtsaːl/",
+    "head": "die Postleitzahl",
+    "ipa": "ˈpɔstlaɪ̯tˌtsaːl",
     "id": "v-die-postleitzahl",
     "plural": "-n",
     "gloss": [
@@ -2109,7 +2183,8 @@
     "studied": false
   },
   {
-    "head": "die Muttersprache /ˈmʊtɐˌʃpʁaːxə/",
+    "head": "die Muttersprache",
+    "ipa": "ˈmʊtɐˌʃpʁaːxə",
     "id": "v-die-muttersprache",
     "plural": "-n",
     "gloss": [
@@ -2133,7 +2208,8 @@
     "studied": false
   },
   {
-    "head": "brauchen /ˈbʁaʊ̯xən/",
+    "head": "brauchen",
+    "ipa": "ˈbʁaʊ̯xən",
     "id": "v-brauchen",
     "gloss": [
       "To need."
@@ -2164,7 +2240,8 @@
     "studied": false
   },
   {
-    "head": "der Herr /hɛʁ/",
+    "head": "der Herr",
+    "ipa": "hɛʁ",
     "id": "v-der-herr",
     "plural": "-en",
     "gloss": [
@@ -2186,7 +2263,8 @@
     "studied": false
   },
   {
-    "head": "das Telefongespräch /teˈlefoːnɡəˌʃpʁɛːç/",
+    "head": "das Telefongespräch",
+    "ipa": "teˈlefoːnɡəˌʃpʁɛːç",
     "id": "v-das-telefongespr-ch",
     "plural": "-e",
     "gloss": [
@@ -2220,7 +2298,8 @@
     "studied": false
   },
   {
-    "head": "korrigieren /kɔʁiˈɡiːʁən/",
+    "head": "korrigieren",
+    "ipa": "kɔʁiˈɡiːʁən",
     "id": "v-korrigieren",
     "gloss": [
       "To correct."
@@ -2254,7 +2333,8 @@
     "studied": false
   },
   {
-    "head": "der Personalbogen /pɛʁzoˈnaːlˌboːɡn̩/",
+    "head": "der Personalbogen",
+    "ipa": "pɛʁzoˈnaːlˌboːɡn̩",
     "id": "v-der-personalbogen",
     "plural": "-bögen",
     "gloss": [
@@ -2289,7 +2369,8 @@
     "studied": false
   },
   {
-    "head": "die Bürokratie /byʁokʁaˈtiː/",
+    "head": "die Bürokratie",
+    "ipa": "byʁokʁaˈtiː",
     "id": "v-die-b-rokratie",
     "plural": "-n",
     "gloss": [
@@ -2323,7 +2404,8 @@
     "studied": false
   },
   {
-    "head": "von A bis Z /fɔn aː bɪs tsɛt/",
+    "head": "von A bis Z",
+    "ipa": "fɔn aː bɪs tsɛt",
     "id": "v-von-a-bis-z-f-n-a-b-s-ts-t",
     "gloss": [
       "From A to Z; completely, start to finish."
@@ -2357,7 +2439,8 @@
     "studied": false
   },
   {
-    "head": "tauschen /ˈtaʊ̯ʃən/",
+    "head": "tauschen",
+    "ipa": "ˈtaʊ̯ʃən",
     "id": "v-tauschen",
     "gloss": [
       "To exchange; swap."
@@ -2396,7 +2479,8 @@
     "studied": false
   },
   {
-    "head": "der Kurs /kʊʁs/",
+    "head": "der Kurs",
+    "ipa": "kʊʁs",
     "id": "v-der-kurs",
     "plural": "-e",
     "gloss": [
@@ -2431,7 +2515,8 @@
     "studied": false
   },
   {
-    "head": "die Handynummer /ˈhɛndiˌnʊmɐ/",
+    "head": "die Handynummer",
+    "ipa": "ˈhɛndiˌnʊmɐ",
     "id": "v-die-handynummer",
     "plural": "-n",
     "gloss": [
@@ -2466,7 +2551,8 @@
     "studied": false
   },
   {
-    "head": "die Zahlen ab 11 /diː ˈtsaːlən ap ɛlf/",
+    "head": "die Zahlen ab 11",
+    "ipa": "diː ˈtsaːlən ap ɛlf",
     "id": "v-die-zahlen-ab-11",
     "gloss": [
       "Numbers from 11 upward."
@@ -2693,7 +2779,8 @@
     "studied": false
   },
   {
-    "head": "mehr /meːɐ̯/",
+    "head": "mehr",
+    "ipa": "meːɐ̯",
     "id": "v-mehr",
     "gloss": [
       "More."
@@ -2727,7 +2814,8 @@
     "studied": false
   },
   {
-    "head": "noch einmal /nɔx ˈaɪ̯nmaːl/",
+    "head": "noch einmal",
+    "ipa": "nɔx ˈaɪ̯nmaːl",
     "id": "v-noch-einmal",
     "gloss": [
       "One more time; once again."
@@ -2766,7 +2854,8 @@
     "studied": false
   },
   {
-    "head": "der Notizzettel /noˈtiːtsˌtsɛtl̩/",
+    "head": "der Notizzettel",
+    "ipa": "noˈtiːtsˌtsɛtl̩",
     "id": "v-der-notizzettel",
     "plural": "-",
     "gloss": [
@@ -2801,7 +2890,8 @@
     "studied": false
   },
   {
-    "head": "Tschüss /tʃʏs/",
+    "head": "Tschüss",
+    "ipa": "tʃʏs",
     "id": "v-tsch-ss",
     "gloss": [
       "Bye; casual goodbye."
@@ -2834,7 +2924,8 @@
     "studied": false
   },
   {
-    "head": "Tschau /tʃaʊ/",
+    "head": "Tschau",
+    "ipa": "tʃaʊ",
     "id": "v-tschau",
     "gloss": [
       "Bye; informal farewell."
@@ -2863,7 +2954,8 @@
     "studied": false
   },
   {
-    "head": "später /ˈʃpɛːtɐ/",
+    "head": "später",
+    "ipa": "ˈʃpɛːtɐ",
     "id": "v-sp-ter",
     "gloss": [
       "Later."
@@ -2897,7 +2989,8 @@
     "studied": false
   },
   {
-    "head": "bis /bɪs/",
+    "head": "bis",
+    "ipa": "bɪs",
     "id": "v-bis",
     "gloss": [
       "Until; till; by."
@@ -2964,7 +3057,8 @@
     "studied": false
   },
   {
-    "head": "die Vorwahl /ˈfoːɐ̯vaːl/",
+    "head": "die Vorwahl",
+    "ipa": "ˈfoːɐ̯vaːl",
     "id": "v-die-vorwahl",
     "plural": "-en",
     "gloss": [
@@ -2999,7 +3093,8 @@
     "studied": false
   },
   {
-    "head": "können /ˈkœnən/",
+    "head": "können",
+    "ipa": "ˈkœnən",
     "id": "v-k-nnen",
     "gloss": [
       "Can; be able to (modal verb)."
@@ -3085,7 +3180,8 @@
     "studied": false
   },
   {
-    "head": "wiederholen /viːdɐˈhoːlən/",
+    "head": "wiederholen",
+    "ipa": "viːdɐˈhoːlən",
     "id": "v-wiederholen",
     "gloss": [
       "To repeat; say or do again."
@@ -3121,7 +3217,8 @@
     "studied": false
   },
   {
-    "head": "wieder /ˈviːdɐ/",
+    "head": "wieder",
+    "ipa": "ˈviːdɐ",
     "id": "v-wieder",
     "gloss": [
       "Again; back again."
@@ -3159,7 +3256,8 @@
     "studied": false
   },
   {
-    "head": "die Telefonnummer /teˈlefoːnˌnʊmɐ/",
+    "head": "die Telefonnummer",
+    "ipa": "teˈlefoːnˌnʊmɐ",
     "id": "v-die-telefonnummer",
     "plural": "-n",
     "gloss": [
@@ -3194,7 +3292,8 @@
     "studied": false
   },
   {
-    "head": "die Straße /ˈʃtʁaːsə/",
+    "head": "die Straße",
+    "ipa": "ˈʃtʁaːsə",
     "id": "v-die-stra-e",
     "plural": "-n",
     "gloss": [
@@ -3229,7 +3328,8 @@
     "studied": false
   },
   {
-    "head": "wohnen /ˈvoːnən/",
+    "head": "wohnen",
+    "ipa": "ˈvoːnən",
     "id": "v-wohnen",
     "gloss": [
       "To live; reside."
@@ -3263,7 +3363,8 @@
     "studied": false
   },
   {
-    "head": "gern /ɡɛʁn/",
+    "head": "gern",
+    "ipa": "ɡɛʁn",
     "id": "v-gern",
     "gloss": [
       "Gladly; like to do something."
@@ -3307,7 +3408,8 @@
     "studied": false
   },
   {
-    "head": "heute /ˈhɔʏtə/",
+    "head": "heute",
+    "ipa": "ˈhɔʏtə",
     "id": "v-heute",
     "gloss": [
       "Today."
@@ -3338,7 +3440,8 @@
     "studied": false
   },
   {
-    "head": "zum /tsʊm/",
+    "head": "zum",
+    "ipa": "tsʊm",
     "id": "v-zum",
     "gloss": [
       "To the; for the; contraction of zu + dem."
@@ -3372,7 +3475,8 @@
     "studied": false
   },
   {
-    "head": "essen /ˈɛsn̩/",
+    "head": "essen",
+    "ipa": "ˈɛsn̩",
     "id": "v-essen",
     "gloss": [
       "To eat; food or meal when capitalized as Essen."
@@ -3406,7 +3510,8 @@
     "studied": false
   },
   {
-    "head": "die Zahlen 0-10 /diː ˈtsaːlən nʊl bɪs tseːn/",
+    "head": "die Zahlen 0-10",
+    "ipa": "diː ˈtsaːlən nʊl bɪs tseːn",
     "id": "v-die-zahlen-0-10",
     "gloss": [
       "Numbers from zero to ten."
@@ -3492,7 +3597,8 @@
     "studied": false
   },
   {
-    "head": "die Nummer /ˈnʊmɐ/",
+    "head": "die Nummer",
+    "ipa": "ˈnʊmɐ",
     "id": "v-die-nummer",
     "plural": "-en",
     "gloss": [
@@ -3527,7 +3633,8 @@
     "studied": false
   },
   {
-    "head": "die Zahl /tsaːl/",
+    "head": "die Zahl",
+    "ipa": "tsaːl",
     "id": "v-die-zahl",
     "plural": "-en",
     "gloss": [
@@ -3562,7 +3669,8 @@
     "studied": false
   },
   {
-    "head": "von /fɔn/",
+    "head": "von",
+    "ipa": "fɔn",
     "id": "v-von",
     "gloss": [
       "Of; from; belonging to."
@@ -3601,7 +3709,8 @@
     "studied": false
   },
   {
-    "head": "stehen /ˈʃteːən/",
+    "head": "stehen",
+    "ipa": "ˈʃteːən",
     "id": "v-stehen",
     "gloss": [
       "To stand; be located or positioned."
@@ -3635,7 +3744,8 @@
     "studied": false
   },
   {
-    "head": "die Regel /ˈʁeːɡl̩/",
+    "head": "die Regel",
+    "ipa": "ˈʁeːɡl̩",
     "id": "v-die-regel",
     "plural": "-n",
     "gloss": [
@@ -3669,7 +3779,8 @@
     "studied": false
   },
   {
-    "head": "schreiben /ˈʃʁaɪ̯bən/",
+    "head": "schreiben",
+    "ipa": "ˈʃʁaɪ̯bən",
     "id": "v-schreiben",
     "gloss": [
       "To write."
@@ -3737,7 +3848,8 @@
     "studied": false
   },
   {
-    "head": "Länder, Sprachen, Nationalitäten /ˈlɛndɐ ˈʃpʁaːxən natsi̯onaliˈtɛːtən/",
+    "head": "Länder, Sprachen, Nationalitäten",
+    "ipa": "ˈlɛndɐ ˈʃpʁaːxən natsi̯onaliˈtɛːtən",
     "id": "v-l-nder-sprachen-nationalit-ten",
     "gloss": [
       "Countries, languages, and nationalities."
@@ -3825,7 +3937,8 @@
     "studied": false
   },
   {
-    "head": "Viel Spaß! /fiːl ʃpaːs/",
+    "head": "Viel Spaß!",
+    "ipa": "fiːl ʃpaːs",
     "id": "v-viel-spa",
     "gloss": [
       "Have fun! Enjoy yourself!"
@@ -3853,7 +3966,8 @@
     "studied": false
   },
   {
-    "head": "der Spaß /ʃpaːs/",
+    "head": "der Spaß",
+    "ipa": "ʃpaːs",
     "id": "v-der-spa",
     "plural": "-äße",
     "gloss": [
@@ -3882,7 +3996,8 @@
     "studied": false
   },
   {
-    "head": "viel /fiːl/",
+    "head": "viel",
+    "ipa": "fiːl",
     "id": "v-viel",
     "gloss": [
       "Much; a lot; many before plural nouns."
@@ -3910,7 +4025,8 @@
     "studied": false
   },
   {
-    "head": "zusammen /tsuˈzamən/",
+    "head": "zusammen",
+    "ipa": "tsuˈzamən",
     "id": "v-zusammen",
     "gloss": [
       "Together; as a group (adverb)."
@@ -3944,7 +4060,8 @@
     "studied": false
   },
   {
-    "head": "Hoi /hɔɪ/",
+    "head": "Hoi",
+    "ipa": "hɔɪ",
     "id": "v-hoi",
     "gloss": [
       "Informal hi or hey; especially typical in Switzerland."
@@ -3978,7 +4095,8 @@
     "studied": false
   },
   {
-    "head": "die Argentinierin /aʁɡɛnˈtsiːnəʁɪn/",
+    "head": "die Argentinierin",
+    "ipa": "aʁɡɛnˈtsiːnəʁɪn",
     "id": "v-die-argentinierin",
     "plural": "-nen / der Argentinier, -",
     "gloss": [
@@ -4012,7 +4130,8 @@
     "studied": false
   },
   {
-    "head": "Servus /ˈzɛɐ̯vus/",
+    "head": "Servus",
+    "ipa": "ˈzɛɐ̯vus",
     "id": "v-servus",
     "gloss": [
       "Informal hi or bye; strongest in Austria and southern Germany."
@@ -4042,7 +4161,8 @@
     "studied": false
   },
   {
-    "head": "in /ɪn/",
+    "head": "in",
+    "ipa": "ɪn",
     "id": "v-in-n",
     "gloss": [
       "In; inside; on a team (+ dative for location)."
@@ -4075,7 +4195,8 @@
     "studied": false
   },
   {
-    "head": "der neue Praktikant /deːɐ̯ ˈnɔʏə pʁaktiˈkant/",
+    "head": "der neue Praktikant",
+    "ipa": "deːɐ̯ ˈnɔʏə pʁaktiˈkant",
     "id": "v-der-neue-praktikant",
     "gloss": [
       "The new intern; pattern for adjective endings after der."
@@ -4148,7 +4269,8 @@
     "studied": false
   },
   {
-    "head": "auch /aʊ̯x/",
+    "head": "auch",
+    "ipa": "aʊ̯x",
     "id": "v-auch",
     "gloss": [
       "Also; too; as well."
@@ -4181,7 +4303,8 @@
     "studied": false
   },
   {
-    "head": "Wie geht’s? /viː ɡeːts/",
+    "head": "Wie geht’s?",
+    "ipa": "viː ɡeːts",
     "id": "v-wie-geht-s",
     "gloss": [
       "How’s it going? / How are you?"
@@ -4237,7 +4360,8 @@
     "studied": false
   },
   {
-    "head": "Freut mich /fʁɔʏ̯t mɪç/",
+    "head": "Freut mich",
+    "ipa": "fʁɔʏ̯t mɪç",
     "id": "v-freut-mich",
     "gloss": [
       "Nice to meet you; pleased to meet you."
@@ -4272,7 +4396,8 @@
     "studied": false
   },
   {
-    "head": "Reflexivpronomen /ʁeflɛˈksiːfˌpʁoːnoːmən/",
+    "head": "Reflexivpronomen",
+    "ipa": "ʁeflɛˈksiːfˌpʁoːnoːmən",
     "id": "v-reflexivpronomen",
     "gloss": [
       "Reflexive pronouns: myself, yourself, himself, etc."
@@ -4384,7 +4509,8 @@
     "studied": false
   },
   {
-    "head": "Personalpronomen /pɛʁzoˈnaːlˌpʁoːnoːmən/",
+    "head": "Personalpronomen",
+    "ipa": "pɛʁzoˈnaːlˌpʁoːnoːmən",
     "id": "v-personalpronomen",
     "gloss": [
       "Personal pronouns: ich, mich, mir; du, dich, dir; etc."
@@ -4526,7 +4652,8 @@
     "studied": false
   },
   {
-    "head": "sich vorstellen /zɪç ˈfoːɐ̯ˌʃtɛlən/",
+    "head": "sich vorstellen",
+    "ipa": "zɪç ˈfoːɐ̯ˌʃtɛlən",
     "id": "v-sich-vorstellen",
     "gloss": [
       "To introduce oneself; to imagine something."
@@ -4571,7 +4698,8 @@
     "studied": false
   },
   {
-    "head": "begrüßen /bəˈɡʁyːsn̩/",
+    "head": "begrüßen",
+    "ipa": "bəˈɡʁyːsn̩",
     "id": "v-begr-en",
     "gloss": [
       "To greet; say hello to someone."
@@ -4599,7 +4727,8 @@
     "studied": false
   },
   {
-    "head": "der Partner / die Partnerin /ˈpaʁtnɐ/ /ˈpaʁtnəʁɪn/",
+    "head": "der Partner / die Partnerin",
+    "ipa": "ˈpaʁtnɐ ˈpaʁtnəʁɪn",
     "id": "v-der-partner-die-partnerin",
     "plural": "- / die Partnerin, -nen",
     "gloss": [
@@ -4631,7 +4760,8 @@
     "studied": false
   },
   {
-    "head": "Wie heißt ...? /viː haɪ̯st/",
+    "head": "Wie heißt ...?",
+    "ipa": "viː haɪ̯st",
     "id": "v-wie-hei-t",
     "gloss": [
       "What is ... called?"
@@ -4686,7 +4816,8 @@
     "studied": false
   },
   {
-    "head": "die Sprache /ˈʃpʁaːxə/",
+    "head": "die Sprache",
+    "ipa": "ˈʃpʁaːxə",
     "id": "v-die-sprache",
     "plural": "-n",
     "gloss": [
@@ -4715,7 +4846,8 @@
     "studied": false
   },
   {
-    "head": "Ihr- /iːɐ̯/",
+    "head": "Ihr-",
+    "ipa": "iːɐ̯",
     "id": "v-ihr",
     "gloss": [
       "Your; formal possessive stem."
@@ -4748,7 +4880,8 @@
     "studied": false
   },
   {
-    "head": "fliegen /ˈfliːɡən/",
+    "head": "fliegen",
+    "ipa": "ˈfliːɡən",
     "id": "v-fliegen",
     "gloss": [
       "To fly; travel by plane (+ nach … / zu …)."
@@ -4774,7 +4907,8 @@
     "studied": false
   },
   {
-    "head": "reisen /ˈʁaɪ̯zn̩/",
+    "head": "reisen",
+    "ipa": "ˈʁaɪ̯zn̩",
     "id": "v-reisen",
     "gloss": [
       "To travel; go on a trip (+ nach … without article; + in die … when an article appears)."
@@ -4800,7 +4934,8 @@
     "studied": false
   },
   {
-    "head": "fahren /ˈfaːʁən/",
+    "head": "fahren",
+    "ipa": "ˈfaːʁən",
     "id": "v-fahren",
     "gloss": [
       "To drive; ride; go by transport (+ nach … for many destinations)."
@@ -4828,7 +4963,8 @@
     "studied": false
   },
   {
-    "head": "gehen /ˈɡeːən/",
+    "head": "gehen",
+    "ipa": "ˈɡeːən",
     "id": "v-gehen",
     "gloss": [
       "To go; walk (+ zu / nach / + place; also set phrases)."
@@ -4856,7 +4992,8 @@
     "studied": false
   },
   {
-    "head": "aber /ˈaːbɐ/",
+    "head": "aber",
+    "ipa": "ˈaːbɐ",
     "id": "v-aber",
     "gloss": [
       "but; however — introduces a contrast or exception"
@@ -4884,7 +5021,8 @@
     "studied": false
   },
   {
-    "head": "auffallen /ˈaʊ̯fˌfalən/",
+    "head": "auffallen",
+    "ipa": "ˈaʊ̯fˌfalən",
     "id": "v-auffallen",
     "gloss": [
       "To stand out; be noticeable / catch the eye."
@@ -4912,7 +5050,8 @@
     "studied": false
   },
   {
-    "head": "markieren /maʁˈkiːʁən/",
+    "head": "markieren",
+    "ipa": "maʁˈkiːʁən",
     "id": "v-markieren",
     "gloss": [
       "To mark; highlight verbs or phrases in the text (+ acc.)."
@@ -4938,7 +5077,8 @@
     "studied": false
   },
   {
-    "head": "heißen /ˈhaɪ̯sn̩/",
+    "head": "heißen",
+    "ipa": "ˈhaɪ̯sn̩",
     "id": "v-hei-en",
     "gloss": [
       "To be called; one’s name is (3rd sg. er/sie/es heißt)."
@@ -4971,7 +5111,8 @@
     "studied": false
   },
   {
-    "head": "die W-Frage /ˈveːˌfraːɡə/",
+    "head": "die W-Frage",
+    "ipa": "ˈveːˌfraːɡə",
     "id": "v-die-w-frage",
     "plural": "-n",
     "gloss": [
@@ -5000,7 +5141,8 @@
     "studied": false
   },
   {
-    "head": "die Antwort /ˈantˌvɔʁt/",
+    "head": "die Antwort",
+    "ipa": "ˈantˌvɔʁt",
     "id": "v-die-antwort",
     "plural": "-en",
     "gloss": [
@@ -5027,7 +5169,8 @@
     "studied": false
   },
   {
-    "head": "sammeln /ˈzaməln/",
+    "head": "sammeln",
+    "ipa": "ˈzaməln",
     "id": "v-sammeln",
     "gloss": [
       "To collect; gather (+ acc.)."
@@ -5053,7 +5196,8 @@
     "studied": false
   },
   {
-    "head": "die Tabelle /taˈbɛlə/",
+    "head": "die Tabelle",
+    "ipa": "taˈbɛlə",
     "id": "v-die-tabelle",
     "plural": "-n",
     "gloss": [
@@ -5080,7 +5224,8 @@
     "studied": false
   },
   {
-    "head": "die Verbform /ˈfɔʁm/",
+    "head": "die Verbform",
+    "ipa": "ˈfɔʁm",
     "id": "v-die-verbform",
     "plural": "-en",
     "gloss": [
@@ -5109,7 +5254,8 @@
     "studied": false
   },
   {
-    "head": "die Grammatik /ɡʁaˈmaːtɪk/",
+    "head": "die Grammatik",
+    "ipa": "ɡʁaˈmaːtɪk",
     "id": "v-die-grammatik",
     "plural": "-en",
     "gloss": [
@@ -5136,7 +5282,8 @@
     "studied": false
   },
   {
-    "head": "auf einen Blick /aʊ̯f ˈaɪ̯nən ˈblɪk/",
+    "head": "auf einen Blick",
+    "ipa": "aʊ̯f ˈaɪ̯nən ˈblɪk",
     "id": "v-auf-einen-blick",
     "gloss": [
       "At a glance (overview; textbook headings)."
@@ -5162,7 +5309,8 @@
     "studied": false
   },
   {
-    "head": "der Blick /blɪk/",
+    "head": "der Blick",
+    "ipa": "blɪk",
     "id": "v-der-blick",
     "plural": "-e",
     "gloss": [
@@ -5194,7 +5342,8 @@
     "studied": false
   },
   {
-    "head": "das Verb /vɛʁp/",
+    "head": "das Verb",
+    "ipa": "vɛʁp",
     "id": "v-das-verb",
     "plural": "-en",
     "gloss": [
@@ -5226,7 +5375,8 @@
     "studied": false
   },
   {
-    "head": "alles /ˈaləs/",
+    "head": "alles",
+    "ipa": "ˈaləs",
     "id": "v-alles",
     "gloss": [
       "Everything (pronoun; all of it)."
@@ -5257,7 +5407,8 @@
     "studied": false
   },
   {
-    "head": "richtig /ˈʁɪçtɪç/",
+    "head": "richtig",
+    "ipa": "ˈʁɪçtɪç",
     "id": "v-richtig",
     "gloss": [
       "Correct; right; true."
@@ -5288,7 +5439,8 @@
     "studied": false
   },
   {
-    "head": "die Sekretärin /zekʁeˈtɛːʁɪn/",
+    "head": "die Sekretärin",
+    "ipa": "zekʁeˈtɛːʁɪn",
     "id": "v-die-sekret-rin",
     "plural": "-nen",
     "gloss": [
@@ -5320,7 +5472,8 @@
     "studied": false
   },
   {
-    "head": "die Frau /fraʊ̯/",
+    "head": "die Frau",
+    "ipa": "fraʊ̯",
     "id": "v-die-frau",
     "plural": "-en",
     "gloss": [
@@ -5352,7 +5505,8 @@
     "studied": false
   },
   {
-    "head": "aus /aʊ̯s/",
+    "head": "aus",
+    "ipa": "aʊ̯s",
     "id": "v-aus",
     "gloss": [
       "From; out of (+ dative for origin)."
@@ -5383,7 +5537,8 @@
     "studied": false
   },
   {
-    "head": "Argentinien /aʁɡɛnˈtiːni̯ən/",
+    "head": "Argentinien",
+    "ipa": "aʁɡɛnˈtiːni̯ən",
     "id": "v-argentinien",
     "gloss": [
       "Argentina (country)."
@@ -5409,7 +5564,8 @@
     "studied": false
   },
   {
-    "head": "woher /ˈvoheːɐ̯/",
+    "head": "woher",
+    "ipa": "ˈvoheːɐ̯",
     "id": "v-woher",
     "gloss": [
       "From where (origin)."
@@ -5440,7 +5596,8 @@
     "studied": false
   },
   {
-    "head": "kommen /ˈkɔmən/",
+    "head": "kommen",
+    "ipa": "ˈkɔmən",
     "id": "v-kommen",
     "gloss": [
       "To come; aus … = from (a place)."
@@ -5476,7 +5633,8 @@
     "studied": false
   },
   {
-    "head": "Grüß Gott! /ˈɡʁʏs ˈɡɔt/",
+    "head": "Grüß Gott!",
+    "ipa": "ˈɡʁʏs ˈɡɔt",
     "id": "v-gr-gott",
     "gloss": [
       "Polite daytime hello—typical in Austria and southern Germany."
@@ -5504,7 +5662,8 @@
     "studied": false
   },
   {
-    "head": "lesen /ˈleːzən/",
+    "head": "lesen",
+    "ipa": "ˈleːzən",
     "id": "v-lesen",
     "gloss": [
       "To read (+ object in accusative)."
@@ -5530,7 +5689,8 @@
     "studied": false
   },
   {
-    "head": "sagen /ˈzaːɡən/",
+    "head": "sagen",
+    "ipa": "ˈzaːɡən",
     "id": "v-sagen",
     "gloss": [
       "To say or tell."
@@ -5556,7 +5716,8 @@
     "studied": false
   },
   {
-    "head": "die Person /pɛʁˈzoːn/",
+    "head": "die Person",
+    "ipa": "pɛʁˈzoːn",
     "id": "v-die-person",
     "plural": "-en",
     "gloss": [
@@ -5609,7 +5770,8 @@
     "studied": false
   },
   {
-    "head": "passen /ˈpasən/",
+    "head": "passen",
+    "ipa": "ˈpasən",
     "id": "v-passen",
     "gloss": [
       "To fit; match; suit."
@@ -5640,7 +5802,8 @@
     "studied": false
   },
   {
-    "head": "welcher · welche · welches /ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs/",
+    "head": "welcher · welche · welches",
+    "ipa": "ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs",
     "id": "v-welcher-welche-welches",
     "gloss": [
       "Which (pick by gender: m./f./n.)."
@@ -5678,7 +5841,8 @@
     "studied": false
   },
   {
-    "head": "das Foto /ˈfoːto/",
+    "head": "das Foto",
+    "ipa": "ˈfoːto",
     "id": "v-das-foto",
     "plural": "-s",
     "gloss": [
@@ -5710,7 +5874,8 @@
     "studied": false
   },
   {
-    "head": "ankreuzen /ˈankʁɔʏtsən/",
+    "head": "ankreuzen",
+    "ipa": "ˈankʁɔʏtsən",
     "id": "v-ankreuzen",
     "gloss": [
       "Separable: tick a box (… an)."
@@ -5739,7 +5904,8 @@
     "studied": false
   },
   {
-    "head": "hören /ˈhøːʁən/",
+    "head": "hören",
+    "ipa": "ˈhøːʁən",
     "id": "v-h-ren",
     "gloss": [
       "To hear; listen to (+ acc.)."
@@ -5765,7 +5931,8 @@
     "studied": false
   },
   {
-    "head": "das Gespräch /ɡəˈʃpʁɛːç/",
+    "head": "das Gespräch",
+    "ipa": "ɡəˈʃpʁɛːç",
     "id": "v-das-gespr-ch",
     "plural": "-e",
     "gloss": [
@@ -5792,7 +5959,8 @@
     "studied": false
   },
   {
-    "head": "neu /nɔʏ/",
+    "head": "neu",
+    "ipa": "nɔʏ",
     "id": "v-neu",
     "gloss": [
       "New (opposite alt); before a noun, add an ending."
@@ -5818,7 +5986,8 @@
     "studied": false
   },
   {
-    "head": "sein /zaɪn/",
+    "head": "sein",
+    "ipa": "zaɪn",
     "id": "v-sein",
     "gloss": [
       "To be (am / is / are)."
@@ -5866,7 +6035,8 @@
     "studied": false
   },
   {
-    "head": "der Praktikant /pʁaktiˈkant/",
+    "head": "der Praktikant",
+    "ipa": "pʁaktiˈkant",
     "id": "v-der-praktikant",
     "plural": "-en / die Praktikantin, -nen",
     "gloss": [
@@ -5903,7 +6073,8 @@
     "studied": false
   },
   {
-    "head": "Guten Tag! /ˈɡuːtən ˈtaːk/",
+    "head": "Guten Tag!",
+    "ipa": "ˈɡuːtən ˈtaːk",
     "id": "v-guten-tag",
     "gloss": [
       "Good day; hello (formal daytime)."

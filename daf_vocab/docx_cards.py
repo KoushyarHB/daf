@@ -312,7 +312,10 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     ex_raw = c.get("examples") or []
     examples_ord = [ordered_example_object(x) for x in ex_raw if isinstance(x, dict)]
     plural = (c.get("plural") or "").strip()
-    od: dict[str, Any] = {"head": c["head"]}
+    head, ipa = normalize_head_ipa_fields(c)
+    od: dict[str, Any] = {"head": head}
+    if ipa:
+        od["ipa"] = ipa
     cid = normalize_card_id(c.get("id"))
     if cid:
         od["id"] = cid
@@ -410,7 +413,7 @@ def normalize_card_meta(
     """Fill required manifest metadata; coerce types. Word export code paths should call this before writing JSON."""
 
     now = utc_now_iso()
-    head = (card.get("head") or "").strip()
+    head, ipa = normalize_head_ipa_fields(card)
     if used_ids is not None:
         ensure_card_id(card, used_ids)
     gloss = [x for x in (card.get("gloss") or []) if isinstance(x, str)]
@@ -442,6 +445,8 @@ def normalize_card_meta(
         "level": level,
         "studied": bool(card.get("studied")),
     }
+    if ipa:
+        out["ipa"] = ipa
     if cid:
         out["id"] = cid
     if plural_str:
@@ -465,22 +470,25 @@ def merge_parsed_cards_with_previous_manifest(
     """Attach metadata from an existing manifest (matched by ``head``). New heads get fresh timestamps and defaults."""
 
     now = utc_now_iso()
-    prev_by_head: dict[str, dict[str, Any]] = {}
-    if previous:
-        for c in previous:
-            if isinstance(c, dict) and c.get("head"):
-                prev_by_head[str(c["head"]).strip()] = c
+    prev_by_head = _index_previous_cards(previous)
     out: list[dict[str, Any]] = []
     used_ids: set[str] = set()
     for c in parsed:
         h = (c.get("head") or "").strip()
-        prev = prev_by_head.get(h)
+        ipa_parsed = str(c.get("ipa") or "").strip() or None
+        prev = None
+        for key in _head_lookup_keys(h, ipa_parsed):
+            prev = prev_by_head.get(key)
+            if prev:
+                break
         merged: dict[str, Any] = {
             "head": h,
             "gloss": list(c.get("gloss") or []),
             "notes": list(c.get("notes") or []),
             "examples": normalize_examples_from_card(c),
         }
+        if ipa_parsed:
+            merged["ipa"] = ipa_parsed
         gt_new = normalize_grammar_table(c.get("grammarTable"))
         if gt_new:
             merged["grammarTable"] = gt_new
@@ -532,6 +540,35 @@ def merge_parsed_cards_with_previous_manifest(
     return out
 
 
+def _parse_head_card_start(p) -> dict[str, Any]:
+    """Parse a card head paragraph into ``head`` + optional ``ipa`` (bold vs roman runs)."""
+
+    bold_parts: list[str] = []
+    ipa_parts: list[str] = []
+    for run in p.runs:
+        text = run.text or ""
+        if not text:
+            continue
+        if run.bold:
+            bold_parts.append(text)
+        else:
+            ipa_parts.append(text)
+    head = "".join(bold_parts).strip()
+    ipa_raw = "".join(ipa_parts).strip()
+    if head and ipa_raw:
+        ipa = normalize_ipa_storage(ipa_raw)
+        card: dict[str, Any] = {"head": head, "gloss": [], "notes": [], "examples": []}
+        if ipa:
+            card["ipa"] = ipa
+        return card
+    full = (p.text or "").strip()
+    lemma, ipa = split_head_and_ipa(full)
+    card: dict[str, Any] = {"head": lemma, "gloss": [], "notes": [], "examples": []}
+    if ipa:
+        card["ipa"] = ipa
+    return card
+
+
 def indented(p) -> bool:
     return bool(p.paragraph_format.left_indent)
 
@@ -581,7 +618,7 @@ def parse_vocab_document(doc_path: Path) -> list[dict[str, Any]]:
         if rr == "head":
             if cur:
                 cards.append(cur)
-            cur = {"head": (p.text or "").strip(), "gloss": [], "notes": [], "examples": []}
+            cur = _parse_head_card_start(p)
             continue
         if cur is None:
             continue
@@ -629,11 +666,114 @@ def format_example_chunks(pairs: list[tuple[str, str]]) -> str:
     return " / ".join(parts)
 
 
+_IPA_MARKERS = "ˈˌɪʊəɐ̯ːʃçɡɪɛɔʁ̩ʔ."
+_RE_IPA_TOKEN = re.compile(
+    rf" /(?=[^/]*[{re.escape(_IPA_MARKERS)}])[^/]+/"
+)
+
+
+def _ipa_tokens_to_storage(matches: list[str]) -> str | None:
+    parts: list[str] = []
+    for token in matches:
+        inner = token.strip()[1:-1].strip("/").strip()
+        if inner:
+            parts.append(inner)
+    return " ".join(parts) if parts else None
+
+
+def normalize_ipa_storage(raw: str | None) -> str | None:
+    """Canonical manifest ``ipa``: bare phonetic text without surrounding slashes."""
+
+    if raw is None or not str(raw).strip():
+        return None
+    s = str(raw).strip()
+    matches = _RE_IPA_TOKEN.findall(s)
+    if matches:
+        return _ipa_tokens_to_storage(matches)
+    bare = s.strip("/").strip()
+    return bare or None
+
+
+def format_ipa_display(ipa: str | None) -> str | None:
+    """Word/HTML suffix: `` /ɡə…/`` (or multiple slash-wrapped tokens)."""
+
+    bare = normalize_ipa_storage(ipa)
+    if not bare:
+        return None
+    return " " + " ".join(f"/{part}/" for part in bare.split())
+
+
+def split_head_and_ipa(combined: str) -> tuple[str, str | None]:
+    """Split lemma from trailing IPA token(s) like `` /ɡə…/`` (not gender `` / die …``)."""
+
+    s = combined.strip()
+    if not s:
+        return "", None
+    matches = list(_RE_IPA_TOKEN.finditer(s))
+    if not matches:
+        return s, None
+    lemma = s[: matches[0].start()].rstrip()
+    tail = s[matches[0].start() :]
+    storage = _ipa_tokens_to_storage(_RE_IPA_TOKEN.findall(tail))
+    return lemma or s, storage
+
+
+def normalize_head_ipa_fields(card: dict[str, Any]) -> tuple[str, str | None]:
+    """Return canonical ``(head, ipa)``; migrate legacy combined ``head`` strings."""
+
+    raw_head = str(card.get("head") or "").strip()
+    raw_ipa = card.get("ipa")
+    ipa_explicit = normalize_ipa_storage(str(raw_ipa).strip() if raw_ipa else None)
+    if ipa_explicit:
+        lemma, _trailing = split_head_and_ipa(raw_head)
+        return lemma, ipa_explicit
+    return split_head_and_ipa(raw_head)
+
+
 def split_head(head: str) -> tuple[str, str | None]:
-    parts = head.split(" /", 1)
-    if len(parts) != 2:
-        return head, None
-    return parts[0], "/" + parts[1]
+    """Lemma and optional IPA from a head line (legacy combined or lemma-only)."""
+
+    lemma, ipa = split_head_and_ipa(head)
+    return lemma, ipa
+
+
+def _head_lookup_keys(head: str, ipa: str | None = None) -> set[str]:
+    keys: set[str] = set()
+    h = head.strip()
+    if h:
+        keys.add(h)
+    if ipa:
+        keys.add(f"{h} {ipa}".strip())
+        display = format_ipa_display(ipa)
+        if display:
+            keys.add(f"{h}{display}".strip())
+    lemma, legacy_ipa = split_head_and_ipa(h)
+    if legacy_ipa:
+        keys.add(h)
+        keys.add(lemma)
+        keys.add(f"{lemma} {legacy_ipa}".strip())
+        legacy_display = format_ipa_display(legacy_ipa)
+        if legacy_display:
+            keys.add(f"{lemma}{legacy_display}".strip())
+    return keys
+
+
+def _index_previous_cards(previous: list[dict[str, Any]] | None) -> dict[str, dict[str, Any]]:
+    prev_by_head: dict[str, dict[str, Any]] = {}
+    if not previous:
+        return prev_by_head
+    for c in previous:
+        if not isinstance(c, dict) or not c.get("head"):
+            continue
+        h = str(c["head"]).strip()
+        ipa = str(c.get("ipa") or "").strip() or None
+        for key in _head_lookup_keys(h, ipa):
+            prev_by_head.setdefault(key, c)
+        lemma, legacy_ipa = split_head_and_ipa(h)
+        if legacy_ipa and not ipa:
+            combined = f"{lemma} {legacy_ipa}".strip()
+            prev_by_head.setdefault(combined, c)
+    return prev_by_head
 
 
 def _new_base_document():
@@ -783,20 +923,20 @@ def write_card(doc: Document, card: dict[str, Any], *, is_first: bool):
         spacer.paragraph_format.space_before = Pt(0)
         spacer.paragraph_format.space_after = Pt(0)
 
-    head = (card.get("head") or "").strip()
-    lemma, ipa = split_head(head)
+    head, ipa = normalize_head_ipa_fields(card)
     head_p = doc.add_paragraph()
     head_p.paragraph_format.space_after = Pt(6)
-    head_p.add_run(lemma).bold = True
-    if ipa:
-        r_ipa = head_p.add_run(" " + ipa)
+    head_p.add_run(head).bold = True
+    ipa_display = format_ipa_display(ipa)
+    if ipa_display:
+        r_ipa = head_p.add_run(ipa_display)
         r_ipa.bold = False
         r_ipa.font.size = Pt(10)
         r_ipa.font.color.rgb = NOTE_GRAY
 
     plural = (card.get("plural") or "").strip()
     if plural:
-        plural_line = f"{lemma}, {plural}"
+        plural_line = f"{head}, {plural}"
         pl_p = doc.add_paragraph()
         pl_p.paragraph_format.left_indent = IND
         pl_p.paragraph_format.space_after = Pt(4)

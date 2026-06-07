@@ -12,10 +12,12 @@ from typing import Any
 
 from .docx_cards import (
     canonicalize_plural_field,
+    format_ipa_display,
     iter_grammar_adj_suffix_runs,
     normalize_examples_from_card,
     normalize_grammar_table,
-    split_head,
+    normalize_head_ipa_fields,
+    normalize_ipa_storage,
 )
 from .heroicons import (
     chevron_double_left_icon_svg,
@@ -1194,21 +1196,24 @@ def card_dom_id(card: dict[str, Any], deck_no: int) -> str:
 
 def card_list_label(card: dict[str, Any]) -> str:
     head = str(card.get("head") or "").strip()
-    lemma, _ipa = split_head(head)
-    return lemma.strip() or head
+    return head or str(card.get("head") or "").strip()
 
 
-def head_block_html(head_raw: str) -> str:
+def head_block_html(head_raw: str, ipa: str | None = None) -> str:
     """Lemma bold; IPA muted (same line, lighter weight and color)."""
-    head_plain = head_raw.strip()
-    lemma, ipa = split_head(head_plain)
+    if ipa is not None:
+        lemma = head_raw.strip()
+        ipa_bare = normalize_ipa_storage(ipa)
+    else:
+        lemma, ipa_bare = normalize_head_ipa_fields({"head": head_raw})
     lemma_esc = html.escape(lemma)
-    if ipa:
+    ipa_display = format_ipa_display(ipa_bare)
+    if ipa_display:
         return (
             f'<div class="head">{lemma_esc}'
-            f'<span class="head-ipa"> {html.escape(ipa)}</span></div>'
+            f'<span class="head-ipa">{html.escape(ipa_display)}</span></div>'
         )
-    return f'<div class="head">{html.escape(head_plain)}</div>'
+    return f'<div class="head">{html.escape(lemma)}</div>'
 
 
 def card_studied_flag(card: dict[str, Any]) -> bool:
@@ -1497,6 +1502,8 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         studied = card_studied_flag(card)
         studied_btn = studied_button_html(studied=studied)
         audio_btn = pronounce_button_html(str(card.get("audio") or ""))
+        head_text = str(card.get("head") or "")
+        ipa_text = str(card.get("ipa") or "").strip() or None
 
         lektion = card.get("lektion")
         level = card.get("level")
@@ -1513,7 +1520,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
         parts.append(f'<article class="card{" is-studied" if studied else ""}"{card_data_attrs(card, deck_no=deck_no)}>')
         parts.append(
             '<div class="head-line">'
-            + head_block_html(str(card.get("head") or ""))
+            + head_block_html(head_text, ipa_text)
             + studied_btn
             + (audio_btn or "")
             + "</div>"
@@ -1525,8 +1532,7 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             head_plain = str(card.get("head") or "").strip()
             frag = canonicalize_plural_field(head_plain, plural_raw)
             if frag:
-                lemma_only, _ipa = split_head(head_plain)
-                diag = f"{lemma_only}, {frag}"
+                diag = f"{head_plain}, {frag}"
                 parts.append(f'<div class="plural-diagram">{html.escape(diag)}</div>')
 
         for g in card.get("gloss") or []:

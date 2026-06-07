@@ -11,6 +11,7 @@ export type GrammarTable = {
 
 export type VocabCard = {
   head: string;
+  ipa?: string;
   id?: string;
   gloss: string[];
   notes: string[];
