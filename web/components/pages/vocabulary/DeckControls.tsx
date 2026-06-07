@@ -1,7 +1,8 @@
-import type { SortOrder, ViewMode } from "@/lib/vocab/types";
+import { posLabel, type SortOrder, type ViewMode, type VocabPos } from "@/lib/vocab/types";
 export type DeckFilters = {
   lektion: string;
   level: string;
+  pos: string;
   sort: SortOrder;
   view: ViewMode;
   pageSize: string;
@@ -10,6 +11,7 @@ export type DeckFilters = {
 type DeckControlsProps = {
   lektions: number[];
   levels: string[];
+  posValues: VocabPos[];
   filters: DeckFilters;
   countText: string;
   pageSizeControl?: React.ReactNode;
@@ -23,6 +25,7 @@ function labelClass(active: boolean): string {
 export default function DeckControls({
   lektions,
   levels,
+  posValues,
   filters,
   countText,
   pageSizeControl,
@@ -57,6 +60,21 @@ export default function DeckControls({
             {levels.map((lv) => (
               <option key={lv} value={lv}>
                 {lv}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={labelClass(filters.pos !== "all")}>
+          Type{" "}
+          <select
+            id="filter-pos"
+            value={filters.pos}
+            onChange={(e) => onChange({ pos: e.target.value })}
+          >
+            <option value="all">All</option>
+            {posValues.map((p) => (
+              <option key={p} value={p}>
+                {posLabel(p)}
               </option>
             ))}
           </select>

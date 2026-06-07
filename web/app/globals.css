@@ -125,6 +125,11 @@ h1 {
   margin-right: 0.75rem;
 }
 
+.meta-pos {
+  font-weight: 600;
+  color: #2f6fb8;
+}
+
 .gloss,
 .gloss p {
   margin: 0.35rem 0;
@@ -536,6 +541,11 @@ h1 {
   font-size: 0.72rem;
   color: #888;
   flex-shrink: 0;
+}
+
+.vocab-list-pos {
+  color: #2f6fb8;
+  font-weight: 600;
 }
 
 .deck-pagination-nav button.page-edge {

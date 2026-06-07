@@ -4,7 +4,9 @@ import type {
   GrammarTable,
   VocabCard,
   VocabExample,
+  VocabPos,
 } from "./types";
+import { normalizeVocabPos, VOCAB_POS_ORDER } from "./types";
 
 const LEGACY_LEMMA_PLURAL_TO_SUFFIX: Record<string, string> = {
 
@@ -255,45 +257,33 @@ export function cardListLabel(card: VocabCard): string {
 
 
 export function collectFilterOptions(cards: EnrichedVocabCard[]): {
-
   lektions: number[];
-
   levels: string[];
-
+  posValues: VocabPos[];
 } {
-
   const lektions = new Set<number>();
-
   const levels = new Set<string>();
+  const posFound = new Set<VocabPos>();
 
   for (const card of cards) {
-
     if (typeof card.lektion === "number") {
-
       lektions.add(card.lektion);
-
     } else if (card.lektion != null) {
-
       const n = parseInt(String(card.lektion), 10);
-
       if (!Number.isNaN(n)) lektions.add(n);
-
     }
 
     const lvl = card.level?.trim();
-
     if (lvl) levels.add(lvl);
 
+    posFound.add(normalizeVocabPos(card.pos));
   }
 
   return {
-
     lektions: [...lektions].sort((a, b) => a - b),
-
     levels: [...levels].sort(),
-
+    posValues: VOCAB_POS_ORDER.filter((p) => posFound.has(p)),
   };
-
 }
 
 
@@ -571,6 +561,8 @@ export function enrichCards(cards: VocabCard[]): EnrichedVocabCard[] {
             : null,
 
       level: (card.level ?? "A1").trim() || "A1",
+
+      pos: normalizeVocabPos(card.pos),
 
     };
 

@@ -32,6 +32,9 @@ function filterAndSort(
     if (filters.level !== "all" && card.level !== filters.level) {
       return false;
     }
+    if (filters.pos !== "all" && card.pos !== filters.pos) {
+      return false;
+    }
     return true;
   });
 
@@ -65,7 +68,7 @@ function deckCountText(
 
 export default function VocabularyDeck({ cards }: VocabularyDeckProps) {
   const deckTotal = cards.length;
-  const { lektions, levels } = useMemo(
+  const { lektions, levels, posValues } = useMemo(
     () => collectFilterOptions(cards),
     [cards],
   );
@@ -73,6 +76,7 @@ export default function VocabularyDeck({ cards }: VocabularyDeckProps) {
   const [filters, setFilters] = useState<DeckFilters>({
     lektion: "all",
     level: "all",
+    pos: "all",
     sort: "deck",
     view: "cards",
     pageSize: "25",
@@ -111,6 +115,7 @@ export default function VocabularyDeck({ cards }: VocabularyDeckProps) {
     const resetsPage =
       "lektion" in patch ||
       "level" in patch ||
+      "pos" in patch ||
       "sort" in patch ||
       "pageSize" in patch;
     if (resetsPage) setCurrentPage(0);
@@ -142,6 +147,9 @@ export default function VocabularyDeck({ cards }: VocabularyDeckProps) {
     if (filters.level !== "all" && card.level !== filters.level) {
       return true;
     }
+    if (filters.pos !== "all" && card.pos !== filters.pos) {
+      return true;
+    }
     return false;
   };
 
@@ -150,6 +158,7 @@ export default function VocabularyDeck({ cards }: VocabularyDeckProps) {
       <DeckControls
         lektions={lektions}
         levels={levels}
+        posValues={posValues}
         filters={filters}
         countText={countText}
         pageSizeControl={

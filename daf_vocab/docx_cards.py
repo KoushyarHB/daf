@@ -17,6 +17,7 @@ from typing import Any, Iterator
 
 from .audio_cards import assign_ids_to_deck, ensure_card_id, normalize_card_id
 from .plural_forms import compact_plural_rule, format_plural_line, normalize_plural_fields
+from .pos import normalize_pos
 from docx import Document
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -337,6 +338,7 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     cid = normalize_card_id(c.get("id"))
     if cid:
         od["id"] = cid
+    od["pos"] = normalize_pos(c)
     if plural_rule:
         od["pluralRule"] = plural_rule
     if plural_form:
@@ -461,8 +463,10 @@ def normalize_card_meta(
         head,
     )
     cid = normalize_card_id(card.get("id"))
+    pos = normalize_pos({**card, "head": head})
     out: dict[str, Any] = {
         "head": head,
+        "pos": pos,
         "gloss": gloss,
         "notes": notes,
         "examples": examples,
@@ -560,6 +564,13 @@ def merge_parsed_cards_with_previous_manifest(
             pl_rule_keep = (prev.get("pluralRule") or "").strip()
             if pl_rule_keep:
                 merged["pluralRule"] = pl_rule_keep
+        pos_new = str(c.get("pos") or "").strip().lower()
+        if pos_new:
+            merged["pos"] = pos_new
+        elif prev:
+            pos_keep = str(prev.get("pos") or "").strip().lower()
+            if pos_keep:
+                merged["pos"] = pos_keep
         if prev:
             merged["createdAt"] = prev.get("createdAt") or now
             merged["updatedAt"] = now

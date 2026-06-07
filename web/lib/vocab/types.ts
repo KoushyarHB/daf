@@ -1,3 +1,46 @@
+export type VocabPos =
+  | "noun"
+  | "verb"
+  | "adjective"
+  | "adverb"
+  | "phrase"
+  | "grammar"
+  | "other";
+
+export const VOCAB_POS_ORDER: VocabPos[] = [
+  "noun",
+  "verb",
+  "adjective",
+  "adverb",
+  "phrase",
+  "grammar",
+  "other",
+];
+
+const POS_LABELS: Record<VocabPos, string> = {
+  noun: "Noun",
+  verb: "Verb",
+  adjective: "Adjective",
+  adverb: "Adverb",
+  phrase: "Phrase",
+  grammar: "Grammar",
+  other: "Other",
+};
+
+export function posLabel(pos: VocabPos | string | undefined | null): string {
+  const key = (pos ?? "other").trim().toLowerCase() as VocabPos;
+  return POS_LABELS[key] ?? key.charAt(0).toUpperCase() + key.slice(1);
+}
+
+export function normalizeVocabPos(
+  pos: VocabPos | string | undefined | null,
+): VocabPos {
+  const key = (pos ?? "other").trim().toLowerCase();
+  return (VOCAB_POS_ORDER as readonly string[]).includes(key)
+    ? (key as VocabPos)
+    : "other";
+}
+
 export type VocabExample = {
   german: string;
   english: string | null;
@@ -13,6 +56,7 @@ export type VocabCard = {
   head: string;
   ipa?: string;
   id?: string;
+  pos?: VocabPos;
   gloss: string[];
   notes: string[];
   examples: VocabExample[];

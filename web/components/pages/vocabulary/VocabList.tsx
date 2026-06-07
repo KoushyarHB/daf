@@ -1,3 +1,4 @@
+import { posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 
 type VocabListProps = {
@@ -27,6 +28,7 @@ export default function VocabList({
             data-card-id={card.domId}
             data-deck-no={card.deckNo}
             data-lektion={card.lektion ?? ""}
+            data-pos={card.pos}
           >
             <button
               type="button"
@@ -37,6 +39,11 @@ export default function VocabList({
               <span className="vocab-list-lemma">{card.listLabel}</span>
               {card.lektion != null ? (
                 <span className="vocab-list-meta">L{card.lektion}</span>
+              ) : null}
+              {card.pos ? (
+                <span className="vocab-list-meta vocab-list-pos">
+                  {posLabel(card.pos)}
+                </span>
               ) : null}
             </button>
           </li>

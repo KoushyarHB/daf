@@ -19,6 +19,7 @@ from .docx_cards import (
     normalize_ipa_storage,
 )
 from .plural_forms import format_plural_line, normalize_plural_fields
+from .pos import collect_pos_options, normalize_pos, pos_label
 from .heroicons import (
     chevron_double_left_icon_svg,
     chevron_double_right_icon_svg,
@@ -135,6 +136,7 @@ h1 {
   margin-bottom: 0.5rem;
 }
 .meta span { margin-right: 0.75rem; }
+.meta-pos { font-weight: 600; color: #2f6fb8; }
 .gloss, .gloss p {
   margin: 0.35rem 0;
   padding-left: 0.6rem;
@@ -537,6 +539,10 @@ footer {
   color: #888;
   flex-shrink: 0;
 }
+.vocab-list-pos {
+  color: #2f6fb8;
+  font-weight: 600;
+}
 .vocab-list-item.is-studied .vocab-list-lemma {
   color: #555;
 }
@@ -810,6 +816,7 @@ DECK_UI_JS = """\
   var countEl = document.getElementById("deck-count");
   var lektionSel = document.getElementById("filter-lektion");
   var levelSel = document.getElementById("filter-level");
+  var posSel = document.getElementById("filter-pos");
   var studiedSel = document.getElementById("filter-studied");
   var sortSel = document.getElementById("sort-order");
   var viewSel = document.getElementById("view-mode");
@@ -819,7 +826,7 @@ DECK_UI_JS = """\
   var pageNext = document.getElementById("page-next");
   var pageLast = document.getElementById("page-last");
   var pageCurrent = document.getElementById("page-current");
-  if (!countEl || !lektionSel || !levelSel || !studiedSel || !sortSel || !viewSel || !pageSizeSel) return;
+  if (!countEl || !lektionSel || !levelSel || !posSel || !studiedSel || !sortSel || !viewSel || !pageSizeSel) return;
 
   var deckOrder = cards.slice();
   var listById = {};
@@ -906,11 +913,13 @@ DECK_UI_JS = """\
   function filteredCards() {
     var lek = lektionSel.value;
     var lvl = levelSel.value;
+    var pos = posSel.value;
     var studiedFilter = studiedSel.value;
     var sort = sortSel.value;
     var visible = cards.filter(function (card) {
       if (lek !== "all" && card.dataset.lektion !== lek) return false;
       if (lvl !== "all" && card.dataset.level !== lvl) return false;
+      if (pos !== "all" && card.dataset.pos !== pos) return false;
       var id = cardIdFor(card);
       if (studiedFilter === "studied" && !isStudied(id)) return false;
       if (studiedFilter === "unstudied" && isStudied(id)) return false;
@@ -1025,6 +1034,7 @@ DECK_UI_JS = """\
     var pairs = [
       [lektionSel, "all"],
       [levelSel, "all"],
+      [posSel, "all"],
       [studiedSel, "all"],
       [sortSel, "deck"],
       [viewSel, "cards"],
@@ -1110,6 +1120,7 @@ DECK_UI_JS = """\
 
   lektionSel.addEventListener("change", onFilterChange);
   levelSel.addEventListener("change", onFilterChange);
+  posSel.addEventListener("change", onFilterChange);
   studiedSel.addEventListener("change", onFilterChange);
   sortSel.addEventListener("change", onFilterChange);
   viewSel.addEventListener("change", apply);
@@ -1161,7 +1172,7 @@ def iso_to_ms(iso: str | None) -> int:
         return 0
 
 
-def collect_filter_options(cards: list[dict[str, Any]]) -> tuple[list[int], list[str]]:
+def collect_filter_options(cards: list[dict[str, Any]]) -> tuple[list[int], list[str], list[str]]:
     lektions: set[int] = set()
     levels: set[str] = set()
     for card in cards:
@@ -1178,7 +1189,7 @@ def collect_filter_options(cards: list[dict[str, Any]]) -> tuple[list[int], list
         lvl = card.get("level")
         if isinstance(lvl, str) and lvl.strip():
             levels.add(lvl.strip())
-    return sorted(lektions), sorted(levels)
+    return sorted(lektions), sorted(levels), collect_pos_options(cards)
 
 
 def deck_number_for_index(index: int, total: int) -> int:
@@ -1240,6 +1251,7 @@ def card_data_attrs(card: dict[str, Any], *, deck_no: int) -> str:
         lek_attr = str(int(lek)) if isinstance(lek, int) else html.escape(str(lek).strip())
     level = card.get("level")
     level_attr = html.escape(str(level).strip()) if level else ""
+    pos_attr = html.escape(normalize_pos(card), quote=True)
     created = card.get("createdAt") or card.get("updatedAt")
     created_ms = iso_to_ms(str(created) if created else None)
     cid = html.escape(card_dom_id(card, deck_no), quote=True)
@@ -1250,6 +1262,7 @@ def card_data_attrs(card: dict[str, Any], *, deck_no: int) -> str:
         f' data-deck-no="{deck_no}"'
         f' data-lektion="{lek_attr}"'
         f' data-level="{level_attr}"'
+        f' data-pos="{pos_attr}"'
         f' data-created-ms="{created_ms}"'
         f' data-studied="{studied}"'
     )
@@ -1260,20 +1273,23 @@ def vocab_list_item_html(card: dict[str, Any], deck_no: int) -> str:
     label = html.escape(card_list_label(card))
     lek = card.get("lektion")
     studied = card_studied_flag(card)
+    pos = normalize_pos(card)
     item_cls = "vocab-list-item is-studied" if studied else "vocab-list-item"
     studied_attr = "true" if studied else "false"
     lek_badge = ""
     if lek is not None:
         lek_badge = f'<span class="vocab-list-meta">L{html.escape(str(lek))}</span>'
+    pos_badge = f'<span class="vocab-list-meta vocab-list-pos">{html.escape(pos_label(pos))}</span>'
     return (
         f'<li class="{item_cls}" data-card-id="{cid}" data-deck-no="{deck_no}"'
         f' data-lektion="{html.escape(str(lek)) if lek is not None else ""}"'
+        f' data-pos="{html.escape(pos, quote=True)}"'
         f' data-studied="{studied_attr}">'
         + studied_button_html(studied=studied)
         + f'<a class="vocab-list-link" href="#card-{cid}">'
         f'<span class="vocab-list-no">{deck_no}</span>'
         f'<span class="vocab-list-lemma">{label}</span>'
-        f"</a>{lek_badge}</li>"
+        f"</a>{lek_badge}{pos_badge}</li>"
     )
 
 
@@ -1381,7 +1397,7 @@ def card_image_block_html(card: dict[str, Any]) -> str:
     )
 
 
-def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
+def deck_controls_html(lektions: list[int], levels: list[str], pos_values: list[str]) -> str:
     lek_opts = ['<option value="all">All</option>']
     for n in lektions:
         lek_opts.append(f'<option value="{n}">Lektion {n}</option>')
@@ -1389,6 +1405,10 @@ def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
     for lv in levels:
         esc = html.escape(lv)
         lvl_opts.append(f'<option value="{esc}">{esc}</option>')
+    pos_opts = ['<option value="all">All</option>']
+    for pv in pos_values:
+        esc = html.escape(pv)
+        pos_opts.append(f'<option value="{esc}">{html.escape(pos_label(pv))}</option>')
     return (
         '<div class="deck-controls" role="region" aria-label="Filter and sort">'
         '<div class="deck-controls-row">'
@@ -1397,6 +1417,9 @@ def deck_controls_html(lektions: list[int], levels: list[str]) -> str:
         + "</select></label>"
         '<label>Level <select id="filter-level">'
         + "".join(lvl_opts)
+        + "</select></label>"
+        '<label>Type <select id="filter-pos">'
+        + "".join(pos_opts)
         + "</select></label>"
         '<label>Studied <select id="filter-studied">'
         '<option value="all">All</option>'
@@ -1487,10 +1510,10 @@ def render_preview_page_html(*, title: str, active: str, body: list[str]) -> str
 
 def render_vocab_html(cards: list[dict[str, Any]]) -> str:
     valid_cards = [c for c in cards if isinstance(c, dict) and str(c.get("head") or "").strip()]
-    lektions, levels = collect_filter_options(valid_cards)
+    lektions, levels, pos_values = collect_filter_options(valid_cards)
 
     parts: list[str] = [
-        deck_controls_html(lektions, levels),
+        deck_controls_html(lektions, levels, pos_values),
         pagination_html(),
         vocab_list_html(valid_cards),
         '<div id="deck" class="view-pane">',
@@ -1512,9 +1535,12 @@ def render_vocab_html(cards: list[dict[str, Any]]) -> str:
             meta_parts.append(f"Lektion {html.escape(str(lektion))}")
         if level:
             meta_parts.append(html.escape(str(level)))
+        card_pos = normalize_pos(card)
         meta_html = ""
-        if meta_parts:
+        if meta_parts or card_pos:
             spans = "".join(f"<span>{p}</span>" for p in meta_parts)
+            if card_pos:
+                spans += f'<span class="meta-pos">{html.escape(pos_label(card_pos))}</span>'
             meta_html = f'<div class="meta">{spans}</div>'
 
         parts.append(f'<article class="card{" is-studied" if studied else ""}"{card_data_attrs(card, deck_no=deck_no)}>')
