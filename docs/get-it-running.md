@@ -89,8 +89,11 @@ Copy the output into `AUTH_SECRET="..."` in `.env`.
 
 Leave the other lines as they are for local dev:
 
-- `DATABASE_URL` → talks to Docker Postgres
+- `DATABASE_URL` → talks to Docker Postgres  
+- `DIRECT_URL` → same as `DATABASE_URL` locally (Neon uses a separate direct URL in production)  
 - `AUTH_URL` → `http://localhost:3000`
+
+**Deploy online (Vercel + Neon):** see [`deploy-vercel-neon.md`](deploy-vercel-neon.md).
 
 ---
 

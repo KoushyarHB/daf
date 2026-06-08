@@ -19,6 +19,8 @@ import { ensureDefaultImportUser } from "../services/users.service";
 const prisma = new PrismaClient();
 
 function repoRoot(): string {
+  const fromEnv = process.env.MANIFEST_ROOT?.trim();
+  if (fromEnv) return path.resolve(fromEnv);
   return path.join(process.cwd(), "..");
 }
 

@@ -81,6 +81,15 @@ List response shape: `{ page, pageSize, totalItems, totalPages, items }`.
 - **Services** (`services/`) — Prisma + business logic
 - See `docs/backend-changes.md` and `.cursor/rules/daf-web-*.mdc`
 
-## Deployment
+## Deployment (Vercel + Neon)
 
-Requires Node.js + PostgreSQL (Vercel, Railway, Fly.io, etc.). GitHub Pages cannot host this app.
+**Step-by-step:** [`docs/deploy-vercel-neon.md`](../docs/deploy-vercel-neon.md)
+
+Minimum:
+
+1. **Neon** — Postgres (`DATABASE_URL` pooled + `DIRECT_URL` direct)
+2. **Vercel** — import repo, **Root Directory = `web`**, set env vars
+3. Deploy (runs `prisma migrate deploy` via `vercel-build`)
+4. From your PC: `npm run db:import-manifest` with production `DATABASE_URL`
+
+GitHub Pages only hosts the static `vocab.manifest.json` preview — not this app.
