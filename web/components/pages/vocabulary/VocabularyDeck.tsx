@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -12,9 +13,12 @@ import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
 import CardFormModal from "./CardFormModal";
 import DeckControls, {
   DEFAULT_DECK_FILTER_VALUES,
+  hasActiveDeckFilters,
   type DeckFilters,
   PageSizeControl,
 } from "./DeckControls";
+import DeckEmpty from "./DeckEmpty";
+import DeckLoading from "./DeckLoading";
 import DeckPagination from "./DeckPagination";
 import VocabCard from "./VocabCard";
 import VocabList from "./VocabList";
@@ -75,6 +79,16 @@ export default function VocabularyDeck() {
   const [editingCard, setEditingCard] = useState<EnrichedVocabCard | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<EnrichedVocabCard | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [prevSessionStatus, setPrevSessionStatus] = useState(sessionStatus);
+
+  if (sessionStatus !== prevSessionStatus) {
+    setPrevSessionStatus(sessionStatus);
+    if (sessionStatus === "unauthenticated") {
+      setFilters((prev) =>
+        prev.studied === "all" ? prev : { ...prev, studied: "all" },
+      );
+    }
+  }
 
   const bumpReload = useCallback(() => {
     setLoading(true);
@@ -89,18 +103,16 @@ export default function VocabularyDeck() {
   }, [reloadToken, sessionStatus]);
 
   useEffect(() => {
-    if (filters.studied !== "all" && sessionStatus === "unauthenticated") {
-      return;
-    }
-
     const params = new URLSearchParams();
     params.set("page", String(currentPage + 1));
     params.set("pageSize", String(apiPageSize(filters.pageSize)));
     if (filters.lektion !== "all") params.set("lektion", filters.lektion);
     if (filters.level !== "all") params.set("level", filters.level);
     if (filters.pos !== "all") params.set("pos", filters.pos);
-    const studied = studiedParam(filters.studied);
-    if (studied) params.set("studied", studied);
+    if (progressEnabled) {
+      const studied = studiedParam(filters.studied);
+      if (studied) params.set("studied", studied);
+    }
     params.set("sort", filters.sort);
 
     const ac = new AbortController();
@@ -132,7 +144,7 @@ export default function VocabularyDeck() {
       pending = false;
       ac.abort();
     };
-  }, [currentPage, filters, sessionStatus, reloadToken]);
+  }, [currentPage, filters, progressEnabled, reloadToken]);
 
   const items = useMemo(() => data?.items ?? [], [data?.items]);
   const totalItems = data?.totalItems ?? 0;
@@ -300,8 +312,10 @@ export default function VocabularyDeck() {
     <>
       {!progressEnabled && sessionStatus !== "loading" ? (
         <p className="deck-hint">
-          <a href="/login">Sign in</a> to save studied progress, add cards, and customize
-          the deck.
+          <Link href="/login" className="deck-hint-link">
+            Sign in
+          </Link>{" "}
+          to save studied progress, add cards, and customize the deck.
         </p>
       ) : null}
 
@@ -318,6 +332,7 @@ export default function VocabularyDeck() {
         levels={filterOptions.levels}
         posValues={filterOptions.posValues}
         filters={filters}
+        progressEnabled={progressEnabled}
         countText={loading ? "Loading…" : countText}
         pageSizeControl={
           <div className="page-size-mobile-only">
@@ -331,47 +346,64 @@ export default function VocabularyDeck() {
         onClearFilters={clearFilters}
       />
 
-      <DeckPagination
-        currentPage={safePage}
-        totalPages={Math.max(1, totalPages)}
-        totalItems={totalItems}
-        pageSize={filters.pageSize}
-        onPageSizeChange={(v) => updateFilters({ pageSize: v })}
-        onFirst={() => goToPage(0)}
-        onPrev={() => goToPage(Math.max(0, safePage - 1))}
-        onNext={() => goToPage(safePage + 1)}
-        onLast={() => goToPage(Math.max(0, totalPages - 1))}
-      />
+      {!loading && totalItems > 0 ? (
+        <DeckPagination
+          currentPage={safePage}
+          totalPages={Math.max(1, totalPages)}
+          totalItems={totalItems}
+          pageSize={filters.pageSize}
+          onPageSizeChange={(v) => updateFilters({ pageSize: v })}
+          onFirst={() => goToPage(0)}
+          onPrev={() => goToPage(Math.max(0, safePage - 1))}
+          onNext={() => goToPage(safePage + 1)}
+          onLast={() => goToPage(Math.max(0, totalPages - 1))}
+        />
+      ) : null}
 
-      <VocabList
-        cards={items}
-        visibleIds={pageIds}
-        hidden={filters.view !== "list"}
-        progressEnabled={progressEnabled}
-        manageEnabled={progressEnabled}
-        onGoToCard={goToCard}
-        onToggleStudied={toggleStudied}
-        onEdit={openEdit}
-        onRemove={requestRemoveCard}
-      />
-
-      <div
-        id="deck"
-        className={`view-pane${filters.view !== "cards" ? " is-hidden" : ""}`}
-      >
-        {items.map((card) => (
-          <VocabCard
-            key={card.domId}
-            card={card}
-            hidden={false}
+      {loading ? (
+        <DeckLoading view={filters.view} />
+      ) : totalItems === 0 ? (
+        <DeckEmpty
+          hasActiveFilters={hasActiveDeckFilters(filters, {
+            includeStudied: progressEnabled,
+          })}
+          progressEnabled={progressEnabled}
+          onClearFilters={clearFilters}
+          onAddCard={openCreate}
+        />
+      ) : (
+        <>
+          <VocabList
+            cards={items}
+            visibleIds={pageIds}
+            hidden={filters.view !== "list"}
             progressEnabled={progressEnabled}
             manageEnabled={progressEnabled}
-            onToggleStudied={() => toggleStudied(card.domId)}
-            onEdit={() => openEdit(card)}
-            onRemove={() => requestRemoveCard(card)}
+            onGoToCard={goToCard}
+            onToggleStudied={toggleStudied}
+            onEdit={openEdit}
+            onRemove={requestRemoveCard}
           />
-        ))}
-      </div>
+
+          <div
+            id="deck"
+            className={`view-pane${filters.view !== "cards" ? " is-hidden" : ""}`}
+          >
+            {items.map((card) => (
+              <VocabCard
+                key={card.domId}
+                card={card}
+                hidden={false}
+                progressEnabled={progressEnabled}
+                manageEnabled={progressEnabled}
+                onToggleStudied={() => toggleStudied(card.domId)}
+                onEdit={() => openEdit(card)}
+                onRemove={() => requestRemoveCard(card)}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <ConfirmModal
         open={deleteTarget !== null}

@@ -24,12 +24,17 @@ export const DEFAULT_DECK_FILTER_VALUES = {
   sort: "deck-desc" as SortOrder,
 };
 
-export function hasActiveDeckFilters(filters: DeckFilters): boolean {
+export function hasActiveDeckFilters(
+  filters: DeckFilters,
+  options?: { includeStudied?: boolean },
+): boolean {
+  const includeStudied = options?.includeStudied ?? true;
   return (
     filters.lektion !== DEFAULT_DECK_FILTER_VALUES.lektion ||
     filters.level !== DEFAULT_DECK_FILTER_VALUES.level ||
     filters.pos !== DEFAULT_DECK_FILTER_VALUES.pos ||
-    filters.studied !== DEFAULT_DECK_FILTER_VALUES.studied ||
+    (includeStudied &&
+      filters.studied !== DEFAULT_DECK_FILTER_VALUES.studied) ||
     filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort
   );
 }
@@ -40,6 +45,7 @@ type DeckControlsProps = {
   posValues: VocabPos[];
   filters: DeckFilters;
   countText: string;
+  progressEnabled?: boolean;
   pageSizeControl?: React.ReactNode;
   onChange: (patch: Partial<DeckFilters>) => void;
   onClearFilters?: () => void;
@@ -55,11 +61,14 @@ export default function DeckControls({
   posValues,
   filters,
   countText,
+  progressEnabled = false,
   pageSizeControl,
   onChange,
   onClearFilters,
 }: DeckControlsProps) {
-  const filtersActive = hasActiveDeckFilters(filters);
+  const filtersActive = hasActiveDeckFilters(filters, {
+    includeStudied: progressEnabled,
+  });
 
   return (
     <div className="deck-controls" role="region" aria-label="Filter and sort">
@@ -109,20 +118,22 @@ export default function DeckControls({
             ))}
           </select>
         </label>
-        <label className={labelClass(filters.studied !== "all")}>
-          Studied{" "}
-          <select
-            id="filter-studied"
-            value={filters.studied}
-            onChange={(e) =>
-              onChange({ studied: e.target.value as StudiedFilter })
-            }
-          >
-            <option value="all">All</option>
-            <option value="studied">Studied</option>
-            <option value="unstudied">Not studied</option>
-          </select>
-        </label>
+        {progressEnabled ? (
+          <label className={labelClass(filters.studied !== "all")}>
+            Studied{" "}
+            <select
+              id="filter-studied"
+              value={filters.studied}
+              onChange={(e) =>
+                onChange({ studied: e.target.value as StudiedFilter })
+              }
+            >
+              <option value="all">All</option>
+              <option value="studied">Studied</option>
+              <option value="unstudied">Not studied</option>
+            </select>
+          </label>
+        ) : null}
         <label
           className={labelClass(
             filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort,
