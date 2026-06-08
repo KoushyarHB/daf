@@ -1,13 +1,23 @@
+import {
+  cardEditLabel,
+  cardRemoveLabel,
+} from "@/lib/vocab/card-manage";
 import { formatIpaDisplay } from "@/lib/vocab/card-utils";
 import { posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import PronounceButton from "@/components/shared/PronounceButton";
+import StudiedButton from "@/components/shared/StudiedButton";
 import ZoomableImage from "@/components/shared/ZoomableImage";
 import GrammarTableBlock from "./GrammarTable";
 
 type VocabCardProps = {
   card: EnrichedVocabCard;
   hidden?: boolean;
+  progressEnabled?: boolean;
+  manageEnabled?: boolean;
+  onToggleStudied?: () => void;
+  onEdit?: () => void;
+  onRemove?: () => void;
 };
 
 function HeadBlock({ head, ipa }: { head: string; ipa?: string | null }) {
@@ -24,17 +34,28 @@ function HeadBlock({ head, ipa }: { head: string; ipa?: string | null }) {
   return <div className="head">{lemma}</div>;
 }
 
-export default function VocabCard({ card, hidden = false }: VocabCardProps) {
+export default function VocabCard({
+  card,
+  hidden = false,
+  progressEnabled = false,
+  manageEnabled = false,
+  onToggleStudied,
+  onEdit,
+  onRemove,
+}: VocabCardProps) {
+  const studied = card.studied ?? false;
   const metaParts: string[] = [`#${card.deckNo}`];
   if (card.lektion != null) metaParts.push(`Lektion ${card.lektion}`);
   if (card.level) metaParts.push(card.level);
 
   const image = card.image?.trim();
+  const editLabel = cardEditLabel(card);
+  const removeLabel = cardRemoveLabel(card);
 
   return (
     <article
       id={`card-${card.domId}`}
-      className={`card${hidden ? " is-hidden" : ""}`}
+      className={`card${hidden ? " is-hidden" : ""}${studied ? " is-studied" : ""}`}
       data-card-id={card.domId}
       data-deck-no={card.deckNo}
       data-lektion={card.lektion ?? ""}
@@ -44,7 +65,44 @@ export default function VocabCard({ card, hidden = false }: VocabCardProps) {
     >
       <div className="head-line">
         <HeadBlock head={card.head} ipa={card.ipa} />
-        <PronounceButton audio={card.audio} />
+        <div className="head-actions">
+          {manageEnabled && onEdit ? (
+            <button
+              type="button"
+              className="card-manage-btn"
+              onClick={onEdit}
+              aria-label={`${editLabel} card`}
+              title={`${editLabel} card`}
+            >
+              {editLabel}
+            </button>
+          ) : null}
+          {manageEnabled && onRemove ? (
+            <button
+              type="button"
+              className="card-manage-btn card-manage-btn--danger"
+              onClick={onRemove}
+              aria-label={`${removeLabel} card`}
+              title={`${removeLabel} card`}
+            >
+              {removeLabel}
+            </button>
+          ) : null}
+          {card.isCommunity && manageEnabled ? (
+            <span className="card-community-badge" title="Community card">
+              Community
+            </span>
+          ) : null}
+          {card.isCustomized && manageEnabled ? (
+            <span className="card-customized-badge" title="Your customized copy">
+              Customized
+            </span>
+          ) : null}
+          <PronounceButton audio={card.audio} />
+          {progressEnabled && onToggleStudied ? (
+            <StudiedButton studied={studied} onToggle={onToggleStudied} />
+          ) : null}
+        </div>
       </div>
 
       {metaParts.length > 0 || card.pos ? (

@@ -1,0 +1,32 @@
+---
+description: web/ is an isolated full-stack Next app; repo root is authoring-only
+globs: web/**
+alwaysApply: false
+---
+
+# `web/` boundary (non-negotiable)
+
+## Isolation
+
+- **`web/` is a self-contained full-stack Next.js app.** Runtime code must not read `vocab.manifest.json`, `lesson-pages.manifest.json`, `daf_vocab/`, or Python preview assets.
+- **Remove or retire** runtime JSON fallbacks (`USE_JSON_MANIFEST`, `load-manifest.ts` in request paths, `data-source.ts` JSON branch). The DB is the runtime source of truth.
+- **Repo root** stays the authoring pipeline (Word ↔ JSON via `daf_vocab`). That pipeline does not run inside the Next app.
+
+## Sole bridge to the repo
+
+The **only** contact between repo-root manifests and `web/`:
+
+- **`web/scripts/import-manifest.ts`** (or successor) reads `../vocab.manifest.json` and upserts **`cards`** (+ child rows).
+- Imported cards must set **`userId`** to a configured **default/system user** (env `DEFAULT_IMPORT_USER_ID` or seeded `system@import.local`).
+- Import is a **CLI/devops script**, not an HTTP route exposed to browsers.
+
+## Product direction
+
+- **Full CRUD** for vocabulary cards over HTTP (authenticated).
+- **Users table** + **basic sign-up / sign-in** (prefer Auth.js / NextAuth with Credentials or email — simplest path that works).
+- **Per-user learning state** (studied, etc.) is separate from card content — not a global flag on `cards`.
+
+## Do not
+
+- Add new `readFileSync` manifest reads in `app/`, `components/`, `services/`, or `lib/` (scripts only).
+- Couple UI components to manifest shapes; use API + shared DTO types under `web/lib/types/` or `web/lib/api/`.

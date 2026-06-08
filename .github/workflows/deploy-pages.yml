@@ -1,5 +1,8 @@
 # Generate static HTML from committed vocab.manifest.json. No daf_vocab “build” CLI is run here — only write_vocab_preview.
 # Repo → Settings → Pages → Source: GitHub Actions.
+#
+# TODO: Deploy the Next.js app (web/) separately — it needs Node + PostgreSQL and cannot replace this static preview on Pages alone.
+# See web/README.md for local DB setup and deployment notes.
 
 name: Deploy vocab preview to GitHub Pages
 

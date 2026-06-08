@@ -1,11 +1,11 @@
-import { loadLessonPages } from "@/lib/vocab/load-manifest";
 import LessonHub from "@/components/pages/lesson-pages/LessonHub";
+import * as lessonsService from "@/services/lessons.service";
 
 export const metadata = {
   title: "daf — lesson pages",
 };
 
-export default function LessonPagesPage() {
-  const lessons = loadLessonPages();
+export default async function LessonPagesPage() {
+  const lessons = await lessonsService.fetchLessons();
   return <LessonHub lessons={lessons} />;
 }

@@ -1,0 +1,64 @@
+---
+description: REST API contracts — pagination, filters, sort, CRUD
+globs: web/app/api/**
+alwaysApply: false
+---
+
+# `web/` API conventions
+
+## List responses (mandatory shape)
+
+Every **GET collection** returns:
+
+```json
+{
+  "page": 1,
+  "pageSize": 10,
+  "totalItems": 0,
+  "items": [],
+  "totalPages": 0
+}
+```
+
+- Query params: **`page`** (1-based), **`pageSize`** (default 20, cap 100).
+- **`totalPages`** = `ceil(totalItems / pageSize)`.
+- Single-resource GET (`/api/cards/[id]`) returns the resource object directly, not paginated.
+
+## Filtering & sorting (query params only)
+
+Implement in Zod + service layer — **never** filter/sort in route handlers ad hoc.
+
+| Param | Example | Notes |
+|-------|---------|-------|
+| `lektion` | `3` or `all` | Omit or `all` = no filter |
+| `level` | `A1` | CEFR |
+| `pos` | `noun` | Part of speech |
+| `studied` | `true` / `false` / `all` | Requires authenticated user |
+| `sort` | `date-desc`, `date-asc`, `deck-asc` | Whitelist in schema |
+
+Invalid params → **400** with Zod flatten error.
+
+## CRUD routes (target)
+
+| Method | Path | Auth |
+|--------|------|------|
+| GET | `/api/cards` | Optional / required for `studied` filter |
+| GET | `/api/cards/[id]` | Public or owner |
+| POST | `/api/cards` | Required |
+| PUT/PATCH | `/api/cards/[id]` | Owner only |
+| DELETE | `/api/cards/[id]` | Owner only |
+| PATCH | `/api/cards/[id]/progress` | Required (`studied` body) |
+
+Auth routes: `/api/auth/*` (NextAuth) or `/api/register`, `/api/login` if custom.
+
+## Responses
+
+- Create → **201** + body.
+- Update → **200** + body (or **204** if no body).
+- Delete → **204**.
+- Not found → **404**. Forbidden → **403**. Unauthenticated → **401**.
+
+## Types
+
+- Export `PaginatedResponse<T>` from `web/lib/api/types.ts`.
+- Share Zod schemas between route and client where useful.

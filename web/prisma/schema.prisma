@@ -1,0 +1,276 @@
+generator client {
+
+  provider = "prisma-client-js"
+
+}
+
+
+
+datasource db {
+
+  provider = "postgresql"
+
+  url      = env("DATABASE_URL")
+
+}
+
+
+
+enum VocabPos {
+
+  noun
+
+  verb
+
+  adjective
+
+  adverb
+
+  phrase
+
+  grammar
+
+  other
+
+}
+
+
+
+enum LessonPageKind {
+
+  word
+
+  grammar
+
+}
+
+
+
+model User {
+
+  id           String   @id @default(cuid())
+
+  email        String   @unique
+
+  passwordHash String   @map("password_hash")
+
+  name         String?
+
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+
+
+  cards       Card[]
+  progress    UserCardProgress[]
+  hiddenCards UserCardHidden[]
+
+  @@map("users")
+}
+
+
+
+model Card {
+  id           String   @id
+  userId       String   @map("user_id")
+  sourceCardId String?  @map("source_card_id")
+  head         String
+
+  ipa          String?
+
+  pos          VocabPos @default(other)
+
+  pluralRule   String?  @map("plural_rule")
+
+  pluralForm   String?  @map("plural_form")
+
+  imagePath    String?  @map("image_path")
+
+  audioPath    String?  @map("audio_path")
+
+  lektion      Int?
+
+  level        String   @default("A1")
+
+  sortOrder    Int      @map("sort_order")
+
+  grammarTable Json?    @map("grammar_table")
+
+  createdAt    DateTime @map("created_at") @db.Timestamptz()
+
+  updatedAt    DateTime @map("updated_at") @db.Timestamptz()
+
+
+
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceCard Card?              @relation("CardFork", fields: [sourceCardId], references: [id], onDelete: SetNull)
+  forks      Card[]             @relation("CardFork")
+  glosses    CardGloss[]
+  notes      CardNote[]
+  examples   CardExample[]
+  progress   UserCardProgress[]
+  hiddenFrom UserCardHidden[]
+
+  @@index([userId])
+  @@index([sourceCardId])
+
+  @@index([lektion])
+
+  @@index([pos])
+
+  @@index([level])
+
+  @@index([sortOrder])
+
+  @@map("cards")
+
+}
+
+
+
+model CardGloss {
+
+  id        String @id @default(cuid())
+
+  cardId    String @map("card_id")
+
+  text      String
+
+  sortOrder Int    @map("sort_order")
+
+  card      Card   @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+
+
+  @@index([cardId])
+
+  @@map("card_glosses")
+
+}
+
+
+
+model CardNote {
+
+  id        String @id @default(cuid())
+
+  cardId    String @map("card_id")
+
+  text      String
+
+  sortOrder Int    @map("sort_order")
+
+  card      Card   @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+
+
+  @@index([cardId])
+
+  @@map("card_notes")
+
+}
+
+
+
+model CardExample {
+
+  id        String  @id @default(cuid())
+
+  cardId    String  @map("card_id")
+
+  german    String
+
+  english   String?
+
+  audioPath String? @map("audio_path")
+
+  sortOrder Int     @map("sort_order")
+
+  card      Card    @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+
+
+  @@index([cardId])
+
+  @@map("card_examples")
+
+}
+
+
+
+model Lesson {
+
+  lektion Int          @id
+
+  title   String
+
+  pages   LessonPage[]
+
+
+
+  @@map("lessons")
+
+}
+
+
+
+model LessonPage {
+
+  id        String         @id @default(cuid())
+
+  lessonId  Int            @map("lesson_id")
+
+  kind      LessonPageKind
+
+  label     String
+
+  imagePath String         @map("image_path")
+
+  lesson    Lesson         @relation(fields: [lessonId], references: [lektion], onDelete: Cascade)
+
+
+
+  @@unique([lessonId, kind])
+
+  @@map("lesson_pages")
+
+}
+
+
+
+model UserCardProgress {
+
+  id        String    @id @default(cuid())
+
+  userId    String    @map("user_id")
+
+  cardId    String    @map("card_id")
+
+  studied   Boolean   @default(true)
+
+  studiedAt DateTime? @map("studied_at") @db.Timestamptz()
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+
+
+  @@unique([userId, cardId])
+
+  @@index([userId])
+
+  @@map("user_card_progress")
+}
+
+model UserCardHidden {
+  userId   String   @map("user_id")
+  cardId   String   @map("card_id")
+  hiddenAt DateTime @default(now()) @map("hidden_at") @db.Timestamptz()
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card     Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@id([userId, cardId])
+  @@index([userId])
+  @@map("user_card_hidden")
+}
+

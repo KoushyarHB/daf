@@ -1,0 +1,39 @@
+---
+description: Layered architecture for web/ — routes, services, Prisma
+globs: web/**
+alwaysApply: false
+---
+
+# `web/` layered architecture
+
+## Layers (top → bottom)
+
+| Layer | Location | Responsibility |
+|-------|----------|----------------|
+| **Route handlers** | `web/app/api/**/route.ts` | HTTP only: parse request, auth check, call service, map status codes. **No Prisma.** |
+| **Services** | `web/services/**` | Business logic, queries, transactions, mapping to DTOs. **All Prisma calls live here.** |
+| **Data access bootstrap** | `web/lib/db/prisma.ts` | Prisma singleton only. |
+| **Validation** | `web/lib/api/schemas.ts` | Zod schemas for query/body. |
+| **Auth** | `web/lib/auth/**` | Session/user helpers used by routes + middleware. |
+
+`web/lib/db/cards.ts` and `web/lib/db/lessons.ts` are **legacy** — migrate to `web/services/cards.service.ts`, `web/services/lessons.service.ts`, then delete `lib/db/*` except `prisma.ts`.
+
+## Data model (target)
+
+- **`users`** — auth identity (email, password hash, name, …).
+- **`cards`** — vocabulary content; **`userId`** = owner (import → default user; CRUD → authenticated user).
+- **`card_glosses`**, **`card_notes`**, **`card_examples`** — children of `cards` (unchanged idea).
+- **`user_card_progress`** — **`userId` + `cardId`** (studied, studiedAt). Replaces anonymous `sessionId` cookie for progress.
+- **`lessons`** / **`lesson_pages`** — lesson hub metadata (optional; keep if still used).
+
+Do **not** store `studied` on `cards`. Progress is per user via `user_card_progress`.
+
+## Server Components
+
+- Pages may call **services** directly for SSR initial load, or fetch own **`/api/*`** routes — pick one pattern per feature and stay consistent.
+- Prefer **API routes for all mutations**; SSR reads may use services to avoid double hop.
+
+## File naming
+
+- Services: `*.service.ts` (e.g. `cards.service.ts`).
+- One domain per service file; split when a file exceeds ~250 lines.

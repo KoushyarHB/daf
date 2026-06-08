@@ -79,6 +79,14 @@ export type EnrichedVocabCard = VocabCard & {
   pluralLine: string | null;
   grammarTable: GrammarTable | null;
   examples: VocabExample[];
+  studied?: boolean;
+  /** Community deck card (shared import or personal fork of one) */
+  isCommunity?: boolean;
+  /** Personal fork of a community card */
+  isCustomized?: boolean;
+  /** Signed-in user owns this row (personal or fork) */
+  isOwned?: boolean;
+  sourceCardId?: string | null;
 };
 
 export type LessonPageRef = {
@@ -93,5 +101,6 @@ export type LessonPageEntry = {
   grammarPage: LessonPageRef;
 };
 
-export type SortOrder = "deck" | "date-desc" | "date-asc";
+export type SortOrder = "deck-desc" | "deck-asc" | "date-desc" | "date-asc";
 export type ViewMode = "cards" | "list";
+export type StudiedFilter = "all" | "studied" | "unstudied";

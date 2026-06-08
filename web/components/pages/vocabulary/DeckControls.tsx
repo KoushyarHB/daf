@@ -1,12 +1,38 @@
-import { posLabel, type SortOrder, type ViewMode, type VocabPos } from "@/lib/vocab/types";
+import {
+  posLabel,
+  type SortOrder,
+  type StudiedFilter,
+  type ViewMode,
+  type VocabPos,
+} from "@/lib/vocab/types";
+
 export type DeckFilters = {
   lektion: string;
   level: string;
   pos: string;
+  studied: StudiedFilter;
   sort: SortOrder;
   view: ViewMode;
   pageSize: string;
 };
+
+export const DEFAULT_DECK_FILTER_VALUES = {
+  lektion: "all",
+  level: "all",
+  pos: "all",
+  studied: "all" as StudiedFilter,
+  sort: "deck-desc" as SortOrder,
+};
+
+export function hasActiveDeckFilters(filters: DeckFilters): boolean {
+  return (
+    filters.lektion !== DEFAULT_DECK_FILTER_VALUES.lektion ||
+    filters.level !== DEFAULT_DECK_FILTER_VALUES.level ||
+    filters.pos !== DEFAULT_DECK_FILTER_VALUES.pos ||
+    filters.studied !== DEFAULT_DECK_FILTER_VALUES.studied ||
+    filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort
+  );
+}
 
 type DeckControlsProps = {
   lektions: number[];
@@ -16,6 +42,7 @@ type DeckControlsProps = {
   countText: string;
   pageSizeControl?: React.ReactNode;
   onChange: (patch: Partial<DeckFilters>) => void;
+  onClearFilters?: () => void;
 };
 
 function labelClass(active: boolean): string {
@@ -30,7 +57,10 @@ export default function DeckControls({
   countText,
   pageSizeControl,
   onChange,
+  onClearFilters,
 }: DeckControlsProps) {
+  const filtersActive = hasActiveDeckFilters(filters);
+
   return (
     <div className="deck-controls" role="region" aria-label="Filter and sort">
       <div className="deck-controls-row">
@@ -79,7 +109,25 @@ export default function DeckControls({
             ))}
           </select>
         </label>
-        <label className={labelClass(filters.sort !== "deck")}>
+        <label className={labelClass(filters.studied !== "all")}>
+          Studied{" "}
+          <select
+            id="filter-studied"
+            value={filters.studied}
+            onChange={(e) =>
+              onChange({ studied: e.target.value as StudiedFilter })
+            }
+          >
+            <option value="all">All</option>
+            <option value="studied">Studied</option>
+            <option value="unstudied">Not studied</option>
+          </select>
+        </label>
+        <label
+          className={labelClass(
+            filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort,
+          )}
+        >
           Sort{" "}
           <select
             id="sort-order"
@@ -88,9 +136,10 @@ export default function DeckControls({
               onChange({ sort: e.target.value as SortOrder })
             }
           >
-            <option value="deck">Deck order (#)</option>
-            <option value="date-desc">Date: newest first</option>
-            <option value="date-asc">Date: oldest first</option>
+            <option value="deck-desc">Deck #: high → low</option>
+            <option value="deck-asc">Deck #: low → high</option>
+            <option value="date-desc">Created: newest first</option>
+            <option value="date-asc">Created: oldest first</option>
           </select>
         </label>
         <label className={labelClass(filters.view !== "cards")}>
@@ -105,6 +154,20 @@ export default function DeckControls({
           </select>
         </label>
         <div id="page-size-controls-slot">{pageSizeControl}</div>
+        {onClearFilters ? (
+          <label className={labelClass(filtersActive)}>
+            Reset{" "}
+            <button
+              type="button"
+              className="deck-clear-filters"
+              onClick={onClearFilters}
+              disabled={!filtersActive}
+              aria-label="Clear all filters"
+            >
+              Clear
+            </button>
+          </label>
+        ) : null}
       </div>
       <p className="deck-count" id="deck-count" aria-live="polite">
         {countText}

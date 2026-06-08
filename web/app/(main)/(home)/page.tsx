@@ -1,4 +1,3 @@
-import { loadVocabCards } from "@/lib/vocab/load-manifest";
 import VocabularyDeck from "@/components/pages/vocabulary/VocabularyDeck";
 
 export const metadata = {
@@ -6,6 +5,5 @@ export const metadata = {
 };
 
 export default function VocabularyPage() {
-  const cards = loadVocabCards();
-  return <VocabularyDeck cards={cards} />;
+  return <VocabularyDeck />;
 }

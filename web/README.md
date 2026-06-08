@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DaF web app
 
-## Getting Started
+Standalone **full-stack Next.js** app: PostgreSQL, Auth.js sign-in, full card CRUD, paginated API, per-user studied progress.
 
-First, run the development server:
+Repo-root `vocab.manifest.json` is **authoring only** — import via CLI; the app never reads it at runtime.
+
+## Local setup
+
+### 1. Start Postgres
+
+From the repo root:
+
+```bash
+docker compose up -d
+```
+
+### 2. Configure environment
+
+```bash
+cd web
+cp .env.example .env
+```
+
+Set `AUTH_SECRET` (e.g. `openssl rand -base64 32`).
+
+### 3. Install and migrate
+
+```bash
+npm install
+npm run db:migrate
+```
+
+Or quick dev sync: `npm run db:push` (existing DB with old schema may need `prisma migrate deploy` or reset).
+
+### 4. Import manifest data
+
+```bash
+npm run db:import-manifest
+```
+
+Reads `vocab.manifest.json` and `lesson-pages.manifest.json` from the repo root. Cards are owned by the default import user (`system@import.local`).
+
+### 5. Run dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Register or sign in to save studied progress and manage your own cards.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Purpose |
+|--------|---------|
+| `npm run db:migrate` | Apply Prisma migrations |
+| `npm run db:push` | Push schema without migration files |
+| `npm run db:import-manifest` | Import JSON manifests into Postgres |
+| `npm run db:seed` | Alias for import-manifest |
+| `npm run test:e2e` | Smoke test (auth, CRUD, pagination) |
 
-## Learn More
+## API
 
-To learn more about Next.js, take a look at the following resources:
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| POST | `/api/auth/register` | — | Create account |
+| * | `/api/auth/*` | — | NextAuth (sign-in) |
+| GET | `/api/cards` | optional | Paginated list (`page`, `pageSize`, filters, `sort`) |
+| POST | `/api/cards` | required | Create card |
+| GET | `/api/cards/[id]` | — | Single card |
+| PATCH | `/api/cards/[id]` | owner | Update card |
+| DELETE | `/api/cards/[id]` | owner | Delete card |
+| PATCH | `/api/cards/[id]/progress` | required | Toggle studied |
+| GET | `/api/cards/filter-options` | — | Filter dropdown values |
+| GET | `/api/lessons` | — | Lesson page entries |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+List response shape: `{ page, pageSize, totalItems, totalPages, items }`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture
 
-## Deploy on Vercel
+- **Routes** (`app/api/`) — thin controllers
+- **Services** (`services/`) — Prisma + business logic
+- See `docs/backend-changes.md` and `.cursor/rules/daf-web-*.mdc`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Requires Node.js + PostgreSQL (Vercel, Railway, Fly.io, etc.). GitHub Pages cannot host this app.

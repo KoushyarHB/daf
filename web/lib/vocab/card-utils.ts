@@ -281,13 +281,23 @@ export function validCards(raw: unknown[]): VocabCard[] {
   );
 }
 
-export function enrichCards(cards: VocabCard[]): EnrichedVocabCard[] {
+export function deckNoFromRank(rank: number, total: number): number {
+  return total - rank;
+}
+
+export function enrichCards(
+  cards: VocabCard[],
+  options?: { deckNoForFirst?: number },
+): EnrichedVocabCard[] {
   const total = cards.length;
   return cards.map((card, index) => {
-    const deckNo = deckNumberForIndex(index, total);
+    const deckNo =
+      options?.deckNoForFirst != null
+        ? options.deckNoForFirst - index
+        : deckNumberForIndex(index, total);
     const [head, ipa] = normalizeHeadIpaFields(card);
     const domId = cardDomId({ ...card, head }, deckNo);
-    const created = card.createdAt ?? card.updatedAt;
+    const created = card.createdAt;
     const pluralMeta = normalizePluralFields({
       head,
       pluralRule: card.pluralRule,
