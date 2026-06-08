@@ -41,6 +41,11 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const { data: session, status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setMenuOpen(false);
+  }
 
   useEffect(() => {
     const header = headerRef.current;
@@ -62,10 +67,6 @@ export default function Navbar() {
       window.removeEventListener("resize", update);
     };
   }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
