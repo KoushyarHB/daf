@@ -1,0 +1,42 @@
+# One-off / manual seed: vocab.manifest.json + lesson-pages.manifest.json → Neon.
+# Use when your PC cannot reach Neon on port 5432 (ISP block). GitHub runners can.
+#
+# Setup: GitHub repo → Settings → Secrets and variables → Actions → New repository secret
+#   DATABASE_URL              Neon pooled URL (same as Vercel)
+#   DIRECT_URL                Neon direct URL (same as Vercel)
+#   DEFAULT_IMPORT_USER_EMAIL Same as Vercel (e.g. system@import.local)
+#
+# Run: Actions → "Seed production database" → Run workflow
+
+name: Seed production database
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  import-manifest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+
+      - name: Import manifests into Neon
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+          DEFAULT_IMPORT_USER_EMAIL: ${{ secrets.DEFAULT_IMPORT_USER_EMAIL }}
+          MANIFEST_ROOT: ${{ github.workspace }}
+        run: npm run db:import-manifest
