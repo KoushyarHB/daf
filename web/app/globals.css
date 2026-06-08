@@ -1231,6 +1231,11 @@ h1 {
     box-shadow 0.15s ease;
 }
 
+.auth-form input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
 /* Browser default focus ring — thick black on Windows/Chrome */
 .auth-form input:focus,
 .auth-form input:focus-visible {
