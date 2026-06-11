@@ -131,7 +131,7 @@ AUTH_URL="http://localhost:3000"
 | Change | Action |
 |--------|--------|
 | Push code to GitHub | Vercel auto-redeploys; migrations run on build |
-| Edit `vocab.manifest.json` | Run `npm run db:import-manifest` locally with production `DATABASE_URL` |
+| Edit `vocab.manifest.json` | **GitHub Actions** (if local Neon fails): push to `master` → workflow **Seed production database** runs automatically, or run it manually under Actions. Locally: `npm run db:import-manifest` with production `DATABASE_URL`. |
 | New Prisma migration | Commit migration files; next Vercel build applies them |
 | Change domain | Update `AUTH_URL` on Vercel + redeploy |
 

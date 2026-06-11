@@ -6,12 +6,18 @@
 #   DIRECT_URL                Neon direct URL (same as Vercel)
 #   DEFAULT_IMPORT_USER_EMAIL Same as Vercel (e.g. system@import.local)
 #
-# Run: Actions → "Seed production database" → Run workflow
+# Run manually: Actions → "Seed production database" → Run workflow
+# Or: push changes to vocab.manifest.json / lesson-pages.manifest.json on master
 
 name: Seed production database
 
 on:
   workflow_dispatch:
+  push:
+    branches: ["master"]
+    paths:
+      - "vocab.manifest.json"
+      - "lesson-pages.manifest.json"
 
 permissions:
   contents: read

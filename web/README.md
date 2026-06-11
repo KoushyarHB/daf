@@ -90,6 +90,8 @@ Minimum:
 1. **Neon** — Postgres (`DATABASE_URL` pooled + `DIRECT_URL` direct)
 2. **Vercel** — import repo, **Root Directory = `web`**, set env vars
 3. Deploy (runs `prisma migrate deploy` via `vercel-build`)
-4. From your PC: `npm run db:import-manifest` with production `DATABASE_URL`
+4. **Seed community cards into Neon:**
+   - **From GitHub** (when your PC cannot reach Neon): push `vocab.manifest.json` to `master` → [Seed production database](../.github/workflows/seed-production-db.yml) runs automatically; or **Actions → Seed production database → Run workflow**. Requires repo secrets `DATABASE_URL`, `DIRECT_URL`, `DEFAULT_IMPORT_USER_EMAIL`.
+   - **From your PC:** `npm run db:import-manifest` with production `DATABASE_URL`
 
 GitHub Pages only hosts the static `vocab.manifest.json` preview — not this app.

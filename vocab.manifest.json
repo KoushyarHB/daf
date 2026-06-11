@@ -1,25 +1,33 @@
 [
   {
-    "head": "Termine",
-    "ipa": "tɛʁˈmiːnə",
+    "head": "der Termin",
+    "ipa": "ˈtɛʁmiːn",
     "id": "v-termine",
-    "pos": "phrase",
+    "pos": "noun",
+    "pluralRule": "-e",
+    "plural": "die Termine",
     "gloss": [
-      "Appointments — title of Lektion 2."
+      "Appointment; scheduled time."
     ],
-    "notes": [],
+    "notes": [
+      "• Lektion 2 title: Termine."
+    ],
     "examples": [
+      {
+        "german": "Ich habe einen Termin um zehn Uhr.",
+        "english": "I have an appointment at ten o'clock."
+      },
       {
         "german": "Lektion 2: Termine",
         "english": "Lesson 2: Appointments."
       },
       {
-        "german": "Heute beginnen wir mit Termine.",
+        "german": "Heute beginnen wir mit Terminen.",
         "english": "Today we start with appointments."
       }
     ],
     "createdAt": "2026-06-08T12:00:00Z",
-    "updatedAt": "2026-06-08T12:00:00Z",
+    "updatedAt": "2026-06-10T12:00:00Z",
     "lektion": 2,
     "level": "A1",
     "studied": false
