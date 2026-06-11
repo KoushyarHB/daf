@@ -47,13 +47,13 @@ DIRECT_URL="postgresql://user:pass@ep-xxx.eu-central-1.aws.neon.tech/neondb?sslm
 
 In **Project → Settings → Environment Variables**, add for **Production** (and Preview if you want):
 
-| Name | Value |
-|------|--------|
-| `DATABASE_URL` | Neon **pooled** URL |
-| `DIRECT_URL` | Neon **direct** URL |
-| `AUTH_SECRET` | Random string (`openssl rand -base64 32`) |
-| `AUTH_URL` | `https://YOUR-PROJECT.vercel.app` (no trailing slash) |
-| `DEFAULT_IMPORT_USER_EMAIL` | e.g. `system@import.local` |
+| Name                        | Value                                                 |
+| --------------------------- | ----------------------------------------------------- |
+| `DATABASE_URL`              | Neon **pooled** URL                                   |
+| `DIRECT_URL`                | Neon **direct** URL                                   |
+| `AUTH_SECRET`               | Random string (`openssl rand -base64 32`)             |
+| `AUTH_URL`                  | `https://YOUR-PROJECT.vercel.app` (no trailing slash) |
+| `DEFAULT_IMPORT_USER_EMAIL` | e.g. `system@import.local`                            |
 
 After the first deploy you get the real URL — update `AUTH_URL` to match, then **Redeploy**.
 
@@ -128,24 +128,24 @@ AUTH_URL="http://localhost:3000"
 
 ## Updates (day to day)
 
-| Change | Action |
-|--------|--------|
-| Push code to GitHub | Vercel auto-redeploys; migrations run on build |
+| Change                     | Action                                                                                                                                                                                                                         |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Push code to GitHub        | Vercel auto-redeploys; migrations run on build                                                                                                                                                                                 |
 | Edit `vocab.manifest.json` | **GitHub Actions** (if local Neon fails): push to `master` → workflow **Seed production database** runs automatically, or run it manually under Actions. Locally: `npm run db:import-manifest` with production `DATABASE_URL`. |
-| New Prisma migration | Commit migration files; next Vercel build applies them |
-| Change domain | Update `AUTH_URL` on Vercel + redeploy |
+| New Prisma migration       | Commit migration files; next Vercel build applies them                                                                                                                                                                         |
+| Change domain              | Update `AUTH_URL` on Vercel + redeploy                                                                                                                                                                                         |
 
 ---
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---------|-----|
-| Build fails: `DIRECT_URL` / migrate | Set both Neon URLs on Vercel |
-| Sign-in 500 / cookies | `AUTH_URL` must exactly match live `https://…` URL |
-| Empty deck | Run `db:import-manifest` with production DB URL |
-| Too many DB connections | Use Neon **pooled** URL for `DATABASE_URL` only |
-| `prisma generate` EPERM locally | Stop `npm run dev`, then regenerate |
+| Problem                             | Fix                                                |
+| ----------------------------------- | -------------------------------------------------- |
+| Build fails: `DIRECT_URL` / migrate | Set both Neon URLs on Vercel                       |
+| Sign-in 500 / cookies               | `AUTH_URL` must exactly match live `https://…` URL |
+| Empty deck                          | Run `db:import-manifest` with production DB URL    |
+| Too many DB connections             | Use Neon **pooled** URL for `DATABASE_URL` only    |
+| `prisma generate` EPERM locally     | Stop `npm run dev`, then regenerate                |
 
 ---
 
