@@ -15,22 +15,26 @@
     "examples": [
       {
         "german": "Ich habe einen Termin um zehn Uhr.",
-        "english": "I have an appointment at ten o'clock."
+        "english": "I have an appointment at ten o'clock.",
+        "audio": "/audio/v-termine-ex01.mp3"
       },
       {
         "german": "Lektion 2: Termine",
-        "english": "Lesson 2: Appointments."
+        "english": "Lesson 2: Appointments.",
+        "audio": "/audio/v-termine-ex02.mp3"
       },
       {
         "german": "Heute beginnen wir mit Terminen.",
-        "english": "Today we start with appointments."
+        "english": "Today we start with appointments.",
+        "audio": "/audio/v-termine-ex03.mp3"
       }
     ],
     "createdAt": "2026-06-08T12:00:00Z",
     "updatedAt": "2026-06-10T12:00:00Z",
     "lektion": 2,
     "level": "A1",
-    "studied": false
+    "studied": false,
+    "audio": "/audio/v-termine.mp3"
   },
   {
     "head": "herumgehen",
