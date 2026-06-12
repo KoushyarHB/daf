@@ -39,10 +39,19 @@ function parseDate(iso: string | undefined, fallback: Date): Date {
   return Number.isNaN(d.getTime()) ? fallback : d;
 }
 
+/** Renamed manifest ids — remove stale rows so re-import does not duplicate cards. */
+const RETIRED_CARD_IDS = ["v-termine"] as const;
+
 async function importCards(defaultUserId: string): Promise<number> {
   const raw = readJson<unknown[]>("vocab.manifest.json");
   const cards = enrichCards(validCards(raw as VocabCard[]));
   const now = new Date();
+
+  if (RETIRED_CARD_IDS.length > 0) {
+    await prisma.card.deleteMany({
+      where: { id: { in: [...RETIRED_CARD_IDS] } },
+    });
+  }
 
   let count = 0;
   for (let index = 0; index < cards.length; index++) {
