@@ -88,6 +88,7 @@ export default function CardFormModal({
   const [form, setForm] = useState<FormState>(emptyForm);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [suggesting, setSuggesting] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -134,6 +135,66 @@ export default function CardFormModal({
         examples: next.length > 0 ? next : [emptyExample()],
       };
     });
+  }
+
+  async function onSuggest() {
+    const head = form.head.trim();
+    if (!head) {
+      toast.error("Enter a headword first.");
+      return;
+    }
+
+    setSuggesting(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/cards/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ head }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        head?: string;
+        ipa?: string;
+        gloss?: string;
+        notes?: string;
+        examples?: { german: string; english: string }[];
+        pos?: VocabPos;
+        level?: string;
+      };
+
+      if (!res.ok) {
+        throw new Error(
+          typeof data.error === "string" ? data.error : `AI fill failed (${res.status})`,
+        );
+      }
+
+      setForm((f) => ({
+        ...f,
+        head: data.head?.trim() || f.head,
+        ipa: data.ipa?.trim() ?? f.ipa,
+        gloss: data.gloss?.trim() ?? f.gloss,
+        notes: data.notes?.trim() ?? f.notes,
+        examples:
+          data.examples && data.examples.length > 0
+            ? data.examples.map((ex) => ({
+                key: newExampleKey(),
+                german: ex.german,
+                english: ex.english,
+              }))
+            : f.examples,
+        pos: data.pos ?? f.pos,
+        level: data.level?.trim() || f.level,
+      }));
+      toast.success("Form filled from AI — review before saving.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "AI fill failed";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setSuggesting(false);
+    }
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -226,9 +287,20 @@ export default function CardFormModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="card-form-modal__header">
-          <h2 id="card-modal-title" className="card-modal-title">
-            {title}
-          </h2>
+          <div className="card-form-modal__title-row">
+            <h2 id="card-modal-title" className="card-modal-title">
+              {title}
+            </h2>
+            <button
+              type="button"
+              className="card-form-ai-btn"
+              onClick={onSuggest}
+              disabled={suggesting || !form.head.trim()}
+              title="Fill gloss, notes, examples, IPA, and type from the headword"
+            >
+              {suggesting ? "Filling…" : "✨ AI fill"}
+            </button>
+          </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
             <p className="card-modal-hint">
               Saves a personal copy for you. The shared community card stays unchanged.

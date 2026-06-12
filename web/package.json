@@ -11,9 +11,9 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
-    "db:import-manifest": "tsx scripts/import-manifest.ts",
+    "db:import-manifest": "tsx --env-file=.env scripts/import-manifest.ts",
     "db:seed": "npm run db:import-manifest",
-    "test:e2e": "tsx scripts/e2e-smoke.ts",
+    "test:e2e": "tsx --env-file=.env scripts/e2e-smoke.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {

@@ -48,6 +48,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000). Register or sign in to save studied progress and manage your own cards.
 
+### Optional — AI fill on new cards
+
+The **✨ AI fill** button uses [Google Gemini](https://aistudio.google.com/apikey) (free tier).
+
+1. Create a free API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
+2. Add to `web/.env`:
+
+```env
+GEMINI_API_KEY="your-key-here"
+```
+
+Optional: `GEMINI_MODEL` (default `gemini-2.0-flash`).
+
+On Vercel, add `GEMINI_API_KEY` under Project → Settings → Environment Variables, then redeploy.
+
 ## Scripts
 
 | Script                       | Purpose                             |
@@ -66,6 +81,7 @@ Open [http://localhost:3000](http://localhost:3000). Register or sign in to save
 | \*     | `/api/auth/*`               | —        | NextAuth (sign-in)                                   |
 | GET    | `/api/cards`                | optional | Paginated list (`page`, `pageSize`, filters, `sort`) |
 | POST   | `/api/cards`                | required | Create card                                          |
+| POST   | `/api/cards/suggest`        | required | AI-suggest fields from `head` (needs `GEMINI_API_KEY`) |
 | GET    | `/api/cards/[id]`           | —        | Single card                                          |
 | PATCH  | `/api/cards/[id]`           | owner    | Update card                                          |
 | DELETE | `/api/cards/[id]`           | owner    | Delete card                                          |
