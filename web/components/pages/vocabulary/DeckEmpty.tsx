@@ -15,7 +15,7 @@ export default function DeckEmpty({
   onClearFilters,
   onAddCard,
 }: DeckEmptyProps) {
-  if (hasActiveFilters) {
+  if (hasActiveFilters && !awaitingImport) {
     return (
       <div className="deck-empty" role="status">
         <p className="deck-empty-title">No cards match your filters</p>

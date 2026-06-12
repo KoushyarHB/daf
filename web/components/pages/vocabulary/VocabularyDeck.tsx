@@ -357,7 +357,7 @@ export default function VocabularyDeck() {
       {progressEnabled && importStatus?.showImportOnHome ? (
         <ImportLektionPanel
           options={importStatus.availableLektions}
-          onImported={bumpReload}
+          onChanged={bumpReload}
         />
       ) : null}
 
@@ -377,7 +377,12 @@ export default function VocabularyDeck() {
           </div>
         }
         onChange={updateFilters}
-        onClearFilters={clearFilters}
+        onClearFilters={
+          progressEnabled &&
+          (importStatus?.importedLektions.length ?? 0) === 0
+            ? undefined
+            : clearFilters
+        }
       />
 
       {!loading && totalItems > 0 ? (

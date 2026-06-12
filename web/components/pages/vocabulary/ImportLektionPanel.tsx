@@ -14,19 +14,19 @@ export type LektionImportOption = {
 
 type ImportLektionPanelProps = {
   options: LektionImportOption[];
-  onImported: () => void;
+  onChanged: () => void;
   title?: string;
   description?: string;
 };
 
 export default function ImportLektionPanel({
   options,
-  onImported,
+  onChanged,
   title = "Import community cards",
-  description = "Choose a Lektion to add the shared vocabulary deck to your account. You can import more later.",
+  description = "Choose a Lektion to add the shared vocabulary deck to your account. You can remove an import here anytime.",
 }: ImportLektionPanelProps) {
   const toast = useToast();
-  const [importing, setImporting] = useState<number | null>(null);
+  const [busyLektion, setBusyLektion] = useState<number | null>(null);
 
   if (options.length === 0) {
     return (
@@ -39,7 +39,7 @@ export default function ImportLektionPanel({
   }
 
   async function onImport(lektion: number) {
-    setImporting(lektion);
+    setBusyLektion(lektion);
     try {
       const res = await fetch("/api/cards/import-lektion", {
         method: "POST",
@@ -51,12 +51,41 @@ export default function ImportLektionPanel({
         throw new Error(data.error ?? `Import failed (${res.status})`);
       }
       toast.success(`Lektion ${lektion} imported`);
-      onImported();
+      onChanged();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Import failed");
     } finally {
-      setImporting(null);
+      setBusyLektion(null);
     }
+  }
+
+  async function onDeimport(lektion: number) {
+    setBusyLektion(lektion);
+    try {
+      const res = await fetch("/api/cards/deimport-lektion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lektion }),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error ?? `Remove failed (${res.status})`);
+      }
+      toast.success(`Lektion ${lektion} removed from your deck`);
+      onChanged();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Remove failed");
+    } finally {
+      setBusyLektion(null);
+    }
+  }
+
+  function metaText(opt: LektionImportOption): string {
+    if (busyLektion === opt.lektion) {
+      return opt.imported ? "Removing…" : "Importing…";
+    }
+    const count = `${opt.cardCount} card${opt.cardCount === 1 ? "" : "s"}`;
+    return opt.imported ? `${count} · In your deck` : count;
   }
 
   return (
@@ -71,17 +100,18 @@ export default function ImportLektionPanel({
             <button
               type="button"
               className={`import-lektion-btn${opt.imported ? " import-lektion-btn--done" : ""}`}
-              disabled={opt.imported || importing !== null}
-              onClick={() => void onImport(opt.lektion)}
+              disabled={busyLektion !== null}
+              onClick={() =>
+                void (opt.imported ? onDeimport(opt.lektion) : onImport(opt.lektion))
+              }
+              aria-label={
+                opt.imported
+                  ? `Remove ${opt.label} from your deck`
+                  : `Import ${opt.label}`
+              }
             >
-              <span className="import-lektion-btn__label">
-                {opt.imported ? "Imported" : "Import cards for"}: {opt.label}
-              </span>
-              <span className="import-lektion-btn__meta">
-                {importing === opt.lektion
-                  ? "Importing…"
-                  : `${opt.cardCount} cards`}
-              </span>
+              <span className="import-lektion-btn__label">{opt.label}</span>
+              <span className="import-lektion-btn__meta">{metaText(opt)}</span>
             </button>
           </li>
         ))}

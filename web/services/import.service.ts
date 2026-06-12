@@ -13,6 +13,7 @@ export type ImportStatus = {
   importedLektions: number[];
   availableLektions: LektionImportOption[];
   hasUserCreatedCard: boolean;
+  /** Import panel on home — only before first import or user-created card. */
   showImportOnHome: boolean;
 };
 
@@ -81,11 +82,12 @@ export async function getImportStatus(userId: string): Promise<ImportStatus> {
     getAvailableLektionOptions(userId),
     hasUserCreatedCard(userId),
   ]);
+  const hasStartedDeck = importedLektions.length > 0 || created;
   return {
     importedLektions,
     availableLektions,
     hasUserCreatedCard: created,
-    showImportOnHome: !created,
+    showImportOnHome: !hasStartedDeck,
   };
 }
 
@@ -107,6 +109,52 @@ export async function importCommunityLektion(
     where: { userId_lektion: { userId, lektion } },
     create: { userId, lektion },
     update: {},
+  });
+  return "OK";
+}
+
+export async function deimportCommunityLektion(
+  userId: string,
+  lektion: number,
+): Promise<"OK" | "NOT_FOUND"> {
+  const existing = await prisma.userLektionImport.findUnique({
+    where: { userId_lektion: { userId, lektion } },
+  });
+  if (!existing) return "NOT_FOUND";
+
+  const communityUserId = await getCommunityUserId();
+  const communityCards = await prisma.card.findMany({
+    where: { userId: communityUserId, lektion },
+    select: { id: true },
+  });
+  const communityIds = communityCards.map((c) => c.id);
+
+  if (communityIds.length > 0) {
+    const userForks = await prisma.card.findMany({
+      where: { userId, sourceCardId: { in: communityIds } },
+      select: { id: true, sourceCardId: true },
+    });
+    const forkIds = userForks.map((f) => f.id);
+
+    if (forkIds.length > 0) {
+      await prisma.userCardProgress.deleteMany({
+        where: { userId, cardId: { in: forkIds } },
+      });
+      await prisma.card.deleteMany({
+        where: { id: { in: forkIds } },
+      });
+    }
+
+    await prisma.userCardProgress.deleteMany({
+      where: { userId, cardId: { in: communityIds } },
+    });
+    await prisma.userCardHidden.deleteMany({
+      where: { userId, cardId: { in: communityIds } },
+    });
+  }
+
+  await prisma.userLektionImport.delete({
+    where: { userId_lektion: { userId, lektion } },
   });
   return "OK";
 }

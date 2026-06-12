@@ -1536,6 +1536,7 @@ button.auth-btn {
 }
 
 .import-lektion-btn {
+  appearance: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1557,13 +1558,19 @@ button.auth-btn {
 }
 
 .import-lektion-btn:disabled {
-  cursor: default;
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .import-lektion-btn--done {
   color: #4a6748;
   background: #f4f8f3;
   border-color: #c8dcc4;
+}
+
+.import-lektion-btn--done:hover:not(:disabled) {
+  background: #eaf4e8;
+  border-color: #b5d4b0;
 }
 
 .import-lektion-btn__label {

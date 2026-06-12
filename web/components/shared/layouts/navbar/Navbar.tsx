@@ -93,8 +93,8 @@ export default function Navbar() {
     }
     void fetch("/api/cards/import-status")
       .then((r) => (r.ok ? r.json() : null))
-      .then((json: { hasUserCreatedCard?: boolean } | null) => {
-        setShowImportNav(Boolean(json?.hasUserCreatedCard));
+      .then((json: { showImportOnHome?: boolean } | null) => {
+        setShowImportNav(Boolean(json && !json.showImportOnHome));
       })
       .catch(() => setShowImportNav(false));
   }, [status, pathname]);

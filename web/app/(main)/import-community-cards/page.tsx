@@ -77,7 +77,7 @@ export default function ImportCommunityCardsPage() {
     <div className="import-page">
       <ImportLektionPanel
         options={data?.availableLektions ?? []}
-        onImported={load}
+        onChanged={load}
         title="Import community cards"
         description="Add shared DaF vocabulary by Lektion. Imported cards appear in your deck; you can customize or remove them individually."
       />
