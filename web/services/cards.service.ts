@@ -7,7 +7,7 @@ import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
 import { prisma } from "@/lib/db/prisma";
-import { deckNoFromSortOrder, enrichCards } from "@/lib/vocab/card-utils";
+import { deckNoFromRank, enrichCards } from "@/lib/vocab/card-utils";
 import type {
   EnrichedVocabCard,
   GrammarTable,
@@ -101,15 +101,37 @@ function toEnriched(
   };
 }
 
-async function getCommunityDeckSize(communityUserId: string): Promise<number> {
-  return prisma.card.count({ where: { userId: communityUserId } });
+/** Visible deck for numbering — no lektion/level/pos/studied filters. */
+const DECK_NUMBER_QUERY: CardListQuery = {
+  page: 1,
+  pageSize: 1,
+  sort: "deck-desc",
+};
+
+async function buildDeckNumberWhere(
+  userId: string | null,
+  communityUserId: string,
+): Promise<Prisma.CardWhereInput> {
+  return buildVisibleWhere(DECK_NUMBER_QUERY, userId, communityUserId);
 }
 
-function deckNoForCard(
-  sortOrder: number,
-  communityDeckSize: number,
+async function buildDeckRankMap(
+  where: Prisma.CardWhereInput,
+): Promise<Map<string, number>> {
+  const rows = await prisma.card.findMany({
+    where,
+    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+    select: { id: true },
+  });
+  return new Map(rows.map((row, rank) => [row.id, rank]));
+}
+
+function deckNoForVisibleRank(
+  rank: number | undefined,
+  visibleDeckSize: number,
 ): number {
-  return deckNoFromSortOrder(sortOrder, communityDeckSize);
+  if (rank === undefined) return 1;
+  return deckNoFromRank(rank, visibleDeckSize);
 }
 
 async function getExcludedCommunityIds(userId: string): Promise<string[]> {
@@ -245,9 +267,10 @@ export async function listCards(
   const orderBy = buildOrderBy(query.sort);
   const skip = (query.page - 1) * query.pageSize;
 
-  const [totalItems, communityDeckSize, rows] = await Promise.all([
+  const deckWhere = await buildDeckNumberWhere(userId, communityUserId);
+  const [totalItems, rankMap, rows] = await Promise.all([
     prisma.card.count({ where }),
-    getCommunityDeckSize(communityUserId),
+    buildDeckRankMap(deckWhere),
     prisma.card.findMany({
       where,
       orderBy,
@@ -256,9 +279,10 @@ export async function listCards(
       include: cardInclude,
     }),
   ]);
+  const visibleDeckSize = rankMap.size;
 
   let items = rows.map((row) => {
-    const deckNo = deckNoForCard(row.sortOrder, communityDeckSize);
+    const deckNo = deckNoForVisibleRank(rankMap.get(row.id), visibleDeckSize);
     return toEnriched(row as DbCard, communityUserId, userId, deckNo);
   });
   if (userId) {
@@ -284,8 +308,9 @@ export async function getCardById(
   if (!row) return null;
   if (!(await canViewCard(row, userId, communityUserId))) return null;
 
-  const communityDeckSize = await getCommunityDeckSize(communityUserId);
-  const deckNo = deckNoForCard(row.sortOrder, communityDeckSize);
+  const deckWhere = await buildDeckNumberWhere(userId, communityUserId);
+  const rankMap = await buildDeckRankMap(deckWhere);
+  const deckNo = deckNoForVisibleRank(rankMap.get(id), rankMap.size);
 
   let card = toEnriched(row as DbCard, communityUserId, userId, deckNo);
   if (userId) {
