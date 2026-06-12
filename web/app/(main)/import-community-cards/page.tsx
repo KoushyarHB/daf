@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import ImportLektionPanel, {
   type LektionImportOption,
@@ -18,11 +18,14 @@ type ImportStatus = {
 export default function ImportCommunityCardsPage() {
   const { status } = useSession();
   const [data, setData] = useState<ImportStatus | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const hasLoaded = useRef(false);
 
-  const load = useCallback(() => {
-    setLoading(true);
+  const load = useCallback((background = false) => {
+    if (!background && !hasLoaded.current) {
+      setInitialLoading(true);
+    }
     void fetch("/api/cards/import-status")
       .then(async (res) => {
         if (!res.ok) {
@@ -34,24 +37,25 @@ export default function ImportCommunityCardsPage() {
       .then((json) => {
         setData(json);
         setError(null);
-        setLoading(false);
+        hasLoaded.current = true;
+        setInitialLoading(false);
       })
       .catch((err) => {
         setError(err instanceof Error ? err.message : "Failed to load");
-        setData(null);
-        setLoading(false);
+        if (!hasLoaded.current) setData(null);
+        setInitialLoading(false);
       });
   }, []);
 
   useEffect(() => {
     if (status !== "authenticated") {
-      setLoading(false);
+      setInitialLoading(false);
       return;
     }
-    load();
+    load(false);
   }, [status, load]);
 
-  if (status === "loading" || loading) {
+  if (status === "loading" || (initialLoading && !hasLoaded.current)) {
     return <p className="deck-hint">Loading…</p>;
   }
 
@@ -65,7 +69,7 @@ export default function ImportCommunityCardsPage() {
     );
   }
 
-  if (error) {
+  if (error && !data) {
     return (
       <p className="deck-error" role="alert">
         {error}
@@ -77,7 +81,7 @@ export default function ImportCommunityCardsPage() {
     <div className="import-page">
       <ImportLektionPanel
         options={data?.availableLektions ?? []}
-        onChanged={load}
+        onChanged={() => load(true)}
         title="Import community cards"
         description="Add shared DaF vocabulary by Lektion. Imported cards appear in your deck; you can customize or remove them individually."
       />

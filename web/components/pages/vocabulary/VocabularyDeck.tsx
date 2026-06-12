@@ -101,8 +101,10 @@ export default function VocabularyDeck() {
     }
   }
 
-  const bumpReload = useCallback(() => {
-    setLoading(true);
+  const bumpReload = useCallback((opts?: { showLoading?: boolean }) => {
+    if (opts?.showLoading !== false) {
+      setLoading(true);
+    }
     setReloadToken((n) => n + 1);
   }, []);
 
@@ -357,7 +359,7 @@ export default function VocabularyDeck() {
       {progressEnabled && importStatus?.showImportOnHome ? (
         <ImportLektionPanel
           options={importStatus.availableLektions}
-          onChanged={bumpReload}
+          onChanged={() => bumpReload({ showLoading: false })}
         />
       ) : null}
 

@@ -1573,6 +1573,10 @@ button.auth-btn {
   border-color: #b5d4b0;
 }
 
+.import-lektion-btn--busy {
+  opacity: 0.85;
+}
+
 .import-lektion-btn__label {
   font-size: 0.88rem;
   font-weight: 600;
