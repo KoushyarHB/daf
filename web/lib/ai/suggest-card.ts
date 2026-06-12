@@ -61,7 +61,8 @@ Use correct German spelling (ß, umlauts, capitalization).`;
 }
 
 function geminiModel(): string {
-  return process.env.GEMINI_MODEL?.trim() || "gemini-2.0-flash";
+  // gemini-2.0-flash often has 0 free-tier RPM; 2.5-flash is the current free-tier default.
+  return process.env.GEMINI_MODEL?.trim() || "gemini-2.5-flash";
 }
 
 export async function suggestCardFromHeadword(
@@ -97,6 +98,12 @@ export async function suggestCardFromHeadword(
 
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
+    if (res.status === 429) {
+      throw new AiSuggestError(
+        `Gemini quota exceeded for model "${model}". In AI Studio check your key’s rate limits, try GEMINI_MODEL=gemini-2.5-flash in .env, or enable billing on the Google Cloud project.`,
+        "UPSTREAM",
+      );
+    }
     throw new AiSuggestError(
       detail ? `AI request failed: ${detail.slice(0, 200)}` : `AI request failed (${res.status})`,
       "UPSTREAM",
