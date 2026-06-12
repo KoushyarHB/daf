@@ -148,6 +148,26 @@ def utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _daf_lek_tag_slug(lektion: int) -> str:
+    return f"daf-lek-{lektion}"
+
+
+def _tags_from_card(card: dict[str, Any]) -> list[str]:
+    raw = card.get("tags")
+    if isinstance(raw, list) and raw:
+        out: list[str] = []
+        for item in raw:
+            s = str(item).strip()
+            if s:
+                out.append(s)
+        if out:
+            return out
+    lek = _coerce_lektion(card.get("lektion"))
+    if lek is not None:
+        return [_daf_lek_tag_slug(lek)]
+    return []
+
+
 def _coerce_lektion(value: Any) -> int | None:
     if value is None or value is False:
         return None
@@ -359,6 +379,7 @@ def ordered_manifest_card(c: dict[str, Any]) -> dict[str, Any]:
     od["updatedAt"] = c["updatedAt"]
     od["lektion"] = c["lektion"]
     od["level"] = c["level"]
+    od["tags"] = _tags_from_card(c)
     od["studied"] = bool(c.get("studied"))
     return od
 
@@ -474,6 +495,7 @@ def normalize_card_meta(
         "updatedAt": str(updated),
         "lektion": _coerce_lektion(card.get("lektion")),
         "level": level,
+        "tags": _tags_from_card(card),
         "studied": bool(card.get("studied")),
     }
     if ipa:
@@ -576,6 +598,9 @@ def merge_parsed_cards_with_previous_manifest(
             merged["updatedAt"] = now
             merged["lektion"] = _coerce_lektion(prev.get("lektion"))
             merged["level"] = str(prev.get("level") or DEFAULT_LEVEL).strip() or DEFAULT_LEVEL
+            prev_tags = prev.get("tags")
+            if isinstance(prev_tags, list) and prev_tags:
+                merged["tags"] = prev_tags
             merged["studied"] = bool(prev.get("studied"))
         else:
             merged["createdAt"] = now

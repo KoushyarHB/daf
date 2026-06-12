@@ -85,6 +85,7 @@ export default function Navbar() {
   const vocabActive = pathname === "/";
   const lessonsActive = pathname.startsWith("/lesson-pages");
   const importActive = pathname.startsWith("/import-community-cards");
+  const tagsActive = pathname.startsWith("/tags");
 
   useEffect(() => {
     if (status !== "authenticated") {
@@ -165,6 +166,15 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(false)}
                 >
                   Import Cards
+                </Link>
+              ) : null}
+              {status === "authenticated" ? (
+                <Link
+                  className={`site-nav-link${tagsActive ? " is-active" : ""}`}
+                  href="/tags"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Tags
                 </Link>
               ) : null}
             </div>

@@ -20,8 +20,8 @@ export default function DeckEmpty({
       <div className="deck-empty" role="status">
         <p className="deck-empty-title">No cards match your filters</p>
         <p className="deck-empty-text">
-          Try a broader Lektion, level, or part of speech — or reset filters to
-          see the full deck.
+          Try a broader tag, level, or part of speech — or reset filters to see
+          the full deck.
         </p>
         <button
           type="button"
@@ -40,7 +40,7 @@ export default function DeckEmpty({
       <p className="deck-empty-text">
         {progressEnabled
           ? awaitingImport
-            ? "Import a Lektion above to add the shared vocabulary deck, or create your own card."
+            ? "Import a tagged deck above to add shared vocabulary, or create your own card."
             : "Add a card to build your deck, or import more community vocabulary from Import community cards."
           : "The shared vocabulary deck is empty for now. Sign in to add your own cards."}
       </p>

@@ -61,7 +61,7 @@ model User {
   cards           Card[]
   progress        UserCardProgress[]
   hiddenCards     UserCardHidden[]
-  lektionImports  UserLektionImport[]
+  tagImports      UserTagImport[]
 
   @@map("users")
 }
@@ -108,6 +108,7 @@ model Card {
   examples   CardExample[]
   progress   UserCardProgress[]
   hiddenFrom UserCardHidden[]
+  tags       CardTag[]
 
   @@index([userId])
   @@index([sourceCardId])
@@ -273,14 +274,39 @@ model UserCardHidden {
   @@map("user_card_hidden")
 }
 
-model UserLektionImport {
+model Tag {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  label     String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  cards       CardTag[]
+  userImports UserTagImport[]
+
+  @@map("tags")
+}
+
+model CardTag {
+  cardId String @map("card_id")
+  tagId  String @map("tag_id")
+  card   Card   @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([cardId, tagId])
+  @@index([tagId])
+  @@map("card_tags")
+}
+
+model UserTagImport {
   userId     String   @map("user_id")
-  lektion    Int
+  tagId      String   @map("tag_id")
   importedAt DateTime @default(now()) @map("imported_at") @db.Timestamptz()
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
-  @@id([userId, lektion])
+  @@id([userId, tagId])
   @@index([userId])
-  @@map("user_lektion_imports")
+  @@map("user_tag_imports")
 }
 

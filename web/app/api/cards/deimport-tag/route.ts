@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 
+import { tagImportBodySchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import { deimportCommunityLektion } from "@/services/import.service";
-
-const bodySchema = z.object({
-  lektion: z.number().int().min(1),
-});
+import { deimportCommunityTag } from "@/services/import.service";
 
 export async function POST(request: Request) {
   const authResult = await requireAuthUserId();
@@ -19,18 +15,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const parsed = bodySchema.safeParse(body);
+  const parsed = tagImportBodySchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const result = await deimportCommunityLektion(authResult, parsed.data.lektion);
+  const result = await deimportCommunityTag(authResult, parsed.data.slug);
   if (result === "NOT_FOUND") {
-    return NextResponse.json(
-      { error: "This Lektion is not imported" },
-      { status: 404 },
-    );
+    return NextResponse.json({ error: "Tag not imported" }, { status: 404 });
   }
 
-  return NextResponse.json({ ok: true, lektion: parsed.data.lektion });
+  return NextResponse.json({ ok: true, slug: parsed.data.slug });
 }

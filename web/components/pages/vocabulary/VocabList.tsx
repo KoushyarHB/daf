@@ -40,7 +40,7 @@ export default function VocabList({
             className={`vocab-list-item${isHidden ? " is-hidden" : ""}${studied ? " is-studied" : ""}`}
             data-card-id={card.domId}
             data-deck-no={card.deckNo}
-            data-lektion={card.lektion ?? ""}
+            data-tags={card.tags?.map((t) => t.slug).join(",") ?? ""}
             data-pos={card.pos}
             data-studied={studied ? "true" : "false"}
           >
@@ -58,8 +58,10 @@ export default function VocabList({
             >
               <span className="vocab-list-no">{card.deckNo}</span>
               <span className="vocab-list-lemma">{card.listLabel}</span>
-              {card.lektion != null ? (
-                <span className="vocab-list-meta">L{card.lektion}</span>
+              {card.tags?.length ? (
+                <span className="vocab-list-meta">
+                  {card.tags.map((t) => t.label).join(", ")}
+                </span>
               ) : null}
               {card.pos ? (
                 <span className="vocab-list-meta vocab-list-pos">

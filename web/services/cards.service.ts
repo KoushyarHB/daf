@@ -6,8 +6,14 @@ import type { CardListQuery } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
-import { getImportedLektionIds } from "@/services/import.service";
+import { TAG_USER } from "@/lib/tags/constants";
+import { getImportedTagSlugs } from "@/services/import.service";
+import {
+  applyUserCardDefaultTag,
+  setCardTagsBySlugs,
+} from "@/services/tags.service";
 import { prisma } from "@/lib/db/prisma";
+import { normalizeCefrLevel } from "@/lib/vocab/levels";
 import { deckNoFromRank, enrichCards } from "@/lib/vocab/card-utils";
 import type {
   EnrichedVocabCard,
@@ -23,6 +29,9 @@ const cardInclude = {
   glosses: { orderBy: { sortOrder: "asc" as const } },
   notes: { orderBy: { sortOrder: "asc" as const } },
   examples: { orderBy: { sortOrder: "asc" as const } },
+  tags: {
+    include: { tag: { select: { slug: true, label: true } } },
+  },
 } as const;
 
 type DbCard = {
@@ -49,6 +58,7 @@ type DbCard = {
     english: string | null;
     audioPath: string | null;
   }[];
+  tags: { tag: { slug: string; label: string } }[];
 };
 
 type CardWriteInput = z.infer<typeof cardWriteSchema>;
@@ -80,6 +90,9 @@ function dbCardToVocabCard(row: DbCard): VocabCard {
     updatedAt: row.updatedAt.toISOString(),
     lektion: row.lektion,
     level: row.level,
+    tags: row.tags
+      .map((ct) => ct.tag)
+      .sort((a, b) => a.label.localeCompare(b.label)),
   };
 }
 
@@ -160,9 +173,11 @@ function buildFilterWhere(
 ): Prisma.CardWhereInput {
   const where: Prisma.CardWhereInput = {};
 
-  if (query.lektion && query.lektion !== "all") {
-    const lek = Number(query.lektion);
-    if (!Number.isNaN(lek)) where.lektion = lek;
+  if (query.tag && query.tag !== "all") {
+    const slug = query.tag.trim();
+    if (slug) {
+      where.tags = { some: { tag: { slug } } };
+    }
   }
   if (query.level && query.level !== "all") {
     where.level = query.level;
@@ -199,16 +214,18 @@ async function buildVisibleWhere(
     return { AND: [filterWhere, { userId: communityUserId }] };
   }
 
-  const [excludeIds, importedLektions] = await Promise.all([
+  const [excludeIds, importedTagSlugs] = await Promise.all([
     getExcludedCommunityIds(userId),
-    getImportedLektionIds(userId),
+    getImportedTagSlugs(userId),
   ]);
 
   const communityWhere: Prisma.CardWhereInput =
-    importedLektions.length > 0
+    importedTagSlugs.length > 0
       ? {
           userId: communityUserId,
-          lektion: { in: importedLektions },
+          tags: {
+            some: { tag: { slug: { in: importedTagSlugs } } },
+          },
           ...(excludeIds.length > 0 ? { id: { notIn: excludeIds } } : {}),
         }
       : { id: { in: [] as string[] } };
@@ -224,7 +241,7 @@ async function buildVisibleWhere(
 }
 
 async function canViewCard(
-  row: { id: string; userId: string; lektion: number | null },
+  row: { id: string; userId: string },
   userId: string | null,
   communityUserId: string,
 ): Promise<boolean> {
@@ -232,9 +249,14 @@ async function canViewCard(
     if (!userId) return true;
     const excludeIds = await getExcludedCommunityIds(userId);
     if (excludeIds.includes(row.id)) return false;
-    const importedLektions = await getImportedLektionIds(userId);
-    if (importedLektions.length === 0) return false;
-    return row.lektion != null && importedLektions.includes(row.lektion);
+    const importedTagSlugs = await getImportedTagSlugs(userId);
+    if (importedTagSlugs.length === 0) return false;
+    const cardTags = await prisma.cardTag.findMany({
+      where: { cardId: row.id },
+      select: { tag: { select: { slug: true } } },
+    });
+    const slugs = new Set(cardTags.map((ct) => ct.tag.slug));
+    return importedTagSlugs.some((s) => slugs.has(s));
   }
   return userId !== null && row.userId === userId;
 }
@@ -333,7 +355,7 @@ export async function getCardById(
 }
 
 export async function getFilterOptions(userId: string | null): Promise<{
-  lektions: number[];
+  tags: { slug: string; label: string }[];
   levels: string[];
   posValues: VocabPos[];
 }> {
@@ -345,18 +367,26 @@ export async function getFilterOptions(userId: string | null): Promise<{
   );
   const rows = await prisma.card.findMany({
     where,
-    select: { lektion: true, level: true, pos: true },
+    select: {
+      level: true,
+      pos: true,
+      tags: { include: { tag: { select: { slug: true, label: true } } } },
+    },
   });
-  const lektions = new Set<number>();
+  const tagMap = new Map<string, string>();
   const levels = new Set<string>();
   const posValues = new Set<VocabPos>();
   for (const row of rows) {
-    if (row.lektion != null) lektions.add(row.lektion);
+    for (const { tag } of row.tags) {
+      tagMap.set(tag.slug, tag.label);
+    }
     if (row.level) levels.add(row.level);
     posValues.add(prismaPosToVocabPos(row.pos));
   }
   return {
-    lektions: [...lektions].sort((a, b) => a - b),
+    tags: [...tagMap.entries()]
+      .map(([slug, label]) => ({ slug, label }))
+      .sort((a, b) => a.label.localeCompare(b.label)),
     levels: [...levels].sort(),
     posValues: [...posValues],
   };
@@ -438,8 +468,8 @@ async function rowToWriteInput(row: DbCard): Promise<CardWriteInput> {
     grammarTable: (row.grammarTable as GrammarTable | null) ?? undefined,
     image: row.imagePath ?? undefined,
     audio: row.audioPath ?? undefined,
-    lektion: row.lektion,
-    level: row.level,
+    level: normalizeCefrLevel(row.level),
+    tags: row.tags.map((ct) => ct.tag.slug),
   };
 }
 
@@ -460,7 +490,7 @@ function mergeWriteInput(
       patch.grammarTable !== undefined ? patch.grammarTable : base.grammarTable,
     image: patch.image !== undefined ? patch.image : base.image,
     audio: patch.audio !== undefined ? patch.audio : base.audio,
-    lektion: patch.lektion !== undefined ? patch.lektion : base.lektion,
+    tags: patch.tags !== undefined ? patch.tags : base.tags,
     level: patch.level ?? base.level,
   };
 }
@@ -506,7 +536,6 @@ async function forkCommunityCard(
       pluralForm: merged.plural ?? null,
       imagePath: merged.image ?? null,
       audioPath: merged.audio ?? null,
-      lektion: merged.lektion ?? null,
       level: merged.level,
       sortOrder: source.sortOrder,
       grammarTable: merged.grammarTable ?? undefined,
@@ -516,6 +545,10 @@ async function forkCommunityCard(
   });
 
   await replaceChildRows(forkId, merged);
+  const sourceSlugs = (source as DbCard).tags.map((ct) => ct.tag.slug);
+  const forkTags = merged.tags ?? sourceSlugs;
+  const withUser = [...new Set([...forkTags, TAG_USER])];
+  await setCardTagsBySlugs(forkId, withUser);
   await hideCommunityCardForUser(userId, sourceId);
 
   const progress = await prisma.userCardProgress.findUnique({
@@ -563,7 +596,6 @@ export async function createCard(
       pluralForm: input.plural ?? null,
       imagePath: input.image ?? null,
       audioPath: input.audio ?? null,
-      lektion: input.lektion ?? null,
       level: input.level,
       sortOrder,
       grammarTable: input.grammarTable ?? undefined,
@@ -573,6 +605,11 @@ export async function createCard(
   });
 
   await replaceChildRows(id, input);
+  if (input.tags && input.tags.length > 0) {
+    await setCardTagsBySlugs(id, [...new Set([...input.tags, TAG_USER])]);
+  } else {
+    await applyUserCardDefaultTag(id);
+  }
 
   const created = await getCardById(id, userId);
   if (!created) throw new Error("CREATE_FAILED");
@@ -602,7 +639,6 @@ async function updateOwnedCard(
       ...(input.plural !== undefined ? { pluralForm: input.plural ?? null } : {}),
       ...(input.image !== undefined ? { imagePath: input.image ?? null } : {}),
       ...(input.audio !== undefined ? { audioPath: input.audio ?? null } : {}),
-      ...(input.lektion !== undefined ? { lektion: input.lektion } : {}),
       ...(input.level !== undefined ? { level: input.level } : {}),
       ...(input.grammarTable !== undefined
         ? { grammarTable: input.grammarTable ?? undefined }
@@ -612,6 +648,9 @@ async function updateOwnedCard(
   });
 
   await replaceChildRows(cardId, input);
+  if (input.tags !== undefined) {
+    await setCardTagsBySlugs(cardId, [...new Set([...input.tags, TAG_USER])]);
+  }
 
   const updated = await getCardById(cardId, userId);
   if (!updated) return "NOT_FOUND";

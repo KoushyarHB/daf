@@ -138,7 +138,7 @@ async function main(): Promise<void> {
   const createRes = await post("/api/cards", {
     head: "E2E Testwort /eːtˈoː/",
     gloss: ["e2e test gloss"],
-    lektion: 1,
+    tags: ["user"],
     level: "A1",
   });
   const created = (await createRes.json()) as { domId: string };

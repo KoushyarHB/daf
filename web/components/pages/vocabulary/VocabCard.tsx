@@ -45,7 +45,9 @@ export default function VocabCard({
 }: VocabCardProps) {
   const studied = card.studied ?? false;
   const metaParts: string[] = [`#${card.deckNo}`];
-  if (card.lektion != null) metaParts.push(`Lektion ${card.lektion}`);
+  if (card.tags?.length) {
+    metaParts.push(card.tags.map((t) => t.label).join(", "));
+  }
   if (card.level) metaParts.push(card.level);
 
   const image = card.image?.trim();
@@ -58,7 +60,7 @@ export default function VocabCard({
       className={`card${hidden ? " is-hidden" : ""}${studied ? " is-studied" : ""}`}
       data-card-id={card.domId}
       data-deck-no={card.deckNo}
-      data-lektion={card.lektion ?? ""}
+      data-tags={card.tags?.map((t) => t.slug).join(",") ?? ""}
       data-level={card.level}
       data-pos={card.pos}
       data-created-ms={card.createdMs}

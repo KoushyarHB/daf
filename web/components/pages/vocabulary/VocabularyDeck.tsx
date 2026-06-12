@@ -20,15 +20,15 @@ import DeckControls, {
 import DeckEmpty from "./DeckEmpty";
 import DeckLoading from "./DeckLoading";
 import DeckPagination from "./DeckPagination";
-import ImportLektionPanel, {
-  type LektionImportOption,
-} from "./ImportLektionPanel";
+import ImportTagPanel, {
+  type TagImportOption,
+} from "./ImportTagPanel";
 import VocabCard from "./VocabCard";
 import VocabList from "./VocabList";
 
 type ImportStatus = {
-  importedLektions: number[];
-  availableLektions: LektionImportOption[];
+  importedTagSlugs: string[];
+  availableTags: TagImportOption[];
   hasUserCreatedCard: boolean;
   showImportOnHome: boolean;
 };
@@ -66,10 +66,10 @@ export default function VocabularyDeck() {
   const progressEnabled = sessionStatus === "authenticated";
 
   const [filterOptions, setFilterOptions] = useState<{
-    lektions: number[];
+    tags: { slug: string; label: string }[];
     levels: string[];
     posValues: VocabPos[];
-  }>({ lektions: [], levels: [], posValues: [] });
+  }>({ tags: [], levels: [], posValues: [] });
 
   const [filters, setFilters] = useState<DeckFilters>({
     ...DEFAULT_DECK_FILTER_VALUES,
@@ -130,7 +130,7 @@ export default function VocabularyDeck() {
     const params = new URLSearchParams();
     params.set("page", String(currentPage + 1));
     params.set("pageSize", String(apiPageSize(filters.pageSize)));
-    if (filters.lektion !== "all") params.set("lektion", filters.lektion);
+    if (filters.tag !== "all") params.set("tag", filters.tag);
     if (filters.level !== "all") params.set("level", filters.level);
     if (filters.pos !== "all") params.set("pos", filters.pos);
     if (progressEnabled) {
@@ -189,7 +189,7 @@ export default function VocabularyDeck() {
 
   const updateFilters = useCallback((patch: Partial<DeckFilters>) => {
     const resetsPage =
-      "lektion" in patch ||
+      "tag" in patch ||
       "level" in patch ||
       "pos" in patch ||
       "studied" in patch ||
@@ -357,14 +357,14 @@ export default function VocabularyDeck() {
       ) : null}
 
       {progressEnabled && importStatus?.showImportOnHome ? (
-        <ImportLektionPanel
-          options={importStatus.availableLektions}
+        <ImportTagPanel
+          options={importStatus.availableTags}
           onChanged={() => bumpReload({ showLoading: false })}
         />
       ) : null}
 
       <DeckControls
-        lektions={filterOptions.lektions}
+        tags={filterOptions.tags}
         levels={filterOptions.levels}
         posValues={filterOptions.posValues}
         filters={filters}
@@ -381,7 +381,7 @@ export default function VocabularyDeck() {
         onChange={updateFilters}
         onClearFilters={
           progressEnabled &&
-          (importStatus?.importedLektions.length ?? 0) === 0
+          (importStatus?.importedTagSlugs.length ?? 0) === 0
             ? undefined
             : clearFilters
         }
@@ -411,8 +411,8 @@ export default function VocabularyDeck() {
           progressEnabled={progressEnabled}
           awaitingImport={
             progressEnabled &&
-            (importStatus?.importedLektions.length ?? 0) === 0 &&
-            (importStatus?.availableLektions.length ?? 0) > 0
+            (importStatus?.importedTagSlugs.length ?? 0) === 0 &&
+            (importStatus?.availableTags.length ?? 0) > 0
           }
           onClearFilters={clearFilters}
           onAddCard={openCreate}

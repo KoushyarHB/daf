@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { CEFR_LEVELS, normalizeCefrLevel } from "@/lib/vocab/levels";
 import { VOCAB_POS_ORDER, normalizeVocabPos } from "@/lib/vocab/types";
 import type { VocabPos } from "@/lib/vocab/types";
 
@@ -20,7 +21,7 @@ const suggestResponseSchema = z.object({
     .min(1)
     .max(4),
   pos: z.enum(posValues).optional(),
-  level: z.string().optional(),
+  level: z.enum(CEFR_LEVELS).optional(),
 });
 
 export type CardSuggestResult = {
@@ -141,6 +142,6 @@ export async function suggestCardFromHeadword(
       english: ex.english.trim(),
     })),
     pos: normalizeVocabPos(data.pos),
-    level: (data.level ?? "A1").trim() || "A1",
+    level: normalizeCefrLevel(data.level),
   };
 }

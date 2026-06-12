@@ -334,6 +334,7 @@ export function enrichCards(
             : null,
       level: (card.level ?? "A1").trim() || "A1",
       pos: normalizeVocabPos(card.pos),
+      tags: Array.isArray(card.tags) ? card.tags : [],
     };
   });
 }

@@ -15,6 +15,11 @@ import {
 import type { VocabCard, LessonPageEntry, VocabPos } from "../lib/vocab/types";
 import { normalizeVocabPos } from "../lib/vocab/types";
 import { ensureDefaultImportUser } from "../services/users.service";
+import {
+  applyCommunityCardTags,
+  ensureDafLekTag,
+  ensureSystemTags,
+} from "../services/tags.service";
 
 const prisma = new PrismaClient();
 
@@ -43,9 +48,19 @@ function parseDate(iso: string | undefined, fallback: Date): Date {
 const RETIRED_CARD_IDS = ["v-termine"] as const;
 
 async function importCards(defaultUserId: string): Promise<number> {
+  await ensureSystemTags();
   const raw = readJson<unknown[]>("vocab.manifest.json");
+  const rawRecords = raw as Record<string, unknown>[];
   const cards = enrichCards(validCards(raw as VocabCard[]));
   const now = new Date();
+
+  const lektions = new Set<number>();
+  for (const card of cards) {
+    if (card.lektion != null) lektions.add(card.lektion);
+  }
+  for (const lek of lektions) {
+    await ensureDafLekTag(lek);
+  }
 
   if (RETIRED_CARD_IDS.length > 0) {
     await prisma.card.deleteMany({
@@ -134,6 +149,15 @@ async function importCards(defaultUserId: string): Promise<number> {
         })),
       });
     }
+
+    const rawTags = rawRecords[index]?.tags;
+    const manifestTags = Array.isArray(rawTags)
+      ? rawTags.map((t) => String(t).trim()).filter(Boolean)
+      : undefined;
+    await applyCommunityCardTags(id, {
+      tags: manifestTags,
+      lektion: card.lektion ?? null,
+    });
 
     count++;
   }

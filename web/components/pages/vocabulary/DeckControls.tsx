@@ -7,7 +7,7 @@ import {
 } from "@/lib/vocab/types";
 
 export type DeckFilters = {
-  lektion: string;
+  tag: string;
   level: string;
   pos: string;
   studied: StudiedFilter;
@@ -17,7 +17,7 @@ export type DeckFilters = {
 };
 
 export const DEFAULT_DECK_FILTER_VALUES = {
-  lektion: "all",
+  tag: "all",
   level: "all",
   pos: "all",
   studied: "all" as StudiedFilter,
@@ -30,7 +30,7 @@ export function hasActiveDeckFilters(
 ): boolean {
   const includeStudied = options?.includeStudied ?? true;
   return (
-    filters.lektion !== DEFAULT_DECK_FILTER_VALUES.lektion ||
+    filters.tag !== DEFAULT_DECK_FILTER_VALUES.tag ||
     filters.level !== DEFAULT_DECK_FILTER_VALUES.level ||
     filters.pos !== DEFAULT_DECK_FILTER_VALUES.pos ||
     (includeStudied &&
@@ -39,8 +39,10 @@ export function hasActiveDeckFilters(
   );
 }
 
+type TagOption = { slug: string; label: string };
+
 type DeckControlsProps = {
-  lektions: number[];
+  tags: TagOption[];
   levels: string[];
   posValues: VocabPos[];
   filters: DeckFilters;
@@ -56,7 +58,7 @@ function labelClass(active: boolean): string {
 }
 
 export default function DeckControls({
-  lektions,
+  tags,
   levels,
   posValues,
   filters,
@@ -73,17 +75,17 @@ export default function DeckControls({
   return (
     <div className="deck-controls" role="region" aria-label="Filter and sort">
       <div className="deck-controls-row">
-        <label className={labelClass(filters.lektion !== "all")}>
-          Lektion{" "}
+        <label className={labelClass(filters.tag !== "all")}>
+          Tag{" "}
           <select
-            id="filter-lektion"
-            value={filters.lektion}
-            onChange={(e) => onChange({ lektion: e.target.value })}
+            id="filter-tag"
+            value={filters.tag}
+            onChange={(e) => onChange({ tag: e.target.value })}
           >
             <option value="all">All</option>
-            {lektions.map((n) => (
-              <option key={n} value={String(n)}>
-                Lektion {n}
+            {tags.map((t) => (
+              <option key={t.slug} value={t.slug}>
+                {t.label}
               </option>
             ))}
           </select>

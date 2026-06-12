@@ -52,6 +52,11 @@ export type GrammarTable = {
   rows: string[][];
 };
 
+export type CardTagRef = {
+  slug: string;
+  label: string;
+};
+
 export type VocabCard = {
   head: string;
   ipa?: string;
@@ -67,8 +72,10 @@ export type VocabCard = {
   audio?: string;
   createdAt?: string;
   updatedAt?: string;
-  lektion: number | null;
+  /** @deprecated Use tags; kept for manifest import compatibility. */
+  lektion?: number | null;
   level: string;
+  tags: CardTagRef[];
 };
 
 export type EnrichedVocabCard = VocabCard & {

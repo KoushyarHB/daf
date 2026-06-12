@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import ImportLektionPanel, {
-  type LektionImportOption,
-} from "@/components/pages/vocabulary/ImportLektionPanel";
+import ImportTagPanel, {
+  type TagImportOption,
+} from "@/components/pages/vocabulary/ImportTagPanel";
 
 type ImportStatus = {
-  importedLektions: number[];
-  availableLektions: LektionImportOption[];
+  importedTagSlugs: string[];
+  availableTags: TagImportOption[];
   hasUserCreatedCard: boolean;
   showImportOnHome: boolean;
 };
@@ -79,11 +79,11 @@ export default function ImportCommunityCardsPage() {
 
   return (
     <div className="import-page">
-      <ImportLektionPanel
-        options={data?.availableLektions ?? []}
+      <ImportTagPanel
+        options={data?.availableTags ?? []}
         onChanged={() => load(true)}
         title="Import community cards"
-        description="Add shared DaF vocabulary by Lektion. Imported cards appear in your deck; you can customize or remove them individually."
+        description="Add shared DaF vocabulary by tag. Imported cards appear in your deck; you can customize or remove them individually."
       />
       <p className="import-page__back">
         <Link href="/">← Back to vocabulary</Link>

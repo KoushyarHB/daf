@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 
+import TagMultiSelect from "@/components/shared/TagMultiSelect";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
+import { TAG_USER } from "@/lib/tags/constants";
+import { CEFR_LEVELS, normalizeCefrLevel, type CefrLevel } from "@/lib/vocab/levels";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
 
@@ -27,8 +31,8 @@ type FormState = {
   gloss: string;
   notes: string;
   examples: ExampleRow[];
-  lektion: string;
-  level: string;
+  tagSlugs: string[];
+  level: CefrLevel;
   pos: VocabPos;
 };
 
@@ -59,8 +63,8 @@ function cardToForm(card: EnrichedVocabCard): FormState {
     gloss: (card.gloss ?? []).join("\n").trim(),
     notes: (card.notes ?? []).join("\n").trim(),
     examples,
-    lektion: card.lektion != null ? String(card.lektion) : "",
-    level: card.level || "A1",
+    tagSlugs: (card.tags ?? []).map((t) => t.slug),
+    level: normalizeCefrLevel(card.level),
     pos: card.pos ?? "other",
   };
 }
@@ -71,7 +75,7 @@ const emptyForm = (): FormState => ({
   gloss: "",
   notes: "",
   examples: [emptyExample()],
-  lektion: "",
+  tagSlugs: [TAG_USER],
   level: "A1",
   pos: "other",
 });
@@ -185,7 +189,7 @@ export default function CardFormModal({
               }))
             : f.examples,
         pos: data.pos ?? f.pos,
-        level: data.level?.trim() || f.level,
+        level: normalizeCefrLevel(data.level?.trim() || f.level),
       }));
       toast.success("Form filled from AI — review before saving.");
     } catch (err) {
@@ -216,9 +220,7 @@ export default function CardFormModal({
         english: ex.english.trim() || null,
       }))
       .filter((ex) => ex.german.length > 0);
-    const lektion = form.lektion.trim()
-      ? Number.parseInt(form.lektion, 10)
-      : null;
+    const tags = form.tagSlugs.length > 0 ? form.tagSlugs : [TAG_USER];
 
     const body = {
       head: form.head.trim(),
@@ -226,8 +228,8 @@ export default function CardFormModal({
       gloss,
       notes,
       examples,
-      lektion: Number.isNaN(lektion) ? null : lektion,
-      level: form.level.trim() || "A1",
+      tags,
+      level: form.level,
       pos: form.pos,
     };
 
@@ -408,24 +410,42 @@ export default function CardFormModal({
               </button>
             </fieldset>
 
+            <div className="card-form-field" role="group" aria-labelledby="card-tags-label">
+              <span id="card-tags-label" className="card-form-field-label">
+                Tags
+              </span>
+              <span className="card-form-field-hint">
+                User cards include the &quot;user&quot; tag by default.{" "}
+                <Link href="/tags" className="card-form-inline-link">
+                  Manage tags
+                </Link>
+              </span>
+              <TagMultiSelect
+                value={form.tagSlugs}
+                onChange={(tagSlugs) => setForm((f) => ({ ...f, tagSlugs }))}
+                knownTags={card?.tags}
+                pageSize={5}
+              />
+            </div>
+
             <div className="card-modal-row">
               <label>
-                Lektion
-                <input
-                  type="number"
-                  min={1}
-                  value={form.lektion}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, lektion: e.target.value }))
-                  }
-                />
-              </label>
-              <label>
                 Level
-                <input
+                <select
                   value={form.level}
-                  onChange={(e) => setForm((f) => ({ ...f, level: e.target.value }))}
-                />
+                  onChange={(e) =>
+                    setForm((f) => ({
+                      ...f,
+                      level: e.target.value as CefrLevel,
+                    }))
+                  }
+                >
+                  {CEFR_LEVELS.map((lv) => (
+                    <option key={lv} value={lv}>
+                      {lv}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label>
                 Type
