@@ -102,11 +102,13 @@ export default function Navbar() {
         <div className="site-brand">
           <Link href="/">
             <Image
+              className="site-brand-logo"
               src="/images/header-title.png"
               alt="DaF kompakt — Deutsch als Fremdsprache"
-              width={420}
-              height={52}
+              width={309}
+              height={128}
               priority
+              sizes="(max-width: 640px) 125px, 155px"
             />
           </Link>
         </div>
