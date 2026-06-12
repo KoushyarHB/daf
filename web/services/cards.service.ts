@@ -7,7 +7,7 @@ import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
 import { prisma } from "@/lib/db/prisma";
-import { deckNoFromRank, enrichCards } from "@/lib/vocab/card-utils";
+import { deckNoFromSortOrder, enrichCards } from "@/lib/vocab/card-utils";
 import type {
   EnrichedVocabCard,
   GrammarTable,
@@ -101,20 +101,15 @@ function toEnriched(
   };
 }
 
-async function buildDeckRankMap(
-  where: Prisma.CardWhereInput,
-): Promise<Map<string, number>> {
-  const rows = await prisma.card.findMany({
-    where,
-    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
-    select: { id: true },
-  });
-  return new Map(rows.map((row, rank) => [row.id, rank]));
+async function getCommunityDeckSize(communityUserId: string): Promise<number> {
+  return prisma.card.count({ where: { userId: communityUserId } });
 }
 
-function deckNoForRank(rank: number | undefined, totalItems: number): number {
-  if (rank === undefined) return 1;
-  return deckNoFromRank(rank, totalItems);
+function deckNoForCard(
+  sortOrder: number,
+  communityDeckSize: number,
+): number {
+  return deckNoFromSortOrder(sortOrder, communityDeckSize);
 }
 
 async function getExcludedCommunityIds(userId: string): Promise<string[]> {
@@ -250,8 +245,9 @@ export async function listCards(
   const orderBy = buildOrderBy(query.sort);
   const skip = (query.page - 1) * query.pageSize;
 
-  const [totalItems, rows] = await Promise.all([
+  const [totalItems, communityDeckSize, rows] = await Promise.all([
     prisma.card.count({ where }),
+    getCommunityDeckSize(communityUserId),
     prisma.card.findMany({
       where,
       orderBy,
@@ -261,10 +257,8 @@ export async function listCards(
     }),
   ]);
 
-  const rankMap = await buildDeckRankMap(where);
-
   let items = rows.map((row) => {
-    const deckNo = deckNoForRank(rankMap.get(row.id), totalItems);
+    const deckNo = deckNoForCard(row.sortOrder, communityDeckSize);
     return toEnriched(row as DbCard, communityUserId, userId, deckNo);
   });
   if (userId) {
@@ -290,13 +284,8 @@ export async function getCardById(
   if (!row) return null;
   if (!(await canViewCard(row, userId, communityUserId))) return null;
 
-  const visibleWhere = await buildVisibleWhere(
-    { page: 1, pageSize: 1, sort: "deck-desc" },
-    userId,
-    communityUserId,
-  );
-  const rankMap = await buildDeckRankMap(visibleWhere);
-  const deckNo = deckNoForRank(rankMap.get(id), rankMap.size);
+  const communityDeckSize = await getCommunityDeckSize(communityUserId);
+  const deckNo = deckNoForCard(row.sortOrder, communityDeckSize);
 
   let card = toEnriched(row as DbCard, communityUserId, userId, deckNo);
   if (userId) {

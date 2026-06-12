@@ -285,6 +285,14 @@ export function deckNoFromRank(rank: number, total: number): number {
   return total - rank;
 }
 
+/** Canonical deck # from manifest `sortOrder` (0 = newest) and community card count. */
+export function deckNoFromSortOrder(
+  sortOrder: number,
+  communityDeckSize: number,
+): number {
+  return communityDeckSize - sortOrder;
+}
+
 export function enrichCards(
   cards: VocabCard[],
   options?: { deckNoForFirst?: number },
