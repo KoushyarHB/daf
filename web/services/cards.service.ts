@@ -6,6 +6,7 @@ import type { CardListQuery } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
+import { getImportedLektionIds } from "@/services/import.service";
 import { prisma } from "@/lib/db/prisma";
 import { deckNoFromRank, enrichCards } from "@/lib/vocab/card-utils";
 import type {
@@ -198,11 +199,19 @@ async function buildVisibleWhere(
     return { AND: [filterWhere, { userId: communityUserId }] };
   }
 
-  const excludeIds = await getExcludedCommunityIds(userId);
-  const communityWhere: Prisma.CardWhereInput = {
-    userId: communityUserId,
-    ...(excludeIds.length > 0 ? { id: { notIn: excludeIds } } : {}),
-  };
+  const [excludeIds, importedLektions] = await Promise.all([
+    getExcludedCommunityIds(userId),
+    getImportedLektionIds(userId),
+  ]);
+
+  const communityWhere: Prisma.CardWhereInput =
+    importedLektions.length > 0
+      ? {
+          userId: communityUserId,
+          lektion: { in: importedLektions },
+          ...(excludeIds.length > 0 ? { id: { notIn: excludeIds } } : {}),
+        }
+      : { id: { in: [] as string[] } };
 
   return {
     AND: [
@@ -215,14 +224,17 @@ async function buildVisibleWhere(
 }
 
 async function canViewCard(
-  row: { id: string; userId: string },
+  row: { id: string; userId: string; lektion: number | null },
   userId: string | null,
   communityUserId: string,
 ): Promise<boolean> {
   if (row.userId === communityUserId) {
     if (!userId) return true;
     const excludeIds = await getExcludedCommunityIds(userId);
-    return !excludeIds.includes(row.id);
+    if (excludeIds.includes(row.id)) return false;
+    const importedLektions = await getImportedLektionIds(userId);
+    if (importedLektions.length === 0) return false;
+    return row.lektion != null && importedLektions.includes(row.lektion);
   }
   return userId !== null && row.userId === userId;
 }

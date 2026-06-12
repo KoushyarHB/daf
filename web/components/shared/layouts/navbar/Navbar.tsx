@@ -41,6 +41,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const { data: session, status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showImportNav, setShowImportNav] = useState(false);
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
@@ -83,6 +84,20 @@ export default function Navbar() {
 
   const vocabActive = pathname === "/";
   const lessonsActive = pathname.startsWith("/lesson-pages");
+  const importActive = pathname.startsWith("/import-community-cards");
+
+  useEffect(() => {
+    if (status !== "authenticated") {
+      setShowImportNav(false);
+      return;
+    }
+    void fetch("/api/cards/import-status")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json: { hasUserCreatedCard?: boolean } | null) => {
+        setShowImportNav(Boolean(json?.hasUserCreatedCard));
+      })
+      .catch(() => setShowImportNav(false));
+  }, [status, pathname]);
 
   return (
     <header
@@ -143,6 +158,15 @@ export default function Navbar() {
               >
                 Lesson Pages
               </Link>
+              {showImportNav ? (
+                <Link
+                  className={`site-nav-link${importActive ? " is-active" : ""}`}
+                  href="/import-community-cards"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Import Cards
+                </Link>
+              ) : null}
             </div>
             <div className="site-nav-account">
               {status === "authenticated" ? (

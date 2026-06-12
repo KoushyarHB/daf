@@ -58,9 +58,10 @@ model User {
 
 
 
-  cards       Card[]
-  progress    UserCardProgress[]
-  hiddenCards UserCardHidden[]
+  cards           Card[]
+  progress        UserCardProgress[]
+  hiddenCards     UserCardHidden[]
+  lektionImports  UserLektionImport[]
 
   @@map("users")
 }
@@ -270,5 +271,16 @@ model UserCardHidden {
   @@id([userId, cardId])
   @@index([userId])
   @@map("user_card_hidden")
+}
+
+model UserLektionImport {
+  userId     String   @map("user_id")
+  lektion    Int
+  importedAt DateTime @default(now()) @map("imported_at") @db.Timestamptz()
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, lektion])
+  @@index([userId])
+  @@map("user_lektion_imports")
 }
 

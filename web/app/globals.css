@@ -1484,7 +1484,106 @@ button.auth-btn {
 }
 
 .deck-manage-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
   margin: 0 0 0.65rem;
+}
+
+.deck-import-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--head-blue);
+  text-decoration: none;
+}
+
+.deck-import-link:hover {
+  text-decoration: underline;
+}
+
+.import-lektion-panel {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.import-lektion-panel__title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--head-blue);
+  border-bottom: none;
+  padding: 0;
+}
+
+.import-lektion-panel__text {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.45;
+}
+
+.import-lektion-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.import-lektion-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  text-align: left;
+  color: #1a3d6b;
+  background: #f5f9fd;
+  border: 1px solid rgba(47, 111, 184, 0.35);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.import-lektion-btn:hover:not(:disabled) {
+  background: #eaf2fa;
+  border-color: rgba(47, 111, 184, 0.55);
+}
+
+.import-lektion-btn:disabled {
+  cursor: default;
+}
+
+.import-lektion-btn--done {
+  color: #4a6748;
+  background: #f4f8f3;
+  border-color: #c8dcc4;
+}
+
+.import-lektion-btn__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.import-lektion-btn__meta {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.import-page__back {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+}
+
+.import-page__back a {
+  color: var(--head-blue);
 }
 
 .deck-controls button.deck-add-card-btn,

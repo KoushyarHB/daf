@@ -20,8 +20,18 @@ import DeckControls, {
 import DeckEmpty from "./DeckEmpty";
 import DeckLoading from "./DeckLoading";
 import DeckPagination from "./DeckPagination";
+import ImportLektionPanel, {
+  type LektionImportOption,
+} from "./ImportLektionPanel";
 import VocabCard from "./VocabCard";
 import VocabList from "./VocabList";
+
+type ImportStatus = {
+  importedLektions: number[];
+  availableLektions: LektionImportOption[];
+  hasUserCreatedCard: boolean;
+  showImportOnHome: boolean;
+};
 
 function apiPageSize(pageSize: string): number {
   if (pageSize === "all") return 100;
@@ -80,6 +90,7 @@ export default function VocabularyDeck() {
   const [deleteTarget, setDeleteTarget] = useState<EnrichedVocabCard | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [prevSessionStatus, setPrevSessionStatus] = useState(sessionStatus);
+  const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
 
   if (sessionStatus !== prevSessionStatus) {
     setPrevSessionStatus(sessionStatus);
@@ -101,6 +112,17 @@ export default function VocabularyDeck() {
       .then(setFilterOptions)
       .catch(() => { });
   }, [reloadToken, sessionStatus]);
+
+  useEffect(() => {
+    if (!progressEnabled) {
+      setImportStatus(null);
+      return;
+    }
+    void fetch("/api/cards/import-status")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json: ImportStatus | null) => setImportStatus(json))
+      .catch(() => setImportStatus(null));
+  }, [progressEnabled, reloadToken]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -324,7 +346,19 @@ export default function VocabularyDeck() {
           <button type="button" className="deck-add-card-btn" onClick={openCreate}>
             + Add card
           </button>
+          {importStatus && !importStatus.showImportOnHome ? (
+            <Link href="/import-community-cards" className="deck-import-link">
+              Import community cards
+            </Link>
+          ) : null}
         </div>
+      ) : null}
+
+      {progressEnabled && importStatus?.showImportOnHome ? (
+        <ImportLektionPanel
+          options={importStatus.availableLektions}
+          onImported={bumpReload}
+        />
       ) : null}
 
       <DeckControls
@@ -368,6 +402,11 @@ export default function VocabularyDeck() {
             includeStudied: progressEnabled,
           })}
           progressEnabled={progressEnabled}
+          awaitingImport={
+            progressEnabled &&
+            (importStatus?.importedLektions.length ?? 0) === 0 &&
+            (importStatus?.availableLektions.length ?? 0) > 0
+          }
           onClearFilters={clearFilters}
           onAddCard={openCreate}
         />
