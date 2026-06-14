@@ -2820,3 +2820,36 @@ body.card-modal-open .site-header {
 .admin-search input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+
+/* Table / admin action links — scoped to beat Tailwind button reset */
+a.tags-table__btn-secondary,
+button.tags-table__btn-secondary {
+  appearance: none;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--head-blue);
+  background: #fff;
+  border: 1px solid #c5d9ef;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.28rem 0.55rem;
+  min-width: 4.75rem;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+a.tags-table__btn-secondary:hover,
+button.tags-table__btn-secondary:hover:not(:disabled) {
+  background: #eef4fc;
+  border-color: #a8c4e8;
+  color: #245a9c;
+  text-decoration: none;
+}

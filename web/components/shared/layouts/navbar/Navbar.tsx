@@ -6,8 +6,6 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-import { isAdminRole } from "@/lib/auth/roles";
-
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <svg
@@ -92,7 +90,6 @@ export default function Navbar() {
   const adminPublishActive = pathname.startsWith("/admin/publish");
   const adminUsersActive = pathname.startsWith("/admin/users");
   const userRole = session?.user?.role;
-  const isAdmin = isAdminRole(userRole);
   const isSuperAdmin = userRole === "super_admin";
   const showAuthedNav = status === "authenticated" || (status === "loading" && Boolean(session));
 
@@ -197,7 +194,7 @@ export default function Navbar() {
                   Tags
                 </Link>
               ) : null}
-              {isAdmin ? (
+              {isSuperAdmin ? (
                 <Link
                   className={`site-nav-link${adminPublishActive ? " is-active" : ""}`}
                   href="/admin/publish"

@@ -690,6 +690,15 @@ async function updateOwnedCard(
   return updated;
 }
 
+/** Update a card owned by `userId` (admin editing on behalf of the deck owner). */
+export async function updateOwnedCardForUser(
+  cardId: string,
+  userId: string,
+  input: CardUpdateInput,
+): Promise<EnrichedVocabCard | "NOT_FOUND" | "INVALID_DECK"> {
+  return updateOwnedCard(cardId, userId, input);
+}
+
 export async function updateCard(
   cardId: string,
   userId: string,

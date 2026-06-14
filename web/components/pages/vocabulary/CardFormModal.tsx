@@ -17,6 +17,8 @@ type CardFormModalProps = {
   card?: EnrichedVocabCard | null;
   open: boolean;
   defaultDeckId?: string;
+  /** When set, saves via super-admin deck review API (edits the deck owner's card). */
+  adminDeckId?: string;
   onClose: () => void;
   onSaved: (card: EnrichedVocabCard) => void;
 };
@@ -92,6 +94,7 @@ export default function CardFormModal({
   card,
   open,
   defaultDeckId,
+  adminDeckId,
   onClose,
   onSaved,
 }: CardFormModalProps) {
@@ -116,6 +119,7 @@ export default function CardFormModal({
     setForm(
       mode === "edit" && card ? cardToForm(card) : emptyForm(initialDeck),
     );
+    if (adminDeckId) return;
     void fetch("/api/decks?pageSize=100")
       .then((r) => (r.ok ? r.json() : null))
       .then((json: { items?: DeckOption[] } | null) => {
@@ -126,7 +130,7 @@ export default function CardFormModal({
         }
       })
       .catch(() => setDecks([]));
-  }, [open, mode, card, defaultDeckId]);
+  }, [open, mode, card, defaultDeckId, adminDeckId]);
 
   useEffect(() => {
     if (!open) return;
@@ -267,7 +271,9 @@ export default function CardFormModal({
     try {
       const url =
         mode === "edit" && card
-          ? `/api/cards/${encodeURIComponent(card.domId)}`
+          ? adminDeckId
+            ? `/api/admin/decks/${encodeURIComponent(adminDeckId)}/cards/${encodeURIComponent(card.domId)}`
+            : `/api/cards/${encodeURIComponent(card.domId)}`
           : "/api/cards";
       const res = await fetch(url, {
         method: mode === "edit" ? "PATCH" : "POST",
@@ -284,9 +290,11 @@ export default function CardFormModal({
       const successMessage =
         mode === "create"
           ? "Card created"
-          : card && isPristineCommunityCard(card)
-            ? "Personal copy saved"
-            : "Card updated";
+          : adminDeckId
+            ? "Card updated"
+            : card && isPristineCommunityCard(card)
+              ? "Personal copy saved"
+              : "Card updated";
       toast.success(successMessage);
       onSaved(saved);
       onClose();
@@ -462,26 +470,28 @@ export default function CardFormModal({
             </div>
 
             <div className="card-modal-row">
-              <label>
-                Deck
-                <select
-                  value={form.deckId}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, deckId: e.target.value }))
-                  }
-                  required
-                >
-                  {decks.length === 0 ? (
-                    <option value="">Loading…</option>
-                  ) : (
-                    decks.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.name}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </label>
+              {!adminDeckId ? (
+                <label>
+                  Deck
+                  <select
+                    value={form.deckId}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, deckId: e.target.value }))
+                    }
+                    required
+                  >
+                    {decks.length === 0 ? (
+                      <option value="">Loading…</option>
+                    ) : (
+                      decks.map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.name}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                </label>
+              ) : null}
               <label>
                 Level
                 <select

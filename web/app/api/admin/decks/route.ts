@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { adminDeckListQuerySchema } from "@/lib/api/schemas";
-import { isAuthError, requireAdminSession } from "@/lib/auth/require-auth";
+import { isAuthError, requireSuperAdminSession } from "@/lib/auth/require-auth";
 import * as adminDecksService from "@/services/admin-decks.service";
 
 export async function GET(request: NextRequest) {
-  const authResult = await requireAdminSession();
+  const authResult = await requireSuperAdminSession();
   if (isAuthError(authResult)) return authResult;
 
   const parsed = adminDeckListQuerySchema.safeParse(

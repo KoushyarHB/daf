@@ -3,7 +3,7 @@ import { randomUUID } from "crypto";
 import type { Prisma } from "@prisma/client";
 
 import type { z } from "zod";
-import type { adminDeckListQuerySchema } from "@/lib/api/schemas";
+import type { adminDeckListQuerySchema, cardUpdateSchema } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId } from "@/lib/community";
@@ -11,9 +11,12 @@ import { slugifyLabel } from "@/lib/tags/slug";
 import { prisma } from "@/lib/db/prisma";
 import type { TagDto } from "@/services/tags.service";
 import { ensureTag, setCardTagsBySlugs } from "@/services/tags.service";
-import type { DeckDto } from "@/services/decks.service";
+import { getCardById, updateOwnedCardForUser } from "@/services/cards.service";
+import type { EnrichedVocabCard } from "@/lib/vocab/types";
+import { updateDeck, type DeckDto } from "@/services/decks.service";
 
 type AdminDeckListQuery = z.infer<typeof adminDeckListQuerySchema>;
+type CardUpdateInput = z.infer<typeof cardUpdateSchema>;
 
 export type AdminDeckDto = DeckDto & {
   ownerEmail: string;
@@ -274,4 +277,122 @@ export async function publishDeckToCommunity(
   });
 
   return { tag, cardCount: cards.length, republished };
+}
+
+export async function unpublishDeckFromCommunity(
+  deckId: string,
+): Promise<
+  { removedCardCount: number } | "NOT_FOUND" | "NOT_PUBLISHED"
+> {
+  const deck = await prisma.deck.findUnique({
+    where: { id: deckId },
+    select: {
+      userId: true,
+      publishedAt: true,
+      publishedTagId: true,
+    },
+  });
+  if (!deck) return "NOT_FOUND";
+  if (!deck.publishedAt || !deck.publishedTagId) return "NOT_PUBLISHED";
+
+  const communityUserId = await getCommunityUserId();
+  const sourceCards = await prisma.card.findMany({
+    where: {
+      deckId,
+      userId: deck.userId,
+      sourceCardId: null,
+    },
+    select: { id: true },
+  });
+  const sourceIds = sourceCards.map((c) => c.id);
+
+  const deleteResult = await prisma.card.deleteMany({
+    where: {
+      userId: communityUserId,
+      publishedFromCardId: { in: sourceIds },
+    },
+  });
+
+  await prisma.userTagImport.deleteMany({
+    where: { tagId: deck.publishedTagId },
+  });
+
+  await prisma.deck.update({
+    where: { id: deckId },
+    data: {
+      publishedAt: null,
+      publishedTagId: null,
+    },
+  });
+
+  return { removedCardCount: deleteResult.count };
+}
+
+export async function listDeckCardsAdmin(
+  deckId: string,
+): Promise<EnrichedVocabCard[] | "NOT_FOUND"> {
+  const deck = await prisma.deck.findUnique({
+    where: { id: deckId },
+    select: { userId: true },
+  });
+  if (!deck) return "NOT_FOUND";
+
+  const rows = await prisma.card.findMany({
+    where: {
+      deckId,
+      userId: deck.userId,
+      sourceCardId: null,
+    },
+    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+    select: { id: true },
+  });
+
+  const cards = await Promise.all(
+    rows.map((row) => getCardById(row.id, deck.userId)),
+  );
+  return cards.filter((c): c is EnrichedVocabCard => c !== null);
+}
+
+export async function updateDeckAdmin(
+  deckId: string,
+  input: { name?: string },
+): Promise<AdminDeckDto | "NOT_FOUND"> {
+  const deck = await prisma.deck.findUnique({
+    where: { id: deckId },
+    select: { userId: true },
+  });
+  if (!deck) return "NOT_FOUND";
+
+  if (input.name !== undefined) {
+    const result = await updateDeck(deckId, deck.userId, { name: input.name });
+    if (result === "NOT_FOUND") return "NOT_FOUND";
+  }
+
+  const updated = await getDeckAdmin(deckId);
+  return updated ?? "NOT_FOUND";
+}
+
+export async function updateDeckCardAdmin(
+  deckId: string,
+  cardId: string,
+  input: CardUpdateInput,
+): Promise<EnrichedVocabCard | "NOT_FOUND" | "INVALID_DECK"> {
+  const deck = await prisma.deck.findUnique({
+    where: { id: deckId },
+    select: { userId: true },
+  });
+  if (!deck) return "NOT_FOUND";
+
+  const owned = await prisma.card.findFirst({
+    where: {
+      id: cardId,
+      deckId,
+      userId: deck.userId,
+      sourceCardId: null,
+    },
+    select: { id: true },
+  });
+  if (!owned) return "NOT_FOUND";
+
+  return updateOwnedCardForUser(cardId, deck.userId, input);
 }

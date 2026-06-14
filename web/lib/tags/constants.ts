@@ -21,3 +21,10 @@ export function lektionToDafTagLabel(lektion: number): string {
 export function isDafLekTagSlug(slug: string): boolean {
   return slug.startsWith(DAF_LEK_TAG_PREFIX);
 }
+
+/** System tag slug for a deck published to the community catalog. */
+export const PUBLISHED_DECK_TAG_PREFIX = "deck-" as const;
+
+export function isPublishedDeckTagSlug(slug: string): boolean {
+  return slug.startsWith(PUBLISHED_DECK_TAG_PREFIX);
+}

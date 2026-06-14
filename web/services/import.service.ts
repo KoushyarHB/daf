@@ -3,6 +3,7 @@ import { getCommunityUserId } from "@/lib/community";
 import {
   DAF_LEK_TAG_PREFIX,
   isDafLekTagSlug,
+  isPublishedDeckTagSlug,
 } from "@/lib/tags/constants";
 
 export type TagImportOption = {
@@ -66,18 +67,25 @@ export async function getAvailableTagImportOptions(
 
   for (const card of communityCards) {
     for (const { tag } of card.tags) {
-      if (!isDafLekTagSlug(tag.slug)) continue;
-      const lekMatch = tag.slug.slice(DAF_LEK_TAG_PREFIX.length);
-      const lektion = Number.parseInt(lekMatch, 10);
-      const lessonTitle = Number.isNaN(lektion)
-        ? undefined
-        : titleByLektion.get(lektion);
+      if (!isDafLekTagSlug(tag.slug) && !isPublishedDeckTagSlug(tag.slug)) {
+        continue;
+      }
+      let label: string;
       const level = card.level || "A1";
-      const label = lessonTitle
-        ? `DAF ${level} — ${lessonTitle}`
-        : Number.isNaN(lektion)
-          ? tag.label
-          : `DAF ${level} — Lektion ${lektion}`;
+      if (isPublishedDeckTagSlug(tag.slug)) {
+        label = tag.label;
+      } else {
+        const lekMatch = tag.slug.slice(DAF_LEK_TAG_PREFIX.length);
+        const lektion = Number.parseInt(lekMatch, 10);
+        const lessonTitle = Number.isNaN(lektion)
+          ? undefined
+          : titleByLektion.get(lektion);
+        label = lessonTitle
+          ? `DAF ${level} — ${lessonTitle}`
+          : Number.isNaN(lektion)
+            ? tag.label
+            : `DAF ${level} — Lektion ${lektion}`;
+      }
       const prev = bundles.get(tag.slug);
       if (prev) {
         prev.cardCount += 1;

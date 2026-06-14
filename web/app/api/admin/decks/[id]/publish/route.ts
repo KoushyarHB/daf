@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 
 import { publishDeckBodySchema } from "@/lib/api/schemas";
-import { isAuthError, requireAdminSession } from "@/lib/auth/require-auth";
+import { isAuthError, requireSuperAdminSession } from "@/lib/auth/require-auth";
 import * as adminDecksService from "@/services/admin-decks.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 export async function POST(request: Request, context: RouteContext) {
-  const authResult = await requireAdminSession();
+  const authResult = await requireSuperAdminSession();
   if (isAuthError(authResult)) return authResult;
 
   const { id } = await context.params;

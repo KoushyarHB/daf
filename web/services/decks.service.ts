@@ -26,8 +26,21 @@ export type DeckDto = {
 type DeckWriteInput = z.infer<typeof deckWriteSchema>;
 type DeckListQuery = z.infer<typeof deckListQuerySchema>;
 
-const DEFAULT_DECK_NAME = "My deck";
-const DEFAULT_DECK_SLUG = "my-deck";
+const DEFAULT_DECK_SLUG = "vocab-cards";
+
+/** Display name for a user's first deck, e.g. "Koushyar's vocab cards". */
+export function defaultDeckNameForUser(user: {
+  name: string | null;
+  email: string;
+}): string {
+  const base = user.name?.trim() || user.email.split("@")[0] || "My";
+  const possessive = /[sS]$/.test(base) ? `${base}'` : `${base}'s`;
+  return `${possessive} vocab cards`;
+}
+
+function defaultDeckSlugFromName(name: string): string {
+  return slugifyLabel(name) || DEFAULT_DECK_SLUG;
+}
 
 function rowToDto(row: {
   id: string;
@@ -94,11 +107,16 @@ export async function ensureDefaultDeck(userId: string): Promise<string> {
   });
   if (existing) return existing.id;
 
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { name: true, email: true },
+  });
+  const name = user ? defaultDeckNameForUser(user) : "My vocab cards";
   const deck = await prisma.deck.create({
     data: {
       userId,
-      name: DEFAULT_DECK_NAME,
-      slug: await uniqueSlugForUser(userId, DEFAULT_DECK_SLUG),
+      name,
+      slug: await uniqueSlugForUser(userId, defaultDeckSlugFromName(name)),
       level: "A1",
     },
   });
