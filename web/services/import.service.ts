@@ -43,10 +43,11 @@ export async function getAvailableTagImportOptions(
 ): Promise<TagImportOption[]> {
   const [publishedDecks, importedSlugs] = await Promise.all([
     prisma.deck.findMany({
+      // Any published deck is in the catalog. Publishing is super-admin-only
+      // (enforced by the API), and the deck can belong to any user.
       where: {
         publishedAt: { not: null },
         publishedTagId: { not: null },
-        user: { role: "super_admin" },
       },
       select: {
         name: true,
