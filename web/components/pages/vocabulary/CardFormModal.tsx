@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 
 import TagMultiSelect from "@/components/shared/TagMultiSelect";
 import { useToast } from "@/components/shared/toast/ToastProvider";
@@ -101,6 +102,11 @@ export default function CardFormModal({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -126,12 +132,14 @@ export default function CardFormModal({
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    document.body.classList.add("card-modal-open");
     return () => {
       document.body.style.overflow = prev;
+      document.body.classList.remove("card-modal-open");
     };
   }, [open]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
   function updateExample(
     key: string,
@@ -298,7 +306,7 @@ export default function CardFormModal({
         ? "Customize community card"
         : "Edit card";
 
-  return (
+  return createPortal(
     <div
       className="card-modal-backdrop card-modal-backdrop--form"
       onClick={onClose}
@@ -316,15 +324,17 @@ export default function CardFormModal({
             <h2 id="card-modal-title" className="card-modal-title">
               {title}
             </h2>
-            <button
-              type="button"
-              className="card-form-ai-btn"
-              onClick={onSuggest}
-              disabled={suggesting || !form.head.trim()}
-              title="Fill gloss, notes, examples, IPA, and type from the headword"
-            >
-              {suggesting ? "Filling…" : "✨ AI fill"}
-            </button>
+            {mode === "create" ? (
+              <button
+                type="button"
+                className="card-form-ai-btn"
+                onClick={onSuggest}
+                disabled={suggesting || !form.head.trim()}
+                title="Fill gloss, notes, examples, IPA, and type from the headword"
+              >
+                {suggesting ? "Filling…" : "✨ AI fill"}
+              </button>
+            ) : null}
           </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
             <p className="card-modal-hint">
@@ -529,6 +539,7 @@ export default function CardFormModal({
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

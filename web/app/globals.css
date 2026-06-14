@@ -1963,7 +1963,7 @@ button.auth-btn {
 .card-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 500;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -1973,8 +1973,15 @@ button.auth-btn {
 }
 
 .card-modal-backdrop--form {
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
   overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+body.card-modal-open .site-header {
+  z-index: 1;
 }
 
 .card-modal {
@@ -1987,11 +1994,19 @@ button.auth-btn {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* Add / edit card form — larger than confirm dialogs */
+/* Add / edit card — full height, site-column width */
 .card-form-modal {
-  max-width: 40rem;
-  max-height: calc(100dvh - 2rem);
+  width: min(100%, var(--site-content-max));
+  max-width: var(--site-content-max);
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
   padding: 0;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1999,12 +2014,12 @@ button.auth-btn {
 
 .card-form-modal__header {
   flex-shrink: 0;
-  padding: 1.5rem 1.75rem 0;
+  padding: 1.25rem 1.25rem 0.5rem;
 }
 
 .card-form-modal__title-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
@@ -2051,13 +2066,13 @@ button.auth-btn {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 0.85rem 1.75rem 1rem;
+  padding: 0.25rem 1.25rem 1rem;
   overscroll-behavior: contain;
 }
 
 .card-form-modal__footer {
   flex-shrink: 0;
-  padding: 0.85rem 1.75rem 1.35rem;
+  padding: 0.85rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border);
   background: #fff;
 }
@@ -2477,34 +2492,25 @@ button.auth-btn {
   background: #eaf2fa;
 }
 
+@media (min-width: 48rem) {
+  .card-form-modal__header,
+  .card-form-modal__body,
+  .card-form-modal__footer {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
 @media (max-width: 640px) {
-  .card-modal-backdrop--form {
-    padding: 0;
-    align-items: stretch;
-  }
-
-  .card-form-modal {
-    max-width: none;
-    max-height: none;
-    height: 100dvh;
-    margin: 0;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    box-shadow: none;
-  }
-
-  .card-form-modal__header {
-    padding: 1rem 1rem 0;
-  }
-
-  .card-form-modal__body {
-    padding: 0.75rem 1rem 1rem;
+  .card-form-modal__header,
+  .card-form-modal__body,
+  .card-form-modal__footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .card-form-modal__footer {
-    padding: 0.85rem 1rem calc(1rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
 }
 
