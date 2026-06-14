@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 
 export type TagImportOption = {
@@ -28,6 +29,8 @@ export default function ImportTagPanel({
   const toast = useToast();
   const [localOptions, setLocalOptions] = useState(options);
   const [busySlug, setBusySlug] = useState<string | null>(null);
+  const [removeTarget, setRemoveTarget] = useState<TagImportOption | null>(null);
+  const [removing, setRemoving] = useState(false);
 
   useEffect(() => {
     setLocalOptions(options);
@@ -73,6 +76,7 @@ export default function ImportTagPanel({
 
   async function onDeimport(slug: string, label: string) {
     setBusySlug(slug);
+    setRemoving(true);
     try {
       const res = await fetch("/api/cards/deimport-tag", {
         method: "POST",
@@ -85,11 +89,13 @@ export default function ImportTagPanel({
       }
       setImported(slug, false);
       toast.success(`${label} removed from your deck`);
+      setRemoveTarget(null);
       onChanged();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Remove failed");
     } finally {
       setBusySlug(null);
+      setRemoving(false);
     }
   }
 
@@ -116,7 +122,7 @@ export default function ImportTagPanel({
               disabled={busySlug !== null}
               onClick={() =>
                 void (opt.imported
-                  ? onDeimport(opt.slug, opt.label)
+                  ? setRemoveTarget(opt)
                   : onImport(opt.slug, opt.label))
               }
               aria-label={
@@ -132,6 +138,27 @@ export default function ImportTagPanel({
           </li>
         ))}
       </ul>
+
+      <ConfirmModal
+        open={removeTarget !== null}
+        title="Remove import"
+        message={
+          removeTarget
+            ? `Remove “${removeTarget.label}” from your deck? Imported cards from this tag will be removed.`
+            : ""
+        }
+        confirmLabel="Remove"
+        danger
+        loading={removing}
+        onConfirm={() => {
+          if (removeTarget) {
+            void onDeimport(removeTarget.slug, removeTarget.label);
+          }
+        }}
+        onCancel={() => {
+          if (!removing) setRemoveTarget(null);
+        }}
+      />
     </section>
   );
 }

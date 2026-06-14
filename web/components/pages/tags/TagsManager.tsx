@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 
+import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { writeRouteCache } from "@/lib/client/route-data-cache";
 import { canModifyTag } from "@/lib/tags/permissions";
@@ -28,7 +29,8 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
   const role = session?.user?.role ?? "user";
   const [tags, setTags] = useState<TagRow[]>(initialTags ?? []);
   const [loading, setLoading] = useState(initialTags === undefined);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<TagRow | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -53,15 +55,10 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
     return canModifyTag(tag, userId, role);
   }
 
-  async function onDelete(tag: TagRow) {
-    if (
-      !window.confirm(
-        `Delete tag “${tag.label}”? This only works when no cards use it.`,
-      )
-    ) {
-      return;
-    }
-    setDeletingId(tag.id);
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const tag = deleteTarget;
     try {
       const res = await fetch(`/api/tags/${encodeURIComponent(tag.id)}`, {
         method: "DELETE",
@@ -71,11 +68,12 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
         throw new Error(data.error ?? `Delete failed (${res.status})`);
       }
       toast.success("Tag deleted");
+      setDeleteTarget(null);
       load();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Delete failed");
     } finally {
-      setDeletingId(null);
+      setDeleting(false);
     }
   }
 
@@ -147,10 +145,12 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
                         <button
                           type="button"
                           className="tags-table__btn-danger"
-                          onClick={() => void onDelete(tag)}
-                          disabled={deletingId === tag.id}
+                          onClick={() => setDeleteTarget(tag)}
+                          disabled={deleting && deleteTarget?.id === tag.id}
                         >
-                          {deletingId === tag.id ? "Deleting…" : "Delete"}
+                          {deleting && deleteTarget?.id === tag.id
+                            ? "Deleting…"
+                            : "Delete"}
                         </button>
                       </>
                     ) : (
@@ -168,6 +168,23 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
       <p className="tags-page__back">
         <Link href="/">← Back to vocabulary</Link>
       </p>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete tag"
+        message={
+          deleteTarget
+            ? `Delete tag “${deleteTarget.label}”? This only works when no cards use it.`
+            : ""
+        }
+        confirmLabel="Delete"
+        danger
+        loading={deleting}
+        onConfirm={() => void confirmDelete()}
+        onCancel={() => {
+          if (!deleting) setDeleteTarget(null);
+        }}
+      />
     </div>
   );
 }

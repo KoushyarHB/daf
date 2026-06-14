@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { writeRouteCache } from "@/lib/client/route-data-cache";
 import { roleLabel } from "@/lib/auth/roles";
@@ -29,6 +30,8 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
   const [hasLoaded, setHasLoaded] = useState(initialUsers !== undefined);
   const [q, setQ] = useState("");
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<UserRow | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -80,11 +83,10 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
     }
   }
 
-  async function onDelete(user: UserRow) {
-    if (!window.confirm(`Delete user ${user.email}? This cannot be undone.`)) {
-      return;
-    }
-    setSavingId(user.id);
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const user = deleteTarget;
     try {
       const res = await fetch(`/api/admin/users/${encodeURIComponent(user.id)}`, {
         method: "DELETE",
@@ -94,11 +96,12 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         throw new Error(data.error ?? `Delete failed (${res.status})`);
       }
       toast.success("User deleted");
+      setDeleteTarget(null);
       load();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Delete failed");
     } finally {
-      setSavingId(null);
+      setDeleting(false);
     }
   }
 
@@ -170,10 +173,10 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
                   <button
                     type="button"
                     className="tags-table__btn-danger"
-                    onClick={() => onDelete(user)}
-                    disabled={savingId === user.id}
+                    onClick={() => setDeleteTarget(user)}
+                    disabled={deleting && deleteTarget?.id === user.id}
                   >
-                    Delete
+                    {deleting && deleteTarget?.id === user.id ? "Deleting…" : "Delete"}
                   </button>
                 </td>
               </tr>
@@ -182,6 +185,23 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         </table>
         </div>
       )}
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete user"
+        message={
+          deleteTarget
+            ? `Delete user ${deleteTarget.email}? This cannot be undone.`
+            : ""
+        }
+        confirmLabel="Delete"
+        danger
+        loading={deleting}
+        onConfirm={() => void confirmDelete()}
+        onCancel={() => {
+          if (!deleting) setDeleteTarget(null);
+        }}
+      />
     </div>
   );
 }

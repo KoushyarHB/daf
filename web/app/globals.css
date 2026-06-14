@@ -1704,6 +1704,17 @@ button.auth-btn {
   min-width: 36rem;
 }
 
+.tags-table--decks {
+  min-width: 40rem;
+}
+
+.tags-table--decks th:last-child,
+.tags-table--decks td:last-child {
+  width: 13rem;
+  min-width: 13rem;
+  max-width: 13rem;
+}
+
 .tags-table--users th:nth-child(3),
 .tags-table--users td:nth-child(3) {
   min-width: 9.5rem;

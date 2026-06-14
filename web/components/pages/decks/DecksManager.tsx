@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { writeRouteCache } from "@/lib/client/route-data-cache";
 import { CEFR_LEVELS } from "@/lib/vocab/levels";
@@ -30,7 +31,8 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [level, setLevel] = useState("A1");
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<DeckRow | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -75,15 +77,10 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
     }
   }
 
-  async function onDelete(deck: DeckRow) {
-    if (
-      !window.confirm(
-        `Delete deck “${deck.name}”? It must be empty and you need at least one other deck.`,
-      )
-    ) {
-      return;
-    }
-    setDeletingId(deck.id);
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const deck = deleteTarget;
     try {
       const res = await fetch(`/api/decks/${encodeURIComponent(deck.id)}`, {
         method: "DELETE",
@@ -93,11 +90,12 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
         throw new Error(data.error ?? `Delete failed (${res.status})`);
       }
       toast.success("Deck deleted");
+      setDeleteTarget(null);
       load();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Delete failed");
     } finally {
-      setDeletingId(null);
+      setDeleting(false);
     }
   }
 
@@ -150,65 +148,86 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
       {decks.length === 0 ? (
         <p className="deck-hint">No decks yet.</p>
       ) : (
-        <table className="tags-table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Slug</th>
-              <th scope="col">Type</th>
-              <th scope="col">Cards</th>
-              <th scope="col">Published</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {decks.map((deck) => (
-              <tr key={deck.id}>
-                <td>{deck.name}</td>
-                <td>
-                  <code>{deck.slug}</code>
-                </td>
-                <td>
-                  {deck.isSystem ? (
-                    <span className="system-badge">system</span>
-                  ) : (
-                    "user"
-                  )}
-                </td>
-                <td>{deck.cardCount}</td>
-                <td>
-                  {deck.publishedAt ? (
-                    <span title={deck.publishedTagSlug ?? undefined}>
-                      Yes
-                      {deck.publishedTagSlug ? (
-                        <>
-                          {" "}
-                          (<code>{deck.publishedTagSlug}</code>)
-                        </>
-                      ) : null}
-                    </span>
-                  ) : (
-                    "—"
-                  )}
-                </td>
-                <td className="tags-table__actions">
-                  <Link href={`/?deck=${encodeURIComponent(deck.id)}`}>
-                    View cards
-                  </Link>
-                  <button
-                    type="button"
-                    className="tags-table__btn-danger"
-                    onClick={() => onDelete(deck)}
-                    disabled={deletingId === deck.id}
-                  >
-                    {deletingId === deck.id ? "Deleting…" : "Delete"}
-                  </button>
-                </td>
+        <div className="tags-table-wrap">
+          <table className="tags-table tags-table--decks">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Type</th>
+                <th scope="col">Cards</th>
+                <th scope="col">Published</th>
+                <th scope="col">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {decks.map((deck) => (
+                <tr key={deck.id}>
+                  <td>{deck.name}</td>
+                  <td>
+                    <code>{deck.slug}</code>
+                  </td>
+                  <td>
+                    {deck.isSystem ? (
+                      <span className="system-badge">system</span>
+                    ) : (
+                      "user"
+                    )}
+                  </td>
+                  <td>{deck.cardCount}</td>
+                  <td>
+                    {deck.publishedAt ? (
+                      <span title={deck.publishedTagSlug ?? undefined}>
+                        Yes
+                        {deck.publishedTagSlug ? (
+                          <>
+                            {" "}
+                            (<code>{deck.publishedTagSlug}</code>)
+                          </>
+                        ) : null}
+                      </span>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td className="tags-table__actions">
+                    <Link href={`/?deck=${encodeURIComponent(deck.id)}`}>
+                      View cards
+                    </Link>
+                    <button
+                      type="button"
+                      className="tags-table__btn-danger"
+                      onClick={() => setDeleteTarget(deck)}
+                      disabled={deleting && deleteTarget?.id === deck.id}
+                    >
+                      {deleting && deleteTarget?.id === deck.id
+                        ? "Deleting…"
+                        : "Delete"}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete deck"
+        message={
+          deleteTarget
+            ? `Delete deck “${deleteTarget.name}”? It must be empty and you need at least one other deck.`
+            : ""
+        }
+        confirmLabel="Delete"
+        danger
+        loading={deleting}
+        onConfirm={() => void confirmDelete()}
+        onCancel={() => {
+          if (!deleting) setDeleteTarget(null);
+        }}
+      />
     </div>
   );
 }
