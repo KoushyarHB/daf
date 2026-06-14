@@ -1,21 +1,33 @@
 "use client";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
+import { writeRouteCache } from "@/lib/client/route-data-cache";
+import { canModifyTag } from "@/lib/tags/permissions";
 
 type TagRow = {
   id: string;
   slug: string;
   label: string;
+  isSystem: boolean;
+  createdById: string | null;
   cardCount?: number;
 };
 
-export default function TagsManager() {
+type TagsManagerProps = {
+  initialTags?: TagRow[];
+};
+
+export default function TagsManager({ initialTags }: TagsManagerProps) {
   const toast = useToast();
-  const [tags, setTags] = useState<TagRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+  const role = session?.user?.role ?? "user";
+  const [tags, setTags] = useState<TagRow[]>(initialTags ?? []);
+  const [loading, setLoading] = useState(initialTags === undefined);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const load = useCallback(() => {
@@ -23,15 +35,23 @@ export default function TagsManager() {
     void fetch("/api/tags?counts=true&pageSize=100")
       .then((r) => r.json())
       .then((data: { items?: TagRow[] }) => {
-        setTags(data.items ?? []);
+        const items = data.items ?? [];
+        setTags(items);
+        writeRouteCache("tags", items);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
   useEffect(() => {
+    if (initialTags !== undefined) return;
     load();
-  }, [load]);
+  }, [load, initialTags]);
+
+  function canEdit(tag: TagRow): boolean {
+    if (!userId) return false;
+    return canModifyTag(tag, userId, role);
+  }
 
   async function onDelete(tag: TagRow) {
     if (
@@ -59,8 +79,18 @@ export default function TagsManager() {
     }
   }
 
-  if (loading) {
-    return <p className="deck-hint">Loading tags…</p>;
+  if (loading && tags.length === 0) {
+    return (
+      <div className="tags-page">
+        <div className="tags-page__header">
+          <h1 className="tags-page__title">Tags</h1>
+          <Link href="/tags/new" className="tags-page__new">
+            + New tag
+          </Link>
+        </div>
+        <p className="deck-hint">Loading tags…</p>
+      </div>
+    );
   }
 
   return (
@@ -72,46 +102,67 @@ export default function TagsManager() {
         </Link>
       </div>
       <p className="tags-page__intro">
-        Tags organize cards and community import bundles. Cards can have multiple
-        tags; filter the deck by tag on the vocabulary page.
+        Tags organize cards and import bundles. Your tags are personal; tags you
+        create as super admin are marked <span className="system-badge">system</span>{" "}
+        and can only be edited by super admins.
       </p>
 
       {tags.length === 0 ? (
         <p className="deck-hint">No tags yet.</p>
       ) : (
+        <div className="tags-table-wrap">
         <table className="tags-table">
           <thead>
             <tr>
               <th scope="col">Label</th>
               <th scope="col">Slug</th>
+              <th scope="col">Type</th>
               <th scope="col">Cards</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {tags.map((tag) => (
-              <tr key={tag.id}>
-                <td>{tag.label}</td>
-                <td>
-                  <code>{tag.slug}</code>
-                </td>
-                <td>{tag.cardCount ?? 0}</td>
-                <td className="tags-table__actions">
-                  <Link href={`/tags/${encodeURIComponent(tag.id)}/edit`}>
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => void onDelete(tag)}
-                    disabled={deletingId === tag.id}
-                  >
-                    {deletingId === tag.id ? "Deleting…" : "Delete"}
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {tags.map((tag) => {
+              const editable = canEdit(tag);
+              return (
+                <tr key={tag.id}>
+                  <td>{tag.label}</td>
+                  <td>
+                    <code>{tag.slug}</code>
+                  </td>
+                  <td>
+                    {tag.isSystem ? (
+                      <span className="system-badge">system</span>
+                    ) : (
+                      "user"
+                    )}
+                  </td>
+                  <td>{tag.cardCount ?? 0}</td>
+                  <td className="tags-table__actions">
+                    {editable ? (
+                      <>
+                        <Link href={`/tags/${encodeURIComponent(tag.id)}/edit`}>
+                          Edit
+                        </Link>
+                        <button
+                          type="button"
+                          className="tags-table__btn-danger"
+                          onClick={() => void onDelete(tag)}
+                          disabled={deletingId === tag.id}
+                        >
+                          {deletingId === tag.id ? "Deleting…" : "Delete"}
+                        </button>
+                      </>
+                    ) : (
+                      <span className="tags-table__muted">—</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
+        </div>
       )}
 
       <p className="tags-page__back">

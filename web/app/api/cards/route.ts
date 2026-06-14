@@ -48,6 +48,9 @@ export async function POST(request: Request) {
     const card = await cardsService.createCard(userId, parsed.data);
     return NextResponse.json(card, { status: 201 });
   } catch (err) {
+    if (err instanceof Error && err.message === "INVALID_DECK") {
+      return NextResponse.json({ error: "Invalid deck" }, { status: 400 });
+    }
     const code =
       err && typeof err === "object" && "code" in err
         ? (err as { code: string }).code

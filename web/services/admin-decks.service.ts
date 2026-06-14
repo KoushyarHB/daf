@@ -1,0 +1,277 @@
+import { randomUUID } from "crypto";
+
+import type { Prisma } from "@prisma/client";
+
+import type { z } from "zod";
+import type { adminDeckListQuerySchema } from "@/lib/api/schemas";
+import { buildPaginatedResponse } from "@/lib/api/types";
+import type { PaginatedResponse } from "@/lib/api/types";
+import { getCommunityUserId } from "@/lib/community";
+import { slugifyLabel } from "@/lib/tags/slug";
+import { prisma } from "@/lib/db/prisma";
+import type { TagDto } from "@/services/tags.service";
+import { ensureTag, setCardTagsBySlugs } from "@/services/tags.service";
+import type { DeckDto } from "@/services/decks.service";
+
+type AdminDeckListQuery = z.infer<typeof adminDeckListQuerySchema>;
+
+export type AdminDeckDto = DeckDto & {
+  ownerEmail: string;
+  ownerName: string | null;
+};
+
+const deckInclude = {
+  _count: { select: { cards: true } },
+  publishedTag: { select: { slug: true, label: true } },
+  user: { select: { email: true, name: true } },
+} as const;
+
+function rowToAdminDto(row: {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  level: string;
+  isSystem: boolean;
+  publishedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+  _count?: { cards: number };
+  publishedTag?: { slug: string; label: string } | null;
+  user: { email: string; name: string | null };
+}): AdminDeckDto {
+  return {
+    id: row.id,
+    name: row.name,
+    slug: row.slug,
+    description: row.description,
+    level: row.level,
+    isSystem: row.isSystem,
+    cardCount: row._count?.cards ?? 0,
+    publishedAt: row.publishedAt?.toISOString() ?? null,
+    publishedTagSlug: row.publishedTag?.slug ?? null,
+    publishedTagLabel: row.publishedTag?.label ?? null,
+    createdAt: row.createdAt.toISOString(),
+    updatedAt: row.updatedAt.toISOString(),
+    ownerEmail: row.user.email,
+    ownerName: row.user.name,
+  };
+}
+
+const cardChildInclude = {
+  glosses: { orderBy: { sortOrder: "asc" as const } },
+  notes: { orderBy: { sortOrder: "asc" as const } },
+  examples: { orderBy: { sortOrder: "asc" as const } },
+} as const;
+
+type SourceCard = Prisma.CardGetPayload<{ include: typeof cardChildInclude }>;
+
+async function copyChildRows(
+  sourceCardId: string,
+  targetCardId: string,
+): Promise<void> {
+  const source = await prisma.card.findUnique({
+    where: { id: sourceCardId },
+    include: cardChildInclude,
+  });
+  if (!source) return;
+
+  await prisma.cardGloss.deleteMany({ where: { cardId: targetCardId } });
+  await prisma.cardNote.deleteMany({ where: { cardId: targetCardId } });
+  await prisma.cardExample.deleteMany({ where: { cardId: targetCardId } });
+
+  if (source.glosses.length > 0) {
+    await prisma.cardGloss.createMany({
+      data: source.glosses.map((g) => ({
+        cardId: targetCardId,
+        text: g.text,
+        sortOrder: g.sortOrder,
+      })),
+    });
+  }
+  if (source.notes.length > 0) {
+    await prisma.cardNote.createMany({
+      data: source.notes.map((n) => ({
+        cardId: targetCardId,
+        text: n.text,
+        sortOrder: n.sortOrder,
+      })),
+    });
+  }
+  if (source.examples.length > 0) {
+    await prisma.cardExample.createMany({
+      data: source.examples.map((ex) => ({
+        cardId: targetCardId,
+        german: ex.german,
+        english: ex.english,
+        audioPath: ex.audioPath,
+        sortOrder: ex.sortOrder,
+      })),
+    });
+  }
+}
+
+async function upsertPublishedCopy(
+  source: SourceCard,
+  communityUserId: string,
+  tagSlug: string,
+): Promise<void> {
+  const existing = await prisma.card.findFirst({
+    where: {
+      userId: communityUserId,
+      publishedFromCardId: source.id,
+    },
+    select: { id: true },
+  });
+
+  const now = new Date();
+  const data = {
+    head: source.head,
+    ipa: source.ipa,
+    pos: source.pos,
+    pluralRule: source.pluralRule,
+    pluralForm: source.pluralForm,
+    imagePath: source.imagePath,
+    audioPath: source.audioPath,
+    lektion: source.lektion,
+    level: source.level,
+    sortOrder: source.sortOrder,
+    grammarTable: source.grammarTable ?? undefined,
+    updatedAt: now,
+  };
+
+  let targetId: string;
+  if (existing) {
+    targetId = existing.id;
+    await prisma.card.update({ where: { id: targetId }, data });
+  } else {
+    targetId = `pub-${randomUUID()}`;
+    await prisma.card.create({
+      data: {
+        id: targetId,
+        userId: communityUserId,
+        publishedFromCardId: source.id,
+        ...data,
+        createdAt: source.createdAt,
+      },
+    });
+  }
+
+  await copyChildRows(source.id, targetId);
+  await setCardTagsBySlugs(targetId, [tagSlug]);
+}
+
+function publishTagSlug(deck: { slug: string; userId: string }): string {
+  const userPart = deck.userId.replace(/[^a-z0-9]/gi, "").slice(-8).toLowerCase();
+  const deckPart = slugifyLabel(deck.slug) || "deck";
+  return `deck-${userPart}-${deckPart}`;
+}
+
+export async function listDecksAdmin(
+  query: AdminDeckListQuery,
+): Promise<PaginatedResponse<AdminDeckDto>> {
+  const where: Prisma.DeckWhereInput = {};
+  const q = query.q?.trim();
+  if (q) {
+    where.OR = [
+      { name: { contains: q, mode: "insensitive" } },
+      { slug: { contains: q, mode: "insensitive" } },
+      { user: { email: { contains: q, mode: "insensitive" } } },
+    ];
+  }
+  if (query.userId) {
+    where.userId = query.userId;
+  }
+
+  const skip = (query.page - 1) * query.pageSize;
+  const [totalItems, rows] = await Promise.all([
+    prisma.deck.count({ where }),
+    prisma.deck.findMany({
+      where,
+      orderBy: [{ updatedAt: "desc" }],
+      skip,
+      take: query.pageSize,
+      include: deckInclude,
+    }),
+  ]);
+
+  return buildPaginatedResponse(
+    rows.map((row) => rowToAdminDto(row)),
+    query.page,
+    query.pageSize,
+    totalItems,
+  );
+}
+
+export async function getDeckAdmin(deckId: string): Promise<AdminDeckDto | null> {
+  const row = await prisma.deck.findUnique({
+    where: { id: deckId },
+    include: deckInclude,
+  });
+  if (!row) return null;
+  return rowToAdminDto(row);
+}
+
+export async function publishDeckToCommunity(
+  deckId: string,
+  adminUserId: string,
+  options?: { tagSlug?: string; tagLabel?: string },
+): Promise<
+  | { tag: TagDto; cardCount: number; republished: boolean }
+  | "NOT_FOUND"
+  | "EMPTY"
+> {
+  const deck = await prisma.deck.findUnique({
+    where: { id: deckId },
+    include: {
+      user: { select: { email: true } },
+      publishedTag: { select: { slug: true, label: true } },
+    },
+  });
+  if (!deck) return "NOT_FOUND";
+
+  const cards = await prisma.card.findMany({
+    where: {
+      deckId,
+      userId: deck.userId,
+      sourceCardId: null,
+    },
+    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+    include: cardChildInclude,
+  });
+  if (cards.length === 0) return "EMPTY";
+
+  const tagSlug =
+    options?.tagSlug?.trim() ||
+    deck.publishedTag?.slug ||
+    publishTagSlug(deck);
+  const tagLabel =
+    options?.tagLabel?.trim() || deck.publishedTag?.label || deck.name;
+
+  const tag = await ensureTag(tagSlug, tagLabel, { isSystem: true });
+  const communityUserId = await getCommunityUserId();
+  const republished = deck.publishedAt !== null;
+
+  for (const card of cards) {
+    await upsertPublishedCopy(card, communityUserId, tag.slug);
+  }
+
+  await prisma.deck.update({
+    where: { id: deckId },
+    data: {
+      publishedAt: new Date(),
+      publishedTagId: tag.id,
+    },
+  });
+
+  await prisma.deckPublish.create({
+    data: {
+      sourceDeckId: deckId,
+      publishedById: adminUserId,
+      tagId: tag.id,
+      cardCount: cards.length,
+    },
+  });
+
+  return { tag, cardCount: cards.length, republished };
+}

@@ -11,12 +11,15 @@ import type { TagListQuery } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { slugifyLabel, TAG_SLUG_PATTERN } from "@/lib/tags/slug";
+import { canModifyTag } from "@/lib/tags/permissions";
 import { prisma } from "@/lib/db/prisma";
 
 export type TagDto = {
   id: string;
   slug: string;
   label: string;
+  isSystem: boolean;
+  createdById: string | null;
   createdAt: string;
   updatedAt: string;
   cardCount?: number;
@@ -27,6 +30,8 @@ function rowToDto(
     id: string;
     slug: string;
     label: string;
+    isSystem: boolean;
+    createdById: string | null;
     createdAt: Date;
     updatedAt: Date;
     _count?: { cards: number };
@@ -36,6 +41,8 @@ function rowToDto(
     id: row.id,
     slug: row.slug,
     label: row.label,
+    isSystem: row.isSystem,
+    createdById: row.createdById,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
     ...(row._count ? { cardCount: row._count.cards } : {}),
@@ -46,8 +53,8 @@ export async function ensureSystemTags(): Promise<void> {
   for (const t of SYSTEM_TAGS) {
     await prisma.tag.upsert({
       where: { slug: t.slug },
-      create: { slug: t.slug, label: t.label },
-      update: { label: t.label },
+      create: { slug: t.slug, label: t.label, isSystem: true },
+      update: { label: t.label, isSystem: true },
     });
   }
 }
@@ -55,22 +62,29 @@ export async function ensureSystemTags(): Promise<void> {
 export async function ensureTag(
   slugOrLabel: string,
   label?: string,
+  options?: { isSystem?: boolean },
 ): Promise<TagDto> {
   const slug = TAG_SLUG_PATTERN.test(slugOrLabel)
     ? slugOrLabel
     : slugifyLabel(slugOrLabel);
   const resolvedLabel = label ?? slugOrLabel;
+  const isSystem = options?.isSystem ?? false;
 
   const row = await prisma.tag.upsert({
     where: { slug },
-    create: { slug, label: resolvedLabel },
-    update: label ? { label } : {},
+    create: { slug, label: resolvedLabel, isSystem },
+    update: {
+      label: label ? resolvedLabel : undefined,
+      ...(isSystem ? { isSystem: true } : {}),
+    },
   });
   return rowToDto(row);
 }
 
 export async function ensureDafLekTag(lektion: number): Promise<TagDto> {
-  return ensureTag(lektionToDafTagSlug(lektion), lektionToDafTagLabel(lektion));
+  return ensureTag(lektionToDafTagSlug(lektion), lektionToDafTagLabel(lektion), {
+    isSystem: true,
+  });
 }
 
 function buildTagSearchWhere(q: string | undefined): Prisma.TagWhereInput {
@@ -123,15 +137,27 @@ export type TagWriteInput = {
   label: string;
 };
 
+function isSuperAdminRole(role: string | undefined | null): boolean {
+  return role === "super_admin";
+}
+
 export async function createTag(
   input: TagWriteInput,
+  creator: { userId: string; role: string },
 ): Promise<TagDto | "SLUG_EXISTS" | "INVALID_SLUG"> {
   const slug = (input.slug?.trim() || slugifyLabel(input.label)).toLowerCase();
   if (!TAG_SLUG_PATTERN.test(slug)) return "INVALID_SLUG";
 
+  const isSystem = isSuperAdminRole(creator.role);
+
   try {
     const row = await prisma.tag.create({
-      data: { slug, label: input.label.trim() },
+      data: {
+        slug,
+        label: input.label.trim(),
+        isSystem,
+        createdById: creator.userId,
+      },
     });
     return rowToDto(row);
   } catch (err) {
@@ -150,9 +176,11 @@ export async function createTag(
 export async function updateTag(
   id: string,
   input: Partial<TagWriteInput>,
-): Promise<TagDto | "NOT_FOUND" | "SLUG_EXISTS" | "INVALID_SLUG"> {
+  actor: { userId: string; role: string },
+): Promise<TagDto | "NOT_FOUND" | "SLUG_EXISTS" | "INVALID_SLUG" | "FORBIDDEN"> {
   const existing = await prisma.tag.findUnique({ where: { id } });
   if (!existing) return "NOT_FOUND";
+  if (!canModifyTag(existing, actor.userId, actor.role)) return "FORBIDDEN";
 
   const data: Prisma.TagUpdateInput = {};
   if (input.label !== undefined) data.label = input.label.trim();
@@ -180,12 +208,14 @@ export async function updateTag(
 
 export async function deleteTag(
   id: string,
-): Promise<"OK" | "NOT_FOUND" | "IN_USE"> {
+  actor: { userId: string; role: string },
+): Promise<"OK" | "NOT_FOUND" | "IN_USE" | "FORBIDDEN"> {
   const existing = await prisma.tag.findUnique({
     where: { id },
     include: { _count: { select: { cards: true, userImports: true } } },
   });
   if (!existing) return "NOT_FOUND";
+  if (!canModifyTag(existing, actor.userId, actor.role)) return "FORBIDDEN";
   if (existing._count.cards > 0 || existing._count.userImports > 0) {
     return "IN_USE";
   }

@@ -11,9 +11,13 @@ export default function PrimaryLayout({ children }: LayoutProps) {
   return (
     <ToastProvider>
       <LightboxProvider>
-        <Navbar />
-        <main>{children}</main>
-        <footer className="site-footer">DaF kompakt vocabulary deck.</footer>
+        <div className="site-shell">
+          <Navbar />
+          <main style={{ viewTransitionName: "main-content" }} className="site-main">
+            {children}
+          </main>
+          <footer className="site-footer">daf · Deutsch vocabulary</footer>
+        </div>
       </LightboxProvider>
     </ToastProvider>
   );

@@ -7,6 +7,7 @@ import {
 } from "@/lib/vocab/types";
 
 export type DeckFilters = {
+  deckId: string;
   tag: string;
   level: string;
   pos: string;
@@ -17,6 +18,7 @@ export type DeckFilters = {
 };
 
 export const DEFAULT_DECK_FILTER_VALUES = {
+  deckId: "all",
   tag: "all",
   level: "all",
   pos: "all",
@@ -30,6 +32,7 @@ export function hasActiveDeckFilters(
 ): boolean {
   const includeStudied = options?.includeStudied ?? true;
   return (
+    filters.deckId !== DEFAULT_DECK_FILTER_VALUES.deckId ||
     filters.tag !== DEFAULT_DECK_FILTER_VALUES.tag ||
     filters.level !== DEFAULT_DECK_FILTER_VALUES.level ||
     filters.pos !== DEFAULT_DECK_FILTER_VALUES.pos ||
@@ -40,8 +43,10 @@ export function hasActiveDeckFilters(
 }
 
 type TagOption = { slug: string; label: string };
+type UserDeckOption = { id: string; name: string };
 
 type DeckControlsProps = {
+  userDecks?: UserDeckOption[];
   tags: TagOption[];
   levels: string[];
   posValues: VocabPos[];
@@ -58,6 +63,7 @@ function labelClass(active: boolean): string {
 }
 
 export default function DeckControls({
+  userDecks = [],
   tags,
   levels,
   posValues,
@@ -75,6 +81,23 @@ export default function DeckControls({
   return (
     <div className="deck-controls" role="region" aria-label="Filter and sort">
       <div className="deck-controls-row">
+        {userDecks.length > 0 ? (
+          <label className={labelClass(filters.deckId !== "all")}>
+            My deck{" "}
+            <select
+              id="filter-deck"
+              value={filters.deckId}
+              onChange={(e) => onChange({ deckId: e.target.value })}
+            >
+              <option value="all">All my cards</option>
+              {userDecks.map((d) => (
+                <option key={d.id} value={d.id}>
+                  {d.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
         <label className={labelClass(filters.tag !== "all")}>
           Tag{" "}
           <select

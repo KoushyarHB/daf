@@ -76,6 +76,7 @@ export type VocabCard = {
   lektion?: number | null;
   level: string;
   tags: CardTagRef[];
+  deckId?: string | null;
 };
 
 export type EnrichedVocabCard = VocabCard & {

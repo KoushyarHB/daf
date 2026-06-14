@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 
+import { resolveRegisterRole } from "@/lib/auth/roles";
 import { prisma } from "@/lib/db/prisma";
+import { ensureDefaultDeck } from "@/services/decks.service";
 
 const DEFAULT_IMPORT_EMAIL = "system@import.local";
 const BCRYPT_ROUNDS = 12;
@@ -23,14 +25,17 @@ export async function registerUser(input: {
   }
 
   const passwordHash = await bcrypt.hash(input.password, BCRYPT_ROUNDS);
+  const role = resolveRegisterRole(email);
   const user = await prisma.user.create({
     data: {
       email,
       passwordHash,
       name: input.name?.trim() || null,
+      role,
     },
-    select: { id: true, email: true, name: true, createdAt: true },
+    select: { id: true, email: true, name: true, role: true, createdAt: true },
   });
+  await ensureDefaultDeck(user.id);
   return { user };
 }
 

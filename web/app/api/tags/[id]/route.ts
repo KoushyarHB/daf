@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { tagUpdateSchema } from "@/lib/api/schemas";
-import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
+import { isAuthError, requireAuthSession } from "@/lib/auth/require-auth";
 import * as tagsService from "@/services/tags.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -16,7 +16,7 @@ export async function GET(_request: Request, context: RouteContext) {
 }
 
 export async function PATCH(request: Request, context: RouteContext) {
-  const authResult = await requireAuthUserId();
+  const authResult = await requireAuthSession();
   if (isAuthError(authResult)) return authResult;
 
   const { id } = await context.params;
@@ -33,9 +33,15 @@ export async function PATCH(request: Request, context: RouteContext) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const result = await tagsService.updateTag(id, parsed.data);
+  const result = await tagsService.updateTag(id, parsed.data, {
+    userId: authResult.userId,
+    role: authResult.role,
+  });
   if (result === "NOT_FOUND") {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  if (result === "FORBIDDEN") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (result === "SLUG_EXISTS") {
     return NextResponse.json({ error: "Tag slug already exists" }, { status: 409 });
@@ -48,13 +54,19 @@ export async function PATCH(request: Request, context: RouteContext) {
 }
 
 export async function DELETE(_request: Request, context: RouteContext) {
-  const authResult = await requireAuthUserId();
+  const authResult = await requireAuthSession();
   if (isAuthError(authResult)) return authResult;
 
   const { id } = await context.params;
-  const result = await tagsService.deleteTag(id);
+  const result = await tagsService.deleteTag(id, {
+    userId: authResult.userId,
+    role: authResult.role,
+  });
   if (result === "NOT_FOUND") {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  if (result === "FORBIDDEN") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (result === "IN_USE") {
     return NextResponse.json(

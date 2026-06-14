@@ -742,15 +742,32 @@ footer {
 PRONOUNCE_JS = """\
 (function () {
   var player = new Audio();
+  function resolveAudioSrc(raw) {
+    var src = (raw || "").trim();
+    if (!src) return "";
+    if (/^https?:\\/\\//i.test(src)) return src;
+    try {
+      if (src.charAt(0) === "/") {
+        return new URL(src, window.location.origin).href;
+      }
+      return new URL(src, window.location.href).href;
+    } catch (err) {
+      return src;
+    }
+  }
   document.addEventListener("click", function (e) {
     var btn = e.target.closest(".pronounce-btn");
     if (!btn) return;
-    var src = btn.getAttribute("data-audio");
+    var src = resolveAudioSrc(btn.getAttribute("data-audio"));
     if (!src) return;
     e.preventDefault();
+    e.stopPropagation();
     player.pause();
     player.src = src;
-    player.play().catch(function () {});
+    player.load();
+    player.play().catch(function (err) {
+      console.warn("Pronunciation playback failed:", src, err);
+    });
   });
 })();
 """

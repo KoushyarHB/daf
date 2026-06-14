@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { tagListQuerySchema, tagWriteSchema } from "@/lib/api/schemas";
-import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
+import { isAuthError, requireAuthSession } from "@/lib/auth/require-auth";
 import * as tagsService from "@/services/tags.service";
 
 export async function GET(request: NextRequest) {
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: Request) {
-  const authResult = await requireAuthUserId();
+  const authResult = await requireAuthSession();
   if (isAuthError(authResult)) return authResult;
 
   let body: unknown;
@@ -32,7 +32,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const result = await tagsService.createTag(parsed.data);
+  const result = await tagsService.createTag(parsed.data, {
+    userId: authResult.userId,
+    role: authResult.role,
+  });
   if (result === "SLUG_EXISTS") {
     return NextResponse.json({ error: "Tag slug already exists" }, { status: 409 });
   }

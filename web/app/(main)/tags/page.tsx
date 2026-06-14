@@ -1,24 +1,21 @@
-"use client";
-
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-
+import { getAuthSession } from "@/lib/auth/require-auth";
+import SignInPrompt from "@/components/shared/SignInPrompt";
 import TagsManager from "@/components/pages/tags/TagsManager";
+import * as tagsService from "@/services/tags.service";
 
-export default function TagsPage() {
-  const { status } = useSession();
+export const dynamic = "force-dynamic";
 
-  if (status === "loading") {
-    return <p className="deck-hint">Loading…</p>;
+export default async function TagsPage() {
+  const session = await getAuthSession();
+  if (!session) {
+    return <SignInPrompt message="to manage tags." />;
   }
 
-  if (status !== "authenticated") {
-    return (
-      <p className="deck-hint">
-        <Link href="/login">Sign in</Link> to manage tags.
-      </p>
-    );
-  }
+  const tags = await tagsService.listTagsPaginated({
+    page: 1,
+    pageSize: 100,
+    counts: true,
+  });
 
-  return <TagsManager />;
+  return <TagsManager initialTags={tags.items} />;
 }

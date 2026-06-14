@@ -1,23 +1,13 @@
-"use client";
-
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-
+import { getAuthSession } from "@/lib/auth/require-auth";
+import SignInPrompt from "@/components/shared/SignInPrompt";
 import TagForm from "@/components/pages/tags/TagForm";
 
-export default function NewTagPage() {
-  const { status } = useSession();
+export const dynamic = "force-dynamic";
 
-  if (status === "loading") {
-    return <p className="deck-hint">Loading…</p>;
-  }
-
-  if (status !== "authenticated") {
-    return (
-      <p className="deck-hint">
-        <Link href="/login">Sign in</Link> to create tags.
-      </p>
-    );
+export default async function NewTagPage() {
+  const session = await getAuthSession();
+  if (!session) {
+    return <SignInPrompt message="to create tags." />;
   }
 
   return <TagForm mode="create" />;

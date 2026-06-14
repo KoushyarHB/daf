@@ -15,6 +15,7 @@ type CardFormModalProps = {
   mode: "create" | "edit";
   card?: EnrichedVocabCard | null;
   open: boolean;
+  defaultDeckId?: string;
   onClose: () => void;
   onSaved: (card: EnrichedVocabCard) => void;
 };
@@ -32,9 +33,12 @@ type FormState = {
   notes: string;
   examples: ExampleRow[];
   tagSlugs: string[];
+  deckId: string;
   level: CefrLevel;
   pos: VocabPos;
 };
+
+type DeckOption = { id: string; name: string };
 
 let exampleKeySeq = 0;
 
@@ -64,18 +68,20 @@ function cardToForm(card: EnrichedVocabCard): FormState {
     notes: (card.notes ?? []).join("\n").trim(),
     examples,
     tagSlugs: (card.tags ?? []).map((t) => t.slug),
+    deckId: card.deckId ?? "",
     level: normalizeCefrLevel(card.level),
     pos: card.pos ?? "other",
   };
 }
 
-const emptyForm = (): FormState => ({
+const emptyForm = (deckId = ""): FormState => ({
   head: "",
   ipa: "",
   gloss: "",
   notes: "",
   examples: [emptyExample()],
   tagSlugs: [TAG_USER],
+  deckId,
   level: "A1",
   pos: "other",
 });
@@ -84,12 +90,14 @@ export default function CardFormModal({
   mode,
   card,
   open,
+  defaultDeckId,
   onClose,
   onSaved,
 }: CardFormModalProps) {
   const toast = useToast();
   const examplesLegendId = useId();
-  const [form, setForm] = useState<FormState>(emptyForm);
+  const [form, setForm] = useState<FormState>(() => emptyForm());
+  const [decks, setDecks] = useState<DeckOption[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
@@ -97,8 +105,22 @@ export default function CardFormModal({
   useEffect(() => {
     if (!open) return;
     setError(null);
-    setForm(mode === "edit" && card ? cardToForm(card) : emptyForm());
-  }, [open, mode, card]);
+    const initialDeck =
+      defaultDeckId || (mode === "edit" && card?.deckId ? card.deckId : "");
+    setForm(
+      mode === "edit" && card ? cardToForm(card) : emptyForm(initialDeck),
+    );
+    void fetch("/api/decks?pageSize=100")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json: { items?: DeckOption[] } | null) => {
+        const items = json?.items ?? [];
+        setDecks(items);
+        if (mode === "create" && !initialDeck && items[0]) {
+          setForm((f) => (f.deckId ? f : { ...f, deckId: items[0].id }));
+        }
+      })
+      .catch(() => setDecks([]));
+  }, [open, mode, card, defaultDeckId]);
 
   useEffect(() => {
     if (!open) return;
@@ -229,6 +251,7 @@ export default function CardFormModal({
       notes,
       examples,
       tags,
+      deckId: form.deckId || undefined,
       level: form.level,
       pos: form.pos,
     };
@@ -429,6 +452,26 @@ export default function CardFormModal({
             </div>
 
             <div className="card-modal-row">
+              <label>
+                Deck
+                <select
+                  value={form.deckId}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, deckId: e.target.value }))
+                  }
+                  required
+                >
+                  {decks.length === 0 ? (
+                    <option value="">Loading…</option>
+                  ) : (
+                    decks.map((d) => (
+                      <option key={d.id} value={d.id}>
+                        {d.name}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </label>
               <label>
                 Level
                 <select

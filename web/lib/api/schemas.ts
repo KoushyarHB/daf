@@ -9,6 +9,7 @@ export const cardListQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(100).default(20),
   tag: z.string().optional(),
+  deckId: z.string().optional(),
   level: z.string().optional(),
   pos: z.enum(posFilterValues).optional(),
   studied: z.enum(["all", "true", "false"]).optional(),
@@ -50,6 +51,7 @@ export const cardWriteSchema = z.object({
   image: z.string().optional(),
   audio: z.string().optional(),
   tags: z.array(z.string().min(1)).optional(),
+  deckId: z.string().min(1).optional(),
   level: z.enum(CEFR_LEVELS).default("A1"),
 });
 
@@ -89,4 +91,60 @@ export const registerSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
   name: z.string().optional(),
+});
+
+export const deckListQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(50),
+  q: z.string().optional(),
+});
+
+export const deckWriteSchema = z.object({
+  name: z.string().min(1),
+  slug: z
+    .string()
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+    .optional(),
+  description: z.string().optional(),
+  level: z.enum(CEFR_LEVELS).optional(),
+});
+
+export const deckUpdateSchema = deckWriteSchema.partial().extend({
+  name: z.string().min(1).optional(),
+});
+
+export const adminDeckListQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(20),
+  q: z.string().optional(),
+  userId: z.string().optional(),
+});
+
+export const publishDeckBodySchema = z.object({
+  tagSlug: z
+    .string()
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+    .optional(),
+  tagLabel: z.string().min(1).optional(),
+});
+
+export const adminUserListQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(20),
+  q: z.string().optional(),
+});
+
+const userRoleSchema = z.enum(["user", "admin", "super_admin"]);
+
+export const adminUserWriteSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+  name: z.string().optional(),
+  role: userRoleSchema.optional(),
+});
+
+export const adminUserUpdateSchema = z.object({
+  name: z.string().optional(),
+  password: z.string().min(8).optional(),
+  role: userRoleSchema.optional(),
 });

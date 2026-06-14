@@ -41,6 +41,9 @@ export async function PATCH(request: Request, context: RouteContext) {
   if (result === "FORBIDDEN") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
+  if (result === "INVALID_DECK") {
+    return NextResponse.json({ error: "Invalid deck" }, { status: 400 });
+  }
   return NextResponse.json(result);
 }
 

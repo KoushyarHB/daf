@@ -42,7 +42,11 @@ enum LessonPageKind {
 
 }
 
-
+enum UserRole {
+  user
+  admin
+  super_admin
+}
 
 model User {
 
@@ -54,16 +58,60 @@ model User {
 
   name         String?
 
+  role         UserRole @default(user)
+
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz()
 
 
 
   cards           Card[]
+  decks           Deck[]
+  deckPublishes   DeckPublish[] @relation("DeckPublishedBy")
   progress        UserCardProgress[]
   hiddenCards     UserCardHidden[]
   tagImports      UserTagImport[]
+  tagsCreated     Tag[]
 
   @@map("users")
+}
+
+model Deck {
+  id             String    @id @default(cuid())
+  userId         String    @map("user_id")
+  name           String
+  slug           String
+  description    String?
+  level          String    @default("A1")
+  isSystem       Boolean   @default(false) @map("is_system")
+  publishedAt    DateTime? @map("published_at") @db.Timestamptz()
+  publishedTagId String?   @map("published_tag_id")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz()
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  publishedTag Tag?          @relation(fields: [publishedTagId], references: [id], onDelete: SetNull)
+  cards        Card[]
+  publishes    DeckPublish[]
+
+  @@unique([userId, slug])
+  @@index([userId])
+  @@map("decks")
+}
+
+model DeckPublish {
+  id            String   @id @default(cuid())
+  sourceDeckId  String   @map("source_deck_id")
+  publishedById String   @map("published_by_id")
+  tagId         String   @map("tag_id")
+  cardCount     Int      @map("card_count")
+  publishedAt   DateTime @default(now()) @map("published_at") @db.Timestamptz()
+
+  sourceDeck  Deck @relation(fields: [sourceDeckId], references: [id], onDelete: Cascade)
+  publishedBy User @relation("DeckPublishedBy", fields: [publishedById], references: [id], onDelete: Cascade)
+  tag         Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@index([sourceDeckId])
+  @@map("deck_publishes")
 }
 
 
@@ -71,7 +119,9 @@ model User {
 model Card {
   id           String   @id
   userId       String   @map("user_id")
+  deckId       String?  @map("deck_id")
   sourceCardId String?  @map("source_card_id")
+  publishedFromCardId String? @map("published_from_card_id")
   head         String
 
   ipa          String?
@@ -101,8 +151,11 @@ model Card {
 
 
   user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deck       Deck?              @relation(fields: [deckId], references: [id], onDelete: SetNull)
   sourceCard Card?              @relation("CardFork", fields: [sourceCardId], references: [id], onDelete: SetNull)
   forks      Card[]             @relation("CardFork")
+  publishedFrom Card?           @relation("PublishedCopy", fields: [publishedFromCardId], references: [id], onDelete: SetNull)
+  publishedCopies Card[]        @relation("PublishedCopy")
   glosses    CardGloss[]
   notes      CardNote[]
   examples   CardExample[]
@@ -111,7 +164,9 @@ model Card {
   tags       CardTag[]
 
   @@index([userId])
+  @@index([deckId])
   @@index([sourceCardId])
+  @@index([publishedFromCardId])
 
   @@index([lektion])
 
@@ -275,14 +330,20 @@ model UserCardHidden {
 }
 
 model Tag {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  label     String
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  label       String
+  isSystem    Boolean  @default(false) @map("is_system")
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  createdBy   User?    @relation(fields: [createdById], references: [id], onDelete: SetNull)
 
   cards       CardTag[]
   userImports UserTagImport[]
+  decks       Deck[]
+  deckPublishes DeckPublish[]
 
   @@map("tags")
 }

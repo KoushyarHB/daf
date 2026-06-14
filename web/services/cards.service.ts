@@ -8,6 +8,7 @@ import type { PaginatedResponse } from "@/lib/api/types";
 import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
 import { TAG_USER } from "@/lib/tags/constants";
 import { getImportedTagSlugs } from "@/services/import.service";
+import { ensureDefaultDeck, userOwnsDeck } from "@/services/decks.service";
 import {
   applyUserCardDefaultTag,
   setCardTagsBySlugs,
@@ -48,6 +49,7 @@ type DbCard = {
   lektion: number | null;
   level: string;
   sortOrder: number;
+  deckId: string | null;
   grammarTable: unknown;
   createdAt: Date;
   updatedAt: Date;
@@ -90,6 +92,7 @@ function dbCardToVocabCard(row: DbCard): VocabCard {
     updatedAt: row.updatedAt.toISOString(),
     lektion: row.lektion,
     level: row.level,
+    deckId: row.deckId,
     tags: row.tags
       .map((ct) => ct.tag)
       .sort((a, b) => a.label.localeCompare(b.label)),
@@ -209,6 +212,15 @@ async function buildVisibleWhere(
   communityUserId: string,
 ): Promise<Prisma.CardWhereInput> {
   const filterWhere = buildFilterWhere(query, userId);
+
+  if (query.deckId && query.deckId !== "all" && userId) {
+    const owns = await userOwnsDeck(query.deckId, userId);
+    if (owns) {
+      return {
+        AND: [filterWhere, { userId, deckId: query.deckId }],
+      };
+    }
+  }
 
   if (!userId) {
     return { AND: [filterWhere, { userId: communityUserId }] };
@@ -470,6 +482,7 @@ async function rowToWriteInput(row: DbCard): Promise<CardWriteInput> {
     audio: row.audioPath ?? undefined,
     level: normalizeCefrLevel(row.level),
     tags: row.tags.map((ct) => ct.tag.slug),
+    deckId: row.deckId ?? undefined,
   };
 }
 
@@ -491,6 +504,7 @@ function mergeWriteInput(
     image: patch.image !== undefined ? patch.image : base.image,
     audio: patch.audio !== undefined ? patch.audio : base.audio,
     tags: patch.tags !== undefined ? patch.tags : base.tags,
+    deckId: patch.deckId !== undefined ? patch.deckId : base.deckId,
     level: patch.level ?? base.level,
   };
 }
@@ -515,7 +529,7 @@ async function forkCommunityCard(
   });
   if (existingFork) {
     const result = await updateOwnedCard(existingFork.id, userId, input);
-    if (result === "NOT_FOUND") return "NOT_FOUND";
+    if (result === "NOT_FOUND" || result === "INVALID_DECK") return "NOT_FOUND";
     return result;
   }
 
@@ -523,11 +537,13 @@ async function forkCommunityCard(
   const merged = mergeWriteInput(base, input);
   const now = new Date();
   const forkId = `fork-${randomUUID()}`;
+  const defaultDeckId = await ensureDefaultDeck(userId);
 
   await prisma.card.create({
     data: {
       id: forkId,
       userId,
+      deckId: defaultDeckId,
       sourceCardId: sourceId,
       head: merged.head,
       ipa: merged.ipa ?? null,
@@ -579,6 +595,14 @@ export async function createCard(
   userId: string,
   input: CardWriteInput,
 ): Promise<EnrichedVocabCard> {
+  let deckId = input.deckId;
+  if (deckId) {
+    const owns = await userOwnsDeck(deckId, userId);
+    if (!owns) throw new Error("INVALID_DECK");
+  } else {
+    deckId = await ensureDefaultDeck(userId);
+  }
+
   // Lowest sortOrder → rank 0 → deck # equals total (e.g. #101 when 100 exist).
   const minOrder = await prisma.card.aggregate({ _min: { sortOrder: true } });
   const sortOrder = (minOrder._min.sortOrder ?? 0) - 1;
@@ -589,6 +613,7 @@ export async function createCard(
     data: {
       id,
       userId,
+      deckId,
       head: input.head,
       ipa: input.ipa ?? null,
       pos: normalizeVocabPos(input.pos ?? "other"),
@@ -620,9 +645,14 @@ async function updateOwnedCard(
   cardId: string,
   userId: string,
   input: CardUpdateInput,
-): Promise<EnrichedVocabCard | "NOT_FOUND"> {
+): Promise<EnrichedVocabCard | "NOT_FOUND" | "INVALID_DECK"> {
   const existing = await prisma.card.findUnique({ where: { id: cardId } });
   if (!existing || existing.userId !== userId) return "NOT_FOUND";
+
+  if (input.deckId !== undefined && input.deckId !== null) {
+    const owns = await userOwnsDeck(input.deckId, userId);
+    if (!owns) return "INVALID_DECK";
+  }
 
   const now = new Date();
   await prisma.card.update({
@@ -640,6 +670,9 @@ async function updateOwnedCard(
       ...(input.image !== undefined ? { imagePath: input.image ?? null } : {}),
       ...(input.audio !== undefined ? { audioPath: input.audio ?? null } : {}),
       ...(input.level !== undefined ? { level: input.level } : {}),
+      ...(input.deckId !== undefined
+        ? { deckId: input.deckId ?? null }
+        : {}),
       ...(input.grammarTable !== undefined
         ? { grammarTable: input.grammarTable ?? undefined }
         : {}),
@@ -661,7 +694,7 @@ export async function updateCard(
   cardId: string,
   userId: string,
   input: CardUpdateInput,
-): Promise<EnrichedVocabCard | "NOT_FOUND" | "FORBIDDEN"> {
+): Promise<EnrichedVocabCard | "NOT_FOUND" | "FORBIDDEN" | "INVALID_DECK"> {
   const communityUserId = await getCommunityUserId();
   const existing = await prisma.card.findUnique({ where: { id: cardId } });
   if (!existing) return "NOT_FOUND";
@@ -669,6 +702,7 @@ export async function updateCard(
   if (existing.userId === userId) {
     const updated = await updateOwnedCard(cardId, userId, input);
     if (updated === "NOT_FOUND") return "NOT_FOUND";
+    if (updated === "INVALID_DECK") return "INVALID_DECK";
     return updated;
   }
 

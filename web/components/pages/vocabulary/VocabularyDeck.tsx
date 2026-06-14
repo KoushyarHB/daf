@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
@@ -60,28 +60,57 @@ function deckCountText(
   return `Showing ${start}\u2013${end} of ${totalItems}`;
 }
 
-export default function VocabularyDeck() {
+type FilterOptions = {
+  tags: { slug: string; label: string }[];
+  levels: string[];
+  posValues: VocabPos[];
+};
+
+type VocabularyDeckProps = {
+  initialDeckId?: string;
+  initialData?: PaginatedResponse<EnrichedVocabCard>;
+  initialFilterOptions?: FilterOptions;
+  initialUserDecks?: { id: string; name: string }[];
+  initialImportStatus?: ImportStatus | null;
+};
+
+export default function VocabularyDeck({
+  initialDeckId,
+  initialData,
+  initialFilterOptions,
+  initialUserDecks = [],
+  initialImportStatus = null,
+}: VocabularyDeckProps) {
   const { status: sessionStatus } = useSession();
   const toast = useToast();
-  const progressEnabled = sessionStatus === "authenticated";
+  const hadServerSession =
+    initialUserDecks.length > 0 || initialImportStatus !== null;
+  const progressEnabled =
+    sessionStatus === "authenticated" ||
+    (sessionStatus === "loading" && hadServerSession);
 
-  const [filterOptions, setFilterOptions] = useState<{
-    tags: { slug: string; label: string }[];
-    levels: string[];
-    posValues: VocabPos[];
-  }>({ tags: [], levels: [], posValues: [] });
+  const [userDecks, setUserDecks] = useState(initialUserDecks);
 
-  const [filters, setFilters] = useState<DeckFilters>({
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>(
+    initialFilterOptions ?? { tags: [], levels: [], posValues: [] },
+  );
+
+  const [filters, setFilters] = useState<DeckFilters>(() => ({
     ...DEFAULT_DECK_FILTER_VALUES,
+    deckId: initialDeckId ?? DEFAULT_DECK_FILTER_VALUES.deckId,
     view: "cards",
     pageSize: "25",
-  });
+  }));
   const [currentPage, setCurrentPage] = useState(0);
 
   const [data, setData] = useState<PaginatedResponse<EnrichedVocabCard> | null>(
-    null,
+    initialData ?? null,
   );
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialData);
+  const skipInitialCardsFetch = useRef(Boolean(initialData));
+  const skipInitialFilterOptionsFetch = useRef(Boolean(initialFilterOptions));
+  const skipInitialUserDecksFetch = useRef(initialUserDecks.length > 0);
+  const skipInitialImportStatusFetch = useRef(initialImportStatus !== null);
   const [error, setError] = useState<string | null>(null);
   const [reloadToken, setReloadToken] = useState(0);
   const [editorOpen, setEditorOpen] = useState(false);
@@ -90,7 +119,9 @@ export default function VocabularyDeck() {
   const [deleteTarget, setDeleteTarget] = useState<EnrichedVocabCard | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [prevSessionStatus, setPrevSessionStatus] = useState(sessionStatus);
-  const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
+  const [importStatus, setImportStatus] = useState<ImportStatus | null>(
+    initialImportStatus,
+  );
 
   if (sessionStatus !== prevSessionStatus) {
     setPrevSessionStatus(sessionStatus);
@@ -109,6 +140,27 @@ export default function VocabularyDeck() {
   }, []);
 
   useEffect(() => {
+    if (!progressEnabled) {
+      if (!hadServerSession) setUserDecks([]);
+      return;
+    }
+    if (skipInitialUserDecksFetch.current) {
+      skipInitialUserDecksFetch.current = false;
+      return;
+    }
+    void fetch("/api/decks?pageSize=100")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json: { items?: { id: string; name: string }[] } | null) => {
+        setUserDecks(json?.items ?? []);
+      })
+      .catch(() => setUserDecks([]));
+  }, [progressEnabled, reloadToken, hadServerSession]);
+
+  useEffect(() => {
+    if (skipInitialFilterOptionsFetch.current) {
+      skipInitialFilterOptionsFetch.current = false;
+      return;
+    }
     fetch("/api/cards/filter-options")
       .then((r) => r.json())
       .then(setFilterOptions)
@@ -117,19 +169,29 @@ export default function VocabularyDeck() {
 
   useEffect(() => {
     if (!progressEnabled) {
-      setImportStatus(null);
+      if (!hadServerSession) setImportStatus(null);
+      return;
+    }
+    if (skipInitialImportStatusFetch.current) {
+      skipInitialImportStatusFetch.current = false;
       return;
     }
     void fetch("/api/cards/import-status")
       .then((r) => (r.ok ? r.json() : null))
       .then((json: ImportStatus | null) => setImportStatus(json))
       .catch(() => setImportStatus(null));
-  }, [progressEnabled, reloadToken]);
+  }, [progressEnabled, reloadToken, hadServerSession]);
 
   useEffect(() => {
+    if (skipInitialCardsFetch.current) {
+      skipInitialCardsFetch.current = false;
+      return;
+    }
+
     const params = new URLSearchParams();
     params.set("page", String(currentPage + 1));
     params.set("pageSize", String(apiPageSize(filters.pageSize)));
+    if (filters.deckId !== "all") params.set("deckId", filters.deckId);
     if (filters.tag !== "all") params.set("tag", filters.tag);
     if (filters.level !== "all") params.set("level", filters.level);
     if (filters.pos !== "all") params.set("pos", filters.pos);
@@ -189,6 +251,7 @@ export default function VocabularyDeck() {
 
   const updateFilters = useCallback((patch: Partial<DeckFilters>) => {
     const resetsPage =
+      "deckId" in patch ||
       "tag" in patch ||
       "level" in patch ||
       "pos" in patch ||
@@ -348,6 +411,9 @@ export default function VocabularyDeck() {
           <button type="button" className="deck-add-card-btn" onClick={openCreate}>
             + Add card
           </button>
+          <Link href="/decks" className="deck-import-link">
+            My decks
+          </Link>
           {importStatus && !importStatus.showImportOnHome ? (
             <Link href="/import-community-cards" className="deck-import-link">
               Import community cards
@@ -364,6 +430,7 @@ export default function VocabularyDeck() {
       ) : null}
 
       <DeckControls
+        userDecks={userDecks}
         tags={filterOptions.tags}
         levels={filterOptions.levels}
         posValues={filterOptions.posValues}
@@ -401,7 +468,7 @@ export default function VocabularyDeck() {
         />
       ) : null}
 
-      {loading ? (
+      {loading && !data ? (
         <DeckLoading view={filters.view} />
       ) : totalItems === 0 ? (
         <DeckEmpty
@@ -418,7 +485,7 @@ export default function VocabularyDeck() {
           onAddCard={openCreate}
         />
       ) : (
-        <>
+        <div className={loading ? "deck-results deck-results--refreshing" : "deck-results"}>
           <VocabList
             cards={items}
             visibleIds={pageIds}
@@ -448,7 +515,7 @@ export default function VocabularyDeck() {
               />
             ))}
           </div>
-        </>
+        </div>
       )}
 
       <ConfirmModal
@@ -478,6 +545,9 @@ export default function VocabularyDeck() {
         open={editorOpen}
         mode={editorMode}
         card={editingCard}
+        defaultDeckId={
+          filters.deckId !== "all" ? filters.deckId : undefined
+        }
         onClose={() => setEditorOpen(false)}
         onSaved={onCardSaved}
       />

@@ -13,6 +13,8 @@
     "db:generate": "prisma generate",
     "db:import-manifest": "tsx --env-file=.env scripts/import-manifest.ts",
     "db:seed": "npm run db:import-manifest",
+    "db:check-card": "tsx --env-file=.env scripts/check-card.ts",
+    "db:promote-admin": "tsx --env-file=.env scripts/promote-admin.ts",
     "test:e2e": "tsx --env-file=.env scripts/e2e-smoke.ts",
     "postinstall": "prisma generate"
   },
