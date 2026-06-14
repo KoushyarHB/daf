@@ -45,4 +45,4 @@ jobs:
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
           DEFAULT_IMPORT_USER_EMAIL: ${{ secrets.DEFAULT_IMPORT_USER_EMAIL }}
           MANIFEST_ROOT: ${{ github.workspace }}
-        run: npm run db:import-manifest
+        run: npx tsx scripts/import-manifest.ts

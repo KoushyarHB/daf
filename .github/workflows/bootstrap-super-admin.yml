@@ -7,6 +7,7 @@
 #   SUPER_ADMIN_BOOTSTRAP_PASSWORD  Initial login password (not stored in git)
 #
 # Run: Actions → "Bootstrap super admin" → Run workflow
+# CI: use `npx tsx scripts/...` (not npm run) — .env is gitignored; secrets are injected as env vars.
 
 name: Bootstrap super admin
 
@@ -55,4 +56,4 @@ jobs:
           SUPER_ADMIN_EMAIL: ${{ github.event.inputs.email }}
           SUPER_ADMIN_NAME: ${{ github.event.inputs.name }}
           SUPER_ADMIN_PASSWORD: ${{ secrets.SUPER_ADMIN_BOOTSTRAP_PASSWORD }}
-        run: npm run db:create-super-admin
+        run: npx tsx scripts/create-super-admin.ts
