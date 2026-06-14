@@ -46,3 +46,14 @@ jobs:
           DEFAULT_IMPORT_USER_EMAIL: ${{ secrets.DEFAULT_IMPORT_USER_EMAIL }}
           MANIFEST_ROOT: ${{ github.workspace }}
         run: npx tsx scripts/import-manifest.ts
+
+      # Turn seeded daf-lek-* lesson bundles into published decks owned by the
+      # super admin, so they appear under "Import community cards". Idempotent.
+      # Requires the super admin to exist first (Bootstrap super admin workflow).
+      - name: Publish lesson decks as super admin
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+          DEFAULT_IMPORT_USER_EMAIL: ${{ secrets.DEFAULT_IMPORT_USER_EMAIL }}
+          SUPER_ADMIN_EMAIL: ${{ secrets.SUPER_ADMIN_EMAIL }}
+        run: npx tsx scripts/migrate-lessons-to-superadmin.ts

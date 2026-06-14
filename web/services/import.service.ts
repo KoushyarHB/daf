@@ -1,10 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { getCommunityUserId } from "@/lib/community";
-import {
-  DAF_LEK_TAG_PREFIX,
-  isDafLekTagSlug,
-  isPublishedDeckTagSlug,
-} from "@/lib/tags/constants";
+import { getCommunityUserId, publishedCatalogCardWhere } from "@/lib/community";
 
 export type TagImportOption = {
   slug: string;
@@ -39,70 +34,41 @@ export async function hasUserCreatedCard(userId: string): Promise<boolean> {
   return count > 0;
 }
 
+/**
+ * Importable community decks = decks published by a super admin.
+ * Each published deck is one importable bundle, keyed by its publish tag.
+ */
 export async function getAvailableTagImportOptions(
   userId: string,
 ): Promise<TagImportOption[]> {
-  const communityUserId = await getCommunityUserId();
-  const [communityCards, importedSlugs, lessons] = await Promise.all([
-    prisma.card.findMany({
-      where: { userId: communityUserId },
-      select: {
-        level: true,
-        tags: { select: { tag: { select: { slug: true, label: true } } } },
+  const [publishedDecks, importedSlugs] = await Promise.all([
+    prisma.deck.findMany({
+      where: {
+        publishedAt: { not: null },
+        publishedTagId: { not: null },
+        user: { role: "super_admin" },
       },
+      select: {
+        name: true,
+        level: true,
+        publishedTag: { select: { slug: true, label: true } },
+        _count: { select: { cards: true } },
+      },
+      orderBy: [{ name: "asc" }],
     }),
     getImportedTagSlugs(userId),
-    prisma.lesson.findMany({
-      select: { lektion: true, title: true },
-    }),
   ]);
 
   const importedSet = new Set(importedSlugs);
-  const titleByLektion = new Map(lessons.map((l) => [l.lektion, l.title]));
 
-  const bundles = new Map<
-    string,
-    { label: string; level: string; cardCount: number }
-  >();
-
-  for (const card of communityCards) {
-    for (const { tag } of card.tags) {
-      if (!isDafLekTagSlug(tag.slug) && !isPublishedDeckTagSlug(tag.slug)) {
-        continue;
-      }
-      let label: string;
-      const level = card.level || "A1";
-      if (isPublishedDeckTagSlug(tag.slug)) {
-        label = tag.label;
-      } else {
-        const lekMatch = tag.slug.slice(DAF_LEK_TAG_PREFIX.length);
-        const lektion = Number.parseInt(lekMatch, 10);
-        const lessonTitle = Number.isNaN(lektion)
-          ? undefined
-          : titleByLektion.get(lektion);
-        label = lessonTitle
-          ? `DAF ${level} — ${lessonTitle}`
-          : Number.isNaN(lektion)
-            ? tag.label
-            : `DAF ${level} — Lektion ${lektion}`;
-      }
-      const prev = bundles.get(tag.slug);
-      if (prev) {
-        prev.cardCount += 1;
-      } else {
-        bundles.set(tag.slug, { label, level, cardCount: 1 });
-      }
-    }
-  }
-
-  return [...bundles.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([slug, meta]) => ({
-      slug,
-      label: meta.label,
-      level: meta.level,
-      cardCount: meta.cardCount,
-      imported: importedSet.has(slug),
+  return publishedDecks
+    .filter((d) => d.publishedTag)
+    .map((d) => ({
+      slug: d.publishedTag!.slug,
+      label: d.name,
+      level: d.level || "A1",
+      cardCount: d._count.cards,
+      imported: importedSet.has(d.publishedTag!.slug),
     }));
 }
 
@@ -131,8 +97,10 @@ export async function importCommunityTag(
 
   const exists = await prisma.card.findFirst({
     where: {
-      userId: communityUserId,
-      tags: { some: { tagId: tag.id } },
+      AND: [
+        publishedCatalogCardWhere(communityUserId),
+        { tags: { some: { tagId: tag.id } } },
+      ],
     },
     select: { id: true },
   });
@@ -161,8 +129,10 @@ export async function deimportCommunityTag(
   const communityUserId = await getCommunityUserId();
   const communityCards = await prisma.card.findMany({
     where: {
-      userId: communityUserId,
-      tags: { some: { tagId: tag.id } },
+      AND: [
+        publishedCatalogCardWhere(communityUserId),
+        { tags: { some: { tagId: tag.id } } },
+      ],
     },
     select: { id: true },
   });

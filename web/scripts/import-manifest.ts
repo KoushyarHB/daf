@@ -95,7 +95,8 @@ async function importCards(defaultUserId: string): Promise<number> {
         updatedAt,
       },
       update: {
-        userId: defaultUserId,
+        // Do NOT reset userId/deckId here: once a lesson is migrated into a
+        // super-admin published deck, re-seeding must keep that ownership.
         head: card.head,
         ipa: card.ipa ?? null,
         pos: toPrismaPos(card.pos ?? "other"),

@@ -5,7 +5,11 @@ import type { Prisma } from "@prisma/client";
 import type { CardListQuery } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
-import { getCommunityUserId, isCommunityOwner } from "@/lib/community";
+import {
+  getCommunityUserId,
+  isCatalogCard,
+  publishedCatalogCardWhere,
+} from "@/lib/community";
 import { TAG_USER } from "@/lib/tags/constants";
 import { getImportedTagSlugs } from "@/services/import.service";
 import { ensureDefaultDeck, userOwnsDeck } from "@/services/decks.service";
@@ -33,6 +37,7 @@ const cardInclude = {
   tags: {
     include: { tag: { select: { slug: true, label: true } } },
   },
+  deck: { select: { publishedAt: true } },
 } as const;
 
 type DbCard = {
@@ -61,6 +66,7 @@ type DbCard = {
     audioPath: string | null;
   }[];
   tags: { tag: { slug: string; label: string } }[];
+  deck?: { publishedAt: Date | null } | null;
 };
 
 type CardWriteInput = z.infer<typeof cardWriteSchema>;
@@ -107,13 +113,17 @@ function toEnriched(
 ): EnrichedVocabCard {
   const [card] = enrichCards([dbCardToVocabCard(row)], { deckNoForFirst: deckNo });
   const isCustomized = row.sourceCardId != null;
-  const isCommunity =
-    isCommunityOwner(row.userId, communityUserId) || isCustomized;
+  const isOwned = viewerUserId !== null && row.userId === viewerUserId;
+  const isPublishedOriginal =
+    row.sourceCardId == null && row.deck?.publishedAt != null;
+  const isCatalog = row.userId === communityUserId || isPublishedOriginal;
+  // "Community" for the viewer: a catalog card they do not own, or their own fork.
+  const isCommunity = (isCatalog && !isOwned) || isCustomized;
   return {
     ...card,
     isCommunity,
     isCustomized,
-    isOwned: viewerUserId !== null && row.userId === viewerUserId,
+    isOwned,
     sourceCardId: row.sourceCardId,
   };
 }
@@ -234,11 +244,13 @@ async function buildVisibleWhere(
   const communityWhere: Prisma.CardWhereInput =
     importedTagSlugs.length > 0
       ? {
-          userId: communityUserId,
-          tags: {
-            some: { tag: { slug: { in: importedTagSlugs } } },
-          },
-          ...(excludeIds.length > 0 ? { id: { notIn: excludeIds } } : {}),
+          AND: [
+            publishedCatalogCardWhere(communityUserId),
+            { tags: { some: { tag: { slug: { in: importedTagSlugs } } } } },
+            ...(excludeIds.length > 0
+              ? [{ id: { notIn: excludeIds } } as Prisma.CardWhereInput]
+              : []),
+          ],
         }
       : { id: { in: [] as string[] } };
 
@@ -253,11 +265,13 @@ async function buildVisibleWhere(
 }
 
 async function canViewCard(
-  row: { id: string; userId: string },
+  row: { id: string; userId: string; deckId: string | null; sourceCardId: string | null },
   userId: string | null,
   communityUserId: string,
 ): Promise<boolean> {
-  if (row.userId === communityUserId) {
+  if (userId !== null && row.userId === userId) return true;
+
+  if (await isCatalogCard(row, communityUserId)) {
     if (!userId) return true;
     const excludeIds = await getExcludedCommunityIds(userId);
     if (excludeIds.includes(row.id)) return false;
@@ -270,7 +284,7 @@ async function canViewCard(
     const slugs = new Set(cardTags.map((ct) => ct.tag.slug));
     return importedTagSlugs.some((s) => slugs.has(s));
   }
-  return userId !== null && row.userId === userId;
+  return false;
 }
 
 function buildOrderBy(
@@ -519,7 +533,7 @@ async function forkCommunityCard(
     where: { id: sourceId },
     include: cardInclude,
   });
-  if (!source || !isCommunityOwner(source.userId, communityUserId)) {
+  if (!source || !(await isCatalogCard(source, communityUserId))) {
     return "NOT_FOUND";
   }
 
@@ -715,7 +729,7 @@ export async function updateCard(
     return updated;
   }
 
-  if (isCommunityOwner(existing.userId, communityUserId)) {
+  if (await isCatalogCard(existing, communityUserId)) {
     const forked = await forkCommunityCard(cardId, userId, input);
     if (forked === "NOT_FOUND") return "NOT_FOUND";
     return forked;
@@ -742,7 +756,7 @@ export async function deleteCard(
     return "OK";
   }
 
-  if (isCommunityOwner(existing.userId, communityUserId)) {
+  if (await isCatalogCard(existing, communityUserId)) {
     await hideCommunityCardForUser(userId, cardId);
     return "HIDDEN";
   }

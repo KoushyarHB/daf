@@ -1,16 +1,13 @@
-import { randomUUID } from "crypto";
-
 import type { Prisma } from "@prisma/client";
 
 import type { z } from "zod";
 import type { adminDeckListQuerySchema, cardUpdateSchema } from "@/lib/api/schemas";
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
-import { getCommunityUserId } from "@/lib/community";
 import { slugifyLabel } from "@/lib/tags/slug";
 import { prisma } from "@/lib/db/prisma";
 import type { TagDto } from "@/services/tags.service";
-import { ensureTag, setCardTagsBySlugs } from "@/services/tags.service";
+import { ensureTag } from "@/services/tags.service";
 import { getCardById, updateOwnedCardForUser } from "@/services/cards.service";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import { updateDeck, type DeckDto } from "@/services/decks.service";
@@ -59,109 +56,6 @@ function rowToAdminDto(row: {
     ownerEmail: row.user.email,
     ownerName: row.user.name,
   };
-}
-
-const cardChildInclude = {
-  glosses: { orderBy: { sortOrder: "asc" as const } },
-  notes: { orderBy: { sortOrder: "asc" as const } },
-  examples: { orderBy: { sortOrder: "asc" as const } },
-} as const;
-
-type SourceCard = Prisma.CardGetPayload<{ include: typeof cardChildInclude }>;
-
-async function copyChildRows(
-  sourceCardId: string,
-  targetCardId: string,
-): Promise<void> {
-  const source = await prisma.card.findUnique({
-    where: { id: sourceCardId },
-    include: cardChildInclude,
-  });
-  if (!source) return;
-
-  await prisma.cardGloss.deleteMany({ where: { cardId: targetCardId } });
-  await prisma.cardNote.deleteMany({ where: { cardId: targetCardId } });
-  await prisma.cardExample.deleteMany({ where: { cardId: targetCardId } });
-
-  if (source.glosses.length > 0) {
-    await prisma.cardGloss.createMany({
-      data: source.glosses.map((g) => ({
-        cardId: targetCardId,
-        text: g.text,
-        sortOrder: g.sortOrder,
-      })),
-    });
-  }
-  if (source.notes.length > 0) {
-    await prisma.cardNote.createMany({
-      data: source.notes.map((n) => ({
-        cardId: targetCardId,
-        text: n.text,
-        sortOrder: n.sortOrder,
-      })),
-    });
-  }
-  if (source.examples.length > 0) {
-    await prisma.cardExample.createMany({
-      data: source.examples.map((ex) => ({
-        cardId: targetCardId,
-        german: ex.german,
-        english: ex.english,
-        audioPath: ex.audioPath,
-        sortOrder: ex.sortOrder,
-      })),
-    });
-  }
-}
-
-async function upsertPublishedCopy(
-  source: SourceCard,
-  communityUserId: string,
-  tagSlug: string,
-): Promise<void> {
-  const existing = await prisma.card.findFirst({
-    where: {
-      userId: communityUserId,
-      publishedFromCardId: source.id,
-    },
-    select: { id: true },
-  });
-
-  const now = new Date();
-  const data = {
-    head: source.head,
-    ipa: source.ipa,
-    pos: source.pos,
-    pluralRule: source.pluralRule,
-    pluralForm: source.pluralForm,
-    imagePath: source.imagePath,
-    audioPath: source.audioPath,
-    lektion: source.lektion,
-    level: source.level,
-    sortOrder: source.sortOrder,
-    grammarTable: source.grammarTable ?? undefined,
-    updatedAt: now,
-  };
-
-  let targetId: string;
-  if (existing) {
-    targetId = existing.id;
-    await prisma.card.update({ where: { id: targetId }, data });
-  } else {
-    targetId = `pub-${randomUUID()}`;
-    await prisma.card.create({
-      data: {
-        id: targetId,
-        userId: communityUserId,
-        publishedFromCardId: source.id,
-        ...data,
-        createdAt: source.createdAt,
-      },
-    });
-  }
-
-  await copyChildRows(source.id, targetId);
-  await setCardTagsBySlugs(targetId, [tagSlug]);
 }
 
 function publishTagSlug(deck: { slug: string; userId: string }): string {
@@ -228,7 +122,7 @@ export async function publishDeckToCommunity(
     where: { id: deckId },
     include: {
       user: { select: { email: true } },
-      publishedTag: { select: { slug: true, label: true } },
+      publishedTag: { select: { id: true, slug: true, label: true } },
     },
   });
   if (!deck) return "NOT_FOUND";
@@ -239,8 +133,7 @@ export async function publishDeckToCommunity(
       userId: deck.userId,
       sourceCardId: null,
     },
-    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
-    include: cardChildInclude,
+    select: { id: true },
   });
   if (cards.length === 0) return "EMPTY";
 
@@ -252,11 +145,19 @@ export async function publishDeckToCommunity(
     options?.tagLabel?.trim() || deck.publishedTag?.label || deck.name;
 
   const tag = await ensureTag(tagSlug, tagLabel, { isSystem: true });
-  const communityUserId = await getCommunityUserId();
   const republished = deck.publishedAt !== null;
 
-  for (const card of cards) {
-    await upsertPublishedCopy(card, communityUserId, tag.slug);
+  // Tag the deck's own cards with the published tag (additive — keeps existing tags).
+  await prisma.cardTag.createMany({
+    data: cards.map((c) => ({ cardId: c.id, tagId: tag.id })),
+    skipDuplicates: true,
+  });
+
+  // If the deck previously published under a different tag, drop that stale tag.
+  if (deck.publishedTag && deck.publishedTag.id !== tag.id) {
+    await prisma.cardTag.deleteMany({
+      where: { tagId: deck.publishedTag.id, cardId: { in: cards.map((c) => c.id) } },
+    });
   }
 
   await prisma.deck.update({
@@ -295,24 +196,18 @@ export async function unpublishDeckFromCommunity(
   if (!deck) return "NOT_FOUND";
   if (!deck.publishedAt || !deck.publishedTagId) return "NOT_PUBLISHED";
 
-  const communityUserId = await getCommunityUserId();
-  const sourceCards = await prisma.card.findMany({
-    where: {
-      deckId,
-      userId: deck.userId,
-      sourceCardId: null,
-    },
+  const deckCards = await prisma.card.findMany({
+    where: { deckId, userId: deck.userId },
     select: { id: true },
   });
-  const sourceIds = sourceCards.map((c) => c.id);
+  const cardIds = deckCards.map((c) => c.id);
 
-  const deleteResult = await prisma.card.deleteMany({
-    where: {
-      userId: communityUserId,
-      publishedFromCardId: { in: sourceIds },
-    },
+  // Remove the public tag from the deck's cards so they leave the catalog.
+  const removed = await prisma.cardTag.deleteMany({
+    where: { tagId: deck.publishedTagId, cardId: { in: cardIds } },
   });
 
+  // Stop offering it for new imports (existing importers' personal forks are untouched).
   await prisma.userTagImport.deleteMany({
     where: { tagId: deck.publishedTagId },
   });
@@ -325,7 +220,7 @@ export async function unpublishDeckFromCommunity(
     },
   });
 
-  return { removedCardCount: deleteResult.count };
+  return { removedCardCount: removed.count };
 }
 
 export async function listDeckCardsAdmin(

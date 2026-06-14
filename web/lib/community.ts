@@ -1,3 +1,5 @@
+import type { Prisma } from "@prisma/client";
+
 import { prisma } from "@/lib/db/prisma";
 import { ensureDefaultImportUser } from "@/services/users.service";
 
@@ -35,4 +37,36 @@ export function isCommunityOwner(
   communityUserId: string,
 ): boolean {
   return cardUserId === communityUserId;
+}
+
+/**
+ * Prisma filter matching cards in the public catalog (importable by users):
+ * original cards (not personal forks) that are either owned by the legacy
+ * community/import user, or part of any published deck.
+ */
+export function publishedCatalogCardWhere(
+  communityUserId: string,
+): Prisma.CardWhereInput {
+  return {
+    sourceCardId: null,
+    OR: [
+      { userId: communityUserId },
+      { deck: { is: { publishedAt: { not: null } } } },
+    ],
+  };
+}
+
+/** True when a card is part of the public catalog (published-deck original or legacy community card). */
+export async function isCatalogCard(
+  card: { userId: string; deckId: string | null; sourceCardId: string | null },
+  communityUserId: string,
+): Promise<boolean> {
+  if (card.sourceCardId) return false;
+  if (card.userId === communityUserId) return true;
+  if (!card.deckId) return false;
+  const deck = await prisma.deck.findUnique({
+    where: { id: card.deckId },
+    select: { publishedAt: true },
+  });
+  return deck?.publishedAt != null;
 }
