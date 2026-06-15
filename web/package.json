@@ -22,10 +22,12 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.9.0",
-    "prisma": "^6.9.0",
+    "@vercel/blob": "^2.4.0",
     "bcryptjs": "^3.0.3",
+    "edge-tts-universal": "^1.4.0",
     "next": "16.2.6",
     "next-auth": "^5.0.0-beta.31",
+    "prisma": "^6.9.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^3.25.67"

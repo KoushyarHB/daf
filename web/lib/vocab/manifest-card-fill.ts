@@ -7,7 +7,8 @@ export type ManifestCardFillResult = {
   ipa: string;
   gloss: string;
   notes: string;
-  examples: { german: string; english: string }[];
+  audio: string;
+  examples: { german: string; english: string; audio: string }[];
   pos: VocabPos;
   level: CefrLevel;
   tagSlugs: string[];
@@ -46,9 +47,9 @@ function linesFromManifestField(value: unknown): string {
 
 function examplesFromManifestField(
   value: unknown,
-): { german: string; english: string }[] {
+): { german: string; english: string; audio: string }[] {
   if (!Array.isArray(value)) return [];
-  const out: { german: string; english: string }[] = [];
+  const out: { german: string; english: string; audio: string }[] = [];
   for (const item of value) {
     if (!item || typeof item !== "object") continue;
     const rec = item as Record<string, unknown>;
@@ -58,7 +59,8 @@ function examplesFromManifestField(
       rec.english != null && rec.english !== ""
         ? String(rec.english).trim()
         : "";
-    out.push({ german, english });
+    const audio = String(rec.audio ?? "").trim();
+    out.push({ german, english, audio });
   }
   return out;
 }
@@ -116,6 +118,7 @@ export function parseManifestCardJson(text: string): ManifestCardFillResult {
   return {
     head,
     ipa: String(card.ipa ?? "").trim(),
+    audio: String(card.audio ?? "").trim(),
     gloss: linesFromManifestField(card.gloss),
     notes: linesFromManifestField(card.notes),
     examples,
@@ -133,9 +136,10 @@ export function parseManifestCardJson(text: string): ManifestCardFillResult {
 export function formFieldsToManifestCardJson(fields: {
   head: string;
   ipa: string;
+  audio: string;
   gloss: string;
   notes: string;
-  examples: { german: string; english: string }[];
+  examples: { german: string; english: string; audio?: string }[];
   pos: VocabPos;
   level: CefrLevel;
   tagSlugs: string[];
@@ -149,16 +153,23 @@ export function formFieldsToManifestCardJson(fields: {
     .map((l) => l.trim())
     .filter(Boolean);
   const examples = fields.examples
-    .map((ex) => ({
-      german: ex.german.trim(),
-      english: ex.english.trim() || null,
-    }))
-    .filter((ex) => ex.german.length > 0);
+    .map((ex) => {
+      const german = ex.german.trim();
+      if (!german) return null;
+      const row: Record<string, unknown> = {
+        german,
+        english: ex.english.trim() || null,
+      };
+      if (ex.audio?.trim()) row.audio = ex.audio.trim();
+      return row;
+    })
+    .filter((ex): ex is Record<string, unknown> => ex != null);
 
   const obj: Record<string, unknown> = {
     head: fields.head.trim(),
   };
   if (fields.ipa.trim()) obj.ipa = fields.ipa.trim();
+  if (fields.audio.trim()) obj.audio = fields.audio.trim();
   if (fields.pos !== "other") obj.pos = fields.pos;
   if (gloss.length > 0) obj.gloss = gloss;
   if (notes.length > 0) obj.notes = notes;

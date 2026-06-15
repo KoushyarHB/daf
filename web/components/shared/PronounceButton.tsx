@@ -3,6 +3,8 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { useRef } from "react";
 
+import { resolveAudioSrc } from "@/lib/audio/resolve-src";
+
 type PronounceButtonProps = {
   audio?: string;
   compact?: boolean;
@@ -16,7 +18,8 @@ export default function PronounceButton({
 
   if (!audio?.trim()) return null;
 
-  const src = audio.trim();
+  const src = resolveAudioSrc(audio);
+  if (!src) return null;
   const cls = compact ? "pronounce-btn pronounce-btn--ex" : "pronounce-btn";
 
   return (

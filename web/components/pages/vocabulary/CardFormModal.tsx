@@ -5,6 +5,7 @@ import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 
 import TagMultiSelect from "@/components/shared/TagMultiSelect";
+import CardAudioControls from "@/components/shared/CardAudioControls";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
@@ -15,8 +16,11 @@ import {
   manifestCardSampleJson,
   type ManifestCardFillResult,
 } from "@/lib/vocab/manifest-card-fill";
+import { speakTextForHead } from "@/lib/audio/speak-text";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
+
+type GeneratingAudioKey = "head" | string;
 
 type CardFormModalProps = {
   mode: "create" | "edit";
@@ -33,6 +37,7 @@ type ExampleRow = {
   key: string;
   german: string;
   english: string;
+  audio: string;
 };
 
 type FormState = {
@@ -40,6 +45,7 @@ type FormState = {
   ipa: string;
   gloss: string;
   notes: string;
+  audio: string;
   examples: ExampleRow[];
   tagSlugs: string[];
   deckId: string;
@@ -57,7 +63,7 @@ function newExampleKey(): string {
 }
 
 function emptyExample(): ExampleRow {
-  return { key: newExampleKey(), german: "", english: "" };
+  return { key: newExampleKey(), german: "", english: "", audio: "" };
 }
 
 function cardToForm(card: EnrichedVocabCard): FormState {
@@ -67,12 +73,14 @@ function cardToForm(card: EnrichedVocabCard): FormState {
           key: newExampleKey(),
           german: ex.german ?? "",
           english: ex.english ?? "",
+          audio: ex.audio ?? "",
         }))
       : [emptyExample()];
 
   return {
     head: card.head,
     ipa: card.ipa ?? "",
+    audio: card.audio ?? "",
     gloss: (card.gloss ?? []).join("\n").trim(),
     notes: (card.notes ?? []).join("\n").trim(),
     examples,
@@ -88,6 +96,7 @@ const emptyForm = (deckId = ""): FormState => ({
   ipa: "",
   gloss: "",
   notes: "",
+  audio: "",
   examples: [emptyExample()],
   tagSlugs: [TAG_USER],
   deckId,
@@ -112,6 +121,10 @@ export default function CardFormModal({
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);
+  const [generatingAudio, setGeneratingAudio] = useState<GeneratingAudioKey | null>(
+    null,
+  );
+  const [generatingAllAudio, setGeneratingAllAudio] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -182,6 +195,129 @@ export default function CardFormModal({
     });
   }
 
+  async function requestCardAudio(body: {
+    text?: string;
+    head?: string;
+  }): Promise<string> {
+    const res = await fetch("/api/cards/generate-audio", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = (await res.json().catch(() => ({}))) as {
+      error?: string;
+      audio?: string;
+    };
+    if (!res.ok || !data.audio) {
+      throw new Error(
+        typeof data.error === "string"
+          ? data.error
+          : `Audio generation failed (${res.status})`,
+      );
+    }
+    return data.audio;
+  }
+
+  async function generateHeadAudio() {
+    const head = form.head.trim();
+    if (!head) {
+      toast.error("Enter a headword first.");
+      return;
+    }
+
+    setGeneratingAudio("head");
+    setError(null);
+    try {
+      const audio = await requestCardAudio({ head });
+      setForm((f) => ({ ...f, audio }));
+      toast.success("Head pronunciation generated.");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Audio generation failed";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setGeneratingAudio(null);
+    }
+  }
+
+  async function generateExampleAudio(key: string) {
+    const row = form.examples.find((ex) => ex.key === key);
+    const german = row?.german.trim() ?? "";
+    if (!german) {
+      toast.error("Enter German text for this example first.");
+      return;
+    }
+
+    setGeneratingAudio(key);
+    setError(null);
+    try {
+      const audio = await requestCardAudio({ text: german });
+      setForm((f) => ({
+        ...f,
+        examples: f.examples.map((ex) =>
+          ex.key === key ? { ...ex, audio } : ex,
+        ),
+      }));
+      toast.success("Example pronunciation generated.");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Audio generation failed";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setGeneratingAudio(null);
+    }
+  }
+
+  async function generateAllAudio() {
+    const head = form.head.trim();
+    const exampleRows = form.examples.filter((ex) => ex.german.trim());
+    if (!head && exampleRows.length === 0) {
+      toast.error("Add a headword or at least one German example first.");
+      return;
+    }
+
+    setGeneratingAllAudio(true);
+    setError(null);
+    let generated = 0;
+
+    try {
+      if (head) {
+        setGeneratingAudio("head");
+        const audio = await requestCardAudio({ head });
+        setForm((f) => ({ ...f, audio }));
+        generated += 1;
+      }
+
+      for (const ex of exampleRows) {
+        setGeneratingAudio(ex.key);
+        const audio = await requestCardAudio({ text: ex.german.trim() });
+        setForm((f) => ({
+          ...f,
+          examples: f.examples.map((row) =>
+            row.key === ex.key ? { ...row, audio } : row,
+          ),
+        }));
+        generated += 1;
+      }
+
+      toast.success(
+        generated === 1
+          ? "Pronunciation generated."
+          : `${generated} pronunciations generated.`,
+      );
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Audio generation failed";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setGeneratingAudio(null);
+      setGeneratingAllAudio(false);
+    }
+  }
+
   async function onSuggest() {
     const head = form.head.trim();
     if (!head) {
@@ -227,6 +363,7 @@ export default function CardFormModal({
                 key: newExampleKey(),
                 german: ex.german,
                 english: ex.english,
+                audio: "",
               }))
             : f.examples,
         pos: data.pos ?? f.pos,
@@ -247,6 +384,7 @@ export default function CardFormModal({
       ...f,
       head: result.head,
       ipa: result.ipa,
+      audio: result.audio,
       gloss: result.gloss,
       notes: result.notes,
       examples:
@@ -255,6 +393,7 @@ export default function CardFormModal({
               key: newExampleKey(),
               german: ex.german,
               english: ex.english,
+              audio: ex.audio,
             }))
           : f.examples,
       pos: result.pos,
@@ -272,6 +411,7 @@ export default function CardFormModal({
     ? formFieldsToManifestCardJson({
         head: form.head,
         ipa: form.ipa,
+        audio: form.audio,
         gloss: form.gloss,
         notes: form.notes,
         examples: form.examples,
@@ -298,6 +438,7 @@ export default function CardFormModal({
       .map((ex) => ({
         german: ex.german.trim(),
         english: ex.english.trim() || null,
+        audio: ex.audio.trim() || undefined,
       }))
       .filter((ex) => ex.german.length > 0);
     const tags = form.tagSlugs.length > 0 ? form.tagSlugs : [TAG_USER];
@@ -305,6 +446,7 @@ export default function CardFormModal({
     const body = {
       head: form.head.trim(),
       ipa: form.ipa.trim() || undefined,
+      audio: form.audio.trim() || undefined,
       gloss,
       notes,
       examples,
@@ -418,6 +560,18 @@ export default function CardFormModal({
                 placeholder="das Wort /vɔʁt/"
               />
             </label>
+            <CardAudioControls
+              audio={form.audio}
+              generating={generatingAudio === "head"}
+              disabled={generatingAllAudio || !form.head.trim()}
+              onGenerate={generateHeadAudio}
+              generateLabel="Generate head pronunciation"
+            />
+            {form.head.trim() ? (
+              <p className="card-form-field-hint card-form-audio-hint">
+                Speaks: {speakTextForHead(form.head) || form.head.trim()}
+              </p>
+            ) : null}
             <label>
               IPA
               <input
@@ -458,9 +612,24 @@ export default function CardFormModal({
               <legend id={examplesLegendId} className="card-form-examples__legend">
                 Examples
               </legend>
-              <p className="card-form-field-hint card-form-examples__hint">
-                German sentence plus a natural English translation for each example.
-              </p>
+              <div className="card-form-examples__toolbar">
+                <p className="card-form-field-hint card-form-examples__hint">
+                  German sentence plus a natural English translation for each example.
+                </p>
+                <button
+                  type="button"
+                  className="card-form-audio-btn card-form-audio-btn--all"
+                  onClick={generateAllAudio}
+                  disabled={
+                    generatingAllAudio ||
+                    generatingAudio !== null ||
+                    (!form.head.trim() &&
+                      !form.examples.some((ex) => ex.german.trim()))
+                  }
+                >
+                  {generatingAllAudio ? "Generating all…" : "Generate all audio"}
+                </button>
+              </div>
               <ul className="card-form-examples__list">
                 {form.examples.map((ex, index) => (
                   <li key={ex.key} className="card-form-example-row">
@@ -485,6 +654,12 @@ export default function CardFormModal({
                           placeholder="I am learning the word."
                         />
                       </label>
+                      <CardAudioControls
+                        audio={ex.audio}
+                        generating={generatingAudio === ex.key}
+                        disabled={generatingAllAudio || !ex.german.trim()}
+                        onGenerate={() => generateExampleAudio(ex.key)}
+                      />
                     </div>
                     <button
                       type="button"

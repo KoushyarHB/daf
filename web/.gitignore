@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# user-generated pronunciation audio (local dev)
+/public/audio/generated/
