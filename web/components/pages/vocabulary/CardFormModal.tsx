@@ -6,9 +6,15 @@ import { createPortal } from "react-dom";
 
 import TagMultiSelect from "@/components/shared/TagMultiSelect";
 import { useToast } from "@/components/shared/toast/ToastProvider";
+import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import { TAG_USER } from "@/lib/tags/constants";
 import { CEFR_LEVELS, normalizeCefrLevel, type CefrLevel } from "@/lib/vocab/levels";
+import {
+  formFieldsToManifestCardJson,
+  manifestCardSampleJson,
+  type ManifestCardFillResult,
+} from "@/lib/vocab/manifest-card-fill";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
 
@@ -105,6 +111,7 @@ export default function CardFormModal({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
+  const [jsonFillOpen, setJsonFillOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -235,6 +242,45 @@ export default function CardFormModal({
     }
   }
 
+  function applyManifestFill(result: ManifestCardFillResult) {
+    setForm((f) => ({
+      ...f,
+      head: result.head,
+      ipa: result.ipa,
+      gloss: result.gloss,
+      notes: result.notes,
+      examples:
+        result.examples.length > 0
+          ? result.examples.map((ex) => ({
+              key: newExampleKey(),
+              german: ex.german,
+              english: ex.english,
+            }))
+          : f.examples,
+      pos: result.pos,
+      level: result.level,
+      tagSlugs:
+        result.tagSlugs.length > 0
+          ? [...new Set([...result.tagSlugs, TAG_USER])]
+          : f.tagSlugs,
+    }));
+    setError(null);
+    toast.success("Form filled from JSON — review before saving.");
+  }
+
+  const jsonFillInitial = form.head.trim()
+    ? formFieldsToManifestCardJson({
+        head: form.head,
+        ipa: form.ipa,
+        gloss: form.gloss,
+        notes: form.notes,
+        examples: form.examples,
+        pos: form.pos,
+        level: form.level,
+        tagSlugs: form.tagSlugs,
+      })
+    : manifestCardSampleJson();
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -332,17 +378,27 @@ export default function CardFormModal({
             <h2 id="card-modal-title" className="card-modal-title">
               {title}
             </h2>
-            {mode === "create" ? (
+            <div className="card-form-fill-btns">
+              {mode === "create" ? (
+                <button
+                  type="button"
+                  className="card-form-ai-btn"
+                  onClick={onSuggest}
+                  disabled={suggesting || !form.head.trim()}
+                  title="Fill gloss, notes, examples, IPA, and type from the headword"
+                >
+                  {suggesting ? "Filling…" : "✨ AI fill"}
+                </button>
+              ) : null}
               <button
                 type="button"
-                className="card-form-ai-btn"
-                onClick={onSuggest}
-                disabled={suggesting || !form.head.trim()}
-                title="Fill gloss, notes, examples, IPA, and type from the headword"
+                className="card-form-json-btn"
+                onClick={() => setJsonFillOpen(true)}
+                title="Paste a vocab.manifest.json card object to fill the form"
               >
-                {suggesting ? "Filling…" : "✨ AI fill"}
+                {"{ }"} JSON fill
               </button>
-            ) : null}
+            </div>
           </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
             <p className="card-modal-hint">
@@ -549,6 +605,13 @@ export default function CardFormModal({
           </div>
         </form>
       </div>
+
+      <CardJsonFillModal
+        open={jsonFillOpen}
+        initialJson={jsonFillInitial}
+        onApply={applyManifestFill}
+        onClose={() => setJsonFillOpen(false)}
+      />
     </div>,
     document.body,
   );

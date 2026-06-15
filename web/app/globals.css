@@ -2065,6 +2065,101 @@ body.card-modal-open .site-header {
   cursor: not-allowed;
 }
 
+.card-form-fill-btns {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.card-form-json-btn {
+  flex-shrink: 0;
+  padding: 0.35rem 0.7rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  color: #3d5a8a;
+  background: #fff;
+  border: 1px solid rgba(47, 111, 184, 0.45);
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.card-form-json-btn:hover:not(:disabled) {
+  background: #f4f8fc;
+  border-color: rgba(47, 111, 184, 0.65);
+}
+
+.card-json-fill-backdrop {
+  z-index: 10050;
+}
+
+.card-json-fill-modal {
+  max-width: min(36rem, calc(100vw - 2rem));
+  max-height: min(90dvh, 720px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.card-json-fill-modal__label {
+  display: block;
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-json-fill-modal__textarea {
+  width: 100%;
+  min-height: 14rem;
+  flex: 1;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #d8e2ef;
+  border-radius: 6px;
+  resize: vertical;
+  background: #fafbfd;
+}
+
+.card-json-fill-modal__textarea:focus {
+  outline: none;
+  border-color: var(--head-blue);
+  box-shadow: 0 0 0 3px rgba(47, 111, 184, 0.18);
+}
+
+.card-json-fill-modal__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0;
+}
+
+.card-json-fill-modal__link-btn {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--head-blue);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.card-json-fill-modal__link-btn:hover {
+  color: #245a9c;
+}
+
+.card-json-fill-modal__actions {
+  margin-top: 1rem;
+}
+
 .card-form-modal__form {
   display: flex;
   flex-direction: column;
