@@ -402,7 +402,7 @@ export default function VocabularyDeck({
           <Link href="/login" className="deck-hint-link">
             Sign in
           </Link>{" "}
-          to save studied progress, add cards, and customize the deck.
+          to create cards, save study progress, and manage your deck.
         </p>
       ) : null}
 
