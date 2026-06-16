@@ -21,13 +21,13 @@ type DeckRow = {
 };
 
 type DecksManagerProps = {
-  initialDecks?: DeckRow[];
+  initialDecks: DeckRow[];
 };
 
 export default function DecksManager({ initialDecks }: DecksManagerProps) {
   const toast = useToast();
-  const [decks, setDecks] = useState<DeckRow[]>(initialDecks ?? []);
-  const [loading, setLoading] = useState(initialDecks === undefined);
+  const [decks, setDecks] = useState<DeckRow[]>(initialDecks);
+  const [loading, setLoading] = useState(false);
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [level, setLevel] = useState("A1");
@@ -42,15 +42,14 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
         const items = data.items ?? [];
         setDecks(items);
         writeRouteCache("decks", items);
-        setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    if (initialDecks !== undefined) return;
-    load();
-  }, [load, initialDecks]);
+    writeRouteCache("decks", initialDecks);
+  }, [initialDecks]);
 
   async function onCreate(e: React.FormEvent) {
     e.preventDefault();
@@ -175,21 +174,7 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
                     )}
                   </td>
                   <td>{deck.cardCount}</td>
-                  <td>
-                    {deck.publishedAt ? (
-                      <span title={deck.publishedTagSlug ?? undefined}>
-                        Yes
-                        {deck.publishedTagSlug ? (
-                          <>
-                            {" "}
-                            (<code>{deck.publishedTagSlug}</code>)
-                          </>
-                        ) : null}
-                      </span>
-                    ) : (
-                      "—"
-                    )}
-                  </td>
+                  <td>{deck.publishedAt ? "Yes" : "No"}</td>
                   <td className="tags-table__actions">
                     <Link href={`/?deck=${encodeURIComponent(deck.id)}`}>
                       View cards
