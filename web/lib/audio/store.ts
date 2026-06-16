@@ -24,6 +24,13 @@ function storageKey(userId: string, text: string, voice: string): string {
   return `audio/user/${userId}/${hash}.mp3`;
 }
 
+export function isBlobStorageConfigured(): boolean {
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN?.trim() ||
+    process.env.BLOB_STORE_ID?.trim(),
+  );
+}
+
 export async function storeUserAudioMp3(
   userId: string,
   text: string,
@@ -33,11 +40,11 @@ export async function storeUserAudioMp3(
   const key = storageKey(userId, text, voice);
   const token = process.env.BLOB_READ_WRITE_TOKEN?.trim();
 
-  if (token) {
+  if (isBlobStorageConfigured()) {
     const blob = await put(key, buffer, {
       access: "public",
       contentType: "audio/mpeg",
-      token,
+      ...(token ? { token } : {}),
       addRandomSuffix: false,
     });
     return blob.url;
@@ -60,6 +67,6 @@ export async function storeUserAudioMp3(
 
   throw new AudioStorageError(
     "NOT_CONFIGURED",
-    "Audio storage is not configured. Set BLOB_READ_WRITE_TOKEN on Vercel.",
+    "Audio storage is not configured. Connect a Blob store to this project, then redeploy.",
   );
 }

@@ -5,7 +5,7 @@ import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 
 import TagMultiSelect from "@/components/shared/TagMultiSelect";
-import CardAudioControls from "@/components/shared/CardAudioControls";
+import PronounceButton from "@/components/shared/PronounceButton";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
@@ -19,8 +19,6 @@ import {
 import { speakTextForHead } from "@/lib/audio/speak-text";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
-
-type GeneratingAudioKey = "head" | string;
 
 type CardFormModalProps = {
   mode: "create" | "edit";
@@ -121,10 +119,10 @@ export default function CardFormModal({
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);
-  const [generatingAudio, setGeneratingAudio] = useState<GeneratingAudioKey | null>(
+  const [generatingPronunciation, setGeneratingPronunciation] = useState(false);
+  const [pronunciationProgress, setPronunciationProgress] = useState<string | null>(
     null,
   );
-  const [generatingAllAudio, setGeneratingAllAudio] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -218,59 +216,7 @@ export default function CardFormModal({
     return data.audio;
   }
 
-  async function generateHeadAudio() {
-    const head = form.head.trim();
-    if (!head) {
-      toast.error("Enter a headword first.");
-      return;
-    }
-
-    setGeneratingAudio("head");
-    setError(null);
-    try {
-      const audio = await requestCardAudio({ head });
-      setForm((f) => ({ ...f, audio }));
-      toast.success("Head pronunciation generated.");
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Audio generation failed";
-      setError(message);
-      toast.error(message);
-    } finally {
-      setGeneratingAudio(null);
-    }
-  }
-
-  async function generateExampleAudio(key: string) {
-    const row = form.examples.find((ex) => ex.key === key);
-    const german = row?.german.trim() ?? "";
-    if (!german) {
-      toast.error("Enter German text for this example first.");
-      return;
-    }
-
-    setGeneratingAudio(key);
-    setError(null);
-    try {
-      const audio = await requestCardAudio({ text: german });
-      setForm((f) => ({
-        ...f,
-        examples: f.examples.map((ex) =>
-          ex.key === key ? { ...ex, audio } : ex,
-        ),
-      }));
-      toast.success("Example pronunciation generated.");
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Audio generation failed";
-      setError(message);
-      toast.error(message);
-    } finally {
-      setGeneratingAudio(null);
-    }
-  }
-
-  async function generateAllAudio() {
+  async function generatePronunciation() {
     const head = form.head.trim();
     const exampleRows = form.examples.filter((ex) => ex.german.trim());
     if (!head && exampleRows.length === 0) {
@@ -278,20 +224,21 @@ export default function CardFormModal({
       return;
     }
 
-    setGeneratingAllAudio(true);
+    setGeneratingPronunciation(true);
     setError(null);
-    let generated = 0;
+    const total = (head ? 1 : 0) + exampleRows.length;
+    let done = 0;
 
     try {
       if (head) {
-        setGeneratingAudio("head");
+        setPronunciationProgress(`Generating ${done + 1} of ${total}…`);
         const audio = await requestCardAudio({ head });
         setForm((f) => ({ ...f, audio }));
-        generated += 1;
+        done += 1;
       }
 
       for (const ex of exampleRows) {
-        setGeneratingAudio(ex.key);
+        setPronunciationProgress(`Generating ${done + 1} of ${total}…`);
         const audio = await requestCardAudio({ text: ex.german.trim() });
         setForm((f) => ({
           ...f,
@@ -299,13 +246,13 @@ export default function CardFormModal({
             row.key === ex.key ? { ...row, audio } : row,
           ),
         }));
-        generated += 1;
+        done += 1;
       }
 
       toast.success(
-        generated === 1
-          ? "Pronunciation generated."
-          : `${generated} pronunciations generated.`,
+        total === 1
+          ? "Pronunciation ready — play to preview, then save."
+          : `${total} pronunciations ready — play to preview, then save.`,
       );
     } catch (err) {
       const message =
@@ -313,8 +260,8 @@ export default function CardFormModal({
       setError(message);
       toast.error(message);
     } finally {
-      setGeneratingAudio(null);
-      setGeneratingAllAudio(false);
+      setGeneratingPronunciation(false);
+      setPronunciationProgress(null);
     }
   }
 
@@ -502,6 +449,35 @@ export default function CardFormModal({
         ? "Customize community card"
         : "Edit card";
 
+  const canGeneratePronunciation =
+    Boolean(form.head.trim()) ||
+    form.examples.some((ex) => ex.german.trim());
+
+  const pronunciationPreviews = [
+    ...(form.audio.trim() && form.head.trim()
+      ? [
+          {
+            key: "head",
+            label: "Head",
+            text: speakTextForHead(form.head) || form.head.trim(),
+            audio: form.audio.trim(),
+          },
+        ]
+      : []),
+    ...form.examples.flatMap((ex, index) =>
+      ex.audio.trim() && ex.german.trim()
+        ? [
+            {
+              key: ex.key,
+              label: `Example ${index + 1}`,
+              text: ex.german.trim(),
+              audio: ex.audio.trim(),
+            },
+          ]
+        : [],
+    ),
+  ];
+
   return createPortal(
     <div
       className="card-modal-backdrop card-modal-backdrop--form"
@@ -560,18 +536,6 @@ export default function CardFormModal({
                 placeholder="das Wort /vɔʁt/"
               />
             </label>
-            <CardAudioControls
-              audio={form.audio}
-              generating={generatingAudio === "head"}
-              disabled={generatingAllAudio || !form.head.trim()}
-              onGenerate={generateHeadAudio}
-              generateLabel="Generate head pronunciation"
-            />
-            {form.head.trim() ? (
-              <p className="card-form-field-hint card-form-audio-hint">
-                Speaks: {speakTextForHead(form.head) || form.head.trim()}
-              </p>
-            ) : null}
             <label>
               IPA
               <input
@@ -612,24 +576,9 @@ export default function CardFormModal({
               <legend id={examplesLegendId} className="card-form-examples__legend">
                 Examples
               </legend>
-              <div className="card-form-examples__toolbar">
-                <p className="card-form-field-hint card-form-examples__hint">
-                  German sentence plus a natural English translation for each example.
-                </p>
-                <button
-                  type="button"
-                  className="card-form-audio-btn card-form-audio-btn--all"
-                  onClick={generateAllAudio}
-                  disabled={
-                    generatingAllAudio ||
-                    generatingAudio !== null ||
-                    (!form.head.trim() &&
-                      !form.examples.some((ex) => ex.german.trim()))
-                  }
-                >
-                  {generatingAllAudio ? "Generating all…" : "Generate all audio"}
-                </button>
-              </div>
+              <p className="card-form-field-hint card-form-examples__hint">
+                German sentence plus a natural English translation for each example.
+              </p>
               <ul className="card-form-examples__list">
                 {form.examples.map((ex, index) => (
                   <li key={ex.key} className="card-form-example-row">
@@ -654,12 +603,6 @@ export default function CardFormModal({
                           placeholder="I am learning the word."
                         />
                       </label>
-                      <CardAudioControls
-                        audio={ex.audio}
-                        generating={generatingAudio === ex.key}
-                        disabled={generatingAllAudio || !ex.german.trim()}
-                        onGenerate={() => generateExampleAudio(ex.key)}
-                      />
                     </div>
                     <button
                       type="button"
@@ -681,6 +624,49 @@ export default function CardFormModal({
                 + Add example
               </button>
             </fieldset>
+
+            <div
+              className="card-form-pronunciation"
+              role="group"
+              aria-labelledby="card-pronunciation-label"
+            >
+              <div className="card-form-pronunciation__header">
+                <span id="card-pronunciation-label" className="card-form-field-label">
+                  Pronunciation
+                </span>
+                <button
+                  type="button"
+                  className="card-form-audio-btn"
+                  onClick={generatePronunciation}
+                  disabled={generatingPronunciation || !canGeneratePronunciation}
+                >
+                  {generatingPronunciation
+                    ? (pronunciationProgress ?? "Generating…")
+                    : pronunciationPreviews.length > 0
+                      ? "Regenerate pronunciation"
+                      : "Generate pronunciation"}
+                </button>
+              </div>
+              <p className="card-form-field-hint card-form-pronunciation__hint">
+                Creates audio for the headword and each German example. Play to
+                preview before saving.
+              </p>
+              {pronunciationPreviews.length > 0 ? (
+                <ul className="card-form-pronunciation__list">
+                  {pronunciationPreviews.map((item) => (
+                    <li key={item.key} className="card-form-pronunciation__item">
+                      <span className="card-form-pronunciation__label">
+                        {item.label}
+                      </span>
+                      <span className="card-form-pronunciation__text">
+                        {item.text}
+                      </span>
+                      <PronounceButton audio={item.audio} compact />
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
 
             <div className="card-form-field" role="group" aria-labelledby="card-tags-label">
               <span id="card-tags-label" className="card-form-field-label">
