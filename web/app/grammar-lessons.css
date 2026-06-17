@@ -1,0 +1,867 @@
+/* Grammar hub & lesson pages — scoped away from vocab .grammar-table */
+
+.grammar-page {
+  --grm-der: #2f6fb8;
+  --grm-der-bg: #e8f2fc;
+  --grm-der-border: #a8c8e8;
+  --grm-das: #2d7a52;
+  --grm-das-bg: #e6f5ec;
+  --grm-das-border: #9fd4b0;
+  --grm-die: #b83d6e;
+  --grm-die-bg: #fce8f0;
+  --grm-die-border: #e8a8c4;
+  --grm-pl: #5c4a9e;
+  --grm-pl-bg: #ede8fc;
+  --grm-pl-border: #c4b8e8;
+  --grm-gold: #c9921a;
+  --grm-gold-bg: #fff8e6;
+  --grm-teal: #1a7a72;
+  --grm-teal-bg: #e6f7f5;
+
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.75rem;
+}
+
+.grammar-page__title {
+  margin: 0 0 0.45rem;
+  font-size: 1.65rem;
+  color: var(--head-blue);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.grammar-page__intro {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #3d4a57;
+}
+
+.grammar-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.grammar-breadcrumb a {
+  color: var(--head-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.grammar-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Hub hero */
+.grammar-hub__hero {
+  margin-bottom: 1.5rem;
+  padding: 1.35rem 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    #e8f2fc 0%,
+    #f3e8fc 45%,
+    #e6f5ec 100%
+  );
+  border: 1px solid #d4e4f4;
+  box-shadow: 0 4px 18px rgba(47, 111, 184, 0.08);
+}
+
+.grammar-hub__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a7a9e;
+}
+
+/* Lesson grid */
+.grammar-lesson-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.grammar-lesson-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.05rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid #dce4ee;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  min-height: 8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.grammar-lesson-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--head-blue), #7b9fd4);
+}
+
+.grammar-lesson-card--l1::before {
+  background: linear-gradient(90deg, #2f6fb8, #5c9fd4);
+}
+.grammar-lesson-card--l2::before {
+  background: linear-gradient(90deg, #2d7a52, #5cb88a);
+}
+.grammar-lesson-card--l3::before {
+  background: linear-gradient(90deg, #b83d6e, #d47aa0);
+}
+.grammar-lesson-card--l4::before {
+  background: linear-gradient(90deg, #5c4a9e, #8a7ac4);
+}
+
+.grammar-lesson-card--available {
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.grammar-lesson-card--available:hover {
+  border-color: #a8c4e8;
+  box-shadow: 0 8px 22px rgba(47, 111, 184, 0.14);
+  transform: translateY(-2px);
+}
+
+.grammar-lesson-card--soon {
+  opacity: 0.7;
+  background: #f9fafb;
+}
+
+.grammar-lesson-card--soon::before {
+  background: #d1d5db;
+}
+
+.grammar-lesson-card__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--head-blue);
+}
+
+.grammar-lesson-card__title {
+  font-size: 1.02rem;
+  font-weight: 650;
+  color: #1a2332;
+}
+
+.grammar-lesson-card__summary {
+  flex: 1;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #5a6573;
+}
+
+.grammar-lesson-card__cta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--head-blue);
+}
+
+.grammar-lesson-card--soon .grammar-lesson-card__cta {
+  color: #9ca3af;
+}
+
+/* Lesson hero */
+.grammar-lesson__hero {
+  margin-bottom: 1.35rem;
+}
+
+.grammar-lesson__hero-inner {
+  padding: 1.35rem 1.2rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    120deg,
+    var(--grm-der-bg) 0%,
+    #fff 55%,
+    var(--grm-das-bg) 100%
+  );
+  border: 1px solid #d0e0f0;
+  box-shadow: 0 3px 14px rgba(47, 111, 184, 0.07);
+}
+
+.grammar-lesson__level {
+  margin: 0 0 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grm-der);
+}
+
+/* Table of contents */
+.grammar-toc {
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.1rem;
+  background: #fff;
+  border: 1px solid #dce8f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.grammar-toc__label {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--head-blue);
+}
+
+.grammar-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.grammar-toc__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #2f4f6f;
+  text-decoration: none;
+  background: #f4f8fc;
+  border: 1px solid #dce8f4;
+  border-radius: 999px;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.grammar-toc__list a:hover {
+  background: var(--grm-der-bg);
+  border-color: var(--grm-der-border);
+  color: var(--grm-der);
+}
+
+.grammar-toc__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--head-blue);
+  border-radius: 999px;
+}
+
+/* Sections */
+.grammar-section {
+  margin-bottom: 2.25rem;
+  scroll-margin-top: calc(var(--site-header-h, 3.5rem) + 0.85rem);
+  padding: 1.15rem 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid #e8edf3;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.grammar-section__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 2px solid #e8f0f8;
+}
+
+.grammar-section__num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(145deg, var(--head-blue), #4a8fd4);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(47, 111, 184, 0.25);
+}
+
+.grammar-section__title {
+  margin: 0;
+  font-size: 1.12rem;
+  color: #1e3a5f;
+  font-weight: 700;
+  line-height: 1.3;
+  padding-top: 0.15rem;
+}
+
+.grammar-section__subtitle {
+  margin: 1.1rem 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--head-blue);
+}
+
+.grammar-section__body p {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #3d4a57;
+}
+
+.grammar-lead {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #2f4055;
+  background: linear-gradient(90deg, var(--grm-der-bg), transparent);
+  border-left: 3px solid var(--grm-der);
+  border-radius: 0 6px 6px 0;
+}
+
+.grammar-highlight {
+  color: var(--grm-die);
+}
+
+/* Gender chips */
+.grammar-gender-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.grammar-gender-chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid;
+  min-width: 5.5rem;
+}
+
+.grammar-gender-chip__article {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.grammar-gender-chip__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+}
+
+.grammar-gender-chip--m {
+  background: var(--grm-der-bg);
+  border-color: var(--grm-der-border);
+  color: var(--grm-der);
+}
+
+.grammar-gender-chip--n {
+  background: var(--grm-das-bg);
+  border-color: var(--grm-das-border);
+  color: var(--grm-das);
+}
+
+.grammar-gender-chip--f {
+  background: var(--grm-die-bg);
+  border-color: var(--grm-die-border);
+  color: var(--grm-die);
+}
+
+/* Gender pattern cards */
+.grammar-gender-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 40rem) {
+  .grammar-gender-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grammar-gender-card {
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.grammar-gender-card__title {
+  margin: 0 0 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.grammar-gender-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grammar-gender-card__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.32rem 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #3d4a57;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.grammar-gender-card__item:last-child {
+  border-bottom: none;
+}
+
+.grammar-gender-card__suffix {
+  color: inherit;
+  font-weight: 800;
+}
+
+.grammar-gender-card__sep {
+  opacity: 0.45;
+}
+
+.grammar-gender-card--m {
+  background: var(--grm-der-bg);
+  border-color: var(--grm-der-border);
+  color: var(--grm-der);
+}
+
+.grammar-gender-card--m .grammar-gender-card__item {
+  color: #2a4a6a;
+}
+
+.grammar-gender-card--n {
+  background: var(--grm-das-bg);
+  border-color: var(--grm-das-border);
+  color: var(--grm-das);
+}
+
+.grammar-gender-card--n .grammar-gender-card__item {
+  color: #2a4a38;
+}
+
+.grammar-gender-card--f {
+  background: var(--grm-die-bg);
+  border-color: var(--grm-die-border);
+  color: var(--grm-die);
+}
+
+.grammar-gender-card--f .grammar-gender-card__item {
+  color: #5a2a42;
+}
+
+/* Examples — vocab-style › lines */
+.grammar-example-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.grammar-example-list--cards {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 32rem) {
+  .grammar-example-list--cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grammar-example {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.86rem;
+  background: #fafbfd;
+  border-radius: 6px;
+  border: 1px solid #eef1f5;
+}
+
+.grammar-example__marker {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.35;
+}
+
+.grammar-example__de {
+  font-weight: 500;
+  color: var(--blue);
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
+.grammar-example__en {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--gray-en);
+  font-style: italic;
+}
+
+.grammar-pattern-list {
+  margin: 0.35rem 0 0.65rem;
+  padding-left: 1.15rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #3d4a57;
+}
+
+.grammar-pattern-list li {
+  margin-bottom: 0.35rem;
+}
+
+.grammar-bullet-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+/* Callouts */
+.grammar-callout {
+  margin: 1rem 0 0;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.grammar-callout__title {
+  margin: 0 0 0.35rem;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.grammar-callout__body p {
+  margin: 0;
+}
+
+.grammar-callout--tip {
+  background: var(--grm-gold-bg);
+  border: 1px solid #ecd89a;
+  border-left: 4px solid var(--grm-gold);
+  color: #5c4a18;
+}
+
+.grammar-callout--tip .grammar-callout__title {
+  color: #8a6918;
+}
+
+.grammar-callout--remember {
+  background: var(--grm-der-bg);
+  border: 1px solid var(--grm-der-border);
+  border-left: 4px solid var(--grm-der);
+  color: #2a4a6a;
+}
+
+.grammar-callout--remember .grammar-callout__title {
+  color: var(--grm-der);
+}
+
+.grammar-callout--insight {
+  background: var(--grm-teal-bg);
+  border: 1px solid #9fd9d4;
+  border-left: 4px solid var(--grm-teal);
+  color: #1a4a45;
+}
+
+.grammar-callout--insight .grammar-callout__title {
+  color: var(--grm-teal);
+}
+
+/* Formulas */
+.grammar-formula {
+  margin: 0.35rem 0 0.65rem;
+  padding: 0.5rem 0.75rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #1e3a5f;
+  color: #e8f2fc;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Question type cards */
+.grammar-qtype-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .grammar-qtype-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grammar-qtype-card {
+  padding: 0.9rem 1rem;
+  background: linear-gradient(160deg, #f4f8fc, #fff);
+  border: 1px solid #d0e0f0;
+  border-radius: 10px;
+}
+
+.grammar-qtype-card__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--head-blue);
+}
+
+.grammar-qtype-card .grammar-formula {
+  margin-bottom: 0.5rem;
+  background: #2f4f6f;
+}
+
+/* Possessive stems */
+.grammar-stem-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.65rem 0 0.85rem;
+}
+
+.grammar-stem-chip {
+  padding: 0.28rem 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #2f4f6f;
+  background: #f0f4fa;
+  border: 1px solid #d0dce8;
+  border-radius: 6px;
+}
+
+/* Lesson tables */
+.grammar-lesson .grammar-table-wrap {
+  overflow-x: auto;
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grammar-lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.grammar-lesson-table th,
+.grammar-lesson-table td {
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+  border: 1px solid #e8edf3;
+  vertical-align: top;
+}
+
+.grammar-lesson-table th {
+  font-weight: 700;
+  background: #f4f8fc;
+}
+
+.grammar-lesson-table .grammar-table__legend td {
+  padding: 0.2rem 0.65rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8a96a3;
+  background: #fafbfd;
+  border-top: none;
+}
+
+.grammar-col-case {
+  font-weight: 700;
+  color: #333;
+  background: #f8fafc !important;
+}
+
+.grammar-col-use {
+  font-size: 0.78rem;
+  color: #5a6573;
+}
+
+.grammar-col--der,
+.grammar-lesson-table th.grammar-col--der {
+  background: var(--grm-der-bg) !important;
+  color: var(--grm-der);
+}
+
+.grammar-col--das,
+.grammar-lesson-table th.grammar-col--das {
+  background: var(--grm-das-bg) !important;
+  color: var(--grm-das);
+}
+
+.grammar-col--die,
+.grammar-lesson-table th.grammar-col--die {
+  background: var(--grm-die-bg) !important;
+  color: var(--grm-die);
+}
+
+.grammar-col--die-pl,
+.grammar-lesson-table th.grammar-col--die-pl {
+  background: var(--grm-pl-bg) !important;
+  color: var(--grm-pl);
+}
+
+.grammar-lesson-table--plural tbody tr:nth-child(odd) {
+  background: #fafbfd;
+}
+
+.grammar-lesson-table--plural td:first-child {
+  font-weight: 700;
+  color: var(--grm-pl);
+  white-space: nowrap;
+}
+
+.grammar-lesson-table--conj th {
+  background: #eef4fc;
+  color: var(--head-blue);
+}
+
+.grammar-lesson-table--compact td:first-child {
+  font-weight: 600;
+  width: 36%;
+  color: #333;
+  background: #fafbfd;
+}
+
+/* W-word cards */
+.grammar-w-grid {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 36rem) {
+  .grammar-w-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grammar-w-card {
+  padding: 0.8rem 0.9rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  border-left: 4px solid var(--head-blue);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.grammar-w-card:nth-child(4n + 1) {
+  border-left-color: var(--grm-der);
+}
+.grammar-w-card:nth-child(4n + 2) {
+  border-left-color: var(--grm-das);
+}
+.grammar-w-card:nth-child(4n + 3) {
+  border-left-color: var(--grm-die);
+}
+.grammar-w-card:nth-child(4n + 4) {
+  border-left-color: var(--grm-pl);
+}
+
+.grammar-w-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--head-blue);
+  text-transform: lowercase;
+}
+
+.grammar-w-card__en {
+  margin: 0.1rem 0 0.4rem;
+  font-size: 0.76rem;
+  color: var(--gray-en);
+  font-style: italic;
+}
+
+.grammar-w-card .grammar-example {
+  padding: 0.25rem 0;
+  background: transparent;
+  border: none;
+}
+
+.grammar-note {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: #5a6573;
+  font-style: italic;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.grammar-lesson__footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e8f0f8;
+}
+
+.grammar-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--head-blue);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  background: var(--grm-der-bg);
+  border-radius: 6px;
+  border: 1px solid var(--grm-der-border);
+}
+
+.grammar-back-link:hover {
+  background: #dceefb;
+}
+
+@media (min-width: 48rem) {
+  .grammar-page {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .grammar-lesson-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

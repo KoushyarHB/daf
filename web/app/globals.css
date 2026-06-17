@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./grammar-lessons.css";
 
 :root {
   --blue: rgb(48, 96, 140);

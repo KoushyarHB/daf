@@ -1,0 +1,764 @@
+import Link from "next/link";
+
+import {
+  Callout,
+  Ex,
+  Formula,
+  GenderChip,
+  GenderPatternCard,
+  GenderTableHead,
+  Lead,
+  PatternItem,
+  QuestionTypeCard,
+  Section,
+} from "@/components/pages/grammar/grammar-ui";
+
+const TOC = [
+  { id: "articles", label: "Articles & gender" },
+  { id: "plural", label: "Plural" },
+  { id: "alphabet", label: "Alphabet & pronunciation" },
+  { id: "present", label: "Present tense" },
+  { id: "questions", label: "Questions" },
+  { id: "w-words", label: "W-question words" },
+  { id: "cases", label: "Articles in cases" },
+  { id: "aus", label: "aus + countries" },
+  { id: "travel", label: "nach / in + travel" },
+  { id: "possessives", label: "Possessives" },
+  { id: "two-way", label: "Two-way prepositions" },
+  { id: "pronouns", label: "Personal vs reflexive" },
+] as const;
+
+export default function Lektion1Grammar() {
+  return (
+    <article className="grammar-page grammar-lesson">
+      <nav className="grammar-breadcrumb" aria-label="Breadcrumb">
+        <Link href="/grammar">Grammar</Link>
+        <span aria-hidden="true">/</span>
+        <span>Lektion 1</span>
+      </nav>
+
+      <header className="grammar-lesson__hero">
+        <div className="grammar-lesson__hero-inner">
+          <p className="grammar-lesson__level">DaF A1</p>
+          <h1 className="grammar-page__title">Lektion 1 — Grammar</h1>
+          <p className="grammar-page__intro">
+            Core patterns for articles, plurals, pronunciation, verb endings,
+            asking questions, and the first case changes you need at A1.
+          </p>
+        </div>
+      </header>
+
+      <nav className="grammar-toc" aria-label="On this page">
+        <p className="grammar-toc__label">Jump to section</p>
+        <ol className="grammar-toc__list">
+          {TOC.map((item, i) => (
+            <li key={item.id}>
+              <a href={`#${item.id}`}>
+                <span className="grammar-toc__num">{i + 1}</span>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <Section id="articles" number={1} title="German articles & noun gender">
+        <Lead>
+          Every German noun has a gender. Learn nouns <strong>with their article</strong>{" "}
+          — not the bare word alone. Gender affects adjectives, articles, and
+          cases throughout the course.
+        </Lead>
+        <div className="grammar-gender-chip-row">
+          <GenderChip article="der" label="masculine" gender="m" />
+          <GenderChip article="das" label="neuter" gender="n" />
+          <GenderChip article="die" label="feminine" gender="f" />
+          <GenderChip article="die" label="plural (all genders)" gender="f" />
+        </div>
+        <ul className="grammar-example-list grammar-example-list--cards">
+          <Ex de="der Tisch" en="the table" />
+          <Ex de="die Tür" en="the door" />
+          <Ex de="das Buch" en="the book" />
+          <Ex de="das Wasser" en="the water" />
+        </ul>
+
+        <div className="grammar-gender-grid">
+          <GenderPatternCard gender="m" title="Masculine · der">
+            <PatternItem>Jobs & male people — <em>der Mann</em>, <em>der Arzt</em></PatternItem>
+            <PatternItem>Days, months, seasons — <em>der Montag</em>, <em>der Winter</em></PatternItem>
+            <PatternItem suffix="-er">
+              <em>der Lehrer</em>, <em>der Computer</em>
+            </PatternItem>
+            <PatternItem suffix="-en">
+              <em>der Garten</em>
+            </PatternItem>
+            <PatternItem suffix="-el">
+              <em>der Apfel</em>
+            </PatternItem>
+          </GenderPatternCard>
+          <GenderPatternCard gender="n" title="Neuter · das">
+            <PatternItem>Young beings — <em>das Kind</em>, <em>das Baby</em></PatternItem>
+            <PatternItem suffix="-chen / -lein">
+              always neuter — <em>das Mädchen</em>, <em>das Häuschen</em>
+            </PatternItem>
+            <PatternItem suffix="-ment">
+              <em>das Instrument</em>
+            </PatternItem>
+            <PatternItem suffix="-um">
+              <em>das Zentrum</em>
+            </PatternItem>
+          </GenderPatternCard>
+          <GenderPatternCard gender="f" title="Feminine · die">
+            <PatternItem suffix="-e">
+              often feminine — <em>die Blume</em>, <em>die Straße</em>
+            </PatternItem>
+            <PatternItem suffix="-ung">
+              <em>die Wohnung</em>
+            </PatternItem>
+            <PatternItem suffix="-heit / -keit">
+              <em>die Freiheit</em>, <em>die Möglichkeit</em>
+            </PatternItem>
+            <PatternItem suffix="-schaft">
+              <em>die Freundschaft</em>
+            </PatternItem>
+            <PatternItem suffix="-tion">
+              <em>die Nation</em>
+            </PatternItem>
+            <PatternItem suffix="-tät">
+              <em>die Universität</em>
+            </PatternItem>
+            <PatternItem suffix="-ik">
+              <em>die Musik</em>
+            </PatternItem>
+          </GenderPatternCard>
+        </div>
+        <Callout variant="remember" title="Study tip">
+          Ending patterns are <em>hints</em>, not rules. When in doubt, memorise{" "}
+          <strong>article + noun</strong> as one unit — like your notebook says.
+        </Callout>
+      </Section>
+
+      <Section id="plural" number={2} title="Plural (Plural)">
+        <Lead>
+          German plurals change in several ways. The plural article is always{" "}
+          <strong className="grammar-highlight">die</strong> — for every gender.
+        </Lead>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--plural">
+            <thead>
+              <tr>
+                <th>Pattern</th>
+                <th>Example</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>+ <strong>-e</strong></td>
+                <td>der Tisch</td>
+                <td>die Tische</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-e</strong></td>
+                <td>der Kurs</td>
+                <td>die Kurse</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-er</strong></td>
+                <td>das Kind</td>
+                <td>die Kinder</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-er</strong></td>
+                <td>das Ei</td>
+                <td>die Eier</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-n / -en</strong></td>
+                <td>der Nachbar</td>
+                <td>die Nachbarn</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-en</strong></td>
+                <td>die Frau</td>
+                <td>die Frauen</td>
+              </tr>
+              <tr>
+                <td>+ <strong>-nen</strong></td>
+                <td>die Studentin</td>
+                <td>die Studentinnen</td>
+              </tr>
+              <tr>
+                <td>umlaut only</td>
+                <td>der Vogel</td>
+                <td>die Vögel</td>
+              </tr>
+              <tr>
+                <td>umlaut only</td>
+                <td>der Apfel</td>
+                <td>die Äpfel</td>
+              </tr>
+              <tr>
+                <td>umlaut only</td>
+                <td>die Mutter</td>
+                <td>die Mütter</td>
+              </tr>
+              <tr>
+                <td><strong>-er</strong> + umlaut</td>
+                <td>das Buch</td>
+                <td>die Bücher</td>
+              </tr>
+              <tr>
+                <td><strong>-e</strong> + umlaut</td>
+                <td>die Stadt</td>
+                <td>die Städte</td>
+              </tr>
+              <tr>
+                <td>no change</td>
+                <td>der Lehrer</td>
+                <td>die Lehrer</td>
+              </tr>
+              <tr>
+                <td>no change</td>
+                <td>der Computer</td>
+                <td>die Computer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Callout variant="tip" title="Extra plural notes">
+          <ul className="grammar-bullet-list">
+            <li>
+              Many feminine nouns ending in <strong>-e</strong> add{" "}
+              <strong>-n</strong>: <em>die Blume → die Blumen</em>
+            </li>
+            <li>
+              Diminutives in <strong>-chen</strong> usually stay the same:{" "}
+              <em>das Mädchen → die Mädchen</em>
+            </li>
+            <li>
+              Neuter nouns often take <strong>-er</strong>, sometimes with
+              umlaut: <em>das Haus → die Häuser</em>
+            </li>
+          </ul>
+        </Callout>
+      </Section>
+
+      <Section id="alphabet" number={3} title="Alphabet & pronunciation">
+        <p>
+          German uses the Latin alphabet plus <strong>ä</strong>, <strong>ö</strong>,{" "}
+          <strong>ü</strong>, and <strong>ß</strong> (called <em>Eszett</em> or{" "}
+          <em>scharfes S</em>).
+        </p>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--compact">
+            <tbody>
+              <tr>
+                <td><strong>C</strong></td>
+                <td>/ts/ — like “ts” in <em>cats</em></td>
+              </tr>
+              <tr>
+                <td><strong>J</strong></td>
+                <td>/jɔt/ — like English “y” in <em>yes</em></td>
+              </tr>
+              <tr>
+                <td><strong>V</strong></td>
+                <td>/faʊ/ — pronounced like English “f”</td>
+              </tr>
+              <tr>
+                <td><strong>W</strong></td>
+                <td>/veː/ — pronounced like English “v”</td>
+              </tr>
+              <tr>
+                <td><strong>Z</strong></td>
+                <td>/tsɛt/ — like “ts”</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="grammar-section__subtitle">Letter combinations</h3>
+        <ul className="grammar-pattern-list">
+          <li>
+            <strong>ei</strong> → /aɪ/ — <em>mein</em>, <em>Zeit</em>
+          </li>
+          <li>
+            <strong>ie</strong> → long “ee” — <em>lieben</em>, <em>viel</em>
+          </li>
+          <li>
+            <strong>eu / äu</strong> → /ɔʏ/ — <em>neu</em>, <em>Häuser</em>
+          </li>
+          <li>
+            <strong>sch</strong> → “sh” — <em>Schule</em>
+          </li>
+          <li>
+            <strong>tsch</strong> → “ch” as in <em>church</em> — <em>deutsch</em>
+          </li>
+          <li>
+            <strong>sp / st</strong> at the start of a word → “shp / sht” —{" "}
+            <em>sprechen</em>, <em>Stadt</em>
+          </li>
+          <li>
+            <strong>-er</strong> at the end → often a soft “ah” — <em>Lehrer</em>
+          </li>
+          <li>
+            <strong>-ig</strong> at the end → soft “ich” sound — <em>wichtig</em>
+          </li>
+        </ul>
+
+        <h3 className="grammar-section__subtitle">The “ch” sounds</h3>
+        <ul className="grammar-pattern-list">
+          <li>
+            After <strong>a, o, u</strong> → back “ach” sound — <em>Buch</em>,{" "}
+            <em>Fach</em>, <em>Sprachen</em>
+          </li>
+          <li>
+            After other vowels → front “ich” sound — <em>ich</em>, <em>mich</em>,{" "}
+            <em>sprechen</em>
+          </li>
+          <li>
+            <strong>chs</strong> → “ks” — <em>sechs</em>
+          </li>
+          <li>
+            Vowel + <strong>h</strong> → long vowel, silent h — <em>Rahmen</em>
+          </li>
+          <li>
+            <strong>s</strong> before a vowel → voiced “z” — <em>Sohn</em>,{" "}
+            <em>lesen</em>
+          </li>
+        </ul>
+      </Section>
+
+      <Section id="present" number={4} title="Present tense — regular verbs & sein">
+        <p>
+          <strong>Regelmäßige Verben im Präsens</strong> — take the verb stem and
+          add endings. The infinitive <em>kommen</em> → stem <em>komm-</em>.
+        </p>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--conj">
+            <thead>
+              <tr>
+                <th>Person</th>
+                <th>Ending</th>
+                <th>kommen</th>
+                <th>arbeiten</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ich</td>
+                <td>-e</td>
+                <td>komme</td>
+                <td>arbeite</td>
+              </tr>
+              <tr>
+                <td>du</td>
+                <td>-st</td>
+                <td>kommst</td>
+                <td>arbeitest</td>
+              </tr>
+              <tr>
+                <td>er / sie / es</td>
+                <td>-t</td>
+                <td>kommt</td>
+                <td>arbeitet</td>
+              </tr>
+              <tr>
+                <td>wir</td>
+                <td>-en</td>
+                <td>kommen</td>
+                <td>arbeiten</td>
+              </tr>
+              <tr>
+                <td>ihr</td>
+                <td>-t</td>
+                <td>kommt</td>
+                <td>arbeitet</td>
+              </tr>
+              <tr>
+                <td>sie / Sie</td>
+                <td>-en</td>
+                <td>kommen</td>
+                <td>arbeiten</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Callout variant="tip" title="Verbs ending in -t, -d, -m, -n">
+          If the stem ends in <strong>-t</strong> or <strong>-d</strong>, add an
+          extra <strong>e</strong> before <strong>-st</strong> and{" "}
+          <strong>-t</strong> so you can pronounce them:{" "}
+          <em>arbeitest</em>, <em>arbeitet</em> (not <s>arbeitst</s>).
+        </Callout>
+
+        <h3 className="grammar-section__subtitle">sein (to be) — irregular</h3>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--compact">
+            <tbody>
+              <tr><td>ich</td><td>bin</td></tr>
+              <tr><td>du</td><td>bist</td></tr>
+              <tr><td>er / sie / es</td><td>ist</td></tr>
+              <tr><td>wir</td><td>sind</td></tr>
+              <tr><td>ihr</td><td>seid</td></tr>
+              <tr><td>sie / Sie</td><td>sind</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section id="questions" number={5} title="Questions (Fragen)">
+        <div className="grammar-qtype-grid">
+          <QuestionTypeCard
+            title="W-questions"
+            formula={<>W-word + verb + subject + …</>}
+          >
+            <ul className="grammar-example-list">
+              <Ex de="Wo wohnst du?" en="Where do you live?" />
+            </ul>
+          </QuestionTypeCard>
+          <QuestionTypeCard
+            title="Yes / No questions"
+            formula={<>Verb + subject + …</>}
+          >
+            <ul className="grammar-example-list">
+              <Ex de="Wohnst du in Berlin?" en="Do you live in Berlin?" />
+            </ul>
+          </QuestionTypeCard>
+        </div>
+
+        <h3 className="grammar-section__subtitle">Common questions with <em>wie</em></h3>
+        <ul className="grammar-example-list">
+          <Ex de="Wie geht's? / Wie geht es Ihnen?" en="How are you?" />
+          <Ex de="Wie heißen Sie? / Wie heißt du?" en="What is your name?" />
+          <Ex de="Wie schreibt man das?" en="How do you spell that?" />
+          <Ex de="Wie ist Ihr/dein Name?" en="What is your name?" />
+          <Ex de="Wie ist Ihre/deine Nationalität?" en="What is your nationality?" />
+          <Ex de="Wie ist Ihre/deine Adresse?" en="What is your address?" />
+          <Ex de="Wie ist Ihre/deine Telefonnummer?" en="What is your phone number?" />
+          <Ex de="Wie ist Ihre/deine E-Mail-Adresse?" en="What is your email?" />
+        </ul>
+        <p className="grammar-note">
+          <strong>Vorname</strong> = first name · <strong>Nachname</strong> /{" "}
+          <strong>Familienname</strong> = surname · <strong>Handynummer</strong> =
+          mobile number
+        </p>
+      </Section>
+
+      <Section id="w-words" number={6} title="W-question words">
+        <div className="grammar-w-grid">
+          <div className="grammar-w-card">
+            <h3>was</h3>
+            <p className="grammar-w-card__en">what</p>
+            <ul className="grammar-example-list">
+              <Ex de="Was machst du?" />
+              <Ex de="Was ist das?" />
+              <Ex de="Was lernst du?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>warum</h3>
+            <p className="grammar-w-card__en">why</p>
+            <ul className="grammar-example-list">
+              <Ex de="Warum lernst du Deutsch?" />
+              <Ex de="Warum bist du müde?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>welche</h3>
+            <p className="grammar-w-card__en">which</p>
+            <ul className="grammar-example-list">
+              <Ex de="Welche Sprachen sprechen Sie?" />
+              <Ex de="Welche Sprache sprichst du?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>wo</h3>
+            <p className="grammar-w-card__en">where (location)</p>
+            <ul className="grammar-example-list">
+              <Ex de="Wo wohnst du?" />
+              <Ex de="Wo ist das Buch?" />
+              <Ex de="Wo arbeitest du?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>woher</h3>
+            <p className="grammar-w-card__en">from where (origin)</p>
+            <ul className="grammar-example-list">
+              <Ex de="Woher kommst du?" />
+              <Ex de="Woher kommt er?" />
+              <Ex de="Woher hast du das?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>wohin</h3>
+            <p className="grammar-w-card__en">to where (destination)</p>
+            <ul className="grammar-example-list">
+              <Ex de="Wohin gehst du?" />
+              <Ex de="Wohin fährt sie?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>wer</h3>
+            <p className="grammar-w-card__en">who</p>
+            <ul className="grammar-example-list">
+              <Ex de="Wer bist du?" />
+              <Ex de="Wer ist das?" />
+              <Ex de="Wer kommt morgen?" />
+            </ul>
+          </div>
+          <div className="grammar-w-card">
+            <h3>wann</h3>
+            <p className="grammar-w-card__en">when</p>
+            <ul className="grammar-example-list">
+              <Ex de="Wann beginnt der Kurs?" />
+              <Ex de="Wann kommst du?" />
+              <Ex de="Wann hast du Zeit?" />
+            </ul>
+          </div>
+        </div>
+        <Callout variant="insight" title="wo · woher · wohin">
+          <strong>Wo</strong> asks where something <em>is</em>.{" "}
+          <strong>Woher</strong> asks where something <em>comes from</em>.{" "}
+          <strong>Wohin</strong> asks where something <em>is going</em>.
+        </Callout>
+      </Section>
+
+      <Section id="cases" number={7} title="Definite articles in the cases">
+        <Lead>
+          At A1 you meet three cases. The definite article changes shape; the
+          noun itself changes less often (except plural dative).
+        </Lead>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--gender">
+            <thead>
+              <GenderTableHead useCol />
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nominativ</td>
+                <td className="grammar-col grammar-col--der">der</td>
+                <td className="grammar-col grammar-col--das">das</td>
+                <td className="grammar-col grammar-col--die">die</td>
+                <td className="grammar-col grammar-col--die-pl">die</td>
+                <td>subject</td>
+              </tr>
+              <tr>
+                <td>Akkusativ</td>
+                <td className="grammar-col grammar-col--der">den</td>
+                <td className="grammar-col grammar-col--das">das</td>
+                <td className="grammar-col grammar-col--die">die</td>
+                <td className="grammar-col grammar-col--die-pl">die</td>
+                <td>direct object</td>
+              </tr>
+              <tr>
+                <td>Dativ</td>
+                <td className="grammar-col grammar-col--der">dem</td>
+                <td className="grammar-col grammar-col--das">dem</td>
+                <td className="grammar-col grammar-col--die">der</td>
+                <td className="grammar-col grammar-col--die-pl">
+                  den + <em>n</em>
+                </td>
+                <td>indirect object; after mit, aus, von, zu, bei …</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul className="grammar-example-list">
+          <Ex de="Der Mann arbeitet." en="The man works. (Nom.)" />
+          <Ex de="Ich sehe den Mann." en="I see the man. (Akk.)" />
+          <Ex de="Ich spreche mit dem Mann." en="I speak with the man. (Dat.)" />
+          <Ex de="Ich spreche mit den Kindern." en="with the children (Dat. pl. + n)" />
+        </ul>
+        <Callout variant="remember" title="Quick memory hook">
+          Only <strong>masculine</strong> changes in Akkusativ (<em>der → den</em>
+          ). Dativ uses <em>dem / der / dem</em>; plural dative is{" "}
+          <em>den + n</em> on the noun when possible.
+        </Callout>
+      </Section>
+
+      <Section id="aus" number={8} title="aus + Dative — countries & origins">
+        <Lead>
+          <strong>aus</strong> is a dative preposition — <em>no exceptions</em>. Use
+          it for where someone or something comes <em>from</em>.
+        </Lead>
+        <h3 className="grammar-section__subtitle">Most countries (neuter, no article)</h3>
+        <ul className="grammar-example-list">
+          <Ex de="Ich komme aus Deutschland." />
+          <Ex de="aus China" />
+          <Ex de="aus Österreich" />
+          <Ex de="aus Russland" />
+          <Ex de="aus Berlin." en="cities & continents — no article" />
+        </ul>
+        <p>
+          With an adjective, the neuter article appears:{" "}
+          <em>aus dem schönen Deutschland</em>.
+        </p>
+
+        <h3 className="grammar-section__subtitle">Countries with an article</h3>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--compact">
+            <thead>
+              <tr>
+                <th>Gender</th>
+                <th>Dative</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>masculine</td>
+                <td>dem</td>
+                <td>aus dem Iran, aus dem Irak</td>
+              </tr>
+              <tr>
+                <td>feminine</td>
+                <td>der</td>
+                <td>aus der Schweiz, aus der Türkei, aus der Ukraine</td>
+              </tr>
+              <tr>
+                <td>plural</td>
+                <td>den</td>
+                <td>aus den USA, aus den Niederlanden</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section id="travel" number={9} title="nach vs in — travelling to countries">
+        <ul className="grammar-pattern-list">
+          <li>
+            <strong>nach</strong> + country <em>without</em> article —{" "}
+            <em>nach Deutschland</em>
+          </li>
+          <li>
+            <strong>in</strong> + <strong>Akkusativ</strong> + country{" "}
+            <em>with</em> article — <em>in die Schweiz</em>,{" "}
+            <em>in den Iran</em>
+          </li>
+        </ul>
+        <ul className="grammar-example-list">
+          <Ex de="Wir reisen nach Deutschland." />
+          <Ex de="Wir fahren in die Schweiz." />
+          <Ex de="Wir fliegen in den Iran." />
+        </ul>
+        <p className="grammar-note">
+          <em>Wie heißt Ihr Land in Ihrer Sprache?</em> — What is your country
+          called in your language?
+        </p>
+      </Section>
+
+      <Section id="possessives" number={10} title="Possessive pronouns (mein …)">
+        <p>Eight stems you meet constantly:</p>
+        <div className="grammar-stem-grid">
+          <span className="grammar-stem-chip">mein · my</span>
+          <span className="grammar-stem-chip">dein · your (du)</span>
+          <span className="grammar-stem-chip">sein · his / its</span>
+          <span className="grammar-stem-chip">ihr · her</span>
+          <span className="grammar-stem-chip">unser · our</span>
+          <span className="grammar-stem-chip">euer · your (ihr)</span>
+          <span className="grammar-stem-chip">ihr · their</span>
+          <span className="grammar-stem-chip">Ihr · your (Sie)</span>
+        </div>
+        <p>
+          Endings follow the same pattern as <strong>ein</strong> /{" "}
+          <strong>kein</strong> — they agree with gender, case, and number.
+        </p>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--gender">
+            <thead>
+              <GenderTableHead />
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nominativ</td>
+                <td className="grammar-col grammar-col--der">mein</td>
+                <td className="grammar-col grammar-col--das">mein</td>
+                <td className="grammar-col grammar-col--die">meine</td>
+                <td className="grammar-col grammar-col--die-pl">meine</td>
+              </tr>
+              <tr>
+                <td>Akkusativ</td>
+                <td className="grammar-col grammar-col--der">meinen</td>
+                <td className="grammar-col grammar-col--das">mein</td>
+                <td className="grammar-col grammar-col--die">meine</td>
+                <td className="grammar-col grammar-col--die-pl">meine</td>
+              </tr>
+              <tr>
+                <td>Dativ</td>
+                <td className="grammar-col grammar-col--der">meinem</td>
+                <td className="grammar-col grammar-col--das">meinem</td>
+                <td className="grammar-col grammar-col--die">meiner</td>
+                <td className="grammar-col grammar-col--die-pl">meinen</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <Callout variant="insight" title="Same pattern as ein / kein">
+          The endings on <em>mein, dein, sein …</em> work like{" "}
+          <strong>ein</strong> and <strong>kein</strong> — only the stem changes.
+        </Callout>
+      </Section>
+
+      <Section id="two-way" number={11} title="Two-way preposition: in">
+        <p>
+          <strong>in</strong> can take <strong>Dativ</strong> or{" "}
+          <strong>Akkusativ</strong>:
+        </p>
+        <ul className="grammar-pattern-list">
+          <li>
+            <strong>in + Dativ</strong> — location (where?) — no movement:{" "}
+            <em>Ich bin in der Schule.</em>
+          </li>
+          <li>
+            <strong>in + Akkusativ</strong> — direction (where to?) — movement:{" "}
+            <em>Ich gehe in die Schule.</em>
+          </li>
+        </ul>
+        <Callout variant="remember" title="Wo? vs Wohin?">
+          <strong>Wo?</strong> → Dativ (static). <strong>Wohin?</strong> →
+          Akkusativ (motion). The same logic applies to other two-way
+          prepositions you will meet later (<em>an, auf, über, unter, vor, hinter,
+          neben, zwischen</em>).
+        </Callout>
+      </Section>
+
+      <Section id="pronouns" number={12} title="Personal vs reflexive pronouns">
+        <p>
+          <strong>Personal pronouns</strong> replace a noun: <em>ich, du, er, sie,
+          es, wir, ihr, sie, Sie</em>.
+        </p>
+        <p>
+          <strong>Reflexive pronouns</strong> refer back to the subject — common
+          with reflexive verbs like <em>sich freuen</em>, <em>sich waschen</em>:
+        </p>
+        <div className="grammar-table-wrap">
+          <table className="grammar-lesson-table grammar-lesson-table--compact">
+            <tbody>
+              <tr><td>ich</td><td>mich / mir</td></tr>
+              <tr><td>du</td><td>dich / dir</td></tr>
+              <tr><td>er / sie / es</td><td>sich</td></tr>
+              <tr><td>wir</td><td>uns</td></tr>
+              <tr><td>ihr</td><td>euch</td></tr>
+              <tr><td>sie / Sie</td><td>sich</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul className="grammar-example-list">
+          <Ex de="Ich wasche mich." en="I wash myself." />
+          <Ex de="Freust du dich?" en="Are you looking forward to it?" />
+        </ul>
+        <Callout title="Preview for later lessons">
+          Whether you need <em>mich</em> or <em>mir</em> depends on the case the
+          verb requires — you will practise this with common reflexive verbs in
+          later Lektionen.
+        </Callout>
+      </Section>
+
+      <footer className="grammar-lesson__footer">
+        <Link href="/grammar" className="grammar-back-link">
+          ← All grammar lessons
+        </Link>
+      </footer>
+    </article>
+  );
+}

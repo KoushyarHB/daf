@@ -83,6 +83,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const vocabActive = pathname === "/";
+  const grammarActive = pathname.startsWith("/grammar");
   const lessonsActive = pathname.startsWith("/lesson-pages");
   const importActive = pathname.startsWith("/import-community-cards");
   const tagsActive = pathname.startsWith("/tags");
@@ -159,6 +160,13 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
               >
                 Vocabulary
+              </Link>
+              <Link
+                className={`site-nav-link${grammarActive ? " is-active" : ""}`}
+                href="/grammar"
+                onClick={() => setMenuOpen(false)}
+              >
+                Grammar
               </Link>
               <Link
                 className={`site-nav-link${lessonsActive ? " is-active" : ""}`}
