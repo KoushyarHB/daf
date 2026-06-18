@@ -7,6 +7,7 @@ import { speakTextForHead } from "@/lib/audio/speak-text";
 
 type GrammarSpeakButtonProps = {
   german: string;
+  speakText?: string;
   compact?: boolean;
 };
 
@@ -25,13 +26,17 @@ function speakWithBrowserTts(text: string): void {
 
 export default function GrammarSpeakButton({
   german,
+  speakText: speakTextOverride,
   compact = true,
 }: GrammarSpeakButtonProps) {
   const playerRef = useRef<HTMLAudioElement | null>(null);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const speakText = speakTextForHead(german) || german.trim();
+  const speakText =
+    speakTextOverride?.trim() ||
+    speakTextForHead(german) ||
+    german.trim();
   const cls = compact ? "grammar-speak-btn" : "grammar-speak-btn grammar-speak-btn--lg";
 
   async function play() {

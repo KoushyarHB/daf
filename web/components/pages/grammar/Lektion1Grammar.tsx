@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import AlphabetPronunciationSection from "@/components/pages/grammar/AlphabetPronunciationSection";
 import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSection";
 import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSection";
 import {
@@ -79,88 +80,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="alphabet" number={3} title="Alphabet & pronunciation">
-        <p>
-          German uses the Latin alphabet plus <strong>ä</strong>, <strong>ö</strong>,{" "}
-          <strong>ü</strong>, and <strong>ß</strong> (called <em>Eszett</em> or{" "}
-          <em>scharfes S</em>).
-        </p>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--compact">
-            <tbody>
-              <tr>
-                <td><strong>C</strong></td>
-                <td>/ts/ — like “ts” in <em>cats</em></td>
-              </tr>
-              <tr>
-                <td><strong>J</strong></td>
-                <td>/jɔt/ — like English “y” in <em>yes</em></td>
-              </tr>
-              <tr>
-                <td><strong>V</strong></td>
-                <td>/faʊ/ — pronounced like English “f”</td>
-              </tr>
-              <tr>
-                <td><strong>W</strong></td>
-                <td>/veː/ — pronounced like English “v”</td>
-              </tr>
-              <tr>
-                <td><strong>Z</strong></td>
-                <td>/tsɛt/ — like “ts”</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 className="grammar-section__subtitle">Letter combinations</h3>
-        <ul className="grammar-pattern-list">
-          <li>
-            <strong>ei</strong> → /aɪ/ — <em>mein</em>, <em>Zeit</em>
-          </li>
-          <li>
-            <strong>ie</strong> → long “ee” — <em>lieben</em>, <em>viel</em>
-          </li>
-          <li>
-            <strong>eu / äu</strong> → /ɔʏ/ — <em>neu</em>, <em>Häuser</em>
-          </li>
-          <li>
-            <strong>sch</strong> → “sh” — <em>Schule</em>
-          </li>
-          <li>
-            <strong>tsch</strong> → “ch” as in <em>church</em> — <em>deutsch</em>
-          </li>
-          <li>
-            <strong>sp / st</strong> at the start of a word → “shp / sht” —{" "}
-            <em>sprechen</em>, <em>Stadt</em>
-          </li>
-          <li>
-            <strong>-er</strong> at the end → often a soft “ah” — <em>Lehrer</em>
-          </li>
-          <li>
-            <strong>-ig</strong> at the end → soft “ich” sound — <em>wichtig</em>
-          </li>
-        </ul>
-
-        <h3 className="grammar-section__subtitle">The “ch” sounds</h3>
-        <ul className="grammar-pattern-list">
-          <li>
-            After <strong>a, o, u</strong> → back “ach” sound — <em>Buch</em>,{" "}
-            <em>Fach</em>, <em>Sprachen</em>
-          </li>
-          <li>
-            After other vowels → front “ich” sound — <em>ich</em>, <em>mich</em>,{" "}
-            <em>sprechen</em>
-          </li>
-          <li>
-            <strong>chs</strong> → “ks” — <em>sechs</em>
-          </li>
-          <li>
-            Vowel + <strong>h</strong> → long vowel, silent h — <em>Rahmen</em>
-          </li>
-          <li>
-            <strong>s</strong> before a vowel → voiced “z” — <em>Sohn</em>,{" "}
-            <em>lesen</em>
-          </li>
-        </ul>
+        <AlphabetPronunciationSection />
       </Section>
 
       <Section id="present" number={4} title="Present tense — regular verbs & sein">

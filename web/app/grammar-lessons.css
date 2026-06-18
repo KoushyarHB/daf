@@ -1158,3 +1158,201 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Alphabet — notebook layout */
+.grammar-farsi {
+  font-family: "Segoe UI", Tahoma, "Noto Naskh Arabic", "Arial Unicode MS", sans-serif;
+  font-size: 0.82em;
+  color: #4a3d32;
+  line-height: 1.35;
+}
+
+.grammar-alphabet-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+@media (min-width: 40rem) {
+  .grammar-alphabet-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+}
+
+.grammar-alphabet-legend {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border-left: 4px solid #e8c84a;
+  background: rgba(255, 248, 230, 0.85);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 40rem) {
+  .grammar-alphabet-legend {
+    width: 7.25rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+}
+
+.grammar-alphabet-legend__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--grm-der);
+}
+
+.grammar-alphabet-legend__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grammar-alphabet-legend__list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.35rem;
+  padding: 0.18rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.grammar-alphabet-legend__list li:last-child {
+  border-bottom: none;
+}
+
+.grammar-alphabet-notebook {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #d8dce2;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 1.35rem,
+      rgba(47, 111, 184, 0.07) 1.35rem,
+      rgba(47, 111, 184, 0.07) calc(1.35rem + 1px)
+    ),
+    #fffef9;
+}
+
+.grammar-alphabet-grid {
+  display: grid;
+  gap: 0.4rem 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 32rem) {
+  .grammar-alphabet-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem 1.15rem;
+  }
+}
+
+.grammar-alphabet-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.grammar-alphabet-letter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.12rem 0.2rem;
+  min-height: 1.4rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.grammar-alphabet-letter__glyph {
+  flex: 0 0 2.85rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #1e3a5f;
+}
+
+.grammar-alphabet-letter__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.45rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.grammar-alphabet-letter__ipa {
+  font-size: 0.72rem;
+  color: #5a6573;
+  font-style: italic;
+}
+
+.grammar-alphabet-letter__note {
+  font-size: 0.68rem;
+  color: #6a5a40;
+  font-style: italic;
+}
+
+.grammar-alphabet-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.grammar-alphabet-rule {
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #e8ecf0;
+  background: #fafbfd;
+}
+
+.grammar-alphabet-rule__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.55rem;
+  margin-bottom: 0.3rem;
+}
+
+.grammar-alphabet-rule__label {
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--grm-der);
+  min-width: 4.5rem;
+}
+
+.grammar-alphabet-rule__guide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.45rem;
+  font-size: 0.76rem;
+  color: #3d4a57;
+}
+
+.grammar-alphabet-rule__ipa {
+  font-style: italic;
+  color: #5a6573;
+}
+
+.grammar-alphabet-rule__en {
+  font-style: italic;
+  color: var(--gray-en);
+}
+
+.grammar-alphabet-rule__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+}
