@@ -70,7 +70,7 @@ export function GenderChip({
 }: {
   article: string;
   label: string;
-  gender: "m" | "f" | "n";
+  gender: "m" | "f" | "n" | "pl";
 }) {
   return (
     <span className={`grammar-gender-chip grammar-gender-chip--${gender}`}>

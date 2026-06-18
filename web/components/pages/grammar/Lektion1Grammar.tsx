@@ -1,14 +1,12 @@
 import Link from "next/link";
 
+import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSection";
 import {
   Callout,
   Ex,
   Formula,
-  GenderChip,
-  GenderPatternCard,
   GenderTableHead,
   Lead,
-  PatternItem,
   QuestionTypeCard,
   Section,
 } from "@/components/pages/grammar/grammar-ui";
@@ -68,73 +66,7 @@ export default function Lektion1Grammar() {
           — not the bare word alone. Gender affects adjectives, articles, and
           cases throughout the course.
         </Lead>
-        <div className="grammar-gender-chip-row">
-          <GenderChip article="der" label="masculine" gender="m" />
-          <GenderChip article="das" label="neuter" gender="n" />
-          <GenderChip article="die" label="feminine" gender="f" />
-          <GenderChip article="die" label="plural (all genders)" gender="f" />
-        </div>
-        <ul className="grammar-example-list grammar-example-list--cards">
-          <Ex de="der Tisch" en="the table" />
-          <Ex de="die Tür" en="the door" />
-          <Ex de="das Buch" en="the book" />
-          <Ex de="das Wasser" en="the water" />
-        </ul>
-
-        <div className="grammar-gender-grid">
-          <GenderPatternCard gender="m" title="Masculine · der">
-            <PatternItem>Jobs & male people — <em>der Mann</em>, <em>der Arzt</em></PatternItem>
-            <PatternItem>Days, months, seasons — <em>der Montag</em>, <em>der Winter</em></PatternItem>
-            <PatternItem suffix="-er">
-              <em>der Lehrer</em>, <em>der Computer</em>
-            </PatternItem>
-            <PatternItem suffix="-en">
-              <em>der Garten</em>
-            </PatternItem>
-            <PatternItem suffix="-el">
-              <em>der Apfel</em>
-            </PatternItem>
-          </GenderPatternCard>
-          <GenderPatternCard gender="n" title="Neuter · das">
-            <PatternItem>Young beings — <em>das Kind</em>, <em>das Baby</em></PatternItem>
-            <PatternItem suffix="-chen / -lein">
-              always neuter — <em>das Mädchen</em>, <em>das Häuschen</em>
-            </PatternItem>
-            <PatternItem suffix="-ment">
-              <em>das Instrument</em>
-            </PatternItem>
-            <PatternItem suffix="-um">
-              <em>das Zentrum</em>
-            </PatternItem>
-          </GenderPatternCard>
-          <GenderPatternCard gender="f" title="Feminine · die">
-            <PatternItem suffix="-e">
-              often feminine — <em>die Blume</em>, <em>die Straße</em>
-            </PatternItem>
-            <PatternItem suffix="-ung">
-              <em>die Wohnung</em>
-            </PatternItem>
-            <PatternItem suffix="-heit / -keit">
-              <em>die Freiheit</em>, <em>die Möglichkeit</em>
-            </PatternItem>
-            <PatternItem suffix="-schaft">
-              <em>die Freundschaft</em>
-            </PatternItem>
-            <PatternItem suffix="-tion">
-              <em>die Nation</em>
-            </PatternItem>
-            <PatternItem suffix="-tät">
-              <em>die Universität</em>
-            </PatternItem>
-            <PatternItem suffix="-ik">
-              <em>die Musik</em>
-            </PatternItem>
-          </GenderPatternCard>
-        </div>
-        <Callout variant="remember" title="Study tip">
-          Ending patterns are <em>hints</em>, not rules. When in doubt, memorise{" "}
-          <strong>article + noun</strong> as one unit — like your notebook says.
-        </Callout>
+        <GenderPatternsSection />
       </Section>
 
       <Section id="plural" number={2} title="Plural (Plural)">

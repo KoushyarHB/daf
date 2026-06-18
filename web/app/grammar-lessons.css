@@ -347,28 +347,28 @@
 .grammar-gender-chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.75rem 0 1rem;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0.4rem;
 }
 
 .grammar-gender-chip {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.1rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 8px;
+  gap: 0;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
   border: 1px solid;
-  min-width: 5.5rem;
+  min-width: 4.75rem;
 }
 
 .grammar-gender-chip__article {
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 800;
   line-height: 1.1;
 }
 
 .grammar-gender-chip__label {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -391,6 +391,12 @@
   background: var(--grm-die-bg);
   border-color: var(--grm-die-border);
   color: var(--grm-die);
+}
+
+.grammar-gender-chip--pl {
+  background: var(--grm-pl-bg);
+  border-color: var(--grm-pl-border);
+  color: var(--grm-pl);
 }
 
 /* Gender pattern cards */
@@ -479,6 +485,218 @@
 
 .grammar-gender-card--f .grammar-gender-card__item {
   color: #5a2a42;
+}
+
+/* Expanded gender pattern panels */
+.grammar-gender-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.grammar-gender-panel {
+  border-radius: 8px;
+  border: 1px solid;
+  overflow: hidden;
+}
+
+.grammar-gender-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0.55rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.grammar-gender-panel__title {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.grammar-gender-panel__article {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.grammar-gender-panel__rules {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0.45rem 0.35rem;
+}
+
+.grammar-gender-rule {
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.grammar-gender-rule:last-child {
+  border-bottom: none;
+  padding-bottom: 0.1rem;
+}
+
+.grammar-gender-rule__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+@media (min-width: 36rem) {
+  .grammar-gender-rule__row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.grammar-gender-rule__label {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  max-width: 100%;
+}
+
+@media (min-width: 36rem) {
+  .grammar-gender-rule__label {
+    width: 9.5rem;
+    flex-shrink: 0;
+  }
+}
+
+.grammar-gender-rule__accuracy {
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.05rem 0.3rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #4a5564;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.grammar-gender-rule__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.3rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.grammar-gender-panel--m {
+  background: var(--grm-der-bg);
+  border-color: var(--grm-der-border);
+  color: var(--grm-der);
+}
+
+.grammar-gender-panel--m .grammar-gender-rule__label {
+  color: #2a4a6a;
+}
+
+.grammar-gender-panel--n {
+  background: var(--grm-das-bg);
+  border-color: var(--grm-das-border);
+  color: var(--grm-das);
+}
+
+.grammar-gender-panel--n .grammar-gender-rule__label {
+  color: #2a4a38;
+}
+
+.grammar-gender-panel--f {
+  background: var(--grm-die-bg);
+  border-color: var(--grm-die-border);
+  color: var(--grm-die);
+}
+
+.grammar-gender-panel--f .grammar-gender-rule__label {
+  color: #5a2a42;
+}
+
+.grammar-starter-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+  margin: 0 0 0.45rem;
+}
+
+.grammar-gender-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.12rem 0.28rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  max-width: 100%;
+}
+
+.grammar-gender-word__de {
+  font-weight: 600;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.grammar-gender-word__en {
+  font-size: 0.68rem;
+  color: var(--gray-en);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.grammar-speak-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid rgba(47, 111, 184, 0.25);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--blue);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.grammar-speak-btn:hover:not(:disabled) {
+  background: #eef4fb;
+  border-color: rgba(47, 111, 184, 0.45);
+}
+
+.grammar-speak-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.grammar-speak-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.grammar-speak-btn svg {
+  width: 0.58rem;
+  height: 0.58rem;
+  margin-left: 0.04rem;
+}
+
+.grammar-speak-btn--lg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.grammar-speak-btn--lg svg {
+  width: 0.85rem;
+  height: 0.85rem;
 }
 
 /* Examples — vocab-style › lines */
