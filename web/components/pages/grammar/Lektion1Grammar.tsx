@@ -3,6 +3,7 @@ import Link from "next/link";
 import AlphabetPronunciationSection from "@/components/pages/grammar/AlphabetPronunciationSection";
 import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSection";
 import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSection";
+import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection";
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import {
   Callout,
@@ -84,80 +85,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="present" number={4} title="Present tense — regular verbs & sein">
-        <p>
-          <strong>Regelmäßige Verben im Präsens</strong> — take the verb stem and
-          add endings. The infinitive <em>kommen</em> → stem <em>komm-</em>.
-        </p>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--conj">
-            <thead>
-              <tr>
-                <th>Person</th>
-                <th>Ending</th>
-                <th>kommen</th>
-                <th>arbeiten</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ich</td>
-                <td>-e</td>
-                <td>komme</td>
-                <td>arbeite</td>
-              </tr>
-              <tr>
-                <td>du</td>
-                <td>-st</td>
-                <td>kommst</td>
-                <td>arbeitest</td>
-              </tr>
-              <tr>
-                <td>er / sie / es</td>
-                <td>-t</td>
-                <td>kommt</td>
-                <td>arbeitet</td>
-              </tr>
-              <tr>
-                <td>wir</td>
-                <td>-en</td>
-                <td>kommen</td>
-                <td>arbeiten</td>
-              </tr>
-              <tr>
-                <td>ihr</td>
-                <td>-t</td>
-                <td>kommt</td>
-                <td>arbeitet</td>
-              </tr>
-              <tr>
-                <td>sie / Sie</td>
-                <td>-en</td>
-                <td>kommen</td>
-                <td>arbeiten</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <Callout variant="tip" title="Verbs ending in -t, -d, -m, -n">
-          If the stem ends in <strong>-t</strong> or <strong>-d</strong>, add an
-          extra <strong>e</strong> before <strong>-st</strong> and{" "}
-          <strong>-t</strong> so you can pronounce them:{" "}
-          <em>arbeitest</em>, <em>arbeitet</em> (not <s>arbeitst</s>).
-        </Callout>
-
-        <h3 className="grammar-section__subtitle">sein (to be) — irregular</h3>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--compact">
-            <tbody>
-              <tr><td>ich</td><td>bin</td></tr>
-              <tr><td>du</td><td>bist</td></tr>
-              <tr><td>er / sie / es</td><td>ist</td></tr>
-              <tr><td>wir</td><td>sind</td></tr>
-              <tr><td>ihr</td><td>seid</td></tr>
-              <tr><td>sie / Sie</td><td>sind</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <PresentTenseSection />
       </Section>
 
       <Section id="questions" number={5} title="Questions (Fragen)">

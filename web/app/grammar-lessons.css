@@ -996,6 +996,172 @@
   align-items: center;
 }
 
+/* Present tense — conjugation tables */
+.grammar-present-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.grammar-present-panel {
+  border-radius: 10px;
+  border: 1px solid #d8e4f0;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.06);
+}
+
+.grammar-present-panel--regular {
+  border-top: 3px solid var(--grm-der);
+}
+
+.grammar-present-panel--sein {
+  border-top: 3px solid var(--grm-teal);
+}
+
+.grammar-present-panel__head {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #e8eef5;
+  background: linear-gradient(180deg, #f8fafc, #fff);
+}
+
+.grammar-present-panel--regular .grammar-present-panel__head {
+  background: linear-gradient(180deg, var(--grm-der-bg), #fff);
+}
+
+.grammar-present-panel--sein .grammar-present-panel__head {
+  background: linear-gradient(180deg, var(--grm-teal-bg), #fff);
+}
+
+.grammar-present-panel__title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--head-blue);
+}
+
+.grammar-present-panel--sein .grammar-present-panel__title {
+  color: var(--grm-teal);
+}
+
+.grammar-present-panel__subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.76rem;
+  color: #5a6573;
+}
+
+.grammar-table-wrap--conj {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.grammar-conj-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.grammar-conj-table th,
+.grammar-conj-table td {
+  padding: 0.42rem 0.55rem;
+  text-align: left;
+  border-bottom: 1px solid #e8eef5;
+  vertical-align: middle;
+}
+
+.grammar-conj-table thead th {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #5a6573;
+  background: #f4f8fc;
+  border-bottom: 2px solid #d8e4f0;
+}
+
+.grammar-conj-table tbody tr:last-child th,
+.grammar-conj-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.grammar-conj-table tbody tr:nth-child(even) td:not(.grammar-conj-table__ending),
+.grammar-conj-table tbody tr:nth-child(even) th.grammar-conj-table__person {
+  background: #fafbfd;
+}
+
+.grammar-conj-table__person {
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: #2f3d4d;
+  white-space: nowrap;
+  width: 1%;
+  background: #f8fafc !important;
+}
+
+.grammar-conj-table__ending {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.grammar-ending-chip {
+  display: inline-block;
+  padding: 0.12rem 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #6b4f12;
+  background: var(--grm-gold-bg);
+  border: 1px solid #e8d4a0;
+  border-radius: 999px;
+}
+
+.grammar-conj-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.grammar-conj-form__word {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.05rem 0.2rem;
+}
+
+.grammar-conj-form__stem {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--blue);
+}
+
+.grammar-conj-form__suffix {
+  font-weight: 800;
+  font-style: italic;
+  color: #6b4f12;
+  background: var(--grm-gold-bg);
+  border: 1px solid #e8d4a0;
+  border-radius: 4px;
+  padding: 0 0.15rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.grammar-conj-form__farsi {
+  font-family: "Segoe UI", Tahoma, "Noto Naskh Arabic", "Arial Unicode MS", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #9aa3ad;
+  opacity: 0.92;
+}
+
+.grammar-conj-table--sein td:last-child {
+  width: 55%;
+}
+
 /* Possessive stems */
 .grammar-stem-grid {
   display: flex;
