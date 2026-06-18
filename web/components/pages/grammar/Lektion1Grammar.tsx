@@ -3,13 +3,13 @@ import Link from "next/link";
 import AlphabetPronunciationSection from "@/components/pages/grammar/AlphabetPronunciationSection";
 import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSection";
 import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSection";
+import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import {
   Callout,
   Ex,
   Formula,
   GenderTableHead,
   Lead,
-  QuestionTypeCard,
   Section,
 } from "@/components/pages/grammar/grammar-ui";
 
@@ -161,41 +161,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="questions" number={5} title="Questions (Fragen)">
-        <div className="grammar-qtype-grid">
-          <QuestionTypeCard
-            title="W-questions"
-            formula={<>W-word + verb + subject + …</>}
-          >
-            <ul className="grammar-example-list">
-              <Ex de="Wo wohnst du?" en="Where do you live?" />
-            </ul>
-          </QuestionTypeCard>
-          <QuestionTypeCard
-            title="Yes / No questions"
-            formula={<>Verb + subject + …</>}
-          >
-            <ul className="grammar-example-list">
-              <Ex de="Wohnst du in Berlin?" en="Do you live in Berlin?" />
-            </ul>
-          </QuestionTypeCard>
-        </div>
-
-        <h3 className="grammar-section__subtitle">Common questions with <em>wie</em></h3>
-        <ul className="grammar-example-list">
-          <Ex de="Wie geht's? / Wie geht es Ihnen?" en="How are you?" />
-          <Ex de="Wie heißen Sie? / Wie heißt du?" en="What is your name?" />
-          <Ex de="Wie schreibt man das?" en="How do you spell that?" />
-          <Ex de="Wie ist Ihr/dein Name?" en="What is your name?" />
-          <Ex de="Wie ist Ihre/deine Nationalität?" en="What is your nationality?" />
-          <Ex de="Wie ist Ihre/deine Adresse?" en="What is your address?" />
-          <Ex de="Wie ist Ihre/deine Telefonnummer?" en="What is your phone number?" />
-          <Ex de="Wie ist Ihre/deine E-Mail-Adresse?" en="What is your email?" />
-        </ul>
-        <p className="grammar-note">
-          <strong>Vorname</strong> = first name · <strong>Nachname</strong> /{" "}
-          <strong>Familienname</strong> = surname · <strong>Handynummer</strong> =
-          mobile number
-        </p>
+        <QuestionsSection />
       </Section>
 
       <Section id="w-words" number={6} title="W-question words">

@@ -159,16 +159,18 @@ export function GenderTableHead({ useCol = false }: { useCol?: boolean }) {
 export function QuestionTypeCard({
   title,
   formula,
+  variant = "w",
   children,
 }: {
   title: string;
   formula: ReactNode;
+  variant?: "w" | "yesno";
   children: ReactNode;
 }) {
   return (
-    <div className="grammar-qtype-card">
+    <div className={`grammar-qtype-card grammar-qtype-card--${variant}`}>
       <h3 className="grammar-qtype-card__title">{title}</h3>
-      <Formula>{formula}</Formula>
+      <p className="grammar-qtype-card__formula">{formula}</p>
       {children}
     </div>
   );

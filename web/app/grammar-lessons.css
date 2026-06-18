@@ -926,22 +926,74 @@
 }
 
 .grammar-qtype-card {
-  padding: 0.9rem 1rem;
-  background: linear-gradient(160deg, #f4f8fc, #fff);
-  border: 1px solid #d0e0f0;
+  padding: 0.85rem 0.95rem;
+  background: #fff;
+  border: 1px solid #d8e4f0;
   border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.06);
+}
+
+.grammar-qtype-card--w {
+  border-top: 3px solid var(--grm-der);
+}
+
+.grammar-qtype-card--yesno {
+  border-top: 3px solid var(--grm-teal);
 }
 
 .grammar-qtype-card__title {
-  margin: 0 0 0.35rem;
-  font-size: 0.88rem;
-  font-weight: 700;
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 800;
   color: var(--head-blue);
 }
 
-.grammar-qtype-card .grammar-formula {
-  margin-bottom: 0.5rem;
-  background: #2f4f6f;
+.grammar-qtype-card__formula {
+  margin: 0 0 0.55rem;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+}
+
+.grammar-qtype-card--w .grammar-qtype-card__formula {
+  color: #1e4a7a;
+  background: var(--grm-der-bg);
+  border: 1px solid var(--grm-der-border);
+}
+
+.grammar-qtype-card--yesno .grammar-qtype-card__formula {
+  color: #1a5a54;
+  background: var(--grm-teal-bg);
+  border: 1px solid #9fd9d4;
+}
+
+.grammar-qtype-card .grammar-example {
+  background: #f8fafc;
+  border-color: #e8eef5;
+}
+
+.grammar-example--speak {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.grammar-example--speak .grammar-example__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.grammar-example-list--speak {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.grammar-example-list--speak .grammar-example {
+  align-items: center;
 }
 
 /* Possessive stems */
