@@ -620,6 +620,30 @@
   color: #5a2a42;
 }
 
+.grammar-gender-panel--pl {
+  background: var(--grm-pl-bg);
+  border-color: var(--grm-pl-border);
+  color: var(--grm-pl);
+}
+
+.grammar-gender-panel--pl .grammar-gender-rule__label {
+  color: #3d3268;
+}
+
+.grammar-plural-panel {
+  margin: 0.4rem 0 0.6rem;
+}
+
+.grammar-plural-rule__row .grammar-gender-rule__label {
+  width: 7.5rem;
+}
+
+@media (min-width: 36rem) {
+  .grammar-plural-rule__row .grammar-gender-rule__label {
+    width: 10.5rem;
+  }
+}
+
 .grammar-starter-examples {
   display: flex;
   flex-wrap: wrap;
@@ -651,6 +675,57 @@
   color: var(--gray-en);
   font-style: italic;
   white-space: nowrap;
+}
+
+.grammar-plural-pair {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.3rem;
+  padding: 0.12rem 0.28rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  max-width: 100%;
+}
+
+.grammar-plural-pair__forms {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.grammar-plural-pair__sg,
+.grammar-plural-pair__pl {
+  font-weight: 600;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.grammar-plural-pair__pl {
+  color: var(--grm-pl);
+}
+
+.grammar-plural-pair__arrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.55;
+  font-style: normal;
+}
+
+.grammar-plural-pair__en {
+  font-size: 0.68rem;
+  color: var(--gray-en);
+  font-style: italic;
+}
+
+.grammar-plural-pair__audio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.12rem;
 }
 
 .grammar-speak-btn {

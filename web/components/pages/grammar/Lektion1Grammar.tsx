@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSection";
+import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSection";
 import {
   Callout,
   Ex,
@@ -74,105 +75,7 @@ export default function Lektion1Grammar() {
           German plurals change in several ways. The plural article is always{" "}
           <strong className="grammar-highlight">die</strong> — for every gender.
         </Lead>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--plural">
-            <thead>
-              <tr>
-                <th>Pattern</th>
-                <th>Example</th>
-                <th>Plural</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>+ <strong>-e</strong></td>
-                <td>der Tisch</td>
-                <td>die Tische</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-e</strong></td>
-                <td>der Kurs</td>
-                <td>die Kurse</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-er</strong></td>
-                <td>das Kind</td>
-                <td>die Kinder</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-er</strong></td>
-                <td>das Ei</td>
-                <td>die Eier</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-n / -en</strong></td>
-                <td>der Nachbar</td>
-                <td>die Nachbarn</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-en</strong></td>
-                <td>die Frau</td>
-                <td>die Frauen</td>
-              </tr>
-              <tr>
-                <td>+ <strong>-nen</strong></td>
-                <td>die Studentin</td>
-                <td>die Studentinnen</td>
-              </tr>
-              <tr>
-                <td>umlaut only</td>
-                <td>der Vogel</td>
-                <td>die Vögel</td>
-              </tr>
-              <tr>
-                <td>umlaut only</td>
-                <td>der Apfel</td>
-                <td>die Äpfel</td>
-              </tr>
-              <tr>
-                <td>umlaut only</td>
-                <td>die Mutter</td>
-                <td>die Mütter</td>
-              </tr>
-              <tr>
-                <td><strong>-er</strong> + umlaut</td>
-                <td>das Buch</td>
-                <td>die Bücher</td>
-              </tr>
-              <tr>
-                <td><strong>-e</strong> + umlaut</td>
-                <td>die Stadt</td>
-                <td>die Städte</td>
-              </tr>
-              <tr>
-                <td>no change</td>
-                <td>der Lehrer</td>
-                <td>die Lehrer</td>
-              </tr>
-              <tr>
-                <td>no change</td>
-                <td>der Computer</td>
-                <td>die Computer</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <Callout variant="tip" title="Extra plural notes">
-          <ul className="grammar-bullet-list">
-            <li>
-              Many feminine nouns ending in <strong>-e</strong> add{" "}
-              <strong>-n</strong>: <em>die Blume → die Blumen</em>
-            </li>
-            <li>
-              Diminutives in <strong>-chen</strong> usually stay the same:{" "}
-              <em>das Mädchen → die Mädchen</em>
-            </li>
-            <li>
-              Neuter nouns often take <strong>-er</strong>, sometimes with
-              umlaut: <em>das Haus → die Häuser</em>
-            </li>
-          </ul>
-        </Callout>
+        <PluralPatternsSection />
       </Section>
 
       <Section id="alphabet" number={3} title="Alphabet & pronunciation">
