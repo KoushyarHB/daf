@@ -1399,17 +1399,12 @@
   background: #fafbfd;
 }
 
-/* W-word cards */
+/* W-word cards — single column stack */
 .grammar-w-grid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.7rem;
   margin-top: 0.5rem;
-}
-
-@media (min-width: 36rem) {
-  .grammar-w-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .grammar-w-card {
