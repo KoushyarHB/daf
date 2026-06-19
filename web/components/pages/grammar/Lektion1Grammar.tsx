@@ -7,6 +7,7 @@ import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection"
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import WQuestionWordsSection from "@/components/pages/grammar/WQuestionWordsSection";
 import AusCountriesSection from "@/components/pages/grammar/AusCountriesSection";
+import PossessivesSection from "@/components/pages/grammar/PossessivesSection";
 import TravelCountriesSection from "@/components/pages/grammar/TravelCountriesSection";
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import {
@@ -185,56 +186,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="possessives" number={10} title="Possessive pronouns (mein …)">
-        <p>Eight stems you meet constantly:</p>
-        <div className="grammar-stem-grid">
-          <span className="grammar-stem-chip">mein · my</span>
-          <span className="grammar-stem-chip">dein · your (du)</span>
-          <span className="grammar-stem-chip">sein · his / its</span>
-          <span className="grammar-stem-chip">ihr · her</span>
-          <span className="grammar-stem-chip">unser · our</span>
-          <span className="grammar-stem-chip">euer · your (ihr)</span>
-          <span className="grammar-stem-chip">ihr · their</span>
-          <span className="grammar-stem-chip">Ihr · your (Sie)</span>
-        </div>
-        <p>
-          Endings follow the same pattern as <strong>ein</strong> /{" "}
-          <strong>kein</strong> — they agree with gender, case, and number.
-        </p>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--gender">
-            <GenderTableColGroup />
-            <thead>
-              <GenderTableHead />
-            </thead>
-            <tbody>
-              <tr>
-                <td className="grammar-lesson-col-case">Nominativ</td>
-                <td className="grammar-col grammar-col--der">mein</td>
-                <td className="grammar-col grammar-col--das">mein</td>
-                <td className="grammar-col grammar-col--die">meine</td>
-                <td className="grammar-col grammar-col--die-pl">meine</td>
-              </tr>
-              <tr>
-                <td className="grammar-lesson-col-case">Akkusativ</td>
-                <td className="grammar-col grammar-col--der">meinen</td>
-                <td className="grammar-col grammar-col--das">mein</td>
-                <td className="grammar-col grammar-col--die">meine</td>
-                <td className="grammar-col grammar-col--die-pl">meine</td>
-              </tr>
-              <tr>
-                <td className="grammar-lesson-col-case">Dativ</td>
-                <td className="grammar-col grammar-col--der">meinem</td>
-                <td className="grammar-col grammar-col--das">meinem</td>
-                <td className="grammar-col grammar-col--die">meiner</td>
-                <td className="grammar-col grammar-col--die-pl">meinen</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <Callout variant="insight" title="Same pattern as ein / kein">
-          The endings on <em>mein, dein, sein …</em> work like{" "}
-          <strong>ein</strong> and <strong>kein</strong> — only the stem changes.
-        </Callout>
+        <PossessivesSection />
       </Section>
 
       <Section id="two-way" number={11} title="Two-way preposition: in">

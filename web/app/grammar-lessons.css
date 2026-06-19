@@ -2241,3 +2241,53 @@
     justify-content: flex-start;
   }
 }
+
+/* Possessive pronouns */
+.grammar-pronoun-ref--poss {
+  margin-top: 0.45rem;
+}
+
+.grammar-poss-paradigm {
+  margin: 0.35rem 0 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2f3d4d;
+}
+
+.grammar-poss-paradigm em {
+  font-weight: 800;
+  color: var(--head-blue);
+}
+
+.grammar-poss-paradigm__en {
+  font-size: 0.76rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gray-en);
+}
+
+.grammar-lesson-table--poss tbody tr:nth-child(even) .grammar-poss-cell,
+.grammar-lesson-table--poss tbody tr:nth-child(even) .grammar-lesson-col-case {
+  background: #fafbfd;
+}
+
+.grammar-poss-cell {
+  text-align: center;
+  padding: 0.45rem 0.4rem;
+  vertical-align: middle;
+}
+
+.grammar-poss-form {
+  white-space: nowrap;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.grammar-poss-form__stem {
+  color: #2f3d4d;
+}
+
+.grammar-poss-form__suffix {
+  font-weight: 800;
+  color: #b8860b;
+}
