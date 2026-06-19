@@ -6,6 +6,7 @@ import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSect
 import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection";
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import WQuestionWordsSection from "@/components/pages/grammar/WQuestionWordsSection";
+import AusCountriesSection from "@/components/pages/grammar/AusCountriesSection";
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import {
   Callout,
@@ -175,52 +176,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="aus" number={8} title="aus + Dative — countries & origins">
-        <Lead>
-          <strong>aus</strong> is a dative preposition — <em>no exceptions</em>. Use
-          it for where someone or something comes <em>from</em>.
-        </Lead>
-        <h3 className="grammar-section__subtitle">Most countries (neuter, no article)</h3>
-        <ul className="grammar-example-list">
-          <Ex de="Ich komme aus Deutschland." />
-          <Ex de="aus China" />
-          <Ex de="aus Österreich" />
-          <Ex de="aus Russland" />
-          <Ex de="aus Berlin." en="cities & continents — no article" />
-        </ul>
-        <p>
-          With an adjective, the neuter article appears:{" "}
-          <em>aus dem schönen Deutschland</em>.
-        </p>
-
-        <h3 className="grammar-section__subtitle">Countries with an article</h3>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--compact">
-            <thead>
-              <tr>
-                <th>Gender</th>
-                <th>Dative</th>
-                <th>Examples</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>masculine</td>
-                <td>dem</td>
-                <td>aus dem Iran, aus dem Irak</td>
-              </tr>
-              <tr>
-                <td>feminine</td>
-                <td>der</td>
-                <td>aus der Schweiz, aus der Türkei, aus der Ukraine</td>
-              </tr>
-              <tr>
-                <td>plural</td>
-                <td>den</td>
-                <td>aus den USA, aus den Niederlanden</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <AusCountriesSection />
       </Section>
 
       <Section id="travel" number={9} title="nach vs in — travelling to countries">

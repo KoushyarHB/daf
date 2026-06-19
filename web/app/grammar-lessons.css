@@ -1726,3 +1726,213 @@
   flex-wrap: wrap;
   gap: 0.25rem 0.35rem;
 }
+
+/* aus + Dative — countries & origins */
+.grammar-aus-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.45rem;
+  margin: 0.5rem 0 0.85rem;
+  padding: 0.55rem 0.75rem;
+  background: linear-gradient(180deg, var(--grm-teal-bg), #fff);
+  border: 1px solid #c5e8e4;
+  border-left: 3px solid var(--grm-teal);
+  border-radius: 10px;
+}
+
+.grammar-aus-formula__prep {
+  font-size: 1rem;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--grm-teal);
+}
+
+.grammar-aus-formula__plus {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #8a96a3;
+}
+
+.grammar-aus-formula__case {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #2f4f6f;
+}
+
+.grammar-aus-formula__en {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: #6b7a8a;
+  margin-left: 0.15rem;
+}
+
+.grammar-aus-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.grammar-aus-panel {
+  border-radius: 10px;
+  border: 1px solid #d8e4f0;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.06);
+}
+
+.grammar-aus-panel--simple {
+  border-top: 3px solid var(--grm-das);
+}
+
+.grammar-aus-panel--article {
+  border-top: 3px solid var(--grm-der);
+}
+
+.grammar-aus-panel__head {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #e8eef5;
+  background: linear-gradient(180deg, #f8fafc, #fff);
+}
+
+.grammar-aus-panel--simple .grammar-aus-panel__head {
+  background: linear-gradient(180deg, var(--grm-das-bg), #fff);
+}
+
+.grammar-aus-panel--article .grammar-aus-panel__head {
+  background: linear-gradient(180deg, var(--grm-der-bg), #fff);
+}
+
+.grammar-aus-panel__title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--head-blue);
+}
+
+.grammar-aus-panel--simple .grammar-aus-panel__title {
+  color: var(--grm-das);
+}
+
+.grammar-aus-panel--article .grammar-aus-panel__title {
+  color: var(--grm-der);
+}
+
+.grammar-aus-panel__subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  color: #5a6573;
+  line-height: 1.4;
+}
+
+.grammar-aus-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem 0.45rem;
+}
+
+.grammar-aus-chip-grid--inline {
+  padding: 0;
+}
+
+.grammar-aus-panel .grammar-example-list {
+  margin: 0;
+  padding: 0 0.75rem 0.65rem;
+}
+
+.grammar-aus-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  padding: 0.28rem 0.45rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+
+.grammar-aus-chip__de {
+  font-weight: 700;
+  font-style: italic;
+  color: var(--blue);
+}
+
+.grammar-aus-chip__en {
+  font-size: 0.68rem;
+  font-style: italic;
+  color: var(--gray-en);
+}
+
+.grammar-aus-panel .grammar-table-wrap {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.grammar-aus-table {
+  font-size: 0.8rem;
+}
+
+.grammar-aus-table thead th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7a8a;
+  background: #f4f8fc;
+}
+
+.grammar-aus-table__gender {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  white-space: nowrap;
+  background: #f8fafc !important;
+  color: #5a6573;
+}
+
+.grammar-aus-table__dative {
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  width: 3rem;
+}
+
+.grammar-aus-table td.grammar-col--der {
+  background: var(--grm-der-bg);
+  color: var(--grm-der);
+}
+
+.grammar-aus-table td.grammar-col--die {
+  background: var(--grm-die-bg);
+  color: var(--grm-die);
+}
+
+.grammar-aus-table td.grammar-col--die-pl {
+  background: var(--grm-pl-bg);
+  color: var(--grm-pl);
+}
+
+.grammar-aus-table__examples {
+  vertical-align: middle;
+}
+
+.grammar-aus-callout-ex {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.grammar-aus-inline-ex {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.15rem;
+}
+
+.grammar-aus-inline-ex em {
+  font-weight: 600;
+  color: var(--blue);
+}
