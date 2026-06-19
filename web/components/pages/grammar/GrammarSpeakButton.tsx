@@ -8,6 +8,7 @@ import { speakTextForHead } from "@/lib/audio/speak-text";
 type GrammarSpeakButtonProps = {
   german: string;
   speakText?: string;
+  audioSrc?: string;
   compact?: boolean;
 };
 
@@ -27,6 +28,7 @@ function speakWithBrowserTts(text: string): void {
 export default function GrammarSpeakButton({
   german,
   speakText: speakTextOverride,
+  audioSrc,
   compact = true,
 }: GrammarSpeakButtonProps) {
   const playerRef = useRef<HTMLAudioElement | null>(null);
@@ -41,6 +43,19 @@ export default function GrammarSpeakButton({
 
   async function play() {
     if (!speakText || busy) return;
+
+    if (audioSrc) {
+      if (!playerRef.current) playerRef.current = new Audio();
+      const player = playerRef.current;
+      player.pause();
+      player.src = audioSrc;
+      try {
+        await player.play();
+        return;
+      } catch {
+        // fall through to generated / browser TTS
+      }
+    }
 
     if (audioUrl) {
       if (!playerRef.current) playerRef.current = new Audio();

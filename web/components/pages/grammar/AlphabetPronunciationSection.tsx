@@ -30,8 +30,9 @@ function AlphabetLetterRow({ letter }: { letter: AlphabetLetter }) {
         ) : null}
       </span>
       <GrammarSpeakButton
-        german={letter.display}
+        german={letter.speakText}
         speakText={letter.speakText}
+        audioSrc={letter.audioSrc}
       />
     </div>
   );

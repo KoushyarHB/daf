@@ -9,12 +9,10 @@ function PluralPair({
   singular,
   singularEn,
   plural,
-  pluralEn,
 }: {
   singular: string;
   singularEn: string;
   plural: string;
-  pluralEn: string;
 }) {
   return (
     <span className="grammar-plural-pair">
@@ -25,9 +23,7 @@ function PluralPair({
         </span>
         <span className="grammar-plural-pair__pl">{plural}</span>
       </span>
-      <span className="grammar-plural-pair__en">
-        ({singularEn} → {pluralEn})
-      </span>
+      <span className="grammar-plural-pair__en">({singularEn})</span>
       <span className="grammar-plural-pair__audio">
         <GrammarSpeakButton german={singular} />
         <GrammarSpeakButton german={plural} />
@@ -66,7 +62,6 @@ export default function PluralPatternsSection() {
                       singular={ex.singular}
                       singularEn={ex.singularEn}
                       plural={ex.plural}
-                      pluralEn={ex.pluralEn}
                     />
                   ))}
                 </div>

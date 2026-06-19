@@ -1,9 +1,12 @@
+import { audioSrcForLetter, speakTextForLetter } from "@/lib/grammar/alphabet-speak";
+
 export type AlphabetLetter = {
   id: string;
   display: string;
   ipa?: string;
   farsi?: string;
   speakText: string;
+  audioSrc: string;
   note?: string;
 };
 
@@ -22,49 +25,57 @@ export type PronunciationRule = {
   examples: PronunciationExample[];
 };
 
+function letter(
+  id: string,
+  display: string,
+  extra?: Omit<AlphabetLetter, "id" | "display" | "speakText" | "audioSrc">,
+): AlphabetLetter {
+  return {
+    id,
+    display,
+    speakText: speakTextForLetter(id),
+    audioSrc: audioSrcForLetter(id),
+    ...extra,
+  };
+}
+
 /** Three columns — wider rows for IPA + Farsi + audio. */
 export const ALPHABET_COLUMNS: AlphabetLetter[][] = [
   [
-    { id: "a", display: "Aa", ipa: "[a:]", speakText: "a" },
-    { id: "b", display: "Bb", farsi: "بِ", speakText: "be" },
-    { id: "c", display: "Cc", ipa: "[tse:]", speakText: "tse" },
-    { id: "d", display: "Dd", farsi: "دِ", speakText: "de" },
-    { id: "e", display: "Ee", ipa: "[e:]", farsi: "ای", speakText: "e" },
-    { id: "f", display: "Ff", farsi: "اِف", speakText: "ef" },
-    { id: "g", display: "Gg", farsi: "گِ", speakText: "ge" },
-    { id: "h", display: "Hh", farsi: "ها", speakText: "ha" },
-    { id: "i", display: "Ii", ipa: "[i:]", farsi: "ای", speakText: "i" },
-    { id: "j", display: "Jj", ipa: "[jɔt]", farsi: "یوت", speakText: "jot" },
+    letter("a", "Aa", { ipa: "[a:]" }),
+    letter("b", "Bb", { farsi: "بِ" }),
+    letter("c", "Cc", { ipa: "[tse:]" }),
+    letter("d", "Dd", { farsi: "دِ" }),
+    letter("e", "Ee", { ipa: "[e:]", farsi: "ای" }),
+    letter("f", "Ff", { farsi: "اِف" }),
+    letter("g", "Gg", { farsi: "گِ" }),
+    letter("h", "Hh", { farsi: "ها" }),
+    letter("i", "Ii", { ipa: "[i:]", farsi: "ای" }),
+    letter("j", "Jj", { ipa: "[jɔt]", farsi: "یوت" }),
   ],
   [
-    { id: "k", display: "Kk", farsi: "کا", speakText: "ka" },
-    { id: "l", display: "Ll", farsi: "اِل", speakText: "el" },
-    { id: "m", display: "Mm", farsi: "اِم", speakText: "em" },
-    { id: "n", display: "Nn", farsi: "اِن", speakText: "en" },
-    { id: "o", display: "Oo", farsi: "اُ", speakText: "o" },
-    { id: "p", display: "Pp", farsi: "پِ", speakText: "pe" },
-    { id: "q", display: "Qq", farsi: "کو", speakText: "ku" },
-    { id: "r", display: "Rr", farsi: "اِر", speakText: "er" },
-    { id: "s", display: "Ss", farsi: "اِس", speakText: "es" },
-    { id: "t", display: "Tt", farsi: "تِ", speakText: "te" },
+    letter("k", "Kk", { farsi: "کا" }),
+    letter("l", "Ll", { farsi: "اِل" }),
+    letter("m", "Mm", { farsi: "اِم" }),
+    letter("n", "Nn", { farsi: "اِن" }),
+    letter("o", "Oo", { farsi: "اُ" }),
+    letter("p", "Pp", { farsi: "پِ" }),
+    letter("q", "Qq", { farsi: "کو" }),
+    letter("r", "Rr", { farsi: "اِر" }),
+    letter("s", "Ss", { farsi: "اِس" }),
+    letter("t", "Tt", { farsi: "تِ" }),
   ],
   [
-    { id: "u", display: "Uu", farsi: "او", speakText: "u" },
-    { id: "v", display: "Vv", ipa: "[faʊ]", farsi: "فاو", speakText: "fau" },
-    { id: "w", display: "Ww", ipa: "[ve:]", farsi: "وِ", speakText: "ve" },
-    { id: "x", display: "Xx", farsi: "اِیکس", speakText: "iks" },
-    { id: "y", display: "Yy", farsi: "اوپسیلون", speakText: "ypsilon" },
-    { id: "z", display: "Zz", ipa: "[tsɛt]", speakText: "tset" },
-    {
-      id: "eszett",
-      display: "ß",
-      ipa: "[ɛstsɛt]",
-      note: "scharfes S",
-      speakText: "eszett",
-    },
-    { id: "ae", display: "Ää", ipa: "[ɛ:]", farsi: "اِ", speakText: "ä" },
-    { id: "oe", display: "Öö", ipa: "[ø:]", farsi: "اُ", speakText: "ö" },
-    { id: "ue", display: "Üü", ipa: "[y:]", farsi: "او", speakText: "ü" },
+    letter("u", "Uu", { farsi: "او" }),
+    letter("v", "Vv", { ipa: "[faʊ]", farsi: "فاو" }),
+    letter("w", "Ww", { ipa: "[ve:]", farsi: "وِ" }),
+    letter("x", "Xx", { farsi: "اِیکس" }),
+    letter("y", "Yy", { farsi: "اوپسیلون" }),
+    letter("z", "Zz", { ipa: "[tsɛt]" }),
+    letter("eszett", "ß", { ipa: "[ɛstsɛt]", note: "scharfes S" }),
+    letter("ae", "Ää", { ipa: "[ɛ:]", farsi: "اِ" }),
+    letter("oe", "Öö", { ipa: "[ø:]", farsi: "اُ" }),
+    letter("ue", "Üü", { ipa: "[y:]", farsi: "او" }),
   ],
 ];
 

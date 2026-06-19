@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  PERSONAL_PRONOUNS,
   REGULAR_CONJUGATION_ROWS,
   SEIN_ROWS,
   type ConjugatedForm,
@@ -9,12 +10,56 @@ import {
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
 import { Callout, Lead } from "@/components/pages/grammar/grammar-ui";
 
+function PronounRefCard({
+  german,
+  english,
+  farsi,
+  hint,
+}: {
+  german: string;
+  english: string;
+  farsi: string;
+  hint?: string;
+}) {
+  return (
+    <div className="grammar-pronoun-card">
+      <div className="grammar-pronoun-card__head">
+        <span className="grammar-pronoun-card__de">{german}</span>
+        {hint ? (
+          <span className="grammar-pronoun-card__hint">{hint}</span>
+        ) : null}
+        <GrammarSpeakButton german={german} />
+      </div>
+      <p className="grammar-pronoun-card__gloss">
+        <span className="grammar-pronoun-card__en">{english}</span>
+        <span className="grammar-pronoun-card__fa" dir="rtl" lang="fa">
+          ({farsi})
+        </span>
+      </p>
+    </div>
+  );
+}
+
+function PersonCell({ labels }: { labels: readonly string[] }) {
+  return (
+    <span className="grammar-conj-table__person-stack">
+      {labels.map((label) => (
+        <span key={label} className="grammar-conj-table__person-line">
+          {label}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function RegularConjForm({ stem, suffix, form, farsi }: ConjugatedForm) {
   return (
     <span className="grammar-conj-form">
       <span className="grammar-conj-form__word">
-        <span className="grammar-conj-form__stem">{stem}</span>
-        <span className="grammar-conj-form__suffix">{suffix}</span>
+        <span className="grammar-conj-form__verb">
+          <span className="grammar-conj-form__stem">{stem}</span>
+          <span className="grammar-conj-form__suffix">{suffix}</span>
+        </span>
         <span className="grammar-conj-form__farsi" dir="rtl" lang="fa">
           ({farsi})
         </span>
@@ -47,6 +92,31 @@ export default function PresentTenseSection() {
         <em>kommen</em> → <em>komm-</em>.
       </Lead>
 
+      <section
+        className="grammar-pronoun-ref"
+        aria-labelledby="grammar-pronoun-ref-title"
+      >
+        <header className="grammar-pronoun-ref__head">
+          <h3 id="grammar-pronoun-ref-title" className="grammar-pronoun-ref__title">
+            Personal pronouns
+          </h3>
+          <p className="grammar-pronoun-ref__lead">
+            The <strong>Pers.</strong> column in the tables below — tap ▶ to hear
+            each one.
+          </p>
+        </header>
+        <div className="grammar-pronoun-ref__grid">
+          {PERSONAL_PRONOUNS.map((pronoun) => (
+            <PronounRefCard key={pronoun.id} {...pronoun} />
+          ))}
+        </div>
+        <p className="grammar-pronoun-ref__note">
+          <strong>sie</strong> can mean <em>she</em> or <em>they</em> (same
+          spelling). <strong>Sie</strong> (capital S) is always formal{" "}
+          <em>you</em>.
+        </p>
+      </section>
+
       <div className="grammar-present-grid">
         <div className="grammar-present-panel grammar-present-panel--regular">
           <header className="grammar-present-panel__head">
@@ -59,24 +129,32 @@ export default function PresentTenseSection() {
             <table className="grammar-conj-table">
               <thead>
                 <tr>
-                  <th scope="col">Person</th>
-                  <th scope="col">Ending</th>
-                  <th scope="col">
+                  <th scope="col" className="grammar-conj-table__head-person">
+                    Pers.
+                  </th>
+                  <th
+                    scope="col"
+                    className="grammar-conj-table__head-ending"
+                    title="Ending"
+                  >
+                    End.
+                  </th>
+                  <th scope="col" className="grammar-conj-table__head-verb">
                     <em>kommen</em>
                   </th>
-                  <th scope="col">
+                  <th scope="col" className="grammar-conj-table__head-verb">
                     <em>arbeiten</em>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {REGULAR_CONJUGATION_ROWS.map((row) => (
-                  <tr key={row.person}>
+                  <tr key={row.person.join("-")}>
                     <th scope="row" className="grammar-conj-table__person">
-                      {row.person}
+                      <PersonCell labels={row.person} />
                     </th>
                     <td className="grammar-conj-table__ending">
-                      <span className="grammar-ending-chip">{row.ending}</span>
+                      <span className="grammar-ending-label">{row.ending}</span>
                     </td>
                     <td>
                       <RegularConjForm {...row.kommen} />
@@ -100,15 +178,19 @@ export default function PresentTenseSection() {
             <table className="grammar-conj-table grammar-conj-table--sein">
               <thead>
                 <tr>
-                  <th scope="col">Person</th>
-                  <th scope="col">Form</th>
+                  <th scope="col" className="grammar-conj-table__head-person">
+                    Pers.
+                  </th>
+                  <th scope="col" className="grammar-conj-table__head-verb">
+                    Form
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {SEIN_ROWS.map((row) => (
-                  <tr key={row.person}>
+                  <tr key={row.person.join("-")}>
                     <th scope="row" className="grammar-conj-table__person">
-                      {row.person}
+                      <PersonCell labels={row.person} />
                     </th>
                     <td>
                       <SeinConjForm form={row.form} farsi={row.farsi} />
