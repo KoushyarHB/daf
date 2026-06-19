@@ -119,40 +119,41 @@ export function PatternItem({
   );
 }
 
-export function GenderTableHead({ useCol = false }: { useCol?: boolean }) {
+export function GenderTableColGroup() {
   return (
-    <>
-      <tr>
-        <th scope="col" className="grammar-col-case">
-          Case
+    <colgroup>
+      <col className="grammar-lesson-col-case" />
+      <col />
+      <col />
+      <col />
+      <col />
+    </colgroup>
+  );
+}
+
+export function GenderTableHead() {
+  const cols = [
+    { gender: "mask", className: "grammar-col--der" },
+    { gender: "neut", className: "grammar-col--das" },
+    { gender: "fem", className: "grammar-col--die" },
+    { gender: "plural", className: "grammar-col--die-pl" },
+  ] as const;
+
+  return (
+    <tr>
+      <th scope="col" className="grammar-lesson-col-case">
+        Case
+      </th>
+      {cols.map((col) => (
+        <th
+          key={col.className}
+          scope="col"
+          className={`grammar-col ${col.className}`}
+        >
+          {col.gender}
         </th>
-        <th scope="col" className="grammar-col grammar-col--der">
-          der
-        </th>
-        <th scope="col" className="grammar-col grammar-col--das">
-          das
-        </th>
-        <th scope="col" className="grammar-col grammar-col--die">
-          die
-        </th>
-        <th scope="col" className="grammar-col grammar-col--die-pl">
-          die
-        </th>
-        {useCol ? (
-          <th scope="col" className="grammar-col-use">
-            Use
-          </th>
-        ) : null}
-      </tr>
-      <tr className="grammar-table__legend">
-        <td />
-        <td>masc.</td>
-        <td>neut.</td>
-        <td>fem.</td>
-        <td>plural</td>
-        {useCol ? <td /> : null}
-      </tr>
-    </>
+      ))}
+    </tr>
   );
 }
 

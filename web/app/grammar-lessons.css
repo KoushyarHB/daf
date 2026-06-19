@@ -1310,6 +1310,8 @@
   border-radius: 8px;
   border: 1px solid #e2e8f0;
   -webkit-overflow-scrolling: touch;
+  padding-left: 0;
+  border-left: 1px solid #e2e8f0;
 }
 
 .grammar-lesson-table {
@@ -1342,39 +1344,71 @@
   border-top: none;
 }
 
-.grammar-col-case {
+.grammar-lesson-table--gender {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.grammar-lesson-table--gender col.grammar-lesson-col-case {
+  width: 2.85rem;
+}
+
+.grammar-lesson-table th.grammar-col {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.42rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6b7a8a;
+}
+
+.grammar-lesson-col-case {
+  white-space: nowrap;
   font-weight: 700;
+  font-size: 0.74rem;
   color: #333;
+  background: #f4f8fc !important;
+  padding: 0.45rem 0.5rem !important;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.grammar-lesson-table thead th.grammar-col {
+  background: #f4f8fc !important;
+}
+
+.grammar-lesson-table--gender tbody .grammar-lesson-col-case {
+  font-weight: 700;
   background: #f8fafc !important;
 }
 
-.grammar-col-use {
-  font-size: 0.78rem;
-  color: #5a6573;
-}
-
-.grammar-col--der,
-.grammar-lesson-table th.grammar-col--der {
-  background: var(--grm-der-bg) !important;
+.grammar-lesson-table--gender tbody td.grammar-col--der {
+  background: var(--grm-der-bg);
   color: var(--grm-der);
+  font-weight: 800;
 }
 
-.grammar-col--das,
-.grammar-lesson-table th.grammar-col--das {
-  background: var(--grm-das-bg) !important;
+.grammar-lesson-table--gender tbody td.grammar-col--das {
+  background: var(--grm-das-bg);
   color: var(--grm-das);
+  font-weight: 800;
 }
 
-.grammar-col--die,
-.grammar-lesson-table th.grammar-col--die {
-  background: var(--grm-die-bg) !important;
+.grammar-lesson-table--gender tbody td.grammar-col--die {
+  background: var(--grm-die-bg);
   color: var(--grm-die);
+  font-weight: 800;
 }
 
-.grammar-col--die-pl,
-.grammar-lesson-table th.grammar-col--die-pl {
-  background: var(--grm-pl-bg) !important;
+.grammar-lesson-table--gender tbody td.grammar-col--die-pl {
+  background: var(--grm-pl-bg);
   color: var(--grm-pl);
+  font-weight: 800;
+}
+
+.grammar-lesson-table--gender td.grammar-col {
+  text-align: center;
+  padding: 0.45rem 0.4rem;
 }
 
 .grammar-lesson-table--plural tbody tr:nth-child(odd) {

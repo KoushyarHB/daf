@@ -442,7 +442,7 @@ h1 {
   font-size: 9.5pt;
 }
 
-.grammar-col-case {
+.grammar-table col.grammar-col-case {
   width: 3.25rem;
 }
 

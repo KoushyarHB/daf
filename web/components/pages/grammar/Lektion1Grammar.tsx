@@ -6,10 +6,12 @@ import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSect
 import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection";
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import WQuestionWordsSection from "@/components/pages/grammar/WQuestionWordsSection";
+import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import {
   Callout,
   Ex,
   Formula,
+  GenderTableColGroup,
   GenderTableHead,
   Lead,
   Section,
@@ -104,48 +106,70 @@ export default function Lektion1Grammar() {
         </Lead>
         <div className="grammar-table-wrap">
           <table className="grammar-lesson-table grammar-lesson-table--gender">
+            <GenderTableColGroup />
             <thead>
-              <GenderTableHead useCol />
+              <GenderTableHead />
             </thead>
             <tbody>
               <tr>
-                <td>Nominativ</td>
+                <th
+                  scope="row"
+                  className="grammar-lesson-col-case"
+                  title="Nominativ"
+                >
+                  Nom.
+                </th>
                 <td className="grammar-col grammar-col--der">der</td>
                 <td className="grammar-col grammar-col--das">das</td>
                 <td className="grammar-col grammar-col--die">die</td>
                 <td className="grammar-col grammar-col--die-pl">die</td>
-                <td>subject</td>
               </tr>
               <tr>
-                <td>Akkusativ</td>
+                <th
+                  scope="row"
+                  className="grammar-lesson-col-case"
+                  title="Akkusativ"
+                >
+                  Akk.
+                </th>
                 <td className="grammar-col grammar-col--der">den</td>
                 <td className="grammar-col grammar-col--das">das</td>
                 <td className="grammar-col grammar-col--die">die</td>
                 <td className="grammar-col grammar-col--die-pl">die</td>
-                <td>direct object</td>
               </tr>
               <tr>
-                <td>Dativ</td>
+                <th
+                  scope="row"
+                  className="grammar-lesson-col-case"
+                  title="Dativ"
+                >
+                  Dat.
+                </th>
                 <td className="grammar-col grammar-col--der">dem</td>
                 <td className="grammar-col grammar-col--das">dem</td>
                 <td className="grammar-col grammar-col--die">der</td>
                 <td className="grammar-col grammar-col--die-pl">
                   den + <em>n</em>
                 </td>
-                <td>indirect object; after mit, aus, von, zu, bei …</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <ul className="grammar-example-list">
-          <Ex de="Der Mann arbeitet." en="The man works. (Nom.)" />
-          <Ex de="Ich sehe den Mann." en="I see the man. (Akk.)" />
-          <Ex de="Ich spreche mit dem Mann." en="I speak with the man. (Dat.)" />
-          <Ex de="Ich spreche mit den Kindern." en="with the children (Dat. pl. + n)" />
+        <ul className="grammar-example-list grammar-example-list--speak">
+          <GrammarEx de="Der Mann arbeitet." en="The man works. (Nom.)" />
+          <GrammarEx de="Ich sehe den Mann." en="I see the man. (Akk.)" />
+          <GrammarEx
+            de="Ich spreche mit dem Mann."
+            en="I speak with the man. (Dat.)"
+          />
+          <GrammarEx
+            de="Ich spreche mit den Kindern."
+            en="with the children (Dat. pl. + n)"
+          />
         </ul>
         <Callout variant="remember" title="Quick memory hook">
           Only <strong>masculine</strong> changes in Akkusativ (<em>der → den</em>
-          ). Dativ uses <em>dem / der / dem</em>; plural dative is{" "}
+          ). Dativ uses <em>dem / dem / der</em> (masc · neut · fem); plural dative is{" "}
           <em>den + n</em> on the noun when possible.
         </Callout>
       </Section>
@@ -240,26 +264,27 @@ export default function Lektion1Grammar() {
         </p>
         <div className="grammar-table-wrap">
           <table className="grammar-lesson-table grammar-lesson-table--gender">
+            <GenderTableColGroup />
             <thead>
               <GenderTableHead />
             </thead>
             <tbody>
               <tr>
-                <td>Nominativ</td>
+                <td className="grammar-lesson-col-case">Nominativ</td>
                 <td className="grammar-col grammar-col--der">mein</td>
                 <td className="grammar-col grammar-col--das">mein</td>
                 <td className="grammar-col grammar-col--die">meine</td>
                 <td className="grammar-col grammar-col--die-pl">meine</td>
               </tr>
               <tr>
-                <td>Akkusativ</td>
+                <td className="grammar-lesson-col-case">Akkusativ</td>
                 <td className="grammar-col grammar-col--der">meinen</td>
                 <td className="grammar-col grammar-col--das">mein</td>
                 <td className="grammar-col grammar-col--die">meine</td>
                 <td className="grammar-col grammar-col--die-pl">meine</td>
               </tr>
               <tr>
-                <td>Dativ</td>
+                <td className="grammar-lesson-col-case">Dativ</td>
                 <td className="grammar-col grammar-col--der">meinem</td>
                 <td className="grammar-col grammar-col--das">meinem</td>
                 <td className="grammar-col grammar-col--die">meiner</td>
