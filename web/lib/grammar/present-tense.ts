@@ -23,12 +23,12 @@ export const PERSONAL_PRONOUNS: readonly PersonalPronoun[] = [
     english: "you (informal, one person)",
     farsi: "تو",
   },
-  { id: "er", german: "er", english: "he", farsi: "او (مذکر)" },
+  { id: "er", german: "er", english: "he", farsi: "او" },
   {
     id: "sie-she",
     german: "sie",
     english: "she",
-    farsi: "او (مؤنث)",
+    farsi: "او",
     hint: "she",
   },
   { id: "es", german: "es", english: "it", farsi: "آن" },
@@ -37,7 +37,7 @@ export const PERSONAL_PRONOUNS: readonly PersonalPronoun[] = [
     id: "ihr",
     german: "ihr",
     english: "you (informal, plural)",
-    farsi: "شما (غیررسمی)",
+    farsi: "شما",
   },
   {
     id: "sie-they",
@@ -50,7 +50,7 @@ export const PERSONAL_PRONOUNS: readonly PersonalPronoun[] = [
     id: "Sie-formal",
     german: "Sie",
     english: "you (formal)",
-    farsi: "شما (رسمی)",
+    farsi: "شما",
     hint: "formal",
   },
 ];

@@ -32,8 +32,8 @@ function PronounRefCard({
       </div>
       <p className="grammar-pronoun-card__gloss">
         <span className="grammar-pronoun-card__en">{english}</span>
-        <span className="grammar-pronoun-card__fa" dir="rtl" lang="fa">
-          ({farsi})
+        <span className="grammar-pronoun-card__fa" lang="fa">
+          (<bdi dir="rtl">{farsi}</bdi>)
         </span>
       </p>
     </div>

@@ -5,6 +5,7 @@ import GenderPatternsSection from "@/components/pages/grammar/GenderPatternsSect
 import PluralPatternsSection from "@/components/pages/grammar/PluralPatternsSection";
 import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection";
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
+import WQuestionWordsSection from "@/components/pages/grammar/WQuestionWordsSection";
 import {
   Callout,
   Ex,
@@ -93,82 +94,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="w-words" number={6} title="W-question words">
-        <div className="grammar-w-grid">
-          <div className="grammar-w-card">
-            <h3>was</h3>
-            <p className="grammar-w-card__en">what</p>
-            <ul className="grammar-example-list">
-              <Ex de="Was machst du?" />
-              <Ex de="Was ist das?" />
-              <Ex de="Was lernst du?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>warum</h3>
-            <p className="grammar-w-card__en">why</p>
-            <ul className="grammar-example-list">
-              <Ex de="Warum lernst du Deutsch?" />
-              <Ex de="Warum bist du müde?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>welche</h3>
-            <p className="grammar-w-card__en">which</p>
-            <ul className="grammar-example-list">
-              <Ex de="Welche Sprachen sprechen Sie?" />
-              <Ex de="Welche Sprache sprichst du?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>wo</h3>
-            <p className="grammar-w-card__en">where (location)</p>
-            <ul className="grammar-example-list">
-              <Ex de="Wo wohnst du?" />
-              <Ex de="Wo ist das Buch?" />
-              <Ex de="Wo arbeitest du?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>woher</h3>
-            <p className="grammar-w-card__en">from where (origin)</p>
-            <ul className="grammar-example-list">
-              <Ex de="Woher kommst du?" />
-              <Ex de="Woher kommt er?" />
-              <Ex de="Woher hast du das?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>wohin</h3>
-            <p className="grammar-w-card__en">to where (destination)</p>
-            <ul className="grammar-example-list">
-              <Ex de="Wohin gehst du?" />
-              <Ex de="Wohin fährt sie?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>wer</h3>
-            <p className="grammar-w-card__en">who</p>
-            <ul className="grammar-example-list">
-              <Ex de="Wer bist du?" />
-              <Ex de="Wer ist das?" />
-              <Ex de="Wer kommt morgen?" />
-            </ul>
-          </div>
-          <div className="grammar-w-card">
-            <h3>wann</h3>
-            <p className="grammar-w-card__en">when</p>
-            <ul className="grammar-example-list">
-              <Ex de="Wann beginnt der Kurs?" />
-              <Ex de="Wann kommst du?" />
-              <Ex de="Wann hast du Zeit?" />
-            </ul>
-          </div>
-        </div>
-        <Callout variant="insight" title="wo · woher · wohin">
-          <strong>Wo</strong> asks where something <em>is</em>.{" "}
-          <strong>Woher</strong> asks where something <em>comes from</em>.{" "}
-          <strong>Wohin</strong> asks where something <em>is going</em>.
-        </Callout>
+        <WQuestionWordsSection />
       </Section>
 
       <Section id="cases" number={7} title="Definite articles in the cases">
