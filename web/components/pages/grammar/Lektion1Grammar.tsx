@@ -7,6 +7,7 @@ import PresentTenseSection from "@/components/pages/grammar/PresentTenseSection"
 import QuestionsSection from "@/components/pages/grammar/QuestionsSection";
 import WQuestionWordsSection from "@/components/pages/grammar/WQuestionWordsSection";
 import AusCountriesSection from "@/components/pages/grammar/AusCountriesSection";
+import TravelCountriesSection from "@/components/pages/grammar/TravelCountriesSection";
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import {
   Callout,
@@ -180,26 +181,7 @@ export default function Lektion1Grammar() {
       </Section>
 
       <Section id="travel" number={9} title="nach vs in — travelling to countries">
-        <ul className="grammar-pattern-list">
-          <li>
-            <strong>nach</strong> + country <em>without</em> article —{" "}
-            <em>nach Deutschland</em>
-          </li>
-          <li>
-            <strong>in</strong> + <strong>Akkusativ</strong> + country{" "}
-            <em>with</em> article — <em>in die Schweiz</em>,{" "}
-            <em>in den Iran</em>
-          </li>
-        </ul>
-        <ul className="grammar-example-list">
-          <Ex de="Wir reisen nach Deutschland." />
-          <Ex de="Wir fahren in die Schweiz." />
-          <Ex de="Wir fliegen in den Iran." />
-        </ul>
-        <p className="grammar-note">
-          <em>Wie heißt Ihr Land in Ihrer Sprache?</em> — What is your country
-          called in your language?
-        </p>
+        <TravelCountriesSection />
       </Section>
 
       <Section id="possessives" number={10} title="Possessive pronouns (mein …)">
