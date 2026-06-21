@@ -100,10 +100,6 @@ export default function PresentTenseSection() {
           <h3 id="grammar-pronoun-ref-title" className="grammar-pronoun-ref__title">
             Personal pronouns
           </h3>
-          <p className="grammar-pronoun-ref__lead">
-            The <strong>Pers.</strong> column in the tables below — tap ▶ to hear
-            each one.
-          </p>
         </header>
         <div className="grammar-pronoun-ref__grid">
           {PERSONAL_PRONOUNS.map((pronoun) => (

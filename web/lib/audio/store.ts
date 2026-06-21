@@ -46,6 +46,7 @@ export async function storeUserAudioMp3(
       contentType: "audio/mpeg",
       ...(token ? { token } : {}),
       addRandomSuffix: false,
+      allowOverwrite: true,
     });
     return blob.url;
   }
