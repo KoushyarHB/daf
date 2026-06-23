@@ -47,6 +47,16 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
+        id: "m-weather-drinks",
+        label: "Weather & many alcoholic drinks",
+        accuracy: "~85%",
+        examples: [
+          { german: "der Regen", english: "the rain" },
+          { german: "der Wind", english: "the wind" },
+          { german: "der Wein", english: "the wine" },
+        ],
+      },
+      {
         id: "m-er",
         label: "-er",
         accuracy: "~75%",
@@ -79,15 +89,6 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
-        id: "m-ismus",
-        label: "-ismus",
-        accuracy: "~99%",
-        examples: [
-          { german: "der Optimismus", english: "optimism" },
-          { german: "der Tourismus", english: "tourism" },
-        ],
-      },
-      {
         id: "m-ling",
         label: "-ling",
         accuracy: "~95%",
@@ -97,13 +98,12 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
-        id: "m-weather-drinks",
-        label: "Weather & many alcoholic drinks",
-        accuracy: "~85%",
+        id: "m-ismus",
+        label: "-ismus",
+        accuracy: "~99%",
         examples: [
-          { german: "der Regen", english: "the rain" },
-          { german: "der Wind", english: "the wind" },
-          { german: "der Wein", english: "the wine" },
+          { german: "der Optimismus", english: "optimism" },
+          { german: "der Tourismus", english: "tourism" },
         ],
       },
     ],
