@@ -1,9 +1,10 @@
 "use client";
 
 import {
+  IRREGULAR_VERB_COLUMNS,
+  IRREGULAR_VERB_ROWS,
   PERSONAL_PRONOUNS,
   REGULAR_CONJUGATION_ROWS,
-  SEIN_ROWS,
   type ConjugatedForm,
 } from "@/lib/grammar/present-tense";
 
@@ -69,7 +70,7 @@ function RegularConjForm({ stem, suffix, form, farsi }: ConjugatedForm) {
   );
 }
 
-function SeinConjForm({ form, farsi }: { form: string; farsi: string }) {
+function IrregularConjForm({ form, farsi }: { form: string; farsi: string }) {
   return (
     <span className="grammar-conj-form">
       <span className="grammar-conj-form__word">
@@ -89,7 +90,9 @@ export default function PresentTenseSection() {
       <Lead>
         <strong>Regelmäßige Verben im Präsens</strong> — drop{" "}
         <em>-en</em> from the infinitive to get the stem, then add endings.{" "}
-        <em>kommen</em> → <em>komm-</em>.
+        <em>kommen</em> → <em>komm-</em>. <strong>Irregular</strong> verbs like{" "}
+        <em>sein</em> and <em>heißen</em> do not follow that pattern — learn
+        their forms separately.
       </Lead>
 
       <section
@@ -165,32 +168,46 @@ export default function PresentTenseSection() {
           </div>
         </div>
 
-        <div className="grammar-present-panel grammar-present-panel--sein">
+        <div className="grammar-present-panel grammar-present-panel--irregular">
           <header className="grammar-present-panel__head">
-            <h3 className="grammar-present-panel__title">sein</h3>
-            <p className="grammar-present-panel__subtitle">to be — irregular</p>
+            <h3 className="grammar-present-panel__title">Irregular verbs</h3>
+            <p className="grammar-present-panel__subtitle">
+              <em>sein</em> · <em>heißen</em>
+            </p>
           </header>
           <div className="grammar-table-wrap grammar-table-wrap--conj">
-            <table className="grammar-conj-table grammar-conj-table--sein">
+            <table className="grammar-conj-table grammar-conj-table--irregular">
               <thead>
                 <tr>
                   <th scope="col" className="grammar-conj-table__head-person">
                     Pers.
                   </th>
-                  <th scope="col" className="grammar-conj-table__head-verb">
-                    Form
-                  </th>
+                  {IRREGULAR_VERB_COLUMNS.map((verb) => (
+                    <th
+                      key={verb.id}
+                      scope="col"
+                      className="grammar-conj-table__head-verb"
+                      title={verb.english}
+                    >
+                      <em>{verb.infinitive}</em>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {SEIN_ROWS.map((row) => (
+                {IRREGULAR_VERB_ROWS.map((row) => (
                   <tr key={row.person.join("-")}>
                     <th scope="row" className="grammar-conj-table__person">
                       <PersonCell labels={row.person} />
                     </th>
-                    <td>
-                      <SeinConjForm form={row.form} farsi={row.farsi} />
-                    </td>
+                    {IRREGULAR_VERB_COLUMNS.map((verb) => {
+                      const { form, farsi } = row.forms[verb.id];
+                      return (
+                        <td key={verb.id}>
+                          <IrregularConjForm form={form} farsi={farsi} />
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>

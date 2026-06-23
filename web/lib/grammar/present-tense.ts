@@ -62,11 +62,71 @@ export type ConjugationRow = {
   arbeiten: ConjugatedForm;
 };
 
-export type SeinRow = {
-  person: readonly string[];
+export type IrregularVerbColumn = {
+  id: string;
+  infinitive: string;
+  english: string;
+};
+
+export type IrregularVerbForm = {
   form: string;
   farsi: string;
 };
+
+export type IrregularVerbRow = {
+  person: readonly string[];
+  forms: Record<string, IrregularVerbForm>;
+};
+
+export const IRREGULAR_VERB_COLUMNS: readonly IrregularVerbColumn[] = [
+  { id: "sein", infinitive: "sein", english: "to be" },
+  { id: "heissen", infinitive: "heißen", english: "to be called" },
+];
+
+export const IRREGULAR_VERB_ROWS: IrregularVerbRow[] = [
+  {
+    person: ["ich"],
+    forms: {
+      sein: { form: "bin", farsi: "هستم" },
+      heissen: { form: "heiße", farsi: "نام دارم" },
+    },
+  },
+  {
+    person: ["du"],
+    forms: {
+      sein: { form: "bist", farsi: "هستی" },
+      heissen: { form: "heißt", farsi: "نام داری" },
+    },
+  },
+  {
+    person: ["er", "sie", "es"],
+    forms: {
+      sein: { form: "ist", farsi: "است" },
+      heissen: { form: "heißt", farsi: "نام دارد" },
+    },
+  },
+  {
+    person: ["wir"],
+    forms: {
+      sein: { form: "sind", farsi: "هستیم" },
+      heissen: { form: "heißen", farsi: "نام داریم" },
+    },
+  },
+  {
+    person: ["ihr"],
+    forms: {
+      sein: { form: "seid", farsi: "هستید" },
+      heissen: { form: "heißt", farsi: "نام دارید" },
+    },
+  },
+  {
+    person: ["sie", "Sie"],
+    forms: {
+      sein: { form: "sind", farsi: "هستند / هستید" },
+      heissen: { form: "heißen", farsi: "نام دارند / دارید" },
+    },
+  },
+];
 
 export const REGULAR_CONJUGATION_ROWS: ConjugationRow[] = [
   {
@@ -130,13 +190,4 @@ export const REGULAR_CONJUGATION_ROWS: ConjugationRow[] = [
       farsi: "کار می‌کنند / کار می‌کنید",
     },
   },
-];
-
-export const SEIN_ROWS: SeinRow[] = [
-  { person: ["ich"], form: "bin", farsi: "هستم" },
-  { person: ["du"], form: "bist", farsi: "هستی" },
-  { person: ["er", "sie", "es"], form: "ist", farsi: "است" },
-  { person: ["wir"], form: "sind", farsi: "هستیم" },
-  { person: ["ihr"], form: "seid", farsi: "هستید" },
-  { person: ["sie", "Sie"], form: "sind", farsi: "هستند / هستید" },
 ];

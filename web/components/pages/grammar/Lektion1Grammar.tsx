@@ -90,7 +90,7 @@ export default function Lektion1Grammar() {
         <AlphabetPronunciationSection />
       </Section>
 
-      <Section id="present" number={4} title="Present tense — regular verbs & sein">
+      <Section id="present" number={4} title="Present tense — regular & irregular verbs">
         <PresentTenseSection />
       </Section>
 
