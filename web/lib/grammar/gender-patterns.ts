@@ -123,37 +123,6 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
-        id: "n-chen-lein",
-        label: "-chen / -lein (diminutives)",
-        accuracy: "~100%",
-        hint: "Always neuter — one of the safest patterns.",
-        examples: [
-          { german: "das Mädchen", english: "the girl" },
-          { german: "das Häuschen", english: "the little house" },
-          { german: "das Brötchen", english: "the bread roll" },
-        ],
-      },
-      {
-        id: "n-ment",
-        label: "-ment",
-        accuracy: "~99%",
-        examples: [
-          { german: "das Instrument", english: "the instrument" },
-          { german: "das Dokument", english: "the document" },
-          { german: "das Experiment", english: "the experiment" },
-        ],
-      },
-      {
-        id: "n-um",
-        label: "-um",
-        accuracy: "~99%",
-        examples: [
-          { german: "das Zentrum", english: "the centre" },
-          { german: "das Museum", english: "the museum" },
-          { german: "das Datum", english: "the date" },
-        ],
-      },
-      {
         id: "n-infinitive-nouns",
         label: "Verbs used as nouns (infinitive)",
         accuracy: "~95%",
@@ -174,12 +143,43 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
+        id: "n-chen-lein",
+        label: "-chen / -lein (diminutives)",
+        accuracy: "~100%",
+        hint: "Always neuter — one of the safest patterns.",
+        examples: [
+          { german: "das Mädchen", english: "the girl" },
+          { german: "das Häuschen", english: "the little house" },
+          { german: "das Brötchen", english: "the bread roll" },
+        ],
+      },
+      {
+        id: "n-um",
+        label: "-um",
+        accuracy: "~99%",
+        examples: [
+          { german: "das Zentrum", english: "the centre" },
+          { german: "das Museum", english: "the museum" },
+          { german: "das Datum", english: "the date" },
+        ],
+      },
+      {
         id: "n-tum",
         label: "-tum",
         accuracy: "~95%",
         examples: [
           { german: "das Eigentum", english: "property" },
           { german: "das Christentum", english: "Christianity" },
+        ],
+      },
+      {
+        id: "n-ment",
+        label: "-ment",
+        accuracy: "~99%",
+        examples: [
+          { german: "das Instrument", english: "the instrument" },
+          { german: "das Dokument", english: "the document" },
+          { german: "das Experiment", english: "the experiment" },
         ],
       },
     ],
@@ -190,6 +190,16 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
     subtitle: "die",
     rules: [
       {
+        id: "f-people-animals",
+        label: "Female people & many female animals",
+        accuracy: "~85%",
+        examples: [
+          { german: "die Frau", english: "the woman" },
+          { german: "die Studentin", english: "the student (female)" },
+          { german: "die Katze", english: "the cat" },
+        ],
+      },
+      {
         id: "f-e",
         label: "-e",
         accuracy: "~90%",
@@ -199,6 +209,16 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
           { german: "die Straße", english: "the street" },
           { german: "die Lampe", english: "the lamp" },
           { german: "die Tasse", english: "the cup" },
+        ],
+      },
+      {
+        id: "f-schaft",
+        label: "-schaft",
+        accuracy: "~99%",
+        examples: [
+          { german: "die Freundschaft", english: "friendship" },
+          { german: "die Mannschaft", english: "the team" },
+          { german: "die Landschaft", english: "the landscape" },
         ],
       },
       {
@@ -222,13 +242,13 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
-        id: "f-schaft",
-        label: "-schaft",
+        id: "f-ik",
+        label: "-ik",
         accuracy: "~99%",
         examples: [
-          { german: "die Freundschaft", english: "friendship" },
-          { german: "die Mannschaft", english: "the team" },
-          { german: "die Landschaft", english: "the landscape" },
+          { german: "die Musik", english: "music" },
+          { german: "die Politik", english: "politics" },
+          { german: "die Mathematik", english: "mathematics" },
         ],
       },
       {
@@ -252,16 +272,6 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
         ],
       },
       {
-        id: "f-ik",
-        label: "-ik",
-        accuracy: "~99%",
-        examples: [
-          { german: "die Musik", english: "music" },
-          { german: "die Politik", english: "politics" },
-          { german: "die Mathematik", english: "mathematics" },
-        ],
-      },
-      {
         id: "f-ei-anz-enz",
         label: "-ei, -anz, -enz",
         accuracy: "~95%",
@@ -269,16 +279,6 @@ export const GENDER_PATTERN_GROUPS: GenderPatternGroup[] = [
           { german: "die Bäckerei", english: "the bakery" },
           { german: "die Toleranz", english: "tolerance" },
           { german: "die Konferenz", english: "the conference" },
-        ],
-      },
-      {
-        id: "f-people-animals",
-        label: "Female people & many female animals",
-        accuracy: "~85%",
-        examples: [
-          { german: "die Frau", english: "the woman" },
-          { german: "die Studentin", english: "the student (female)" },
-          { german: "die Katze", english: "the cat" },
         ],
       },
     ],

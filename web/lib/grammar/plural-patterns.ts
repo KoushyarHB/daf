@@ -43,10 +43,28 @@ export const PLURAL_PATTERN_RULES: PluralPatternRule[] = [
     ],
   },
   {
+    id: "nen",
+    label: "+ -nen",
+    accuracy: "~5%",
+    hint: "Female nouns in −in.",
+    examples: [
+      {
+        singular: "die Studentin",
+        singularEn: "the student (female)",
+        plural: "die Studentinnen",
+      },
+      {
+        singular: "die Lehrerin",
+        singularEn: "the teacher (female)",
+        plural: "die Lehrerinnen",
+      },
+    ],
+  },
+  {
     id: "e",
-    label: "+ -e",
-    accuracy: "~20%",
-    hint: "Frequent with der (often one syllable) and some das.",
+    label: "+ -e (± umlaut)",
+    accuracy: "~25%",
+    hint: "Frequent with der (often one syllable) and some das; feminine monosyllables often add −e with umlaut (Stadt → Städte).",
     examples: [
       {
         singular: "der Tisch",
@@ -62,6 +80,16 @@ export const PLURAL_PATTERN_RULES: PluralPatternRule[] = [
         singular: "das Jahr",
         singularEn: "the year",
         plural: "die Jahre",
+      },
+      {
+        singular: "die Stadt",
+        singularEn: "the city",
+        plural: "die Städte",
+      },
+      {
+        singular: "die Hand",
+        singularEn: "the hand",
+        plural: "die Hände",
       },
     ],
   },
@@ -94,70 +122,6 @@ export const PLURAL_PATTERN_RULES: PluralPatternRule[] = [
     ],
   },
   {
-    id: "none",
-    label: "no change",
-    accuracy: "~15%",
-    hint: "Same word form — only the article becomes die. Jobs in −er, many loanwords, −chen / −lein.",
-    examples: [
-      {
-        singular: "der Lehrer",
-        singularEn: "the teacher",
-        plural: "die Lehrer",
-      },
-      {
-        singular: "der Computer",
-        singularEn: "the computer",
-        plural: "die Computer",
-      },
-      {
-        singular: "das Fenster",
-        singularEn: "the window",
-        plural: "die Fenster",
-      },
-      {
-        singular: "das Mädchen",
-        singularEn: "the girl",
-        plural: "die Mädchen",
-      },
-    ],
-  },
-  {
-    id: "nen",
-    label: "+ -nen",
-    accuracy: "~5%",
-    hint: "Female nouns in −in.",
-    examples: [
-      {
-        singular: "die Studentin",
-        singularEn: "the student (female)",
-        plural: "die Studentinnen",
-      },
-      {
-        singular: "die Lehrerin",
-        singularEn: "the teacher (female)",
-        plural: "die Lehrerinnen",
-      },
-    ],
-  },
-  {
-    id: "e-umlaut",
-    label: "-e + umlaut",
-    accuracy: "~5%",
-    hint: "Adds −e and changes the stem vowel — often feminine monosyllables.",
-    examples: [
-      {
-        singular: "die Stadt",
-        singularEn: "the city",
-        plural: "die Städte",
-      },
-      {
-        singular: "die Hand",
-        singularEn: "the hand",
-        plural: "die Hände",
-      },
-    ],
-  },
-  {
     id: "umlaut-only",
     label: "umlaut only",
     accuracy: "~3%",
@@ -182,6 +146,34 @@ export const PLURAL_PATTERN_RULES: PluralPatternRule[] = [
         singular: "die Tochter",
         singularEn: "the daughter",
         plural: "die Töchter",
+      },
+    ],
+  },
+  {
+    id: "none",
+    label: "no change",
+    accuracy: "~15%",
+    hint: "Same word form — only the article becomes die. Jobs in −er, many loanwords, −chen / −lein.",
+    examples: [
+      {
+        singular: "der Lehrer",
+        singularEn: "the teacher",
+        plural: "die Lehrer",
+      },
+      {
+        singular: "der Computer",
+        singularEn: "the computer",
+        plural: "die Computer",
+      },
+      {
+        singular: "das Fenster",
+        singularEn: "the window",
+        plural: "die Fenster",
+      },
+      {
+        singular: "das Mädchen",
+        singularEn: "the girl",
+        plural: "die Mädchen",
       },
     ],
   },
