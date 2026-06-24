@@ -26,8 +26,8 @@ export const NACH_SENTENCES: readonly TravelExample[] = [
     english: "We are travelling to Germany.",
   },
   {
-    german: "Wohin fährst du?",
-    english: "Where are you going (to)?",
+    german: "Nächstes Jahr fahren wir nach Österreich.",
+    english: "Next year we are going to Austria.",
   },
   {
     german: "Ich fahre nach Berlin.",
@@ -75,8 +75,28 @@ export const IN_SENTENCES: readonly TravelExample[] = [
     english: "We are driving to Switzerland.",
   },
   {
+    german: "Ich fahre in die Türkei.",
+    english: "I am driving to Turkey.",
+  },
+  {
+    german: "Wir fliegen in die Ukraine.",
+    english: "We are flying to Ukraine.",
+  },
+  {
     german: "Wir fliegen in den Iran.",
     english: "We are flying to Iran.",
+  },
+  {
+    german: "Er fährt in den Irak.",
+    english: "He is driving to Iraq.",
+  },
+  {
+    german: "Wir fliegen in die USA.",
+    english: "We are flying to the USA.",
+  },
+  {
+    german: "Wir fahren in die Niederlande.",
+    english: "We are driving to the Netherlands.",
   },
 ];
 
