@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 
+import ConfirmModal from "@/components/shared/ConfirmModal";
 import TagMultiSelect from "@/components/shared/TagMultiSelect";
 import PronounceButton from "@/components/shared/PronounceButton";
 import { useToast } from "@/components/shared/toast/ToastProvider";
@@ -118,6 +119,7 @@ export default function CardFormModal({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [suggesting, setSuggesting] = useState(false);
+  const [aiFillConfirmOpen, setAiFillConfirmOpen] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);
   const [generatingPronunciation, setGeneratingPronunciation] = useState(false);
   const [pronunciationProgress, setPronunciationProgress] = useState<string | null>(
@@ -149,6 +151,11 @@ export default function CardFormModal({
       })
       .catch(() => setDecks([]));
   }, [open, mode, card, defaultDeckId, adminDeckId]);
+
+  useEffect(() => {
+    if (open) return;
+    setAiFillConfirmOpen(false);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -265,12 +272,21 @@ export default function CardFormModal({
     }
   }
 
-  async function onSuggest() {
-    const head = form.head.trim();
-    if (!head) {
+  function onAiFillClick() {
+    if (!form.head.trim()) {
       toast.error("Enter a headword first.");
       return;
     }
+    if (mode === "edit") {
+      setAiFillConfirmOpen(true);
+      return;
+    }
+    void runAiSuggest();
+  }
+
+  async function runAiSuggest() {
+    const head = form.head.trim();
+    if (!head) return;
 
     setSuggesting(true);
     setError(null);
@@ -497,17 +513,15 @@ export default function CardFormModal({
               {title}
             </h2>
             <div className="card-form-fill-btns">
-              {mode === "create" ? (
-                <button
-                  type="button"
-                  className="card-form-ai-btn"
-                  onClick={onSuggest}
-                  disabled={suggesting || !form.head.trim()}
-                  title="Fill gloss, notes, examples, IPA, and type from the headword"
-                >
-                  {suggesting ? "Filling…" : "✨ AI fill"}
-                </button>
-              ) : null}
+              <button
+                type="button"
+                className="card-form-ai-btn"
+                onClick={onAiFillClick}
+                disabled={suggesting || !form.head.trim()}
+                title="Fill gloss, notes, examples, IPA, and type from the headword"
+              >
+                {suggesting ? "Filling…" : "✨ AI fill"}
+              </button>
               <button
                 type="button"
                 className="card-form-json-btn"
@@ -772,6 +786,20 @@ export default function CardFormModal({
         initialJson={jsonFillInitial}
         onApply={applyManifestFill}
         onClose={() => setJsonFillOpen(false)}
+      />
+
+      <ConfirmModal
+        open={aiFillConfirmOpen}
+        title="Replace card content?"
+        message="AI fill will replace the current IPA, gloss, notes, examples, level, and word type. Your edits in those fields will be lost."
+        confirmLabel="Replace with AI"
+        cancelLabel="Keep current"
+        danger
+        onConfirm={() => {
+          setAiFillConfirmOpen(false);
+          void runAiSuggest();
+        }}
+        onCancel={() => setAiFillConfirmOpen(false)}
       />
     </div>,
     document.body,
