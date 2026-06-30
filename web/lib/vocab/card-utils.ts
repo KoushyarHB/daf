@@ -176,6 +176,37 @@ export function collectFilterOptions(cards: EnrichedVocabCard[]): {
   };
 }
 
+function normGenderColLabel(label: string): string {
+  return label.toLowerCase().replace(/\./g, "").trim();
+}
+
+/** Canonical m · n · f · pl (der · das · die · die) — swap legacy f-before-n columns. */
+function reorderGenderParadigmTable(table: {
+  columns: string[];
+  rows: string[][];
+}): { columns: string[]; rows: string[][] } {
+  const { columns, rows } = table;
+  if (columns.length !== 5) return table;
+  const labels = columns.map(normGenderColLabel);
+  if (labels[0] !== "") return table;
+
+  const isM = (s: string) => s === "m" || s === "mask";
+  const isN = (s: string) => s === "n" || s === "neut";
+  const isF = (s: string) => s === "f" || s === "fem";
+  const isPl = (s: string) => s === "pl" || s === "plural";
+
+  const legacyMfnPl =
+    isM(labels[1]) && isF(labels[2]) && isN(labels[3]) && isPl(labels[4]);
+  if (!legacyMfnPl) return table;
+
+  const nextColumns = ["", "m.", "n.", "f.", "pl."];
+  const nextRows = rows.map((row) => {
+    if (row.length < 5) return row;
+    return [row[0], row[1], row[3], row[2], row[4]];
+  });
+  return { columns: nextColumns, rows: nextRows };
+}
+
 export function normalizeGrammarTable(raw: unknown): GrammarTable | null {
   if (!raw || typeof raw !== "object") return null;
   const obj = raw as Record<string, unknown>;
@@ -196,7 +227,7 @@ export function normalizeGrammarTable(raw: unknown): GrammarTable | null {
     }
     rows.push(cells);
   }
-  return { columns, rows };
+  return reorderGenderParadigmTable({ columns, rows });
 }
 
 export function* iterGrammarAdjSuffixRuns(

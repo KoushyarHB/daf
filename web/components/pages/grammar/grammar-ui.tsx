@@ -133,10 +133,10 @@ export function GenderTableColGroup() {
 
 export function GenderTableHead() {
   const cols = [
-    { gender: "mask", className: "grammar-col--der" },
-    { gender: "neut", className: "grammar-col--das" },
-    { gender: "fem", className: "grammar-col--die" },
-    { gender: "plural", className: "grammar-col--die-pl" },
+    { label: "m.", className: "grammar-col--der" },
+    { label: "n.", className: "grammar-col--das" },
+    { label: "f.", className: "grammar-col--die" },
+    { label: "pl.", className: "grammar-col--die-pl" },
   ] as const;
 
   return (
@@ -150,7 +150,7 @@ export function GenderTableHead() {
           scope="col"
           className={`grammar-col ${col.className}`}
         >
-          {col.gender}
+          {col.label}
         </th>
       ))}
     </tr>

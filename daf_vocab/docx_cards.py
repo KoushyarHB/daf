@@ -203,6 +203,46 @@ def ordered_example_object(ex: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
+def _norm_gender_col_label(label: str) -> str:
+    return label.lower().replace(".", "").strip()
+
+
+def _reorder_gender_paradigm_table(
+    columns: list[str], rows: list[list[str]]
+) -> tuple[list[str], list[list[str]]]:
+    """Canonical m · n · f · pl (der · das · die · die) — swap legacy f-before-n columns."""
+
+    if len(columns) != 5:
+        return columns, rows
+    labels = [_norm_gender_col_label(c) for c in columns]
+    if labels[0] != "":
+        return columns, rows
+
+    def is_m(s: str) -> bool:
+        return s in ("m", "mask")
+
+    def is_n(s: str) -> bool:
+        return s in ("n", "neut")
+
+    def is_f(s: str) -> bool:
+        return s in ("f", "fem")
+
+    def is_pl(s: str) -> bool:
+        return s in ("pl", "plural")
+
+    if not (is_m(labels[1]) and is_f(labels[2]) and is_n(labels[3]) and is_pl(labels[4])):
+        return columns, rows
+
+    next_columns = ["", "m.", "n.", "f.", "pl."]
+    next_rows: list[list[str]] = []
+    for row in rows:
+        if len(row) < 5:
+            next_rows.append(row)
+        else:
+            next_rows.append([row[0], row[1], row[3], row[2], row[4]])
+    return next_columns, next_rows
+
+
 def normalize_grammar_table(raw: Any) -> dict[str, Any] | None:
     """Optional ``grammarTable`` block: ``{ \"columns\": [...], \"rows\": [[...], ...] }`` for Word + HTML."""
 
@@ -229,6 +269,7 @@ def normalize_grammar_table(raw: Any) -> dict[str, Any] | None:
             v = row[i] if i < len(row) else None
             cells.append("" if v is None else str(v).strip())
         rows.append(cells)
+    columns, rows = _reorder_gender_paradigm_table(columns, rows)
     return {"columns": columns, "rows": rows}
 
 

@@ -6,7 +6,11 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Termine",
-    "gloss": ["Appointment; scheduled time."],
+    "gloss": [
+      "Appointment; scheduled time."
+    ],
+    "notes": [],
+    "audio": "/audio/v-der-termin.mp3",
     "examples": [
       {
         "german": "Ich habe einen Termin um zehn Uhr.",
@@ -28,15 +32,19 @@
     "updatedAt": "2026-06-12T12:00:00Z",
     "lektion": 2,
     "level": "A1",
-    "studied": false,
-    "audio": "/audio/v-der-termin.mp3"
+    "tags": [
+      "daf-lek-2"
+    ],
+    "studied": false
   },
   {
     "head": "herumgehen",
     "ipa": "hɛˈʁʊmˌɡeːən",
     "id": "v-herumgehen",
     "pos": "verb",
-    "gloss": ["To go around; move about (separable: … gehen … herum)."],
+    "gloss": [
+      "To go around; move about (separable: … gehen … herum)."
+    ],
     "notes": [
       "• Kursleiter/in: Gehen Sie im Kurs herum. (walk around during pair work.)"
     ],
@@ -57,6 +65,9 @@
     "updatedAt": "2026-06-06T14:35:16Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -66,7 +77,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Fragen",
-    "gloss": ["Question."],
+    "gloss": [
+      "Question."
+    ],
     "notes": [],
     "audio": "/audio/v-die-frage.mp3",
     "examples": [
@@ -85,6 +98,9 @@
     "updatedAt": "2026-06-04T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -92,7 +108,9 @@
     "ipa": "ɛɐ̯ˈklɛːʁən",
     "id": "v-erkl-ren",
     "pos": "verb",
-    "gloss": ["To explain."],
+    "gloss": [
+      "To explain."
+    ],
     "notes": [],
     "audio": "/audio/v-erklären.mp3",
     "examples": [
@@ -111,6 +129,9 @@
     "updatedAt": "2026-06-06T14:35:17Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -118,7 +139,9 @@
     "ipa": "fɛɐ̯ˈʃteːən",
     "id": "v-verstehen",
     "pos": "verb",
-    "gloss": ["To understand."],
+    "gloss": [
+      "To understand."
+    ],
     "notes": [],
     "audio": "/audio/v-verstehen.mp3",
     "examples": [
@@ -137,6 +160,9 @@
     "updatedAt": "2026-06-06T14:35:23Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -144,7 +170,9 @@
     "ipa": "ˈnaːxˌʃaʊ̯ən",
     "id": "v-nachschauen",
     "pos": "verb",
-    "gloss": ["To look up; check (separable: … schauen … nach)."],
+    "gloss": [
+      "To look up; check (separable: … schauen … nach)."
+    ],
     "notes": [],
     "audio": "/audio/v-nachschauen.mp3",
     "examples": [
@@ -163,6 +191,9 @@
     "updatedAt": "2026-06-06T14:36:16Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": true
   },
   {
@@ -191,6 +222,9 @@
     "updatedAt": "2026-06-06T14:35:57Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -198,7 +232,9 @@
     "ipa": "ˈaʁbaɪ̯tən",
     "id": "v-arbeiten",
     "pos": "verb",
-    "gloss": ["To work (on a task, in pairs/groups)."],
+    "gloss": [
+      "To work (on a task, in pairs/groups)."
+    ],
     "notes": [],
     "audio": "/audio/v-arbeiten.mp3",
     "examples": [
@@ -217,6 +253,9 @@
     "updatedAt": "2026-06-06T14:35:57Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -224,7 +263,9 @@
     "ipa": "ˈlaŋzam",
     "id": "v-langsam",
     "pos": "adjective",
-    "gloss": ["Slow; slowly."],
+    "gloss": [
+      "Slow; slowly."
+    ],
     "notes": [],
     "audio": "/audio/v-langsam.mp3",
     "examples": [
@@ -243,6 +284,9 @@
     "updatedAt": "2026-06-06T14:36:09Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": true
   },
   {
@@ -252,7 +296,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Tafeln",
-    "gloss": ["Board (whiteboard/blackboard)."],
+    "gloss": [
+      "Board (whiteboard/blackboard)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-tafel.mp3",
     "examples": [
@@ -271,6 +317,9 @@
     "updatedAt": "2026-06-04T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -280,7 +329,9 @@
     "pos": "noun",
     "pluralRule": "-¨er",
     "plural": "die Übungsbücher",
-    "gloss": ["Workbook; exercise book (companion to the coursebook)."],
+    "gloss": [
+      "Workbook; exercise book (companion to the coursebook)."
+    ],
     "notes": [
       "• Compound: Übung + Buch (singular stem), not Übungenbuch.",
       "• The -s- in Übungs- is Fugen-s (linking s): from genitive der Übung → Übungs-; it glues the two nouns. Not plural -en."
@@ -302,6 +353,9 @@
     "updatedAt": "2026-06-04T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -309,8 +363,12 @@
     "ipa": "viː ˈbɪtə",
     "id": "v-wie-bitte",
     "pos": "phrase",
-    "gloss": ["Sorry? Pardon? (did not hear or understand)."],
-    "notes": ["• Kursteilnehmer/in: polite when you missed something."],
+    "gloss": [
+      "Sorry? Pardon? (did not hear or understand)."
+    ],
+    "notes": [
+      "• Kursteilnehmer/in: polite when you missed something."
+    ],
     "audio": "/audio/v-wie-bitte.mp3",
     "examples": [
       {
@@ -328,6 +386,9 @@
     "updatedAt": "2026-06-04T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -335,7 +396,9 @@
     "ipa": "ɛntˈʃʊldɪɡʊŋ",
     "id": "v-entschuldigung",
     "pos": "phrase",
-    "gloss": ["Excuse me; sorry (to get attention or apologise)."],
+    "gloss": [
+      "Excuse me; sorry (to get attention or apologise)."
+    ],
     "notes": [],
     "audio": "/audio/v-entschuldigung.mp3",
     "examples": [
@@ -354,6 +417,9 @@
     "updatedAt": "2026-06-06T14:36:19Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": true
   },
   {
@@ -361,7 +427,9 @@
     "ipa": "ˈkʊʁsˌʃpʁaːxə",
     "id": "v-die-kurssprache",
     "pos": "noun",
-    "gloss": ["Course language; classroom/course vocabulary."],
+    "gloss": [
+      "Course language; classroom/course vocabulary."
+    ],
     "notes": [],
     "audio": "/audio/v-die-kurssprache.mp3",
     "examples": [
@@ -380,6 +448,9 @@
     "updatedAt": "2026-06-06T14:35:54Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -389,7 +460,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Pausen",
-    "gloss": ["Break; pause (e.g. between lessons)."],
+    "gloss": [
+      "Break; pause (e.g. between lessons)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-pause.mp3",
     "examples": [
@@ -408,6 +481,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -417,8 +493,12 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Unterrichte",
-    "gloss": ["Lesson(s); instruction; class time when teaching happens."],
-    "notes": ["• Not the same as der Kurs (the whole course)."],
+    "gloss": [
+      "Lesson(s); instruction; class time when teaching happens."
+    ],
+    "notes": [
+      "• Not the same as der Kurs (the whole course)."
+    ],
     "audio": "/audio/v-der-unterricht.mp3",
     "examples": [
       {
@@ -436,6 +516,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -445,8 +528,12 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Aufgaben",
-    "gloss": ["Task; assignment; numbered exercise."],
-    "notes": ["• Near die Übung; Aufgabe stresses the task itself."],
+    "gloss": [
+      "Task; assignment; numbered exercise."
+    ],
+    "notes": [
+      "• Near die Übung; Aufgabe stresses the task itself."
+    ],
     "audio": "/audio/v-die-aufgabe.mp3",
     "examples": [
       {
@@ -464,6 +551,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -473,7 +563,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Übungen",
-    "gloss": ["Exercise; practice (in class or book)."],
+    "gloss": [
+      "Exercise; practice (in class or book)."
+    ],
     "notes": [
       "• In compounds: Übungsbuch (Fugen-s from genitive der Übung — see das Übungsbuch card)."
     ],
@@ -494,6 +586,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -503,7 +598,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Seiten",
-    "gloss": ["Page (of a book)."],
+    "gloss": [
+      "Page (of a book)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-seite.mp3",
     "examples": [
@@ -522,6 +619,9 @@
     "updatedAt": "2026-06-06T14:35:53Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -531,7 +631,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Dialoge",
-    "gloss": ["Dialogue (structured spoken text in the book)."],
+    "gloss": [
+      "Dialogue (structured spoken text in the book)."
+    ],
     "notes": [],
     "audio": "/audio/v-der-dialog.mp3",
     "examples": [
@@ -550,6 +652,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -559,7 +664,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Artikel",
-    "gloss": ["Article (grammar); also newspaper article."],
+    "gloss": [
+      "Article (grammar); also newspaper article."
+    ],
     "notes": [
       "• Kurssprache: der/die/das or ein-words, not only newspaper text."
     ],
@@ -580,6 +687,9 @@
     "updatedAt": "2026-06-06T14:36:21Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": true
   },
   {
@@ -589,7 +699,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Texte",
-    "gloss": ["Text; written passage."],
+    "gloss": [
+      "Text; written passage."
+    ],
     "notes": [],
     "audio": "/audio/v-der-text-tɛkst.mp3",
     "examples": [
@@ -608,6 +720,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -617,7 +732,9 @@
     "pos": "noun",
     "pluralRule": "-¨er",
     "plural": "die Wörter",
-    "gloss": ["Word."],
+    "gloss": [
+      "Word."
+    ],
     "notes": [],
     "audio": "/audio/v-das-wort.mp3",
     "examples": [
@@ -636,6 +753,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -645,7 +765,9 @@
     "pos": "noun",
     "pluralRule": "- / -nen",
     "plural": "die Kursteilnehmer, die Kursteilnehmerinnen",
-    "gloss": ["Course participant; student in the class."],
+    "gloss": [
+      "Course participant; student in the class."
+    ],
     "notes": [
       "• Kurs + Teilnehmer. See also der Teilnehmer / die Teilnehmerin."
     ],
@@ -666,6 +788,9 @@
     "updatedAt": "2026-06-06T14:35:51Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -675,7 +800,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Hausaufgaben",
-    "gloss": ["Homework."],
+    "gloss": [
+      "Homework."
+    ],
     "notes": [
       "• Haus + Aufgabe. Odd one out with Kursleiter/Kursteilnehmer (people)."
     ],
@@ -696,6 +823,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -705,8 +835,12 @@
     "pos": "noun",
     "pluralRule": "- / -nen",
     "plural": "die Kursleiter, die Kursleiterinnen",
-    "gloss": ["Course instructor; teacher of the class."],
-    "notes": ["• Kurs + Leiter (leader). Often the Deutschlehrer/in."],
+    "gloss": [
+      "Course instructor; teacher of the class."
+    ],
+    "notes": [
+      "• Kurs + Leiter (leader). Often the Deutschlehrer/in."
+    ],
     "audio": "/audio/v-der-kursleiter-die-kursleiterin.mp3",
     "examples": [
       {
@@ -724,6 +858,9 @@
     "updatedAt": "2026-06-04T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -733,7 +870,9 @@
     "pos": "noun",
     "pluralRule": "-¨er",
     "plural": "die Wörterbücher",
-    "gloss": ["Dictionary (word book)."],
+    "gloss": [
+      "Dictionary (word book)."
+    ],
     "notes": [],
     "audio": "/audio/v-das-wörterbuch.mp3",
     "examples": [
@@ -752,6 +891,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -761,7 +903,9 @@
     "pos": "noun",
     "pluralRule": "-¨er",
     "plural": "die Kursbücher",
-    "gloss": ["Coursebook; class textbook."],
+    "gloss": [
+      "Coursebook; class textbook."
+    ],
     "notes": [],
     "audio": "/audio/v-das-kursbuch.mp3",
     "examples": [
@@ -780,6 +924,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -787,7 +934,9 @@
     "ipa": "paˈpiːɐ̯",
     "id": "v-das-papier",
     "pos": "noun",
-    "gloss": ["Paper (sheets)."],
+    "gloss": [
+      "Paper (sheets)."
+    ],
     "notes": [],
     "audio": "/audio/v-das-papier.mp3",
     "examples": [
@@ -806,6 +955,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -815,7 +967,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Textmarker",
-    "gloss": ["Highlighter; text marker pen."],
+    "gloss": [
+      "Highlighter; text marker pen."
+    ],
     "notes": [],
     "audio": "/audio/v-der-textmarker.mp3",
     "examples": [
@@ -834,6 +988,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -843,8 +1000,12 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Kugelschreiber",
-    "gloss": ["Ballpoint pen."],
-    "notes": ["• Kugel + Schreiber (ball + writer)."],
+    "gloss": [
+      "Ballpoint pen."
+    ],
+    "notes": [
+      "• Kugel + Schreiber (ball + writer)."
+    ],
     "audio": "/audio/v-der-kugelschreiber.mp3",
     "examples": [
       {
@@ -862,6 +1023,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -871,7 +1035,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Bleistifte",
-    "gloss": ["Pencil."],
+    "gloss": [
+      "Pencil."
+    ],
     "notes": [],
     "audio": "/audio/v-der-bleistift.mp3",
     "examples": [
@@ -890,6 +1056,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -899,7 +1068,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Overheadprojektoren",
-    "gloss": ["Overhead projector (OHP)."],
+    "gloss": [
+      "Overhead projector (OHP)."
+    ],
     "notes": [],
     "audio": "/audio/v-der-overheadprojektor.mp3",
     "examples": [
@@ -918,6 +1089,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -927,7 +1101,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Computer",
-    "gloss": ["Computer."],
+    "gloss": [
+      "Computer."
+    ],
     "notes": [],
     "audio": "/audio/v-der-computer.mp3",
     "examples": [
@@ -946,6 +1122,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -955,7 +1134,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Fernseher",
-    "gloss": ["Television; TV set."],
+    "gloss": [
+      "Television; TV set."
+    ],
     "notes": [],
     "audio": "/audio/v-der-fernseher.mp3",
     "examples": [
@@ -974,6 +1155,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -983,7 +1167,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die DVD-Player",
-    "gloss": ["DVD player."],
+    "gloss": [
+      "DVD player."
+    ],
     "notes": [],
     "audio": "/audio/v-der-dvd-player.mp3",
     "examples": [
@@ -1002,6 +1188,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1011,7 +1200,9 @@
     "pos": "noun",
     "pluralRule": "-s",
     "plural": "die DVDs",
-    "gloss": ["DVD (disc)."],
+    "gloss": [
+      "DVD (disc)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-dvd.mp3",
     "examples": [
@@ -1030,6 +1221,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1039,7 +1233,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die CD-Player",
-    "gloss": ["CD player."],
+    "gloss": [
+      "CD player."
+    ],
     "notes": [],
     "audio": "/audio/v-der-cd-player.mp3",
     "examples": [
@@ -1058,6 +1254,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1067,7 +1266,9 @@
     "pos": "noun",
     "pluralRule": "-s",
     "plural": "die CDs",
-    "gloss": ["CD (disc)."],
+    "gloss": [
+      "CD (disc)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-cd.mp3",
     "examples": [
@@ -1086,6 +1287,9 @@
     "updatedAt": "2026-06-03T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1095,8 +1299,12 @@
     "pos": "noun",
     "pluralRule": "-¨e",
     "plural": "die Räume",
-    "gloss": ["Room; space."],
-    "notes": ["• Kursraum = der Kurs + der Raum (classroom)."],
+    "gloss": [
+      "Room; space."
+    ],
+    "notes": [
+      "• Kursraum = der Kurs + der Raum (classroom)."
+    ],
     "audio": "/audio/v-der-raum.mp3",
     "examples": [
       {
@@ -1114,6 +1322,9 @@
     "updatedAt": "2026-06-03T19:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1123,7 +1334,9 @@
     "pos": "noun",
     "pluralRule": "-¨e",
     "plural": "die Gegenstände",
-    "gloss": ["Object; item (a physical thing)."],
+    "gloss": [
+      "Object; item (a physical thing)."
+    ],
     "notes": [
       "• Plural die Gegenstände (umlaut). Textbook: objects in the classroom."
     ],
@@ -1144,6 +1357,9 @@
     "updatedAt": "2026-06-03T19:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1153,7 +1369,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Strategien",
-    "gloss": ["Strategy; planned approach (e.g. for learning)."],
+    "gloss": [
+      "Strategy; planned approach (e.g. for learning)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-strategie.mp3",
     "examples": [
@@ -1172,6 +1390,9 @@
     "updatedAt": "2026-06-03T18:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1181,7 +1402,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Schlüssel",
-    "gloss": ["Key (object); also solution key in exercises."],
+    "gloss": [
+      "Key (object); also solution key in exercises."
+    ],
     "notes": [
       "• In Symbole: Was passt? the key icon stands for der Schlüssel (Lösung / Hinweis)."
     ],
@@ -1202,6 +1425,9 @@
     "updatedAt": "2026-06-03T18:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1209,8 +1435,12 @@
     "ipa": "tsuˈʔɔʁdnən",
     "id": "v-zuordnen",
     "pos": "verb",
-    "gloss": ["To match; assign (separable: zuordnen → ordnen … zu)."],
-    "notes": ["• Imperative: Ordnen Sie zu. Textbook Arbeitsanweisungen 2."],
+    "gloss": [
+      "To match; assign (separable: zuordnen → ordnen … zu)."
+    ],
+    "notes": [
+      "• Imperative: Ordnen Sie zu. Textbook Arbeitsanweisungen 2."
+    ],
     "image": "/images/arbeitsanweisungen-2.png",
     "audio": "/audio/v-zuordnen.mp3",
     "examples": [
@@ -1229,6 +1459,9 @@
     "updatedAt": "2026-06-03T16:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1236,7 +1469,9 @@
     "ipa": "ˈaʁbaɪ̯tsˌanvaɪ̯zʊŋən",
     "id": "v-die-arbeitsanweisungen",
     "pos": "noun",
-    "gloss": ["Work instructions; exercise directions (in the textbook)."],
+    "gloss": [
+      "Work instructions; exercise directions (in the textbook)."
+    ],
     "notes": [
       "• Compound: die Arbeit + die Anweisungen. Singular: die Arbeitsanweisung."
     ],
@@ -1257,6 +1492,9 @@
     "updatedAt": "2026-06-02T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1266,7 +1504,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Anweisungen",
-    "gloss": ["Instruction; direction (what you should do)."],
+    "gloss": [
+      "Instruction; direction (what you should do)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-anweisung.mp3",
     "examples": [
@@ -1285,6 +1525,9 @@
     "updatedAt": "2026-06-02T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1294,7 +1537,9 @@
     "pos": "noun",
     "pluralRule": "- / -nen",
     "plural": "die Teilnehmer, die Teilnehmerinnen",
-    "gloss": ["Participant; course member (male/female)."],
+    "gloss": [
+      "Participant; course member (male/female)."
+    ],
     "notes": [
       "• Compound: der Teil + der Nehmer (one who takes a part, part-taker). Related verb: teilnehmen.",
       "• Plural die Teilnehmer often covers mixed groups; Teilnehmerinnen = women only."
@@ -1316,6 +1561,9 @@
     "updatedAt": "2026-06-02T13:30:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1323,7 +1571,9 @@
     "ipa": "ˈtaɪ̯lˌneːmən",
     "id": "v-teilnehmen",
     "pos": "verb",
-    "gloss": ["To take part; participate."],
+    "gloss": [
+      "To take part; participate."
+    ],
     "notes": [
       "• Separable verb: Ich nehme an einem Kurs teil. Prefix teil goes to the end.",
       "• Often with an + dative: an einem Kurs teilnehmen."
@@ -1345,6 +1595,9 @@
     "updatedAt": "2026-06-02T13:30:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1352,7 +1605,9 @@
     "ipa": "ˈtsɛːlən",
     "id": "v-z-hlen",
     "pos": "verb",
-    "gloss": ["To count."],
+    "gloss": [
+      "To count."
+    ],
     "notes": [],
     "audio": "/audio/v-zählen.mp3",
     "examples": [
@@ -1371,6 +1626,9 @@
     "updatedAt": "2026-06-02T13:30:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1380,7 +1638,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Kontinente",
-    "gloss": ["Continent."],
+    "gloss": [
+      "Continent."
+    ],
     "notes": [
       "• Origin with aus + continent (no article): Aus Europa, aus Asien.",
       "• Pattern: Aus Europa kommen 137.000 Studenten. / Die Studenten kommen aus Europa."
@@ -1422,6 +1682,9 @@
     "updatedAt": "2026-06-02T13:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1431,7 +1694,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Studenten",
-    "gloss": ["Student (male); student (generic plural Studenten)."],
+    "gloss": [
+      "Student (male); student (generic plural Studenten)."
+    ],
     "notes": [
       "• die Studentin = female student. Plural die Studenten covers mixed groups."
     ],
@@ -1452,6 +1717,9 @@
     "updatedAt": "2026-06-02T13:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1459,7 +1727,9 @@
     "ipa": "foːɐ̯ˈʃtɛlən",
     "id": "v-vorstellen",
     "pos": "verb",
-    "gloss": ["To introduce (someone); to present."],
+    "gloss": [
+      "To introduce (someone); to present."
+    ],
     "notes": [
       "• Separable verb: stellen ... vor. In commands with Sie: Stellen Sie ... vor.",
       "• Contrast with sich vorstellen: introduce yourself."
@@ -1481,6 +1751,9 @@
     "updatedAt": "2026-06-02T12:10:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1490,7 +1763,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Gruppen",
-    "gloss": ["Group."],
+    "gloss": [
+      "Group."
+    ],
     "notes": [],
     "audio": "/audio/v-die-gruppe.mp3",
     "examples": [
@@ -1509,6 +1784,9 @@
     "updatedAt": "2026-06-02T12:10:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1518,7 +1796,9 @@
     "pos": "noun",
     "pluralRule": "-s",
     "plural": "die Teams",
-    "gloss": ["Team."],
+    "gloss": [
+      "Team."
+    ],
     "notes": [],
     "audio": "/audio/v-das-team.mp3",
     "examples": [
@@ -1537,6 +1817,9 @@
     "updatedAt": "2026-06-02T12:10:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1544,8 +1827,12 @@
     "ipa": "aʊf ˈviːdɐˌzeːən",
     "id": "v-auf-wiedersehen",
     "pos": "phrase",
-    "gloss": ["Goodbye (in person)."],
-    "notes": ["• In-person farewell; on the phone use Auf Wiederhören."],
+    "gloss": [
+      "Goodbye (in person)."
+    ],
+    "notes": [
+      "• In-person farewell; on the phone use Auf Wiederhören."
+    ],
     "audio": "/audio/v-auf-wiedersehen.mp3",
     "examples": [
       {
@@ -1563,6 +1850,9 @@
     "updatedAt": "2026-06-02T12:10:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1572,7 +1862,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Hefte",
-    "gloss": ["Notebook; exercise book."],
+    "gloss": [
+      "Notebook; exercise book."
+    ],
     "notes": [
       "• In classroom instructions, in Ihr Heft means write it in your notebook (not in the textbook)."
     ],
@@ -1594,6 +1886,9 @@
     "updatedAt": "2026-06-02T11:55:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1601,8 +1896,12 @@
     "ipa": "veːɐ̯",
     "id": "v-wer",
     "pos": "other",
-    "gloss": ["Who?"],
-    "notes": ["• Question word for persons: Wer bist du? / Wer sind Sie?"],
+    "gloss": [
+      "Who?"
+    ],
+    "notes": [
+      "• Question word for persons: Wer bist du? / Wer sind Sie?"
+    ],
     "audio": "/audio/v-wer.mp3",
     "examples": [
       {
@@ -1620,6 +1919,9 @@
     "updatedAt": "2026-06-02T11:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1627,7 +1929,9 @@
     "ipa": "ɛʁˈɡɛntsən",
     "id": "v-erg-nzen",
     "pos": "verb",
-    "gloss": ["To complete; fill in."],
+    "gloss": [
+      "To complete; fill in."
+    ],
     "notes": [
       "• Common classroom/form instruction: Ergänzen Sie ... = Complete / fill in ..."
     ],
@@ -1648,6 +1952,9 @@
     "updatedAt": "2026-06-02T11:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1657,7 +1964,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Formulare",
-    "gloss": ["Form (document)."],
+    "gloss": [
+      "Form (document)."
+    ],
     "notes": [],
     "audio": "/audio/v-das-formular.mp3",
     "examples": [
@@ -1676,6 +1985,9 @@
     "updatedAt": "2026-06-02T11:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1685,8 +1997,12 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Informationen",
-    "gloss": ["Information; piece of information."],
-    "notes": ["• In mit Ihren Informationen, mit takes dative plural."],
+    "gloss": [
+      "Information; piece of information."
+    ],
+    "notes": [
+      "• In mit Ihren Informationen, mit takes dative plural."
+    ],
     "audio": "/audio/v-die-information.mp3",
     "examples": [
       {
@@ -1704,6 +2020,9 @@
     "updatedAt": "2026-06-02T11:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1713,7 +2032,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Alphabete",
-    "gloss": ["Alphabet."],
+    "gloss": [
+      "Alphabet."
+    ],
     "notes": [],
     "image": "/images/das-alphabet.png",
     "audio": "/audio/v-das-alphabet.mp3",
@@ -1733,6 +2054,9 @@
     "updatedAt": "2026-06-02T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1742,7 +2066,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Buchstaben",
-    "gloss": ["Letter (of the alphabet)."],
+    "gloss": [
+      "Letter (of the alphabet)."
+    ],
     "notes": [],
     "audio": "/audio/v-der-buchstabe.mp3",
     "examples": [
@@ -1761,6 +2087,9 @@
     "updatedAt": "2026-06-02T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1768,7 +2097,9 @@
     "ipa": "ˈʃpʁɛçən",
     "id": "v-sprechen",
     "pos": "verb",
-    "gloss": ["To speak; talk."],
+    "gloss": [
+      "To speak; talk."
+    ],
     "notes": [
       "• sprechen Sie is the formal/plural imperative: Speak / Say ..."
     ],
@@ -1789,6 +2120,9 @@
     "updatedAt": "2026-06-02T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1796,7 +2130,9 @@
     "ipa": "ˈmɪtˌʃpʁɛçən",
     "id": "v-mitsprechen",
     "pos": "verb",
-    "gloss": ["To speak along; repeat along."],
+    "gloss": [
+      "To speak along; repeat along."
+    ],
     "notes": [
       "• Separable verb: mit + sprechen. In imperative with Sie: Sprechen Sie mit."
     ],
@@ -1817,6 +2153,9 @@
     "updatedAt": "2026-06-02T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1824,7 +2163,9 @@
     "ipa": "buχʃtaˈbiːʁən",
     "id": "v-buchstabieren",
     "pos": "verb",
-    "gloss": ["To spell (out)."],
+    "gloss": [
+      "To spell (out)."
+    ],
     "notes": [],
     "audio": "/audio/v-buchstabieren.mp3",
     "examples": [
@@ -1843,6 +2184,9 @@
     "updatedAt": "2026-06-02T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1850,7 +2194,9 @@
     "ipa": "ˈɛndn̩",
     "id": "v-enden",
     "pos": "verb",
-    "gloss": ["To end; finish."],
+    "gloss": [
+      "To end; finish."
+    ],
     "notes": [
       "• In Sprachen enden ... auf -isch, enden takes auf to mark the ending pattern."
     ],
@@ -1871,13 +2217,18 @@
     "updatedAt": "2026-06-02T08:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
     "head": "fast /fast/",
     "id": "v-fast-fast",
     "pos": "adverb",
-    "gloss": ["Almost; nearly."],
+    "gloss": [
+      "Almost; nearly."
+    ],
     "notes": [],
     "audio": "/audio/v-fast-fast.mp3",
     "examples": [
@@ -1896,6 +2247,9 @@
     "updatedAt": "2026-06-02T08:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1903,7 +2257,9 @@
     "ipa": "ˈɪmɐ",
     "id": "v-immer",
     "pos": "adverb",
-    "gloss": ["Always."],
+    "gloss": [
+      "Always."
+    ],
     "notes": [],
     "audio": "/audio/v-immer.mp3",
     "examples": [
@@ -1922,6 +2278,9 @@
     "updatedAt": "2026-06-02T08:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1929,7 +2288,9 @@
     "ipa": "ɡɛʁn ɡəˈʃeːən",
     "id": "v-gern-geschehen",
     "pos": "phrase",
-    "gloss": ["You're welcome; my pleasure."],
+    "gloss": [
+      "You're welcome; my pleasure."
+    ],
     "notes": [
       "• Fixed reply to Danke or vielen Dank — common in formal speech and on the phone.",
       "• gern = gladly; geschehen = to happen — literally it happened gladly, i.e. I was glad to do it.",
@@ -1952,6 +2313,9 @@
     "updatedAt": "2026-05-23T22:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1959,7 +2323,9 @@
     "ipa": "ˈfiːlən ˈdaŋk",
     "id": "v-vielen-dank",
     "pos": "phrase",
-    "gloss": ["Thank you very much."],
+    "gloss": [
+      "Thank you very much."
+    ],
     "notes": [
       "• Danke alone is a fixed thanks-word — like saying thanks with no visible noun. vielen Dank is the full phrase: der Dank (masculine noun) = thanks, gratitude.",
       "• vielen is dative of viel (much). With abstract nouns like Dank, Spaß, Glück, viel often takes dative: vielen Dank, viel Spaß, viel Glück.",
@@ -1982,6 +2348,9 @@
     "updatedAt": "2026-05-23T21:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -1989,7 +2358,9 @@
     "ipa": "aʊf ˈviːdɐˌhøːʁən",
     "id": "v-auf-wiederh-ren",
     "pos": "phrase",
-    "gloss": ["Goodbye on the phone."],
+    "gloss": [
+      "Goodbye on the phone."
+    ],
     "notes": [
       "• Phone goodbye only; in person use Auf Wiedersehen.",
       "• auf + accusative: until the next time; wieder + hören: hear (each other) again."
@@ -2011,6 +2382,9 @@
     "updatedAt": "2026-05-23T21:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2020,7 +2394,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Wohnorte",
-    "gloss": ["Place of residence; city or town where someone lives."],
+    "gloss": [
+      "Place of residence; city or town where someone lives."
+    ],
     "notes": [
       "• Compound noun: wohnen + der Ort. Gender from der Ort → der Wohnort.",
       "• On forms like der Personalbogen, Wohnort is usually the city or town, not the full street address.",
@@ -2048,6 +2424,9 @@
     "updatedAt": "2026-05-23T20:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2055,7 +2434,9 @@
     "ipa": "ˈiːmeːl aˌdʁɛsn̩ ˈʃpʁɛçən",
     "id": "v-e-mail-adressen-sprechen",
     "pos": "phrase",
-    "gloss": ["How to say email symbols aloud."],
+    "gloss": [
+      "How to say email symbols aloud."
+    ],
     "notes": [
       "• In this lesson: - = minus, _ = Unterstrich, . = Punkt, @ = at.",
       "• Use this pattern when dictating an address on the phone."
@@ -2078,6 +2459,9 @@
     "updatedAt": "2026-06-02T12:35:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2087,7 +2471,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die E-Mail-Adressen",
-    "gloss": ["Email address."],
+    "gloss": [
+      "Email address."
+    ],
     "notes": [
       "• Compound: E-Mail + Adresse. Gender from die Adresse → die E-Mail-Adresse.",
       "• Hyphens mark the borrowed chunk E-Mail (English import); native pairs like Postadresse are one word.",
@@ -2115,6 +2501,9 @@
     "updatedAt": "2026-05-23T19:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2122,7 +2511,9 @@
     "ipa": "ɡəˈnaʊ̯",
     "id": "v-genau",
     "pos": "adjective",
-    "gloss": ["Exactly; that's right."],
+    "gloss": [
+      "Exactly; that's right."
+    ],
     "notes": [],
     "audio": "/audio/v-genau.mp3",
     "examples": [
@@ -2136,6 +2527,9 @@
     "updatedAt": "2026-05-23T18:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2145,7 +2539,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Postleitzahlen",
-    "gloss": ["Postal code; ZIP code."],
+    "gloss": [
+      "Postal code; ZIP code."
+    ],
     "notes": [],
     "audio": "/audio/v-die-postleitzahl.mp3",
     "examples": [
@@ -2164,6 +2560,9 @@
     "updatedAt": "2026-05-23T16:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2173,7 +2572,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Muttersprachen",
-    "gloss": ["Native language; mother tongue."],
+    "gloss": [
+      "Native language; mother tongue."
+    ],
     "notes": [
       "• Compound noun: die Mutter + die Sprache. The last noun decides the gender: die Sprache → die Muttersprache."
     ],
@@ -2189,6 +2590,9 @@
     "updatedAt": "2026-05-23T15:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2196,7 +2600,9 @@
     "ipa": "ˈbʁaʊ̯xən",
     "id": "v-brauchen",
     "pos": "verb",
-    "gloss": ["To need."],
+    "gloss": [
+      "To need."
+    ],
     "notes": [],
     "audio": "/audio/v-brauchen.mp3",
     "examples": [
@@ -2220,6 +2626,9 @@
     "updatedAt": "2026-05-23T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2229,7 +2638,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Herren",
-    "gloss": ["Mr. before a surname."],
+    "gloss": [
+      "Mr. before a surname."
+    ],
     "notes": [],
     "audio": "/audio/v-der-herr.mp3",
     "examples": [
@@ -2243,6 +2654,9 @@
     "updatedAt": "2026-05-23T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2252,7 +2666,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Telefongespräche",
-    "gloss": ["Telephone conversation; phone call."],
+    "gloss": [
+      "Telephone conversation; phone call."
+    ],
     "notes": [
       "• Compound noun: das Telefon + das Gespräch. The last noun decides the gender: das Gespräch → das Telefongespräch."
     ],
@@ -2278,6 +2694,9 @@
     "updatedAt": "2026-05-20T13:28:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2285,7 +2704,9 @@
     "ipa": "kɔʁiˈɡiːʁən",
     "id": "v-korrigieren",
     "pos": "verb",
-    "gloss": ["To correct."],
+    "gloss": [
+      "To correct."
+    ],
     "notes": [
       "• Formal command: Korrigieren Sie ... = Correct ...; verb first, Sie capitalized.",
       "• The thing corrected is accusative: den Personalbogen, die Antwort, die Sätze."
@@ -2312,6 +2733,9 @@
     "updatedAt": "2026-05-20T13:28:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2321,7 +2745,9 @@
     "pos": "noun",
     "pluralRule": "-bögen",
     "plural": "die Personalbögen",
-    "gloss": ["Personal information form."],
+    "gloss": [
+      "Personal information form."
+    ],
     "notes": [
       "• Compound noun: Personal = personal/personnel; der Bogen = sheet/form. The last noun decides the gender: der Bogen → der Personalbogen.",
       "• Usually a form for name, address, phone number, nationality, and other personal details."
@@ -2348,6 +2774,9 @@
     "updatedAt": "2026-05-20T13:24:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2357,7 +2786,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Bürokratien",
-    "gloss": ["Bureaucracy; administration and paperwork."],
+    "gloss": [
+      "Bureaucracy; administration and paperwork."
+    ],
     "notes": [
       "• Correct spelling: Bürokratie, not Burokrative. It has ü and ends in -ie."
     ],
@@ -2383,6 +2814,9 @@
     "updatedAt": "2026-05-20T13:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2390,7 +2824,9 @@
     "ipa": "fɔn aː bɪs tsɛt",
     "id": "v-von-a-bis-z-f-n-a-b-s-ts-t",
     "pos": "phrase",
-    "gloss": ["From A to Z; completely, start to finish."],
+    "gloss": [
+      "From A to Z; completely, start to finish."
+    ],
     "notes": [
       "• Fixed phrase: von ... bis ... = from ... to/until ...",
       "• German says Z as zett. Von A bis Z means the whole topic, from beginning to end."
@@ -2417,6 +2853,9 @@
     "updatedAt": "2026-05-20T13:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2424,7 +2863,9 @@
     "ipa": "ˈtaʊ̯ʃən",
     "id": "v-tauschen",
     "pos": "verb",
-    "gloss": ["To exchange; swap."],
+    "gloss": [
+      "To exchange; swap."
+    ],
     "notes": [
       "• Formal command: Tauschen Sie ... = Exchange ... / Swap ...; verb first, Sie capitalized.",
       "• With tauschen, the thing exchanged is accusative. For plural nouns, nominative and accusative look the same: die ... stays die ...."
@@ -2456,6 +2897,9 @@
     "updatedAt": "2026-05-20T12:51:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2465,7 +2909,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Kurse",
-    "gloss": ["Course; class."],
+    "gloss": [
+      "Course; class."
+    ],
     "notes": [
       "• im Kurs = in dem Kurs = in class / in the course.",
       "• Location with in uses dative: in dem Kurs becomes im Kurs."
@@ -2492,6 +2938,9 @@
     "updatedAt": "2026-05-20T12:41:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2501,7 +2950,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Handynummern",
-    "gloss": ["Mobile phone number; cell phone number."],
+    "gloss": [
+      "Mobile phone number; cell phone number."
+    ],
     "notes": [
       "• das Handy = mobile phone / cell phone; die Nummer = number as an ID/code.",
       "• die Handynummer is specifically a mobile number; die Telefonnummer can be any phone number."
@@ -2528,6 +2979,9 @@
     "updatedAt": "2026-05-20T12:28:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2535,7 +2989,9 @@
     "ipa": "diː ˈtsaːlən ap ɛlf",
     "id": "v-die-zahlen-ab-11",
     "pos": "grammar",
-    "gloss": ["Numbers from 11 upward."],
+    "gloss": [
+      "Numbers from 11 upward."
+    ],
     "notes": [
       "• 13-19 mostly use -zehn: dreizehn, vierzehn, fünfzehn; watch the shortened forms sechzehn and siebzehn.",
       "• 21-99 put the small number first, then und, then the ten: einundzwanzig = one-and-twenty = twenty-one.",
@@ -2543,34 +2999,169 @@
       "• Million and Milliarde are nouns, so they use eine: eine Million, eine Milliarde."
     ],
     "grammarTable": {
-      "columns": ["Bereich", "Zahl", "Deutsch", "Muster / Tipp"],
+      "columns": [
+        "Bereich",
+        "Zahl",
+        "Deutsch",
+        "Muster / Tipp"
+      ],
       "rows": [
-        ["11-12", "11", "elf", "special form"],
-        ["11-12", "12", "zwölf", "special form"],
-        ["13-19", "13", "dreizehn", "drei + zehn"],
-        ["13-19", "14", "vierzehn", "vier + zehn"],
-        ["13-19", "15", "fünfzehn", "fünf + zehn"],
-        ["13-19", "16", "sechzehn", "not sechszehn"],
-        ["13-19", "17", "siebzehn", "not siebenzehn"],
-        ["13-19", "18", "achtzehn", "acht + zehn"],
-        ["13-19", "19", "neunzehn", "neun + zehn"],
-        ["tens", "20", "zwanzig", "-zig ending"],
-        ["21-99", "21", "einundzwanzig", "ein + und + zwanzig"],
-        ["tens", "30", "dreißig", "irregular: ß, not z"],
-        ["tens", "40", "vierzig", "vier + zig"],
-        ["tens", "50", "fünfzig", "fünf + zig"],
-        ["tens", "60", "sechzig", "not sechszig"],
-        ["tens", "70", "siebzig", "not siebenzig"],
-        ["tens", "80", "achtzig", "acht + zig"],
-        ["tens", "90", "neunzig", "neun + zig"],
-        ["hundreds", "100", "einhundert", "often heard as hundert"],
-        ["hundreds", "101", "einhunderteins", "hundert + eins"],
-        ["hundreds", "200", "zweihundert", "zwei + hundert"],
-        ["thousands", "1.000", "eintausend", "often heard as tausend"],
-        ["thousands", "10.000", "zehntausend", "zehn + tausend"],
-        ["thousands", "100.000", "einhunderttausend", "hundert + tausend"],
-        ["large", "1.000.000", "eine Million", "noun: die Million"],
-        ["large", "1.000.000.000", "eine Milliarde", "noun: die Milliarde"]
+        [
+          "11-12",
+          "11",
+          "elf",
+          "special form"
+        ],
+        [
+          "11-12",
+          "12",
+          "zwölf",
+          "special form"
+        ],
+        [
+          "13-19",
+          "13",
+          "dreizehn",
+          "drei + zehn"
+        ],
+        [
+          "13-19",
+          "14",
+          "vierzehn",
+          "vier + zehn"
+        ],
+        [
+          "13-19",
+          "15",
+          "fünfzehn",
+          "fünf + zehn"
+        ],
+        [
+          "13-19",
+          "16",
+          "sechzehn",
+          "not sechszehn"
+        ],
+        [
+          "13-19",
+          "17",
+          "siebzehn",
+          "not siebenzehn"
+        ],
+        [
+          "13-19",
+          "18",
+          "achtzehn",
+          "acht + zehn"
+        ],
+        [
+          "13-19",
+          "19",
+          "neunzehn",
+          "neun + zehn"
+        ],
+        [
+          "tens",
+          "20",
+          "zwanzig",
+          "-zig ending"
+        ],
+        [
+          "21-99",
+          "21",
+          "einundzwanzig",
+          "ein + und + zwanzig"
+        ],
+        [
+          "tens",
+          "30",
+          "dreißig",
+          "irregular: ß, not z"
+        ],
+        [
+          "tens",
+          "40",
+          "vierzig",
+          "vier + zig"
+        ],
+        [
+          "tens",
+          "50",
+          "fünfzig",
+          "fünf + zig"
+        ],
+        [
+          "tens",
+          "60",
+          "sechzig",
+          "not sechszig"
+        ],
+        [
+          "tens",
+          "70",
+          "siebzig",
+          "not siebenzig"
+        ],
+        [
+          "tens",
+          "80",
+          "achtzig",
+          "acht + zig"
+        ],
+        [
+          "tens",
+          "90",
+          "neunzig",
+          "neun + zig"
+        ],
+        [
+          "hundreds",
+          "100",
+          "einhundert",
+          "often heard as hundert"
+        ],
+        [
+          "hundreds",
+          "101",
+          "einhunderteins",
+          "hundert + eins"
+        ],
+        [
+          "hundreds",
+          "200",
+          "zweihundert",
+          "zwei + hundert"
+        ],
+        [
+          "thousands",
+          "1.000",
+          "eintausend",
+          "often heard as tausend"
+        ],
+        [
+          "thousands",
+          "10.000",
+          "zehntausend",
+          "zehn + tausend"
+        ],
+        [
+          "thousands",
+          "100.000",
+          "einhunderttausend",
+          "hundert + tausend"
+        ],
+        [
+          "large",
+          "1.000.000",
+          "eine Million",
+          "noun: die Million"
+        ],
+        [
+          "large",
+          "1.000.000.000",
+          "eine Milliarde",
+          "noun: die Milliarde"
+        ]
       ]
     },
     "audio": "/audio/v-die-zahlen-ab-11.mp3",
@@ -2620,6 +3211,9 @@
     "updatedAt": "2026-05-20T11:52:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2627,7 +3221,9 @@
     "ipa": "meːɐ̯",
     "id": "v-mehr",
     "pos": "adverb",
-    "gloss": ["More."],
+    "gloss": [
+      "More."
+    ],
     "notes": [
       "• mehr adds quantity: mehr Zahlen = more numbers.",
       "• Opposite idea: weniger = less / fewer."
@@ -2654,6 +3250,9 @@
     "updatedAt": "2026-05-20T11:23:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2661,7 +3260,9 @@
     "ipa": "nɔx ˈaɪ̯nmaːl",
     "id": "v-noch-einmal",
     "pos": "phrase",
-    "gloss": ["One more time; once again."],
+    "gloss": [
+      "One more time; once again."
+    ],
     "notes": [
       "• noch = still / yet / additionally; einmal = once / one time.",
       "• Together, noch einmal means one more time or again. Casual shorter form: nochmal."
@@ -2693,6 +3294,9 @@
     "updatedAt": "2026-05-20T11:23:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2702,7 +3306,9 @@
     "pos": "noun",
     "pluralRule": "-",
     "plural": "die Notizzettel",
-    "gloss": ["Note slip; small note sheet."],
+    "gloss": [
+      "Note slip; small note sheet."
+    ],
     "notes": [
       "• Correct spelling: Notizzettel, not notizzetel/nottizetel.",
       "• die Notiz = note; der Zettel = slip/piece of paper. Together: der Notizzettel = a note sheet."
@@ -2729,6 +3335,9 @@
     "updatedAt": "2026-05-20T10:10:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2736,7 +3345,9 @@
     "ipa": "tʃʏs",
     "id": "v-tsch-ss",
     "pos": "phrase",
-    "gloss": ["Bye; casual goodbye."],
+    "gloss": [
+      "Bye; casual goodbye."
+    ],
     "notes": [
       "• Tschüss is the common German casual goodbye, especially in everyday speech."
     ],
@@ -2762,6 +3373,9 @@
     "updatedAt": "2026-05-20T09:28:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2769,7 +3383,9 @@
     "ipa": "tʃaʊ",
     "id": "v-tschau",
     "pos": "phrase",
-    "gloss": ["Bye; informal farewell."],
+    "gloss": [
+      "Bye; informal farewell."
+    ],
     "notes": [
       "• Tschau is the German spelling of Italian ciao; it is casual, like English bye.",
       "• Tschüss and Tschau feel similar because both are casual goodbyes and both start with tsch, but they are different words."
@@ -2791,6 +3407,9 @@
     "updatedAt": "2026-05-20T09:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2798,7 +3417,9 @@
     "ipa": "ˈʃpɛːtɐ",
     "id": "v-sp-ter",
     "pos": "adverb",
-    "gloss": ["Later."],
+    "gloss": [
+      "Later."
+    ],
     "notes": [
       "• Opposite idea: früh = early; später = later. Related adjective: spät = late.",
       "• In bis später, German literally says until later; natural English is see you later."
@@ -2825,6 +3446,9 @@
     "updatedAt": "2026-05-20T09:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2832,7 +3456,9 @@
     "ipa": "bɪs",
     "id": "v-bis",
     "pos": "adverb",
-    "gloss": ["Until; till; by."],
+    "gloss": [
+      "Until; till; by."
+    ],
     "notes": [
       "• In farewell formulas, bis means until: bis später = until later / see you later."
     ],
@@ -2858,13 +3484,18 @@
     "updatedAt": "2026-05-20T09:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
     "head": "dann /dan/",
     "id": "v-dann",
     "pos": "adverb",
-    "gloss": ["Then; after that."],
+    "gloss": [
+      "Then; after that."
+    ],
     "notes": [
       "• Use dann to order actions in time: first one thing, then the next.",
       "• In a normal statement, dann can stand first; the conjugated verb then comes right after it."
@@ -2891,6 +3522,9 @@
     "updatedAt": "2026-05-20T09:18:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2900,7 +3534,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Vorwahlen",
-    "gloss": ["Area code; dialing prefix."],
+    "gloss": [
+      "Area code; dialing prefix."
+    ],
     "notes": [
       "• One compound word: Vorwahl, not two words.",
       "• In 0621 / 53487, 0621 is the Vorwahl and 53487 is the local number."
@@ -2927,6 +3563,9 @@
     "updatedAt": "2026-05-20T08:53:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -2934,16 +3573,28 @@
     "ipa": "ˈkœnən",
     "id": "v-k-nnen",
     "pos": "verb",
-    "gloss": ["Can; be able to (modal verb)."],
+    "gloss": [
+      "Can; be able to (modal verb)."
+    ],
     "notes": [
       "• Modal-verb pattern: the conjugated modal verb takes the normal verb position, and the main verb stays as an infinitive at the end.",
       "• In yes/no questions, the conjugated modal comes first: Kannst du ... wiederholen?",
       "• In Kannst du das bitte wiederholen?, das is the object (مفعول) of the sentence (جمله): the thing being repeated. Bitte means please and can move around."
     ],
     "grammarTable": {
-      "columns": ["Person", "Form", "Example", "Pattern"],
+      "columns": [
+        "Person",
+        "Form",
+        "Example",
+        "Pattern"
+      ],
       "rows": [
-        ["ich", "kann", "Ich kann Deutsch sprechen.", "kann + ... + sprechen"],
+        [
+          "ich",
+          "kann",
+          "Ich kann Deutsch sprechen.",
+          "kann + ... + sprechen"
+        ],
         [
           "du",
           "kannst",
@@ -2962,7 +3613,12 @@
           "Wir können zusammen lernen.",
           "können + ... + lernen"
         ],
-        ["ihr", "könnt", "Könnt ihr das lesen?", "Könnt + ihr + ... + lesen?"],
+        [
+          "ihr",
+          "könnt",
+          "Könnt ihr das lesen?",
+          "Könnt + ihr + ... + lesen?"
+        ],
         [
           "sie/Sie",
           "können",
@@ -2998,6 +3654,9 @@
     "updatedAt": "2026-05-20T08:35:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3005,7 +3664,9 @@
     "ipa": "viːdɐˈhoːlən",
     "id": "v-wiederholen",
     "pos": "verb",
-    "gloss": ["To repeat; say or do again."],
+    "gloss": [
+      "To repeat; say or do again."
+    ],
     "notes": [],
     "audio": "/audio/v-wiederholen.mp3",
     "examples": [
@@ -3034,6 +3695,9 @@
     "updatedAt": "2026-05-20T06:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3041,8 +3705,12 @@
     "ipa": "ˈviːdɐ",
     "id": "v-wieder",
     "pos": "adverb",
-    "gloss": ["Again; back again."],
-    "notes": ["• Do not confuse wieder (again) with wider (against)."],
+    "gloss": [
+      "Again; back again."
+    ],
+    "notes": [
+      "• Do not confuse wieder (again) with wider (against)."
+    ],
     "audio": "/audio/v-wieder.mp3",
     "examples": [
       {
@@ -3070,6 +3738,9 @@
     "updatedAt": "2026-05-20T05:56:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3079,7 +3750,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Telefonnummern",
-    "gloss": ["Telephone number; phone number."],
+    "gloss": [
+      "Telephone number; phone number."
+    ],
     "notes": [
       "• die Nummer + das Telefon becomes die Telefonnummer: a compound noun with the gender of Nummer.",
       "• In German, ask Wie ist deine Telefonnummer? literally: How is your phone number?"
@@ -3106,6 +3779,9 @@
     "updatedAt": "2026-05-20T07:09:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3115,7 +3791,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Straßen",
-    "gloss": ["Street; road."],
+    "gloss": [
+      "Street; road."
+    ],
     "notes": [
       "• Standard German spelling uses ß: Straße. In Switzerland, it is usually written Strasse.",
       "• In der Bergstraße uses Dativ: wohnen answers where?; with location, in + feminine die Straße becomes in der Straße."
@@ -3142,6 +3820,9 @@
     "updatedAt": "2026-05-20T07:02:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3149,7 +3830,9 @@
     "ipa": "ˈvoːnən",
     "id": "v-wohnen",
     "pos": "verb",
-    "gloss": ["To live; reside."],
+    "gloss": [
+      "To live; reside."
+    ],
     "notes": [
       "• Use wohnen for where someone lives: Ich wohne in Berlin.",
       "• Common question: Wo wohnen Sie? = Where do you live? [formal you]"
@@ -3176,6 +3859,9 @@
     "updatedAt": "2026-05-20T06:59:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3183,7 +3869,9 @@
     "ipa": "ɡɛʁn",
     "id": "v-gern",
     "pos": "adverb",
-    "gloss": ["Gladly; like to do something."],
+    "gloss": [
+      "Gladly; like to do something."
+    ],
     "notes": [
       "• gern and gerne mean the same thing; gerne sounds a little fuller/softer.",
       "• With a verb, gern often translates naturally as like to: Ich lerne gern = I like learning."
@@ -3220,6 +3908,9 @@
     "updatedAt": "2026-05-20T06:42:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3227,7 +3918,9 @@
     "ipa": "ˈhɔʏtə",
     "id": "v-heute",
     "pos": "adverb",
-    "gloss": ["Today."],
+    "gloss": [
+      "Today."
+    ],
     "notes": [],
     "audio": "/audio/v-heute.mp3",
     "examples": [
@@ -3251,6 +3944,9 @@
     "updatedAt": "2026-05-20T06:37:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3258,7 +3954,9 @@
     "ipa": "tsʊm",
     "id": "v-zum",
     "pos": "other",
-    "gloss": ["To the; for the; contraction of zu + dem."],
+    "gloss": [
+      "To the; for the; contraction of zu + dem."
+    ],
     "notes": [
       "• zum = zu + dem, used before masculine or neuter dative nouns.",
       "• In zum Essen, Essen is used as a noun: for the meal / to eat."
@@ -3285,6 +3983,9 @@
     "updatedAt": "2026-05-20T06:37:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3292,7 +3993,9 @@
     "ipa": "ˈɛsn̩",
     "id": "v-essen",
     "pos": "verb",
-    "gloss": ["To eat; food or meal when capitalized as Essen."],
+    "gloss": [
+      "To eat; food or meal when capitalized as Essen."
+    ],
     "notes": [
       "• Lowercase essen is the verb: to eat.",
       "• Capitalized Essen is a noun: food or a meal. So write zum Essen, not zum essen."
@@ -3319,6 +4022,9 @@
     "updatedAt": "2026-05-20T06:37:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3326,25 +4032,63 @@
     "ipa": "diː ˈtsaːlən nʊl bɪs tseːn",
     "id": "v-die-zahlen-0-10",
     "pos": "grammar",
-    "gloss": ["Numbers from zero to ten."],
+    "gloss": [
+      "Numbers from zero to ten."
+    ],
     "notes": [
       "• eins is the counting form for 1; before a noun it usually becomes ein/eine.",
       "• In phone numbers, digits are often spoken one by one: 0612 = null sechs eins zwei."
     ],
     "grammarTable": {
-      "columns": ["Zahl", "Wort"],
+      "columns": [
+        "Zahl",
+        "Wort"
+      ],
       "rows": [
-        ["0", "null"],
-        ["1", "eins"],
-        ["2", "zwei"],
-        ["3", "drei"],
-        ["4", "vier"],
-        ["5", "fünf"],
-        ["6", "sechs"],
-        ["7", "sieben"],
-        ["8", "acht"],
-        ["9", "neun"],
-        ["10", "zehn"]
+        [
+          "0",
+          "null"
+        ],
+        [
+          "1",
+          "eins"
+        ],
+        [
+          "2",
+          "zwei"
+        ],
+        [
+          "3",
+          "drei"
+        ],
+        [
+          "4",
+          "vier"
+        ],
+        [
+          "5",
+          "fünf"
+        ],
+        [
+          "6",
+          "sechs"
+        ],
+        [
+          "7",
+          "sieben"
+        ],
+        [
+          "8",
+          "acht"
+        ],
+        [
+          "9",
+          "neun"
+        ],
+        [
+          "10",
+          "zehn"
+        ]
       ]
     },
     "audio": "/audio/v-die-zahlen-0-10.mp3",
@@ -3369,6 +4113,9 @@
     "updatedAt": "2026-05-20T06:30:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3378,7 +4125,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Nummern",
-    "gloss": ["Number as a label, code, or identifier."],
+    "gloss": [
+      "Number as a label, code, or identifier."
+    ],
     "notes": [
       "• Nummer is a number used as an ID or label: Telefonnummer, Hausnummer, Zimmer Nummer 12.",
       "• Difference: Zahl = numerical value/counting/math; Nummer = assigned number/code/identifier."
@@ -3405,6 +4154,9 @@
     "updatedAt": "2026-05-20T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3414,7 +4166,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Zahlen",
-    "gloss": ["Number as a value; numeral."],
+    "gloss": [
+      "Number as a value; numeral."
+    ],
     "notes": [
       "• Zahl is a number as a value: counting, math, or a number you hear/write.",
       "• Compare Nummer: an assigned label/code/ID, as in Telefonnummer, Hausnummer, Zimmer Nummer 12."
@@ -3441,6 +4195,9 @@
     "updatedAt": "2026-05-20T11:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3448,7 +4205,9 @@
     "ipa": "fɔn",
     "id": "v-von",
     "pos": "other",
-    "gloss": ["Of; from; belonging to."],
+    "gloss": [
+      "Of; from; belonging to."
+    ],
     "notes": [
       "• In die Adresse von Anne, von shows whose address it is: Anne's address.",
       "• von always takes dative, but with names like Anne there is no visible article change."
@@ -3480,6 +4239,9 @@
     "updatedAt": "2026-05-20T06:21:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3487,7 +4249,9 @@
     "ipa": "ˈʃteːən",
     "id": "v-stehen",
     "pos": "verb",
-    "gloss": ["To stand; be located or positioned."],
+    "gloss": [
+      "To stand; be located or positioned."
+    ],
     "notes": [
       "• In word-order rules, stehen means a word “stands” or “goes” in a certain sentence position.",
       "• Das Verb steht auf Position 1 means the verb comes first; Position 2 means it comes second."
@@ -3514,6 +4278,9 @@
     "updatedAt": "2026-05-19T13:58:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3523,7 +4290,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Regeln",
-    "gloss": ["Rule."],
+    "gloss": [
+      "Rule."
+    ],
     "notes": [
       "• die Regeln is plural accusative here: the rules being completed."
     ],
@@ -3549,6 +4318,9 @@
     "updatedAt": "2026-05-19T13:44:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3556,7 +4328,9 @@
     "ipa": "ˈʃʁaɪ̯bən",
     "id": "v-schreiben",
     "pos": "verb",
-    "gloss": ["To write."],
+    "gloss": [
+      "To write."
+    ],
     "notes": [
       "• Formal command: Schreiben Sie ... = Write ...; verb first, Sie capitalized."
     ],
@@ -3582,6 +4356,9 @@
     "updatedAt": "2026-05-19T13:40:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3590,7 +4367,9 @@
     "pos": "noun",
     "pluralRule": "-ätze",
     "plural": "die Sätze",
-    "gloss": ["Sentence."],
+    "gloss": [
+      "Sentence."
+    ],
     "notes": [
       "• die Sätze is plural accusative here: the sentences being written.",
       "• Correct spelling: Sätze with ä, not Satze."
@@ -3617,6 +4396,9 @@
     "updatedAt": "2026-05-19T13:40:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3624,27 +4406,65 @@
     "ipa": "ˈlɛndɐ ˈʃpʁaːxən natsi̯onaliˈtɛːtən",
     "id": "v-l-nder-sprachen-nationalit-ten",
     "pos": "grammar",
-    "gloss": ["Countries, languages, and nationalities."],
+    "gloss": [
+      "Countries, languages, and nationalities."
+    ],
     "notes": [
       "• Nationality nouns are capitalized in German: der Schweizer, die Schweizerin.",
       "• Textbook shorthand Spanier/in means der Spanier / die Spanierin."
     ],
     "grammarTable": {
-      "columns": ["Länder", "Sprachen", "Nationalitäten"],
+      "columns": [
+        "Länder",
+        "Sprachen",
+        "Nationalitäten"
+      ],
       "rows": [
         [
           "die Schweiz",
           "Deutsch / Französisch / Italienisch",
           "der Schweizer / die Schweizerin"
         ],
-        ["Polen", "Polnisch", "der Pole / die Polin"],
-        ["Frankreich", "Französisch", "der Franzose / die Französin"],
-        ["Deutschland", "Deutsch", "der Deutsche / die Deutsche"],
-        ["Spanien", "Spanisch", "der Spanier / die Spanierin"],
-        ["Japan", "Japanisch", "der Japaner / die Japanerin"],
-        ["England", "Englisch", "der Engländer / die Engländerin"],
-        ["China", "Chinesisch", "der Chinese / die Chinesin"],
-        ["die Türkei", "Türkisch", "der Türke / die Türkin"]
+        [
+          "Polen",
+          "Polnisch",
+          "der Pole / die Polin"
+        ],
+        [
+          "Frankreich",
+          "Französisch",
+          "der Franzose / die Französin"
+        ],
+        [
+          "Deutschland",
+          "Deutsch",
+          "der Deutsche / die Deutsche"
+        ],
+        [
+          "Spanien",
+          "Spanisch",
+          "der Spanier / die Spanierin"
+        ],
+        [
+          "Japan",
+          "Japanisch",
+          "der Japaner / die Japanerin"
+        ],
+        [
+          "England",
+          "Englisch",
+          "der Engländer / die Engländerin"
+        ],
+        [
+          "China",
+          "Chinesisch",
+          "der Chinese / die Chinesin"
+        ],
+        [
+          "die Türkei",
+          "Türkisch",
+          "der Türke / die Türkin"
+        ]
       ]
     },
     "audio": "/audio/v-länder-sprachen-nationalitäten.mp3",
@@ -3669,6 +4489,9 @@
     "updatedAt": "2026-05-19T10:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3676,8 +4499,12 @@
     "ipa": "fiːl ʃpaːs",
     "id": "v-viel-spa",
     "pos": "phrase",
-    "gloss": ["Have fun! Enjoy yourself!"],
-    "notes": ["• Correct spelling in standard German: Spaß with ß, not spas."],
+    "gloss": [
+      "Have fun! Enjoy yourself!"
+    ],
+    "notes": [
+      "• Correct spelling in standard German: Spaß with ß, not spas."
+    ],
     "audio": "/audio/v-viel-spaß.mp3",
     "examples": [
       {
@@ -3695,6 +4522,9 @@
     "updatedAt": "2026-05-19T10:40:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3704,7 +4534,9 @@
     "pos": "noun",
     "pluralRule": "-äße",
     "plural": "die Spaße",
-    "gloss": ["Fun; enjoyment."],
+    "gloss": [
+      "Fun; enjoyment."
+    ],
     "notes": [
       "• Long a + sharp s: Spaß. In Switzerland, ß is usually written ss: Spass."
     ],
@@ -3725,6 +4557,9 @@
     "updatedAt": "2026-05-19T10:40:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3732,7 +4567,9 @@
     "ipa": "fiːl",
     "id": "v-viel",
     "pos": "adverb",
-    "gloss": ["Much; a lot; many before plural nouns."],
+    "gloss": [
+      "Much; a lot; many before plural nouns."
+    ],
     "notes": [
       "• In Viel Spaß!, viel intensifies the wish: literally much fun, naturally have fun."
     ],
@@ -3753,6 +4590,9 @@
     "updatedAt": "2026-05-19T10:40:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3760,7 +4600,9 @@
     "ipa": "tsuˈzamən",
     "id": "v-zusammen",
     "pos": "adverb",
-    "gloss": ["Together; as a group (adverb)."],
+    "gloss": [
+      "Together; as a group (adverb)."
+    ],
     "notes": [
       "• Spelling: zwei m und -en at the end — not zusamen (common typo/OCR).",
       "• In Hoi zusammen!, zusammen means “everyone / all of you” — like English “Hi all!”"
@@ -3787,6 +4629,9 @@
     "updatedAt": "2026-05-19T19:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3794,7 +4639,9 @@
     "ipa": "hɔɪ",
     "id": "v-hoi",
     "pos": "phrase",
-    "gloss": ["Informal hi or hey; especially typical in Switzerland."],
+    "gloss": [
+      "Informal hi or hey; especially typical in Switzerland."
+    ],
     "notes": [
       "• One-word greeting (interjection), like Hallo or Servus — no article, no plural, no verb endings.",
       "• Very common in Swiss German contexts; also heard in casual speech elsewhere; not the standard classroom default."
@@ -3821,6 +4668,9 @@
     "updatedAt": "2026-05-19T18:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3858,6 +4708,9 @@
     "updatedAt": "2026-05-19T14:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3865,7 +4718,9 @@
     "ipa": "ˈzɛɐ̯vus",
     "id": "v-servus",
     "pos": "phrase",
-    "gloss": ["Informal hi or bye; strongest in Austria and southern Germany."],
+    "gloss": [
+      "Informal hi or bye; strongest in Austria and southern Germany."
+    ],
     "notes": [
       "• Informal greeting and goodbye; most typical in Austria, Bavaria, and other southern regions.",
       "• From Latin for “your servant”; today it is a casual hi, hey, or bye in one short word.",
@@ -3888,6 +4743,9 @@
     "updatedAt": "2026-05-19T12:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3895,7 +4753,9 @@
     "ipa": "ɪn",
     "id": "v-in-n",
     "pos": "other",
-    "gloss": ["In; inside; on a team (+ dative for location)."],
+    "gloss": [
+      "In; inside; on a team (+ dative for location)."
+    ],
     "notes": [
       "• Wo? uses dative: in einem Team. Wohin? uses accusative: in ein Team."
     ],
@@ -3921,6 +4781,9 @@
     "updatedAt": "2026-05-18T12:14:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3928,40 +4791,48 @@
     "ipa": "deːɐ̯ ˈnɔʏə pʁaktiˈkant",
     "id": "v-der-neue-praktikant",
     "pos": "grammar",
-    "gloss": ["The new intern; pattern for adjective endings after der."],
+    "gloss": [
+      "The new intern; pattern for adjective endings after der."
+    ],
     "notes": [
       "• neu becomes neue because it stands before a masculine nominative noun with der.",
       "• After der/die/das, use -e in nominative singular; use -en in most other definite-article forms."
     ],
     "grammarTable": {
-      "columns": ["", "m.", "f.", "n.", "pl."],
+      "columns": [
+        "",
+        "m.",
+        "n.",
+        "f.",
+        "pl."
+      ],
       "rows": [
         [
           "Nom",
           "der neue Praktikant",
-          "die neue Sekretärin",
           "das neue Team",
+          "die neue Sekretärin",
           "die neuen Praktikanten"
         ],
         [
           "Akk",
           "den neuen Praktikanten",
-          "die neue Sekretärin",
           "das neue Team",
+          "die neue Sekretärin",
           "die neuen Praktikanten"
         ],
         [
           "Dat",
           "dem neuen Praktikanten",
-          "der neuen Sekretärin",
           "dem neuen Team",
+          "der neuen Sekretärin",
           "den neuen Praktikanten"
         ],
         [
           "Gen",
           "des neuen Praktikanten",
-          "der neuen Sekretärin",
           "des neuen Teams",
+          "der neuen Sekretärin",
           "der neuen Praktikanten"
         ]
       ]
@@ -3988,6 +4859,9 @@
     "updatedAt": "2026-05-18T13:35:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -3995,7 +4869,9 @@
     "ipa": "aʊ̯x",
     "id": "v-auch",
     "pos": "adverb",
-    "gloss": ["Also; too; as well."],
+    "gloss": [
+      "Also; too; as well."
+    ],
     "notes": [
       "• Often comes near what it adds: Ich auch = me too; auch ich = I too / even I."
     ],
@@ -4021,6 +4897,9 @@
     "updatedAt": "2026-05-18T12:01:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4028,7 +4907,9 @@
     "ipa": "viː ɡeːts",
     "id": "v-wie-geht-s",
     "pos": "phrase",
-    "gloss": ["How’s it going? / How are you?"],
+    "gloss": [
+      "How’s it going? / How are you?"
+    ],
     "notes": [
       "• Short for: Wie geht es? Full informal form: Wie geht es dir?",
       "• Common response: Und dir? (= Und wie geht es dir?)",
@@ -4077,6 +4958,9 @@
     "updatedAt": "2026-05-18T11:23:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4084,7 +4968,9 @@
     "ipa": "fʁɔʏ̯t mɪç",
     "id": "v-freut-mich",
     "pos": "phrase",
-    "gloss": ["Nice to meet you; pleased to meet you."],
+    "gloss": [
+      "Nice to meet you; pleased to meet you."
+    ],
     "notes": [
       "• Short for Es freut mich: literally, it pleases me.",
       "• mich is a personal pronoun in the accusative here, not reflexive; the hidden subject is es.",
@@ -4112,6 +4998,9 @@
     "updatedAt": "2026-05-16T06:16:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4119,7 +5008,9 @@
     "ipa": "ʁeflɛˈksiːfˌpʁoːnoːmən",
     "id": "v-reflexivpronomen",
     "pos": "grammar",
-    "gloss": ["Reflexive pronouns: myself, yourself, himself, etc."],
+    "gloss": [
+      "Reflexive pronouns: myself, yourself, himself, etc."
+    ],
     "notes": [
       "• Reflexive means the subject and object are the same person: Ich wasche mich.",
       "• They follow person and case, not grammatical gender: er/sie/es all use sich.",
@@ -4224,6 +5115,9 @@
     "updatedAt": "2026-05-16T06:02:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4231,7 +5125,9 @@
     "ipa": "pɛʁzoˈnaːlˌpʁoːnoːmən",
     "id": "v-personalpronomen",
     "pos": "grammar",
-    "gloss": ["Personal pronouns: ich, mich, mir; du, dich, dir; etc."],
+    "gloss": [
+      "Personal pronouns: ich, mich, mir; du, dich, dir; etc."
+    ],
     "notes": [
       "• Pronouns replace nouns: der Mann → er; die Frau → sie; das Kind → es.",
       "• Nominativ marks the subject: ich, du, er, sie, es, wir, ihr, sie.",
@@ -4366,6 +5262,9 @@
     "updatedAt": "2026-05-16T05:59:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4373,7 +5272,9 @@
     "ipa": "zɪç ˈfoːɐ̯ˌʃtɛlən",
     "id": "v-sich-vorstellen",
     "pos": "verb",
-    "gloss": ["To introduce oneself; to imagine something."],
+    "gloss": [
+      "To introduce oneself; to imagine something."
+    ],
     "notes": [
       "• Separable reflexive verb: vor moves to the end (Ich stelle mich vor.).",
       "• Introduce oneself uses accusative reflexive pronouns: mich, dich, sich, uns, euch, sich.",
@@ -4411,6 +5312,9 @@
     "updatedAt": "2026-05-15T20:22:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4418,7 +5322,9 @@
     "ipa": "bəˈɡʁyːsn̩",
     "id": "v-begr-en",
     "pos": "verb",
-    "gloss": ["To greet; say hello to someone."],
+    "gloss": [
+      "To greet; say hello to someone."
+    ],
     "notes": [
       "• Takes an accusative object: Begrüßen Sie Ihren Partner / Ihre Partnerin."
     ],
@@ -4439,6 +5345,9 @@
     "updatedAt": "2026-05-15T19:49:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4448,7 +5357,9 @@
     "pos": "noun",
     "pluralRule": "- / -nen",
     "plural": "die Partner, die Partnerinnen",
-    "gloss": ["Partner; classroom speaking partner."],
+    "gloss": [
+      "Partner; classroom speaking partner."
+    ],
     "notes": [],
     "audio": "/audio/v-der-partner-die-partnerin.mp3",
     "examples": [
@@ -4472,6 +5383,9 @@
     "updatedAt": "2026-05-15T19:49:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4479,7 +5393,9 @@
     "ipa": "viː haɪ̯st",
     "id": "v-wie-hei-t",
     "pos": "phrase",
-    "gloss": ["What is ... called?"],
+    "gloss": [
+      "What is ... called?"
+    ],
     "notes": [
       "• W-question pattern: Wie is position 1, the finite verb heißt is position 2."
     ],
@@ -4500,6 +5416,9 @@
     "updatedAt": "2026-05-15T19:19:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4508,7 +5427,9 @@
     "pos": "noun",
     "pluralRule": "-¨er",
     "plural": "die Länder",
-    "gloss": ["Country; land."],
+    "gloss": [
+      "Country; land."
+    ],
     "notes": [],
     "audio": "/audio/v-das-land.mp3",
     "examples": [
@@ -4527,6 +5448,9 @@
     "updatedAt": "2026-05-15T19:19:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4536,7 +5460,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Sprachen",
-    "gloss": ["Language."],
+    "gloss": [
+      "Language."
+    ],
     "notes": [
       "• Feminine noun: die Sprache; after static in, use dative: in der Sprache / in Ihrer Sprache."
     ],
@@ -4557,6 +5483,9 @@
     "updatedAt": "2026-05-15T19:19:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4564,7 +5493,9 @@
     "ipa": "iːɐ̯",
     "id": "v-ihr",
     "pos": "grammar",
-    "gloss": ["Your; formal possessive stem."],
+    "gloss": [
+      "Your; formal possessive stem."
+    ],
     "notes": [
       "• Capitalized Ihr- means formal your. Endings follow ein-words: Ihr Land, Ihre Sprache, in Ihrer Sprache."
     ],
@@ -4590,6 +5521,9 @@
     "updatedAt": "2026-05-15T19:19:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4597,7 +5531,9 @@
     "ipa": "ˈfliːɡən",
     "id": "v-fliegen",
     "pos": "verb",
-    "gloss": ["To fly; travel by plane (+ nach … / zu …)."],
+    "gloss": [
+      "To fly; travel by plane (+ nach … / zu …)."
+    ],
     "notes": [],
     "audio": "/audio/v-fliegen.mp3",
     "examples": [
@@ -4616,6 +5552,9 @@
     "updatedAt": "2026-05-15T17:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4644,6 +5583,9 @@
     "updatedAt": "2026-05-15T17:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4674,6 +5616,9 @@
     "updatedAt": "2026-05-15T17:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4681,7 +5626,9 @@
     "ipa": "ˈɡeːən",
     "id": "v-gehen",
     "pos": "verb",
-    "gloss": ["To go; walk (+ zu / nach / + place; also set phrases)."],
+    "gloss": [
+      "To go; walk (+ zu / nach / + place; also set phrases)."
+    ],
     "notes": [
       "• Irregular present: ich gehe, du gehst, er geht; for whole countries people often prefer fahren/reisen/fliegen."
     ],
@@ -4702,6 +5649,9 @@
     "updatedAt": "2026-05-15T17:45:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4709,7 +5659,9 @@
     "ipa": "ˈaːbɐ",
     "id": "v-aber",
     "pos": "other",
-    "gloss": ["but; however — introduces a contrast or exception"],
+    "gloss": [
+      "but; however — introduces a contrast or exception"
+    ],
     "notes": [
       "• Coordinating conjunction: word order in the following clause is unchanged (verb stays in position 2)."
     ],
@@ -4730,6 +5682,9 @@
     "updatedAt": "2026-05-15T13:33:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4737,7 +5692,9 @@
     "ipa": "ˈaʊ̯fˌfalən",
     "id": "v-auffallen",
     "pos": "verb",
-    "gloss": ["To stand out; be noticeable / catch the eye."],
+    "gloss": [
+      "To stand out; be noticeable / catch the eye."
+    ],
     "notes": [
       "• Separable: auf sits at the end of the clause (Was fällt auf?)."
     ],
@@ -4758,6 +5715,9 @@
     "updatedAt": "2026-05-13T12:05:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4765,7 +5725,9 @@
     "ipa": "maʁˈkiːʁən",
     "id": "v-markieren",
     "pos": "verb",
-    "gloss": ["To mark; highlight verbs or phrases in the text (+ acc.)."],
+    "gloss": [
+      "To mark; highlight verbs or phrases in the text (+ acc.)."
+    ],
     "notes": [],
     "audio": "/audio/v-markieren.mp3",
     "examples": [
@@ -4784,6 +5746,9 @@
     "updatedAt": "2026-05-15T18:20:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4791,7 +5756,9 @@
     "ipa": "ˈhaɪ̯sn̩",
     "id": "v-hei-en",
     "pos": "verb",
-    "gloss": ["To be called; one’s name is (3rd sg. er/sie/es heißt)."],
+    "gloss": [
+      "To be called; one’s name is (3rd sg. er/sie/es heißt)."
+    ],
     "notes": [
       "• OCR often miswrites heißen as heisen; spelling is heißen (ß after long diphthong)."
     ],
@@ -4817,6 +5784,9 @@
     "updatedAt": "2026-05-14T14:30:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4826,7 +5796,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die W-Fragen",
-    "gloss": ["WH-question: starts with Wer, Was, Wo, wie, Wann …"],
+    "gloss": [
+      "WH-question: starts with Wer, Was, Wo, wie, Wann …"
+    ],
     "notes": [
       "• The question word fills slot 1; the finite verb is still second (verb-second), then the rest."
     ],
@@ -4847,6 +5819,9 @@
     "updatedAt": "2026-05-12T16:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4856,7 +5831,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Antworten",
-    "gloss": ["Answer; reply (to a question or task)."],
+    "gloss": [
+      "Answer; reply (to a question or task)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-antwort.mp3",
     "examples": [
@@ -4875,6 +5852,9 @@
     "updatedAt": "2026-05-12T16:00:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4882,7 +5862,9 @@
     "ipa": "ˈzaməln",
     "id": "v-sammeln",
     "pos": "verb",
-    "gloss": ["To collect; gather (+ acc.)."],
+    "gloss": [
+      "To collect; gather (+ acc.)."
+    ],
     "notes": [],
     "audio": "/audio/v-sammeln.mp3",
     "examples": [
@@ -4901,6 +5883,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4910,7 +5895,9 @@
     "pos": "noun",
     "pluralRule": "-n",
     "plural": "die Tabellen",
-    "gloss": ["Table (grid for answers; worksheet)."],
+    "gloss": [
+      "Table (grid for answers; worksheet)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-tabelle.mp3",
     "examples": [
@@ -4929,6 +5916,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4938,8 +5928,12 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Verbformen",
-    "gloss": ["Verb form (inflected shape of a lemma)."],
-    "notes": ["• Misread Verbendung: the word is Verbformen."],
+    "gloss": [
+      "Verb form (inflected shape of a lemma)."
+    ],
+    "notes": [
+      "• Misread Verbendung: the word is Verbformen."
+    ],
     "audio": "/audio/v-die-verbform.mp3",
     "examples": [
       {
@@ -4957,6 +5951,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4966,7 +5963,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Grammatiken",
-    "gloss": ["Grammar (rules of the language)."],
+    "gloss": [
+      "Grammar (rules of the language)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-grammatik.mp3",
     "examples": [
@@ -4985,6 +5984,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -4992,7 +5994,9 @@
     "ipa": "aʊ̯f ˈaɪ̯nən ˈblɪk",
     "id": "v-auf-einen-blick",
     "pos": "phrase",
-    "gloss": ["At a glance (overview; textbook headings)."],
+    "gloss": [
+      "At a glance (overview; textbook headings)."
+    ],
     "notes": [],
     "audio": "/audio/v-auf-einen-blick.mp3",
     "examples": [
@@ -5011,6 +6015,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5020,7 +6027,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Blicke",
-    "gloss": ["Glance; look (masculine)."],
+    "gloss": [
+      "Glance; look (masculine)."
+    ],
     "notes": [],
     "audio": "/audio/v-der-blick.mp3",
     "examples": [
@@ -5044,6 +6053,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5053,7 +6065,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Verben",
-    "gloss": ["Verb (word class for actions and states)."],
+    "gloss": [
+      "Verb (word class for actions and states)."
+    ],
     "notes": [],
     "audio": "/audio/v-das-verb.mp3",
     "examples": [
@@ -5077,6 +6091,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5084,7 +6101,9 @@
     "ipa": "ˈaləs",
     "id": "v-alles",
     "pos": "adverb",
-    "gloss": ["Everything (pronoun; all of it)."],
+    "gloss": [
+      "Everything (pronoun; all of it)."
+    ],
     "notes": [],
     "audio": "/audio/v-alles.mp3",
     "examples": [
@@ -5108,6 +6127,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5115,7 +6137,9 @@
     "ipa": "ˈʁɪçtɪç",
     "id": "v-richtig",
     "pos": "adjective",
-    "gloss": ["Correct; right; true."],
+    "gloss": [
+      "Correct; right; true."
+    ],
     "notes": [],
     "audio": "/audio/v-richtig.mp3",
     "examples": [
@@ -5139,6 +6163,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5148,7 +6175,9 @@
     "pos": "noun",
     "pluralRule": "-nen",
     "plural": "die Sekretärinnen",
-    "gloss": ["Secretary (feminine job title)."],
+    "gloss": [
+      "Secretary (feminine job title)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-sekretärin.mp3",
     "examples": [
@@ -5172,6 +6201,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5181,7 +6213,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Frauen",
-    "gloss": ["Ms. or Mrs. before a surname."],
+    "gloss": [
+      "Ms. or Mrs. before a surname."
+    ],
     "notes": [],
     "audio": "/audio/v-die-frau.mp3",
     "examples": [
@@ -5205,6 +6239,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5212,7 +6249,9 @@
     "ipa": "aʊ̯s",
     "id": "v-aus",
     "pos": "other",
-    "gloss": ["From; out of (+ dative for origin)."],
+    "gloss": [
+      "From; out of (+ dative for origin)."
+    ],
     "notes": [],
     "audio": "/audio/v-aus.mp3",
     "examples": [
@@ -5236,6 +6275,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5243,7 +6285,9 @@
     "ipa": "aʁɡɛnˈtiːni̯ən",
     "id": "v-argentinien",
     "pos": "noun",
-    "gloss": ["Argentina (country)."],
+    "gloss": [
+      "Argentina (country)."
+    ],
     "notes": [],
     "audio": "/audio/v-argentinien.mp3",
     "examples": [
@@ -5262,6 +6306,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5269,7 +6316,9 @@
     "ipa": "ˈvoheːɐ̯",
     "id": "v-woher",
     "pos": "other",
-    "gloss": ["From where (origin)."],
+    "gloss": [
+      "From where (origin)."
+    ],
     "notes": [],
     "audio": "/audio/v-woher.mp3",
     "examples": [
@@ -5293,6 +6342,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5300,7 +6352,9 @@
     "ipa": "ˈkɔmən",
     "id": "v-kommen",
     "pos": "verb",
-    "gloss": ["To come; aus … = from (a place)."],
+    "gloss": [
+      "To come; aus … = from (a place)."
+    ],
     "notes": [],
     "audio": "/audio/v-kommen.mp3",
     "examples": [
@@ -5329,6 +6383,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5336,8 +6393,12 @@
     "ipa": "ˈɡʁʏs ˈɡɔt",
     "id": "v-gr-gott",
     "pos": "phrase",
-    "gloss": ["Polite daytime hello—typical in Austria and southern Germany."],
-    "notes": ["• Elsewhere Guten Tag is often the default; Hallo is informal."],
+    "gloss": [
+      "Polite daytime hello—typical in Austria and southern Germany."
+    ],
+    "notes": [
+      "• Elsewhere Guten Tag is often the default; Hallo is informal."
+    ],
     "audio": "/audio/v-grüß-gott.mp3",
     "examples": [
       {
@@ -5355,6 +6416,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5362,7 +6426,9 @@
     "ipa": "ˈleːzən",
     "id": "v-lesen",
     "pos": "verb",
-    "gloss": ["To read (+ object in accusative)."],
+    "gloss": [
+      "To read (+ object in accusative)."
+    ],
     "notes": [],
     "audio": "/audio/v-lesen.mp3",
     "examples": [
@@ -5381,6 +6447,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5388,7 +6457,9 @@
     "ipa": "ˈzaːɡən",
     "id": "v-sagen",
     "pos": "verb",
-    "gloss": ["To say or tell."],
+    "gloss": [
+      "To say or tell."
+    ],
     "notes": [],
     "audio": "/audio/v-sagen.mp3",
     "examples": [
@@ -5407,6 +6478,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5416,7 +6490,9 @@
     "pos": "noun",
     "pluralRule": "-en",
     "plural": "die Personen",
-    "gloss": ["Feminine singular: person (pl. Personen)."],
+    "gloss": [
+      "Feminine singular: person (pl. Personen)."
+    ],
     "notes": [],
     "audio": "/audio/v-die-person.mp3",
     "examples": [
@@ -5435,13 +6511,18 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
     "head": "was /vas/",
     "id": "v-was-vas",
     "pos": "other",
-    "gloss": ["Interrogative “what” (Was …?)."],
+    "gloss": [
+      "Interrogative “what” (Was …?)."
+    ],
     "notes": [],
     "audio": "/audio/v-was-vas.mp3",
     "examples": [
@@ -5460,6 +6541,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5467,7 +6551,9 @@
     "ipa": "ˈpasən",
     "id": "v-passen",
     "pos": "verb",
-    "gloss": ["To fit; match; suit."],
+    "gloss": [
+      "To fit; match; suit."
+    ],
     "notes": [],
     "audio": "/audio/v-passen.mp3",
     "examples": [
@@ -5491,6 +6577,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5498,8 +6587,12 @@
     "ipa": "ˈvɛlçɐ | ˈvɛlçə | ˈvɛlçəs",
     "id": "v-welcher-welche-welches",
     "pos": "grammar",
-    "gloss": ["Which (pick by gender: m./f./n.)."],
-    "notes": ["• After aus, use dative: welchen Kontinenten (plural)."],
+    "gloss": [
+      "Which (pick by gender: m./f./n.)."
+    ],
+    "notes": [
+      "• After aus, use dative: welchen Kontinenten (plural)."
+    ],
     "audio": "/audio/v-welcher-welche-welches.mp3",
     "examples": [
       {
@@ -5527,6 +6620,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5536,7 +6632,9 @@
     "pos": "noun",
     "pluralRule": "-s",
     "plural": "die Fotos",
-    "gloss": ["Photo; picture (neuter; pl. Fotos)."],
+    "gloss": [
+      "Photo; picture (neuter; pl. Fotos)."
+    ],
     "notes": [],
     "audio": "/audio/v-das-foto.mp3",
     "examples": [
@@ -5560,6 +6658,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5567,7 +6668,9 @@
     "ipa": "ˈankʁɔʏtsən",
     "id": "v-ankreuzen",
     "pos": "verb",
-    "gloss": ["Separable: tick a box (… an)."],
+    "gloss": [
+      "Separable: tick a box (… an)."
+    ],
     "notes": [
       "• The prefix an- moves to the end of the clause: Kreuzen Sie die richtige Lösung an.",
       "• Participle angekreuzt (perfect often: habe … angekreuzt)."
@@ -5589,6 +6692,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5596,7 +6702,9 @@
     "ipa": "ˈhøːʁən",
     "id": "v-h-ren",
     "pos": "verb",
-    "gloss": ["To hear; listen to (+ acc.)."],
+    "gloss": [
+      "To hear; listen to (+ acc.)."
+    ],
     "notes": [],
     "audio": "/audio/v-hören.mp3",
     "examples": [
@@ -5615,6 +6723,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5624,7 +6735,9 @@
     "pos": "noun",
     "pluralRule": "-e",
     "plural": "die Gespräche",
-    "gloss": ["Conversation; spoken dialogue."],
+    "gloss": [
+      "Conversation; spoken dialogue."
+    ],
     "notes": [],
     "audio": "/audio/v-das-gespräch.mp3",
     "examples": [
@@ -5643,6 +6756,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5650,7 +6766,9 @@
     "ipa": "nɔʏ",
     "id": "v-neu",
     "pos": "adjective",
-    "gloss": ["New (opposite alt); before a noun, add an ending."],
+    "gloss": [
+      "New (opposite alt); before a noun, add an ending."
+    ],
     "notes": [],
     "audio": "/audio/v-neu.mp3",
     "examples": [
@@ -5669,6 +6787,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5676,7 +6797,9 @@
     "ipa": "zaɪn",
     "id": "v-sein",
     "pos": "verb",
-    "gloss": ["To be (am / is / are)."],
+    "gloss": [
+      "To be (am / is / are)."
+    ],
     "notes": [
       "• Complement after sein is usually nominative. Present: ich bin · du bist · ist · wir/sie/Sie sind."
     ],
@@ -5717,6 +6840,9 @@
     "updatedAt": "2026-05-18T12:11:00Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5726,7 +6852,9 @@
     "pos": "noun",
     "pluralRule": "-en / -nen",
     "plural": "die Praktikanten",
-    "gloss": ["Intern; Praktikantin is the feminine form."],
+    "gloss": [
+      "Intern; Praktikantin is the feminine form."
+    ],
     "notes": [],
     "audio": "/audio/v-der-praktikant.mp3",
     "examples": [
@@ -5755,6 +6883,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   },
   {
@@ -5762,8 +6893,12 @@
     "ipa": "ˈɡuːtən ˈtaːk",
     "id": "v-guten-tag",
     "pos": "phrase",
-    "gloss": ["Good day; hello (formal daytime)."],
-    "notes": ["• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."],
+    "gloss": [
+      "Good day; hello (formal daytime)."
+    ],
+    "notes": [
+      "• Compare Guten Tag (masculine) vs Gute Nacht (feminine)."
+    ],
     "audio": "/audio/v-guten-tag.mp3",
     "examples": [
       {
@@ -5781,6 +6916,9 @@
     "updatedAt": "2026-05-11T13:30:14Z",
     "lektion": 1,
     "level": "A1",
+    "tags": [
+      "daf-lek-1"
+    ],
     "studied": false
   }
 ]
