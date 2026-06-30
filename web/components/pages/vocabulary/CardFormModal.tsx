@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
 import { createPortal } from "react-dom";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
@@ -18,7 +19,7 @@ import {
 import { useDeckOptionsQuery } from "@/hooks/decks";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import { TAG_USER } from "@/lib/tags/constants";
-import { CEFR_LEVELS, normalizeCefrLevel, type CefrLevel } from "@/lib/vocab/levels";
+import { CEFR_LEVELS, normalizeCefrLevel } from "@/lib/vocab/levels";
 import {
   formFieldsToManifestCardJson,
   manifestCardSampleJson,
@@ -26,7 +27,7 @@ import {
 } from "@/lib/vocab/manifest-card-fill";
 import { speakTextForHead } from "@/lib/audio/speak-text";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
-import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
+import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import { cardToForm } from "@/utils/cardToForm";
 import type { CardFormState } from "@/utils/cardFormTypes";
 import { emptyExample } from "@/utils/emptyExample";
@@ -46,6 +47,14 @@ type CardFormModalProps = {
 
 type DeckOption = { id: string; name: string };
 
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
+
 export default function CardFormModal({
   mode,
   card,
@@ -63,44 +72,61 @@ export default function CardFormModal({
   const suggestCard = useSuggestCardMutation();
   const saveCard = useSaveCardMutation();
   const examplesLegendId = useId();
-  const [form, setForm] = useState<CardFormState>(() => emptyForm());
-  const [error, setError] = useState<string | null>(null);
   const [aiFillConfirmOpen, setAiFillConfirmOpen] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);
   const [generatingPronunciation, setGeneratingPronunciation] = useState(false);
   const [pronunciationProgress, setPronunciationProgress] = useState<string | null>(
     null,
   );
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    setValue,
+    setError,
+    clearErrors,
+    getValues,
+    formState: { isSubmitting, errors },
+  } = useForm<CardFormState>({
+    defaultValues: emptyForm(),
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "examples",
+    keyName: "rfKey",
+  });
+
+  const watched = useWatch({ control });
+  const form = { ...emptyForm(), ...watched } as CardFormState;
 
   useEffect(() => {
     if (!open) return;
-    setError(null);
     const initialDeck =
       defaultDeckId || (mode === "edit" && card?.deckId ? card.deckId : "");
-    setForm(
+    reset(
       mode === "edit" && card ? cardToForm(card) : emptyForm(initialDeck),
     );
-  }, [open, mode, card, defaultDeckId]);
+  }, [open, mode, card, defaultDeckId, reset]);
 
   useEffect(() => {
     if (!open || adminDeckId) return;
     const items = deckOptionsQuery.data ?? [];
-    if (mode === "create" && items[0]) {
-      setForm((f) => (f.deckId ? f : { ...f, deckId: items[0].id }));
+    if (mode === "create" && items[0] && !getValues("deckId")) {
+      setValue("deckId", items[0].id);
     }
-  }, [open, adminDeckId, deckOptionsQuery.data, mode]);
+  }, [open, adminDeckId, deckOptionsQuery.data, mode, getValues, setValue]);
 
   const decks: DeckOption[] = deckOptionsQuery.data ?? [];
 
-  useEffect(() => {
-    if (open) return;
+  function handleClose() {
     setAiFillConfirmOpen(false);
-  }, [open]);
+    setJsonFillOpen(false);
+    onClose();
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -115,34 +141,12 @@ export default function CardFormModal({
 
   if (!open || !mounted) return null;
 
-  function updateExample(
-    key: string,
-    field: "german" | "english",
-    value: string,
-  ) {
-    setForm((f) => ({
-      ...f,
-      examples: f.examples.map((ex) =>
-        ex.key === key ? { ...ex, [field]: value } : ex,
-      ),
-    }));
-  }
-
-  function addExample() {
-    setForm((f) => ({
-      ...f,
-      examples: [...f.examples, emptyExample()],
-    }));
-  }
-
-  function removeExample(key: string) {
-    setForm((f) => {
-      const next = f.examples.filter((ex) => ex.key !== key);
-      return {
-        ...f,
-        examples: next.length > 0 ? next : [emptyExample()],
-      };
-    });
+  function removeExampleAt(index: number) {
+    if (fields.length <= 1) {
+      setValue("examples", [emptyExample()]);
+      return;
+    }
+    remove(index);
   }
 
   async function requestCardAudio(body: {
@@ -157,15 +161,16 @@ export default function CardFormModal({
   }
 
   async function generatePronunciation() {
-    const head = form.head.trim();
-    const exampleRows = form.examples.filter((ex) => ex.german.trim());
+    const values = getValues();
+    const head = values.head.trim();
+    const exampleRows = values.examples.filter((ex) => ex.german.trim());
     if (!head && exampleRows.length === 0) {
       toast.error("Add a headword or at least one German example first.");
       return;
     }
 
     setGeneratingPronunciation(true);
-    setError(null);
+    clearErrors("root");
     const total = (head ? 1 : 0) + exampleRows.length;
     let done = 0;
 
@@ -173,19 +178,16 @@ export default function CardFormModal({
       if (head) {
         setPronunciationProgress(`Generating ${done + 1} of ${total}…`);
         const audio = await requestCardAudio({ head });
-        setForm((f) => ({ ...f, audio }));
+        setValue("audio", audio);
         done += 1;
       }
 
-      for (const ex of exampleRows) {
+      for (let i = 0; i < values.examples.length; i++) {
+        const ex = values.examples[i];
+        if (!ex.german.trim()) continue;
         setPronunciationProgress(`Generating ${done + 1} of ${total}…`);
         const audio = await requestCardAudio({ text: ex.german.trim() });
-        setForm((f) => ({
-          ...f,
-          examples: f.examples.map((row) =>
-            row.key === ex.key ? { ...row, audio } : row,
-          ),
-        }));
+        setValue(`examples.${i}.audio`, audio);
         done += 1;
       }
 
@@ -197,7 +199,7 @@ export default function CardFormModal({
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Audio generation failed";
-      setError(message);
+      setError("root", { message });
       toast.error(message);
     } finally {
       setGeneratingPronunciation(false);
@@ -206,7 +208,7 @@ export default function CardFormModal({
   }
 
   function onAiFillClick() {
-    if (!form.head.trim()) {
+    if (!getValues("head").trim()) {
       toast.error("Enter a headword first.");
       return;
     }
@@ -218,65 +220,67 @@ export default function CardFormModal({
   }
 
   async function runAiSuggest() {
-    const head = form.head.trim();
+    const head = getValues("head").trim();
     if (!head) return;
 
-    setError(null);
+    clearErrors("root");
 
     try {
       const data = await suggestCard.mutateAsync(head);
+      const current = getValues();
 
-      setForm((f) => ({
-        ...f,
-        head: data.head?.trim() || f.head,
-        ipa: data.ipa?.trim() ?? f.ipa,
-        gloss: data.gloss?.trim() ?? f.gloss,
-        notes: data.notes?.trim() ?? f.notes,
-        examples:
-          data.examples && data.examples.length > 0
-            ? data.examples.map((ex) => ({
-                key: newExampleKey(),
-                german: ex.german,
-                english: ex.english,
-                audio: "",
-              }))
-            : f.examples,
-        pos: data.pos ?? f.pos,
-        level: normalizeCefrLevel(data.level?.trim() || f.level),
-      }));
+      setValue("head", data.head?.trim() || current.head);
+      setValue("ipa", data.ipa?.trim() ?? current.ipa);
+      setValue("gloss", data.gloss?.trim() ?? current.gloss);
+      setValue("notes", data.notes?.trim() ?? current.notes);
+      if (data.examples && data.examples.length > 0) {
+        setValue(
+          "examples",
+          data.examples.map((ex) => ({
+            key: newExampleKey(),
+            german: ex.german,
+            english: ex.english,
+            audio: "",
+          })),
+        );
+      }
+      setValue("pos", data.pos ?? current.pos);
+      setValue(
+        "level",
+        normalizeCefrLevel(data.level?.trim() || current.level),
+      );
       toast.success("Form filled from AI — review before saving.");
     } catch (err) {
       const message = getApiErrorMessage(err, "AI fill failed");
-      setError(message);
+      setError("root", { message });
       toast.error(message);
     }
   }
 
   function applyManifestFill(result: ManifestCardFillResult) {
-    setForm((f) => ({
-      ...f,
-      head: result.head,
-      ipa: result.ipa,
-      audio: result.audio,
-      gloss: result.gloss,
-      notes: result.notes,
-      examples:
-        result.examples.length > 0
-          ? result.examples.map((ex) => ({
-              key: newExampleKey(),
-              german: ex.german,
-              english: ex.english,
-              audio: ex.audio,
-            }))
-          : f.examples,
-      pos: result.pos,
-      level: result.level,
-      tagSlugs:
-        result.tagSlugs.length > 0
-          ? [...new Set([...result.tagSlugs, TAG_USER])]
-          : f.tagSlugs,
-    }));
-    setError(null);
+    const current = getValues();
+    setValue("head", result.head);
+    setValue("ipa", result.ipa);
+    setValue("audio", result.audio);
+    setValue("gloss", result.gloss);
+    setValue("notes", result.notes);
+    setValue(
+      "examples",
+      result.examples.length > 0
+        ? result.examples.map((ex) => ({
+            key: newExampleKey(),
+            german: ex.german,
+            english: ex.english,
+            audio: ex.audio,
+          }))
+        : current.examples,
+    );
+    setValue("pos", result.pos);
+    setValue("level", result.level);
+    if (result.tagSlugs.length > 0) {
+      setValue("tagSlugs", [...new Set([...result.tagSlugs, TAG_USER])]);
+    }
+    clearErrors("root");
     toast.success("Form filled from JSON — review before saving.");
   }
 
@@ -294,38 +298,37 @@ export default function CardFormModal({
       })
     : manifestCardSampleJson();
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
+  async function onSubmit(values: CardFormState) {
+    clearErrors("root");
 
-    const gloss = form.gloss
+    const gloss = values.gloss
       .split("\n")
       .map((l) => l.trim())
       .filter(Boolean);
-    const notes = form.notes
+    const notes = values.notes
       .split("\n")
       .map((l) => l.trim())
       .filter(Boolean);
-    const examples = form.examples
+    const examples = values.examples
       .map((ex) => ({
         german: ex.german.trim(),
         english: ex.english.trim() || null,
         audio: ex.audio.trim() || undefined,
       }))
       .filter((ex) => ex.german.length > 0);
-    const tags = form.tagSlugs.length > 0 ? form.tagSlugs : [TAG_USER];
+    const tags = values.tagSlugs.length > 0 ? values.tagSlugs : [TAG_USER];
 
     const body = {
-      head: form.head.trim(),
-      ipa: form.ipa.trim() || undefined,
-      audio: form.audio.trim() || undefined,
+      head: values.head.trim(),
+      ipa: values.ipa.trim() || undefined,
+      audio: values.audio.trim() || undefined,
       gloss,
       notes,
       examples,
       tags,
-      deckId: form.deckId || undefined,
-      level: form.level,
-      pos: form.pos,
+      deckId: values.deckId || undefined,
+      level: values.level,
+      pos: values.pos,
     };
 
     try {
@@ -345,10 +348,10 @@ export default function CardFormModal({
               : "Card updated";
       toast.success(successMessage);
       onSaved(saved);
-      onClose();
+      handleClose();
     } catch (err) {
       const message = getApiErrorMessage(err, "Save failed");
-      setError(message);
+      setError("root", { message });
       toast.error(message);
     }
   }
@@ -402,7 +405,7 @@ export default function CardFormModal({
   return createPortal(
     <div
       className="fixed inset-0 z-500 flex items-stretch justify-center overflow-hidden overscroll-contain bg-black/35 p-0"
-      onClick={onClose}
+      onClick={handleClose}
       role="presentation"
     >
       <div
@@ -447,25 +450,23 @@ export default function CardFormModal({
           ) : null}
         </div>
 
-        <form onSubmit={onSubmit} className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col overflow-hidden">
           <div className="flex min-h-0 flex-1 flex-col gap-[0.85rem] overflow-y-auto overscroll-contain px-5 pt-1 pb-4">
             <label className={fieldLabel}>
               Headword
               <input
                 className={fieldInput}
-                value={form.head}
-                onChange={(e) => setForm((f) => ({ ...f, head: e.target.value }))}
                 required
                 placeholder="das Wort /vɔʁt/"
+                {...register("head")}
               />
             </label>
             <label className={fieldLabel}>
               IPA
               <input
                 className={fieldInput}
-                value={form.ipa}
-                onChange={(e) => setForm((f) => ({ ...f, ipa: e.target.value }))}
                 placeholder="/vɔʁt/"
+                {...register("ipa")}
               />
             </label>
             <label className={fieldLabel}>
@@ -475,10 +476,9 @@ export default function CardFormModal({
               </span>
               <textarea
                 className={fieldTextarea}
-                value={form.gloss}
-                onChange={(e) => setForm((f) => ({ ...f, gloss: e.target.value }))}
                 rows={2}
                 placeholder="word; vocabulary item"
+                {...register("gloss")}
               />
             </label>
             <label className={fieldLabel}>
@@ -488,10 +488,9 @@ export default function CardFormModal({
               </span>
               <textarea
                 className={fieldTextarea}
-                value={form.notes}
-                onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
                 rows={2}
                 placeholder="• separable verb — …"
+                {...register("notes")}
               />
             </label>
 
@@ -509,9 +508,9 @@ export default function CardFormModal({
                 German sentence plus a natural English translation for each example.
               </p>
               <ul className="m-0 list-none space-y-2 p-0">
-                {form.examples.map((ex, index) => (
+                {fields.map((field, index) => (
                   <li
-                    key={ex.key}
+                    key={field.rfKey}
                     className="flex items-start gap-2 rounded-md border border-daf-border-nav bg-daf-panel-muted p-2"
                   >
                     <div className="grid min-w-0 flex-1 gap-2 min-[32rem]:grid-cols-2">
@@ -519,29 +518,23 @@ export default function CardFormModal({
                         German
                         <input
                           className={fieldInput}
-                          value={ex.german}
-                          onChange={(e) =>
-                            updateExample(ex.key, "german", e.target.value)
-                          }
                           placeholder="Ich lerne das Wort."
+                          {...register(`examples.${index}.german`)}
                         />
                       </label>
                       <label className={`${fieldLabel} text-[0.75rem]`}>
                         English
                         <input
                           className={fieldInput}
-                          value={ex.english}
-                          onChange={(e) =>
-                            updateExample(ex.key, "english", e.target.value)
-                          }
                           placeholder="I am learning the word."
+                          {...register(`examples.${index}.english`)}
                         />
                       </label>
                     </div>
                     <button
                       type="button"
                       className="mt-0.5 shrink-0 cursor-pointer border-0 bg-transparent px-1 text-[1.1rem] leading-none text-daf-icon-muted hover:text-daf-danger"
-                      onClick={() => removeExample(ex.key)}
+                      onClick={() => removeExampleAt(index)}
                       aria-label={`Remove example ${index + 1}`}
                       title="Remove example"
                     >
@@ -553,7 +546,7 @@ export default function CardFormModal({
               <button
                 type="button"
                 className="mt-2 cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head hover:underline"
-                onClick={addExample}
+                onClick={() => append(emptyExample())}
               >
                 + Add example
               </button>
@@ -570,7 +563,7 @@ export default function CardFormModal({
                 <button
                   type="button"
                   className="cursor-pointer rounded-md border border-daf-head/45 bg-daf-head-softer px-3 py-1.5 text-[0.78rem] font-semibold text-daf-head hover:bg-daf-head-soft disabled:cursor-not-allowed disabled:opacity-55"
-                  onClick={generatePronunciation}
+                  onClick={() => void generatePronunciation()}
                   disabled={generatingPronunciation || !canGeneratePronunciation}
                 >
                   {generatingPronunciation
@@ -617,11 +610,17 @@ export default function CardFormModal({
                   Manage tags
                 </Link>
               </span>
-              <TagMultiSelect
-                value={form.tagSlugs}
-                onChange={(tagSlugs) => setForm((f) => ({ ...f, tagSlugs }))}
-                knownTags={card?.tags}
-                pageSize={5}
+              <Controller
+                control={control}
+                name="tagSlugs"
+                render={({ field }) => (
+                  <TagMultiSelect
+                    value={field.value}
+                    onChange={field.onChange}
+                    knownTags={card?.tags}
+                    pageSize={5}
+                  />
+                )}
               />
             </div>
 
@@ -631,11 +630,8 @@ export default function CardFormModal({
                   Deck
                   <select
                     className={fieldSelect}
-                    value={form.deckId}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, deckId: e.target.value }))
-                    }
                     required
+                    {...register("deckId")}
                   >
                     {decks.length === 0 ? (
                       <option value="">Loading…</option>
@@ -651,16 +647,7 @@ export default function CardFormModal({
               ) : null}
               <label className={`${fieldLabel} min-w-20 flex-1`}>
                 Level
-                <select
-                  className={fieldSelect}
-                  value={form.level}
-                  onChange={(e) =>
-                    setForm((f) => ({
-                      ...f,
-                      level: e.target.value as CefrLevel,
-                    }))
-                  }
-                >
+                <select className={fieldSelect} {...register("level")}>
                   {CEFR_LEVELS.map((lv) => (
                     <option key={lv} value={lv}>
                       {lv}
@@ -670,13 +657,7 @@ export default function CardFormModal({
               </label>
               <label className={`${fieldLabel} min-w-20 flex-1`}>
                 Type
-                <select
-                  className={fieldSelect}
-                  value={form.pos}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, pos: e.target.value as VocabPos }))
-                  }
-                >
+                <select className={fieldSelect} {...register("pos")}>
                   {VOCAB_POS_ORDER.map((p) => (
                     <option key={p} value={p}>
                       {posLabel(p)}
@@ -688,21 +669,23 @@ export default function CardFormModal({
           </div>
 
           <div className="shrink-0 border-t border-daf-border bg-white px-5 pt-[0.85rem] pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
-            {error ? (
-              <p className="m-0 mb-2 text-[0.8rem] text-daf-danger">{error}</p>
+            {errors.root?.message ? (
+              <p className="m-0 mb-2 text-[0.8rem] text-daf-danger">
+                {errors.root.message}
+              </p>
             ) : null}
             <div className="flex justify-end gap-2">
               <button
                 type="button"
                 className={`${btnBase} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
-                onClick={onClose}
+                onClick={handleClose}
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 className={`${btnBase} border-daf-head-dark bg-daf-head text-white`}
-                disabled={saveCard.isPending}
+                disabled={isSubmitting || saveCard.isPending}
               >
                 {saveCard.isPending ? "Saving…" : mode === "create" ? "Create card" : "Save"}
               </button>

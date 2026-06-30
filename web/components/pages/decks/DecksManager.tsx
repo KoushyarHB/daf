@@ -1,9 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import type { ColumnDef } from "@tanstack/react-table";
+import type { z } from "zod";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
+import DataTable from "@/components/shared/DataTable";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import {
   useCreateDeckMutation,
@@ -12,6 +17,7 @@ import {
   type DeckRow,
 } from "@/hooks/decks";
 import { getApiErrorMessage } from "@/services/frontend/http";
+import { deckCreateFormSchema } from "@/lib/api/schemas";
 import { CEFR_LEVELS } from "@/lib/vocab/levels";
 import {
   formInputClass,
@@ -35,8 +41,9 @@ import {
   tagsTableDecksActionsColClass,
   tagsTableDecksClass,
   tagsTableThTdClass,
-  tagsTableWrapClass,
 } from "@/lib/styles/tagsPage";
+
+type DeckCreateValues = z.infer<typeof deckCreateFormSchema>;
 
 type DecksManagerProps = {
   initialDecks: DeckRow[];
@@ -47,27 +54,33 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
   const decksQuery = useDecksQuery({ initialData: initialDecks });
   const createDeck = useCreateDeckMutation();
   const deleteDeck = useDeleteDeckMutation();
-  const [creating, setCreating] = useState(false);
-  const [name, setName] = useState("");
-  const [level, setLevel] = useState("A1");
   const [deleteTarget, setDeleteTarget] = useState<DeckRow | null>(null);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { isSubmitting },
+  } = useForm<DeckCreateValues>({
+    resolver: zodResolver(deckCreateFormSchema),
+    defaultValues: { name: "", level: "A1" },
+  });
+
+  const nameValue = useWatch({ control, name: "name" }) ?? "";
   const decks = decksQuery.data ?? [];
   const loading = decksQuery.isLoading;
 
-  async function onCreate(e: React.FormEvent) {
-    e.preventDefault();
-    const trimmed = name.trim();
-    if (!trimmed) return;
-    setCreating(true);
+  async function onCreate(values: DeckCreateValues) {
     try {
-      await createDeck.mutateAsync({ name: trimmed, level });
+      await createDeck.mutateAsync({
+        name: values.name.trim(),
+        level: values.level,
+      });
       toast.success("Deck created");
-      setName("");
+      reset({ name: "", level: values.level });
     } catch (err) {
       toast.error(getApiErrorMessage(err, "Create failed"));
-    } finally {
-      setCreating(false);
     }
   }
 
@@ -82,6 +95,67 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
       toast.error(getApiErrorMessage(err, "Delete failed"));
     }
   }, [deleteTarget, deleteDeck, toast]);
+
+  const columns = useMemo<ColumnDef<DeckRow>[]>(
+    () => [
+      { accessorKey: "name", header: "Name" },
+      {
+        accessorKey: "slug",
+        header: "Slug",
+        cell: ({ row }) => <code>{row.original.slug}</code>,
+      },
+      {
+        id: "type",
+        header: "Type",
+        cell: ({ row }) =>
+          row.original.isSystem ? (
+            <span className={systemBadgeClass}>system</span>
+          ) : (
+            "user"
+          ),
+      },
+      { accessorKey: "cardCount", header: "Cards" },
+      {
+        id: "published",
+        header: "Published",
+        cell: ({ row }) => (row.original.publishedAt ? "Yes" : "No"),
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableDecksActionsColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableDecksActionsColClass} ${tagsTableActionsClass}`,
+        },
+        cell: ({ row }) => {
+          const deck = row.original;
+          return (
+            <>
+              <Link
+                href={`/?deck=${encodeURIComponent(deck.id)}`}
+                className={tagsTableActionLinkClass}
+              >
+                View cards
+              </Link>
+              <button
+                type="button"
+                className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
+                onClick={() => setDeleteTarget(deck)}
+                disabled={
+                  deleteDeck.isPending && deleteTarget?.id === deck.id
+                }
+              >
+                {deleteDeck.isPending && deleteTarget?.id === deck.id
+                  ? "Deleting…"
+                  : "Delete"}
+              </button>
+            </>
+          );
+        },
+      },
+    ],
+    [deleteDeck.isPending, deleteTarget],
+  );
 
   if (loading && decks.length === 0) {
     return (
@@ -104,24 +178,18 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
         <span className={systemBadgeClass}>system</span>; other decks are personal.
       </p>
 
-      <form className={decksCreateFormClass} onSubmit={onCreate}>
+      <form className={decksCreateFormClass} onSubmit={handleSubmit(onCreate)}>
         <label className={formLabelClass}>
           New deck name
           <input
             className={`${formInputClass} ${formPlaceholderClass}`}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             placeholder="Lektion 3 vocab"
-            required
+            {...register("name")}
           />
         </label>
         <label className={formLabelClass}>
           Default level
-          <select
-            className={formSelectClass}
-            value={level}
-            onChange={(e) => setLevel(e.target.value)}
-          >
+          <select className={formSelectClass} {...register("level")}>
             {CEFR_LEVELS.map((lv) => (
               <option key={lv} value={lv}>
                 {lv}
@@ -132,66 +200,21 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
         <button
           type="submit"
           className={decksCreateSubmitClass}
-          disabled={creating || !name.trim()}
+          disabled={isSubmitting || createDeck.isPending || !nameValue.trim()}
         >
-          {creating ? "Creating…" : "+ Create deck"}
+          {createDeck.isPending ? "Creating…" : "+ Create deck"}
         </button>
       </form>
 
       {decks.length === 0 ? (
         <p className={deckHintClass}>No decks yet.</p>
       ) : (
-        <div className={tagsTableWrapClass}>
-          <table className={tagsTableDecksClass}>
-            <thead>
-              <tr>
-                <th scope="col" className={tagsTableThTdClass}>Name</th>
-                <th scope="col" className={tagsTableThTdClass}>Slug</th>
-                <th scope="col" className={tagsTableThTdClass}>Type</th>
-                <th scope="col" className={tagsTableThTdClass}>Cards</th>
-                <th scope="col" className={tagsTableThTdClass}>Published</th>
-                <th scope="col" className={`${tagsTableThTdClass} ${tagsTableDecksActionsColClass}`}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {decks.map((deck) => (
-                <tr key={deck.id}>
-                  <td className={tagsTableThTdClass}>{deck.name}</td>
-                  <td className={tagsTableThTdClass}>
-                    <code>{deck.slug}</code>
-                  </td>
-                  <td className={tagsTableThTdClass}>
-                    {deck.isSystem ? (
-                      <span className={systemBadgeClass}>system</span>
-                    ) : (
-                      "user"
-                    )}
-                  </td>
-                  <td className={tagsTableThTdClass}>{deck.cardCount}</td>
-                  <td className={tagsTableThTdClass}>{deck.publishedAt ? "Yes" : "No"}</td>
-                  <td className={`${tagsTableThTdClass} ${tagsTableDecksActionsColClass} ${tagsTableActionsClass}`}>
-                    <Link
-                      href={`/?deck=${encodeURIComponent(deck.id)}`}
-                      className={tagsTableActionLinkClass}
-                    >
-                      View cards
-                    </Link>
-                    <button
-                      type="button"
-                      className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
-                      onClick={() => setDeleteTarget(deck)}
-                      disabled={deleteDeck.isPending && deleteTarget?.id === deck.id}
-                    >
-                      {deleteDeck.isPending && deleteTarget?.id === deck.id
-                        ? "Deleting…"
-                        : "Delete"}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          data={decks}
+          columns={columns}
+          tableClassName={tagsTableDecksClass}
+          getRowId={(row) => row.id}
+        />
       )}
 
       <ConfirmModal

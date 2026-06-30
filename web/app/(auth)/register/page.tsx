@@ -1,52 +1,64 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { isAxiosError } from "axios";
+import type { z } from "zod";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
 import { useRegisterMutation } from "@/hooks/auth";
+import { registerSchema } from "@/lib/api/schemas";
 import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
+
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
   const router = useRouter();
   const register = useRegisterMutation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
+  const {
+    register: registerField,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { name: "", email: "", password: "" },
+  });
+
+  async function onSubmit(values: RegisterFormValues) {
+    setServerError(null);
 
     try {
       await register.mutateAsync({
-        email,
-        password,
-        name: name || undefined,
+        email: values.email,
+        password: values.password,
+        name: values.name?.trim() || undefined,
       });
     } catch (err) {
       if (isAxiosError(err) && err.response?.status === 409) {
-        setError("Email already registered.");
+        setServerError("Email already registered.");
         return;
       }
       const data = isAxiosError(err)
         ? (err.response?.data as { error?: string } | undefined)
         : undefined;
-      setError(data?.error ?? "Registration failed.");
+      setServerError(data?.error ?? "Registration failed.");
       return;
     }
 
     const signInResult = await signIn("credentials", {
-      email,
-      password,
+      email: getValues("email"),
+      password: getValues("password"),
       redirect: false,
     });
     if (signInResult?.error) {
-      setError("Account created but sign-in failed. Try logging in.");
+      setServerError("Account created but sign-in failed. Try logging in.");
       return;
     }
     router.push("/");
@@ -58,16 +70,15 @@ export default function RegisterPage() {
       <h1 className="mb-5 border-b-0 pb-0 text-center text-[1.35rem]">
         Register
       </h1>
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
           Name (optional)
           <input
             type="text"
             className={`${authInputClass} ${formPlaceholderClass}`}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             placeholder="Your name"
             autoComplete="name"
+            {...registerField("name")}
           />
         </label>
         <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
@@ -75,27 +86,34 @@ export default function RegisterPage() {
           <input
             type="email"
             className={`${authInputClass} ${formPlaceholderClass}`}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            required
             autoComplete="email"
+            {...registerField("email")}
           />
+          {errors.email ? (
+            <span className="text-[0.85rem] font-normal text-daf-danger">
+              {errors.email.message}
+            </span>
+          ) : null}
         </label>
         <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
           Password (min 8 characters)
           <input
             type="password"
             className={`${authInputClass} ${formPlaceholderClass}`}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="At least 8 characters"
-            required
-            minLength={8}
             autoComplete="new-password"
+            {...registerField("password")}
           />
+          {errors.password ? (
+            <span className="text-[0.85rem] font-normal text-daf-danger">
+              {errors.password.message}
+            </span>
+          ) : null}
         </label>
-        {error ? <p className="m-0 text-[0.9rem] text-daf-danger">{error}</p> : null}
+        {serverError ? (
+          <p className="m-0 text-[0.9rem] text-daf-danger">{serverError}</p>
+        ) : null}
         <AuthSubmitButton disabled={register.isPending}>
           {register.isPending ? "Creating account…" : "Create account"}
         </AuthSubmitButton>

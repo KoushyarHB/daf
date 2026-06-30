@@ -1,12 +1,16 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import type { z } from "zod";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { useSaveTagMutation } from "@/hooks/tags";
+import { tagFormSchema } from "@/lib/api/schemas";
 import { slugifyLabel } from "@/lib/tags/slug";
 import {
   formInputClass,
@@ -22,6 +26,8 @@ import {
   tagFormTitleClass,
 } from "@/lib/styles/tagsPage";
 
+type TagFormValues = z.infer<typeof tagFormSchema>;
+
 type TagFormProps = {
   mode: "create" | "edit";
   tagId?: string;
@@ -32,25 +38,35 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
   const router = useRouter();
   const toast = useToast();
   const saveTag = useSaveTagMutation();
-  const [label, setLabel] = useState(initial?.label ?? "");
-  const [slug, setSlug] = useState(initial?.slug ?? "");
-  const [slugTouched, setSlugTouched] = useState(mode === "edit");
-  const [error, setError] = useState<string | null>(null);
+  const slugTouched = useRef(mode === "edit");
 
-  function onLabelChange(value: string) {
-    setLabel(value);
-    if (!slugTouched) {
-      setSlug(slugifyLabel(value));
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<TagFormValues>({
+    resolver: zodResolver(tagFormSchema),
+    defaultValues: {
+      label: initial?.label ?? "",
+      slug: initial?.slug ?? "",
+    },
+  });
+
+  const label = useWatch({ control, name: "label" }) ?? "";
+
+  useEffect(() => {
+    if (!slugTouched.current) {
+      setValue("slug", slugifyLabel(label));
     }
-  }
+  }, [label, setValue]);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-
+  async function onSubmit(values: TagFormValues) {
     const body = {
-      label: label.trim(),
-      slug: slug.trim() || undefined,
+      label: values.label.trim(),
+      slug: values.slug.trim(),
     };
 
     try {
@@ -60,13 +76,13 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
       router.refresh();
     } catch (err) {
       const message = getApiErrorMessage(err, "Save failed");
-      setError(message);
+      setError("root", { message });
       toast.error(message);
     }
   }
 
   return (
-    <form className={tagFormClass} onSubmit={onSubmit}>
+    <form className={tagFormClass} onSubmit={handleSubmit(onSubmit)}>
       <h1 className={tagFormTitleClass}>
         {mode === "create" ? "New tag" : "Edit tag"}
       </h1>
@@ -75,35 +91,43 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         Label
         <input
           className={`${formInputClass} ${formPlaceholderClass}`}
-          value={label}
-          onChange={(e) => onLabelChange(e.target.value)}
-          required
           placeholder="daf lek. 3"
+          {...register("label")}
         />
+        {errors.label ? (
+          <span className={tagFormErrorClass}>{errors.label.message}</span>
+        ) : null}
       </label>
 
       <label className={formLabelClass}>
         Slug
         <input
           className={`${formInputClass} ${formPlaceholderClass}`}
-          value={slug}
-          onChange={(e) => {
-            setSlugTouched(true);
-            setSlug(e.target.value);
-          }}
-          required
-          pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
           placeholder="daf-lek-3"
+          {...register("slug", {
+            onChange: () => {
+              slugTouched.current = true;
+            },
+          })}
         />
+        {errors.slug ? (
+          <span className={tagFormErrorClass}>{errors.slug.message}</span>
+        ) : null}
       </label>
 
-      {error ? <p className={tagFormErrorClass}>{error}</p> : null}
+      {errors.root ? (
+        <p className={tagFormErrorClass}>{errors.root.message}</p>
+      ) : null}
 
       <div className={tagFormActionsClass}>
         <Link href="/tags" className={tagFormCancelClass}>
           Cancel
         </Link>
-        <button type="submit" className={tagFormSubmitClass} disabled={saveTag.isPending}>
+        <button
+          type="submit"
+          className={tagFormSubmitClass}
+          disabled={isSubmitting || saveTag.isPending}
+        >
           {saveTag.isPending
             ? "Saving…"
             : mode === "create"

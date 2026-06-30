@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
+import DataTable from "@/components/shared/DataTable";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
@@ -91,6 +93,97 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
     }
   }
 
+  const columns = useMemo<ColumnDef<AdminDeckDto>[]>(
+    () => [
+      {
+        id: "deck",
+        header: "Deck",
+        cell: ({ row }) => (
+          <>
+            {row.original.name} <code>{row.original.slug}</code>
+          </>
+        ),
+      },
+      {
+        id: "owner",
+        header: "Owner",
+        cell: ({ row }) => (
+          <>
+            {row.original.ownerName ? `${row.original.ownerName} — ` : ""}
+            {row.original.ownerEmail}
+          </>
+        ),
+      },
+      { accessorKey: "cardCount", header: "Cards" },
+      {
+        id: "published",
+        header: "Published",
+        cell: ({ row }) =>
+          row.original.publishedAt ? (
+            row.original.publishedTagSlug ? (
+              <code>{row.original.publishedTagSlug}</code>
+            ) : (
+              "Yes"
+            )
+          ) : (
+            "—"
+          ),
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`,
+        },
+        cell: ({ row }) => {
+          const deck = row.original;
+          return (
+            <>
+              <Link
+                href={`/admin/publish/${encodeURIComponent(deck.id)}`}
+                className={tagsTableBtnSecondaryClass}
+              >
+                Review
+              </Link>
+              <button
+                type="button"
+                className={`${tagsTableBtnPrimaryClass} ${tagsTableActionGapClass}`}
+                onClick={() => setPublishTarget(deck)}
+                disabled={
+                  publishDeck.isPending && publishDeck.variables === deck.id
+                }
+              >
+                {publishDeck.isPending && publishDeck.variables === deck.id
+                  ? "Publishing…"
+                  : deck.publishedAt
+                    ? "Republish"
+                    : "Publish"}
+              </button>
+              {deck.publishedAt ? (
+                <button
+                  type="button"
+                  className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
+                  onClick={() => setUnpublishTarget(deck)}
+                  disabled={
+                    unpublishDeck.isPending &&
+                    unpublishDeck.variables === deck.id
+                  }
+                >
+                  {unpublishDeck.isPending &&
+                  unpublishDeck.variables === deck.id
+                    ? "Unpublishing…"
+                    : "Unpublish"}
+                </button>
+              ) : null}
+            </>
+          );
+        },
+      },
+    ],
+    [publishDeck.isPending, publishDeck.variables, unpublishDeck.isPending, unpublishDeck.variables],
+  );
+
   return (
     <div className={tagsPageClass}>
       <div className={tagsPageHeaderClass}>
@@ -120,78 +213,13 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
       ) : decks.length === 0 ? (
         <p className={deckHintClass}>No decks found.</p>
       ) : (
-        <div className={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}>
-        <table className={tagsTableClass}>
-          <thead>
-            <tr>
-              <th scope="col" className={tagsTableThTdClass}>Deck</th>
-              <th scope="col" className={tagsTableThTdClass}>Owner</th>
-              <th scope="col" className={tagsTableThTdClass}>Cards</th>
-              <th scope="col" className={tagsTableThTdClass}>Published</th>
-              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {decks.map((deck) => (
-              <tr key={deck.id}>
-                <td className={tagsTableThTdClass}>
-                  {deck.name} <code>{deck.slug}</code>
-                </td>
-                <td className={tagsTableThTdClass}>
-                  {deck.ownerName ? `${deck.ownerName} — ` : ""}
-                  {deck.ownerEmail}
-                </td>
-                <td className={tagsTableThTdClass}>{deck.cardCount}</td>
-                <td className={tagsTableThTdClass}>
-                  {deck.publishedAt ? (
-                    <>
-                      {deck.publishedTagSlug ? (
-                        <code>{deck.publishedTagSlug}</code>
-                      ) : (
-                        "Yes"
-                      )}
-                    </>
-                  ) : (
-                    "—"
-                  )}
-                </td>
-                <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
-                  <Link
-                    href={`/admin/publish/${encodeURIComponent(deck.id)}`}
-                    className={tagsTableBtnSecondaryClass}
-                  >
-                    Review
-                  </Link>
-                  <button
-                    type="button"
-                    className={`${tagsTableBtnPrimaryClass} ${tagsTableActionGapClass}`}
-                    onClick={() => setPublishTarget(deck)}
-                    disabled={publishDeck.isPending && publishDeck.variables === deck.id}
-                  >
-                    {publishDeck.isPending && publishDeck.variables === deck.id
-                      ? "Publishing…"
-                      : deck.publishedAt
-                        ? "Republish"
-                        : "Publish"}
-                  </button>
-                  {deck.publishedAt ? (
-                    <button
-                      type="button"
-                      className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
-                      onClick={() => setUnpublishTarget(deck)}
-                      disabled={unpublishDeck.isPending && unpublishDeck.variables === deck.id}
-                    >
-                      {unpublishDeck.isPending && unpublishDeck.variables === deck.id
-                        ? "Unpublishing…"
-                        : "Unpublish"}
-                    </button>
-                  ) : null}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
+        <DataTable
+          data={decks}
+          columns={columns}
+          tableClassName={tagsTableClass}
+          wrapClassName={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}
+          getRowId={(row) => row.id}
+        />
       )}
 
       <ConfirmModal

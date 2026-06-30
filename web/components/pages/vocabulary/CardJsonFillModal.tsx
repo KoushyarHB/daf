@@ -1,10 +1,13 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useId, useState } from "react";
+import { useForm } from "react-hook-form";
 import { createPortal } from "react-dom";
+import type { z } from "zod";
 
+import { cardJsonFillFormSchema } from "@/lib/api/schemas";
 import {
-  formFieldsToManifestCardJson,
   manifestCardSampleJson,
   parseManifestCardJson,
   type ManifestCardFillResult,
@@ -17,6 +20,8 @@ type CardJsonFillModalProps = {
   onClose: () => void;
 };
 
+type JsonFillValues = z.infer<typeof cardJsonFillFormSchema>;
+
 const BTN_BASE =
   "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
 
@@ -28,8 +33,13 @@ export default function CardJsonFillModal({
 }: CardJsonFillModalProps) {
   const textareaId = useId();
   const [mounted, setMounted] = useState(false);
-  const [jsonText, setJsonText] = useState(initialJson);
-  const [error, setError] = useState<string | null>(null);
+  const [parseError, setParseError] = useState<string | null>(null);
+
+  const { register, handleSubmit, reset, setValue, getValues } =
+    useForm<JsonFillValues>({
+      resolver: zodResolver(cardJsonFillFormSchema),
+      defaultValues: { jsonText: initialJson },
+    });
 
   useEffect(() => {
     setMounted(true);
@@ -37,9 +47,9 @@ export default function CardJsonFillModal({
 
   useEffect(() => {
     if (!open) return;
-    setJsonText(initialJson);
-    setError(null);
-  }, [open, initialJson]);
+    reset({ jsonText: initialJson });
+    setParseError(null);
+  }, [open, initialJson, reset]);
 
   useEffect(() => {
     if (!open) return;
@@ -53,25 +63,27 @@ export default function CardJsonFillModal({
   if (!open || !mounted) return null;
 
   function onPasteSample() {
-    setJsonText(manifestCardSampleJson());
-    setError(null);
+    setValue("jsonText", manifestCardSampleJson());
+    setParseError(null);
   }
 
   async function onCopyJson() {
     try {
-      await navigator.clipboard.writeText(jsonText);
+      await navigator.clipboard.writeText(getValues("jsonText"));
     } catch {
       // Clipboard may be blocked; user can still select manually.
     }
   }
 
-  function onApplyClick() {
+  function onSubmit(values: JsonFillValues) {
     try {
-      const result = parseManifestCardJson(jsonText);
+      const result = parseManifestCardJson(values.jsonText);
       onApply(result);
       onClose();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not parse JSON");
+      setParseError(
+        err instanceof Error ? err.message : "Could not parse JSON",
+      );
     }
   }
 
@@ -100,61 +112,60 @@ export default function CardJsonFillModal({
           saving.
         </p>
 
-        <label
-          className="mb-[0.35rem] block text-[0.85rem] font-semibold text-daf-label"
-          htmlFor={textareaId}
-        >
-          Card JSON
-        </label>
-        <textarea
-          id={textareaId}
-          className="min-h-56 flex-1 resize-y rounded-md border border-daf-border-input bg-daf-panel-muted p-[0.65rem_0.75rem] font-mono text-[0.8rem] leading-snug focus:border-daf-head focus:shadow-daf-focus focus:outline-none"
-          value={jsonText}
-          onChange={(e) => {
-            setJsonText(e.target.value);
-            setError(null);
-          }}
-          spellCheck={false}
-          rows={16}
-        />
+        <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <label
+            className="mb-[0.35rem] block text-[0.85rem] font-semibold text-daf-label"
+            htmlFor={textareaId}
+          >
+            Card JSON
+          </label>
+          <textarea
+            id={textareaId}
+            className="min-h-56 flex-1 resize-y rounded-md border border-daf-border-input bg-daf-panel-muted p-[0.65rem_0.75rem] font-mono text-[0.8rem] leading-snug focus:border-daf-head focus:shadow-daf-focus focus:outline-none"
+            spellCheck={false}
+            rows={16}
+            {...register("jsonText", {
+              onChange: () => setParseError(null),
+            })}
+          />
 
-        <div className="mt-2 flex flex-wrap gap-3">
-          <button
-            type="button"
-            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
-            onClick={onPasteSample}
-          >
-            Insert sample
-          </button>
-          <button
-            type="button"
-            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
-            onClick={() => void onCopyJson()}
-          >
-            Copy JSON
-          </button>
-        </div>
+          <div className="mt-2 flex flex-wrap gap-3">
+            <button
+              type="button"
+              className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
+              onClick={onPasteSample}
+            >
+              Insert sample
+            </button>
+            <button
+              type="button"
+              className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
+              onClick={() => void onCopyJson()}
+            >
+              Copy JSON
+            </button>
+          </div>
 
-        {error ? (
-          <p className="m-0 mt-2 text-[0.8rem] text-daf-danger">{error}</p>
-        ) : null}
+          {parseError ? (
+            <p className="m-0 mt-2 text-[0.8rem] text-daf-danger">{parseError}</p>
+          ) : null}
 
-        <div className="mt-4 flex justify-end gap-2">
-          <button
-            type="button"
-            className={`${BTN_BASE} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            className={`${BTN_BASE} border-daf-head-dark bg-daf-head text-white`}
-            onClick={onApplyClick}
-          >
-            Apply to form
-          </button>
-        </div>
+          <div className="mt-4 flex justify-end gap-2">
+            <button
+              type="button"
+              className={`${BTN_BASE} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className={`${BTN_BASE} border-daf-head-dark bg-daf-head text-white`}
+            >
+              Apply to form
+            </button>
+          </div>
+        </form>
       </div>
     </div>,
     document.body,

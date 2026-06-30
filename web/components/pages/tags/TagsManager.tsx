@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
+import DataTable from "@/components/shared/DataTable";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
@@ -30,7 +32,6 @@ import {
   tagsTableClass,
   tagsTableMutedClass,
   tagsTableThTdClass,
-  tagsTableWrapClass,
 } from "@/lib/styles/tagsPage";
 
 type TagsManagerProps = {
@@ -52,11 +53,6 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
   const tags = tagsQuery.data ?? initialTags ?? [];
   const loading = tagsQuery.isLoading && tags.length === 0;
 
-  function canEdit(tag: TagRow): boolean {
-    if (!userId) return false;
-    return canModifyTag(tag, userId, role);
-  }
-
   async function confirmDelete() {
     if (!deleteTarget) return;
     const tag = deleteTarget;
@@ -68,6 +64,71 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
       toast.error(getApiErrorMessage(err, "Delete failed"));
     }
   }
+
+  const columns = useMemo<ColumnDef<TagRow>[]>(
+    () => [
+      { accessorKey: "label", header: "Label" },
+      {
+        accessorKey: "slug",
+        header: "Slug",
+        cell: ({ row }) => <code>{row.original.slug}</code>,
+      },
+      {
+        id: "type",
+        header: "Type",
+        cell: ({ row }) =>
+          row.original.isSystem ? (
+            <span className={systemBadgeClass}>system</span>
+          ) : (
+            "user"
+          ),
+      },
+      {
+        id: "cardCount",
+        header: "Cards",
+        cell: ({ row }) => row.original.cardCount ?? 0,
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`,
+        },
+        cell: ({ row }) => {
+          const tag = row.original;
+          const editable =
+            Boolean(userId) && canModifyTag(tag, userId!, role);
+          if (!editable) {
+            return <span className={tagsTableMutedClass}>—</span>;
+          }
+          return (
+            <>
+              <Link
+                href={`/tags/${encodeURIComponent(tag.id)}/edit`}
+                className={tagsTableActionLinkClass}
+              >
+                Edit
+              </Link>
+              <button
+                type="button"
+                className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
+                onClick={() => setDeleteTarget(tag)}
+                disabled={
+                  deleteTag.isPending && deleteTarget?.id === tag.id
+                }
+              >
+                {deleteTag.isPending && deleteTarget?.id === tag.id
+                  ? "Deleting…"
+                  : "Delete"}
+              </button>
+            </>
+          );
+        },
+      },
+    ],
+    [deleteTag.isPending, deleteTarget, userId, role],
+  );
 
   if (loading) {
     return (
@@ -100,64 +161,12 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
       {tags.length === 0 ? (
         <p className={deckHintClass}>No tags yet.</p>
       ) : (
-        <div className={tagsTableWrapClass}>
-        <table className={tagsTableClass}>
-          <thead>
-            <tr>
-              <th scope="col" className={tagsTableThTdClass}>Label</th>
-              <th scope="col" className={tagsTableThTdClass}>Slug</th>
-              <th scope="col" className={tagsTableThTdClass}>Type</th>
-              <th scope="col" className={tagsTableThTdClass}>Cards</th>
-              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tags.map((tag) => {
-              const editable = canEdit(tag);
-              return (
-                <tr key={tag.id}>
-                  <td className={tagsTableThTdClass}>{tag.label}</td>
-                  <td className={tagsTableThTdClass}>
-                    <code>{tag.slug}</code>
-                  </td>
-                  <td className={tagsTableThTdClass}>
-                    {tag.isSystem ? (
-                      <span className={systemBadgeClass}>system</span>
-                    ) : (
-                      "user"
-                    )}
-                  </td>
-                  <td className={tagsTableThTdClass}>{tag.cardCount ?? 0}</td>
-                  <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
-                    {editable ? (
-                      <>
-                        <Link
-                          href={`/tags/${encodeURIComponent(tag.id)}/edit`}
-                          className={tagsTableActionLinkClass}
-                        >
-                          Edit
-                        </Link>
-                        <button
-                          type="button"
-                          className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
-                          onClick={() => setDeleteTarget(tag)}
-                          disabled={deleteTag.isPending && deleteTarget?.id === tag.id}
-                        >
-                          {deleteTag.isPending && deleteTarget?.id === tag.id
-                            ? "Deleting…"
-                            : "Delete"}
-                        </button>
-                      </>
-                    ) : (
-                      <span className={tagsTableMutedClass}>—</span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        </div>
+        <DataTable
+          data={tags}
+          columns={columns}
+          tableClassName={tagsTableClass}
+          getRowId={(row) => row.id}
+        />
       )}
 
       <p className={tagsPageBackClass}>

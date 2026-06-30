@@ -1,9 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import type { ColumnDef } from "@tanstack/react-table";
+import type { z } from "zod";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
+import DataTable from "@/components/shared/DataTable";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import CardFormModal from "@/components/pages/vocabulary/CardFormModal";
 import { getApiErrorMessage } from "@/services/frontend/http";
@@ -13,6 +18,7 @@ import {
   useUnpublishAdminDeckMutation,
   useUpdateAdminDeckMutation,
 } from "@/hooks/admin";
+import { deckNameFormSchema } from "@/lib/api/schemas";
 import type { AdminDeckDto } from "@/lib/api/dto";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
@@ -32,6 +38,8 @@ type AdminDeckReviewProps = {
   initialDeck: AdminDeckDto;
   initialCards: EnrichedVocabCard[];
 };
+
+type DeckNameValues = z.infer<typeof deckNameFormSchema>;
 
 const btnPrimary =
   "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-head-dark bg-daf-head px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-daf-head-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/30 disabled:cursor-not-allowed disabled:opacity-50";
@@ -61,21 +69,36 @@ export default function AdminDeckReview({
   const publishDeck = usePublishAdminDeckMutation();
   const unpublishDeck = useUnpublishAdminDeckMutation();
   const [deck, setDeck] = useState(initialDeck);
-  const [deckName, setDeckName] = useState(initialDeck.name);
   const [cards, setCards] = useState(initialCards);
   const [publishConfirmOpen, setPublishConfirmOpen] = useState(false);
   const [unpublishConfirmOpen, setUnpublishConfirmOpen] = useState(false);
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<EnrichedVocabCard | null>(null);
 
-  async function saveDeckName(e: React.FormEvent) {
-    e.preventDefault();
-    const trimmed = deckName.trim();
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<DeckNameValues>({
+    resolver: zodResolver(deckNameFormSchema),
+    defaultValues: { name: initialDeck.name },
+  });
+
+  const deckName = useWatch({ control, name: "name" }) ?? "";
+
+  useEffect(() => {
+    reset({ name: deck.name });
+  }, [deck.name, reset]);
+
+  async function saveDeckName(values: DeckNameValues) {
+    const trimmed = values.name.trim();
     if (!trimmed || trimmed === deck.name) return;
     try {
       const data = await updateDeck.mutateAsync({ deckId, name: trimmed });
       setDeck(data);
-      setDeckName(data.name);
+      reset({ name: data.name });
       toast.success("Deck name updated");
     } catch (err) {
       toast.error(getApiErrorMessage(err, "Save failed"));
@@ -127,6 +150,44 @@ export default function AdminDeckReview({
 
   const nameDirty = deckName.trim() !== deck.name;
 
+  const cardColumns = useMemo<ColumnDef<EnrichedVocabCard>[]>(
+    () => [
+      {
+        accessorKey: "head",
+        header: "Headword",
+        meta: {
+          cellClassName: `${tagsTableThTdClass} font-medium text-daf-text`,
+        },
+      },
+      {
+        id: "gloss",
+        header: "Gloss",
+        meta: {
+          cellClassName: `${tagsTableThTdClass} text-daf-muted`,
+        },
+        cell: ({ row }) => (row.original.gloss ?? []).join("; ") || "—",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`,
+        },
+        cell: ({ row }) => (
+          <button
+            type="button"
+            className={btnSecondary}
+            onClick={() => openEdit(row.original)}
+          >
+            Edit
+          </button>
+        ),
+      },
+    ],
+    [],
+  );
+
   return (
     <div className={tagsPageClass}>
       <div className={tagsPageHeaderClass}>
@@ -148,7 +209,7 @@ export default function AdminDeckReview({
         </h2>
         <form
           className="flex flex-col gap-4 sm:flex-row sm:items-end"
-          onSubmit={(e) => void saveDeckName(e)}
+          onSubmit={handleSubmit(saveDeckName)}
         >
           <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm font-semibold text-daf-label">
             Deck name
@@ -156,16 +217,19 @@ export default function AdminDeckReview({
               id="admin-deck-name"
               type="text"
               className={fieldInput}
-              value={deckName}
-              onChange={(e) => setDeckName(e.target.value)}
               autoComplete="off"
-              required
+              {...register("name")}
             />
           </label>
           <button
             type="submit"
             className={btnPrimary}
-            disabled={updateDeck.isPending || !nameDirty || !deckName.trim()}
+            disabled={
+              isSubmitting ||
+              updateDeck.isPending ||
+              !nameDirty ||
+              !deckName.trim()
+            }
           >
             {updateDeck.isPending ? "Saving…" : "Save name"}
           </button>
@@ -254,36 +318,13 @@ export default function AdminDeckReview({
             </p>
           </div>
         ) : (
-          <div className={`${tagsTableWrapClass} -mx-1 px-1`}>
-            <table className={tagsTableClass}>
-              <thead>
-                <tr>
-                  <th scope="col" className={tagsTableThTdClass}>Headword</th>
-                  <th scope="col" className={tagsTableThTdClass}>Gloss</th>
-                  <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cards.map((card) => (
-                  <tr key={card.domId}>
-                    <td className={`${tagsTableThTdClass} font-medium text-daf-text`}>{card.head}</td>
-                    <td className={`${tagsTableThTdClass} text-daf-muted`}>
-                      {(card.gloss ?? []).join("; ") || "—"}
-                    </td>
-                    <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
-                      <button
-                        type="button"
-                        className={btnSecondary}
-                        onClick={() => openEdit(card)}
-                      >
-                        Edit
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            data={cards}
+            columns={cardColumns}
+            tableClassName={tagsTableClass}
+            wrapClassName={`${tagsTableWrapClass} -mx-1 px-1`}
+            getRowId={(row) => row.domId}
+          />
         )}
       </section>
 

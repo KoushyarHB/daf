@@ -1,34 +1,46 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
+import { loginFormSchema } from "@/lib/api/schemas";
 import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
+
+type LoginFormValues = z.infer<typeof loginFormSchema>;
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: { email: "", password: "" },
+  });
+
+  async function onSubmit(values: LoginFormValues) {
     setLoading(true);
-    setError(null);
+    setServerError(null);
     const callbackUrl = searchParams.get("callbackUrl") ?? "/";
     const result = await signIn("credentials", {
-      email,
-      password,
+      email: values.email,
+      password: values.password,
       redirect: false,
     });
     setLoading(false);
     if (result?.error) {
-      setError("Invalid email or password.");
+      setServerError("Invalid email or password.");
       return;
     }
     router.push(callbackUrl);
@@ -36,32 +48,40 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
         Email
         <input
           type="email"
           className={`${authInputClass} ${formPlaceholderClass}`}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          required
           autoComplete="email"
+          {...register("email")}
         />
+        {errors.email ? (
+          <span className="text-[0.85rem] font-normal text-daf-danger">
+            {errors.email.message}
+          </span>
+        ) : null}
       </label>
       <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
         Password
         <input
           type="password"
           className={`${authInputClass} ${formPlaceholderClass}`}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
-          required
           autoComplete="current-password"
+          {...register("password")}
         />
+        {errors.password ? (
+          <span className="text-[0.85rem] font-normal text-daf-danger">
+            {errors.password.message}
+          </span>
+        ) : null}
       </label>
-      {error ? <p className="m-0 text-[0.9rem] text-daf-danger">{error}</p> : null}
+      {serverError ? (
+        <p className="m-0 text-[0.9rem] text-daf-danger">{serverError}</p>
+      ) : null}
       <AuthSubmitButton disabled={loading}>
         {loading ? "Signing in…" : "Sign in"}
       </AuthSubmitButton>

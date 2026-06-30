@@ -93,6 +93,28 @@ export const registerSchema = z.object({
   name: z.string().optional(),
 });
 
+export const loginFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1, "Password is required"),
+});
+
+export const tagFormSchema = tagWriteSchema.extend({
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+});
+
+export const deckCreateFormSchema = z.object({
+  name: z.string().min(1),
+  level: z.enum(CEFR_LEVELS),
+});
+
+export const deckNameFormSchema = z.object({
+  name: z.string().min(1),
+});
+
+export const cardJsonFillFormSchema = z.object({
+  jsonText: z.string().min(1, "Paste card JSON"),
+});
+
 export const deckListQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(100).default(50),

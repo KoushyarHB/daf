@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
+import DataTable from "@/components/shared/DataTable";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
@@ -69,14 +71,17 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
   const loading = usersQuery.isLoading && users.length === 0;
   const refreshing = usersQuery.isFetching && !usersQuery.isLoading;
 
-  async function onRoleChange(user: AdminUserRow, role: UserRole) {
-    try {
-      await updateRole.mutateAsync({ userId: user.id, role });
-      toast.success("Role updated");
-    } catch (err) {
-      toast.error(getApiErrorMessage(err, "Update failed"));
-    }
-  }
+  const onRoleChange = useCallback(
+    async (user: AdminUserRow, role: UserRole) => {
+      try {
+        await updateRole.mutateAsync({ userId: user.id, role });
+        toast.success("Role updated");
+      } catch (err) {
+        toast.error(getApiErrorMessage(err, "Update failed"));
+      }
+    },
+    [updateRole, toast],
+  );
 
   async function confirmDelete() {
     if (!deleteTarget) return;
@@ -89,6 +94,85 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
       toast.error(getApiErrorMessage(err, "Delete failed"));
     }
   }
+
+  const columns = useMemo<ColumnDef<AdminUserRow>[]>(
+    () => [
+      { accessorKey: "email", header: "Email" },
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => row.original.name ?? "—",
+      },
+      {
+        id: "role",
+        header: "Role",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`,
+        },
+        cell: ({ row }) => {
+          const user = row.original;
+          return (
+            <select
+              className={`${formSelectClass} ${formSelectTableClass}`}
+              value={user.role}
+              disabled={
+                updateRole.isPending &&
+                updateRole.variables?.userId === user.id
+              }
+              onChange={(e) =>
+                onRoleChange(user, e.target.value as UserRole)
+              }
+            >
+              {ROLES.map((r) => (
+                <option key={r} value={r}>
+                  {roleLabel(r)}
+                </option>
+              ))}
+            </select>
+          );
+        },
+      },
+      {
+        id: "joined",
+        header: "Joined",
+        cell: ({ row }) =>
+          new Date(row.original.createdAt).toLocaleDateString(),
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        meta: {
+          headerClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass}`,
+          cellClassName: `${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`,
+        },
+        cell: ({ row }) => {
+          const user = row.original;
+          return (
+            <button
+              type="button"
+              className={tagsTableBtnDangerClass}
+              onClick={() => setDeleteTarget(user)}
+              disabled={
+                deleteUser.isPending && deleteTarget?.id === user.id
+              }
+            >
+              {deleteUser.isPending && deleteTarget?.id === user.id
+                ? "Deleting…"
+                : "Delete"}
+            </button>
+          );
+        },
+      },
+    ],
+    [
+      deleteTarget,
+      deleteUser.isPending,
+      onRoleChange,
+      updateRole.isPending,
+      updateRole.variables?.userId,
+    ],
+  );
 
   return (
     <div className={tagsPageClass}>
@@ -123,56 +207,13 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
       ) : users.length === 0 ? (
         <p className={deckHintClass}>No users found.</p>
       ) : (
-        <div className={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}>
-        <table className={tagsTableUsersClass}>
-          <thead>
-            <tr>
-              <th scope="col" className={tagsTableThTdClass}>Email</th>
-              <th scope="col" className={tagsTableThTdClass}>Name</th>
-              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`}>Role</th>
-              <th scope="col" className={tagsTableThTdClass}>Joined</th>
-              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td className={tagsTableThTdClass}>{user.email}</td>
-                <td className={tagsTableThTdClass}>{user.name ?? "—"}</td>
-                <td className={`${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`}>
-                  <select
-                    className={`${formSelectClass} ${formSelectTableClass}`}
-                    value={user.role}
-                    disabled={updateRole.isPending && updateRole.variables?.userId === user.id}
-                    onChange={(e) =>
-                      onRoleChange(user, e.target.value as UserRole)
-                    }
-                  >
-                    {ROLES.map((r) => (
-                      <option key={r} value={r}>
-                        {roleLabel(r)}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td className={tagsTableThTdClass}>{new Date(user.createdAt).toLocaleDateString()}</td>
-                <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
-                  <button
-                    type="button"
-                    className={tagsTableBtnDangerClass}
-                    onClick={() => setDeleteTarget(user)}
-                    disabled={deleteUser.isPending && deleteTarget?.id === user.id}
-                  >
-                    {deleteUser.isPending && deleteTarget?.id === user.id
-                      ? "Deleting…"
-                      : "Delete"}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
+        <DataTable
+          data={users}
+          columns={columns}
+          tableClassName={tagsTableUsersClass}
+          wrapClassName={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}
+          getRowId={(row) => row.id}
+        />
       )}
 
       <ConfirmModal
