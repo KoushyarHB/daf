@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import type { z } from "zod";
 
@@ -38,7 +38,7 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
   const router = useRouter();
   const toast = useToast();
   const saveTag = useSaveTagMutation();
-  const slugTouched = useRef(mode === "edit");
+  const [slugTouched, setSlugTouched] = useState(mode === "edit");
 
   const {
     register,
@@ -55,13 +55,14 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
     },
   });
 
+  const { onChange: onSlugChange, ...slugField } = register("slug");
   const label = useWatch({ control, name: "label" }) ?? "";
 
   useEffect(() => {
-    if (!slugTouched.current) {
+    if (!slugTouched) {
       setValue("slug", slugifyLabel(label));
     }
-  }, [label, setValue]);
+  }, [label, setValue, slugTouched]);
 
   async function onSubmit(values: TagFormValues) {
     const body = {
@@ -104,11 +105,11 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         <input
           className={`${formInputClass} ${formPlaceholderClass}`}
           placeholder="daf-lek-3"
-          {...register("slug", {
-            onChange: () => {
-              slugTouched.current = true;
-            },
-          })}
+          {...slugField}
+          onChange={(e) => {
+            setSlugTouched(true);
+            void onSlugChange(e);
+          }}
         />
         {errors.slug ? (
           <span className={tagFormErrorClass}>{errors.slug.message}</span>

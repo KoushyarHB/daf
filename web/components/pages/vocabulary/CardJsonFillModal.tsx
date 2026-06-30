@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { useForm } from "react-hook-form";
 import { createPortal } from "react-dom";
 import type { z } from "zod";
@@ -25,6 +25,14 @@ type JsonFillValues = z.infer<typeof cardJsonFillFormSchema>;
 const BTN_BASE =
   "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
 
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
+
 export default function CardJsonFillModal({
   open,
   initialJson,
@@ -32,8 +40,12 @@ export default function CardJsonFillModal({
   onClose,
 }: CardJsonFillModalProps) {
   const textareaId = useId();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const [parseError, setParseError] = useState<string | null>(null);
+  const [openSnapshot, setOpenSnapshot] = useState<{
+    open: boolean;
+    initialJson: string;
+  }>({ open, initialJson });
 
   const { register, handleSubmit, reset, setValue, getValues } =
     useForm<JsonFillValues>({
@@ -41,14 +53,19 @@ export default function CardJsonFillModal({
       defaultValues: { jsonText: initialJson },
     });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  if (
+    open &&
+    (open !== openSnapshot.open || initialJson !== openSnapshot.initialJson)
+  ) {
+    setOpenSnapshot({ open, initialJson });
+    setParseError(null);
+  } else if (!open && openSnapshot.open) {
+    setOpenSnapshot({ open, initialJson });
+  }
 
   useEffect(() => {
     if (!open) return;
     reset({ jsonText: initialJson });
-    setParseError(null);
   }, [open, initialJson, reset]);
 
   useEffect(() => {

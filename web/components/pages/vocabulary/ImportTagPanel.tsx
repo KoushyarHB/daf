@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
@@ -43,13 +43,22 @@ export default function ImportTagPanel({
   const toast = useToast();
   const importTag = useImportTagMutation();
   const deimportTag = useDeimportTagMutation();
-  const [localOptions, setLocalOptions] = useState(options);
+  const [importedBySlug, setImportedBySlug] = useState<
+    Record<string, boolean>
+  >({});
+  const [prevOptions, setPrevOptions] = useState(options);
   const [busySlug, setBusySlug] = useState<string | null>(null);
   const [removeTarget, setRemoveTarget] = useState<TagImportOption | null>(null);
 
-  useEffect(() => {
-    setLocalOptions(options);
-  }, [options]);
+  if (options !== prevOptions) {
+    setPrevOptions(options);
+    setImportedBySlug({});
+  }
+
+  const localOptions = options.map((o) => ({
+    ...o,
+    imported: importedBySlug[o.slug] ?? o.imported,
+  }));
 
   if (localOptions.length === 0) {
     return (
@@ -62,9 +71,7 @@ export default function ImportTagPanel({
   }
 
   function setImported(slug: string, imported: boolean) {
-    setLocalOptions((prev) =>
-      prev.map((o) => (o.slug === slug ? { ...o, imported } : o)),
-    );
+    setImportedBySlug((prev) => ({ ...prev, [slug]: imported }));
   }
 
   async function onImport(slug: string, label: string) {
