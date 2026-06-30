@@ -31,9 +31,9 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 const AUTO_DISMISS_MS = 4200;
 
 const TOAST_VARIANT: Record<ToastVariant, string> = {
-  success: "border-[#9fd4b0] bg-[#e6f5ec] text-[#1a4a2e]",
-  error: "border-[#e8a8a8] bg-[#fce8e8] text-[#6b1a1a]",
-  info: "border-[#a8c8e8] bg-[#e8f2fc] text-[#1e3a5f]",
+  success: "border-toast-success-border bg-toast-success-bg text-toast-success",
+  error: "border-toast-error-border bg-toast-error-bg text-toast-error",
+  info: "border-toast-info-border bg-toast-info-bg text-toast-info",
 };
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
@@ -87,7 +87,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`pointer-events-auto flex items-start gap-2 rounded-lg border px-3.5 py-3 text-[0.85rem] leading-snug shadow-[0_4px_16px_rgba(0,0,0,0.12)] ${TOAST_VARIANT[toast.variant]}`}
+            className={`pointer-events-auto flex items-start gap-2 rounded-lg border px-3.5 py-3 text-[0.85rem] leading-snug shadow-toast ${TOAST_VARIANT[toast.variant]}`}
             role={toast.variant === "error" ? "alert" : "status"}
           >
             <span className="min-w-0 flex-1">{toast.message}</span>

@@ -19,7 +19,7 @@ export default function PrimaryLayout({ children }: LayoutProps) {
           >
             {children}
           </main>
-          <footer className="mt-auto shrink-0 border-t border-[#ececec] py-6 pb-4 text-xs text-[#999]">
+          <footer className="mt-auto shrink-0 border-t border-daf-footer py-6 pb-4 text-xs text-daf-disabled">
             daf · Deutsch vocabulary
           </footer>
         </div>

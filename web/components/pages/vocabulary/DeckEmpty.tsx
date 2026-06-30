@@ -9,7 +9,7 @@ type DeckEmptyProps = {
 };
 
 const deckEmptyClass =
-  "my-6 mb-8 py-7 px-5 text-center bg-white border border-daf-border rounded-lg shadow-[0_1px_2px_rgb(0_0_0/4%)]";
+  "my-6 mb-8 py-7 px-5 text-center bg-white border border-daf-border rounded-lg shadow-card";
 
 const deckEmptyActionClass =
   "appearance-none inline-block py-[0.4rem] px-[0.85rem] font-inherit text-[0.8rem] font-semibold text-white bg-daf-head border border-daf-head-dark rounded cursor-pointer no-underline hover:bg-daf-head-dark";

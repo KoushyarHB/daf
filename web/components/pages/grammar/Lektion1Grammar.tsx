@@ -59,7 +59,7 @@ export default function Lektion1Grammar() {
       </nav>
 
       <header className="mb-[1.35rem]">
-        <div className="rounded-xl border border-[#d0e0f0] bg-gradient-to-br from-grm-der-bg via-white to-grm-das-bg p-[1.35rem_1.2rem] shadow-[0_3px_14px_rgba(47,111,184,0.07)]">
+        <div className="rounded-xl border border-grm-toc bg-grammar-hub p-[1.35rem_1.2rem] shadow-hub">
           <p className="m-0 mb-[0.3rem] text-[0.72rem] font-bold tracking-[0.08em] text-grm-der uppercase">
             DaF A1
           </p>
@@ -72,7 +72,7 @@ export default function Lektion1Grammar() {
       </header>
 
       <nav
-        className="mb-7 rounded-[10px] border border-[#dce8f4] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+        className="mb-7 rounded-[10px] border border-grm-toc-hover bg-white p-4 shadow-section"
         aria-label="On this page"
       >
         <p className="m-0 mb-[0.65rem] text-[0.72rem] font-bold tracking-wide text-daf-head uppercase">
@@ -83,7 +83,7 @@ export default function Lektion1Grammar() {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className="inline-flex items-center gap-[0.35rem] rounded-full border border-[#dce8f4] bg-[#f4f8fc] px-[0.55rem] py-[0.28rem] text-[0.78rem] font-medium text-[#2f4f6f] no-underline transition-[background,border-color] hover:border-grm-der-border hover:bg-grm-der-bg hover:text-grm-der"
+                className="inline-flex items-center gap-[0.35rem] rounded-full border border-grm-toc-hover bg-grm-panel-table px-[0.55rem] py-[0.28rem] text-[0.78rem] font-medium text-grm-slate-case no-underline transition-[background,border-color] hover:border-grm-der-border hover:bg-grm-der-bg hover:text-grm-der"
               >
                 <span className="inline-flex h-[1.15rem] min-w-[1.15rem] items-center justify-center rounded-full bg-daf-head text-[0.65rem] font-bold text-white">
                   {i + 1}
@@ -143,7 +143,7 @@ export default function Lektion1Grammar() {
               <tr>
                 <th
                   scope="row"
-                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
+                  className={`${grammarLessonColCaseClass} bg-daf-panel-soft!`}
                   title="Nominativ"
                 >
                   Nom.
@@ -156,7 +156,7 @@ export default function Lektion1Grammar() {
               <tr>
                 <th
                   scope="row"
-                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
+                  className={`${grammarLessonColCaseClass} bg-daf-panel-soft!`}
                   title="Akkusativ"
                 >
                   Akk.
@@ -169,7 +169,7 @@ export default function Lektion1Grammar() {
               <tr>
                 <th
                   scope="row"
-                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
+                  className={`${grammarLessonColCaseClass} bg-daf-panel-soft!`}
                   title="Dativ"
                 >
                   Dat.
@@ -251,27 +251,27 @@ export default function Lektion1Grammar() {
           <table className={grammarLessonTableClass}>
             <tbody>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">ich</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">ich</td>
                 <td>mich / mir</td>
               </tr>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">du</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">du</td>
                 <td>dich / dir</td>
               </tr>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">er / sie / es</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">er / sie / es</td>
                 <td>sich</td>
               </tr>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">wir</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">wir</td>
                 <td>uns</td>
               </tr>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">ihr</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">ihr</td>
                 <td>euch</td>
               </tr>
               <tr>
-                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">sie / Sie</td>
+                <td className="w-[36%] bg-grm-panel font-semibold text-daf-label">sie / Sie</td>
                 <td>sich</td>
               </tr>
             </tbody>
@@ -288,7 +288,7 @@ export default function Lektion1Grammar() {
         </Callout>
       </Section>
 
-      <footer className="mt-8 border-t-2 border-[#e8f0f8] pt-4">
+      <footer className="mt-8 border-t-2 border-grm-panel-border-section pt-4">
         <Link href="/grammar" className={grammarBackLinkClass}>
           ← All grammar lessons
         </Link>

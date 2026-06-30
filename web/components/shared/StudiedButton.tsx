@@ -12,7 +12,7 @@ type StudiedButtonProps = {
 };
 
 const studiedBtnClass =
-  "w-[1.65rem] h-[1.65rem] rounded border border-[#c8dcc0] bg-[#fafcf8] text-[#6a8f55] cursor-pointer p-0 inline-flex items-center justify-center shrink-0 leading-none transition-[background,border-color,transform] duration-150 hover:border-[#8fb86e] hover:text-[#5f8f42] hover:bg-[#f4faf0] aria-pressed:bg-[#5a9e38] aria-pressed:border-[#4a8a28] aria-pressed:text-white focus-visible:outline-2 focus-visible:outline-[rgba(74,138,40,0.45)] focus-visible:outline-offset-2 active:scale-[0.92] [&_svg]:w-[1.05rem] [&_svg]:h-[1.05rem] [&_svg]:block";
+  "w-[1.65rem] h-[1.65rem] rounded border border-daf-studied-border-soft bg-daf-studied-bg text-daf-studied-text cursor-pointer p-0 inline-flex items-center justify-center shrink-0 leading-none transition-[background,border-color,transform] duration-150 hover:border-daf-studied-hover-border hover:text-daf-studied-hover hover:bg-daf-studied-hover-bg aria-pressed:bg-daf-studied aria-pressed:border-daf-studied-border aria-pressed:text-white focus-visible:outline-2 focus-visible:shadow-studied-focus focus-visible:outline-offset-2 active:scale-[0.92] [&_svg]:w-[1.05rem] [&_svg]:h-[1.05rem] [&_svg]:block";
 
 const studiedBtnListClass = "w-[1.45rem] h-[1.45rem]";
 

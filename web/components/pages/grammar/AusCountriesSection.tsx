@@ -25,7 +25,7 @@ const GENDER_CELL: Record<string, string> = {
 
 function AusPhraseChip({ german, english }: AusExample) {
   return (
-    <span className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug">
+    <span className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-daf-border-table bg-daf-panel-soft px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug">
       <span className="font-bold italic text-daf-blue">{german}</span>
       <span className="text-[0.68rem] italic text-daf-gray-en">({english})</span>
       <GrammarSpeakButton german={german} />
@@ -43,24 +43,24 @@ export default function AusCountriesSection() {
       </Lead>
 
       <div
-        className="my-2 mb-[0.85rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-[10px] border border-[#c5e8e4] border-l-[3px] border-l-grm-teal bg-gradient-to-b from-grm-teal-bg to-white p-[0.55rem_0.75rem]"
+        className="my-2 mb-[0.85rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-[10px] border border-grm-teal-border border-l-[3px] border-l-grm-teal bg-grammar-aus p-[0.55rem_0.75rem]"
         aria-label="Pattern: aus + Dative"
       >
         <span className="text-base font-extrabold italic text-grm-teal">aus</span>
-        <span className="text-[0.82rem] font-semibold text-[#8a96a3]">+</span>
-        <span className="text-[0.88rem] font-extrabold text-[#2f4f6f]">Dativ</span>
-        <span className="ms-[0.15rem] text-[0.72rem] italic text-[#6b7a8a]">
+        <span className="text-[0.82rem] font-semibold text-grm-slate-plus">+</span>
+        <span className="text-[0.88rem] font-extrabold text-grm-slate-case">Dativ</span>
+        <span className="ms-[0.15rem] text-[0.72rem] italic text-grm-slate-meta">
           from · origin
         </span>
       </div>
 
       <div className="flex flex-col gap-3">
-        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-das bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
-          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-das-bg to-white px-3 py-[0.55rem]">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-das bg-white shadow-grammar">
+          <header className="border-b border-grm-panel-border-row bg-grammar-travel-nach px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-das">
               No article
             </h3>
-            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-grm-slate-muted">
               Most countries, cities, and continents — neuter, no <em>der/die/das</em>
             </p>
           </header>
@@ -76,18 +76,18 @@ export default function AusCountriesSection() {
           </ul>
         </section>
 
-        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-der bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
-          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-der-bg to-white px-3 py-[0.55rem]">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-white shadow-grammar">
+          <header className="border-b border-grm-panel-border-row bg-grammar-travel-in px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-der">
               With an article
             </h3>
-            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-grm-slate-muted">
               These countries take <em>dem</em>, <em>der</em>, or <em>den</em> — learn
               them with the article
             </p>
           </header>
           <div className="overflow-x-auto">
-            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-[#f4f8fc] [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-[#6b7a8a] [&_thead_th]:uppercase`}>
+            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-grm-panel-table [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-grm-slate-meta [&_thead_th]:uppercase`}>
               <thead>
                 <tr>
                   <th className={grammarLessonColCaseClass}>Gender</th>
@@ -100,7 +100,7 @@ export default function AusCountriesSection() {
                   <tr key={row.id}>
                     <th
                       scope="row"
-                      className="bg-[#f8fafc]! text-[0.72rem] font-bold lowercase whitespace-nowrap text-[#5a6573]"
+                      className="bg-daf-panel-soft! text-[0.72rem] font-bold lowercase whitespace-nowrap text-grm-slate-muted"
                     >
                       {row.gender}
                     </th>

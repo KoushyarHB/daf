@@ -26,7 +26,7 @@ const GENDER_CELL: Record<string, string> = {
 
 function TravelPhraseChip({ german, english }: TravelExample) {
   return (
-    <span className="inline-flex w-full flex-wrap items-center justify-start gap-1 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug max-[32rem]:last:justify-end">
+    <span className="inline-flex w-full flex-wrap items-center justify-start gap-1 rounded-lg border border-daf-border-table bg-daf-panel-soft px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug max-[32rem]:last:justify-end">
       <span className="font-bold italic text-daf-blue">{german}</span>
       <span className="text-[0.68rem] italic text-daf-gray-en">({english})</span>
       <GrammarSpeakButton german={german} />
@@ -45,10 +45,10 @@ export default function TravelCountriesSection() {
       </Lead>
 
       <div
-        className="my-2 mb-[0.85rem] rounded-[10px] border border-[#d8e4f0] bg-[#fafbfd] p-[0.55rem_0.65rem]"
+        className="my-2 mb-[0.85rem] rounded-[10px] border border-grm-panel-border bg-grm-panel p-[0.55rem_0.65rem]"
         aria-label="From vs to"
       >
-        <div className="mb-[0.45rem] grid grid-cols-[1fr_auto_1fr] gap-[0.35rem] text-[0.68rem] font-extrabold tracking-wide text-[#6b7a8a] uppercase max-[32rem]:hidden">
+        <div className="mb-[0.45rem] grid grid-cols-[1fr_auto_1fr] gap-[0.35rem] text-[0.68rem] font-extrabold tracking-wide text-grm-slate-meta uppercase max-[32rem]:hidden">
           <span className="text-left">From (§8)</span>
           <span aria-hidden="true" />
           <span className="text-right">To (here)</span>
@@ -61,7 +61,7 @@ export default function TravelCountriesSection() {
             >
               <TravelPhraseChip {...pair.from} />
               <span
-                className="px-[0.15rem] text-[0.82rem] font-bold text-[#9aa3ad] max-[32rem]:hidden"
+                className="px-[0.15rem] text-[0.82rem] font-bold text-grm-slate-arrow max-[32rem]:hidden"
                 aria-hidden="true"
               >
                 →
@@ -73,20 +73,20 @@ export default function TravelCountriesSection() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-das bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
-          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-das-bg to-white px-3 py-[0.55rem]">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-das bg-white shadow-grammar">
+          <header className="border-b border-grm-panel-border-row bg-grammar-travel-nach px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-das">
               <em>nach</em> — no article
             </h3>
-            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-grm-slate-muted">
               Same countries as <em>aus Deutschland</em>: no <em>der/die/das</em>{" "}
               — just <em>nach</em> + name. Cities and continents too.
             </p>
           </header>
-          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] border-l-[3px] border-l-grm-das bg-[#f8fafc] p-[0.45rem_0.6rem]">
+          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-grm-panel-border-row border-l-[3px] border-l-grm-das bg-daf-panel-soft p-[0.45rem_0.6rem]">
             <span className="text-[0.95rem] font-extrabold italic text-grm-das">nach</span>
-            <span className="text-[0.72rem] italic text-[#6b7a8a]">+ place name</span>
-            <span className="text-[0.72rem] italic text-[#6b7a8a]">to · destination</span>
+            <span className="text-[0.72rem] italic text-grm-slate-meta">+ place name</span>
+            <span className="text-[0.72rem] italic text-grm-slate-meta">to · destination</span>
           </div>
           <div className="flex flex-wrap gap-[0.35rem] px-3 pb-[0.45rem]">
             {NACH_PHRASES.map((phrase) => (
@@ -100,24 +100,24 @@ export default function TravelCountriesSection() {
           </ul>
         </section>
 
-        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-der bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
-          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-der-bg to-white px-3 py-[0.55rem]">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-white shadow-grammar">
+          <header className="border-b border-grm-panel-border-row bg-grammar-travel-in px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-der">
               <em>in</em> + Akkusativ — with article
             </h3>
-            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-grm-slate-muted">
               Same countries as <em>aus der Schweiz</em>: they need an article —
               use <em>in</em> + <strong>Akk.</strong> (movement = accusative).
             </p>
           </header>
-          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] border-l-[3px] border-l-grm-der bg-[#f8fafc] p-[0.45rem_0.6rem]">
+          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-grm-panel-border-row border-l-[3px] border-l-grm-der bg-daf-panel-soft p-[0.45rem_0.6rem]">
             <span className="text-[0.95rem] font-extrabold italic text-grm-der">in</span>
-            <span className="text-[0.8rem] font-semibold text-[#8a96a3]">+</span>
-            <span className="text-[0.86rem] font-extrabold text-[#2f4f6f]">Akk.</span>
-            <span className="text-[0.72rem] italic text-[#6b7a8a]">to · with article</span>
+            <span className="text-[0.8rem] font-semibold text-grm-slate-plus">+</span>
+            <span className="text-[0.86rem] font-extrabold text-grm-slate-case">Akk.</span>
+            <span className="text-[0.72rem] italic text-grm-slate-meta">to · with article</span>
           </div>
           <div className="mb-[0.45rem] overflow-x-auto">
-            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-[#f4f8fc] [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-[#6b7a8a] [&_thead_th]:uppercase`}>
+            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-grm-panel-table [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-grm-slate-meta [&_thead_th]:uppercase`}>
               <thead>
                 <tr>
                   <th className={grammarLessonColCaseClass}>Gender</th>
@@ -130,7 +130,7 @@ export default function TravelCountriesSection() {
                   <tr key={row.id}>
                     <th
                       scope="row"
-                      className="bg-[#f8fafc]! text-[0.72rem] font-bold lowercase whitespace-nowrap text-[#5a6573]"
+                      className="bg-daf-panel-soft! text-[0.72rem] font-bold lowercase whitespace-nowrap text-grm-slate-muted"
                     >
                       {row.gender}
                     </th>
@@ -167,7 +167,7 @@ export default function TravelCountriesSection() {
         </p>
       </Callout>
 
-      <p className="mt-3 mb-0 flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] bg-[#f8fafc] p-[0.5rem_0.65rem] text-[0.8rem] text-[#2f3d4d] italic">
+      <p className="mt-3 mb-0 flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-grm-panel-border-row bg-daf-panel-soft p-[0.5rem_0.65rem] text-[0.8rem] text-grm-slate-body italic">
         <em className="font-semibold text-daf-blue not-italic">
           Wie heißt Ihr Land in Ihrer Sprache?
         </em>

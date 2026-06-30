@@ -8,13 +8,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navLinkClass =
-  "box-border block w-full cursor-pointer rounded-[5px] border-none bg-transparent py-2 px-[0.65rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline hover:bg-[#f4f8fd] hover:text-daf-nav-active";
+  "box-border block w-full cursor-pointer rounded-[5px] border-none bg-transparent py-2 px-[0.65rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline hover:bg-daf-nav-hover-bg hover:text-daf-nav-active";
 
 const navLinkActiveClass =
-  "bg-[#eef4fc] text-daf-nav-active shadow-[inset_3px_0_0_rgb(47,111,184)]";
+  "bg-daf-head-soft text-daf-nav-active shadow-[inset_3px_0_0_var(--color-daf-head)]";
 
 const authBtnBaseClass =
-  "block flex-1 cursor-pointer rounded-[5px] border border-[#d8e2ef] bg-[#f8fafc] py-2 px-[0.65rem] text-center text-[0.92rem] font-semibold no-underline";
+  "block flex-1 cursor-pointer rounded-[5px] border border-daf-border-input bg-daf-nav-btn-bg py-2 px-[0.65rem] text-center text-[0.92rem] font-semibold no-underline";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -114,9 +114,9 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-[100] w-screen border-b border-daf-border bg-white py-[0.85rem] shadow-[0_1px_0_rgba(0,0,0,0.04)] [view-transition-name:site-header] ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]${
+      className={`sticky top-0 z-[100] w-screen border-b border-daf-border bg-daf-white py-[0.85rem] shadow-nav [view-transition-name:site-header] ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]${
         menuOpen
-          ? " border-b-[#e8edf3] max-sm:shadow-none"
+          ? " border-b-daf-border-nav max-sm:shadow-none"
           : ""
       }`}
       role="banner"
@@ -124,7 +124,7 @@ export default function Navbar() {
       {menuOpen ? (
         <button
           type="button"
-          className="fixed inset-0 top-[var(--site-header-h,4.55rem)] z-[99] m-0 cursor-pointer border-0 bg-[rgba(18,32,52,0.35)] p-0"
+          className="fixed inset-0 top-[var(--site-header-h,4.55rem)] z-[99] m-0 cursor-pointer border-0 bg-daf-nav-backdrop p-0"
           onClick={() => setMenuOpen(false)}
           aria-label="Close menu"
         />
@@ -148,8 +148,8 @@ export default function Navbar() {
         </div>
         <button
           type="button"
-          className={`ml-auto inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-[#d8e2ef] bg-[#fafbfd] px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-[#c5d5ea] hover:bg-[#eef4fc]${
-            menuOpen ? " border-[#b8cce8] bg-[#eef4fc]" : ""
+          className={`ml-auto inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${
+            menuOpen ? " border-daf-nav-toggle-active-border bg-daf-head-soft" : ""
           }`}
           aria-expanded={menuOpen}
           aria-controls="site-nav-menu"
@@ -165,7 +165,7 @@ export default function Navbar() {
         id="site-nav-menu"
         className={
           menuOpen
-            ? "fixed top-[var(--site-header-h,4.55rem)] right-0 left-0 z-[101] block max-h-[calc(100dvh-var(--site-header-h,4.55rem))] overflow-y-auto border-b border-daf-border bg-white p-0 shadow-[0_10px_24px_rgba(15,35,60,0.12)]"
+            ? "fixed top-[var(--site-header-h,4.55rem)] right-0 left-0 z-[101] block max-h-[calc(100dvh-var(--site-header-h,4.55rem))] overflow-y-auto border-b border-daf-border bg-daf-white p-0 shadow-nav-menu"
             : "hidden w-full"
         }
         aria-label="Site"
@@ -240,19 +240,19 @@ export default function Navbar() {
                 </Link>
               ) : null}
             </div>
-            <div className="mt-[0.55rem] flex flex-col gap-[0.1rem] border-t border-[#e8edf3] pt-[0.55rem]">
+            <div className="mt-[0.55rem] flex flex-col gap-[0.1rem] border-t border-daf-border-nav pt-[0.55rem]">
               {showAuthedNav ? (
                 <>
-                  <span className="mb-[0.15rem] block text-[0.72rem] tracking-wide text-[#888] uppercase">
+                  <span className="mb-[0.15rem] block text-[0.72rem] tracking-wide text-daf-hint uppercase">
                     Signed in as
                   </span>
-                  <span className="mb-2 block break-all text-[0.85rem] text-[#555]">
+                  <span className="mb-2 block break-all text-[0.85rem] text-daf-subtle">
                     {session?.user?.email}
                   </span>
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      className={`${authBtnBaseClass} text-[#444] max-sm:text-[#444] max-sm:hover:text-[#444]`}
+                      className={`${authBtnBaseClass} text-daf-body max-sm:text-daf-body max-sm:hover:text-daf-body`}
                       onClick={() => {
                         setMenuOpen(false);
                         void signOut({ callbackUrl: "/" });
@@ -265,7 +265,7 @@ export default function Navbar() {
               ) : (
                 <div className="flex gap-2">
                   <Link
-                    className={`${authBtnBaseClass} text-[#444] max-sm:text-[#444] max-sm:hover:text-[#444]`}
+                    className={`${authBtnBaseClass} text-daf-body max-sm:text-daf-body max-sm:hover:text-daf-body`}
                     href="/login"
                     onClick={() => setMenuOpen(false)}
                   >

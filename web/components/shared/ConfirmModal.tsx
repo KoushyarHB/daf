@@ -57,7 +57,7 @@ export default function ConfirmModal({
       role="presentation"
     >
       <div
-        className="w-full max-w-[22rem] rounded-lg border border-daf-border bg-white p-[1.25rem_1.35rem_1.1rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
+        className="w-full max-w-[22rem] rounded-lg border border-daf-border bg-daf-white p-[1.25rem_1.35rem_1.1rem] shadow-modal"
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="confirm-modal-title"
@@ -70,13 +70,13 @@ export default function ConfirmModal({
         >
           {title}
         </h2>
-        <p id="confirm-modal-message" className="m-0 mb-4 text-[0.85rem] leading-normal text-[#444]">
+        <p id="confirm-modal-message" className="m-0 mb-4 text-[0.85rem] leading-normal text-daf-body">
           {message}
         </p>
         <div className="mt-[0.35rem] flex justify-end gap-2">
           <button
             type="button"
-            className={`${BTN_BASE} border-[#ddd] bg-[#f5f5f5] text-[#444]`}
+            className={`${BTN_BASE} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
             onClick={onCancel}
             disabled={loading}
           >
@@ -86,7 +86,7 @@ export default function ConfirmModal({
             type="button"
             className={
               danger
-                ? `${BTN_BASE} border-[#8b2e2e] bg-[#a33] text-white`
+                ? `${BTN_BASE} border-daf-danger-text bg-daf-danger-btn text-white`
                 : `${BTN_BASE} border-daf-head-dark bg-daf-head text-white`
             }
             onClick={onConfirm}

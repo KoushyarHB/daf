@@ -9,25 +9,25 @@ export const grammarPageTitleClass =
   "mb-[0.45rem] text-[1.65rem] font-bold tracking-tight text-daf-head";
 
 export const grammarPageIntroClass =
-  "m-0 text-[0.95rem] leading-[1.6] text-[#3d4a57]";
+  "m-0 text-[0.95rem] leading-[1.6] text-grm-slate";
 
 export const grammarBreadcrumbClass =
-  "mb-[0.85rem] flex items-center gap-[0.4rem] text-[0.8rem] text-gray-500 [&_a]:font-semibold [&_a]:text-daf-head [&_a]:no-underline hover:[&_a]:underline";
+  "mb-[0.85rem] flex items-center gap-[0.4rem] text-[0.8rem] text-daf-muted [&_a]:font-semibold [&_a]:text-daf-head [&_a]:no-underline hover:[&_a]:underline";
 
 export const grammarSectionSubtitleClass =
   "mt-[1.1rem] mb-2 text-[0.9rem] font-bold text-daf-head";
 
 export const grammarTableWrapClass =
-  "my-3 overflow-x-auto rounded-lg border border-[#e2e8f0] [-webkit-overflow-scrolling:touch]";
+  "my-3 overflow-x-auto rounded-lg border border-daf-border-table [-webkit-overflow-scrolling:touch]";
 
 export const grammarLessonTableClass =
-  "w-full border-collapse text-[0.84rem] [&_td]:border [&_td]:border-[#e8edf3] [&_td]:p-2 [&_td]:text-left [&_td]:align-top [&_th]:border [&_th]:border-[#e8edf3] [&_th]:bg-[#f4f8fc] [&_th]:p-2 [&_th]:text-left [&_th]:align-top [&_th]:font-bold";
+  "w-full border-collapse text-[0.84rem] [&_td]:border [&_td]:border-daf-border-nav [&_td]:p-2 [&_td]:text-left [&_td]:align-top [&_th]:border [&_th]:border-daf-border-nav [&_th]:bg-grm-panel-table [&_th]:p-2 [&_th]:text-left [&_th]:align-top [&_th]:font-bold";
 
 export const grammarLessonColCaseClass =
-  "whitespace-nowrap bg-[#f4f8fc]! p-[0.45rem_0.5rem]! text-left align-middle text-[0.74rem] font-bold text-[#333]";
+  "whitespace-nowrap bg-grm-panel-table! p-[0.45rem_0.5rem]! text-left align-middle text-[0.74rem] font-bold text-daf-label";
 
 export const grammarColHeadClass =
-  "bg-[#f4f8fc]! p-[0.42rem_0.45rem] text-center align-middle text-[0.72rem] font-semibold text-[#6b7a8a]";
+  "bg-grm-panel-table! p-[0.42rem_0.45rem] text-center align-middle text-[0.72rem] font-semibold text-grm-slate-meta";
 
 export const grammarColDerClass =
   "bg-grm-der-bg p-[0.45rem_0.4rem] text-center font-extrabold text-grm-der";
@@ -47,7 +47,7 @@ export const grammarExampleListSpeakClass =
   "m-0 mt-2 flex list-none flex-col gap-[0.35rem] p-0 [&_li]:items-center";
 
 export const grammarExampleClass =
-  "flex items-start gap-[0.35rem] rounded-md border border-[#eef1f5] bg-[#fafbfd] p-[0.45rem_0.6rem] text-[0.86rem]";
+  "flex items-start gap-[0.35rem] rounded-md border border-grm-panel-border-row bg-grm-panel p-[0.45rem_0.6rem] text-[0.86rem]";
 
 export const grammarExampleMarkerClass =
   "shrink-0 text-[0.95rem] font-bold leading-[1.35] text-daf-blue";
@@ -59,10 +59,10 @@ export const grammarExampleEnClass =
   "ml-[0.3rem] text-[0.8rem] italic text-daf-gray-en";
 
 export const grammarPatternListClass =
-  "my-[0.35rem] mb-[0.65rem] pl-[1.15rem] text-[0.88rem] leading-[1.55] text-[#3d4a57] [&_li]:mb-[0.35rem]";
+  "my-[0.35rem] mb-[0.65rem] pl-[1.15rem] text-[0.88rem] leading-[1.55] text-grm-slate [&_li]:mb-[0.35rem]";
 
 export const grammarBackLinkClass =
-  "inline-flex items-center gap-[0.35rem] rounded-md border border-grm-der-border bg-grm-der-bg px-3 py-[0.4rem] text-[0.88rem] font-bold text-daf-head no-underline hover:bg-[#dceefb]";
+  "inline-flex items-center gap-[0.35rem] rounded-md border border-grm-der-border bg-grm-der-bg px-3 py-[0.4rem] text-[0.88rem] font-bold text-daf-head no-underline hover:bg-daf-head-pale";
 
 const GENDER_CHIP: Record<"m" | "f" | "n" | "pl", string> = {
   m: "border-grm-der-border bg-grm-der-bg text-grm-der",
@@ -72,24 +72,24 @@ const GENDER_CHIP: Record<"m" | "f" | "n" | "pl", string> = {
 };
 
 const GENDER_CARD: Record<"m" | "f" | "n", string> = {
-  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_li]:text-[#2a4a6a]",
-  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_li]:text-[#2a4a38]",
-  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_li]:text-[#5a2a42]",
+  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_li]:text-grm-der-text-dark",
+  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_li]:text-grm-das-text",
+  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_li]:text-grm-die-text",
 };
 
 const CALLOUT: Record<"tip" | "remember" | "insight", string> = {
-  tip: "border border-[#ecd89a] border-l-4 border-l-grm-gold bg-grm-gold-bg text-[#5c4a18] [&_p]:text-inherit [&_h3]:text-[#8a6918]",
+  tip: "border border-grm-gold-border border-l-4 border-l-grm-gold bg-grm-gold-bg text-grm-gold-text [&_p]:text-inherit [&_h3]:text-grm-gold-title",
   remember:
-    "border border-grm-der-border border-l-4 border-l-grm-der bg-grm-der-bg text-[#2a4a6a] [&_p]:text-inherit [&_h3]:text-grm-der",
+    "border border-grm-der-border border-l-4 border-l-grm-der bg-grm-der-bg text-grm-der-text-dark [&_p]:text-inherit [&_h3]:text-grm-der",
   insight:
-    "border border-[#9fd9d4] border-l-4 border-l-grm-teal bg-grm-teal-bg text-[#1a4a45] [&_p]:text-inherit [&_h3]:text-grm-teal",
+    "border border-grm-teal-border border-l-4 border-l-grm-teal bg-grm-teal-bg text-grm-teal-text [&_p]:text-inherit [&_h3]:text-grm-teal",
 };
 
 /* ── Components ─────────────────────────────────────────────────── */
 
 export function Lead({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-[0.85rem] rounded-r-md border-l-[3px] border-l-grm-der bg-gradient-to-r from-grm-der-bg to-transparent p-[0.65rem_0.85rem] text-[0.92rem] leading-[1.6] text-[#2f4055]">
+    <p className="mb-[0.85rem] rounded-r-md border-l-[3px] border-l-grm-der bg-grammar-lead p-[0.65rem_0.85rem] text-[0.92rem] leading-[1.6] text-grm-slate-body">
       {children}
     </p>
   );
@@ -109,20 +109,20 @@ export function Section({
   return (
     <section
       id={id}
-      className="mb-9 scroll-mt-[calc(var(--site-header-h,3.5rem)+0.85rem)] rounded-xl border border-[#e8edf3] bg-white p-[1.15rem_1.1rem_1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.03)]"
+      className="mb-9 scroll-mt-[calc(var(--site-header-h,3.5rem)+0.85rem)] rounded-xl border border-daf-border-nav bg-white p-[1.15rem_1.1rem_1.2rem] shadow-section"
     >
-      <header className="mb-[0.85rem] flex items-start gap-3 border-b-2 border-[#e8f0f8] pb-[0.65rem]">
+      <header className="mb-[0.85rem] flex items-start gap-3 border-b-2 border-grm-panel-border-section pb-[0.65rem]">
         <span
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-daf-head to-[#4a8fd4] text-[0.9rem] font-extrabold text-white shadow-[0_2px_6px_rgba(47,111,184,0.25)]"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-grammar-number text-[0.9rem] font-extrabold text-white shadow-hub-card-bar"
           aria-hidden="true"
         >
           {number}
         </span>
-        <h2 className="m-0 pt-[0.15rem] text-[1.12rem] font-bold leading-snug text-[#1e3a5f]">
+        <h2 className="m-0 pt-[0.15rem] text-[1.12rem] font-bold leading-snug text-grm-slate-heading">
           {title}
         </h2>
       </header>
-      <div className="[&_p]:mb-[0.65rem] [&_p]:text-[0.9rem] [&_p]:leading-[1.6] [&_p]:text-[#3d4a57] [&_p:last-child]:mb-0">
+      <div className="[&_p]:mb-[0.65rem] [&_p]:text-[0.9rem] [&_p]:leading-[1.6] [&_p]:text-grm-slate [&_p:last-child]:mb-0">
         {children}
       </div>
     </section>
@@ -154,7 +154,7 @@ export function Callout({
 
 export function Formula({ children }: { children: ReactNode }) {
   return (
-    <p className="my-[0.35rem] mb-[0.65rem] rounded-md bg-[#1e3a5f] p-[0.5rem_0.75rem] font-mono text-[0.82rem] font-semibold tracking-wide text-[#e8f2fc]">
+    <p className="my-[0.35rem] mb-[0.65rem] rounded-md bg-grm-formula p-[0.5rem_0.75rem] font-mono text-[0.82rem] font-semibold tracking-wide text-grm-formula-text">
       {children}
     </p>
   );
@@ -287,12 +287,12 @@ export function QuestionTypeCard({
     variant === "w" ? "border-t-[3px] border-t-grm-der" : "border-t-[3px] border-t-grm-teal";
   const formulaClass =
     variant === "w"
-      ? "border border-grm-der-border bg-grm-der-bg text-[#1e4a7a]"
-      : "border border-[#9fd9d4] bg-grm-teal-bg text-[#1a5a54]";
+      ? "border border-grm-der-border bg-grm-der-bg text-grm-der-text"
+      : "border border-grm-teal-border bg-grm-teal-bg text-grm-teal-text-alt";
 
   return (
     <div
-      className={`rounded-[10px] border border-[#d8e4f0] bg-white p-[0.85rem_0.95rem] shadow-[0_1px_3px_rgba(30,58,95,0.06)] ${borderTop}`}
+      className={`rounded-[10px] border border-grm-panel-border bg-white p-[0.85rem_0.95rem] shadow-grammar ${borderTop}`}
     >
       <h3 className="m-0 mb-[0.45rem] text-[0.92rem] font-extrabold text-daf-head">
         {title}
@@ -302,7 +302,7 @@ export function QuestionTypeCard({
       >
         {formula}
       </p>
-      <div className="[&_li]:border-[#e8eef5] [&_li]:bg-[#f8fafc]">{children}</div>
+      <div className="[&_li]:border-grm-panel-border-row [&_li]:bg-daf-panel-soft">{children}</div>
     </div>
   );
 }

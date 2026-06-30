@@ -54,11 +54,11 @@ export default function PluralPatternsSection() {
             <li key={rule.id} className="border-b border-black/5 py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
               <div className="flex flex-col gap-[0.15rem] min-[36rem]:flex-row min-[36rem]:items-start min-[36rem]:gap-2">
                 <span
-                  className="max-w-full shrink-0 text-[0.72rem] leading-tight font-bold text-[#3d3268] min-[36rem]:w-[10.5rem]"
+                  className="max-w-full shrink-0 text-[0.72rem] leading-tight font-bold text-grm-pl-text min-[36rem]:w-[10.5rem]"
                   title={rule.hint}
                 >
                   {rule.label}
-                  <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-[#4a5564]">
+                  <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
                     {rule.accuracy}
                   </span>
                 </span>

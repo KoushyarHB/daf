@@ -19,7 +19,7 @@ type DeckPaginationProps = {
 };
 
 const pageEdgeClass =
-  "inline-flex items-center justify-center w-7 h-7 p-0 border-none rounded bg-transparent text-daf-head cursor-pointer transition-[color,background] duration-150 shrink-0 hover:enabled:bg-[#f1f6fc] disabled:cursor-default disabled:text-[#b8c9de] [&_svg]:w-4 [&_svg]:h-4 [&_svg]:block [&_svg]:shrink-0";
+  "inline-flex items-center justify-center w-7 h-7 p-0 border-none rounded bg-transparent text-daf-head cursor-pointer transition-[color,background] duration-150 shrink-0 hover:enabled:bg-daf-head-panel disabled:cursor-default disabled:text-daf-head-line [&_svg]:w-4 [&_svg]:h-4 [&_svg]:block [&_svg]:shrink-0";
 
 const pageEdgeJumpClass = "w-auto min-w-7 px-[0.1rem] [&_svg]:w-[1.35rem]";
 

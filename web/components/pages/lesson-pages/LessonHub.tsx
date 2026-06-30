@@ -9,7 +9,7 @@ export default function LessonHub({ lessons }: LessonHubProps) {
   return (
     <>
       <section className="mb-5 rounded-lg border border-daf-border bg-white px-4 py-[0.85rem]">
-        <h2 className="m-0 mb-2.5 text-[1.05rem] text-[#222]">Lesson Links</h2>
+        <h2 className="m-0 mb-2.5 text-[1.05rem] text-daf-text">Lesson Links</h2>
         <ul className="m-0 pl-[1.1rem]">
           {lessons.map((lesson) => {
             const wp = lesson.wordPage;
@@ -41,7 +41,7 @@ export default function LessonHub({ lessons }: LessonHubProps) {
       </section>
 
       <section>
-        <h2 className="mb-[0.65rem] text-[1.05rem] text-[#222]">Page Previews</h2>
+        <h2 className="mb-[0.65rem] text-[1.05rem] text-daf-text">Page Previews</h2>
         <ul className="m-0 mt-3 list-none p-0">
           {lessons.map((lesson) => {
             const wp = lesson.wordPage;
@@ -54,7 +54,7 @@ export default function LessonHub({ lessons }: LessonHubProps) {
                 <h2 className="m-0 mb-2 text-xl font-semibold text-daf-head border-b-2 border-daf-head pb-1.5">
                   {lesson.title}
                 </h2>
-                <div className="text-xs text-[#666] mb-2 [&_span]:mr-3">
+                <div className="text-xs text-daf-muted mb-2 [&_span]:mr-3">
                   <span>Lektion {lesson.lektion}</span>
                 </div>
                 <div className="flex flex-wrap items-end gap-x-[0.55rem] gap-y-[0.35rem]">

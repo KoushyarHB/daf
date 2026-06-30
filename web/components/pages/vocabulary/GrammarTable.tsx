@@ -46,7 +46,7 @@ export default function GrammarTableBlock({ table }: GrammarTableProps) {
             {columns.map((c, i) => (
               <th
                 key={i}
-                className="border border-daf-border py-[0.35rem] px-[0.45rem] text-left align-top font-semibold bg-[#f1f6fc] text-[#333]"
+                className="border border-daf-border py-[0.35rem] px-[0.45rem] text-left align-top font-semibold bg-daf-head-panel text-daf-label"
               >
                 {c}
               </th>

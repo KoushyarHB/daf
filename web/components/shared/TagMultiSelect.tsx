@@ -215,10 +215,10 @@ export default function TagMultiSelect({
       className={`relative w-full${disabled ? " pointer-events-none opacity-60" : ""}${menuOpen ? " z-5" : ""}`}
     >
       <div
-        className={`flex min-h-8 cursor-pointer items-center justify-between gap-[0.35rem] rounded border bg-white px-2 py-1 text-[0.8rem] text-[#444] shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:border-gray-400 focus-visible:outline-2 focus-visible:outline-offset-px focus-visible:outline-daf-head ${
+        className={`flex min-h-8 cursor-pointer items-center justify-between gap-[0.35rem] rounded border bg-daf-white px-2 py-1 text-[0.8rem] text-daf-body shadow-chip hover:border-daf-hint focus-visible:outline-2 focus-visible:outline-offset-px focus-visible:outline-daf-head ${
           menuOpen
             ? "rounded-b-none border-daf-head hover:border-daf-head"
-            : "border-gray-300"
+            : "border-daf-border-control"
         }`}
         onClick={toggleOpen}
         onKeyDown={(e) => {
@@ -239,12 +239,12 @@ export default function TagMultiSelect({
             selectedOptions.map((option) => (
               <span
                 key={option.slug}
-                className="inline-flex shrink-0 items-center gap-[0.2rem] rounded bg-gray-100 py-px pr-1 pl-[0.4rem]"
+                className="inline-flex shrink-0 items-center gap-[0.2rem] rounded bg-daf-panel-alt py-px pr-1 pl-[0.4rem]"
               >
-                <span className="text-[0.75rem] text-gray-700">{option.label}</span>
+                <span className="text-[0.75rem] text-daf-label">{option.label}</span>
                 <button
                   type="button"
-                  className="flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent p-0 text-gray-400 hover:text-gray-600"
+                  className="flex h-4 w-4 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent p-0 text-daf-hint hover:text-daf-muted"
                   onClick={(e) => handleRemove(option.slug, e)}
                   aria-label={`Remove ${option.label}`}
                 >
@@ -253,11 +253,11 @@ export default function TagMultiSelect({
               </span>
             ))
           ) : (
-            <span className="text-[0.8rem] text-gray-400">{placeholder}</span>
+            <span className="text-[0.8rem] text-daf-hint">{placeholder}</span>
           )}
         </span>
         <ChevronDownIcon
-          className={`h-[0.9rem] w-[0.9rem] shrink-0 text-gray-500 transition-transform duration-150${menuOpen ? " rotate-180" : ""}`}
+          className={`h-[0.9rem] w-[0.9rem] shrink-0 text-daf-subtle transition-transform duration-150${menuOpen ? " rotate-180" : ""}`}
           aria-hidden="true"
         />
       </div>
@@ -265,18 +265,18 @@ export default function TagMultiSelect({
       {menuOpen ? (
         <div
           id={listboxId}
-          className="absolute top-full right-0 left-0 z-30 box-border overflow-hidden rounded-b border border-t-0 border-daf-head bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
+          className="absolute top-full right-0 left-0 z-30 box-border overflow-hidden rounded-b border border-t-0 border-daf-head bg-daf-white shadow-dropdown"
           role="listbox"
           aria-multiselectable="true"
         >
-          <div className="flex items-center gap-[0.3rem] border-b border-[#eceff3] bg-gray-50 px-[0.45rem] py-[0.2rem]">
+          <div className="flex items-center gap-[0.3rem] border-b border-daf-border-nav bg-daf-panel-soft px-[0.45rem] py-[0.2rem]">
             <MagnifyingGlassIcon
-              className="h-[0.7rem] w-[0.7rem] shrink-0 text-[#b8bcc4]"
+              className="h-[0.7rem] w-[0.7rem] shrink-0 text-daf-icon-muted"
               aria-hidden="true"
             />
             <input
               type="text"
-              className="h-5 min-w-0 flex-1 appearance-none border-0 bg-transparent p-0 text-[0.72rem] leading-5 text-gray-600 shadow-none outline-none focus:border-0 focus:shadow-none focus:outline-none placeholder:text-[#b0b5bf]"
+              className="h-5 min-w-0 flex-1 appearance-none border-0 bg-transparent p-0 text-[0.72rem] leading-5 text-daf-muted shadow-none outline-none focus:border-0 focus:shadow-none focus:outline-none placeholder:text-daf-placeholder"
               placeholder={searchPlaceholder}
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
@@ -299,16 +299,16 @@ export default function TagMultiSelect({
                     type="button"
                     role="option"
                     aria-selected={selected}
-                    className={`flex w-full cursor-pointer items-center justify-between gap-2 border-0 px-3 py-2 text-left text-[0.8rem] hover:bg-gray-50${selected ? " bg-[#f4f8fc]" : " bg-white"}`}
+                    className={`flex w-full cursor-pointer items-center justify-between gap-2 border-0 px-3 py-2 text-left text-[0.8rem] hover:bg-daf-panel-soft${selected ? " bg-daf-head-softer" : " bg-daf-white"}`}
                     onClick={() => handleSelect(option)}
                   >
                     <span
-                      className={`text-gray-700${selected ? " font-semibold text-daf-head" : ""}`}
+                      className={`text-daf-label${selected ? " font-semibold text-daf-head" : ""}`}
                     >
                       {option.label}
                     </span>
                     <span
-                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border${selected ? " border-daf-head bg-daf-head text-white" : " border-gray-300 bg-white"}`}
+                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border${selected ? " border-daf-head bg-daf-head text-white" : " border-daf-border-control bg-daf-white"}`}
                       aria-hidden="true"
                     >
                       {selected ? (
@@ -319,12 +319,12 @@ export default function TagMultiSelect({
                 );
               })
             ) : (
-              <p className="m-0 px-3 py-3 text-[0.8rem] text-gray-500">
+              <p className="m-0 px-3 py-3 text-[0.8rem] text-daf-subtle">
                 {isLoading ? "Loading…" : noResultsText}
               </p>
             )}
             {isLoading && options.length > 0 ? (
-              <p className="m-0 px-3 py-2 text-center text-[0.75rem] text-gray-500">
+              <p className="m-0 px-3 py-2 text-center text-[0.75rem] text-daf-subtle">
                 Loading…
               </p>
             ) : null}

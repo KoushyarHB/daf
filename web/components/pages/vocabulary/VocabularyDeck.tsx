@@ -266,7 +266,7 @@ export default function VocabularyDeck({
 
   if (error) {
     return (
-      <p className="mb-3 text-[0.9rem] text-[#444]" role="alert">
+      <p className="mb-3 text-[0.9rem] text-daf-body" role="alert">
         {error}
         {error.includes("authentication") || error.includes("Unauthorized") ? (
           <>

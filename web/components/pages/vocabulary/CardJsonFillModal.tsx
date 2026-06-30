@@ -82,7 +82,7 @@ export default function CardJsonFillModal({
       role="presentation"
     >
       <div
-        className="flex max-h-[min(90dvh,720px)] w-full max-w-[min(36rem,calc(100vw-2rem))] flex-col rounded-lg border border-daf-border bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
+        className="flex max-h-[min(90dvh,720px)] w-full max-w-[min(36rem,calc(100vw-2rem))] flex-col rounded-lg border border-daf-border bg-white p-5 shadow-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="card-json-fill-title"
@@ -94,21 +94,21 @@ export default function CardJsonFillModal({
         >
           JSON fill
         </h2>
-        <p className="m-0 mb-3 text-[0.8rem] leading-snug text-[#666]">
+        <p className="m-0 mb-3 text-[0.8rem] leading-snug text-daf-muted">
           Paste a single card in <code>vocab.manifest.json</code> shape (one
           object, or a one-item array). Fields map to the form; review before
           saving.
         </p>
 
         <label
-          className="mb-[0.35rem] block text-[0.85rem] font-semibold text-[#333]"
+          className="mb-[0.35rem] block text-[0.85rem] font-semibold text-daf-label"
           htmlFor={textareaId}
         >
           Card JSON
         </label>
         <textarea
           id={textareaId}
-          className="min-h-56 flex-1 resize-y rounded-md border border-[#d8e2ef] bg-[#fafbfd] p-[0.65rem_0.75rem] font-mono text-[0.8rem] leading-snug focus:border-daf-head focus:shadow-[0_0_0_3px_rgba(47,111,184,0.18)] focus:outline-none"
+          className="min-h-56 flex-1 resize-y rounded-md border border-daf-border-input bg-daf-panel-muted p-[0.65rem_0.75rem] font-mono text-[0.8rem] leading-snug focus:border-daf-head focus:shadow-daf-focus focus:outline-none"
           value={jsonText}
           onChange={(e) => {
             setJsonText(e.target.value);
@@ -121,14 +121,14 @@ export default function CardJsonFillModal({
         <div className="mt-2 flex flex-wrap gap-3">
           <button
             type="button"
-            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-[#245a9c]"
+            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
             onClick={onPasteSample}
           >
             Insert sample
           </button>
           <button
             type="button"
-            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-[#245a9c]"
+            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link"
             onClick={() => void onCopyJson()}
           >
             Copy JSON
@@ -136,13 +136,13 @@ export default function CardJsonFillModal({
         </div>
 
         {error ? (
-          <p className="m-0 mt-2 text-[0.8rem] text-[#b00020]">{error}</p>
+          <p className="m-0 mt-2 text-[0.8rem] text-daf-danger">{error}</p>
         ) : null}
 
         <div className="mt-4 flex justify-end gap-2">
           <button
             type="button"
-            className={`${BTN_BASE} border-[#ddd] bg-[#f5f5f5] text-[#444]`}
+            className={`${BTN_BASE} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
             onClick={onClose}
           >
             Cancel

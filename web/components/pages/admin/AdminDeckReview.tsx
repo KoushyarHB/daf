@@ -34,22 +34,22 @@ type AdminDeckReviewProps = {
 };
 
 const btnPrimary =
-  "inline-flex shrink-0 items-center justify-center rounded-md border border-[#265c9e] bg-[#2f6fb8] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2860a8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2f6fb8]/30 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-head-dark bg-daf-head px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-daf-head-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/30 disabled:cursor-not-allowed disabled:opacity-50";
 
 const btnSecondary =
-  "inline-flex shrink-0 items-center justify-center rounded-md border border-[#c5d9ef] bg-white px-4 py-2 text-sm font-semibold text-[#2f6fb8] shadow-sm transition hover:border-[#a8c4e8] hover:bg-[#eef4fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2f6fb8]/20";
+  "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-border-badge bg-white px-4 py-2 text-sm font-semibold text-daf-head shadow-sm transition hover:border-grm-hub-card-hover hover:bg-daf-head-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/20";
 
 const btnDanger =
-  "inline-flex shrink-0 items-center justify-center rounded-md border border-[#f0d0cb] bg-[#fff8f7] px-4 py-2 text-sm font-semibold text-[#9f2b1a] shadow-sm transition hover:border-[#e8b4ad] hover:bg-[#fef0ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b42318]/15 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-danger-border bg-daf-danger-bg px-4 py-2 text-sm font-semibold text-daf-danger-strong shadow-sm transition hover:border-daf-danger-border-hover hover:bg-daf-danger-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-danger-alt/15 disabled:cursor-not-allowed disabled:opacity-50";
 
 const panel =
-  "mb-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6";
+  "mb-5 rounded-xl border border-daf-border-table bg-white p-5 shadow-sm sm:p-6";
 
 const panelTitle =
-  "mb-4 border-b border-slate-100 pb-3 text-base font-semibold text-[#2f6fb8]";
+  "mb-4 border-b border-grm-panel-border-row pb-3 text-base font-semibold text-daf-head";
 
 const fieldInput =
-  "w-full rounded-md border border-[#d8e2ef] bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-[#2f6fb8] focus:outline-none focus:ring-2 focus:ring-[#2f6fb8]/20";
+  "w-full rounded-md border border-daf-border-input bg-white px-3 py-2 text-sm text-daf-ink shadow-sm focus:border-daf-head focus:outline-none focus:ring-2 focus:ring-daf-head/20";
 
 export default function AdminDeckReview({
   deckId,
@@ -150,7 +150,7 @@ export default function AdminDeckReview({
           className="flex flex-col gap-4 sm:flex-row sm:items-end"
           onSubmit={(e) => void saveDeckName(e)}
         >
-          <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm font-semibold text-slate-700">
+          <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-sm font-semibold text-daf-label">
             Deck name
             <input
               id="admin-deck-name"
@@ -170,24 +170,24 @@ export default function AdminDeckReview({
             {updateDeck.isPending ? "Saving…" : "Save name"}
           </button>
         </form>
-        <dl className="mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
+        <dl className="mt-4 grid gap-2 text-sm text-daf-muted sm:grid-cols-2">
           <div>
-            <dt className="font-medium text-slate-500">Slug</dt>
+            <dt className="font-medium text-daf-subtle">Slug</dt>
             <dd>
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">
+              <code className="rounded bg-daf-panel-alt px-1.5 py-0.5 text-xs text-daf-text">
                 {deck.slug}
               </code>
             </dd>
           </div>
           <div>
-            <dt className="font-medium text-slate-500">Status</dt>
+            <dt className="font-medium text-daf-subtle">Status</dt>
             <dd>
               {deck.publishedAt ? (
-                <span className="inline-flex items-center rounded-full border border-[#c5d9ef] bg-[#eef4fc] px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#2f6fb8]">
+                <span className="inline-flex items-center rounded-full border border-daf-border-badge bg-daf-head-soft px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-daf-head">
                   Published
                 </span>
               ) : (
-                <span className="text-slate-600">Draft</span>
+                <span className="text-daf-muted">Draft</span>
               )}
             </dd>
           </div>
@@ -198,7 +198,7 @@ export default function AdminDeckReview({
         <h2 id="community-catalog-title" className={panelTitle}>
           Community catalog
         </h2>
-        <p className="mb-4 text-sm leading-relaxed text-slate-600">
+        <p className="mb-4 text-sm leading-relaxed text-daf-muted">
           {cards.length === 0
             ? "This deck needs at least one card before it can be published to Import community cards."
             : deck.publishedAt
@@ -206,9 +206,9 @@ export default function AdminDeckReview({
               : "Publishing copies these cards to the community catalog so learners can import them."}
         </p>
         {deck.publishedTagSlug ? (
-          <p className="mb-4 text-sm text-slate-600">
+          <p className="mb-4 text-sm text-daf-muted">
             Community tag:{" "}
-            <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">
+            <code className="rounded bg-daf-panel-alt px-1.5 py-0.5 text-xs text-daf-text">
               {deck.publishedTagSlug}
             </code>
           </p>
@@ -245,11 +245,11 @@ export default function AdminDeckReview({
         </h2>
 
         {cards.length === 0 ? (
-          <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 px-4 py-8 text-center">
-            <p className="text-sm font-medium text-slate-700">
+          <div className="rounded-lg border border-dashed border-daf-border-table bg-daf-panel-soft px-4 py-8 text-center">
+            <p className="text-sm font-medium text-daf-label">
               No cards in this deck
             </p>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-daf-subtle">
               The owner must add vocabulary cards before you can publish this deck.
             </p>
           </div>
@@ -266,8 +266,8 @@ export default function AdminDeckReview({
               <tbody>
                 {cards.map((card) => (
                   <tr key={card.domId}>
-                    <td className={`${tagsTableThTdClass} font-medium text-slate-900`}>{card.head}</td>
-                    <td className={`${tagsTableThTdClass} text-slate-600`}>
+                    <td className={`${tagsTableThTdClass} font-medium text-daf-text`}>{card.head}</td>
+                    <td className={`${tagsTableThTdClass} text-daf-muted`}>
                       {(card.gloss ?? []).join("; ") || "—"}
                     </td>
                     <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>

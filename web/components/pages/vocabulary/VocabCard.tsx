@@ -24,7 +24,7 @@ const cardClass =
   "border-b border-daf-border py-[0.9rem] first:pt-0";
 
 const cardManageBtnClass =
-  "appearance-none py-[0.12rem] px-[0.4rem] font-inherit text-[0.68rem] font-semibold text-daf-head bg-[#eef4fc] border border-daf-head/40 rounded-[3px] cursor-pointer";
+  "appearance-none py-[0.12rem] px-[0.4rem] font-inherit text-[0.68rem] font-semibold text-daf-head bg-daf-head-soft border border-daf-head/40 rounded-[3px] cursor-pointer";
 
 function HeadBlock({ head, ipa }: { head: string; ipa?: string | null }) {
   const lemma = head.trim();
@@ -33,7 +33,7 @@ function HeadBlock({ head, ipa }: { head: string; ipa?: string | null }) {
     return (
       <div className="font-bold mb-0">
         {lemma}
-        <span className="font-normal text-[0.88em] text-[#666]">{ipaDisplay}</span>
+        <span className="font-normal text-[0.88em] text-daf-muted">{ipaDisplay}</span>
       </div>
     );
   }
@@ -88,7 +88,7 @@ export default function VocabCard({
           {manageEnabled && onRemove ? (
             <button
               type="button"
-              className={`${cardManageBtnClass} text-[#8b2e2e] bg-[#fdf5f5] border-[rgba(176,0,32,0.25)]`}
+              className={`${cardManageBtnClass} text-daf-danger-text bg-daf-danger-card-bg border-daf-danger/25`}
               onClick={onRemove}
               aria-label={`${removeLabel} card`}
               title={`${removeLabel} card`}
@@ -98,7 +98,7 @@ export default function VocabCard({
           ) : null}
           {card.isCommunity && manageEnabled ? (
             <span
-              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#5a7a9a] bg-[#f0f4f8] border border-[#d0dce8] rounded-[3px] py-[0.1rem] px-[0.35rem]"
+              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-daf-community bg-daf-community-bg border border-daf-community-border rounded-[3px] py-[0.1rem] px-[0.35rem]"
               title="Community card"
             >
               Community
@@ -106,7 +106,7 @@ export default function VocabCard({
           ) : null}
           {card.isCustomized && manageEnabled ? (
             <span
-              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#6a5a2f] bg-[#faf6ee] border border-[#e8dcc0] rounded-[3px] py-[0.1rem] px-[0.35rem]"
+              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-daf-customized bg-daf-customized-bg border border-daf-customized-border rounded-[3px] py-[0.1rem] px-[0.35rem]"
               title="Your customized copy"
             >
               Customized
@@ -120,7 +120,7 @@ export default function VocabCard({
       </div>
 
       {metaParts.length > 0 || card.pos ? (
-        <div className="text-xs text-[#666] mb-2 [&_span]:mr-3">
+        <div className="text-xs text-daf-muted mb-2 [&_span]:mr-3">
           {metaParts.map((p) => (
             <span key={p}>{p}</span>
           ))}
@@ -131,7 +131,7 @@ export default function VocabCard({
       ) : null}
 
       {card.pluralLine ? (
-        <div className="my-[0.25rem] mb-[0.35rem] pl-[0.6rem] border-l-[3px] border-[#ddd] text-[11pt] text-[#111]">
+        <div className="my-[0.25rem] mb-[0.35rem] pl-[0.6rem] border-l-[3px] border-daf-border-muted text-[11pt] text-daf-ink">
           {card.pluralLine}
         </div>
       ) : null}
@@ -141,7 +141,7 @@ export default function VocabCard({
           g.trim() ? (
             <p
               key={i}
-              className="my-[0.35rem] pl-[0.6rem] border-l-[3px] border-[#ddd]"
+              className="my-[0.35rem] pl-[0.6rem] border-l-[3px] border-daf-border-muted"
             >
               {g.trim()}
             </p>
@@ -162,7 +162,7 @@ export default function VocabCard({
           n.trim() ? (
             <div
               key={i}
-              className="text-[10pt] italic text-[#404040] pl-[0.6rem] my-[0.35rem]"
+              className="text-[10pt] italic text-daf-notes pl-[0.6rem] my-[0.35rem]"
             >
               {n.trim()}
             </div>

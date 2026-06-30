@@ -193,7 +193,7 @@ export default function DeckControls({
         ) : null}
       </div>
       <p
-        className="mt-[0.3rem] mb-0 text-[0.72rem] text-[#666]"
+        className="mt-[0.3rem] mb-0 text-[0.72rem] text-daf-muted"
         id="deck-count"
         aria-live="polite"
       >

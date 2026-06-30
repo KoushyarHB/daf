@@ -29,19 +29,19 @@ function PossessiveStemCard({
   hint?: string;
 }) {
   return (
-    <div className="rounded-md border border-[#e8eef5] bg-[#f8fafc] p-[0.28rem_0.38rem]">
+    <div className="rounded-md border border-grm-panel-border-row bg-daf-panel-soft p-[0.28rem_0.38rem]">
       <div className="flex flex-wrap items-center gap-[0.2rem]">
-        <span className="text-[0.8rem] leading-tight font-extrabold text-[#2f3d4d]">
+        <span className="text-[0.8rem] leading-tight font-extrabold text-grm-slate-body">
           {german}
         </span>
         {hint ? (
-          <span className="rounded-full bg-[#eef2f7] px-[0.28rem] py-px text-[0.56rem] font-bold tracking-wide text-[#7a8794] uppercase">
+          <span className="rounded-full bg-grm-panel-row px-[0.28rem] py-px text-[0.56rem] font-bold tracking-wide text-grm-slate-label uppercase">
             {hint}
           </span>
         ) : null}
         <GrammarSpeakButton german={german} />
       </div>
-      <p className="mt-[0.1rem] mb-0 text-[0.64rem] leading-snug text-[#5a6573]">
+      <p className="mt-[0.1rem] mb-0 text-[0.64rem] leading-snug text-grm-slate-muted">
         <span>{english}</span>
       </p>
     </div>
@@ -50,11 +50,11 @@ function PossessiveStemCard({
 
 function PossessiveFormCell({ stem, suffix }: PossessiveForm) {
   return (
-    <td className="p-[0.45rem_0.4rem] text-center align-middle even:bg-[#fafbfd]">
+    <td className="p-[0.45rem_0.4rem] text-center align-middle even:bg-grm-panel">
       <span className="font-semibold whitespace-nowrap italic">
-        <span className="text-[#2f3d4d]">{stem}</span>
+        <span className="text-grm-slate-body">{stem}</span>
         {suffix ? (
-          <span className="font-extrabold text-[#b8860b]">{suffix}</span>
+          <span className="font-extrabold text-grm-panel-gold">{suffix}</span>
         ) : null}
       </span>
     </td>
@@ -70,7 +70,7 @@ export default function PossessivesSection() {
       </Lead>
 
       <section
-        className="mt-[0.45rem] mb-[0.7rem] rounded-lg border border-[#d8e4f0] bg-white p-[0.5rem_0.6rem] shadow-[0_1px_2px_rgba(30,58,95,0.04)]"
+        className="mt-[0.45rem] mb-[0.7rem] rounded-lg border border-grm-panel-border bg-white p-[0.5rem_0.6rem] shadow-grammar-card"
         aria-labelledby="grammar-poss-stems-title"
       >
         <header className="mb-[0.4rem]">
@@ -91,7 +91,7 @@ export default function PossessivesSection() {
         </div>
       </section>
 
-      <p className="my-[0.35rem] mb-[0.45rem] text-[0.82rem] font-semibold text-[#2f3d4d]">
+      <p className="my-[0.35rem] mb-[0.45rem] text-[0.82rem] font-semibold text-grm-slate-body">
         Paradigm: <em className="font-extrabold text-daf-head">mein</em>{" "}
         <span className="text-[0.76rem] font-normal italic text-daf-gray-en">
           (my)
@@ -106,10 +106,10 @@ export default function PossessivesSection() {
           </thead>
           <tbody>
             {MEIN_ROWS.map((row) => (
-              <tr key={row.case} className="even:[&_th]:bg-[#fafbfd]">
+              <tr key={row.case} className="even:[&_th]:bg-grm-panel">
                 <th
                   scope="row"
-                  className={`${grammarLessonColCaseClass} even:bg-[#fafbfd]!`}
+                  className={`${grammarLessonColCaseClass} even:bg-grm-panel!`}
                   title={row.caseTitle}
                 >
                   {row.case}

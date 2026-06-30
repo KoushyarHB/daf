@@ -5,7 +5,7 @@ type DeckLoadingProps = {
 };
 
 const skeletonLineClass =
-  "h-[0.65rem] bg-[#e4e8ec] rounded-[3px] animate-deck-shimmer";
+  "h-[0.65rem] bg-daf-skeleton rounded-[3px] animate-deck-shimmer";
 
 function SkeletonLine({
   width,

@@ -10,7 +10,7 @@ type ZoomableImageProps = {
 };
 
 const zoomableImageClass =
-  "block max-w-full p-0 border-none bg-transparent cursor-zoom-in text-left hover:[&_img]:border-daf-head/45 hover:[&_img]:shadow-[0_0_0_2px_rgba(47,111,184,0.12)]";
+  "block max-w-full p-0 border-none bg-transparent cursor-zoom-in text-left hover:[&_img]:border-daf-head/45 hover:[&_img]:shadow-daf-ring-image";
 
 const zoomableImageImgClass =
   "block max-w-full h-auto border border-daf-border rounded transition-[border-color,box-shadow] duration-150";

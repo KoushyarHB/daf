@@ -54,12 +54,12 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="mx-auto my-10 max-w-[22rem] rounded-[10px] border border-daf-border bg-white px-6 pt-7 pb-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+    <main className="mx-auto my-10 max-w-auth rounded-[10px] border border-daf-border bg-daf-white px-6 pt-7 pb-6 shadow-card-md">
       <h1 className="mb-5 border-b-0 pb-0 text-center text-[1.35rem]">
         Register
       </h1>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
           Name (optional)
           <input
             type="text"
@@ -70,7 +70,7 @@ export default function RegisterPage() {
             autoComplete="name"
           />
         </label>
-        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
           Email
           <input
             type="email"
@@ -82,7 +82,7 @@ export default function RegisterPage() {
             autoComplete="email"
           />
         </label>
-        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
           Password (min 8 characters)
           <input
             type="password"
@@ -95,12 +95,12 @@ export default function RegisterPage() {
             autoComplete="new-password"
           />
         </label>
-        {error ? <p className="m-0 text-[0.9rem] text-[#b00020]">{error}</p> : null}
+        {error ? <p className="m-0 text-[0.9rem] text-daf-danger">{error}</p> : null}
         <AuthSubmitButton disabled={register.isPending}>
           {register.isPending ? "Creating account…" : "Create account"}
         </AuthSubmitButton>
       </form>
-      <p className="mt-5 text-center text-[0.9rem] text-[#555]">
+      <p className="mt-5 text-center text-[0.9rem] text-daf-subtle">
         Already have an account?{" "}
         <Link
           href="/login"

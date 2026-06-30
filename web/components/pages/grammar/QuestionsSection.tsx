@@ -91,7 +91,7 @@ export default function QuestionsSection() {
           />
         ))}
       </ul>
-      <p className="mt-3 mb-0 rounded-md bg-[#f8fafc] p-[0.5rem_0.75rem] text-[0.82rem] text-[#5a6573] italic">
+      <p className="mt-3 mb-0 rounded-md bg-daf-panel-soft p-[0.5rem_0.75rem] text-[0.82rem] text-grm-slate-muted italic">
         <strong>Vorname</strong> = first name · <strong>Nachname</strong> /{" "}
         <strong>Familienname</strong> = surname · <strong>Handynummer</strong> =
         mobile number

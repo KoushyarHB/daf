@@ -29,10 +29,10 @@ const panelClass =
   "mb-4 py-[0.9rem] px-4 bg-white border border-daf-border rounded-lg";
 
 const importBtnBase =
-  "appearance-none flex flex-col items-start gap-[0.15rem] w-full py-[0.55rem] px-[0.7rem] font-inherit text-left text-[#1a3d6b] bg-[#f5f9fd] border border-daf-head/35 rounded-md cursor-pointer hover:enabled:bg-[#eaf2fa] hover:enabled:border-daf-head/55 disabled:opacity-70 disabled:cursor-wait";
+  "appearance-none flex flex-col items-start gap-[0.15rem] w-full py-[0.55rem] px-[0.7rem] font-inherit text-left text-daf-import-text bg-daf-import-bg border border-daf-head/35 rounded-md cursor-pointer hover:enabled:bg-daf-import-hover hover:enabled:border-daf-head/55 disabled:opacity-70 disabled:cursor-wait";
 
 const importBtnDoneClass =
-  "text-[#4a6748] bg-[#f4f8f3] border-[#c8dcc4] hover:enabled:bg-[#eaf4e8] hover:enabled:border-[#b5d4b0]";
+  "text-daf-import-done bg-daf-import-done-bg border-daf-border-import hover:enabled:bg-daf-import-done-hover hover:enabled:border-daf-import-border-done";
 
 export default function ImportTagPanel({
   options,
@@ -54,7 +54,7 @@ export default function ImportTagPanel({
   if (localOptions.length === 0) {
     return (
       <div className={panelClass} role="status">
-        <p className="m-0 mb-3 text-[0.85rem] text-[#555] leading-[1.45]">
+        <p className="m-0 mb-3 text-[0.85rem] text-daf-subtle leading-[1.45]">
           No community tag decks are available yet.
         </p>
       </div>
@@ -114,7 +114,7 @@ export default function ImportTagPanel({
       >
         {title}
       </h2>
-      <p className="m-0 mb-3 text-[0.85rem] text-[#555] leading-[1.45]">
+      <p className="m-0 mb-3 text-[0.85rem] text-daf-subtle leading-[1.45]">
         {description}
       </p>
       <ul className="list-none m-0 p-0 flex flex-col gap-[0.45rem]">
@@ -137,7 +137,7 @@ export default function ImportTagPanel({
               aria-busy={busySlug === opt.slug}
             >
               <span className="text-[0.88rem] font-semibold">{opt.label}</span>
-              <span className="text-xs font-normal text-[#666]">
+              <span className="text-xs font-normal text-daf-muted">
                 {metaText(opt)}
               </span>
             </button>

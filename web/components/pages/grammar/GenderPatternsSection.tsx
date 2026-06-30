@@ -9,9 +9,9 @@ import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
 import { Callout, GenderChip } from "@/components/pages/grammar/grammar-ui";
 
 const GENDER_PANEL: Record<string, string> = {
-  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_h3]:text-inherit [&_.rule-label]:text-[#2a4a6a]",
-  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_h3]:text-inherit [&_.rule-label]:text-[#2a4a38]",
-  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_h3]:text-inherit [&_.rule-label]:text-[#5a2a42]",
+  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_h3]:text-inherit [&_.rule-label]:text-grm-der-text-dark",
+  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_h3]:text-inherit [&_.rule-label]:text-grm-das-text",
+  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_h3]:text-inherit [&_.rule-label]:text-grm-die-text",
 };
 
 function GenderWord({
@@ -70,7 +70,7 @@ export default function GenderPatternsSection() {
                       title={rule.hint}
                     >
                       {rule.label}
-                      <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-[#4a5564]">
+                      <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
                         {rule.accuracy}
                       </span>
                     </span>

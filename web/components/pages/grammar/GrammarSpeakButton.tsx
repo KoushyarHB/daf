@@ -15,7 +15,7 @@ type GrammarSpeakButtonProps = {
 };
 
 const BTN_BASE =
-  "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-daf-head/25 bg-white p-0 text-daf-blue transition-[background,border-color,transform] duration-150 hover:border-daf-head/45 hover:bg-[#eef4fb] active:scale-[0.94] disabled:cursor-wait disabled:opacity-55 [&_svg]:ml-px";
+  "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-daf-head/25 bg-white p-0 text-daf-blue transition-[background,border-color,transform] duration-150 hover:border-daf-head/45 hover:bg-grm-speak active:scale-[0.94] disabled:cursor-wait disabled:opacity-55 [&_svg]:ml-px";
 
 export default function GrammarSpeakButton({
   german,

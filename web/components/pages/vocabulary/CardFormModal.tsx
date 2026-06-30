@@ -390,12 +390,12 @@ export default function CardFormModal({
   ];
 
   const fieldLabel =
-    "flex flex-col gap-[0.2rem] text-[0.82rem] font-semibold text-[#444]";
+    "flex flex-col gap-[0.2rem] text-[0.82rem] font-semibold text-daf-body";
   const fieldInput =
-    "rounded-md border border-[#d8e2ef] bg-white p-2 px-[0.6rem] font-inherit text-[0.95rem] font-normal focus:border-daf-head/55 focus:shadow-[0_0_0_3px_rgba(47,111,184,0.18)] focus:outline-none";
+    "rounded-md border border-daf-border-input bg-white p-2 px-[0.6rem] font-inherit text-[0.95rem] font-normal focus:border-daf-head/55 focus:shadow-daf-focus focus:outline-none";
   const fieldTextarea = `${fieldInput} min-h-[3.25rem] resize-y`;
-  const fieldSelect = `${fieldInput} cursor-pointer appearance-none bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat pr-8 [background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20fill%3D%27%23555%27%20d%3D%27M2.5%204.5%206%208l3.5-3.5%27/%3E%3C/svg%3E')]`;
-  const fieldHint = "text-[0.75rem] font-normal leading-snug text-[#666]";
+  const fieldSelect = `${fieldInput} cursor-pointer appearance-none bg-daf-select-chevron bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat pr-8`;
+  const fieldHint = "text-[0.75rem] font-normal leading-snug text-daf-muted";
   const btnBase =
     "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
 
@@ -406,7 +406,7 @@ export default function CardFormModal({
       role="presentation"
     >
       <div
-        className="m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-white shadow-[0_8px_40px_rgba(0,0,0,0.14)]"
+        className="m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-white shadow-modal-lg"
         role="dialog"
         aria-modal="true"
         aria-labelledby="card-modal-title"
@@ -423,7 +423,7 @@ export default function CardFormModal({
             <div className="flex shrink-0 items-center gap-[0.4rem]">
               <button
                 type="button"
-                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-gradient-to-b from-[#f8fbff] to-[#eef4fc] px-[0.7rem] py-[0.35rem] text-[0.78rem] font-semibold whitespace-nowrap text-[#3d5a8a] hover:border-daf-head/65 hover:from-[#eef5ff] hover:to-[#e3eef9] disabled:cursor-not-allowed disabled:opacity-55"
+                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-gradient-to-b from-daf-ai-from to-daf-head-soft px-[0.7rem] py-[0.35rem] text-[0.78rem] font-semibold whitespace-nowrap text-daf-ai-text hover:border-daf-head/65 hover:from-daf-ai-hover-from hover:to-daf-ai-hover-to disabled:cursor-not-allowed disabled:opacity-55"
                 onClick={onAiFillClick}
                 disabled={suggestCard.isPending || !form.head.trim()}
                 title="Fill gloss, notes, examples, IPA, and type from the headword"
@@ -432,7 +432,7 @@ export default function CardFormModal({
               </button>
               <button
                 type="button"
-                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-white px-[0.7rem] py-[0.35rem] font-mono text-[0.78rem] font-semibold whitespace-nowrap text-[#3d5a8a] hover:border-daf-head/65 hover:bg-[#f4f8fc] disabled:cursor-not-allowed disabled:opacity-55"
+                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-white px-[0.7rem] py-[0.35rem] font-mono text-[0.78rem] font-semibold whitespace-nowrap text-daf-ai-text hover:border-daf-head/65 hover:bg-daf-head-softer disabled:cursor-not-allowed disabled:opacity-55"
                 onClick={() => setJsonFillOpen(true)}
                 title="Paste a vocab.manifest.json card object to fill the form"
               >
@@ -441,7 +441,7 @@ export default function CardFormModal({
             </div>
           </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
-            <p className="m-0 text-[0.8rem] leading-snug text-[#666]">
+            <p className="m-0 text-[0.8rem] leading-snug text-daf-muted">
               Saves a personal copy for you. The shared community card stays unchanged.
             </p>
           ) : null}
@@ -501,7 +501,7 @@ export default function CardFormModal({
             >
               <legend
                 id={examplesLegendId}
-                className="mb-1 text-[0.85rem] font-semibold text-[#333]"
+                className="mb-1 text-[0.85rem] font-semibold text-daf-label"
               >
                 Examples
               </legend>
@@ -512,7 +512,7 @@ export default function CardFormModal({
                 {form.examples.map((ex, index) => (
                   <li
                     key={ex.key}
-                    className="flex items-start gap-2 rounded-md border border-[#e8edf3] bg-[#fafbfd] p-2"
+                    className="flex items-start gap-2 rounded-md border border-daf-border-nav bg-daf-panel-muted p-2"
                   >
                     <div className="grid min-w-0 flex-1 gap-2 min-[32rem]:grid-cols-2">
                       <label className={`${fieldLabel} text-[0.75rem]`}>
@@ -540,7 +540,7 @@ export default function CardFormModal({
                     </div>
                     <button
                       type="button"
-                      className="mt-0.5 shrink-0 cursor-pointer border-0 bg-transparent px-1 text-[1.1rem] leading-none text-gray-400 hover:text-[#b00020]"
+                      className="mt-0.5 shrink-0 cursor-pointer border-0 bg-transparent px-1 text-[1.1rem] leading-none text-daf-icon-muted hover:text-daf-danger"
                       onClick={() => removeExample(ex.key)}
                       aria-label={`Remove example ${index + 1}`}
                       title="Remove example"
@@ -563,13 +563,13 @@ export default function CardFormModal({
               <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
                 <span
                   id="card-pronunciation-label"
-                  className="text-[0.85rem] font-semibold text-[#333]"
+                  className="text-[0.85rem] font-semibold text-daf-label"
                 >
                   Pronunciation
                 </span>
                 <button
                   type="button"
-                  className="cursor-pointer rounded-md border border-daf-head/45 bg-[#f4f8fc] px-3 py-1.5 text-[0.78rem] font-semibold text-daf-head hover:bg-[#eef4fc] disabled:cursor-not-allowed disabled:opacity-55"
+                  className="cursor-pointer rounded-md border border-daf-head/45 bg-daf-head-softer px-3 py-1.5 text-[0.78rem] font-semibold text-daf-head hover:bg-daf-head-soft disabled:cursor-not-allowed disabled:opacity-55"
                   onClick={generatePronunciation}
                   disabled={generatingPronunciation || !canGeneratePronunciation}
                 >
@@ -589,12 +589,12 @@ export default function CardFormModal({
                   {pronunciationPreviews.map((item) => (
                     <li
                       key={item.key}
-                      className="flex flex-wrap items-center gap-2 rounded-md border border-[#e8edf3] bg-[#fafbfd] px-2.5 py-1.5 text-[0.8rem]"
+                      className="flex flex-wrap items-center gap-2 rounded-md border border-daf-border-nav bg-daf-panel-muted px-2.5 py-1.5 text-[0.8rem]"
                     >
-                      <span className="shrink-0 font-semibold text-[#555]">
+                      <span className="shrink-0 font-semibold text-daf-subtle">
                         {item.label}
                       </span>
-                      <span className="min-w-0 flex-1 italic text-[#333]">
+                      <span className="min-w-0 flex-1 italic text-daf-label">
                         {item.text}
                       </span>
                       <PronounceButton audio={item.audio} compact />
@@ -605,7 +605,7 @@ export default function CardFormModal({
             </div>
 
             <div className="flex flex-col gap-[0.35rem]" role="group" aria-labelledby="card-tags-label">
-              <span id="card-tags-label" className="text-[0.85rem] font-semibold text-[#333]">
+              <span id="card-tags-label" className="text-[0.85rem] font-semibold text-daf-label">
                 Tags
               </span>
               <span className={fieldHint}>
@@ -689,12 +689,12 @@ export default function CardFormModal({
 
           <div className="shrink-0 border-t border-daf-border bg-white px-5 pt-[0.85rem] pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
             {error ? (
-              <p className="m-0 mb-2 text-[0.8rem] text-[#b00020]">{error}</p>
+              <p className="m-0 mb-2 text-[0.8rem] text-daf-danger">{error}</p>
             ) : null}
             <div className="flex justify-end gap-2">
               <button
                 type="button"
-                className={`${btnBase} border-[#ddd] bg-[#f5f5f5] text-[#444]`}
+                className={`${btnBase} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
                 onClick={onClose}
               >
                 Cancel
