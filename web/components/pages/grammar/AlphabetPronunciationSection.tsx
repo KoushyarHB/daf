@@ -90,9 +90,9 @@ export default function AlphabetPronunciationSection() {
         your notebook — tap ▶ to hear each letter name or example.
       </Lead>
 
-      <div className="my-2 mb-[0.85rem] flex flex-col gap-2 min-[40rem]:flex-row min-[40rem]:items-start min-[40rem]:gap-[0.65rem]">
+      <div className="my-2 mb-[0.85rem] flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-[0.65rem]">
         <aside
-          className="m-0 shrink-0 rounded-lg border-l-4 border-l-grm-legend-accent bg-grm-legend p-[0.45rem_0.55rem] text-[0.72rem] leading-snug min-[40rem]:mt-[0.15rem] min-[40rem]:w-[7.25rem]"
+          className="m-0 shrink-0 rounded-lg border-l-4 border-l-grm-legend-accent bg-grm-legend p-[0.45rem_0.55rem] text-[0.72rem] leading-snug sm:mt-[0.15rem] sm:w-29"
           aria-label="Alphabet legend"
         >
           <p className="m-0 mb-[0.35rem] text-[0.75rem] font-extrabold tracking-wide text-grm-der uppercase">
