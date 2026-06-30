@@ -113,7 +113,7 @@ export function Section({
     >
       <header className="mb-[0.85rem] flex items-start gap-3 border-b-2 border-grm-panel-border-section pb-[0.65rem]">
         <span
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-grammar-number text-[0.9rem] font-extrabold text-white shadow-hub-card-bar"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-daf-head text-[0.9rem] font-extrabold text-white shadow-hub-card-bar"
           aria-hidden="true"
         >
           {number}
@@ -183,14 +183,14 @@ export function GenderChip({
   label: string;
   gender: "m" | "f" | "n" | "pl";
 }) {
+  const widthClass = gender === "pl" ? "min-w-[7.25rem]" : "min-w-[5rem]";
+
   return (
     <span
-      className={`inline-flex min-w-[4.75rem] flex-col gap-0 rounded-md border p-[0.3rem_0.55rem] ${GENDER_CHIP[gender]}`}
+      className={`box-border inline-flex shrink-0 ${widthClass} flex-col items-center justify-center gap-0.5 rounded-md border px-2 py-1.5 text-center ${GENDER_CHIP[gender]}`}
     >
-      <span className="text-[0.92rem] leading-tight font-extrabold">
-        {article}
-      </span>
-      <span className="text-[0.62rem] font-semibold tracking-wide uppercase opacity-85">
+      <span className="text-[0.92rem] leading-none font-extrabold">{article}</span>
+      <span className="max-w-full text-[0.62rem] leading-tight font-semibold tracking-wide uppercase opacity-85">
         {label}
       </span>
     </span>

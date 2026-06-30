@@ -35,7 +35,7 @@ function GenderWord({
 export default function GenderPatternsSection() {
   return (
     <>
-      <div className="my-2 flex flex-wrap gap-[0.35rem]">
+      <div className="my-2 flex flex-wrap items-start gap-2">
         <GenderChip article="der" label="Maskulinum" gender="m" />
         <GenderChip article="das" label="Neutrum" gender="n" />
         <GenderChip article="die" label="Femininum" gender="f" />
