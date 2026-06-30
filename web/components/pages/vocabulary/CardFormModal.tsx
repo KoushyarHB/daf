@@ -14,8 +14,8 @@ import {
   useGenerateCardAudioMutation,
   useSaveCardMutation,
   useSuggestCardMutation,
-} from "@/lib/api/hooks/cards";
-import { useDeckOptionsQuery } from "@/lib/api/hooks/decks";
+} from "@/hooks/cards";
+import { useDeckOptionsQuery } from "@/hooks/decks";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import { TAG_USER } from "@/lib/tags/constants";
 import { CEFR_LEVELS, normalizeCefrLevel, type CefrLevel } from "@/lib/vocab/levels";

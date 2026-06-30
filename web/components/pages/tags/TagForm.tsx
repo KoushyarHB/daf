@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
-import { useSaveTagMutation } from "@/lib/api/hooks/tags";
+import { useSaveTagMutation } from "@/hooks/tags";
 import { slugifyLabel } from "@/lib/tags/slug";
 
 type TagFormProps = {

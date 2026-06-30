@@ -11,7 +11,7 @@ import {
   useDeleteAdminUserMutation,
   useUpdateAdminUserRoleMutation,
   type AdminUserRow,
-} from "@/lib/api/hooks/admin";
+} from "@/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
 

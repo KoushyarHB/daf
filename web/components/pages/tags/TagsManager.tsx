@@ -11,7 +11,7 @@ import {
   useDeleteTagMutation,
   useTagsQuery,
   type TagRow,
-} from "@/lib/api/hooks/tags";
+} from "@/hooks/tags";
 import { canModifyTag } from "@/lib/tags/permissions";
 
 type TagsManagerProps = {

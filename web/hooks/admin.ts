@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import type { AdminDeckDto, AdminUserRow } from "@/lib/api/dto";
 import type { UserRole } from "@/lib/auth/roles";
-import { adminKeys, cardKeys } from "@/lib/api/query-keys";
 import * as adminClient from "@/services/frontend/admin.client";
+import { adminKeys, cardKeys } from "@/hooks/query-keys";
 
 export type { AdminDeckDto, AdminUserRow };
 

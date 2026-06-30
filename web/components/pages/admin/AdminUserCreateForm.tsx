@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
-import { useCreateAdminUserMutation } from "@/lib/api/hooks/admin";
+import { useCreateAdminUserMutation } from "@/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
 

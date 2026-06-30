@@ -8,7 +8,7 @@ import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useDeimportTagMutation,
   useImportTagMutation,
-} from "@/lib/api/hooks/cards";
+} from "@/hooks/cards";
 
 export type TagImportOption = {
   slug: string;

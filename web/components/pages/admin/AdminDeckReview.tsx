@@ -12,7 +12,7 @@ import {
   usePublishAdminDeckMutation,
   useUnpublishAdminDeckMutation,
   useUpdateAdminDeckMutation,
-} from "@/lib/api/hooks/admin";
+} from "@/hooks/admin";
 import type { AdminDeckDto } from "@/lib/api/dto";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 

@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import type { TagRow } from "@/lib/api/dto";
-import { cardKeys, tagKeys } from "@/lib/api/query-keys";
 import * as tagsClient from "@/services/frontend/tags.client";
+import { cardKeys, tagKeys } from "@/hooks/query-keys";
 
 export type { TagOption, TagRow } from "@/lib/api/dto";
 

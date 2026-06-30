@@ -10,7 +10,7 @@ import {
   useAdminDecksQuery,
   usePublishAdminDeckMutation,
   useUnpublishAdminDeckMutation,
-} from "@/lib/api/hooks/admin";
+} from "@/hooks/admin";
 import type { AdminDeckDto } from "@/lib/api/dto";
 
 type AdminPublishPanelProps = {

@@ -10,7 +10,7 @@ import {
   useDecksQuery,
   useDeleteDeckMutation,
   type DeckRow,
-} from "@/lib/api/hooks/decks";
+} from "@/hooks/decks";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { CEFR_LEVELS } from "@/lib/vocab/levels";
 

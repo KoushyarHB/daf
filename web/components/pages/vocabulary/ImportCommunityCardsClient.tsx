@@ -1,6 +1,6 @@
 "use client";
 
-import { useImportStatusQuery } from "@/lib/api/hooks/cards";
+import { useImportStatusQuery } from "@/hooks/cards";
 
 import ImportTagPanel, {
   type TagImportOption,

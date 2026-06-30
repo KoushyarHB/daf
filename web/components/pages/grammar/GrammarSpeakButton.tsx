@@ -4,7 +4,7 @@ import { PlayIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
 
 import { speakTextForHead } from "@/lib/audio/speak-text";
-import { useGenerateCardAudioMutation } from "@/lib/api/hooks/cards";
+import { useGenerateCardAudioMutation } from "@/hooks/cards";
 
 type GrammarSpeakButtonProps = {
   german: string;

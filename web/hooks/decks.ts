@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import type { DeckDto } from "@/lib/api/dto";
-import { cardKeys, deckKeys } from "@/lib/api/query-keys";
 import * as decksClient from "@/services/frontend/decks.client";
+import { cardKeys, deckKeys } from "@/hooks/query-keys";
 
 export type DeckRow = DeckDto;
 export type { DeckOption } from "@/lib/api/dto";

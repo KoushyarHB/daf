@@ -7,7 +7,7 @@ import { useState } from "react";
 import { isAxiosError } from "axios";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
-import { useRegisterMutation } from "@/lib/api/hooks/auth";
+import { useRegisterMutation } from "@/hooks/auth";
 
 export default function RegisterPage() {
   const router = useRouter();

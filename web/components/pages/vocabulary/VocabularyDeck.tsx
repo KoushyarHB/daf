@@ -16,9 +16,9 @@ import {
   useUpdateCardProgressMutation,
   type FilterOptions,
   type ImportStatus,
-} from "@/lib/api/hooks/cards";
-import { useDeckOptionsQuery } from "@/lib/api/hooks/decks";
-import { cardKeys } from "@/lib/api/query-keys";
+} from "@/hooks/cards";
+import { useDeckOptionsQuery } from "@/hooks/decks";
+import { cardKeys } from "@/hooks/query-keys";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
@@ -126,7 +126,10 @@ export default function VocabularyDeck({
     [currentPage, filters, progressEnabled],
   );
 
-  const cardsQuery = useCardsQuery(listParams, { initialData });
+  const cardsQuery = useCardsQuery(listParams, {
+    initialData,
+    initialDeckId,
+  });
   const filterOptionsQuery = useFilterOptionsQuery({
     initialData: initialFilterOptions,
   });

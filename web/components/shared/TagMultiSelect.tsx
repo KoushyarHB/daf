@@ -10,7 +10,7 @@ import {
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { fetchTags as fetchTagsApi, type TagOption } from "@/services/frontend/tags.client";
-import { tagKeys } from "@/lib/api/query-keys";
+import { tagKeys } from "@/hooks/query-keys";
 
 export type { TagOption };
 

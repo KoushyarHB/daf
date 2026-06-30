@@ -10,10 +10,10 @@ import type {
   FilterOptions,
   ImportStatus,
 } from "@/lib/api/dto";
-import { cardKeys, CARDS_STALE_TIME_MS } from "@/lib/api/query-keys";
 import type { PaginatedResponse } from "@/lib/api/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import * as cardsClient from "@/services/frontend/cards.client";
+import { cardKeys, CARDS_STALE_TIME_MS } from "@/hooks/query-keys";
 
 export type {
   CardSuggestResult,
@@ -27,18 +27,41 @@ export function invalidateCardQueries(queryClient: QueryClient): Promise<void> {
   return queryClient.invalidateQueries({ queryKey: cardKeys.all });
 }
 
+export function matchesInitialCardsQuery(
+  params: CardsListParams,
+  initialDeckId?: string,
+): boolean {
+  return (
+    params.page === 1 &&
+    params.pageSize === 25 &&
+    params.sort === "deck-desc" &&
+    (params.deckId ?? undefined) === (initialDeckId || undefined) &&
+    !params.tag &&
+    !params.level &&
+    !params.pos &&
+    !params.studied
+  );
+}
+
 export function useCardsQuery(
   params: CardsListParams,
   options?: {
     enabled?: boolean;
     initialData?: PaginatedResponse<EnrichedVocabCard>;
+    initialDeckId?: string;
   },
 ) {
+  const initialData =
+    options?.initialData &&
+    matchesInitialCardsQuery(params, options.initialDeckId)
+      ? options.initialData
+      : undefined;
+
   return useQuery({
     queryKey: cardKeys.list(params),
     queryFn: ({ signal }) => cardsClient.fetchCards(params, signal),
     enabled: options?.enabled ?? true,
-    initialData: options?.initialData,
+    initialData,
     staleTime: CARDS_STALE_TIME_MS,
     placeholderData: (previous) => previous,
   });

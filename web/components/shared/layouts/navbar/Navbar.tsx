@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { useImportStatusQuery } from "@/lib/api/hooks/cards";
+import { useImportStatusQuery } from "@/hooks/cards";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
