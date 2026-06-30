@@ -13,6 +13,30 @@ import {
 } from "@/hooks/decks";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { CEFR_LEVELS } from "@/lib/vocab/levels";
+import {
+  formInputClass,
+  formPlaceholderClass,
+  formSelectClass,
+} from "@/lib/styles/formControls";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  deckHintClass,
+  decksCreateFormClass,
+  decksCreateSubmitClass,
+  formLabelClass,
+  systemBadgeClass,
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+  tagsTableActionGapClass,
+  tagsTableActionLinkClass,
+  tagsTableActionsClass,
+  tagsTableBtnDangerClass,
+  tagsTableDecksActionsColClass,
+  tagsTableDecksClass,
+  tagsTableThTdClass,
+  tagsTableWrapClass,
+} from "@/lib/styles/tagsPage";
 
 type DecksManagerProps = {
   initialDecks: DeckRow[];
@@ -61,38 +85,43 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
 
   if (loading && decks.length === 0) {
     return (
-      <div className="tags-page">
-        <div className="tags-page__header">
-          <h1 className="tags-page__title">My decks</h1>
+      <div className={tagsPageClass}>
+        <div className={tagsPageHeaderClass}>
+          <h1 className={tagsPageTitleClass}>My decks</h1>
         </div>
-        <p className="deck-hint">Loading decks…</p>
+        <p className={deckHintClass}>Loading decks…</p>
       </div>
     );
   }
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">My decks</h1>
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>My decks</h1>
       </div>
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         Every card belongs to a deck. Decks you create as super admin are marked{" "}
-        <span className="system-badge">system</span>; other decks are personal.
+        <span className={systemBadgeClass}>system</span>; other decks are personal.
       </p>
 
-      <form className="decks-create-form" onSubmit={onCreate}>
-        <label>
+      <form className={decksCreateFormClass} onSubmit={onCreate}>
+        <label className={formLabelClass}>
           New deck name
           <input
+            className={`${formInputClass} ${formPlaceholderClass}`}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Lektion 3 vocab"
             required
           />
         </label>
-        <label>
+        <label className={formLabelClass}>
           Default level
-          <select value={level} onChange={(e) => setLevel(e.target.value)}>
+          <select
+            className={formSelectClass}
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+          >
             {CEFR_LEVELS.map((lv) => (
               <option key={lv} value={lv}>
                 {lv}
@@ -100,49 +129,56 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
             ))}
           </select>
         </label>
-        <button type="submit" disabled={creating || !name.trim()}>
+        <button
+          type="submit"
+          className={decksCreateSubmitClass}
+          disabled={creating || !name.trim()}
+        >
           {creating ? "Creating…" : "+ Create deck"}
         </button>
       </form>
 
       {decks.length === 0 ? (
-        <p className="deck-hint">No decks yet.</p>
+        <p className={deckHintClass}>No decks yet.</p>
       ) : (
-        <div className="tags-table-wrap">
-          <table className="tags-table tags-table--decks">
+        <div className={tagsTableWrapClass}>
+          <table className={tagsTableDecksClass}>
             <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Slug</th>
-                <th scope="col">Type</th>
-                <th scope="col">Cards</th>
-                <th scope="col">Published</th>
-                <th scope="col">Actions</th>
+                <th scope="col" className={tagsTableThTdClass}>Name</th>
+                <th scope="col" className={tagsTableThTdClass}>Slug</th>
+                <th scope="col" className={tagsTableThTdClass}>Type</th>
+                <th scope="col" className={tagsTableThTdClass}>Cards</th>
+                <th scope="col" className={tagsTableThTdClass}>Published</th>
+                <th scope="col" className={`${tagsTableThTdClass} ${tagsTableDecksActionsColClass}`}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {decks.map((deck) => (
                 <tr key={deck.id}>
-                  <td>{deck.name}</td>
-                  <td>
+                  <td className={tagsTableThTdClass}>{deck.name}</td>
+                  <td className={tagsTableThTdClass}>
                     <code>{deck.slug}</code>
                   </td>
-                  <td>
+                  <td className={tagsTableThTdClass}>
                     {deck.isSystem ? (
-                      <span className="system-badge">system</span>
+                      <span className={systemBadgeClass}>system</span>
                     ) : (
                       "user"
                     )}
                   </td>
-                  <td>{deck.cardCount}</td>
-                  <td>{deck.publishedAt ? "Yes" : "No"}</td>
-                  <td className="tags-table__actions">
-                    <Link href={`/?deck=${encodeURIComponent(deck.id)}`}>
+                  <td className={tagsTableThTdClass}>{deck.cardCount}</td>
+                  <td className={tagsTableThTdClass}>{deck.publishedAt ? "Yes" : "No"}</td>
+                  <td className={`${tagsTableThTdClass} ${tagsTableDecksActionsColClass} ${tagsTableActionsClass}`}>
+                    <Link
+                      href={`/?deck=${encodeURIComponent(deck.id)}`}
+                      className={tagsTableActionLinkClass}
+                    >
                       View cards
                     </Link>
                     <button
                       type="button"
-                      className="tags-table__btn-danger"
+                      className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
                       onClick={() => setDeleteTarget(deck)}
                       disabled={deleteDeck.isPending && deleteTarget?.id === deck.id}
                     >

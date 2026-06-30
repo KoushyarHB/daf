@@ -1,6 +1,12 @@
 "use client";
 
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
+import {
+  grammarExampleClass,
+  grammarExampleDeClass,
+  grammarExampleEnClass,
+  grammarExampleMarkerClass,
+} from "@/components/pages/grammar/grammar-ui";
 import { defaultSpeakText } from "@/utils/defaultSpeakText";
 
 export default function GrammarEx({
@@ -13,13 +19,13 @@ export default function GrammarEx({
   speakText?: string;
 }) {
   return (
-    <li className="grammar-example grammar-example--speak">
-      <span className="grammar-example__marker" aria-hidden="true">
+    <li className={`${grammarExampleClass} items-center`}>
+      <span className={grammarExampleMarkerClass} aria-hidden="true">
         ›
       </span>
-      <span className="grammar-example__text">
-        <span className="grammar-example__de">{de}</span>
-        {en ? <span className="grammar-example__en">({en})</span> : null}
+      <span className="min-w-0 flex-1">
+        <span className={grammarExampleDeClass}>{de}</span>
+        {en ? <span className={grammarExampleEnClass}>({en})</span> : null}
       </span>
       <GrammarSpeakButton
         german={de}

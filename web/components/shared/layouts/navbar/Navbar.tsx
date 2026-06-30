@@ -7,10 +7,19 @@ import { useImportStatusQuery } from "@/hooks/cards";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+const navLinkClass =
+  "box-border block w-full cursor-pointer rounded-[5px] border-none bg-transparent py-2 px-[0.65rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline hover:bg-[#f4f8fd] hover:text-daf-nav-active";
+
+const navLinkActiveClass =
+  "bg-[#eef4fc] text-daf-nav-active shadow-[inset_3px_0_0_rgb(47,111,184)]";
+
+const authBtnBaseClass =
+  "block flex-1 cursor-pointer rounded-[5px] border border-[#d8e2ef] bg-[#f8fafc] py-2 px-[0.65rem] text-center text-[0.92rem] font-semibold no-underline";
+
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <svg
-      className="site-nav-toggle-icon"
+      className="block shrink-0"
       width="18"
       height="18"
       viewBox="0 0 22 22"
@@ -105,22 +114,29 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}
+      className={`sticky top-0 z-[100] w-screen border-b border-daf-border bg-white py-[0.85rem] shadow-[0_1px_0_rgba(0,0,0,0.04)] [view-transition-name:site-header] ml-[calc(50%-50vw)] mr-[calc(50%-50vw)]${
+        menuOpen
+          ? " border-b-[#e8edf3] max-sm:shadow-none"
+          : ""
+      }`}
       role="banner"
     >
       {menuOpen ? (
         <button
           type="button"
-          className="site-nav-backdrop"
+          className="fixed inset-0 top-[var(--site-header-h,4.55rem)] z-[99] m-0 cursor-pointer border-0 bg-[rgba(18,32,52,0.35)] p-0"
           onClick={() => setMenuOpen(false)}
           aria-label="Close menu"
         />
       ) : null}
-      <div className="site-header-row">
-        <div className="site-brand">
-          <Link href="/">
+      <div className="mx-auto box-border flex w-full max-w-site flex-nowrap items-center justify-between gap-[1.2rem] px-4">
+        <div className="flex min-w-0 max-w-[calc(100%-3rem)] flex-[0_1_auto] items-center">
+          <Link
+            href="/"
+            className="block h-[3.25rem] w-[7.84rem] leading-none max-sm:h-[2.95rem] max-sm:w-[7.1rem]"
+          >
             <Image
-              className="site-brand-logo"
+              className="block h-full w-full object-contain object-left max-sm:h-11"
               src="/images/header-title.png"
               alt="DaF kompakt — Deutsch als Fremdsprache"
               width={309}
@@ -132,39 +148,47 @@ export default function Navbar() {
         </div>
         <button
           type="button"
-          className="site-nav-toggle"
+          className={`ml-auto inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-[#d8e2ef] bg-[#fafbfd] px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-[#c5d5ea] hover:bg-[#eef4fc]${
+            menuOpen ? " border-[#b8cce8] bg-[#eef4fc]" : ""
+          }`}
           aria-expanded={menuOpen}
           aria-controls="site-nav-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <MenuIcon open={menuOpen} />
-          <span className="site-nav-toggle-label">{menuOpen ? "Close" : "Menu"}</span>
+          <span className="text-[0.72rem] font-semibold tracking-wide max-sm:absolute max-sm:-m-px max-sm:h-px max-sm:w-px max-sm:overflow-hidden max-sm:whitespace-nowrap max-sm:border-0 max-sm:p-0">
+            {menuOpen ? "Close" : "Menu"}
+          </span>
         </button>
       </div>
       <nav
         id="site-nav-menu"
-        className={`site-nav${menuOpen ? " is-open" : ""}`}
+        className={
+          menuOpen
+            ? "fixed top-[var(--site-header-h,4.55rem)] right-0 left-0 z-[101] block max-h-[calc(100dvh-var(--site-header-h,4.55rem))] overflow-y-auto border-b border-daf-border bg-white p-0 shadow-[0_10px_24px_rgba(15,35,60,0.12)]"
+            : "hidden w-full"
+        }
         aria-label="Site"
         aria-hidden={!menuOpen}
       >
-        <div className="site-nav-panel">
-          <div className="site-nav-links">
+        <div className="mx-auto box-border max-w-site px-4 pt-2 pb-[0.85rem]">
+          <div className="flex flex-col gap-[0.1rem]">
               <Link
-                className={`site-nav-link${vocabActive ? " is-active" : ""}`}
+                className={`${navLinkClass}${vocabActive ? ` ${navLinkActiveClass}` : ""}`}
                 href="/"
                 onClick={() => setMenuOpen(false)}
               >
                 Vocabulary
               </Link>
               <Link
-                className={`site-nav-link${grammarActive ? " is-active" : ""}`}
+                className={`${navLinkClass}${grammarActive ? ` ${navLinkActiveClass}` : ""}`}
                 href="/grammar"
                 onClick={() => setMenuOpen(false)}
               >
                 Grammar
               </Link>
               <Link
-                className={`site-nav-link${lessonsActive ? " is-active" : ""}`}
+                className={`${navLinkClass}${lessonsActive ? ` ${navLinkActiveClass}` : ""}`}
                 href="/lesson-pages"
                 onClick={() => setMenuOpen(false)}
               >
@@ -172,7 +196,7 @@ export default function Navbar() {
               </Link>
               {showImportNav ? (
                 <Link
-                  className={`site-nav-link${importActive ? " is-active" : ""}`}
+                  className={`${navLinkClass}${importActive ? ` ${navLinkActiveClass}` : ""}`}
                   href="/import-community-cards"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -181,7 +205,7 @@ export default function Navbar() {
               ) : null}
               {showAuthedNav ? (
                 <Link
-                  className={`site-nav-link${decksActive ? " is-active" : ""}`}
+                  className={`${navLinkClass}${decksActive ? ` ${navLinkActiveClass}` : ""}`}
                   href="/decks"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -190,7 +214,7 @@ export default function Navbar() {
               ) : null}
               {showAuthedNav ? (
                 <Link
-                  className={`site-nav-link${tagsActive ? " is-active" : ""}`}
+                  className={`${navLinkClass}${tagsActive ? ` ${navLinkActiveClass}` : ""}`}
                   href="/tags"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -199,7 +223,7 @@ export default function Navbar() {
               ) : null}
               {isSuperAdmin ? (
                 <Link
-                  className={`site-nav-link${adminPublishActive ? " is-active" : ""}`}
+                  className={`${navLinkClass}${adminPublishActive ? ` ${navLinkActiveClass}` : ""}`}
                   href="/admin/publish"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -208,7 +232,7 @@ export default function Navbar() {
               ) : null}
               {isSuperAdmin ? (
                 <Link
-                  className={`site-nav-link${adminUsersActive ? " is-active" : ""}`}
+                  className={`${navLinkClass}${adminUsersActive ? ` ${navLinkActiveClass}` : ""}`}
                   href="/admin/users"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -216,15 +240,19 @@ export default function Navbar() {
                 </Link>
               ) : null}
             </div>
-            <div className="site-nav-account">
+            <div className="mt-[0.55rem] flex flex-col gap-[0.1rem] border-t border-[#e8edf3] pt-[0.55rem]">
               {showAuthedNav ? (
                 <>
-                  <span className="site-nav-user-label">Signed in as</span>
-                  <span className="site-nav-user">{session?.user?.email}</span>
-                  <div className="site-nav-auth-buttons">
+                  <span className="mb-[0.15rem] block text-[0.72rem] tracking-wide text-[#888] uppercase">
+                    Signed in as
+                  </span>
+                  <span className="mb-2 block break-all text-[0.85rem] text-[#555]">
+                    {session?.user?.email}
+                  </span>
+                  <div className="flex gap-2">
                     <button
                       type="button"
-                      className="site-nav-auth-btn site-nav-auth-btn--secondary max-sm:text-[#444] max-sm:hover:text-[#444]"
+                      className={`${authBtnBaseClass} text-[#444] max-sm:text-[#444] max-sm:hover:text-[#444]`}
                       onClick={() => {
                         setMenuOpen(false);
                         void signOut({ callbackUrl: "/" });
@@ -235,16 +263,16 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <div className="site-nav-auth-buttons">
+                <div className="flex gap-2">
                   <Link
-                    className="site-nav-auth-btn site-nav-auth-btn--secondary max-sm:text-[#444] max-sm:hover:text-[#444]"
+                    className={`${authBtnBaseClass} text-[#444] max-sm:text-[#444] max-sm:hover:text-[#444]`}
                     href="/login"
                     onClick={() => setMenuOpen(false)}
                   >
                     Sign in
                   </Link>
                   <Link
-                    className="site-nav-auth-btn site-nav-auth-btn--primary max-sm:text-white max-sm:hover:text-white max-sm:focus:text-white"
+                    className={`${authBtnBaseClass} border-daf-head bg-daf-head text-white max-sm:text-white max-sm:hover:text-white max-sm:focus:text-white`}
                     href="/register"
                     onClick={() => setMenuOpen(false)}
                   >

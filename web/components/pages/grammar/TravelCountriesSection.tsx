@@ -2,7 +2,13 @@
 
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
-import { Callout, Lead } from "@/components/pages/grammar/grammar-ui";
+import {
+  Callout,
+  Lead,
+  grammarExampleListSpeakClass,
+  grammarLessonColCaseClass,
+  grammarLessonTableClass,
+} from "@/components/pages/grammar/grammar-ui";
 import {
   FROM_TO_PAIRS,
   IN_AKKUSATIV_ROWS,
@@ -12,11 +18,17 @@ import {
   type TravelExample,
 } from "@/lib/grammar/travel-countries";
 
+const GENDER_CELL: Record<string, string> = {
+  "grammar-col--der": "bg-grm-der-bg font-extrabold text-grm-der",
+  "grammar-col--die": "bg-grm-die-bg font-extrabold text-grm-die",
+  "grammar-col--die-pl": "bg-grm-pl-bg font-extrabold text-grm-pl",
+};
+
 function TravelPhraseChip({ german, english }: TravelExample) {
   return (
-    <span className="grammar-travel-chip">
-      <span className="grammar-travel-chip__de">{german}</span>
-      <span className="grammar-travel-chip__en">({english})</span>
+    <span className="inline-flex w-full flex-wrap items-center justify-start gap-1 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug max-[32rem]:last:justify-end">
+      <span className="font-bold italic text-daf-blue">{german}</span>
+      <span className="text-[0.68rem] italic text-daf-gray-en">({english})</span>
       <GrammarSpeakButton german={german} />
     </span>
   );
@@ -32,16 +44,26 @@ export default function TravelCountriesSection() {
         <strong>in + Akkusativ</strong>, depending on the country.
       </Lead>
 
-      <div className="grammar-travel-compare" aria-label="From vs to">
-        <div className="grammar-travel-compare__head">
-          <span className="grammar-travel-compare__col">From (§8)</span>
-          <span className="grammar-travel-compare__col">To (here)</span>
+      <div
+        className="my-2 mb-[0.85rem] rounded-[10px] border border-[#d8e4f0] bg-[#fafbfd] p-[0.55rem_0.65rem]"
+        aria-label="From vs to"
+      >
+        <div className="mb-[0.45rem] grid grid-cols-[1fr_auto_1fr] gap-[0.35rem] text-[0.68rem] font-extrabold tracking-wide text-[#6b7a8a] uppercase max-[32rem]:hidden">
+          <span className="text-left">From (§8)</span>
+          <span aria-hidden="true" />
+          <span className="text-right">To (here)</span>
         </div>
-        <ul className="grammar-travel-compare__list">
+        <ul className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
           {FROM_TO_PAIRS.map((pair) => (
-            <li key={pair.from.german} className="grammar-travel-compare__row">
+            <li
+              key={pair.from.german}
+              className="grid grid-cols-[1fr_auto_1fr] items-center gap-[0.35rem] max-[32rem]:grid-cols-1"
+            >
               <TravelPhraseChip {...pair.from} />
-              <span className="grammar-travel-compare__arrow" aria-hidden="true">
+              <span
+                className="px-[0.15rem] text-[0.82rem] font-bold text-[#9aa3ad] max-[32rem]:hidden"
+                aria-hidden="true"
+              >
                 →
               </span>
               <TravelPhraseChip {...pair.to} />
@@ -50,55 +72,55 @@ export default function TravelCountriesSection() {
         </ul>
       </div>
 
-      <div className="grammar-travel-stack">
-        <section className="grammar-travel-panel grammar-travel-panel--nach">
-          <header className="grammar-travel-panel__head">
-            <h3 className="grammar-travel-panel__title">
+      <div className="flex flex-col gap-3">
+        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-das bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
+          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-das-bg to-white px-3 py-[0.55rem]">
+            <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-das">
               <em>nach</em> — no article
             </h3>
-            <p className="grammar-travel-panel__subtitle">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
               Same countries as <em>aus Deutschland</em>: no <em>der/die/das</em>{" "}
               — just <em>nach</em> + name. Cities and continents too.
             </p>
           </header>
-          <div className="grammar-travel-formula">
-            <span className="grammar-travel-formula__prep">nach</span>
-            <span className="grammar-travel-formula__rest">+ place name</span>
-            <span className="grammar-travel-formula__en">to · destination</span>
+          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] border-l-[3px] border-l-grm-das bg-[#f8fafc] p-[0.45rem_0.6rem]">
+            <span className="text-[0.95rem] font-extrabold italic text-grm-das">nach</span>
+            <span className="text-[0.72rem] italic text-[#6b7a8a]">+ place name</span>
+            <span className="text-[0.72rem] italic text-[#6b7a8a]">to · destination</span>
           </div>
-          <div className="grammar-travel-chip-grid">
+          <div className="flex flex-wrap gap-[0.35rem] px-3 pb-[0.45rem]">
             {NACH_PHRASES.map((phrase) => (
               <TravelPhraseChip key={phrase.german} {...phrase} />
             ))}
           </div>
-          <ul className="grammar-example-list grammar-example-list--speak">
+          <ul className={`${grammarExampleListSpeakClass} m-0 px-3 pb-[0.65rem]`}>
             {NACH_SENTENCES.map((ex) => (
               <GrammarEx key={ex.german} de={ex.german} en={ex.english} />
             ))}
           </ul>
         </section>
 
-        <section className="grammar-travel-panel grammar-travel-panel--in">
-          <header className="grammar-travel-panel__head">
-            <h3 className="grammar-travel-panel__title">
+        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-der bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
+          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-der-bg to-white px-3 py-[0.55rem]">
+            <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-der">
               <em>in</em> + Akkusativ — with article
             </h3>
-            <p className="grammar-travel-panel__subtitle">
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
               Same countries as <em>aus der Schweiz</em>: they need an article —
               use <em>in</em> + <strong>Akk.</strong> (movement = accusative).
             </p>
           </header>
-          <div className="grammar-travel-formula">
-            <span className="grammar-travel-formula__prep">in</span>
-            <span className="grammar-travel-formula__plus">+</span>
-            <span className="grammar-travel-formula__case">Akk.</span>
-            <span className="grammar-travel-formula__en">to · with article</span>
+          <div className="mx-3 my-[0.55rem] mb-[0.45rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] border-l-[3px] border-l-grm-der bg-[#f8fafc] p-[0.45rem_0.6rem]">
+            <span className="text-[0.95rem] font-extrabold italic text-grm-der">in</span>
+            <span className="text-[0.8rem] font-semibold text-[#8a96a3]">+</span>
+            <span className="text-[0.86rem] font-extrabold text-[#2f4f6f]">Akk.</span>
+            <span className="text-[0.72rem] italic text-[#6b7a8a]">to · with article</span>
           </div>
-          <div className="grammar-table-wrap">
-            <table className="grammar-lesson-table grammar-travel-table">
+          <div className="mb-[0.45rem] overflow-x-auto">
+            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-[#f4f8fc] [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-[#6b7a8a] [&_thead_th]:uppercase`}>
               <thead>
                 <tr>
-                  <th className="grammar-lesson-col-case">Gender</th>
+                  <th className={grammarLessonColCaseClass}>Gender</th>
                   <th>Akk.</th>
                   <th>Examples</th>
                 </tr>
@@ -106,16 +128,19 @@ export default function TravelCountriesSection() {
               <tbody>
                 {IN_AKKUSATIV_ROWS.map((row) => (
                   <tr key={row.id}>
-                    <th scope="row" className="grammar-travel-table__gender">
+                    <th
+                      scope="row"
+                      className="bg-[#f8fafc]! text-[0.72rem] font-bold lowercase whitespace-nowrap text-[#5a6573]"
+                    >
                       {row.gender}
                     </th>
                     <td
-                      className={`grammar-travel-table__case ${row.genderClass}`}
+                      className={`w-12 text-center font-extrabold whitespace-nowrap ${GENDER_CELL[row.genderClass] ?? ""}`}
                     >
                       {row.akkusativ}
                     </td>
-                    <td className="grammar-travel-table__examples">
-                      <div className="grammar-travel-chip-grid grammar-travel-chip-grid--inline">
+                    <td className="align-middle">
+                      <div className="flex flex-wrap gap-[0.35rem]">
                         {row.examples.map((ex) => (
                           <TravelPhraseChip key={ex.german} {...ex} />
                         ))}
@@ -126,7 +151,7 @@ export default function TravelCountriesSection() {
               </tbody>
             </table>
           </div>
-          <ul className="grammar-example-list grammar-example-list--speak">
+          <ul className={`${grammarExampleListSpeakClass} m-0 px-3 pb-[0.65rem]`}>
             {IN_SENTENCES.map((ex) => (
               <GrammarEx key={ex.german} de={ex.german} en={ex.english} />
             ))}
@@ -142,9 +167,11 @@ export default function TravelCountriesSection() {
         </p>
       </Callout>
 
-      <p className="grammar-travel-classroom">
-        <em>Wie heißt Ihr Land in Ihrer Sprache?</em>
-        <span className="grammar-travel-chip__en">
+      <p className="mt-3 mb-0 flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-lg border border-[#e8eef5] bg-[#f8fafc] p-[0.5rem_0.65rem] text-[0.8rem] text-[#2f3d4d] italic">
+        <em className="font-semibold text-daf-blue not-italic">
+          Wie heißt Ihr Land in Ihrer Sprache?
+        </em>
+        <span className="text-[0.68rem] text-daf-gray-en">
           (What is your country called in your language?)
         </span>
         <GrammarSpeakButton german="Wie heißt Ihr Land in Ihrer Sprache?" />

@@ -9,6 +9,21 @@ import { getApiErrorMessage } from "@/services/frontend/http";
 import { useCreateAdminUserMutation } from "@/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
+import {
+  formInputClass,
+  formSelectClass,
+} from "@/lib/styles/formControls";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  formLabelClass,
+  tagFormActionsClass,
+  tagFormCancelClass,
+  tagFormClass,
+  tagFormSubmitClass,
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+} from "@/lib/styles/tagsPage";
 
 const ROLES: UserRole[] = ["user", "admin", "super_admin"];
 
@@ -38,30 +53,32 @@ export default function AdminUserCreateForm() {
   }
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">Create user</h1>
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>Create user</h1>
       </div>
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         Add a new account and assign a role. Super admin accounts should be
         created here, not on the main users list.
       </p>
 
-      <form className="tag-form admin-user-create-form" onSubmit={onCreate}>
-        <label>
+      <form className={tagFormClass} onSubmit={onCreate}>
+        <label className={formLabelClass}>
           Email
           <input
             type="email"
+            className={formInputClass}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="off"
           />
         </label>
-        <label>
+        <label className={formLabelClass}>
           Password
           <input
             type="password"
+            className={formInputClass}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             minLength={8}
@@ -69,13 +86,14 @@ export default function AdminUserCreateForm() {
             autoComplete="new-password"
           />
         </label>
-        <label>
+        <label className={formLabelClass}>
           Name
-          <input value={name} onChange={(e) => setName(e.target.value)} />
+          <input className={formInputClass} value={name} onChange={(e) => setName(e.target.value)} />
         </label>
-        <label>
+        <label className={formLabelClass}>
           Role
           <select
+            className={formSelectClass}
             value={role}
             onChange={(e) => setRole(e.target.value as UserRole)}
           >
@@ -86,11 +104,11 @@ export default function AdminUserCreateForm() {
             ))}
           </select>
         </label>
-        <div className="tag-form__actions">
-          <button type="submit" disabled={createUser.isPending}>
+        <div className={tagFormActionsClass}>
+          <button type="submit" className={tagFormSubmitClass} disabled={createUser.isPending}>
             {createUser.isPending ? "Creating…" : "Create user"}
           </button>
-          <Link href="/admin/users" className="tag-form__cancel">
+          <Link href="/admin/users" className={tagFormCancelClass}>
             Cancel
           </Link>
         </div>

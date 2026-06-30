@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Calibri, "Segoe UI", Roboto, sans-serif;
+
+  --color-daf-blue: rgb(48 96 140);
+  --color-daf-gray-en: rgb(64 64 64);
+  --color-daf-head: rgb(47 111 184);
+  --color-daf-head-dark: rgb(38 92 158);
+  --color-daf-border: #e0e0e0;
+  --color-daf-surface: #fafafa;
+  --color-daf-nav-link: #2b64b8;
+  --color-daf-nav-active: #1a4f99;
+
+  --color-grm-der: #2f6fb8;
+  --color-grm-der-bg: #e8f2fc;
+  --color-grm-der-border: #a8c8e8;
+  --color-grm-das: #2d7a52;
+  --color-grm-das-bg: #e6f5ec;
+  --color-grm-das-border: #9fd4b0;
+  --color-grm-die: #b83d6e;
+  --color-grm-die-bg: #fce8f0;
+  --color-grm-die-border: #e8a8c4;
+  --color-grm-pl: #5c4a9e;
+  --color-grm-pl-bg: #ede8fc;
+  --color-grm-pl-border: #c4b8e8;
+  --color-grm-gold: #c9921a;
+  --color-grm-gold-bg: #fff8e6;
+  --color-grm-teal: #1a7a72;
+  --color-grm-teal-bg: #e6f7f5;
+
+  --max-width-site: 44rem;
+  --max-width-grammar: 48rem;
+  --max-width-tags: 52rem;
+
+  --animate-deck-shimmer: deck-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes deck-shimmer {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(main-content) {
+    animation: route-fade-out 0.12s ease forwards;
+  }
+
+  ::view-transition-new(main-content) {
+    animation: route-fade-in 0.12s ease forwards;
+  }
+
+  ::view-transition-old(site-header),
+  ::view-transition-new(site-header) {
+    animation: none;
+  }
+}
+
+@keyframes route-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Card form modal: keep site header below backdrop */
+body.card-modal-open header[role="banner"] {
+  z-index: 1;
+}

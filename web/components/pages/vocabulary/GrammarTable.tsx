@@ -12,7 +12,7 @@ function formatGrammarPhraseCell(text: string): React.ReactNode[] {
     if (!chunk) continue;
     if (isSuffix) {
       parts.push(
-        <strong key={key++} className="grammar-adj-sfx">
+        <strong key={key++} className="text-daf-blue font-bold">
           {chunk}
         </strong>,
       );
@@ -29,11 +29,11 @@ export default function GrammarTableBlock({ table }: GrammarTableProps) {
   const narrowFirstCol = nc > 0 && columns[0].trim() === "";
 
   return (
-    <div className="grammar-table-wrap">
-      <table className="grammar-table">
+    <div className="my-[0.35rem] mb-[0.65rem] pl-[0.6rem] border-l-[3px] border-transparent">
+      <table className="w-full table-fixed border-collapse m-0 text-[9.5pt]">
         {narrowFirstCol ? (
           <colgroup>
-            <col className="grammar-col-case" />
+            <col className="w-[3.25rem]" />
             {nc > 1 ? <col span={nc - 1} /> : null}
           </colgroup>
         ) : nc > 0 ? (
@@ -44,7 +44,12 @@ export default function GrammarTableBlock({ table }: GrammarTableProps) {
         <thead>
           <tr>
             {columns.map((c, i) => (
-              <th key={i}>{c}</th>
+              <th
+                key={i}
+                className="border border-daf-border py-[0.35rem] px-[0.45rem] text-left align-top font-semibold bg-[#f1f6fc] text-[#333]"
+              >
+                {c}
+              </th>
             ))}
           </tr>
         </thead>
@@ -54,7 +59,10 @@ export default function GrammarTableBlock({ table }: GrammarTableProps) {
               {Array.from({ length: nc }, (_, j) => {
                 const raw = j < row.length ? row[j] : "";
                 return (
-                  <td key={j}>
+                  <td
+                    key={j}
+                    className="border border-daf-border py-[0.35rem] px-[0.45rem] text-left align-top"
+                  >
                     {j === 0 ? raw : formatGrammarPhraseCell(raw)}
                   </td>
                 );

@@ -25,6 +25,15 @@ type ImportTagPanelProps = {
   description?: string;
 };
 
+const panelClass =
+  "mb-4 py-[0.9rem] px-4 bg-white border border-daf-border rounded-lg";
+
+const importBtnBase =
+  "appearance-none flex flex-col items-start gap-[0.15rem] w-full py-[0.55rem] px-[0.7rem] font-inherit text-left text-[#1a3d6b] bg-[#f5f9fd] border border-daf-head/35 rounded-md cursor-pointer hover:enabled:bg-[#eaf2fa] hover:enabled:border-daf-head/55 disabled:opacity-70 disabled:cursor-wait";
+
+const importBtnDoneClass =
+  "text-[#4a6748] bg-[#f4f8f3] border-[#c8dcc4] hover:enabled:bg-[#eaf4e8] hover:enabled:border-[#b5d4b0]";
+
 export default function ImportTagPanel({
   options,
   onChanged,
@@ -44,8 +53,8 @@ export default function ImportTagPanel({
 
   if (localOptions.length === 0) {
     return (
-      <div className="import-lektion-panel" role="status">
-        <p className="import-lektion-panel__text">
+      <div className={panelClass} role="status">
+        <p className="m-0 mb-3 text-[0.85rem] text-[#555] leading-[1.45]">
           No community tag decks are available yet.
         </p>
       </div>
@@ -98,17 +107,22 @@ export default function ImportTagPanel({
   const removing = deimportTag.isPending;
 
   return (
-    <section className="import-lektion-panel" aria-labelledby="import-tag-title">
-      <h2 id="import-tag-title" className="import-lektion-panel__title">
+    <section className={panelClass} aria-labelledby="import-tag-title">
+      <h2
+        id="import-tag-title"
+        className="m-0 mb-[0.35rem] text-base font-semibold text-daf-head"
+      >
         {title}
       </h2>
-      <p className="import-lektion-panel__text">{description}</p>
-      <ul className="import-lektion-list">
+      <p className="m-0 mb-3 text-[0.85rem] text-[#555] leading-[1.45]">
+        {description}
+      </p>
+      <ul className="list-none m-0 p-0 flex flex-col gap-[0.45rem]">
         {localOptions.map((opt) => (
           <li key={opt.slug}>
             <button
               type="button"
-              className={`import-lektion-btn${opt.imported ? " import-lektion-btn--done" : ""}${busySlug === opt.slug ? " import-lektion-btn--busy" : ""}`}
+              className={`${importBtnBase}${opt.imported ? ` ${importBtnDoneClass}` : ""}${busySlug === opt.slug ? " opacity-85" : ""}`}
               disabled={busySlug !== null}
               onClick={() =>
                 void (opt.imported
@@ -122,8 +136,10 @@ export default function ImportTagPanel({
               }
               aria-busy={busySlug === opt.slug}
             >
-              <span className="import-lektion-btn__label">{opt.label}</span>
-              <span className="import-lektion-btn__meta">{metaText(opt)}</span>
+              <span className="text-[0.88rem] font-semibold">{opt.label}</span>
+              <span className="text-xs font-normal text-[#666]">
+                {metaText(opt)}
+              </span>
             </button>
           </li>
         ))}

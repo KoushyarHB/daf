@@ -1,7 +1,12 @@
 "use client";
 
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
-import { QuestionTypeCard } from "@/components/pages/grammar/grammar-ui";
+import {
+  QuestionTypeCard,
+  grammarExampleListClass,
+  grammarExampleListSpeakClass,
+  grammarSectionSubtitleClass,
+} from "@/components/pages/grammar/grammar-ui";
 
 const WIE_QUESTIONS: {
   de: string;
@@ -52,13 +57,13 @@ const WIE_QUESTIONS: {
 export default function QuestionsSection() {
   return (
     <>
-      <div className="grammar-qtype-grid">
+      <div className="mb-4 grid gap-[0.85rem] min-[40rem]:grid-cols-2">
         <QuestionTypeCard
           title="W-questions"
           variant="w"
           formula={<>W-word + verb + subject + …</>}
         >
-          <ul className="grammar-example-list">
+          <ul className={grammarExampleListClass}>
             <GrammarEx de="Wo wohnst du?" en="Where do you live?" />
           </ul>
         </QuestionTypeCard>
@@ -67,16 +72,16 @@ export default function QuestionsSection() {
           variant="yesno"
           formula={<>Verb + subject + …</>}
         >
-          <ul className="grammar-example-list">
+          <ul className={grammarExampleListClass}>
             <GrammarEx de="Wohnst du in Berlin?" en="Do you live in Berlin?" />
           </ul>
         </QuestionTypeCard>
       </div>
 
-      <h3 className="grammar-section__subtitle">
+      <h3 className={grammarSectionSubtitleClass}>
         Common questions with <em>wie</em>
       </h3>
-      <ul className="grammar-example-list grammar-example-list--speak">
+      <ul className={grammarExampleListSpeakClass}>
         {WIE_QUESTIONS.map((q) => (
           <GrammarEx
             key={q.de}
@@ -86,7 +91,7 @@ export default function QuestionsSection() {
           />
         ))}
       </ul>
-      <p className="grammar-note">
+      <p className="mt-3 mb-0 rounded-md bg-[#f8fafc] p-[0.5rem_0.75rem] text-[0.82rem] text-[#5a6573] italic">
         <strong>Vorname</strong> = first name · <strong>Nachname</strong> /{" "}
         <strong>Familienname</strong> = surname · <strong>Handynummer</strong> =
         mobile number

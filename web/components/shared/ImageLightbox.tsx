@@ -46,10 +46,11 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLightbox();
     };
-    document.body.classList.add("lightbox-open");
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.classList.remove("lightbox-open");
+      document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
   }, [state, closeLightbox]);
@@ -59,7 +60,11 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
       {children}
       <div
         id="image-lightbox"
-        className={`image-lightbox${state ? " is-open" : ""}`}
+        className={
+          state
+            ? "fixed inset-0 z-[1000] flex items-center justify-center p-5 bg-[rgba(16,16,16,0.88)] cursor-zoom-out"
+            : "fixed inset-0 z-[1000] hidden items-center justify-center p-5 bg-[rgba(16,16,16,0.88)] cursor-zoom-out"
+        }
         aria-hidden={state ? "false" : "true"}
         role="dialog"
         aria-modal="true"
@@ -70,7 +75,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
       >
         <button
           type="button"
-          className="image-lightbox-close"
+          className="absolute top-3 right-[0.85rem] w-9 h-9 border-none rounded bg-white/12 text-white text-[1.45rem] leading-none cursor-pointer hover:bg-white/22"
           aria-label="Close preview"
           onClick={closeLightbox}
         >
@@ -78,7 +83,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
         </button>
         {state ? (
           <Image
-            className="image-lightbox-img"
+            className="block rounded shadow-[0_8px_32px_rgba(0,0,0,0.35)] cursor-default"
             src={state.src}
             alt={state.alt}
             width={1600}

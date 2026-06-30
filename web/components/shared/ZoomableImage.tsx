@@ -9,6 +9,12 @@ type ZoomableImageProps = {
   className?: string;
 };
 
+const zoomableImageClass =
+  "block max-w-full p-0 border-none bg-transparent cursor-zoom-in text-left hover:[&_img]:border-daf-head/45 hover:[&_img]:shadow-[0_0_0_2px_rgba(47,111,184,0.12)]";
+
+const zoomableImageImgClass =
+  "block max-w-full h-auto border border-daf-border rounded transition-[border-color,box-shadow] duration-150";
+
 export default function ZoomableImage({
   src,
   alt,
@@ -19,7 +25,7 @@ export default function ZoomableImage({
   return (
     <button
       type="button"
-      className={`zoomable-image ${className}`.trim()}
+      className={`${zoomableImageClass} ${className}`.trim()}
       aria-label={alt}
       onClick={() => openLightbox(src, alt)}
     >
@@ -29,7 +35,7 @@ export default function ZoomableImage({
         width={800}
         height={600}
         sizes="(max-width: 44rem) 100vw, 44rem"
-        className="zoomable-image-img"
+        className={zoomableImageImgClass}
         style={{ width: "100%", height: "auto" }}
       />
     </button>

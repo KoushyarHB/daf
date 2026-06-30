@@ -1,18 +1,32 @@
 "use client";
 
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
-import { Callout } from "@/components/pages/grammar/grammar-ui";
+import { Callout, grammarExampleListSpeakClass } from "@/components/pages/grammar/grammar-ui";
 import { W_QUESTION_WORDS } from "@/lib/grammar/w-question-words";
+
+const W_CARD_BORDER = [
+  "border-l-grm-der",
+  "border-l-grm-das",
+  "border-l-grm-die",
+  "border-l-grm-pl",
+] as const;
 
 export default function WQuestionWordsSection() {
   return (
     <>
-      <div className="grammar-w-grid">
-        {W_QUESTION_WORDS.map((word) => (
-          <div key={word.id} className="grammar-w-card">
-            <h3>{word.german}</h3>
-            <p className="grammar-w-card__en">{word.english}</p>
-            <ul className="grammar-example-list grammar-example-list--speak">
+      <div className="mt-2 flex flex-col gap-[0.7rem]">
+        {W_QUESTION_WORDS.map((word, index) => (
+          <div
+            key={word.id}
+            className={`rounded-[10px] border border-[#e2e8f0] border-l-4 bg-white p-[0.8rem_0.9rem] shadow-[0_1px_4px_rgba(0,0,0,0.04)] ${W_CARD_BORDER[index % 4]}`}
+          >
+            <h3 className="m-0 text-[1.05rem] font-extrabold text-daf-head lowercase">
+              {word.german}
+            </h3>
+            <p className="mt-[0.1rem] mb-[0.4rem] text-[0.76rem] italic text-daf-gray-en">
+              {word.english}
+            </p>
+            <ul className={`${grammarExampleListSpeakClass} mt-0 [&_li]:border-0 [&_li]:bg-transparent [&_li]:p-[0.25rem_0]`}>
               {word.examples.map((ex) => (
                 <GrammarEx
                   key={ex.german}

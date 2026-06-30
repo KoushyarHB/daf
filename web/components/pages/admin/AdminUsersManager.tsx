@@ -14,6 +14,31 @@ import {
 } from "@/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
+import {
+  formInputClass,
+  formPlaceholderClass,
+  formSelectClass,
+} from "@/lib/styles/formControls";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  adminSearchClass,
+  adminSearchInputClass,
+  adminSearchLabelClass,
+  deckHintClass,
+  formSelectTableClass,
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+  tagsPageNewLinkClass,
+  tagsTableActionsClass,
+  tagsTableActionsColClass,
+  tagsTableBtnDangerClass,
+  tagsTableThTdClass,
+  tagsTableUsersClass,
+  tagsTableUsersRoleColClass,
+  tagsTableWrapClass,
+  tagsTableWrapRefreshingClass,
+} from "@/lib/styles/tagsPage";
 
 const ROLES: UserRole[] = ["user", "admin", "super_admin"];
 
@@ -66,26 +91,27 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
   }
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">Users</h1>
-        <Link href="/admin/users/new" className="tags-page__new">
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>Users</h1>
+        <Link href="/admin/users/new" className={tagsPageNewLinkClass}>
           + Create user
         </Link>
       </div>
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         View accounts and change roles. Use{" "}
-        <Link href="/admin/users/new">Create user</Link> to add new accounts
+        <Link href="/admin/users/new" className="text-daf-head no-underline hover:underline">Create user</Link> to add new accounts
         (including super admins).
       </p>
 
-      <div className="admin-search">
-        <label className="admin-search__label" htmlFor="admin-users-q">
+      <div className={adminSearchClass}>
+        <label className={adminSearchLabelClass} htmlFor="admin-users-q">
           Search users
         </label>
         <input
           id="admin-users-q"
           type="search"
+          className={`${formInputClass} ${formPlaceholderClass} ${adminSearchInputClass}`}
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Email or name…"
@@ -93,28 +119,29 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
       </div>
 
       {loading ? (
-        <p className="deck-hint">Loading users…</p>
+        <p className={deckHintClass}>Loading users…</p>
       ) : users.length === 0 ? (
-        <p className="deck-hint">No users found.</p>
+        <p className={deckHintClass}>No users found.</p>
       ) : (
-        <div className={`tags-table-wrap${refreshing ? " tags-table-wrap--refreshing" : ""}`}>
-        <table className="tags-table tags-table--users">
+        <div className={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}>
+        <table className={tagsTableUsersClass}>
           <thead>
             <tr>
-              <th scope="col">Email</th>
-              <th scope="col">Name</th>
-              <th scope="col">Role</th>
-              <th scope="col">Joined</th>
-              <th scope="col">Actions</th>
+              <th scope="col" className={tagsTableThTdClass}>Email</th>
+              <th scope="col" className={tagsTableThTdClass}>Name</th>
+              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`}>Role</th>
+              <th scope="col" className={tagsTableThTdClass}>Joined</th>
+              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td>{user.email}</td>
-                <td>{user.name ?? "—"}</td>
-                <td>
+                <td className={tagsTableThTdClass}>{user.email}</td>
+                <td className={tagsTableThTdClass}>{user.name ?? "—"}</td>
+                <td className={`${tagsTableThTdClass} ${tagsTableUsersRoleColClass}`}>
                   <select
+                    className={`${formSelectClass} ${formSelectTableClass}`}
                     value={user.role}
                     disabled={updateRole.isPending && updateRole.variables?.userId === user.id}
                     onChange={(e) =>
@@ -128,11 +155,11 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
                     ))}
                   </select>
                 </td>
-                <td>{new Date(user.createdAt).toLocaleDateString()}</td>
-                <td className="tags-table__actions">
+                <td className={tagsTableThTdClass}>{new Date(user.createdAt).toLocaleDateString()}</td>
+                <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
                   <button
                     type="button"
-                    className="tags-table__btn-danger"
+                    className={tagsTableBtnDangerClass}
                     onClick={() => setDeleteTarget(user)}
                     disabled={deleteUser.isPending && deleteTarget?.id === user.id}
                   >

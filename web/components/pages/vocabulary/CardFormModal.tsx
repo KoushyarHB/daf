@@ -389,28 +389,41 @@ export default function CardFormModal({
     ),
   ];
 
+  const fieldLabel =
+    "flex flex-col gap-[0.2rem] text-[0.82rem] font-semibold text-[#444]";
+  const fieldInput =
+    "rounded-md border border-[#d8e2ef] bg-white p-2 px-[0.6rem] font-inherit text-[0.95rem] font-normal focus:border-daf-head/55 focus:shadow-[0_0_0_3px_rgba(47,111,184,0.18)] focus:outline-none";
+  const fieldTextarea = `${fieldInput} min-h-[3.25rem] resize-y`;
+  const fieldSelect = `${fieldInput} cursor-pointer appearance-none bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat pr-8 [background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20fill%3D%27%23555%27%20d%3D%27M2.5%204.5%206%208l3.5-3.5%27/%3E%3C/svg%3E')]`;
+  const fieldHint = "text-[0.75rem] font-normal leading-snug text-[#666]";
+  const btnBase =
+    "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
+
   return createPortal(
     <div
-      className="card-modal-backdrop card-modal-backdrop--form"
+      className="fixed inset-0 z-500 flex items-stretch justify-center overflow-hidden overscroll-contain bg-black/35 p-0"
       onClick={onClose}
       role="presentation"
     >
       <div
-        className="card-modal card-form-modal"
+        className="m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-white shadow-[0_8px_40px_rgba(0,0,0,0.14)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="card-modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="card-form-modal__header">
-          <div className="card-form-modal__title-row">
-            <h2 id="card-modal-title" className="card-modal-title">
+        <div className="shrink-0 px-5 pt-5 pb-2">
+          <div className="flex items-center justify-between gap-3">
+            <h2
+              id="card-modal-title"
+              className="m-0 min-w-0 flex-1 border-0 p-0 text-[1.25rem] font-semibold text-daf-head"
+            >
               {title}
             </h2>
-            <div className="card-form-fill-btns">
+            <div className="flex shrink-0 items-center gap-[0.4rem]">
               <button
                 type="button"
-                className="card-form-ai-btn"
+                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-gradient-to-b from-[#f8fbff] to-[#eef4fc] px-[0.7rem] py-[0.35rem] text-[0.78rem] font-semibold whitespace-nowrap text-[#3d5a8a] hover:border-daf-head/65 hover:from-[#eef5ff] hover:to-[#e3eef9] disabled:cursor-not-allowed disabled:opacity-55"
                 onClick={onAiFillClick}
                 disabled={suggestCard.isPending || !form.head.trim()}
                 title="Fill gloss, notes, examples, IPA, and type from the headword"
@@ -419,7 +432,7 @@ export default function CardFormModal({
               </button>
               <button
                 type="button"
-                className="card-form-json-btn"
+                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-white px-[0.7rem] py-[0.35rem] font-mono text-[0.78rem] font-semibold whitespace-nowrap text-[#3d5a8a] hover:border-daf-head/65 hover:bg-[#f4f8fc] disabled:cursor-not-allowed disabled:opacity-55"
                 onClick={() => setJsonFillOpen(true)}
                 title="Paste a vocab.manifest.json card object to fill the form"
               >
@@ -428,49 +441,53 @@ export default function CardFormModal({
             </div>
           </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
-            <p className="card-modal-hint">
+            <p className="m-0 text-[0.8rem] leading-snug text-[#666]">
               Saves a personal copy for you. The shared community card stays unchanged.
             </p>
           ) : null}
         </div>
 
-        <form onSubmit={onSubmit} className="card-form-modal__form">
-          <div className="card-form-modal__body card-modal-form">
-            <label>
+        <form onSubmit={onSubmit} className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          <div className="flex min-h-0 flex-1 flex-col gap-[0.85rem] overflow-y-auto overscroll-contain px-5 pt-1 pb-4">
+            <label className={fieldLabel}>
               Headword
               <input
+                className={fieldInput}
                 value={form.head}
                 onChange={(e) => setForm((f) => ({ ...f, head: e.target.value }))}
                 required
                 placeholder="das Wort /vɔʁt/"
               />
             </label>
-            <label>
+            <label className={fieldLabel}>
               IPA
               <input
+                className={fieldInput}
                 value={form.ipa}
                 onChange={(e) => setForm((f) => ({ ...f, ipa: e.target.value }))}
                 placeholder="/vɔʁt/"
               />
             </label>
-            <label>
+            <label className={fieldLabel}>
               English gloss
-              <span className="card-form-field-hint">
+              <span className={fieldHint}>
                 Short flashcard answer — what the word means in English.
               </span>
               <textarea
+                className={fieldTextarea}
                 value={form.gloss}
                 onChange={(e) => setForm((f) => ({ ...f, gloss: e.target.value }))}
                 rows={2}
                 placeholder="word; vocabulary item"
               />
             </label>
-            <label>
+            <label className={fieldLabel}>
               Notes
-              <span className="card-form-field-hint">
+              <span className={fieldHint}>
                 Optional — grammar, usage, or exam tips.
               </span>
               <textarea
+                className={fieldTextarea}
                 value={form.notes}
                 onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
                 rows={2}
@@ -479,22 +496,29 @@ export default function CardFormModal({
             </label>
 
             <fieldset
-              className="card-form-examples"
+              className="m-0 min-w-0 border-0 p-0"
               aria-labelledby={examplesLegendId}
             >
-              <legend id={examplesLegendId} className="card-form-examples__legend">
+              <legend
+                id={examplesLegendId}
+                className="mb-1 text-[0.85rem] font-semibold text-[#333]"
+              >
                 Examples
               </legend>
-              <p className="card-form-field-hint card-form-examples__hint">
+              <p className={`${fieldHint} mb-2`}>
                 German sentence plus a natural English translation for each example.
               </p>
-              <ul className="card-form-examples__list">
+              <ul className="m-0 list-none space-y-2 p-0">
                 {form.examples.map((ex, index) => (
-                  <li key={ex.key} className="card-form-example-row">
-                    <div className="card-form-example-row__fields">
-                      <label>
+                  <li
+                    key={ex.key}
+                    className="flex items-start gap-2 rounded-md border border-[#e8edf3] bg-[#fafbfd] p-2"
+                  >
+                    <div className="grid min-w-0 flex-1 gap-2 min-[32rem]:grid-cols-2">
+                      <label className={`${fieldLabel} text-[0.75rem]`}>
                         German
                         <input
+                          className={fieldInput}
                           value={ex.german}
                           onChange={(e) =>
                             updateExample(ex.key, "german", e.target.value)
@@ -502,9 +526,10 @@ export default function CardFormModal({
                           placeholder="Ich lerne das Wort."
                         />
                       </label>
-                      <label>
+                      <label className={`${fieldLabel} text-[0.75rem]`}>
                         English
                         <input
+                          className={fieldInput}
                           value={ex.english}
                           onChange={(e) =>
                             updateExample(ex.key, "english", e.target.value)
@@ -515,7 +540,7 @@ export default function CardFormModal({
                     </div>
                     <button
                       type="button"
-                      className="card-form-example-row__remove"
+                      className="mt-0.5 shrink-0 cursor-pointer border-0 bg-transparent px-1 text-[1.1rem] leading-none text-gray-400 hover:text-[#b00020]"
                       onClick={() => removeExample(ex.key)}
                       aria-label={`Remove example ${index + 1}`}
                       title="Remove example"
@@ -527,25 +552,24 @@ export default function CardFormModal({
               </ul>
               <button
                 type="button"
-                className="card-form-examples__add"
+                className="mt-2 cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head hover:underline"
                 onClick={addExample}
               >
                 + Add example
               </button>
             </fieldset>
 
-            <div
-              className="card-form-pronunciation"
-              role="group"
-              aria-labelledby="card-pronunciation-label"
-            >
-              <div className="card-form-pronunciation__header">
-                <span id="card-pronunciation-label" className="card-form-field-label">
+            <div role="group" aria-labelledby="card-pronunciation-label">
+              <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+                <span
+                  id="card-pronunciation-label"
+                  className="text-[0.85rem] font-semibold text-[#333]"
+                >
                   Pronunciation
                 </span>
                 <button
                   type="button"
-                  className="card-form-audio-btn"
+                  className="cursor-pointer rounded-md border border-daf-head/45 bg-[#f4f8fc] px-3 py-1.5 text-[0.78rem] font-semibold text-daf-head hover:bg-[#eef4fc] disabled:cursor-not-allowed disabled:opacity-55"
                   onClick={generatePronunciation}
                   disabled={generatingPronunciation || !canGeneratePronunciation}
                 >
@@ -556,18 +580,21 @@ export default function CardFormModal({
                       : "Generate pronunciation"}
                 </button>
               </div>
-              <p className="card-form-field-hint card-form-pronunciation__hint">
+              <p className={`${fieldHint} mb-2`}>
                 Creates audio for the headword and each German example. Play to
                 preview before saving.
               </p>
               {pronunciationPreviews.length > 0 ? (
-                <ul className="card-form-pronunciation__list">
+                <ul className="m-0 list-none space-y-1.5 p-0">
                   {pronunciationPreviews.map((item) => (
-                    <li key={item.key} className="card-form-pronunciation__item">
-                      <span className="card-form-pronunciation__label">
+                    <li
+                      key={item.key}
+                      className="flex flex-wrap items-center gap-2 rounded-md border border-[#e8edf3] bg-[#fafbfd] px-2.5 py-1.5 text-[0.8rem]"
+                    >
+                      <span className="shrink-0 font-semibold text-[#555]">
                         {item.label}
                       </span>
-                      <span className="card-form-pronunciation__text">
+                      <span className="min-w-0 flex-1 italic text-[#333]">
                         {item.text}
                       </span>
                       <PronounceButton audio={item.audio} compact />
@@ -577,13 +604,16 @@ export default function CardFormModal({
               ) : null}
             </div>
 
-            <div className="card-form-field" role="group" aria-labelledby="card-tags-label">
-              <span id="card-tags-label" className="card-form-field-label">
+            <div className="flex flex-col gap-[0.35rem]" role="group" aria-labelledby="card-tags-label">
+              <span id="card-tags-label" className="text-[0.85rem] font-semibold text-[#333]">
                 Tags
               </span>
-              <span className="card-form-field-hint">
+              <span className={fieldHint}>
                 User cards include the &quot;user&quot; tag by default.{" "}
-                <Link href="/tags" className="card-form-inline-link">
+                <Link
+                  href="/tags"
+                  className="font-medium text-daf-head underline underline-offset-2 hover:text-daf-head-dark"
+                >
                   Manage tags
                 </Link>
               </span>
@@ -595,11 +625,12 @@ export default function CardFormModal({
               />
             </div>
 
-            <div className="card-modal-row">
+            <div className="flex flex-wrap gap-2">
               {!adminDeckId ? (
-                <label>
+                <label className={`${fieldLabel} min-w-20 flex-1`}>
                   Deck
                   <select
+                    className={fieldSelect}
                     value={form.deckId}
                     onChange={(e) =>
                       setForm((f) => ({ ...f, deckId: e.target.value }))
@@ -618,9 +649,10 @@ export default function CardFormModal({
                   </select>
                 </label>
               ) : null}
-              <label>
+              <label className={`${fieldLabel} min-w-20 flex-1`}>
                 Level
                 <select
+                  className={fieldSelect}
                   value={form.level}
                   onChange={(e) =>
                     setForm((f) => ({
@@ -636,9 +668,10 @@ export default function CardFormModal({
                   ))}
                 </select>
               </label>
-              <label>
+              <label className={`${fieldLabel} min-w-20 flex-1`}>
                 Type
                 <select
+                  className={fieldSelect}
                   value={form.pos}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, pos: e.target.value as VocabPos }))
@@ -654,19 +687,21 @@ export default function CardFormModal({
             </div>
           </div>
 
-          <div className="card-form-modal__footer">
-            {error ? <p className="card-modal-error">{error}</p> : null}
-            <div className="card-modal-actions">
+          <div className="shrink-0 border-t border-daf-border bg-white px-5 pt-[0.85rem] pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
+            {error ? (
+              <p className="m-0 mb-2 text-[0.8rem] text-[#b00020]">{error}</p>
+            ) : null}
+            <div className="flex justify-end gap-2">
               <button
                 type="button"
-                className="card-modal-btn-secondary"
+                className={`${btnBase} border-[#ddd] bg-[#f5f5f5] text-[#444]`}
                 onClick={onClose}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="card-modal-btn-primary"
+                className={`${btnBase} border-daf-head-dark bg-daf-head text-white`}
                 disabled={saveCard.isPending}
               >
                 {saveCard.isPending ? "Saving…" : mode === "create" ? "Create card" : "Save"}

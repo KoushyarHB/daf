@@ -1,7 +1,98 @@
 import type { ReactNode } from "react";
 
+/* ── Shared layout tokens ─────────────────────────────────────────── */
+
+export const grammarPageClass =
+  "mx-auto max-w-grammar px-5 pb-11 pt-4 md:px-7";
+
+export const grammarPageTitleClass =
+  "mb-[0.45rem] text-[1.65rem] font-bold tracking-tight text-daf-head";
+
+export const grammarPageIntroClass =
+  "m-0 text-[0.95rem] leading-[1.6] text-[#3d4a57]";
+
+export const grammarBreadcrumbClass =
+  "mb-[0.85rem] flex items-center gap-[0.4rem] text-[0.8rem] text-gray-500 [&_a]:font-semibold [&_a]:text-daf-head [&_a]:no-underline hover:[&_a]:underline";
+
+export const grammarSectionSubtitleClass =
+  "mt-[1.1rem] mb-2 text-[0.9rem] font-bold text-daf-head";
+
+export const grammarTableWrapClass =
+  "my-3 overflow-x-auto rounded-lg border border-[#e2e8f0] [-webkit-overflow-scrolling:touch]";
+
+export const grammarLessonTableClass =
+  "w-full border-collapse text-[0.84rem] [&_td]:border [&_td]:border-[#e8edf3] [&_td]:p-2 [&_td]:text-left [&_td]:align-top [&_th]:border [&_th]:border-[#e8edf3] [&_th]:bg-[#f4f8fc] [&_th]:p-2 [&_th]:text-left [&_th]:align-top [&_th]:font-bold";
+
+export const grammarLessonColCaseClass =
+  "whitespace-nowrap bg-[#f4f8fc]! p-[0.45rem_0.5rem]! text-left align-middle text-[0.74rem] font-bold text-[#333]";
+
+export const grammarColHeadClass =
+  "bg-[#f4f8fc]! p-[0.42rem_0.45rem] text-center align-middle text-[0.72rem] font-semibold text-[#6b7a8a]";
+
+export const grammarColDerClass =
+  "bg-grm-der-bg p-[0.45rem_0.4rem] text-center font-extrabold text-grm-der";
+
+export const grammarColDasClass =
+  "bg-grm-das-bg p-[0.45rem_0.4rem] text-center font-extrabold text-grm-das";
+
+export const grammarColDieClass =
+  "bg-grm-die-bg p-[0.45rem_0.4rem] text-center font-extrabold text-grm-die";
+
+export const grammarColPlClass =
+  "bg-grm-pl-bg p-[0.45rem_0.4rem] text-center font-extrabold text-grm-pl";
+
+export const grammarExampleListClass = "m-0 mt-2 list-none p-0";
+
+export const grammarExampleListSpeakClass =
+  "m-0 mt-2 flex list-none flex-col gap-[0.35rem] p-0 [&_li]:items-center";
+
+export const grammarExampleClass =
+  "flex items-start gap-[0.35rem] rounded-md border border-[#eef1f5] bg-[#fafbfd] p-[0.45rem_0.6rem] text-[0.86rem]";
+
+export const grammarExampleMarkerClass =
+  "shrink-0 text-[0.95rem] font-bold leading-[1.35] text-daf-blue";
+
+export const grammarExampleDeClass =
+  "text-[0.92rem] font-medium italic text-daf-blue";
+
+export const grammarExampleEnClass =
+  "ml-[0.3rem] text-[0.8rem] italic text-daf-gray-en";
+
+export const grammarPatternListClass =
+  "my-[0.35rem] mb-[0.65rem] pl-[1.15rem] text-[0.88rem] leading-[1.55] text-[#3d4a57] [&_li]:mb-[0.35rem]";
+
+export const grammarBackLinkClass =
+  "inline-flex items-center gap-[0.35rem] rounded-md border border-grm-der-border bg-grm-der-bg px-3 py-[0.4rem] text-[0.88rem] font-bold text-daf-head no-underline hover:bg-[#dceefb]";
+
+const GENDER_CHIP: Record<"m" | "f" | "n" | "pl", string> = {
+  m: "border-grm-der-border bg-grm-der-bg text-grm-der",
+  n: "border-grm-das-border bg-grm-das-bg text-grm-das",
+  f: "border-grm-die-border bg-grm-die-bg text-grm-die",
+  pl: "border-grm-pl-border bg-grm-pl-bg text-grm-pl",
+};
+
+const GENDER_CARD: Record<"m" | "f" | "n", string> = {
+  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_li]:text-[#2a4a6a]",
+  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_li]:text-[#2a4a38]",
+  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_li]:text-[#5a2a42]",
+};
+
+const CALLOUT: Record<"tip" | "remember" | "insight", string> = {
+  tip: "border border-[#ecd89a] border-l-4 border-l-grm-gold bg-grm-gold-bg text-[#5c4a18] [&_p]:text-inherit [&_h3]:text-[#8a6918]",
+  remember:
+    "border border-grm-der-border border-l-4 border-l-grm-der bg-grm-der-bg text-[#2a4a6a] [&_p]:text-inherit [&_h3]:text-grm-der",
+  insight:
+    "border border-[#9fd9d4] border-l-4 border-l-grm-teal bg-grm-teal-bg text-[#1a4a45] [&_p]:text-inherit [&_h3]:text-grm-teal",
+};
+
+/* ── Components ─────────────────────────────────────────────────── */
+
 export function Lead({ children }: { children: ReactNode }) {
-  return <p className="grammar-lead">{children}</p>;
+  return (
+    <p className="mb-[0.85rem] rounded-r-md border-l-[3px] border-l-grm-der bg-gradient-to-r from-grm-der-bg to-transparent p-[0.65rem_0.85rem] text-[0.92rem] leading-[1.6] text-[#2f4055]">
+      {children}
+    </p>
+  );
 }
 
 export function Section({
@@ -16,14 +107,24 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="grammar-section">
-      <header className="grammar-section__head">
-        <span className="grammar-section__num" aria-hidden="true">
+    <section
+      id={id}
+      className="mb-9 scroll-mt-[calc(var(--site-header-h,3.5rem)+0.85rem)] rounded-xl border border-[#e8edf3] bg-white p-[1.15rem_1.1rem_1.2rem] shadow-[0_2px_10px_rgba(0,0,0,0.03)]"
+    >
+      <header className="mb-[0.85rem] flex items-start gap-3 border-b-2 border-[#e8f0f8] pb-[0.65rem]">
+        <span
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-daf-head to-[#4a8fd4] text-[0.9rem] font-extrabold text-white shadow-[0_2px_6px_rgba(47,111,184,0.25)]"
+          aria-hidden="true"
+        >
           {number}
         </span>
-        <h2 className="grammar-section__title">{title}</h2>
+        <h2 className="m-0 pt-[0.15rem] text-[1.12rem] font-bold leading-snug text-[#1e3a5f]">
+          {title}
+        </h2>
       </header>
-      <div className="grammar-section__body">{children}</div>
+      <div className="[&_p]:mb-[0.65rem] [&_p]:text-[0.9rem] [&_p]:leading-[1.6] [&_p]:text-[#3d4a57] [&_p:last-child]:mb-0">
+        {children}
+      </div>
     </section>
   );
 }
@@ -38,26 +139,36 @@ export function Callout({
   children: ReactNode;
 }) {
   return (
-    <aside className={`grammar-callout grammar-callout--${variant}`}>
-      {title ? <p className="grammar-callout__title">{title}</p> : null}
-      <div className="grammar-callout__body">{children}</div>
+    <aside
+      className={`mt-4 rounded-lg p-4 text-[0.86rem] leading-[1.55] ${CALLOUT[variant]}`}
+    >
+      {title ? (
+        <p className="m-0 mb-[0.35rem] text-[0.8rem] font-extrabold tracking-wide uppercase">
+          {title}
+        </p>
+      ) : null}
+      <div className="[&_p]:m-0">{children}</div>
     </aside>
   );
 }
 
 export function Formula({ children }: { children: ReactNode }) {
-  return <p className="grammar-formula">{children}</p>;
+  return (
+    <p className="my-[0.35rem] mb-[0.65rem] rounded-md bg-[#1e3a5f] p-[0.5rem_0.75rem] font-mono text-[0.82rem] font-semibold tracking-wide text-[#e8f2fc]">
+      {children}
+    </p>
+  );
 }
 
 export function Ex({ de, en }: { de: string; en?: string }) {
   return (
-    <li className="grammar-example">
-      <span className="grammar-example__marker" aria-hidden="true">
+    <li className={grammarExampleClass}>
+      <span className={grammarExampleMarkerClass} aria-hidden="true">
         ›
       </span>
-      <span className="grammar-example__text">
-        <span className="grammar-example__de">{de}</span>
-        {en ? <span className="grammar-example__en">({en})</span> : null}
+      <span>
+        <span className={grammarExampleDeClass}>{de}</span>
+        {en ? <span className={grammarExampleEnClass}>({en})</span> : null}
       </span>
     </li>
   );
@@ -73,9 +184,15 @@ export function GenderChip({
   gender: "m" | "f" | "n" | "pl";
 }) {
   return (
-    <span className={`grammar-gender-chip grammar-gender-chip--${gender}`}>
-      <span className="grammar-gender-chip__article">{article}</span>
-      <span className="grammar-gender-chip__label">{label}</span>
+    <span
+      className={`inline-flex min-w-[4.75rem] flex-col gap-0 rounded-md border p-[0.3rem_0.55rem] ${GENDER_CHIP[gender]}`}
+    >
+      <span className="text-[0.92rem] leading-tight font-extrabold">
+        {article}
+      </span>
+      <span className="text-[0.62rem] font-semibold tracking-wide uppercase opacity-85">
+        {label}
+      </span>
     </span>
   );
 }
@@ -90,9 +207,11 @@ export function GenderPatternCard({
   children: ReactNode;
 }) {
   return (
-    <div className={`grammar-gender-card grammar-gender-card--${gender}`}>
-      <h3 className="grammar-gender-card__title">{title}</h3>
-      <ul className="grammar-gender-card__list">{children}</ul>
+    <div className={`rounded-[10px] border p-[0.85rem_0.9rem] ${GENDER_CARD[gender]}`}>
+      <h3 className="m-0 mb-[0.55rem] text-[0.82rem] font-extrabold tracking-wide uppercase">
+        {title}
+      </h3>
+      <ul className="m-0 list-none p-0">{children}</ul>
     </div>
   );
 }
@@ -105,11 +224,11 @@ export function PatternItem({
   children: ReactNode;
 }) {
   return (
-    <li className="grammar-gender-card__item">
+    <li className="flex flex-wrap items-baseline gap-1 border-b border-black/5 py-[0.32rem] text-[0.82rem] leading-[1.45] last:border-b-0">
       {suffix ? (
         <>
-          <strong className="grammar-gender-card__suffix">{suffix}</strong>
-          <span className="grammar-gender-card__sep" aria-hidden="true">
+          <strong className="font-extrabold">{suffix}</strong>
+          <span className="opacity-45" aria-hidden="true">
             —
           </span>
         </>
@@ -122,7 +241,7 @@ export function PatternItem({
 export function GenderTableColGroup() {
   return (
     <colgroup>
-      <col className="grammar-lesson-col-case" />
+      <col className="w-[2.85rem]" />
       <col />
       <col />
       <col />
@@ -133,23 +252,19 @@ export function GenderTableColGroup() {
 
 export function GenderTableHead() {
   const cols = [
-    { label: "m.", className: "grammar-col--der" },
-    { label: "n.", className: "grammar-col--das" },
-    { label: "f.", className: "grammar-col--die" },
-    { label: "pl.", className: "grammar-col--die-pl" },
+    { label: "m.", className: grammarColHeadClass },
+    { label: "n.", className: grammarColHeadClass },
+    { label: "f.", className: grammarColHeadClass },
+    { label: "pl.", className: grammarColHeadClass },
   ] as const;
 
   return (
     <tr>
-      <th scope="col" className="grammar-lesson-col-case">
+      <th scope="col" className={grammarLessonColCaseClass}>
         Case
       </th>
       {cols.map((col) => (
-        <th
-          key={col.className}
-          scope="col"
-          className={`grammar-col ${col.className}`}
-        >
+        <th key={col.label} scope="col" className={col.className}>
           {col.label}
         </th>
       ))}
@@ -168,11 +283,26 @@ export function QuestionTypeCard({
   variant?: "w" | "yesno";
   children: ReactNode;
 }) {
+  const borderTop =
+    variant === "w" ? "border-t-[3px] border-t-grm-der" : "border-t-[3px] border-t-grm-teal";
+  const formulaClass =
+    variant === "w"
+      ? "border border-grm-der-border bg-grm-der-bg text-[#1e4a7a]"
+      : "border border-[#9fd9d4] bg-grm-teal-bg text-[#1a5a54]";
+
   return (
-    <div className={`grammar-qtype-card grammar-qtype-card--${variant}`}>
-      <h3 className="grammar-qtype-card__title">{title}</h3>
-      <p className="grammar-qtype-card__formula">{formula}</p>
-      {children}
+    <div
+      className={`rounded-[10px] border border-[#d8e4f0] bg-white p-[0.85rem_0.95rem] shadow-[0_1px_3px_rgba(30,58,95,0.06)] ${borderTop}`}
+    >
+      <h3 className="m-0 mb-[0.45rem] text-[0.92rem] font-extrabold text-daf-head">
+        {title}
+      </h3>
+      <p
+        className={`m-0 mb-[0.55rem] rounded-md p-[0.45rem_0.6rem] text-[0.8rem] font-semibold leading-snug tracking-wide ${formulaClass}`}
+      >
+        {formula}
+      </p>
+      <div className="[&_li]:border-[#e8eef5] [&_li]:bg-[#f8fafc]">{children}</div>
     </div>
   );
 }

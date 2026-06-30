@@ -15,6 +15,18 @@ type VocabListProps = {
   onRemove?: (card: EnrichedVocabCard) => void;
 };
 
+const listClass =
+  "mb-4 p-0 list-none bg-white border border-daf-border rounded-md";
+
+const listItemClass =
+  "flex items-center gap-[0.45rem] py-[0.42rem] px-[0.65rem] border-b border-[#eee] last:border-b-0";
+
+const listLinkClass =
+  "group flex-1 min-w-0 flex items-baseline gap-[0.55rem] text-inherit no-underline text-[0.95rem] bg-transparent border-none p-0 cursor-pointer text-left font-inherit";
+
+const listManageBtnClass =
+  "shrink-0 ml-[0.35rem] py-[0.2rem] px-[0.45rem] border border-[#c8d8ea] rounded bg-[#f7fafd] text-daf-head text-[0.68rem] font-semibold cursor-pointer";
+
 export default function VocabList({
   cards,
   visibleIds,
@@ -29,7 +41,7 @@ export default function VocabList({
   return (
     <ol
       id="vocab-list"
-      className={`vocab-list view-pane${hidden ? " is-hidden" : ""}`}
+      className={`${listClass}${hidden ? " hidden" : ""}`}
     >
       {cards.map((card) => {
         const isHidden = !visibleIds.has(card.domId);
@@ -37,7 +49,7 @@ export default function VocabList({
         return (
           <li
             key={card.domId}
-            className={`vocab-list-item${isHidden ? " is-hidden" : ""}${studied ? " is-studied" : ""}`}
+            className={`${listItemClass}${isHidden ? " hidden" : ""}`}
             data-card-id={card.domId}
             data-deck-no={card.deckNo}
             data-tags={card.tags?.map((t) => t.slug).join(",") ?? ""}
@@ -53,18 +65,24 @@ export default function VocabList({
             ) : null}
             <button
               type="button"
-              className="vocab-list-link"
+              className={listLinkClass}
               onClick={() => onGoToCard(card.domId)}
             >
-              <span className="vocab-list-no">{card.deckNo}</span>
-              <span className="vocab-list-lemma">{card.listLabel}</span>
+              <span className="font-bold text-[#888] min-w-8 shrink-0">
+                {card.deckNo}
+              </span>
+              <span
+                className={`font-semibold text-[#222] group-hover:text-daf-head group-hover:underline${studied ? " text-[#555]" : ""}`}
+              >
+                {card.listLabel}
+              </span>
               {card.tags?.length ? (
-                <span className="vocab-list-meta">
+                <span className="text-[0.72rem] text-[#888] shrink-0">
                   {card.tags.map((t) => t.label).join(", ")}
                 </span>
               ) : null}
               {card.pos ? (
-                <span className="vocab-list-meta vocab-list-pos">
+                <span className="text-[0.72rem] text-daf-head font-semibold shrink-0">
                   {posLabel(card.pos)}
                 </span>
               ) : null}
@@ -72,7 +90,7 @@ export default function VocabList({
             {manageEnabled && onEdit ? (
               <button
                 type="button"
-                className="vocab-list-manage-btn"
+                className={listManageBtnClass}
                 onClick={() => onEdit(card)}
                 aria-label={`${cardEditLabel(card)} card`}
               >
@@ -82,7 +100,7 @@ export default function VocabList({
             {manageEnabled && onRemove ? (
               <button
                 type="button"
-                className="vocab-list-manage-btn vocab-list-manage-btn--danger"
+                className={`${listManageBtnClass} text-[#a33] border-[#e8c8c8] bg-[#fff8f8]`}
                 onClick={() => onRemove(card)}
                 aria-label={`${cardRemoveLabel(card)} card`}
               >

@@ -11,12 +11,17 @@ export default function PrimaryLayout({ children }: LayoutProps) {
   return (
     <ToastProvider>
       <LightboxProvider>
-        <div className="site-shell">
+        <div className="flex min-h-dvh flex-col">
           <Navbar />
-          <main style={{ viewTransitionName: "main-content" }} className="site-main">
+          <main
+            style={{ viewTransitionName: "main-content" }}
+            className="mt-5 flex-[1_0_auto]"
+          >
             {children}
           </main>
-          <footer className="site-footer">daf · Deutsch vocabulary</footer>
+          <footer className="mt-auto shrink-0 border-t border-[#ececec] py-6 pb-4 text-xs text-[#999]">
+            daf · Deutsch vocabulary
+          </footer>
         </div>
       </LightboxProvider>
     </ToastProvider>

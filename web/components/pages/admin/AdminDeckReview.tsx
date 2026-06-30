@@ -15,6 +15,17 @@ import {
 } from "@/hooks/admin";
 import type { AdminDeckDto } from "@/lib/api/dto";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+  tagsTableActionsClass,
+  tagsTableActionsColClass,
+  tagsTableClass,
+  tagsTableThTdClass,
+  tagsTableWrapClass,
+} from "@/lib/styles/tagsPage";
 
 type AdminDeckReviewProps = {
   deckId: string;
@@ -117,15 +128,15 @@ export default function AdminDeckReview({
   const nameDirty = deckName.trim() !== deck.name;
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">Review deck</h1>
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>Review deck</h1>
         <Link href="/admin/publish" className={btnSecondary}>
           ← Back
         </Link>
       </div>
 
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         Owner: {deck.ownerName ? `${deck.ownerName} — ` : ""}
         {deck.ownerEmail}. Edit the deck name and cards before publishing to the
         community catalog.
@@ -243,23 +254,23 @@ export default function AdminDeckReview({
             </p>
           </div>
         ) : (
-          <div className="tags-table-wrap -mx-1 px-1">
-            <table className="tags-table">
+          <div className={`${tagsTableWrapClass} -mx-1 px-1`}>
+            <table className={tagsTableClass}>
               <thead>
                 <tr>
-                  <th scope="col">Headword</th>
-                  <th scope="col">Gloss</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col" className={tagsTableThTdClass}>Headword</th>
+                  <th scope="col" className={tagsTableThTdClass}>Gloss</th>
+                  <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {cards.map((card) => (
                   <tr key={card.domId}>
-                    <td className="font-medium text-slate-900">{card.head}</td>
-                    <td className="text-slate-600">
+                    <td className={`${tagsTableThTdClass} font-medium text-slate-900`}>{card.head}</td>
+                    <td className={`${tagsTableThTdClass} text-slate-600`}>
                       {(card.gloss ?? []).join("; ") || "—"}
                     </td>
-                    <td className="tags-table__actions">
+                    <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
                       <button
                         type="button"
                         className={btnSecondary}

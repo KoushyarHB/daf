@@ -14,6 +14,9 @@ type GrammarSpeakButtonProps = {
   compact?: boolean;
 };
 
+const BTN_BASE =
+  "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-daf-head/25 bg-white p-0 text-daf-blue transition-[background,border-color,transform] duration-150 hover:border-daf-head/45 hover:bg-[#eef4fb] active:scale-[0.94] disabled:cursor-wait disabled:opacity-55 [&_svg]:ml-px";
+
 export default function GrammarSpeakButton({
   german,
   speakText: speakTextOverride,
@@ -28,7 +31,9 @@ export default function GrammarSpeakButton({
     speakTextOverride?.trim() ||
     speakTextForHead(german) ||
     german.trim();
-  const cls = compact ? "grammar-speak-btn" : "grammar-speak-btn grammar-speak-btn--lg";
+  const cls = compact
+    ? `${BTN_BASE} h-[1.35rem] w-[1.35rem] [&_svg]:h-[0.58rem] [&_svg]:w-[0.58rem]`
+    : `${BTN_BASE} h-8 w-8 [&_svg]:h-[0.85rem] [&_svg]:w-[0.85rem]`;
 
   async function play() {
     if (!speakText || generateAudio.isPending) return;

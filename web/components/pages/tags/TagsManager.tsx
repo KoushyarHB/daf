@@ -13,6 +13,25 @@ import {
   type TagRow,
 } from "@/hooks/tags";
 import { canModifyTag } from "@/lib/tags/permissions";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  deckHintClass,
+  systemBadgeClass,
+  tagsPageBackClass,
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+  tagsPageNewLinkClass,
+  tagsTableActionGapClass,
+  tagsTableActionLinkClass,
+  tagsTableActionsClass,
+  tagsTableActionsColClass,
+  tagsTableBtnDangerClass,
+  tagsTableClass,
+  tagsTableMutedClass,
+  tagsTableThTdClass,
+  tagsTableWrapClass,
+} from "@/lib/styles/tagsPage";
 
 type TagsManagerProps = {
   initialTags?: TagRow[];
@@ -52,44 +71,44 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
 
   if (loading) {
     return (
-      <div className="tags-page">
-        <div className="tags-page__header">
-          <h1 className="tags-page__title">Tags</h1>
-          <Link href="/tags/new" className="tags-page__new">
+      <div className={tagsPageClass}>
+        <div className={tagsPageHeaderClass}>
+          <h1 className={tagsPageTitleClass}>Tags</h1>
+          <Link href="/tags/new" className={tagsPageNewLinkClass}>
             + New tag
           </Link>
         </div>
-        <p className="deck-hint">Loading tags…</p>
+        <p className={deckHintClass}>Loading tags…</p>
       </div>
     );
   }
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">Tags</h1>
-        <Link href="/tags/new" className="tags-page__new">
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>Tags</h1>
+        <Link href="/tags/new" className={tagsPageNewLinkClass}>
           + New tag
         </Link>
       </div>
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         Tags organize cards and import bundles. Your tags are personal; tags you
-        create as super admin are marked <span className="system-badge">system</span>{" "}
+        create as super admin are marked <span className={systemBadgeClass}>system</span>{" "}
         and can only be edited by super admins.
       </p>
 
       {tags.length === 0 ? (
-        <p className="deck-hint">No tags yet.</p>
+        <p className={deckHintClass}>No tags yet.</p>
       ) : (
-        <div className="tags-table-wrap">
-        <table className="tags-table">
+        <div className={tagsTableWrapClass}>
+        <table className={tagsTableClass}>
           <thead>
             <tr>
-              <th scope="col">Label</th>
-              <th scope="col">Slug</th>
-              <th scope="col">Type</th>
-              <th scope="col">Cards</th>
-              <th scope="col">Actions</th>
+              <th scope="col" className={tagsTableThTdClass}>Label</th>
+              <th scope="col" className={tagsTableThTdClass}>Slug</th>
+              <th scope="col" className={tagsTableThTdClass}>Type</th>
+              <th scope="col" className={tagsTableThTdClass}>Cards</th>
+              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -97,27 +116,30 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
               const editable = canEdit(tag);
               return (
                 <tr key={tag.id}>
-                  <td>{tag.label}</td>
-                  <td>
+                  <td className={tagsTableThTdClass}>{tag.label}</td>
+                  <td className={tagsTableThTdClass}>
                     <code>{tag.slug}</code>
                   </td>
-                  <td>
+                  <td className={tagsTableThTdClass}>
                     {tag.isSystem ? (
-                      <span className="system-badge">system</span>
+                      <span className={systemBadgeClass}>system</span>
                     ) : (
                       "user"
                     )}
                   </td>
-                  <td>{tag.cardCount ?? 0}</td>
-                  <td className="tags-table__actions">
+                  <td className={tagsTableThTdClass}>{tag.cardCount ?? 0}</td>
+                  <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
                     {editable ? (
                       <>
-                        <Link href={`/tags/${encodeURIComponent(tag.id)}/edit`}>
+                        <Link
+                          href={`/tags/${encodeURIComponent(tag.id)}/edit`}
+                          className={tagsTableActionLinkClass}
+                        >
                           Edit
                         </Link>
                         <button
                           type="button"
-                          className="tags-table__btn-danger"
+                          className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
                           onClick={() => setDeleteTarget(tag)}
                           disabled={deleteTag.isPending && deleteTarget?.id === tag.id}
                         >
@@ -127,7 +149,7 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
                         </button>
                       </>
                     ) : (
-                      <span className="tags-table__muted">—</span>
+                      <span className={tagsTableMutedClass}>—</span>
                     )}
                   </td>
                 </tr>
@@ -138,8 +160,8 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
         </div>
       )}
 
-      <p className="tags-page__back">
-        <Link href="/">← Back to vocabulary</Link>
+      <p className={tagsPageBackClass}>
+        <Link href="/" className="text-daf-head no-underline hover:underline">← Back to vocabulary</Link>
       </p>
 
       <ConfirmModal

@@ -18,6 +18,11 @@ type DeckPaginationProps = {
   onLast: () => void;
 };
 
+const pageEdgeClass =
+  "inline-flex items-center justify-center w-7 h-7 p-0 border-none rounded bg-transparent text-daf-head cursor-pointer transition-[color,background] duration-150 shrink-0 hover:enabled:bg-[#f1f6fc] disabled:cursor-default disabled:text-[#b8c9de] [&_svg]:w-4 [&_svg]:h-4 [&_svg]:block [&_svg]:shrink-0";
+
+const pageEdgeJumpClass = "w-auto min-w-7 px-[0.1rem] [&_svg]:w-[1.35rem]";
+
 export default function DeckPagination({
   currentPage,
   totalPages,
@@ -44,36 +49,43 @@ export default function DeckPagination({
   }
 
   return (
-    <nav className="deck-pagination" id="pagination" aria-label="Pagination">
-      <div className="deck-pagination-inner">
-        <div className="deck-pagination-size" id="page-size-slot">
-          <div className="page-size-desktop-only">
+    <nav
+      className="sticky top-[var(--site-header-h,4.55rem)] z-90 mb-[0.85rem] py-[0.45rem] px-[0.55rem] bg-white border border-daf-border rounded-md"
+      id="pagination"
+      aria-label="Pagination"
+    >
+      <div className="relative flex items-center justify-center min-h-[2.1rem] py-[0.05rem] max-sm:min-h-[1.85rem]">
+        <div
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-[1] shrink-0 max-sm:hidden"
+          id="page-size-slot"
+        >
+          <div className="hidden sm:block">
             <PageSizeControl value={pageSize} onChange={onPageSizeChange} />
           </div>
         </div>
-        <div className="deck-pagination-nav">
+        <div className="flex items-center justify-center gap-[0.2rem]">
           <button
             type="button"
             id="page-first"
-            className="page-edge page-edge--jump"
+            className={`${pageEdgeClass} ${pageEdgeJumpClass}`}
             disabled={atStart}
             aria-label="First page"
             onClick={onFirst}
           >
-            <ChevronDoubleLeftIcon className="heroicon heroicon--double" aria-hidden />
+            <ChevronDoubleLeftIcon aria-hidden />
           </button>
           <button
             type="button"
             id="page-prev"
-            className="page-edge"
+            className={pageEdgeClass}
             disabled={atStart}
             aria-label="Previous page"
             onClick={onPrev}
           >
-            <ChevronLeftIcon className="heroicon" aria-hidden />
+            <ChevronLeftIcon aria-hidden />
           </button>
           <span
-            className="page-current"
+            className="text-[0.92rem] font-bold text-daf-head min-w-7 text-center leading-none px-[0.15rem]"
             id="page-current"
             aria-live="polite"
             {...(totalItems > 0 && sizeNum !== 0
@@ -85,25 +97,22 @@ export default function DeckPagination({
           <button
             type="button"
             id="page-next"
-            className="page-edge"
+            className={pageEdgeClass}
             disabled={atEnd}
             aria-label="Next page"
             onClick={onNext}
           >
-            <ChevronRightIcon className="heroicon" aria-hidden />
+            <ChevronRightIcon aria-hidden />
           </button>
           <button
             type="button"
             id="page-last"
-            className="page-edge page-edge--jump"
+            className={`${pageEdgeClass} ${pageEdgeJumpClass}`}
             disabled={atEnd}
             aria-label="Last page"
             onClick={onLast}
           >
-            <ChevronDoubleRightIcon
-              className="heroicon heroicon--double"
-              aria-hidden
-            />
+            <ChevronDoubleRightIcon aria-hidden />
           </button>
         </div>
       </div>

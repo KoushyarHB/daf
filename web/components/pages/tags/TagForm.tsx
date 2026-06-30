@@ -8,6 +8,19 @@ import { useToast } from "@/components/shared/toast/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { useSaveTagMutation } from "@/hooks/tags";
 import { slugifyLabel } from "@/lib/tags/slug";
+import {
+  formInputClass,
+  formPlaceholderClass,
+} from "@/lib/styles/formControls";
+import {
+  formLabelClass,
+  tagFormActionsClass,
+  tagFormCancelClass,
+  tagFormClass,
+  tagFormErrorClass,
+  tagFormSubmitClass,
+  tagFormTitleClass,
+} from "@/lib/styles/tagsPage";
 
 type TagFormProps = {
   mode: "create" | "edit";
@@ -53,14 +66,15 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
   }
 
   return (
-    <form className="tag-form" onSubmit={onSubmit}>
-      <h1 className="tag-form__title">
+    <form className={tagFormClass} onSubmit={onSubmit}>
+      <h1 className={tagFormTitleClass}>
         {mode === "create" ? "New tag" : "Edit tag"}
       </h1>
 
-      <label>
+      <label className={formLabelClass}>
         Label
         <input
+          className={`${formInputClass} ${formPlaceholderClass}`}
           value={label}
           onChange={(e) => onLabelChange(e.target.value)}
           required
@@ -68,9 +82,10 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         />
       </label>
 
-      <label>
+      <label className={formLabelClass}>
         Slug
         <input
+          className={`${formInputClass} ${formPlaceholderClass}`}
           value={slug}
           onChange={(e) => {
             setSlugTouched(true);
@@ -82,13 +97,13 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         />
       </label>
 
-      {error ? <p className="tag-form__error">{error}</p> : null}
+      {error ? <p className={tagFormErrorClass}>{error}</p> : null}
 
-      <div className="tag-form__actions">
-        <Link href="/tags" className="tag-form__cancel">
+      <div className={tagFormActionsClass}>
+        <Link href="/tags" className={tagFormCancelClass}>
           Cancel
         </Link>
-        <button type="submit" disabled={saveTag.isPending}>
+        <button type="submit" className={tagFormSubmitClass} disabled={saveTag.isPending}>
           {saveTag.isPending
             ? "Saving…"
             : mode === "create"

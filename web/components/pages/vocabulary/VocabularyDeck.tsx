@@ -266,7 +266,7 @@ export default function VocabularyDeck({
 
   if (error) {
     return (
-      <p className="deck-error" role="alert">
+      <p className="mb-3 text-[0.9rem] text-[#444]" role="alert">
         {error}
         {error.includes("authentication") || error.includes("Unauthorized") ? (
           <>
@@ -281,8 +281,11 @@ export default function VocabularyDeck({
   return (
     <>
       {!progressEnabled && sessionStatus !== "loading" ? (
-        <p className="deck-hint">
-          <Link href="/login" className="deck-hint-link">
+        <p className="mb-[0.85rem] py-[0.45rem] pl-[0.6rem] text-[0.78rem] leading-normal text-daf-gray-en border-l-2 border-daf-border">
+          <Link
+            href="/login"
+            className="text-daf-head font-medium no-underline hover:underline hover:underline-offset-2"
+          >
             Sign in
           </Link>{" "}
           to create cards, save study progress, and manage your deck.
@@ -290,15 +293,25 @@ export default function VocabularyDeck({
       ) : null}
 
       {progressEnabled ? (
-        <div className="deck-manage-bar">
-          <button type="button" className="deck-add-card-btn" onClick={openCreate}>
+        <div className="flex flex-wrap items-center gap-[0.65rem] mb-[0.65rem]">
+          <button
+            type="button"
+            className="appearance-none py-[0.35rem] px-[0.7rem] font-inherit text-[0.8rem] font-semibold text-white bg-daf-head border border-daf-head-dark rounded cursor-pointer hover:bg-daf-head-dark"
+            onClick={openCreate}
+          >
             + Add card
           </button>
-          <Link href="/decks" className="deck-import-link">
+          <Link
+            href="/decks"
+            className="text-[0.82rem] font-semibold text-daf-head no-underline hover:underline"
+          >
             My decks
           </Link>
           {importStatus && !importStatus.showImportOnHome ? (
-            <Link href="/import-community-cards" className="deck-import-link">
+            <Link
+              href="/import-community-cards"
+              className="text-[0.82rem] font-semibold text-daf-head no-underline hover:underline"
+            >
               Import community cards
             </Link>
           ) : null}
@@ -321,7 +334,7 @@ export default function VocabularyDeck({
         progressEnabled={progressEnabled}
         countText={loading ? "Loading…" : countText}
         pageSizeControl={
-          <div className="page-size-mobile-only">
+          <div className="sm:hidden">
             <PageSizeControl
               value={filters.pageSize}
               onChange={(v) => updateFilters({ pageSize: v })}
@@ -369,9 +382,7 @@ export default function VocabularyDeck({
         />
       ) : (
         <div
-          className={
-            refreshing ? "deck-results deck-results--refreshing" : "deck-results"
-          }
+          className={refreshing ? "opacity-55 pointer-events-none" : undefined}
         >
           <VocabList
             cards={items}
@@ -387,7 +398,7 @@ export default function VocabularyDeck({
 
           <div
             id="deck"
-            className={`view-pane${filters.view !== "cards" ? " is-hidden" : ""}`}
+            className={filters.view !== "cards" ? "hidden" : undefined}
           >
             {items.map((card) => (
               <VocabCard

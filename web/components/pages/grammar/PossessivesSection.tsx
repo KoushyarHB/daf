@@ -7,6 +7,10 @@ import {
   GenderTableHead,
   Callout,
   Lead,
+  grammarExampleListSpeakClass,
+  grammarLessonColCaseClass,
+  grammarLessonTableClass,
+  grammarTableWrapClass,
 } from "@/components/pages/grammar/grammar-ui";
 import {
   MEIN_ROWS,
@@ -25,16 +29,20 @@ function PossessiveStemCard({
   hint?: string;
 }) {
   return (
-    <div className="grammar-pronoun-card">
-      <div className="grammar-pronoun-card__head">
-        <span className="grammar-pronoun-card__de">{german}</span>
+    <div className="rounded-md border border-[#e8eef5] bg-[#f8fafc] p-[0.28rem_0.38rem]">
+      <div className="flex flex-wrap items-center gap-[0.2rem]">
+        <span className="text-[0.8rem] leading-tight font-extrabold text-[#2f3d4d]">
+          {german}
+        </span>
         {hint ? (
-          <span className="grammar-pronoun-card__hint">{hint}</span>
+          <span className="rounded-full bg-[#eef2f7] px-[0.28rem] py-px text-[0.56rem] font-bold tracking-wide text-[#7a8794] uppercase">
+            {hint}
+          </span>
         ) : null}
         <GrammarSpeakButton german={german} />
       </div>
-      <p className="grammar-pronoun-card__gloss">
-        <span className="grammar-pronoun-card__en">{english}</span>
+      <p className="mt-[0.1rem] mb-0 text-[0.64rem] leading-snug text-[#5a6573]">
+        <span>{english}</span>
       </p>
     </div>
   );
@@ -42,11 +50,11 @@ function PossessiveStemCard({
 
 function PossessiveFormCell({ stem, suffix }: PossessiveForm) {
   return (
-    <td className="grammar-poss-cell">
-      <span className="grammar-poss-form">
-        <span className="grammar-poss-form__stem">{stem}</span>
+    <td className="p-[0.45rem_0.4rem] text-center align-middle even:bg-[#fafbfd]">
+      <span className="font-semibold whitespace-nowrap italic">
+        <span className="text-[#2f3d4d]">{stem}</span>
         {suffix ? (
-          <span className="grammar-poss-form__suffix">{suffix}</span>
+          <span className="font-extrabold text-[#b8860b]">{suffix}</span>
         ) : null}
       </span>
     </td>
@@ -62,15 +70,18 @@ export default function PossessivesSection() {
       </Lead>
 
       <section
-        className="grammar-pronoun-ref grammar-pronoun-ref--poss"
+        className="mt-[0.45rem] mb-[0.7rem] rounded-lg border border-[#d8e4f0] bg-white p-[0.5rem_0.6rem] shadow-[0_1px_2px_rgba(30,58,95,0.04)]"
         aria-labelledby="grammar-poss-stems-title"
       >
-        <header className="grammar-pronoun-ref__head">
-          <h3 id="grammar-poss-stems-title" className="grammar-pronoun-ref__title">
+        <header className="mb-[0.4rem]">
+          <h3
+            id="grammar-poss-stems-title"
+            className="m-0 text-[0.82rem] font-extrabold text-daf-head"
+          >
             Eight stems
           </h3>
         </header>
-        <div className="grammar-pronoun-ref__grid">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(6.5rem,1fr))] gap-[0.28rem]">
           {POSSESSIVE_STEMS.map((stem) => (
             <PossessiveStemCard
               key={`${stem.german}-${stem.english}`}
@@ -80,23 +91,25 @@ export default function PossessivesSection() {
         </div>
       </section>
 
-      <p className="grammar-poss-paradigm">
-        Paradigm: <em>mein</em>{" "}
-        <span className="grammar-poss-paradigm__en">(my)</span>
+      <p className="my-[0.35rem] mb-[0.45rem] text-[0.82rem] font-semibold text-[#2f3d4d]">
+        Paradigm: <em className="font-extrabold text-daf-head">mein</em>{" "}
+        <span className="text-[0.76rem] font-normal italic text-daf-gray-en">
+          (my)
+        </span>
       </p>
 
-      <div className="grammar-table-wrap">
-        <table className="grammar-lesson-table grammar-lesson-table--poss">
+      <div className={grammarTableWrapClass}>
+        <table className={grammarLessonTableClass}>
           <GenderTableColGroup />
           <thead>
             <GenderTableHead />
           </thead>
           <tbody>
             {MEIN_ROWS.map((row) => (
-              <tr key={row.case}>
+              <tr key={row.case} className="even:[&_th]:bg-[#fafbfd]">
                 <th
                   scope="row"
-                  className="grammar-lesson-col-case"
+                  className={`${grammarLessonColCaseClass} even:bg-[#fafbfd]!`}
                   title={row.caseTitle}
                 >
                   {row.case}
@@ -111,7 +124,7 @@ export default function PossessivesSection() {
         </table>
       </div>
 
-      <ul className="grammar-example-list grammar-example-list--speak">
+      <ul className={grammarExampleListSpeakClass}>
         {POSSESSIVE_EXAMPLES.map((ex) => (
           <GrammarEx key={ex.german} de={ex.german} en={ex.english} />
         ))}

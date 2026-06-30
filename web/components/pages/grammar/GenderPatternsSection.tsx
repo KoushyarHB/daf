@@ -8,6 +8,12 @@ import {
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
 import { Callout, GenderChip } from "@/components/pages/grammar/grammar-ui";
 
+const GENDER_PANEL: Record<string, string> = {
+  m: "border-grm-der-border bg-grm-der-bg text-grm-der [&_h3]:text-inherit [&_.rule-label]:text-[#2a4a6a]",
+  n: "border-grm-das-border bg-grm-das-bg text-grm-das [&_h3]:text-inherit [&_.rule-label]:text-[#2a4a38]",
+  f: "border-grm-die-border bg-grm-die-bg text-grm-die [&_h3]:text-inherit [&_.rule-label]:text-[#5a2a42]",
+};
+
 function GenderWord({
   german,
   english,
@@ -16,9 +22,11 @@ function GenderWord({
   english: string;
 }) {
   return (
-    <span className="grammar-gender-word">
-      <span className="grammar-gender-word__de">{german}</span>
-      <span className="grammar-gender-word__en">({english})</span>
+    <span className="inline-flex max-w-full items-center gap-[0.2rem] rounded-[5px] border border-black/6 bg-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight">
+      <span className="font-semibold whitespace-nowrap italic">{german}</span>
+      <span className="text-[0.68rem] whitespace-nowrap italic text-daf-gray-en">
+        ({english})
+      </span>
       <GrammarSpeakButton german={german} />
     </span>
   );
@@ -27,51 +35,53 @@ function GenderWord({
 export default function GenderPatternsSection() {
   return (
     <>
-      <div className="grammar-gender-chip-row">
+      <div className="my-2 flex flex-wrap gap-[0.35rem]">
         <GenderChip article="der" label="Maskulinum" gender="m" />
         <GenderChip article="das" label="Neutrum" gender="n" />
         <GenderChip article="die" label="Femininum" gender="f" />
         <GenderChip article="die" label="Plural (all genders)" gender="pl" />
       </div>
 
-      <div className="grammar-starter-examples">
+      <div className="mb-[0.45rem] flex flex-wrap gap-[0.25rem_0.35rem]">
         {GENDER_STARTER_EXAMPLES.map((ex) => (
           <GenderWord key={ex.german} german={ex.german} english={ex.english} />
         ))}
       </div>
 
-      <div className="grammar-gender-stack">
+      <div className="my-[0.4rem] mb-[0.6rem] flex flex-col gap-2">
         {GENDER_PATTERN_GROUPS.map((group) => (
           <section
             key={group.gender}
-            className={`grammar-gender-panel grammar-gender-panel--${group.gender}`}
+            className={`overflow-hidden rounded-lg border ${GENDER_PANEL[group.gender]}`}
           >
-            <header className="grammar-gender-panel__head">
-              <h3 className="grammar-gender-panel__title">{group.title}</h3>
-              <span className="grammar-gender-panel__article">{group.subtitle}</span>
+            <header className="flex items-baseline justify-between gap-2 border-b border-black/6 px-[0.55rem] py-[0.35rem]">
+              <h3 className="m-0 text-[0.78rem] font-extrabold tracking-wide uppercase">
+                {group.title}
+              </h3>
+              <span className="text-[0.9rem] font-extrabold">{group.subtitle}</span>
             </header>
 
-            <ul className="grammar-gender-panel__rules">
+            <ul className="m-0 list-none px-[0.45rem] py-[0.2rem] pb-[0.35rem]">
               {group.rules.map((rule) => (
-                <li key={rule.id} className="grammar-gender-rule">
-                  <div className="grammar-gender-rule__row">
+                <li key={rule.id} className="border-b border-black/5 py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
+                  <div className="flex flex-col gap-[0.15rem] min-[36rem]:flex-row min-[36rem]:items-start min-[36rem]:gap-2">
                     <span
-                      className="grammar-gender-rule__label"
+                      className="rule-label max-w-full shrink-0 text-[0.72rem] leading-tight font-bold min-[36rem]:w-[9.5rem]"
                       title={rule.hint}
                     >
                       {rule.label}
-                      <span className="grammar-gender-rule__accuracy">
+                      <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-[#4a5564]">
                         {rule.accuracy}
                       </span>
                     </span>
-                    <div className="grammar-gender-rule__examples">
-                    {rule.examples.map((ex) => (
-                      <GenderWord
-                        key={ex.german}
-                        german={ex.german}
-                        english={ex.english}
-                      />
-                    ))}
+                    <div className="flex min-w-0 flex-1 flex-wrap gap-[0.2rem_0.3rem]">
+                      {rule.examples.map((ex) => (
+                        <GenderWord
+                          key={ex.german}
+                          german={ex.german}
+                          english={ex.english}
+                        />
+                      ))}
                     </div>
                   </div>
                 </li>

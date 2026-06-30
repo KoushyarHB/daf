@@ -5,7 +5,13 @@ import {
   type DeckFilters,
 } from "@/utils/deckFilters";
 import { hasActiveDeckFilters } from "@/utils/hasActiveDeckFilters";
-import { labelClass } from "@/utils/labelClass";
+import {
+  deckClearFiltersClass,
+  deckFilterSelectClass,
+  labelClass,
+  pageSizeLabelClass,
+  pageSizeSelectClass,
+} from "@/utils/labelClass";
 
 export {
   DEFAULT_DECK_FILTER_VALUES,
@@ -45,13 +51,18 @@ export default function DeckControls({
   });
 
   return (
-    <div className="deck-controls" role="region" aria-label="Filter and sort">
-      <div className="deck-controls-row">
+    <div
+      className="mb-[0.45rem] py-[0.45rem] px-[0.55rem] bg-white border border-daf-border rounded-md"
+      role="region"
+      aria-label="Filter and sort"
+    >
+      <div className="flex flex-wrap gap-x-[0.55rem] gap-y-[0.35rem] items-end">
         {userDecks.length > 0 ? (
           <label className={labelClass(filters.deckId !== "all")}>
             My deck{" "}
             <select
               id="filter-deck"
+              className={deckFilterSelectClass(filters.deckId !== "all")}
               value={filters.deckId}
               onChange={(e) => onChange({ deckId: e.target.value })}
             >
@@ -68,6 +79,7 @@ export default function DeckControls({
           Tag{" "}
           <select
             id="filter-tag"
+            className={deckFilterSelectClass(filters.tag !== "all")}
             value={filters.tag}
             onChange={(e) => onChange({ tag: e.target.value })}
           >
@@ -83,6 +95,7 @@ export default function DeckControls({
           Level{" "}
           <select
             id="filter-level"
+            className={deckFilterSelectClass(filters.level !== "all")}
             value={filters.level}
             onChange={(e) => onChange({ level: e.target.value })}
           >
@@ -98,6 +111,7 @@ export default function DeckControls({
           Type{" "}
           <select
             id="filter-pos"
+            className={deckFilterSelectClass(filters.pos !== "all")}
             value={filters.pos}
             onChange={(e) => onChange({ pos: e.target.value })}
           >
@@ -114,6 +128,7 @@ export default function DeckControls({
             Studied{" "}
             <select
               id="filter-studied"
+              className={deckFilterSelectClass(filters.studied !== "all")}
               value={filters.studied}
               onChange={(e) =>
                 onChange({ studied: e.target.value as StudiedFilter })
@@ -133,6 +148,9 @@ export default function DeckControls({
           Sort{" "}
           <select
             id="sort-order"
+            className={deckFilterSelectClass(
+              filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort,
+            )}
             value={filters.sort}
             onChange={(e) =>
               onChange({ sort: e.target.value as SortOrder })
@@ -148,6 +166,7 @@ export default function DeckControls({
           View{" "}
           <select
             id="view-mode"
+            className={deckFilterSelectClass(filters.view !== "cards")}
             value={filters.view}
             onChange={(e) => onChange({ view: e.target.value as ViewMode })}
           >
@@ -155,13 +174,15 @@ export default function DeckControls({
             <option value="list">List</option>
           </select>
         </label>
-        <div id="page-size-controls-slot">{pageSizeControl}</div>
+        <div id="page-size-controls-slot" className="contents">
+          {pageSizeControl}
+        </div>
         {onClearFilters ? (
           <label className={labelClass(filtersActive)}>
             Reset{" "}
             <button
               type="button"
-              className="deck-clear-filters"
+              className={deckClearFiltersClass(filtersActive)}
               onClick={onClearFilters}
               disabled={!filtersActive}
               aria-label="Clear all filters"
@@ -171,7 +192,11 @@ export default function DeckControls({
           </label>
         ) : null}
       </div>
-      <p className="deck-count" id="deck-count" aria-live="polite">
+      <p
+        className="mt-[0.3rem] mb-0 text-[0.72rem] text-[#666]"
+        id="deck-count"
+        aria-live="polite"
+      >
         {countText}
       </p>
     </div>
@@ -188,9 +213,14 @@ export function PageSizeControl({
   id?: string;
 }) {
   return (
-    <label id="page-size-label" className="page-size-control">
+    <label id="page-size-label" className={pageSizeLabelClass}>
       Per page{" "}
-      <select id={id} value={value} onChange={(e) => onChange(e.target.value)}>
+      <select
+        id={id}
+        className={pageSizeSelectClass}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>

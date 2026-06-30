@@ -1,3 +1,4 @@
+import { deckHintClass } from "@/lib/styles/tagsPage";
 import { getAuthSession } from "@/lib/auth/require-auth";
 import { isSuperAdminRole } from "@/lib/auth/roles";
 import AdminUsersManager from "@/components/pages/admin/AdminUsersManager";
@@ -9,7 +10,7 @@ export default async function AdminUsersPage() {
   const session = await getAuthSession();
   if (!session || !isSuperAdminRole(session.role)) {
     return (
-      <p className="deck-hint" role="alert">
+      <p className={deckHintClass} role="alert">
         Super admin access required.
       </p>
     );

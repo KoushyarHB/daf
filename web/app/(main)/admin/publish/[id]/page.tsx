@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import AdminDeckReview from "@/components/pages/admin/AdminDeckReview";
+import { deckHintClass } from "@/lib/styles/tagsPage";
 import { getAuthSession } from "@/lib/auth/require-auth";
 import { isSuperAdminRole } from "@/lib/auth/roles";
 import * as adminDecksService from "@/services/backend/admin-decks.service";
@@ -13,7 +14,7 @@ export default async function AdminDeckReviewPage({ params }: PageProps) {
   const session = await getAuthSession();
   if (!session || !isSuperAdminRole(session.role)) {
     return (
-      <p className="deck-hint" role="alert">
+      <p className={deckHintClass} role="alert">
         Super admin access required.
       </p>
     );

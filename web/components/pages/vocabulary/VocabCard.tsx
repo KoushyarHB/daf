@@ -20,18 +20,24 @@ type VocabCardProps = {
   onRemove?: () => void;
 };
 
+const cardClass =
+  "border-b border-daf-border py-[0.9rem] first:pt-0";
+
+const cardManageBtnClass =
+  "appearance-none py-[0.12rem] px-[0.4rem] font-inherit text-[0.68rem] font-semibold text-daf-head bg-[#eef4fc] border border-daf-head/40 rounded-[3px] cursor-pointer";
+
 function HeadBlock({ head, ipa }: { head: string; ipa?: string | null }) {
   const lemma = head.trim();
   const ipaDisplay = formatIpaDisplay(ipa);
   if (ipaDisplay) {
     return (
-      <div className="head">
+      <div className="font-bold mb-0">
         {lemma}
-        <span className="head-ipa">{ipaDisplay}</span>
+        <span className="font-normal text-[0.88em] text-[#666]">{ipaDisplay}</span>
       </div>
     );
   }
-  return <div className="head">{lemma}</div>;
+  return <div className="font-bold mb-0">{lemma}</div>;
 }
 
 export default function VocabCard({
@@ -57,7 +63,7 @@ export default function VocabCard({
   return (
     <article
       id={`card-${card.domId}`}
-      className={`card${hidden ? " is-hidden" : ""}${studied ? " is-studied" : ""}`}
+      className={`${cardClass}${hidden ? " hidden" : ""}${studied ? " opacity-[0.92]" : ""}`}
       data-card-id={card.domId}
       data-deck-no={card.deckNo}
       data-tags={card.tags?.map((t) => t.slug).join(",") ?? ""}
@@ -65,13 +71,13 @@ export default function VocabCard({
       data-pos={card.pos}
       data-created-ms={card.createdMs}
     >
-      <div className="head-line">
+      <div className="flex items-center gap-[0.45rem] flex-wrap mb-[0.35rem]">
         <HeadBlock head={card.head} ipa={card.ipa} />
-        <div className="head-actions">
+        <div className="inline-flex items-center gap-[0.35rem] shrink-0">
           {manageEnabled && onEdit ? (
             <button
               type="button"
-              className="card-manage-btn"
+              className={cardManageBtnClass}
               onClick={onEdit}
               aria-label={`${editLabel} card`}
               title={`${editLabel} card`}
@@ -82,7 +88,7 @@ export default function VocabCard({
           {manageEnabled && onRemove ? (
             <button
               type="button"
-              className="card-manage-btn card-manage-btn--danger"
+              className={`${cardManageBtnClass} text-[#8b2e2e] bg-[#fdf5f5] border-[rgba(176,0,32,0.25)]`}
               onClick={onRemove}
               aria-label={`${removeLabel} card`}
               title={`${removeLabel} card`}
@@ -91,12 +97,18 @@ export default function VocabCard({
             </button>
           ) : null}
           {card.isCommunity && manageEnabled ? (
-            <span className="card-community-badge" title="Community card">
+            <span
+              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#5a7a9a] bg-[#f0f4f8] border border-[#d0dce8] rounded-[3px] py-[0.1rem] px-[0.35rem]"
+              title="Community card"
+            >
               Community
             </span>
           ) : null}
           {card.isCustomized && manageEnabled ? (
-            <span className="card-customized-badge" title="Your customized copy">
+            <span
+              className="text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#6a5a2f] bg-[#faf6ee] border border-[#e8dcc0] rounded-[3px] py-[0.1rem] px-[0.35rem]"
+              title="Your customized copy"
+            >
               Customized
             </span>
           ) : null}
@@ -108,31 +120,36 @@ export default function VocabCard({
       </div>
 
       {metaParts.length > 0 || card.pos ? (
-        <div className="meta">
+        <div className="text-xs text-[#666] mb-2 [&_span]:mr-3">
           {metaParts.map((p) => (
             <span key={p}>{p}</span>
           ))}
           {card.pos ? (
-            <span className="meta-pos">{posLabel(card.pos)}</span>
+            <span className="font-semibold text-daf-head">{posLabel(card.pos)}</span>
           ) : null}
         </div>
       ) : null}
 
       {card.pluralLine ? (
-        <div className="plural-diagram">{card.pluralLine}</div>
+        <div className="my-[0.25rem] mb-[0.35rem] pl-[0.6rem] border-l-[3px] border-[#ddd] text-[11pt] text-[#111]">
+          {card.pluralLine}
+        </div>
       ) : null}
 
       {(card.gloss ?? []).map(
         (g, i) =>
           g.trim() ? (
-            <p key={i} className="gloss">
+            <p
+              key={i}
+              className="my-[0.35rem] pl-[0.6rem] border-l-[3px] border-[#ddd]"
+            >
               {g.trim()}
             </p>
           ) : null,
       )}
 
       {image ? (
-        <div className="card-image">
+        <div className="mt-[0.6rem] pl-[0.6rem]">
           <ZoomableImage
             src={image}
             alt={`${card.head.trim()} image`}
@@ -143,7 +160,10 @@ export default function VocabCard({
       {(card.notes ?? []).map(
         (n, i) =>
           n.trim() ? (
-            <div key={i} className="notes">
+            <div
+              key={i}
+              className="text-[10pt] italic text-[#404040] pl-[0.6rem] my-[0.35rem]"
+            >
               {n.trim()}
             </div>
           ) : null,
@@ -154,21 +174,24 @@ export default function VocabCard({
       ) : null}
 
       {card.examples.length > 0 ? (
-        <div className="ex-block">
+        <div className="mt-[0.45rem] pl-[0.6rem]">
           {card.examples.map((ex, i) => {
             const de = (ex.german ?? "").trim();
             const en = ex.english;
             if (!de && !en) return null;
             return (
-              <div key={i} className="ex-line">
+              <div
+                key={i}
+                className="flex items-center gap-[0.32rem] text-[10.5pt] italic my-1"
+              >
                 <PronounceButton audio={ex.audio} compact />
-                <span className="ex-line-text">
-                  <span className="chevr">›</span>
-                  <span className="ex-de">{de}</span>
+                <span className="flex-1 min-w-0">
+                  <span className="text-daf-blue mr-[0.15em]">›</span>
+                  <span className="text-daf-blue">{de}</span>
                   {en ? (
                     <>
                       {" "}
-                      <span className="ex-en">({en.trim()})</span>
+                      <span className="text-daf-gray-en">({en.trim()})</span>
                     </>
                   ) : null}
                 </span>
@@ -180,4 +203,3 @@ export default function VocabCard({
     </article>
   );
 }
-

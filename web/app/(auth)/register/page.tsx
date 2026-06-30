@@ -8,6 +8,7 @@ import { isAxiosError } from "axios";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
 import { useRegisterMutation } from "@/hooks/auth";
+import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -53,23 +54,27 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="auth-page">
-      <h1>Register</h1>
-      <form onSubmit={onSubmit} className="auth-form">
-        <label>
+    <main className="mx-auto my-10 max-w-[22rem] rounded-[10px] border border-daf-border bg-white px-6 pt-7 pb-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+      <h1 className="mb-5 border-b-0 pb-0 text-center text-[1.35rem]">
+        Register
+      </h1>
+      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
           Name (optional)
           <input
             type="text"
+            className={`${authInputClass} ${formPlaceholderClass}`}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Your name"
             autoComplete="name"
           />
         </label>
-        <label>
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
           Email
           <input
             type="email"
+            className={`${authInputClass} ${formPlaceholderClass}`}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
@@ -77,10 +82,11 @@ export default function RegisterPage() {
             autoComplete="email"
           />
         </label>
-        <label>
+        <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
           Password (min 8 characters)
           <input
             type="password"
+            className={`${authInputClass} ${formPlaceholderClass}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="At least 8 characters"
@@ -89,13 +95,19 @@ export default function RegisterPage() {
             autoComplete="new-password"
           />
         </label>
-        {error ? <p className="auth-error">{error}</p> : null}
+        {error ? <p className="m-0 text-[0.9rem] text-[#b00020]">{error}</p> : null}
         <AuthSubmitButton disabled={register.isPending}>
           {register.isPending ? "Creating account…" : "Create account"}
         </AuthSubmitButton>
       </form>
-      <p className="auth-footer">
-        Already have an account? <Link href="/login">Sign in</Link>
+      <p className="mt-5 text-center text-[0.9rem] text-[#555]">
+        Already have an account?{" "}
+        <Link
+          href="/login"
+          className="font-semibold text-daf-head no-underline hover:underline"
+        >
+          Sign in
+        </Link>
       </p>
     </main>
   );

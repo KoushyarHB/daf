@@ -12,6 +12,30 @@ import {
   useUnpublishAdminDeckMutation,
 } from "@/hooks/admin";
 import type { AdminDeckDto } from "@/lib/api/dto";
+import {
+  formInputClass,
+  formPlaceholderClass,
+} from "@/lib/styles/formControls";
+import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
+import {
+  adminSearchClass,
+  adminSearchInputClass,
+  adminSearchLabelClass,
+  deckHintClass,
+  tagsPageClass,
+  tagsPageHeaderClass,
+  tagsPageIntroClass,
+  tagsTableActionGapClass,
+  tagsTableActionsClass,
+  tagsTableActionsColClass,
+  tagsTableBtnDangerClass,
+  tagsTableBtnPrimaryClass,
+  tagsTableBtnSecondaryClass,
+  tagsTableClass,
+  tagsTableThTdClass,
+  tagsTableWrapClass,
+  tagsTableWrapRefreshingClass,
+} from "@/lib/styles/tagsPage";
 
 type AdminPublishPanelProps = {
   initialDecks?: AdminDeckDto[];
@@ -68,22 +92,23 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
   }
 
   return (
-    <div className="tags-page">
-      <div className="tags-page__header">
-        <h1 className="tags-page__title">Publish user decks</h1>
+    <div className={tagsPageClass}>
+      <div className={tagsPageHeaderClass}>
+        <h1 className={tagsPageTitleClass}>Publish user decks</h1>
       </div>
-      <p className="tags-page__intro">
+      <p className={tagsPageIntroClass}>
         Copy a user&apos;s deck to the community catalog and expose it as an
         importable tag bundle. The user&apos;s original deck is unchanged.
       </p>
 
-      <div className="admin-search">
-        <label className="admin-search__label" htmlFor="admin-publish-q">
+      <div className={adminSearchClass}>
+        <label className={adminSearchLabelClass} htmlFor="admin-publish-q">
           Search by deck name or owner email
         </label>
         <input
           id="admin-publish-q"
           type="search"
+          className={`${formInputClass} ${formPlaceholderClass} ${adminSearchInputClass}`}
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search…"
@@ -91,33 +116,33 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
       </div>
 
       {loading ? (
-        <p className="deck-hint">Loading decks…</p>
+        <p className={deckHintClass}>Loading decks…</p>
       ) : decks.length === 0 ? (
-        <p className="deck-hint">No decks found.</p>
+        <p className={deckHintClass}>No decks found.</p>
       ) : (
-        <div className={`tags-table-wrap${refreshing ? " tags-table-wrap--refreshing" : ""}`}>
-        <table className="tags-table">
+        <div className={`${tagsTableWrapClass}${refreshing ? ` ${tagsTableWrapRefreshingClass}` : ""}`}>
+        <table className={tagsTableClass}>
           <thead>
             <tr>
-              <th scope="col">Deck</th>
-              <th scope="col">Owner</th>
-              <th scope="col">Cards</th>
-              <th scope="col">Published</th>
-              <th scope="col">Actions</th>
+              <th scope="col" className={tagsTableThTdClass}>Deck</th>
+              <th scope="col" className={tagsTableThTdClass}>Owner</th>
+              <th scope="col" className={tagsTableThTdClass}>Cards</th>
+              <th scope="col" className={tagsTableThTdClass}>Published</th>
+              <th scope="col" className={`${tagsTableThTdClass} ${tagsTableActionsColClass}`}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {decks.map((deck) => (
               <tr key={deck.id}>
-                <td>
+                <td className={tagsTableThTdClass}>
                   {deck.name} <code>{deck.slug}</code>
                 </td>
-                <td>
+                <td className={tagsTableThTdClass}>
                   {deck.ownerName ? `${deck.ownerName} — ` : ""}
                   {deck.ownerEmail}
                 </td>
-                <td>{deck.cardCount}</td>
-                <td>
+                <td className={tagsTableThTdClass}>{deck.cardCount}</td>
+                <td className={tagsTableThTdClass}>
                   {deck.publishedAt ? (
                     <>
                       {deck.publishedTagSlug ? (
@@ -130,16 +155,16 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                     "—"
                   )}
                 </td>
-                <td className="tags-table__actions">
+                <td className={`${tagsTableThTdClass} ${tagsTableActionsColClass} ${tagsTableActionsClass}`}>
                   <Link
                     href={`/admin/publish/${encodeURIComponent(deck.id)}`}
-                    className="tags-table__btn-secondary"
+                    className={tagsTableBtnSecondaryClass}
                   >
                     Review
                   </Link>
                   <button
                     type="button"
-                    className="tags-table__btn-primary"
+                    className={`${tagsTableBtnPrimaryClass} ${tagsTableActionGapClass}`}
                     onClick={() => setPublishTarget(deck)}
                     disabled={publishDeck.isPending && publishDeck.variables === deck.id}
                   >
@@ -152,7 +177,7 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                   {deck.publishedAt ? (
                     <button
                       type="button"
-                      className="tags-table__btn-danger"
+                      className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
                       onClick={() => setUnpublishTarget(deck)}
                       disabled={unpublishDeck.isPending && unpublishDeck.variables === deck.id}
                     >

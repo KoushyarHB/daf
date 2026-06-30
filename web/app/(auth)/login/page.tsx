@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
+import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
 
 function LoginForm() {
   const router = useRouter();
@@ -35,11 +36,12 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="auth-form">
-      <label>
+    <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
         Email
         <input
           type="email"
+          className={`${authInputClass} ${formPlaceholderClass}`}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
@@ -47,10 +49,11 @@ function LoginForm() {
           autoComplete="email"
         />
       </label>
-      <label>
+      <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-[#333]">
         Password
         <input
           type="password"
+          className={`${authInputClass} ${formPlaceholderClass}`}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
@@ -58,7 +61,7 @@ function LoginForm() {
           autoComplete="current-password"
         />
       </label>
-      {error ? <p className="auth-error">{error}</p> : null}
+      {error ? <p className="m-0 text-[0.9rem] text-[#b00020]">{error}</p> : null}
       <AuthSubmitButton disabled={loading}>
         {loading ? "Signing in…" : "Sign in"}
       </AuthSubmitButton>
@@ -68,13 +71,21 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <main className="auth-page">
-      <h1>Sign in</h1>
+    <main className="mx-auto my-10 max-w-[22rem] rounded-[10px] border border-daf-border bg-white px-6 pt-7 pb-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+      <h1 className="mb-5 border-b-0 pb-0 text-center text-[1.35rem]">
+        Sign in
+      </h1>
       <Suspense fallback={<p>Loading…</p>}>
         <LoginForm />
       </Suspense>
-      <p className="auth-footer">
-        No account? <Link href="/register">Register</Link>
+      <p className="mt-5 text-center text-[0.9rem] text-[#555]">
+        No account?{" "}
+        <Link
+          href="/register"
+          className="font-semibold text-daf-head no-underline hover:underline"
+        >
+          Register
+        </Link>
       </p>
     </main>
   );

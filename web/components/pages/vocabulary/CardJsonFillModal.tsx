@@ -17,6 +17,9 @@ type CardJsonFillModalProps = {
   onClose: () => void;
 };
 
+const BTN_BASE =
+  "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
+
 export default function CardJsonFillModal({
   open,
   initialJson,
@@ -74,32 +77,38 @@ export default function CardJsonFillModal({
 
   return createPortal(
     <div
-      className="card-modal-backdrop card-json-fill-backdrop"
+      className="fixed inset-0 z-[10050] flex items-start justify-center overflow-y-auto bg-black/35 p-8 px-4"
       onClick={onClose}
       role="presentation"
     >
       <div
-        className="card-modal card-json-fill-modal"
+        className="flex max-h-[min(90dvh,720px)] w-full max-w-[min(36rem,calc(100vw-2rem))] flex-col rounded-lg border border-daf-border bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="card-json-fill-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="card-json-fill-title" className="card-modal-title">
+        <h2
+          id="card-json-fill-title"
+          className="m-0 mb-2 border-0 p-0 text-[1.1rem] font-semibold text-daf-head"
+        >
           JSON fill
         </h2>
-        <p className="card-modal-hint">
+        <p className="m-0 mb-3 text-[0.8rem] leading-snug text-[#666]">
           Paste a single card in <code>vocab.manifest.json</code> shape (one
           object, or a one-item array). Fields map to the form; review before
           saving.
         </p>
 
-        <label className="card-json-fill-modal__label" htmlFor={textareaId}>
+        <label
+          className="mb-[0.35rem] block text-[0.85rem] font-semibold text-[#333]"
+          htmlFor={textareaId}
+        >
           Card JSON
         </label>
         <textarea
           id={textareaId}
-          className="card-json-fill-modal__textarea"
+          className="min-h-56 flex-1 resize-y rounded-md border border-[#d8e2ef] bg-[#fafbfd] p-[0.65rem_0.75rem] font-mono text-[0.8rem] leading-snug focus:border-daf-head focus:shadow-[0_0_0_3px_rgba(47,111,184,0.18)] focus:outline-none"
           value={jsonText}
           onChange={(e) => {
             setJsonText(e.target.value);
@@ -109,36 +118,38 @@ export default function CardJsonFillModal({
           rows={16}
         />
 
-        <div className="card-json-fill-modal__toolbar">
+        <div className="mt-2 flex flex-wrap gap-3">
           <button
             type="button"
-            className="card-json-fill-modal__link-btn"
+            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-[#245a9c]"
             onClick={onPasteSample}
           >
             Insert sample
           </button>
           <button
             type="button"
-            className="card-json-fill-modal__link-btn"
+            className="cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-[#245a9c]"
             onClick={() => void onCopyJson()}
           >
             Copy JSON
           </button>
         </div>
 
-        {error ? <p className="card-modal-error">{error}</p> : null}
+        {error ? (
+          <p className="m-0 mt-2 text-[0.8rem] text-[#b00020]">{error}</p>
+        ) : null}
 
-        <div className="card-modal-actions card-json-fill-modal__actions">
+        <div className="mt-4 flex justify-end gap-2">
           <button
             type="button"
-            className="card-modal-btn-secondary"
+            className={`${BTN_BASE} border-[#ddd] bg-[#f5f5f5] text-[#444]`}
             onClick={onClose}
           >
             Cancel
           </button>
           <button
             type="button"
-            className="card-modal-btn-primary"
+            className={`${BTN_BASE} border-daf-head-dark bg-daf-head text-white`}
             onClick={onApplyClick}
           >
             Apply to form

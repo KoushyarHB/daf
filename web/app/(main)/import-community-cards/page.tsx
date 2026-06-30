@@ -11,7 +11,7 @@ export default async function ImportCommunityCardsPage() {
   const session = await getAuthSession();
   if (!session) {
     return (
-      <div className="import-page">
+      <div>
         <SignInPrompt message="to import community vocabulary." />
       </div>
     );
@@ -20,10 +20,12 @@ export default async function ImportCommunityCardsPage() {
   const status = await getImportStatus(session.userId);
 
   return (
-    <div className="import-page">
+    <div>
       <ImportCommunityCardsClient initialStatus={status} />
-      <p className="import-page__back">
-        <Link href="/">← Back to vocabulary</Link>
+      <p className="mt-4 mb-0 text-[0.85rem]">
+        <Link href="/" className="text-daf-head no-underline hover:underline">
+          ← Back to vocabulary
+        </Link>
       </p>
     </div>
   );

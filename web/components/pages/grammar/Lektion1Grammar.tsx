@@ -13,11 +13,25 @@ import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import {
   Callout,
   Ex,
-  Formula,
   GenderTableColGroup,
   GenderTableHead,
   Lead,
   Section,
+  grammarBackLinkClass,
+  grammarBreadcrumbClass,
+  grammarColDasClass,
+  grammarColDerClass,
+  grammarColDieClass,
+  grammarColPlClass,
+  grammarExampleListClass,
+  grammarExampleListSpeakClass,
+  grammarLessonColCaseClass,
+  grammarLessonTableClass,
+  grammarPageClass,
+  grammarPageIntroClass,
+  grammarPageTitleClass,
+  grammarPatternListClass,
+  grammarTableWrapClass,
 } from "@/components/pages/grammar/grammar-ui";
 
 const TOC = [
@@ -37,31 +51,43 @@ const TOC = [
 
 export default function Lektion1Grammar() {
   return (
-    <article className="grammar-page grammar-lesson">
-      <nav className="grammar-breadcrumb" aria-label="Breadcrumb">
+    <article className={grammarPageClass}>
+      <nav className={grammarBreadcrumbClass} aria-label="Breadcrumb">
         <Link href="/grammar">Grammar</Link>
         <span aria-hidden="true">/</span>
         <span>Lektion 1</span>
       </nav>
 
-      <header className="grammar-lesson__hero">
-        <div className="grammar-lesson__hero-inner">
-          <p className="grammar-lesson__level">DaF A1</p>
-          <h1 className="grammar-page__title">Lektion 1 — Grammar</h1>
-          <p className="grammar-page__intro">
+      <header className="mb-[1.35rem]">
+        <div className="rounded-xl border border-[#d0e0f0] bg-gradient-to-br from-grm-der-bg via-white to-grm-das-bg p-[1.35rem_1.2rem] shadow-[0_3px_14px_rgba(47,111,184,0.07)]">
+          <p className="m-0 mb-[0.3rem] text-[0.72rem] font-bold tracking-[0.08em] text-grm-der uppercase">
+            DaF A1
+          </p>
+          <h1 className={grammarPageTitleClass}>Lektion 1 — Grammar</h1>
+          <p className={grammarPageIntroClass}>
             Core patterns for articles, plurals, pronunciation, verb endings,
             asking questions, and the first case changes you need at A1.
           </p>
         </div>
       </header>
 
-      <nav className="grammar-toc" aria-label="On this page">
-        <p className="grammar-toc__label">Jump to section</p>
-        <ol className="grammar-toc__list">
+      <nav
+        className="mb-7 rounded-[10px] border border-[#dce8f4] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+        aria-label="On this page"
+      >
+        <p className="m-0 mb-[0.65rem] text-[0.72rem] font-bold tracking-wide text-daf-head uppercase">
+          Jump to section
+        </p>
+        <ol className="m-0 flex list-none flex-wrap gap-[0.4rem] p-0">
           {TOC.map((item, i) => (
             <li key={item.id}>
-              <a href={`#${item.id}`}>
-                <span className="grammar-toc__num">{i + 1}</span>
+              <a
+                href={`#${item.id}`}
+                className="inline-flex items-center gap-[0.35rem] rounded-full border border-[#dce8f4] bg-[#f4f8fc] px-[0.55rem] py-[0.28rem] text-[0.78rem] font-medium text-[#2f4f6f] no-underline transition-[background,border-color] hover:border-grm-der-border hover:bg-grm-der-bg hover:text-grm-der"
+              >
+                <span className="inline-flex h-[1.15rem] min-w-[1.15rem] items-center justify-center rounded-full bg-daf-head text-[0.65rem] font-bold text-white">
+                  {i + 1}
+                </span>
                 {item.label}
               </a>
             </li>
@@ -81,7 +107,7 @@ export default function Lektion1Grammar() {
       <Section id="plural" number={2} title="Plural (Plural)">
         <Lead>
           German plurals change in several ways. The plural article is always{" "}
-          <strong className="grammar-highlight">die</strong> — for every gender.
+          <strong className="text-grm-die">die</strong> — for every gender.
         </Lead>
         <PluralPatternsSection />
       </Section>
@@ -107,8 +133,8 @@ export default function Lektion1Grammar() {
           At A1 you meet three cases. The definite article changes shape; the
           noun itself changes less often (except plural dative).
         </Lead>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--gender">
+        <div className={grammarTableWrapClass}>
+          <table className={`${grammarLessonTableClass} table-fixed`}>
             <GenderTableColGroup />
             <thead>
               <GenderTableHead />
@@ -117,48 +143,48 @@ export default function Lektion1Grammar() {
               <tr>
                 <th
                   scope="row"
-                  className="grammar-lesson-col-case"
+                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
                   title="Nominativ"
                 >
                   Nom.
                 </th>
-                <td className="grammar-col grammar-col--der">der</td>
-                <td className="grammar-col grammar-col--das">das</td>
-                <td className="grammar-col grammar-col--die">die</td>
-                <td className="grammar-col grammar-col--die-pl">die</td>
+                <td className={grammarColDerClass}>der</td>
+                <td className={grammarColDasClass}>das</td>
+                <td className={grammarColDieClass}>die</td>
+                <td className={grammarColPlClass}>die</td>
               </tr>
               <tr>
                 <th
                   scope="row"
-                  className="grammar-lesson-col-case"
+                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
                   title="Akkusativ"
                 >
                   Akk.
                 </th>
-                <td className="grammar-col grammar-col--der">den</td>
-                <td className="grammar-col grammar-col--das">das</td>
-                <td className="grammar-col grammar-col--die">die</td>
-                <td className="grammar-col grammar-col--die-pl">die</td>
+                <td className={grammarColDerClass}>den</td>
+                <td className={grammarColDasClass}>das</td>
+                <td className={grammarColDieClass}>die</td>
+                <td className={grammarColPlClass}>die</td>
               </tr>
               <tr>
                 <th
                   scope="row"
-                  className="grammar-lesson-col-case"
+                  className={`${grammarLessonColCaseClass} bg-[#f8fafc]!`}
                   title="Dativ"
                 >
                   Dat.
                 </th>
-                <td className="grammar-col grammar-col--der">dem</td>
-                <td className="grammar-col grammar-col--das">dem</td>
-                <td className="grammar-col grammar-col--die">der</td>
-                <td className="grammar-col grammar-col--die-pl">
+                <td className={grammarColDerClass}>dem</td>
+                <td className={grammarColDasClass}>dem</td>
+                <td className={grammarColDieClass}>der</td>
+                <td className={grammarColPlClass}>
                   den + <em>n</em>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <ul className="grammar-example-list grammar-example-list--speak">
+        <ul className={grammarExampleListSpeakClass}>
           <GrammarEx de="Der Mann arbeitet." en="The man works. (Nom.)" />
           <GrammarEx de="Ich sehe den Mann." en="I see the man. (Akk.)" />
           <GrammarEx
@@ -194,7 +220,7 @@ export default function Lektion1Grammar() {
           <strong>in</strong> can take <strong>Dativ</strong> or{" "}
           <strong>Akkusativ</strong>:
         </p>
-        <ul className="grammar-pattern-list">
+        <ul className={grammarPatternListClass}>
           <li>
             <strong>in + Dativ</strong> — location (where?) — no movement:{" "}
             <em>Ich bin in der Schule.</em>
@@ -221,19 +247,37 @@ export default function Lektion1Grammar() {
           <strong>Reflexive pronouns</strong> refer back to the subject — common
           with reflexive verbs like <em>sich freuen</em>, <em>sich waschen</em>:
         </p>
-        <div className="grammar-table-wrap">
-          <table className="grammar-lesson-table grammar-lesson-table--compact">
+        <div className={grammarTableWrapClass}>
+          <table className={grammarLessonTableClass}>
             <tbody>
-              <tr><td>ich</td><td>mich / mir</td></tr>
-              <tr><td>du</td><td>dich / dir</td></tr>
-              <tr><td>er / sie / es</td><td>sich</td></tr>
-              <tr><td>wir</td><td>uns</td></tr>
-              <tr><td>ihr</td><td>euch</td></tr>
-              <tr><td>sie / Sie</td><td>sich</td></tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">ich</td>
+                <td>mich / mir</td>
+              </tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">du</td>
+                <td>dich / dir</td>
+              </tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">er / sie / es</td>
+                <td>sich</td>
+              </tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">wir</td>
+                <td>uns</td>
+              </tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">ihr</td>
+                <td>euch</td>
+              </tr>
+              <tr>
+                <td className="w-[36%] bg-[#fafbfd] font-semibold text-[#333]">sie / Sie</td>
+                <td>sich</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <ul className="grammar-example-list">
+        <ul className={grammarExampleListClass}>
           <Ex de="Ich wasche mich." en="I wash myself." />
           <Ex de="Freust du dich?" en="Are you looking forward to it?" />
         </ul>
@@ -244,8 +288,8 @@ export default function Lektion1Grammar() {
         </Callout>
       </Section>
 
-      <footer className="grammar-lesson__footer">
-        <Link href="/grammar" className="grammar-back-link">
+      <footer className="mt-8 border-t-2 border-[#e8f0f8] pt-4">
+        <Link href="/grammar" className={grammarBackLinkClass}>
           ← All grammar lessons
         </Link>
       </footer>

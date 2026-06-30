@@ -2,7 +2,13 @@
 
 import GrammarEx from "@/components/pages/grammar/GrammarEx";
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
-import { Callout, Lead } from "@/components/pages/grammar/grammar-ui";
+import {
+  Callout,
+  Lead,
+  grammarExampleListSpeakClass,
+  grammarLessonColCaseClass,
+  grammarLessonTableClass,
+} from "@/components/pages/grammar/grammar-ui";
 import {
   AUS_ADJECTIVE_EXAMPLE,
   AUS_NO_ARTICLE_PHRASES,
@@ -11,11 +17,17 @@ import {
   type AusExample,
 } from "@/lib/grammar/aus-countries";
 
+const GENDER_CELL: Record<string, string> = {
+  "grammar-col--der": "bg-grm-der-bg font-extrabold text-grm-der",
+  "grammar-col--die": "bg-grm-die-bg font-extrabold text-grm-die",
+  "grammar-col--die-pl": "bg-grm-pl-bg font-extrabold text-grm-pl",
+};
+
 function AusPhraseChip({ german, english }: AusExample) {
   return (
-    <span className="grammar-aus-chip">
-      <span className="grammar-aus-chip__de">{german}</span>
-      <span className="grammar-aus-chip__en">({english})</span>
+    <span className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] px-[0.45rem] py-[0.28rem] text-[0.74rem] leading-snug">
+      <span className="font-bold italic text-daf-blue">{german}</span>
+      <span className="text-[0.68rem] italic text-daf-gray-en">({english})</span>
       <GrammarSpeakButton german={german} />
     </span>
   );
@@ -30,46 +42,55 @@ export default function AusCountriesSection() {
         <strong>Woher?</strong>).
       </Lead>
 
-      <div className="grammar-aus-formula" aria-label="Pattern: aus + Dative">
-        <span className="grammar-aus-formula__prep">aus</span>
-        <span className="grammar-aus-formula__plus">+</span>
-        <span className="grammar-aus-formula__case">Dativ</span>
-        <span className="grammar-aus-formula__en">from · origin</span>
+      <div
+        className="my-2 mb-[0.85rem] flex flex-wrap items-center gap-[0.3rem_0.45rem] rounded-[10px] border border-[#c5e8e4] border-l-[3px] border-l-grm-teal bg-gradient-to-b from-grm-teal-bg to-white p-[0.55rem_0.75rem]"
+        aria-label="Pattern: aus + Dative"
+      >
+        <span className="text-base font-extrabold italic text-grm-teal">aus</span>
+        <span className="text-[0.82rem] font-semibold text-[#8a96a3]">+</span>
+        <span className="text-[0.88rem] font-extrabold text-[#2f4f6f]">Dativ</span>
+        <span className="ms-[0.15rem] text-[0.72rem] italic text-[#6b7a8a]">
+          from · origin
+        </span>
       </div>
 
-      <div className="grammar-aus-stack">
-        <section className="grammar-aus-panel grammar-aus-panel--simple">
-          <header className="grammar-aus-panel__head">
-            <h3 className="grammar-aus-panel__title">No article</h3>
-            <p className="grammar-aus-panel__subtitle">
+      <div className="flex flex-col gap-3">
+        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-das bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
+          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-das-bg to-white px-3 py-[0.55rem]">
+            <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-das">
+              No article
+            </h3>
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
               Most countries, cities, and continents — neuter, no <em>der/die/das</em>
             </p>
           </header>
-          <div className="grammar-aus-chip-grid">
+          <div className="flex flex-wrap gap-[0.35rem] p-[0.55rem_0.75rem] pb-[0.45rem]">
             {AUS_NO_ARTICLE_PHRASES.map((phrase) => (
               <AusPhraseChip key={phrase.german} {...phrase} />
             ))}
           </div>
-          <ul className="grammar-example-list grammar-example-list--speak">
+          <ul className={`${grammarExampleListSpeakClass} m-0 px-3 pb-[0.65rem]`}>
             {AUS_SENTENCE_EXAMPLES.map((ex) => (
               <GrammarEx key={ex.german} de={ex.german} en={ex.english} />
             ))}
           </ul>
         </section>
 
-        <section className="grammar-aus-panel grammar-aus-panel--article">
-          <header className="grammar-aus-panel__head">
-            <h3 className="grammar-aus-panel__title">With an article</h3>
-            <p className="grammar-aus-panel__subtitle">
+        <section className="overflow-hidden rounded-[10px] border border-[#d8e4f0] border-t-[3px] border-t-grm-der bg-white shadow-[0_1px_3px_rgba(30,58,95,0.06)]">
+          <header className="border-b border-[#e8eef5] bg-gradient-to-b from-grm-der-bg to-white px-3 py-[0.55rem]">
+            <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-der">
+              With an article
+            </h3>
+            <p className="mt-[0.15rem] mb-0 text-[0.72rem] leading-snug text-[#5a6573]">
               These countries take <em>dem</em>, <em>der</em>, or <em>den</em> — learn
               them with the article
             </p>
           </header>
-          <div className="grammar-table-wrap">
-            <table className="grammar-lesson-table grammar-aus-table">
+          <div className="overflow-x-auto">
+            <table className={`${grammarLessonTableClass} text-[0.8rem] [&_thead_th]:bg-[#f4f8fc] [&_thead_th]:text-[0.7rem] [&_thead_th]:tracking-wide [&_thead_th]:text-[#6b7a8a] [&_thead_th]:uppercase`}>
               <thead>
                 <tr>
-                  <th className="grammar-lesson-col-case">Gender</th>
+                  <th className={grammarLessonColCaseClass}>Gender</th>
                   <th>Dative</th>
                   <th>Examples</th>
                 </tr>
@@ -79,17 +100,17 @@ export default function AusCountriesSection() {
                   <tr key={row.id}>
                     <th
                       scope="row"
-                      className={`grammar-aus-table__gender grammar-aus-table__gender--${row.id}`}
+                      className="bg-[#f8fafc]! text-[0.72rem] font-bold lowercase whitespace-nowrap text-[#5a6573]"
                     >
                       {row.gender}
                     </th>
                     <td
-                      className={`grammar-aus-table__dative ${row.genderClass}`}
+                      className={`w-12 text-center font-extrabold whitespace-nowrap ${GENDER_CELL[row.genderClass] ?? ""}`}
                     >
                       {row.dative}
                     </td>
-                    <td className="grammar-aus-table__examples">
-                      <div className="grammar-aus-chip-grid grammar-aus-chip-grid--inline">
+                    <td className="align-middle">
+                      <div className="flex flex-wrap gap-[0.35rem]">
                         {row.examples.map((ex) => (
                           <AusPhraseChip key={ex.german} {...ex} />
                         ))}
@@ -104,11 +125,11 @@ export default function AusCountriesSection() {
       </div>
 
       <Callout variant="tip" title="Adjective in the middle?">
-        <p className="grammar-aus-callout-ex">
+        <p className="m-0 leading-normal">
           If you describe the country, the article appears:{" "}
-          <span className="grammar-aus-inline-ex">
-            <em>{AUS_ADJECTIVE_EXAMPLE.german}</em>
-            <span className="grammar-aus-chip__en">
+          <span className="mt-[0.15rem] inline-flex flex-wrap items-center gap-1">
+            <em className="font-semibold text-daf-blue">{AUS_ADJECTIVE_EXAMPLE.german}</em>
+            <span className="text-[0.68rem] italic text-daf-gray-en">
               ({AUS_ADJECTIVE_EXAMPLE.english})
             </span>
             <GrammarSpeakButton german={AUS_ADJECTIVE_EXAMPLE.german} />
