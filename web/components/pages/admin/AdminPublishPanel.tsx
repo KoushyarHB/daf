@@ -1,12 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import DataTable from "@/components/shared/DataTable";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import Button from "@/components/shared/atoms/Button";
+import InlineCode from "@/components/shared/atoms/InlineCode";
+import HintBanner from "@/components/shared/molecules/HintBanner";
+import ListPage from "@/components/shared/molecules/ListPage";
+import SearchField from "@/components/shared/molecules/SearchField";
+import TableActions from "@/components/shared/molecules/TableActions";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import DataTable from "@/components/shared/organisms/DataTable";
+import { useToast } from "@/components/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useAdminDecksQuery,
@@ -15,24 +20,8 @@ import {
 } from "@/hooks/admin";
 import type { AdminDeckDto } from "@/lib/api/dto";
 import {
-  formInputClass,
-  formPlaceholderClass,
-} from "@/lib/styles/formControls";
-import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
-import {
-  adminSearchClass,
-  adminSearchInputClass,
-  adminSearchLabelClass,
-  deckHintClass,
-  tagsPageClass,
-  tagsPageHeaderClass,
-  tagsPageIntroClass,
-  tagsTableActionGapClass,
   tagsTableActionsClass,
   tagsTableActionsColClass,
-  tagsTableBtnDangerClass,
-  tagsTableBtnPrimaryClass,
-  tagsTableBtnSecondaryClass,
   tagsTableClass,
   tagsTableThTdClass,
   tagsTableWrapClass,
@@ -100,7 +89,7 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         header: "Deck",
         cell: ({ row }) => (
           <>
-            {row.original.name} <code>{row.original.slug}</code>
+            {row.original.name} <InlineCode>{row.original.slug}</InlineCode>
           </>
         ),
       },
@@ -121,7 +110,7 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         cell: ({ row }) =>
           row.original.publishedAt ? (
             row.original.publishedTagSlug ? (
-              <code>{row.original.publishedTagSlug}</code>
+              <InlineCode>{row.original.publishedTagSlug}</InlineCode>
             ) : (
               "Yes"
             )
@@ -139,16 +128,18 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         cell: ({ row }) => {
           const deck = row.original;
           return (
-            <>
-              <Link
+            <TableActions>
+              <Button
                 href={`/admin/publish/${encodeURIComponent(deck.id)}`}
-                className={tagsTableBtnSecondaryClass}
+                variant="tableSecondary"
+                size="xs"
               >
                 Review
-              </Link>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className={`${tagsTableBtnPrimaryClass} ${tagsTableActionGapClass}`}
+                variant="tablePrimary"
+                size="xs"
                 onClick={() => setPublishTarget(deck)}
                 disabled={
                   publishDeck.isPending && publishDeck.variables === deck.id
@@ -159,11 +150,12 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                   : deck.publishedAt
                     ? "Republish"
                     : "Publish"}
-              </button>
+              </Button>
               {deck.publishedAt ? (
-                <button
+                <Button
                   type="button"
-                  className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
+                  variant="tableDanger"
+                  size="xs"
                   onClick={() => setUnpublishTarget(deck)}
                   disabled={
                     unpublishDeck.isPending &&
@@ -174,9 +166,9 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                   unpublishDeck.variables === deck.id
                     ? "Unpublishing…"
                     : "Unpublish"}
-                </button>
+                </Button>
               ) : null}
-            </>
+            </TableActions>
           );
         },
       },
@@ -185,33 +177,22 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
   );
 
   return (
-    <div className={tagsPageClass}>
-      <div className={tagsPageHeaderClass}>
-        <h1 className={tagsPageTitleClass}>Publish user decks</h1>
-      </div>
-      <p className={tagsPageIntroClass}>
-        Copy a user&apos;s deck to the community catalog and expose it as an
-        importable tag bundle. The user&apos;s original deck is unchanged.
-      </p>
-
-      <div className={adminSearchClass}>
-        <label className={adminSearchLabelClass} htmlFor="admin-publish-q">
-          Search by deck name or owner email
-        </label>
-        <input
-          id="admin-publish-q"
-          type="search"
-          className={`${formInputClass} ${formPlaceholderClass} ${adminSearchInputClass}`}
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Search…"
-        />
-      </div>
+    <ListPage
+      title="Publish user decks"
+      intro="Copy a user's deck to the community catalog and expose it as an importable tag bundle. The user's original deck is unchanged."
+    >
+      <SearchField
+        id="admin-publish-q"
+        label="Search by deck name or owner email"
+        value={q}
+        onChange={setQ}
+        placeholder="Search…"
+      />
 
       {loading ? (
-        <p className={deckHintClass}>Loading decks…</p>
+        <HintBanner>Loading decks…</HintBanner>
       ) : decks.length === 0 ? (
-        <p className={deckHintClass}>No decks found.</p>
+        <HintBanner>No decks found.</HintBanner>
       ) : (
         <DataTable
           data={decks}
@@ -256,6 +237,6 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         }}
         onCancel={() => setUnpublishTarget(null)}
       />
-    </div>
+    </ListPage>
   );
 }

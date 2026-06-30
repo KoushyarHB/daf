@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getAuthSession } from "@/lib/auth/require-auth";
-import SignInPrompt from "@/components/shared/SignInPrompt";
+import SignInPrompt from "@/components/shared/molecules/SignInPrompt";
 import TagForm from "@/components/pages/tags/TagForm";
 import * as tagsService from "@/services/backend/tags.service";
 

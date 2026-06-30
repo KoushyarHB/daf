@@ -5,9 +5,9 @@ import {
 import { formatIpaDisplay } from "@/lib/vocab/card-utils";
 import { posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
-import PronounceButton from "@/components/shared/PronounceButton";
-import StudiedButton from "@/components/shared/StudiedButton";
-import ZoomableImage from "@/components/shared/ZoomableImage";
+import PronounceButton from "@/components/pages/vocabulary/PronounceButton";
+import StudiedButton from "@/components/pages/vocabulary/StudiedButton";
+import ZoomableImage from "@/components/shared/organisms/media/ZoomableImage";
 import GrammarTableBlock from "./GrammarTable";
 
 type VocabCardProps = {

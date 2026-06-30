@@ -1,16 +1,18 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
+import TextLink from "@/components/shared/atoms/TextLink";
+import { SubmitButton } from "@/components/shared/atoms/Button";
+import FieldError from "@/components/shared/atoms/FieldError";
+import FormField from "@/components/shared/molecules/FormField";
+import Input from "@/components/shared/atoms/Input";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
 import { loginFormSchema } from "@/lib/api/schemas";
-import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
 
 type LoginFormValues = z.infer<typeof loginFormSchema>;
 
@@ -49,42 +51,36 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
-        Email
-        <input
+      <FormField
+        variant="auth"
+        label="Email"
+        error={errors.email?.message}
+      >
+        <Input
           type="email"
-          className={`${authInputClass} ${formPlaceholderClass}`}
+          variant="auth"
           placeholder="you@example.com"
           autoComplete="email"
           {...register("email")}
         />
-        {errors.email ? (
-          <span className="text-[0.85rem] font-normal text-daf-danger">
-            {errors.email.message}
-          </span>
-        ) : null}
-      </label>
-      <label className="flex flex-col gap-[0.35rem] text-[0.9rem] font-semibold text-daf-label">
-        Password
-        <input
+      </FormField>
+      <FormField
+        variant="auth"
+        label="Password"
+        error={errors.password?.message}
+      >
+        <Input
           type="password"
-          className={`${authInputClass} ${formPlaceholderClass}`}
+          variant="auth"
           placeholder="Enter your password"
           autoComplete="current-password"
           {...register("password")}
         />
-        {errors.password ? (
-          <span className="text-[0.85rem] font-normal text-daf-danger">
-            {errors.password.message}
-          </span>
-        ) : null}
-      </label>
-      {serverError ? (
-        <p className="m-0 text-[0.9rem] text-daf-danger">{serverError}</p>
-      ) : null}
-      <AuthSubmitButton disabled={loading}>
+      </FormField>
+      {serverError ? <FieldError block>{serverError}</FieldError> : null}
+      <SubmitButton disabled={loading}>
         {loading ? "Signing in…" : "Sign in"}
-      </AuthSubmitButton>
+      </SubmitButton>
     </form>
   );
 }
@@ -99,13 +95,7 @@ export default function LoginPage() {
         <LoginForm />
       </Suspense>
       <p className="mt-5 text-center text-[0.9rem] text-daf-subtle">
-        No account?{" "}
-        <Link
-          href="/register"
-          className="font-semibold text-daf-head no-underline hover:underline"
-        >
-          Register
-        </Link>
+        No account? <TextLink href="/register">Register</TextLink>
       </p>
     </main>
   );

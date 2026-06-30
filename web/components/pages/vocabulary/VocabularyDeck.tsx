@@ -5,8 +5,8 @@ import { useSession } from "next-auth/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import { useToast } from "@/components/providers/ToastProvider";
 import {
   useCardsQuery,
   useDeleteCardMutation,

@@ -1,28 +1,22 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import type { z } from "zod";
 
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import Input from "@/components/shared/atoms/Input";
+import FormActions from "@/components/shared/molecules/FormActions";
+import FormField from "@/components/shared/molecules/FormField";
+import { useToast } from "@/components/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { useSaveTagMutation } from "@/hooks/tags";
 import { tagFormSchema } from "@/lib/api/schemas";
 import { slugifyLabel } from "@/lib/tags/slug";
 import {
-  formInputClass,
-  formPlaceholderClass,
-} from "@/lib/styles/formControls";
-import {
-  formLabelClass,
-  tagFormActionsClass,
-  tagFormCancelClass,
   tagFormClass,
   tagFormErrorClass,
-  tagFormSubmitClass,
   tagFormTitleClass,
 } from "@/lib/styles/tagsPage";
 
@@ -88,22 +82,18 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         {mode === "create" ? "New tag" : "Edit tag"}
       </h1>
 
-      <label className={formLabelClass}>
-        Label
-        <input
-          className={`${formInputClass} ${formPlaceholderClass}`}
-          placeholder="daf lek. 3"
-          {...register("label")}
-        />
-        {errors.label ? (
-          <span className={tagFormErrorClass}>{errors.label.message}</span>
-        ) : null}
-      </label>
+      <FormField
+        label="Label"
+        error={errors.label?.message}
+      >
+        <Input placeholder="daf lek. 3" {...register("label")} />
+      </FormField>
 
-      <label className={formLabelClass}>
-        Slug
-        <input
-          className={`${formInputClass} ${formPlaceholderClass}`}
+      <FormField
+        label="Slug"
+        error={errors.slug?.message}
+      >
+        <Input
           placeholder="daf-lek-3"
           {...slugField}
           onChange={(e) => {
@@ -111,31 +101,23 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
             void onSlugChange(e);
           }}
         />
-        {errors.slug ? (
-          <span className={tagFormErrorClass}>{errors.slug.message}</span>
-        ) : null}
-      </label>
+      </FormField>
 
       {errors.root ? (
         <p className={tagFormErrorClass}>{errors.root.message}</p>
       ) : null}
 
-      <div className={tagFormActionsClass}>
-        <Link href="/tags" className={tagFormCancelClass}>
-          Cancel
-        </Link>
-        <button
-          type="submit"
-          className={tagFormSubmitClass}
-          disabled={isSubmitting || saveTag.isPending}
-        >
-          {saveTag.isPending
+      <FormActions
+        cancelHref="/tags"
+        submitLabel={
+          saveTag.isPending
             ? "Saving…"
             : mode === "create"
               ? "Create tag"
-              : "Save changes"}
-        </button>
-      </div>
+              : "Save changes"
+        }
+        submitting={isSubmitting || saveTag.isPending}
+      />
     </form>
   );
 }

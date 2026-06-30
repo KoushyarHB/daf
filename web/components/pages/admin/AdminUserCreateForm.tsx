@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import { useToast } from "@/components/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { useCreateAdminUserMutation } from "@/hooks/admin";
 import { adminUserWriteSchema } from "@/lib/api/schemas";

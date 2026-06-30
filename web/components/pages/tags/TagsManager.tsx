@@ -1,13 +1,19 @@
 "use client";
 
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import DataTable from "@/components/shared/DataTable";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import Badge from "@/components/shared/atoms/Badge";
+import Button from "@/components/shared/atoms/Button";
+import InlineCode from "@/components/shared/atoms/InlineCode";
+import TextLink from "@/components/shared/atoms/TextLink";
+import HintBanner from "@/components/shared/molecules/HintBanner";
+import ListPage from "@/components/shared/molecules/ListPage";
+import TableActions from "@/components/shared/molecules/TableActions";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import DataTable from "@/components/shared/organisms/DataTable";
+import { useToast } from "@/components/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useDeleteTagMutation,
@@ -15,20 +21,10 @@ import {
   type TagRow,
 } from "@/hooks/tags";
 import { canModifyTag } from "@/lib/tags/permissions";
-import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
 import {
-  deckHintClass,
-  systemBadgeClass,
   tagsPageBackClass,
-  tagsPageClass,
-  tagsPageHeaderClass,
-  tagsPageIntroClass,
-  tagsPageNewLinkClass,
-  tagsTableActionGapClass,
-  tagsTableActionLinkClass,
   tagsTableActionsClass,
   tagsTableActionsColClass,
-  tagsTableBtnDangerClass,
   tagsTableClass,
   tagsTableMutedClass,
   tagsTableThTdClass,
@@ -71,17 +67,13 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
       {
         accessorKey: "slug",
         header: "Slug",
-        cell: ({ row }) => <code>{row.original.slug}</code>,
+        cell: ({ row }) => <InlineCode>{row.original.slug}</InlineCode>,
       },
       {
         id: "type",
         header: "Type",
         cell: ({ row }) =>
-          row.original.isSystem ? (
-            <span className={systemBadgeClass}>system</span>
-          ) : (
-            "user"
-          ),
+          row.original.isSystem ? <Badge>system</Badge> : "user",
       },
       {
         id: "cardCount",
@@ -103,26 +95,25 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
             return <span className={tagsTableMutedClass}>—</span>;
           }
           return (
-            <>
-              <Link
+            <TableActions>
+              <TextLink
                 href={`/tags/${encodeURIComponent(tag.id)}/edit`}
-                className={tagsTableActionLinkClass}
+                variant="table"
               >
                 Edit
-              </Link>
-              <button
+              </TextLink>
+              <Button
                 type="button"
-                className={`${tagsTableBtnDangerClass} ${tagsTableActionGapClass}`}
+                variant="tableDanger"
+                size="xs"
                 onClick={() => setDeleteTarget(tag)}
-                disabled={
-                  deleteTag.isPending && deleteTarget?.id === tag.id
-                }
+                disabled={deleteTag.isPending && deleteTarget?.id === tag.id}
               >
                 {deleteTag.isPending && deleteTarget?.id === tag.id
                   ? "Deleting…"
                   : "Delete"}
-              </button>
-            </>
+              </Button>
+            </TableActions>
           );
         },
       },
@@ -132,34 +123,27 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
 
   if (loading) {
     return (
-      <div className={tagsPageClass}>
-        <div className={tagsPageHeaderClass}>
-          <h1 className={tagsPageTitleClass}>Tags</h1>
-          <Link href="/tags/new" className={tagsPageNewLinkClass}>
-            + New tag
-          </Link>
-        </div>
-        <p className={deckHintClass}>Loading tags…</p>
-      </div>
+      <ListPage title="Tags" actionHref="/tags/new" actionLabel="+ New tag">
+        <HintBanner>Loading tags…</HintBanner>
+      </ListPage>
     );
   }
 
   return (
-    <div className={tagsPageClass}>
-      <div className={tagsPageHeaderClass}>
-        <h1 className={tagsPageTitleClass}>Tags</h1>
-        <Link href="/tags/new" className={tagsPageNewLinkClass}>
-          + New tag
-        </Link>
-      </div>
-      <p className={tagsPageIntroClass}>
-        Tags organize cards and import bundles. Your tags are personal; tags you
-        create as super admin are marked <span className={systemBadgeClass}>system</span>{" "}
-        and can only be edited by super admins.
-      </p>
-
+    <ListPage
+      title="Tags"
+      actionHref="/tags/new"
+      actionLabel="+ New tag"
+      intro={
+        <>
+          Tags organize cards and import bundles. Your tags are personal; tags you
+          create as super admin are marked <Badge>system</Badge> and can only be
+          edited by super admins.
+        </>
+      }
+    >
       {tags.length === 0 ? (
-        <p className={deckHintClass}>No tags yet.</p>
+        <HintBanner>No tags yet.</HintBanner>
       ) : (
         <DataTable
           data={tags}
@@ -170,7 +154,7 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
       )}
 
       <p className={tagsPageBackClass}>
-        <Link href="/" className="text-daf-head no-underline hover:underline">← Back to vocabulary</Link>
+        <TextLink href="/">← Back to vocabulary</TextLink>
       </p>
 
       <ConfirmModal
@@ -189,6 +173,6 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
           if (!deleteTag.isPending) setDeleteTarget(null);
         }}
       />
-    </div>
+    </ListPage>
   );
 }

@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 
+import IconButton from "@/components/shared/atoms/IconButton";
 import { nextToastId } from "@/utils/nextToastId";
 
 type ToastVariant = "success" | "error" | "info";
@@ -91,14 +92,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             role={toast.variant === "error" ? "alert" : "status"}
           >
             <span className="min-w-0 flex-1">{toast.message}</span>
-            <button
-              type="button"
-              className="shrink-0 cursor-pointer border-0 bg-transparent p-0 text-[1.1rem] leading-none text-inherit opacity-60 hover:opacity-100"
+            <IconButton
+              variant="dismiss"
               onClick={() => dismiss(toast.id)}
               aria-label="Dismiss"
             >
               ×
-            </button>
+            </IconButton>
           </div>
         ))}
       </div>

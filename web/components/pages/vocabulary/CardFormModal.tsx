@@ -1,14 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useState } from "react";
 import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
 import { createPortal } from "react-dom";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import TagMultiSelect from "@/components/shared/TagMultiSelect";
-import PronounceButton from "@/components/shared/PronounceButton";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import TagMultiSelect from "@/components/pages/tags/TagMultiSelect";
+import PronounceButton from "@/components/pages/vocabulary/PronounceButton";
+import Button from "@/components/shared/atoms/Button";
+import ModalActions from "@/components/shared/molecules/ModalActions";
+import TextLink from "@/components/shared/atoms/TextLink";
+import { useToast } from "@/components/providers/ToastProvider";
+import { useIsClient } from "@/hooks/useIsClient";
 import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
@@ -46,14 +49,6 @@ type CardFormModalProps = {
 };
 
 type DeckOption = { id: string; name: string };
-
-function useIsClient(): boolean {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-}
 
 export default function CardFormModal({
   mode,
@@ -399,8 +394,6 @@ export default function CardFormModal({
   const fieldTextarea = `${fieldInput} min-h-[3.25rem] resize-y`;
   const fieldSelect = `${fieldInput} cursor-pointer appearance-none bg-daf-select-chevron bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat pr-8`;
   const fieldHint = "text-[0.75rem] font-normal leading-snug text-daf-muted";
-  const btnBase =
-    "cursor-pointer appearance-none rounded border border-transparent px-[0.85rem] py-[0.45rem] text-[0.85rem] font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-65";
 
   return createPortal(
     <div
@@ -424,23 +417,25 @@ export default function CardFormModal({
               {title}
             </h2>
             <div className="flex shrink-0 items-center gap-[0.4rem]">
-              <button
+              <Button
                 type="button"
-                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-gradient-to-b from-daf-ai-from to-daf-head-soft px-[0.7rem] py-[0.35rem] text-[0.78rem] font-semibold whitespace-nowrap text-daf-ai-text hover:border-daf-head/65 hover:from-daf-ai-hover-from hover:to-daf-ai-hover-to disabled:cursor-not-allowed disabled:opacity-55"
+                variant="ai"
+                size="compact"
                 onClick={onAiFillClick}
                 disabled={suggestCard.isPending || !form.head.trim()}
                 title="Fill gloss, notes, examples, IPA, and type from the headword"
               >
                 {suggestCard.isPending ? "Filling…" : "✨ AI fill"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className="shrink-0 cursor-pointer rounded-md border border-daf-head/45 bg-white px-[0.7rem] py-[0.35rem] font-mono text-[0.78rem] font-semibold whitespace-nowrap text-daf-ai-text hover:border-daf-head/65 hover:bg-daf-head-softer disabled:cursor-not-allowed disabled:opacity-55"
+                variant="outline"
+                size="compact"
                 onClick={() => setJsonFillOpen(true)}
                 title="Paste a vocab.manifest.json card object to fill the form"
               >
                 {"{ }"} JSON fill
-              </button>
+              </Button>
             </div>
           </div>
           {mode === "edit" && card && isPristineCommunityCard(card) ? (
@@ -531,25 +526,27 @@ export default function CardFormModal({
                         />
                       </label>
                     </div>
-                    <button
+                    <Button
                       type="button"
-                      className="mt-0.5 shrink-0 cursor-pointer border-0 bg-transparent px-1 text-[1.1rem] leading-none text-daf-icon-muted hover:text-daf-danger"
+                      variant="ghostDanger"
+                      className="mt-0.5 shrink-0 px-1"
                       onClick={() => removeExampleAt(index)}
                       aria-label={`Remove example ${index + 1}`}
                       title="Remove example"
                     >
                       ×
-                    </button>
+                    </Button>
                   </li>
                 ))}
               </ul>
-              <button
+              <Button
                 type="button"
-                className="mt-2 cursor-pointer border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head hover:underline"
+                variant="ghost"
+                className="mt-2"
                 onClick={() => append(emptyExample())}
               >
                 + Add example
-              </button>
+              </Button>
             </fieldset>
 
             <div role="group" aria-labelledby="card-pronunciation-label">
@@ -560,9 +557,11 @@ export default function CardFormModal({
                 >
                   Pronunciation
                 </span>
-                <button
+                <Button
                   type="button"
-                  className="cursor-pointer rounded-md border border-daf-head/45 bg-daf-head-softer px-3 py-1.5 text-[0.78rem] font-semibold text-daf-head hover:bg-daf-head-soft disabled:cursor-not-allowed disabled:opacity-55"
+                  variant="outline"
+                  size="compact"
+                  className="bg-daf-head-softer px-3 py-1.5 font-sans text-daf-head hover:bg-daf-head-soft"
                   onClick={() => void generatePronunciation()}
                   disabled={generatingPronunciation || !canGeneratePronunciation}
                 >
@@ -571,7 +570,7 @@ export default function CardFormModal({
                     : pronunciationPreviews.length > 0
                       ? "Regenerate pronunciation"
                       : "Generate pronunciation"}
-                </button>
+                </Button>
               </div>
               <p className={`${fieldHint} mb-2`}>
                 Creates audio for the headword and each German example. Play to
@@ -603,12 +602,9 @@ export default function CardFormModal({
               </span>
               <span className={fieldHint}>
                 User cards include the &quot;user&quot; tag by default.{" "}
-                <Link
-                  href="/tags"
-                  className="font-medium text-daf-head underline underline-offset-2 hover:text-daf-head-dark"
-                >
+                <TextLink href="/tags" variant="inline">
                   Manage tags
-                </Link>
+                </TextLink>
               </span>
               <Controller
                 control={control}
@@ -674,22 +670,18 @@ export default function CardFormModal({
                 {errors.root.message}
               </p>
             ) : null}
-            <div className="flex justify-end gap-2">
-              <button
-                type="button"
-                className={`${btnBase} border-daf-border-muted bg-daf-panel-alt text-daf-body`}
-                onClick={handleClose}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className={`${btnBase} border-daf-head-dark bg-daf-head text-white`}
-                disabled={isSubmitting || saveCard.isPending}
-              >
-                {saveCard.isPending ? "Saving…" : mode === "create" ? "Create card" : "Save"}
-              </button>
-            </div>
+            <ModalActions
+              onCancel={handleClose}
+              confirmLabel={
+                saveCard.isPending
+                  ? "Saving…"
+                  : mode === "create"
+                    ? "Create card"
+                    : "Save"
+              }
+              confirmType="submit"
+              loading={isSubmitting || saveCard.isPending}
+            />
           </div>
         </form>
       </div>

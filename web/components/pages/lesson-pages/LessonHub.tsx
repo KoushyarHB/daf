@@ -1,5 +1,5 @@
 import type { LessonPageEntry } from "@/lib/vocab/types";
-import ZoomableImage from "@/components/shared/ZoomableImage";
+import ZoomableImage from "@/components/shared/organisms/media/ZoomableImage";
 
 type LessonHubProps = {
   lessons: LessonPageEntry[];

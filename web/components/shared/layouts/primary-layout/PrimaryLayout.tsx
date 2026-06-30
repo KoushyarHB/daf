@@ -2,8 +2,8 @@
 
 import { ReactNode } from "react";
 import Navbar from "@/components/shared/layouts/navbar/Navbar";
-import { LightboxProvider } from "@/components/shared/ImageLightbox";
-import { ToastProvider } from "@/components/shared/toast/ToastProvider";
+import { LightboxProvider } from "@/components/shared/organisms/media/ImageLightbox";
+import { ToastProvider } from "@/components/providers/ToastProvider";
 
 type LayoutProps = { children: ReactNode };
 

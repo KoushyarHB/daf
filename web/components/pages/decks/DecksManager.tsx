@@ -7,9 +7,9 @@ import { useForm, useWatch } from "react-hook-form";
 import type { ColumnDef } from "@tanstack/react-table";
 import type { z } from "zod";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import DataTable from "@/components/shared/DataTable";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import DataTable from "@/components/shared/organisms/DataTable";
+import { useToast } from "@/components/providers/ToastProvider";
 import {
   useCreateDeckMutation,
   useDecksQuery,

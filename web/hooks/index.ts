@@ -3,3 +3,4 @@ export * from "./auth";
 export * from "./cards";
 export * from "./decks";
 export * from "./tags";
+export { useIsClient } from "./useIsClient";

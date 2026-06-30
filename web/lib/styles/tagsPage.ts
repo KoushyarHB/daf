@@ -1,12 +1,18 @@
 /** Shared layout / table classes for tags, decks, and admin pages. */
 
+import {
+  decksCreateSubmitClass,
+  tagFormSubmitClass,
+  tagsPageNewLinkClass,
+  tagsTableBtnDangerClass,
+  tagsTableBtnPrimaryClass,
+  tagsTableBtnSecondaryClass,
+} from "@/lib/styles/button";
+
 export const tagsPageClass = "max-w-tags mx-auto px-5 py-4 pb-8";
 
 export const tagsPageHeaderClass =
   "flex items-center justify-between gap-4 mb-2";
-
-export const tagsPageNewLinkClass =
-  "text-[0.85rem] font-semibold text-white bg-daf-head py-1.5 px-2.5 rounded no-underline";
 
 export const tagsPageIntroClass = "m-0 mb-4 text-[0.88rem] text-daf-body";
 
@@ -48,15 +54,6 @@ export const tagsTableActionLinkClass =
 
 export const tagsTableActionGapClass = "ml-2";
 
-export const tagsTableBtnDangerClass =
-  "inline-block align-middle font-inherit text-[0.8rem] font-semibold leading-tight text-daf-danger-strong bg-daf-danger-bg border border-daf-danger-border rounded-[5px] cursor-pointer py-[0.28rem] px-[0.55rem] min-w-[4.75rem] text-center transition-[background,border-color,box-shadow] duration-150 hover:bg-daf-danger-bg-hover hover:border-daf-danger-border-hover hover:text-daf-danger-hover focus:outline-none focus:border-daf-danger-border-focus focus:shadow-danger-focus disabled:opacity-55 disabled:cursor-not-allowed";
-
-export const tagsTableBtnPrimaryClass =
-  "inline-block align-middle font-inherit text-[0.8rem] font-semibold leading-tight text-white bg-daf-head border border-daf-head-dark rounded-[5px] cursor-pointer py-[0.28rem] px-[0.55rem] min-w-[6.75rem] text-center transition-[background,border-color,box-shadow] duration-150 hover:bg-daf-head-hover hover:border-daf-head-link hover:text-white focus:outline-none focus:border-daf-head focus:shadow-daf-focus-lg disabled:opacity-55 disabled:cursor-not-allowed";
-
-export const tagsTableBtnSecondaryClass =
-  "inline-flex items-center justify-center align-middle appearance-none font-inherit text-[0.8rem] font-semibold leading-tight text-daf-head bg-daf-white border border-daf-border-badge rounded-[5px] cursor-pointer py-[0.28rem] px-[0.55rem] min-w-[4.75rem] text-center no-underline transition-[background,border-color] duration-150 hover:bg-daf-head-soft hover:border-grm-hub-card-hover hover:text-daf-head-link";
-
 export const tagsTableMutedClass = "text-daf-disabled text-[0.85rem]";
 
 export const decksCreateFormClass =
@@ -64,9 +61,6 @@ export const decksCreateFormClass =
 
 export const formLabelClass =
   "flex flex-col gap-[0.35rem] text-[0.85rem] font-semibold text-daf-label min-w-40";
-
-export const decksCreateSubmitClass =
-  "font-inherit py-1.5 px-[0.85rem] rounded border border-daf-head bg-daf-head text-white cursor-pointer disabled:opacity-55 disabled:cursor-not-allowed";
 
 export const adminSearchClass =
   "flex flex-col gap-[0.35rem] mb-4 max-w-[22rem] border-0 p-0";
@@ -87,10 +81,16 @@ export const tagFormErrorClass = "text-daf-danger-alt text-[0.85rem] m-0";
 export const tagFormActionsClass =
   "flex gap-3 items-center mt-2";
 
-export const tagFormSubmitClass =
-  "font-inherit py-1.5 px-[0.85rem] bg-daf-head text-white border-0 rounded cursor-pointer disabled:opacity-55 disabled:cursor-not-allowed";
-
 export const tagFormCancelClass = "text-[0.85rem] text-daf-head no-underline";
 
 export const formSelectTableClass =
   "py-[0.35rem] pl-2 pr-7 text-[0.85rem] min-w-36 w-full max-w-44";
+
+export {
+  decksCreateSubmitClass,
+  tagFormSubmitClass,
+  tagsPageNewLinkClass,
+  tagsTableBtnDangerClass,
+  tagsTableBtnPrimaryClass,
+  tagsTableBtnSecondaryClass,
+};

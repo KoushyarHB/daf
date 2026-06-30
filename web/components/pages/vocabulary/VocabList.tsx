@@ -1,7 +1,7 @@
 import { cardEditLabel, cardRemoveLabel } from "@/lib/vocab/card-manage";
 import { posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
-import StudiedButton from "@/components/shared/StudiedButton";
+import StudiedButton from "@/components/pages/vocabulary/StudiedButton";
 
 type VocabListProps = {
   cards: EnrichedVocabCard[];

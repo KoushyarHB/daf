@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth/require-auth";
-import SignInPrompt from "@/components/shared/SignInPrompt";
+import SignInPrompt from "@/components/shared/molecules/SignInPrompt";
 import TagsManager from "@/components/pages/tags/TagsManager";
 import * as tagsService from "@/services/backend/tags.service";
 

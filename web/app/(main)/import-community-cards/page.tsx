@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getAuthSession } from "@/lib/auth/require-auth";
-import SignInPrompt from "@/components/shared/SignInPrompt";
+import SignInPrompt from "@/components/shared/molecules/SignInPrompt";
 import ImportCommunityCardsClient from "@/components/pages/vocabulary/ImportCommunityCardsClient";
 import { getImportStatus } from "@/services/backend/import.service";
 

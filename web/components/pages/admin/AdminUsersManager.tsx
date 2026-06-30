@@ -1,12 +1,18 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import ConfirmModal from "@/components/shared/ConfirmModal";
-import DataTable from "@/components/shared/DataTable";
-import { useToast } from "@/components/shared/toast/ToastProvider";
+import Button from "@/components/shared/atoms/Button";
+import Select from "@/components/shared/atoms/Select";
+import TextLink from "@/components/shared/atoms/TextLink";
+import HintBanner from "@/components/shared/molecules/HintBanner";
+import ListPage from "@/components/shared/molecules/ListPage";
+import SearchField from "@/components/shared/molecules/SearchField";
+import TableActions from "@/components/shared/molecules/TableActions";
+import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
+import DataTable from "@/components/shared/organisms/DataTable";
+import { useToast } from "@/components/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useAdminUsersQuery,
@@ -17,24 +23,9 @@ import {
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
 import {
-  formInputClass,
-  formPlaceholderClass,
-  formSelectClass,
-} from "@/lib/styles/formControls";
-import { tagsPageTitleClass } from "@/lib/styles/pageTitle";
-import {
-  adminSearchClass,
-  adminSearchInputClass,
-  adminSearchLabelClass,
-  deckHintClass,
   formSelectTableClass,
-  tagsPageClass,
-  tagsPageHeaderClass,
-  tagsPageIntroClass,
-  tagsPageNewLinkClass,
   tagsTableActionsClass,
   tagsTableActionsColClass,
-  tagsTableBtnDangerClass,
   tagsTableThTdClass,
   tagsTableUsersClass,
   tagsTableUsersRoleColClass,
@@ -113,8 +104,9 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         cell: ({ row }) => {
           const user = row.original;
           return (
-            <select
-              className={`${formSelectClass} ${formSelectTableClass}`}
+            <Select
+              variant="default"
+              className={formSelectTableClass}
               value={user.role}
               disabled={
                 updateRole.isPending &&
@@ -129,7 +121,7 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
                   {roleLabel(r)}
                 </option>
               ))}
-            </select>
+            </Select>
           );
         },
       },
@@ -149,18 +141,19 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         cell: ({ row }) => {
           const user = row.original;
           return (
-            <button
-              type="button"
-              className={tagsTableBtnDangerClass}
-              onClick={() => setDeleteTarget(user)}
-              disabled={
-                deleteUser.isPending && deleteTarget?.id === user.id
-              }
-            >
-              {deleteUser.isPending && deleteTarget?.id === user.id
-                ? "Deleting…"
-                : "Delete"}
-            </button>
+            <TableActions>
+              <Button
+                type="button"
+                variant="tableDanger"
+                size="xs"
+                onClick={() => setDeleteTarget(user)}
+                disabled={deleteUser.isPending && deleteTarget?.id === user.id}
+              >
+                {deleteUser.isPending && deleteTarget?.id === user.id
+                  ? "Deleting…"
+                  : "Delete"}
+              </Button>
+            </TableActions>
           );
         },
       },
@@ -175,37 +168,30 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
   );
 
   return (
-    <div className={tagsPageClass}>
-      <div className={tagsPageHeaderClass}>
-        <h1 className={tagsPageTitleClass}>Users</h1>
-        <Link href="/admin/users/new" className={tagsPageNewLinkClass}>
-          + Create user
-        </Link>
-      </div>
-      <p className={tagsPageIntroClass}>
-        View accounts and change roles. Use{" "}
-        <Link href="/admin/users/new" className="text-daf-head no-underline hover:underline">Create user</Link> to add new accounts
-        (including super admins).
-      </p>
-
-      <div className={adminSearchClass}>
-        <label className={adminSearchLabelClass} htmlFor="admin-users-q">
-          Search users
-        </label>
-        <input
-          id="admin-users-q"
-          type="search"
-          className={`${formInputClass} ${formPlaceholderClass} ${adminSearchInputClass}`}
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Email or name…"
-        />
-      </div>
+    <ListPage
+      title="Users"
+      actionHref="/admin/users/new"
+      actionLabel="+ Create user"
+      intro={
+        <>
+          View accounts and change roles. Use{" "}
+          <TextLink href="/admin/users/new">Create user</TextLink> to add new
+          accounts (including super admins).
+        </>
+      }
+    >
+      <SearchField
+        id="admin-users-q"
+        label="Search users"
+        value={q}
+        onChange={setQ}
+        placeholder="Email or name…"
+      />
 
       {loading ? (
-        <p className={deckHintClass}>Loading users…</p>
+        <HintBanner>Loading users…</HintBanner>
       ) : users.length === 0 ? (
-        <p className={deckHintClass}>No users found.</p>
+        <HintBanner>No users found.</HintBanner>
       ) : (
         <DataTable
           data={users}
@@ -232,6 +218,6 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
           if (!deleteUser.isPending) setDeleteTarget(null);
         }}
       />
-    </div>
+    </ListPage>
   );
 }
