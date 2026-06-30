@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import AdminDeckReview from "@/components/pages/admin/AdminDeckReview";
 import { getAuthSession } from "@/lib/auth/require-auth";
 import { isSuperAdminRole } from "@/lib/auth/roles";
-import * as adminDecksService from "@/services/admin-decks.service";
+import * as adminDecksService from "@/services/backend/admin-decks.service";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +31,7 @@ export default async function AdminDeckReviewPage({ params }: PageProps) {
 
   return (
     <AdminDeckReview
+      key={id}
       deckId={id}
       initialDeck={deck}
       initialCards={cardsResult}

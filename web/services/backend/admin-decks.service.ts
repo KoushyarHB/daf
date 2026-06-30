@@ -6,11 +6,11 @@ import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { slugifyLabel } from "@/lib/tags/slug";
 import { prisma } from "@/lib/db/prisma";
-import type { TagDto } from "@/services/tags.service";
-import { ensureTag } from "@/services/tags.service";
-import { getCardById, updateOwnedCardForUser } from "@/services/cards.service";
+import type { TagDto } from "@/services/backend/tags.service";
+import { ensureTag } from "@/services/backend/tags.service";
+import { getCardById, updateOwnedCardForUser } from "@/services/backend/cards.service";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
-import { updateDeck, type DeckDto } from "@/services/decks.service";
+import { updateDeck, type DeckDto } from "@/services/backend/decks.service";
 
 type AdminDeckListQuery = z.infer<typeof adminDeckListQuerySchema>;
 type CardUpdateInput = z.infer<typeof cardUpdateSchema>;

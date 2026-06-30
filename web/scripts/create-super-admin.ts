@@ -7,7 +7,7 @@
 import bcrypt from "bcryptjs";
 
 import { prisma } from "@/lib/db/prisma";
-import { ensureDefaultDeck } from "@/services/decks.service";
+import { ensureDefaultDeck } from "@/services/backend/decks.service";
 
 const BCRYPT_ROUNDS = 12;
 

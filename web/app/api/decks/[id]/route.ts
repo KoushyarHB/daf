@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { deckUpdateSchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import * as decksService from "@/services/decks.service";
+import * as decksService from "@/services/backend/decks.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { progressPatchSchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import * as cardsService from "@/services/cards.service";
+import * as cardsService from "@/services/backend/cards.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

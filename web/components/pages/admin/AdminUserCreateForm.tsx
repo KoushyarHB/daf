@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import { useCreateAdminUserMutation } from "@/lib/api/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
 
@@ -13,7 +15,7 @@ const ROLES: UserRole[] = ["user", "admin", "super_admin"];
 export default function AdminUserCreateForm() {
   const toast = useToast();
   const router = useRouter();
-  const [creating, setCreating] = useState(false);
+  const createUser = useCreateAdminUserMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -21,28 +23,17 @@ export default function AdminUserCreateForm() {
 
   async function onCreate(e: React.FormEvent) {
     e.preventDefault();
-    setCreating(true);
     try {
-      const res = await fetch("/api/admin/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email.trim(),
-          password,
-          name: name.trim() || undefined,
-          role,
-        }),
+      await createUser.mutateAsync({
+        email: email.trim(),
+        password,
+        name: name.trim() || undefined,
+        role,
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Create failed (${res.status})`);
-      }
       toast.success("User created");
       router.push("/admin/users");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Create failed");
-    } finally {
-      setCreating(false);
+      toast.error(getApiErrorMessage(err, "Create failed"));
     }
   }
 
@@ -96,8 +87,8 @@ export default function AdminUserCreateForm() {
           </select>
         </label>
         <div className="tag-form__actions">
-          <button type="submit" disabled={creating}>
-            {creating ? "Creating…" : "Create user"}
+          <button type="submit" disabled={createUser.isPending}>
+            {createUser.isPending ? "Creating…" : "Create user"}
           </button>
           <Link href="/admin/users" className="tag-form__cancel">
             Cancel

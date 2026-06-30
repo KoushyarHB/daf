@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useImportStatusQuery } from "@/lib/api/hooks/cards";
 
 import ImportTagPanel, {
   type TagImportOption,
@@ -20,21 +20,13 @@ type ImportCommunityCardsClientProps = {
 export default function ImportCommunityCardsClient({
   initialStatus,
 }: ImportCommunityCardsClientProps) {
-  const [status, setStatus] = useState(initialStatus);
-
-  const reload = useCallback(() => {
-    void fetch("/api/cards/import-status")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json: ImportStatus | null) => {
-        if (json) setStatus(json);
-      })
-      .catch(() => {});
-  }, []);
+  const importStatusQuery = useImportStatusQuery({ initialData: initialStatus });
+  const status = importStatusQuery.data ?? initialStatus;
 
   return (
     <ImportTagPanel
       options={status.availableTags}
-      onChanged={reload}
+      onChanged={() => void importStatusQuery.refetch()}
       title="Import community cards"
       description="Add shared DaF vocabulary by tag. Imported cards appear in your deck; you can customize or remove them individually."
     />

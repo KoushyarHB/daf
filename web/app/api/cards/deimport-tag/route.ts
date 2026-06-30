@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { tagImportBodySchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import { deimportCommunityTag } from "@/services/import.service";
+import { deimportCommunityTag } from "@/services/backend/import.service";
 
 export async function POST(request: Request) {
   const authResult = await requireAuthUserId();

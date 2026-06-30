@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth/require-auth";
 import { isSuperAdminRole } from "@/lib/auth/roles";
 import AdminUsersManager from "@/components/pages/admin/AdminUsersManager";
-import * as adminUsersService from "@/services/admin-users.service";
+import * as adminUsersService from "@/services/backend/admin-users.service";
 
 export const dynamic = "force-dynamic";
 

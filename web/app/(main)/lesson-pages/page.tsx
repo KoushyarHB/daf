@@ -1,5 +1,5 @@
 import LessonHub from "@/components/pages/lesson-pages/LessonHub";
-import * as lessonsService from "@/services/lessons.service";
+import * as lessonsService from "@/services/backend/lessons.service";
 
 export const dynamic = "force-dynamic";
 

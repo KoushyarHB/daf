@@ -14,12 +14,12 @@ import {
 } from "../lib/vocab/card-utils";
 import type { VocabCard, LessonPageEntry, VocabPos } from "../lib/vocab/types";
 import { normalizeVocabPos } from "../lib/vocab/types";
-import { ensureDefaultImportUser } from "../services/users.service";
+import { ensureDefaultImportUser } from "../services/backend/users.service";
 import {
   applyCommunityCardTags,
   ensureDafLekTag,
   ensureSystemTags,
-} from "../services/tags.service";
+} from "../services/backend/tags.service";
 
 const prisma = new PrismaClient();
 

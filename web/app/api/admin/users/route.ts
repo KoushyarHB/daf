@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { adminUserListQuerySchema, adminUserWriteSchema } from "@/lib/api/schemas";
 import { isAuthError, requireSuperAdminSession } from "@/lib/auth/require-auth";
-import * as adminUsersService from "@/services/admin-users.service";
+import * as adminUsersService from "@/services/backend/admin-users.service";
 
 export async function GET(request: NextRequest) {
   const authResult = await requireSuperAdminSession();

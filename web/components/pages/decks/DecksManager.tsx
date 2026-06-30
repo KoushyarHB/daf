@@ -1,24 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
-import { writeRouteCache } from "@/lib/client/route-data-cache";
+import {
+  useCreateDeckMutation,
+  useDecksQuery,
+  useDeleteDeckMutation,
+  type DeckRow,
+} from "@/lib/api/hooks/decks";
+import { getApiErrorMessage } from "@/services/frontend/http";
 import { CEFR_LEVELS } from "@/lib/vocab/levels";
-
-type DeckRow = {
-  id: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  level: string;
-  isSystem: boolean;
-  cardCount: number;
-  publishedAt: string | null;
-  publishedTagSlug: string | null;
-};
 
 type DecksManagerProps = {
   initialDecks: DeckRow[];
@@ -26,30 +20,16 @@ type DecksManagerProps = {
 
 export default function DecksManager({ initialDecks }: DecksManagerProps) {
   const toast = useToast();
-  const [decks, setDecks] = useState<DeckRow[]>(initialDecks);
-  const [loading, setLoading] = useState(false);
+  const decksQuery = useDecksQuery({ initialData: initialDecks });
+  const createDeck = useCreateDeckMutation();
+  const deleteDeck = useDeleteDeckMutation();
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [level, setLevel] = useState("A1");
   const [deleteTarget, setDeleteTarget] = useState<DeckRow | null>(null);
-  const [deleting, setDeleting] = useState(false);
 
-  const load = useCallback(() => {
-    setLoading(true);
-    void fetch("/api/decks?pageSize=100")
-      .then((r) => r.json())
-      .then((data: { items?: DeckRow[] }) => {
-        const items = data.items ?? [];
-        setDecks(items);
-        writeRouteCache("decks", items);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    writeRouteCache("decks", initialDecks);
-  }, [initialDecks]);
+  const decks = decksQuery.data ?? [];
+  const loading = decksQuery.isLoading;
 
   async function onCreate(e: React.FormEvent) {
     e.preventDefault();
@@ -57,46 +37,27 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
     if (!trimmed) return;
     setCreating(true);
     try {
-      const res = await fetch("/api/decks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: trimmed, level }),
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Create failed (${res.status})`);
-      }
+      await createDeck.mutateAsync({ name: trimmed, level });
       toast.success("Deck created");
       setName("");
-      load();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Create failed");
+      toast.error(getApiErrorMessage(err, "Create failed"));
     } finally {
       setCreating(false);
     }
   }
 
-  async function confirmDelete() {
+  const confirmDelete = useCallback(async () => {
     if (!deleteTarget) return;
-    setDeleting(true);
     const deck = deleteTarget;
     try {
-      const res = await fetch(`/api/decks/${encodeURIComponent(deck.id)}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Delete failed (${res.status})`);
-      }
+      await deleteDeck.mutateAsync(deck.id);
       toast.success("Deck deleted");
       setDeleteTarget(null);
-      load();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    } finally {
-      setDeleting(false);
+      toast.error(getApiErrorMessage(err, "Delete failed"));
     }
-  }
+  }, [deleteTarget, deleteDeck, toast]);
 
   if (loading && decks.length === 0) {
     return (
@@ -183,9 +144,9 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
                       type="button"
                       className="tags-table__btn-danger"
                       onClick={() => setDeleteTarget(deck)}
-                      disabled={deleting && deleteTarget?.id === deck.id}
+                      disabled={deleteDeck.isPending && deleteTarget?.id === deck.id}
                     >
-                      {deleting && deleteTarget?.id === deck.id
+                      {deleteDeck.isPending && deleteTarget?.id === deck.id
                         ? "Deleting…"
                         : "Delete"}
                     </button>
@@ -207,10 +168,10 @@ export default function DecksManager({ initialDecks }: DecksManagerProps) {
         }
         confirmLabel="Delete"
         danger
-        loading={deleting}
+        loading={deleteDeck.isPending}
         onConfirm={() => void confirmDelete()}
         onCancel={() => {
-          if (!deleting) setDeleteTarget(null);
+          if (!deleteDeck.isPending) setDeleteTarget(null);
         }}
       />
     </div>

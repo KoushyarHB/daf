@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { cardListQuerySchema, cardWriteSchema } from "@/lib/api/schemas";
 import { getAuthUserId, isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import * as cardsService from "@/services/cards.service";
+import * as cardsService from "@/services/backend/cards.service";
 
 export async function GET(request: NextRequest) {
   const parsed = cardListQuerySchema.safeParse(

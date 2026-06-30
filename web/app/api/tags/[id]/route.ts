@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { tagUpdateSchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthSession } from "@/lib/auth/require-auth";
-import * as tagsService from "@/services/tags.service";
+import * as tagsService from "@/services/backend/tags.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

@@ -4,36 +4,38 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { isAxiosError } from "axios";
 
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
+import { useRegisterMutation } from "@/lib/api/hooks/auth";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const register = useRegisterMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
     setError(null);
 
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, name: name || undefined }),
-    });
-
-    if (!res.ok) {
-      const data = (await res.json()) as { error?: string };
-      setError(
-        res.status === 409
-          ? "Email already registered."
-          : (data.error as string) ?? "Registration failed.",
-      );
-      setLoading(false);
+    try {
+      await register.mutateAsync({
+        email,
+        password,
+        name: name || undefined,
+      });
+    } catch (err) {
+      if (isAxiosError(err) && err.response?.status === 409) {
+        setError("Email already registered.");
+        return;
+      }
+      const data = isAxiosError(err)
+        ? (err.response?.data as { error?: string } | undefined)
+        : undefined;
+      setError(data?.error ?? "Registration failed.");
       return;
     }
 
@@ -42,7 +44,6 @@ export default function RegisterPage() {
       password,
       redirect: false,
     });
-    setLoading(false);
     if (signInResult?.error) {
       setError("Account created but sign-in failed. Try logging in.");
       return;
@@ -89,8 +90,8 @@ export default function RegisterPage() {
           />
         </label>
         {error ? <p className="auth-error">{error}</p> : null}
-        <AuthSubmitButton disabled={loading}>
-          {loading ? "Creating account…" : "Create account"}
+        <AuthSubmitButton disabled={register.isPending}>
+          {register.isPending ? "Creating account…" : "Create account"}
         </AuthSubmitButton>
       </form>
       <p className="auth-footer">

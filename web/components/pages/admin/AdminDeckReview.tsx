@@ -1,13 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import CardFormModal from "@/components/pages/vocabulary/CardFormModal";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import { fetchAdminDeck } from "@/services/frontend/admin.client";
+import {
+  usePublishAdminDeckMutation,
+  useUnpublishAdminDeckMutation,
+  useUpdateAdminDeckMutation,
+} from "@/lib/api/hooks/admin";
+import type { AdminDeckDto } from "@/lib/api/dto";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
-import type { AdminDeckDto } from "@/services/admin-decks.service";
 
 type AdminDeckReviewProps = {
   deckId: string;
@@ -39,110 +46,59 @@ export default function AdminDeckReview({
   initialCards,
 }: AdminDeckReviewProps) {
   const toast = useToast();
+  const updateDeck = useUpdateAdminDeckMutation();
+  const publishDeck = usePublishAdminDeckMutation();
+  const unpublishDeck = useUnpublishAdminDeckMutation();
   const [deck, setDeck] = useState(initialDeck);
   const [deckName, setDeckName] = useState(initialDeck.name);
   const [cards, setCards] = useState(initialCards);
-  const [savingName, setSavingName] = useState(false);
-  const [publishing, setPublishing] = useState(false);
-  const [unpublishing, setUnpublishing] = useState(false);
   const [publishConfirmOpen, setPublishConfirmOpen] = useState(false);
   const [unpublishConfirmOpen, setUnpublishConfirmOpen] = useState(false);
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<EnrichedVocabCard | null>(null);
 
-  useEffect(() => {
-    setDeck(initialDeck);
-    setDeckName(initialDeck.name);
-    setCards(initialCards);
-  }, [initialDeck, initialCards]);
-
   async function saveDeckName(e: React.FormEvent) {
     e.preventDefault();
     const trimmed = deckName.trim();
     if (!trimmed || trimmed === deck.name) return;
-    setSavingName(true);
     try {
-      const res = await fetch(`/api/admin/decks/${encodeURIComponent(deckId)}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: trimmed }),
-      });
-      const data = (await res.json().catch(() => ({}))) as AdminDeckDto & {
-        error?: string;
-      };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Save failed (${res.status})`);
-      }
+      const data = await updateDeck.mutateAsync({ deckId, name: trimmed });
       setDeck(data);
       setDeckName(data.name);
       toast.success("Deck name updated");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Save failed");
-    } finally {
-      setSavingName(false);
+      toast.error(getApiErrorMessage(err, "Save failed"));
     }
   }
 
   async function onPublish() {
-    setPublishing(true);
     try {
-      const res = await fetch(
-        `/api/admin/decks/${encodeURIComponent(deckId)}/publish`,
-        { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" },
-      );
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        tag?: { slug: string; label: string };
-        cardCount?: number;
-        republished?: boolean;
-      };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Publish failed (${res.status})`);
-      }
+      const data = await publishDeck.mutateAsync(deckId);
       toast.success(
         data.republished
           ? `Republished ${data.cardCount} cards as “${data.tag?.label}”`
           : `Published ${data.cardCount} cards as community deck “${data.tag?.label}”`,
       );
-      const deckRes = await fetch(`/api/admin/decks/${encodeURIComponent(deckId)}`);
-      if (deckRes.ok) {
-        const updated = (await deckRes.json()) as AdminDeckDto;
-        setDeck(updated);
-      }
+      const updated = await fetchAdminDeck(deckId);
+      setDeck(updated);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Publish failed");
+      toast.error(getApiErrorMessage(err, "Publish failed"));
     } finally {
-      setPublishing(false);
       setPublishConfirmOpen(false);
     }
   }
 
   async function onUnpublish() {
-    setUnpublishing(true);
     try {
-      const res = await fetch(
-        `/api/admin/decks/${encodeURIComponent(deckId)}/unpublish`,
-        { method: "POST" },
-      );
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        removedCardCount?: number;
-      };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Unpublish failed (${res.status})`);
-      }
+      const data = await unpublishDeck.mutateAsync(deckId);
       toast.success(
         `Removed ${data.removedCardCount ?? 0} community cards from the catalog`,
       );
-      const deckRes = await fetch(`/api/admin/decks/${encodeURIComponent(deckId)}`);
-      if (deckRes.ok) {
-        const updated = (await deckRes.json()) as AdminDeckDto;
-        setDeck(updated);
-      }
+      const updated = await fetchAdminDeck(deckId);
+      setDeck(updated);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Unpublish failed");
+      toast.error(getApiErrorMessage(err, "Unpublish failed"));
     } finally {
-      setUnpublishing(false);
       setUnpublishConfirmOpen(false);
     }
   }
@@ -198,9 +154,9 @@ export default function AdminDeckReview({
           <button
             type="submit"
             className={btnPrimary}
-            disabled={savingName || !nameDirty || !deckName.trim()}
+            disabled={updateDeck.isPending || !nameDirty || !deckName.trim()}
           >
-            {savingName ? "Saving…" : "Save name"}
+            {updateDeck.isPending ? "Saving…" : "Save name"}
           </button>
         </form>
         <dl className="mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
@@ -251,9 +207,9 @@ export default function AdminDeckReview({
             type="button"
             className={btnPrimary}
             onClick={() => setPublishConfirmOpen(true)}
-            disabled={publishing || cards.length === 0}
+            disabled={publishDeck.isPending || cards.length === 0}
           >
-            {publishing
+            {publishDeck.isPending
               ? "Publishing…"
               : deck.publishedAt
                 ? "Republish to community"
@@ -264,9 +220,9 @@ export default function AdminDeckReview({
               type="button"
               className={btnDanger}
               onClick={() => setUnpublishConfirmOpen(true)}
-              disabled={unpublishing}
+              disabled={unpublishDeck.isPending}
             >
-              {unpublishing ? "Unpublishing…" : "Unpublish"}
+              {unpublishDeck.isPending ? "Unpublishing…" : "Unpublish"}
             </button>
           ) : null}
         </div>
@@ -328,7 +284,7 @@ export default function AdminDeckReview({
           `Learners can import it via Import community cards (${cards.length} cards).`
         }
         confirmLabel={deck.publishedAt ? "Republish" : "Publish"}
-        loading={publishing}
+        loading={publishDeck.isPending}
         onConfirm={() => void onPublish()}
         onCancel={() => setPublishConfirmOpen(false)}
       />
@@ -342,7 +298,7 @@ export default function AdminDeckReview({
         }
         confirmLabel="Unpublish"
         danger
-        loading={unpublishing}
+        loading={unpublishDeck.isPending}
         onConfirm={() => void onUnpublish()}
         onCancel={() => setUnpublishConfirmOpen(false)}
       />

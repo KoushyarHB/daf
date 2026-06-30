@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { useToast } from "@/components/shared/toast/ToastProvider";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import { useSaveTagMutation } from "@/lib/api/hooks/tags";
 import { slugifyLabel } from "@/lib/tags/slug";
 
 type TagFormProps = {
@@ -16,10 +18,10 @@ type TagFormProps = {
 export default function TagForm({ mode, tagId, initial }: TagFormProps) {
   const router = useRouter();
   const toast = useToast();
+  const saveTag = useSaveTagMutation();
   const [label, setLabel] = useState(initial?.label ?? "");
   const [slug, setSlug] = useState(initial?.slug ?? "");
   const [slugTouched, setSlugTouched] = useState(mode === "edit");
-  const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   function onLabelChange(value: string) {
@@ -31,7 +33,6 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSaving(true);
     setError(null);
 
     const body = {
@@ -40,30 +41,14 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
     };
 
     try {
-      const url =
-        mode === "create"
-          ? "/api/tags"
-          : `/api/tags/${encodeURIComponent(tagId ?? "")}`;
-      const res = await fetch(url, {
-        method: mode === "create" ? "POST" : "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) {
-        throw new Error(
-          typeof data.error === "string" ? data.error : `Save failed (${res.status})`,
-        );
-      }
+      await saveTag.mutateAsync({ mode, tagId, body });
       toast.success(mode === "create" ? "Tag created" : "Tag updated");
       router.push("/tags");
       router.refresh();
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Save failed";
+      const message = getApiErrorMessage(err, "Save failed");
       setError(message);
       toast.error(message);
-    } finally {
-      setSaving(false);
     }
   }
 
@@ -103,8 +88,12 @@ export default function TagForm({ mode, tagId, initial }: TagFormProps) {
         <Link href="/tags" className="tag-form__cancel">
           Cancel
         </Link>
-        <button type="submit" disabled={saving}>
-          {saving ? "Saving…" : mode === "create" ? "Create tag" : "Save changes"}
+        <button type="submit" disabled={saveTag.isPending}>
+          {saveTag.isPending
+            ? "Saving…"
+            : mode === "create"
+              ? "Create tag"
+              : "Save changes"}
         </button>
       </div>
     </form>

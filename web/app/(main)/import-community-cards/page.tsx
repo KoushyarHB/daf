@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getAuthSession } from "@/lib/auth/require-auth";
 import SignInPrompt from "@/components/shared/SignInPrompt";
 import ImportCommunityCardsClient from "@/components/pages/vocabulary/ImportCommunityCardsClient";
-import { getImportStatus } from "@/services/import.service";
+import { getImportStatus } from "@/services/backend/import.service";
 
 export const dynamic = "force-dynamic";
 

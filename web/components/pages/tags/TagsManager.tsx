@@ -2,21 +2,17 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
-import { writeRouteCache } from "@/lib/client/route-data-cache";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import {
+  useDeleteTagMutation,
+  useTagsQuery,
+  type TagRow,
+} from "@/lib/api/hooks/tags";
 import { canModifyTag } from "@/lib/tags/permissions";
-
-type TagRow = {
-  id: string;
-  slug: string;
-  label: string;
-  isSystem: boolean;
-  createdById: string | null;
-  cardCount?: number;
-};
 
 type TagsManagerProps = {
   initialTags?: TagRow[];
@@ -27,28 +23,15 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
   const { data: session } = useSession();
   const userId = session?.user?.id;
   const role = session?.user?.role ?? "user";
-  const [tags, setTags] = useState<TagRow[]>(initialTags ?? []);
-  const [loading, setLoading] = useState(initialTags === undefined);
+  const tagsQuery = useTagsQuery({
+    enabled: initialTags === undefined,
+    initialData: initialTags,
+  });
+  const deleteTag = useDeleteTagMutation();
   const [deleteTarget, setDeleteTarget] = useState<TagRow | null>(null);
-  const [deleting, setDeleting] = useState(false);
 
-  const load = useCallback(() => {
-    setLoading(true);
-    void fetch("/api/tags?counts=true&pageSize=100")
-      .then((r) => r.json())
-      .then((data: { items?: TagRow[] }) => {
-        const items = data.items ?? [];
-        setTags(items);
-        writeRouteCache("tags", items);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    if (initialTags !== undefined) return;
-    load();
-  }, [load, initialTags]);
+  const tags = tagsQuery.data ?? initialTags ?? [];
+  const loading = tagsQuery.isLoading && tags.length === 0;
 
   function canEdit(tag: TagRow): boolean {
     if (!userId) return false;
@@ -57,27 +40,17 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
 
   async function confirmDelete() {
     if (!deleteTarget) return;
-    setDeleting(true);
     const tag = deleteTarget;
     try {
-      const res = await fetch(`/api/tags/${encodeURIComponent(tag.id)}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Delete failed (${res.status})`);
-      }
+      await deleteTag.mutateAsync(tag.id);
       toast.success("Tag deleted");
       setDeleteTarget(null);
-      load();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    } finally {
-      setDeleting(false);
+      toast.error(getApiErrorMessage(err, "Delete failed"));
     }
   }
 
-  if (loading && tags.length === 0) {
+  if (loading) {
     return (
       <div className="tags-page">
         <div className="tags-page__header">
@@ -146,9 +119,9 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
                           type="button"
                           className="tags-table__btn-danger"
                           onClick={() => setDeleteTarget(tag)}
-                          disabled={deleting && deleteTarget?.id === tag.id}
+                          disabled={deleteTag.isPending && deleteTarget?.id === tag.id}
                         >
-                          {deleting && deleteTarget?.id === tag.id
+                          {deleteTag.isPending && deleteTarget?.id === tag.id
                             ? "Deleting…"
                             : "Delete"}
                         </button>
@@ -179,10 +152,10 @@ export default function TagsManager({ initialTags }: TagsManagerProps) {
         }
         confirmLabel="Delete"
         danger
-        loading={deleting}
+        loading={deleteTag.isPending}
         onConfirm={() => void confirmDelete()}
         onCancel={() => {
-          if (!deleting) setDeleteTarget(null);
+          if (!deleteTag.isPending) setDeleteTarget(null);
         }}
       />
     </div>

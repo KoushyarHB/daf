@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { publishDeckBodySchema } from "@/lib/api/schemas";
 import { isAuthError, requireSuperAdminSession } from "@/lib/auth/require-auth";
-import * as adminDecksService from "@/services/admin-decks.service";
+import * as adminDecksService from "@/services/backend/admin-decks.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import {
+  useDeimportTagMutation,
+  useImportTagMutation,
+} from "@/lib/api/hooks/cards";
 
 export type TagImportOption = {
   slug: string;
@@ -27,10 +32,11 @@ export default function ImportTagPanel({
   description = "Choose a tagged deck to add shared vocabulary to your account. You can remove an import here anytime.",
 }: ImportTagPanelProps) {
   const toast = useToast();
+  const importTag = useImportTagMutation();
+  const deimportTag = useDeimportTagMutation();
   const [localOptions, setLocalOptions] = useState(options);
   const [busySlug, setBusySlug] = useState<string | null>(null);
   const [removeTarget, setRemoveTarget] = useState<TagImportOption | null>(null);
-  const [removing, setRemoving] = useState(false);
 
   useEffect(() => {
     setLocalOptions(options);
@@ -55,20 +61,12 @@ export default function ImportTagPanel({
   async function onImport(slug: string, label: string) {
     setBusySlug(slug);
     try {
-      const res = await fetch("/api/cards/import-tag", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Import failed (${res.status})`);
-      }
+      await importTag.mutateAsync(slug);
       setImported(slug, true);
       toast.success(`${label} imported`);
       onChanged();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Import failed");
+      toast.error(getApiErrorMessage(err, "Import failed"));
     } finally {
       setBusySlug(null);
     }
@@ -76,26 +74,16 @@ export default function ImportTagPanel({
 
   async function onDeimport(slug: string, label: string) {
     setBusySlug(slug);
-    setRemoving(true);
     try {
-      const res = await fetch("/api/cards/deimport-tag", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Remove failed (${res.status})`);
-      }
+      await deimportTag.mutateAsync(slug);
       setImported(slug, false);
       toast.success(`${label} removed from your deck`);
       setRemoveTarget(null);
       onChanged();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Remove failed");
+      toast.error(getApiErrorMessage(err, "Remove failed"));
     } finally {
       setBusySlug(null);
-      setRemoving(false);
     }
   }
 
@@ -106,6 +94,8 @@ export default function ImportTagPanel({
     const count = `${opt.cardCount} card${opt.cardCount === 1 ? "" : "s"}`;
     return opt.imported ? `${count} · In your deck` : count;
   }
+
+  const removing = deimportTag.isPending;
 
   return (
     <section className="import-lektion-panel" aria-labelledby="import-tag-title">

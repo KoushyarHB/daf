@@ -11,12 +11,12 @@ import {
   publishedCatalogCardWhere,
 } from "@/lib/community";
 import { TAG_USER } from "@/lib/tags/constants";
-import { getImportedTagSlugs } from "@/services/import.service";
-import { ensureDefaultDeck, userOwnsDeck } from "@/services/decks.service";
+import { getImportedTagSlugs } from "@/services/backend/import.service";
+import { ensureDefaultDeck, userOwnsDeck } from "@/services/backend/decks.service";
 import {
   applyUserCardDefaultTag,
   setCardTagsBySlugs,
-} from "@/services/tags.service";
+} from "@/services/backend/tags.service";
 import { prisma } from "@/lib/db/prisma";
 import { normalizeCefrLevel } from "@/lib/vocab/levels";
 import { deckNoFromRank, enrichCards } from "@/lib/vocab/card-utils";

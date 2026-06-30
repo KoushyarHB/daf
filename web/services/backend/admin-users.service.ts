@@ -10,8 +10,8 @@ import type {
 import { buildPaginatedResponse } from "@/lib/api/types";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { prisma } from "@/lib/db/prisma";
-import { ensureDefaultDeck } from "@/services/decks.service";
-import { findUserByEmail } from "@/services/users.service";
+import { ensureDefaultDeck } from "@/services/backend/decks.service";
+import { findUserByEmail } from "@/services/backend/users.service";
 
 const BCRYPT_ROUNDS = 12;
 

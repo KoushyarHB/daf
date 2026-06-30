@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth/require-auth";
 import { isSuperAdminRole } from "@/lib/auth/roles";
 import AdminPublishPanel from "@/components/pages/admin/AdminPublishPanel";
-import * as adminDecksService from "@/services/admin-decks.service";
+import * as adminDecksService from "@/services/backend/admin-decks.service";
 
 export const dynamic = "force-dynamic";
 

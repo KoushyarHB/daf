@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
-import { writeRouteCache } from "@/lib/client/route-data-cache";
-import type { AdminDeckDto } from "@/services/admin-decks.service";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import {
+  useAdminDecksQuery,
+  usePublishAdminDeckMutation,
+  useUnpublishAdminDeckMutation,
+} from "@/lib/api/hooks/admin";
+import type { AdminDeckDto } from "@/lib/api/dto";
 
 type AdminPublishPanelProps = {
   initialDecks?: AdminDeckDto[];
@@ -15,96 +20,50 @@ type AdminPublishPanelProps = {
 export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelProps) {
   const toast = useToast();
   const [q, setQ] = useState("");
-  const [decks, setDecks] = useState<AdminDeckDto[]>(initialDecks ?? []);
-  const [loading, setLoading] = useState(initialDecks === undefined);
-  const [hasLoaded, setHasLoaded] = useState(initialDecks !== undefined);
-  const [publishingId, setPublishingId] = useState<string | null>(null);
-  const [unpublishingId, setUnpublishingId] = useState<string | null>(null);
+  const [debouncedQ, setDebouncedQ] = useState("");
   const [publishTarget, setPublishTarget] = useState<AdminDeckDto | null>(null);
   const [unpublishTarget, setUnpublishTarget] = useState<AdminDeckDto | null>(null);
 
-  const load = useCallback(() => {
-    setLoading(true);
-    const params = new URLSearchParams({ pageSize: "50" });
-    if (q.trim()) params.set("q", q.trim());
-    void fetch(`/api/admin/decks?${params}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((data: { items?: AdminDeckDto[] }) => {
-        const items = data.items ?? [];
-        setDecks(items);
-        writeRouteCache("admin-decks", items);
-        setHasLoaded(true);
-        setLoading(false);
-      })
-      .catch((err) => {
-        toast.error(err instanceof Error ? err.message : "Failed to load decks");
-        setHasLoaded(true);
-        setLoading(false);
-      });
-  }, [q, toast]);
-
   useEffect(() => {
-    if (initialDecks !== undefined && q.trim() === "") return;
-    const t = window.setTimeout(load, 300);
+    const t = window.setTimeout(() => setDebouncedQ(q), 300);
     return () => window.clearTimeout(t);
-  }, [load, initialDecks, q]);
+  }, [q]);
+
+  const skipInitial = initialDecks !== undefined && debouncedQ.trim() === "";
+  const decksQuery = useAdminDecksQuery(debouncedQ, {
+    enabled: initialDecks === undefined || debouncedQ.trim() !== "",
+    initialData: skipInitial ? initialDecks : undefined,
+  });
+  const publishDeck = usePublishAdminDeckMutation();
+  const unpublishDeck = useUnpublishAdminDeckMutation();
+
+  const decks = skipInitial ? (initialDecks ?? []) : (decksQuery.data ?? []);
+  const loading = decksQuery.isLoading && decks.length === 0;
+  const refreshing = decksQuery.isFetching && !decksQuery.isLoading;
 
   async function onPublish(deck: AdminDeckDto) {
-    setPublishingId(deck.id);
     try {
-      const res = await fetch(
-        `/api/admin/decks/${encodeURIComponent(deck.id)}/publish`,
-        { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" },
-      );
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        tag?: { slug: string; label: string };
-        cardCount?: number;
-        republished?: boolean;
-      };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Publish failed (${res.status})`);
-      }
+      const data = await publishDeck.mutateAsync(deck.id);
       toast.success(
         data.republished
           ? `Republished ${data.cardCount} cards as tag “${data.tag?.label}”`
           : `Published ${data.cardCount} cards as tag “${data.tag?.label}” (${data.tag?.slug})`,
       );
-      load();
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Publish failed");
-    } finally {
-      setPublishingId(null);
       setPublishTarget(null);
+    } catch (err) {
+      toast.error(getApiErrorMessage(err, "Publish failed"));
     }
   }
 
   async function onUnpublish(deck: AdminDeckDto) {
-    setUnpublishingId(deck.id);
     try {
-      const res = await fetch(
-        `/api/admin/decks/${encodeURIComponent(deck.id)}/unpublish`,
-        { method: "POST" },
-      );
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        removedCardCount?: number;
-      };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Unpublish failed (${res.status})`);
-      }
+      const data = await unpublishDeck.mutateAsync(deck.id);
       toast.success(
         `Unpublished — removed ${data.removedCardCount ?? 0} community cards`,
       );
-      load();
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Unpublish failed");
-    } finally {
-      setUnpublishingId(null);
       setUnpublishTarget(null);
+    } catch (err) {
+      toast.error(getApiErrorMessage(err, "Unpublish failed"));
     }
   }
 
@@ -131,12 +90,12 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         />
       </div>
 
-      {loading && !hasLoaded ? (
+      {loading ? (
         <p className="deck-hint">Loading decks…</p>
       ) : decks.length === 0 ? (
         <p className="deck-hint">No decks found.</p>
       ) : (
-        <div className={`tags-table-wrap${loading ? " tags-table-wrap--refreshing" : ""}`}>
+        <div className={`tags-table-wrap${refreshing ? " tags-table-wrap--refreshing" : ""}`}>
         <table className="tags-table">
           <thead>
             <tr>
@@ -182,9 +141,9 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                     type="button"
                     className="tags-table__btn-primary"
                     onClick={() => setPublishTarget(deck)}
-                    disabled={publishingId === deck.id || deck.cardCount === 0}
+                    disabled={publishDeck.isPending && publishDeck.variables === deck.id}
                   >
-                    {publishingId === deck.id
+                    {publishDeck.isPending && publishDeck.variables === deck.id
                       ? "Publishing…"
                       : deck.publishedAt
                         ? "Republish"
@@ -195,9 +154,11 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
                       type="button"
                       className="tags-table__btn-danger"
                       onClick={() => setUnpublishTarget(deck)}
-                      disabled={unpublishingId === deck.id}
+                      disabled={unpublishDeck.isPending && unpublishDeck.variables === deck.id}
                     >
-                      {unpublishingId === deck.id ? "Unpublishing…" : "Unpublish"}
+                      {unpublishDeck.isPending && unpublishDeck.variables === deck.id
+                        ? "Unpublishing…"
+                        : "Unpublish"}
                     </button>
                   ) : null}
                 </td>
@@ -218,7 +179,7 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
             : ""
         }
         confirmLabel={publishTarget?.publishedAt ? "Republish" : "Publish"}
-        loading={publishingId !== null}
+        loading={publishDeck.isPending}
         onConfirm={() => {
           if (publishTarget) void onPublish(publishTarget);
         }}
@@ -236,7 +197,7 @@ export default function AdminPublishPanel({ initialDecks }: AdminPublishPanelPro
         }
         confirmLabel="Unpublish"
         danger
-        loading={unpublishingId !== null}
+        loading={unpublishDeck.isPending}
         onConfirm={() => {
           if (unpublishTarget) void onUnpublish(unpublishTarget);
         }}

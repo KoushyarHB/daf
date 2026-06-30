@@ -2,13 +2,26 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
-import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
+import {
+  invalidateCardQueries,
+  useCardsQuery,
+  useDeleteCardMutation,
+  useFilterOptionsQuery,
+  useImportStatusQuery,
+  useUpdateCardProgressMutation,
+  type FilterOptions,
+  type ImportStatus,
+} from "@/lib/api/hooks/cards";
+import { useDeckOptionsQuery } from "@/lib/api/hooks/decks";
+import { cardKeys } from "@/lib/api/query-keys";
 import type { PaginatedResponse } from "@/lib/api/types";
-import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
+import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
+import type { EnrichedVocabCard } from "@/lib/vocab/types";
 
 import CardFormModal from "./CardFormModal";
 import DeckControls, {
@@ -25,13 +38,6 @@ import ImportTagPanel, {
 } from "./ImportTagPanel";
 import VocabCard from "./VocabCard";
 import VocabList from "./VocabList";
-
-type ImportStatus = {
-  importedTagSlugs: string[];
-  availableTags: TagImportOption[];
-  hasUserCreatedCard: boolean;
-  showImportOnHome: boolean;
-};
 
 function apiPageSize(pageSize: string): number {
   if (pageSize === "all") return 100;
@@ -60,12 +66,6 @@ function deckCountText(
   return `Showing ${start}\u2013${end} of ${totalItems}`;
 }
 
-type FilterOptions = {
-  tags: { slug: string; label: string }[];
-  levels: string[];
-  posValues: VocabPos[];
-};
-
 type VocabularyDeckProps = {
   initialDeckId?: string;
   initialData?: PaginatedResponse<EnrichedVocabCard>;
@@ -81,6 +81,7 @@ export default function VocabularyDeck({
   initialUserDecks = [],
   initialImportStatus = null,
 }: VocabularyDeckProps) {
+  const queryClient = useQueryClient();
   const { status: sessionStatus } = useSession();
   const toast = useToast();
   const hadServerSession =
@@ -89,12 +90,6 @@ export default function VocabularyDeck({
     sessionStatus === "authenticated" ||
     (sessionStatus === "loading" && hadServerSession);
 
-  const [userDecks, setUserDecks] = useState(initialUserDecks);
-
-  const [filterOptions, setFilterOptions] = useState<FilterOptions>(
-    initialFilterOptions ?? { tags: [], levels: [], posValues: [] },
-  );
-
   const [filters, setFilters] = useState<DeckFilters>(() => ({
     ...DEFAULT_DECK_FILTER_VALUES,
     deckId: initialDeckId ?? DEFAULT_DECK_FILTER_VALUES.deckId,
@@ -102,26 +97,11 @@ export default function VocabularyDeck({
     pageSize: "25",
   }));
   const [currentPage, setCurrentPage] = useState(0);
-
-  const [data, setData] = useState<PaginatedResponse<EnrichedVocabCard> | null>(
-    initialData ?? null,
-  );
-  const [loading, setLoading] = useState(!initialData);
-  const skipInitialCardsFetch = useRef(Boolean(initialData));
-  const skipInitialFilterOptionsFetch = useRef(Boolean(initialFilterOptions));
-  const skipInitialUserDecksFetch = useRef(initialUserDecks.length > 0);
-  const skipInitialImportStatusFetch = useRef(initialImportStatus !== null);
-  const [error, setError] = useState<string | null>(null);
-  const [reloadToken, setReloadToken] = useState(0);
   const [editorOpen, setEditorOpen] = useState(false);
   const [editorMode, setEditorMode] = useState<"create" | "edit">("create");
   const [editingCard, setEditingCard] = useState<EnrichedVocabCard | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<EnrichedVocabCard | null>(null);
-  const [deleting, setDeleting] = useState(false);
   const [prevSessionStatus, setPrevSessionStatus] = useState(sessionStatus);
-  const [importStatus, setImportStatus] = useState<ImportStatus | null>(
-    initialImportStatus,
-  );
 
   if (sessionStatus !== prevSessionStatus) {
     setPrevSessionStatus(sessionStatus);
@@ -132,105 +112,71 @@ export default function VocabularyDeck({
     }
   }
 
-  const bumpReload = useCallback((opts?: { showLoading?: boolean }) => {
-    if (opts?.showLoading !== false) {
-      setLoading(true);
-    }
-    setReloadToken((n) => n + 1);
-  }, []);
+  const listParams = useMemo(
+    () => ({
+      page: currentPage + 1,
+      pageSize: apiPageSize(filters.pageSize),
+      deckId: filters.deckId !== "all" ? filters.deckId : undefined,
+      tag: filters.tag !== "all" ? filters.tag : undefined,
+      level: filters.level !== "all" ? filters.level : undefined,
+      pos: filters.pos !== "all" ? filters.pos : undefined,
+      studied: progressEnabled ? studiedParam(filters.studied) : undefined,
+      sort: filters.sort,
+    }),
+    [currentPage, filters, progressEnabled],
+  );
+
+  const cardsQuery = useCardsQuery(listParams, { initialData });
+  const filterOptionsQuery = useFilterOptionsQuery({
+    initialData: initialFilterOptions,
+  });
+  const importStatusQuery = useImportStatusQuery({
+    enabled: progressEnabled,
+    initialData: initialImportStatus ?? undefined,
+  });
+  const userDecksQuery = useDeckOptionsQuery({
+    enabled: progressEnabled,
+  });
+
+  const updateProgress = useUpdateCardProgressMutation();
+  const deleteCard = useDeleteCardMutation();
 
   useEffect(() => {
-    if (!progressEnabled) {
-      if (!hadServerSession) setUserDecks([]);
-      return;
-    }
-    if (skipInitialUserDecksFetch.current) {
-      skipInitialUserDecksFetch.current = false;
-      return;
-    }
-    void fetch("/api/decks?pageSize=100")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json: { items?: { id: string; name: string }[] } | null) => {
-        setUserDecks(json?.items ?? []);
-      })
-      .catch(() => setUserDecks([]));
-  }, [progressEnabled, reloadToken, hadServerSession]);
+    void queryClient.invalidateQueries({ queryKey: cardKeys.filterOptions() });
+  }, [sessionStatus, queryClient]);
 
-  useEffect(() => {
-    if (skipInitialFilterOptionsFetch.current) {
-      skipInitialFilterOptionsFetch.current = false;
-      return;
-    }
-    fetch("/api/cards/filter-options")
-      .then((r) => r.json())
-      .then(setFilterOptions)
-      .catch(() => { });
-  }, [reloadToken, sessionStatus]);
+  const filterOptions = filterOptionsQuery.data ?? {
+    tags: [],
+    levels: [],
+    posValues: [],
+  };
+  const importStatus = importStatusQuery.data ?? null;
+  const userDecks =
+    progressEnabled && userDecksQuery.data
+      ? userDecksQuery.data
+      : progressEnabled
+        ? initialUserDecks
+        : [];
 
-  useEffect(() => {
-    if (!progressEnabled) {
-      if (!hadServerSession) setImportStatus(null);
-      return;
-    }
-    if (skipInitialImportStatusFetch.current) {
-      skipInitialImportStatusFetch.current = false;
-      return;
-    }
-    void fetch("/api/cards/import-status")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json: ImportStatus | null) => setImportStatus(json))
-      .catch(() => setImportStatus(null));
-  }, [progressEnabled, reloadToken, hadServerSession]);
+  const data = cardsQuery.data ?? null;
+  const loading = cardsQuery.isLoading;
+  const refreshing = cardsQuery.isFetching && !cardsQuery.isLoading;
+  const error = cardsQuery.error
+    ? cardsQuery.error instanceof Error
+      ? cardsQuery.error.message
+      : "Failed to load cards"
+    : null;
 
-  useEffect(() => {
-    if (skipInitialCardsFetch.current) {
-      skipInitialCardsFetch.current = false;
-      return;
-    }
-
-    const params = new URLSearchParams();
-    params.set("page", String(currentPage + 1));
-    params.set("pageSize", String(apiPageSize(filters.pageSize)));
-    if (filters.deckId !== "all") params.set("deckId", filters.deckId);
-    if (filters.tag !== "all") params.set("tag", filters.tag);
-    if (filters.level !== "all") params.set("level", filters.level);
-    if (filters.pos !== "all") params.set("pos", filters.pos);
-    if (progressEnabled) {
-      const studied = studiedParam(filters.studied);
-      if (studied) params.set("studied", studied);
-    }
-    params.set("sort", filters.sort);
-
-    const ac = new AbortController();
-    let pending = true;
-
-    void (async () => {
-      try {
-        const res = await fetch(`/api/cards?${params}`, { signal: ac.signal });
-        if (!res.ok) {
-          const body = (await res.json().catch(() => ({}))) as { error?: string };
-          throw new Error(body.error ?? `HTTP ${res.status}`);
-        }
-        const json = (await res.json()) as PaginatedResponse<EnrichedVocabCard>;
-        if (!pending) return;
-        setData(json);
-        setError(null);
-        setLoading(false);
-      } catch (err) {
-        if (!pending || (err instanceof DOMException && err.name === "AbortError")) {
-          return;
-        }
-        setError(err instanceof Error ? err.message : "Failed to load cards");
-        setData(null);
-        setLoading(false);
+  const bumpReload = useCallback(
+    (opts?: { showLoading?: boolean }) => {
+      if (opts?.showLoading === false) {
+        void invalidateCardQueries(queryClient);
+        return;
       }
-    })();
-
-    return () => {
-      pending = false;
-      ac.abort();
-    };
-  }, [currentPage, filters, progressEnabled, reloadToken]);
+      void invalidateCardQueries(queryClient);
+    },
+    [queryClient],
+  );
 
   const items = useMemo(() => data?.items ?? [], [data?.items]);
   const totalItems = data?.totalItems ?? 0;
@@ -259,61 +205,26 @@ export default function VocabularyDeck({
       "sort" in patch ||
       "pageSize" in patch;
     if (resetsPage) setCurrentPage(0);
-    setLoading(true);
     setFilters((prev) => ({ ...prev, ...patch }));
   }, []);
 
   const goToPage = useCallback((page: number) => {
-    setLoading(true);
     setCurrentPage(page);
   }, []);
 
   const clearFilters = useCallback(() => {
     setCurrentPage(0);
-    setLoading(true);
     setFilters((prev) => ({ ...prev, ...DEFAULT_DECK_FILTER_VALUES }));
   }, []);
 
   const toggleStudied = useCallback(
-    async (domId: string) => {
+    (domId: string) => {
       if (!progressEnabled) return;
-
       const card = items.find((c) => c.domId === domId);
       const nextStudied = !(card?.studied ?? false);
-
-      setData((prev) => {
-        if (!prev) return prev;
-        return {
-          ...prev,
-          items: prev.items.map((c) =>
-            c.domId === domId ? { ...c, studied: nextStudied } : c,
-          ),
-        };
-      });
-
-      try {
-        const res = await fetch(
-          `/api/cards/${encodeURIComponent(domId)}/progress`,
-          {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ studied: nextStudied }),
-          },
-        );
-        if (!res.ok) throw new Error("save failed");
-      } catch {
-        setData((prev) => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            items: prev.items.map((c) =>
-              c.domId === domId ? { ...c, studied: !nextStudied } : c,
-            ),
-          };
-        });
-      }
+      updateProgress.mutate({ domId, studied: nextStudied });
     },
-    [progressEnabled, items],
+    [progressEnabled, items, updateProgress],
   );
 
   const openCreate = useCallback(() => {
@@ -333,19 +244,15 @@ export default function VocabularyDeck({
   }, []);
 
   const cancelRemoveCard = useCallback(() => {
-    if (deleting) return;
+    if (deleteCard.isPending) return;
     setDeleteTarget(null);
-  }, [deleting]);
+  }, [deleteCard.isPending]);
 
   const confirmRemoveCard = useCallback(async () => {
     if (!deleteTarget) return;
-    setDeleting(true);
     const card = deleteTarget;
     try {
-      const res = await fetch(`/api/cards/${encodeURIComponent(card.domId)}`, {
-        method: "DELETE",
-      });
-      if (!res.ok && res.status !== 200) throw new Error("Remove failed");
+      await deleteCard.mutateAsync(card.domId);
       toast.success(
         isPristineCommunityCard(card)
           ? "Card removed from your deck"
@@ -354,13 +261,10 @@ export default function VocabularyDeck({
             : "Card deleted",
       );
       setDeleteTarget(null);
-      bumpReload();
     } catch {
       toast.error("Could not remove card. Try again.");
-    } finally {
-      setDeleting(false);
     }
-  }, [deleteTarget, bumpReload, toast]);
+  }, [deleteTarget, deleteCard, toast]);
 
   const onCardSaved = useCallback(() => {
     bumpReload();
@@ -485,7 +389,11 @@ export default function VocabularyDeck({
           onAddCard={openCreate}
         />
       ) : (
-        <div className={loading ? "deck-results deck-results--refreshing" : "deck-results"}>
+        <div
+          className={
+            refreshing ? "deck-results deck-results--refreshing" : "deck-results"
+          }
+        >
           <VocabList
             cards={items}
             visibleIds={pageIds}
@@ -536,7 +444,7 @@ export default function VocabularyDeck({
           deleteTarget && isPristineCommunityCard(deleteTarget) ? "Remove" : "Delete"
         }
         danger
-        loading={deleting}
+        loading={deleteCard.isPending}
         onConfirm={confirmRemoveCard}
         onCancel={cancelRemoveCard}
       />

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { deckListQuerySchema, deckWriteSchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthSession } from "@/lib/auth/require-auth";
-import * as decksService from "@/services/decks.service";
+import * as decksService from "@/services/backend/decks.service";
 
 export async function GET(request: NextRequest) {
   const authResult = await requireAuthSession();

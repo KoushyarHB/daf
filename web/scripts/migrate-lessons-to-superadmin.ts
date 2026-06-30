@@ -15,7 +15,7 @@
  */
 import { prisma } from "@/lib/db/prisma";
 import { getCommunityUserId } from "@/lib/community";
-import { createDeck } from "@/services/decks.service";
+import { createDeck } from "@/services/backend/decks.service";
 import { isDafLekTagSlug, DAF_LEK_TAG_PREFIX } from "@/lib/tags/constants";
 import { normalizeCefrLevel } from "@/lib/vocab/levels";
 

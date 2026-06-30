@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 
 import { resolveRegisterRole } from "@/lib/auth/roles";
 import { prisma } from "@/lib/db/prisma";
-import { ensureDefaultDeck } from "@/services/decks.service";
+import { ensureDefaultDeck } from "@/services/backend/decks.service";
 
 const DEFAULT_IMPORT_EMAIL = "system@import.local";
 const BCRYPT_ROUNDS = 12;

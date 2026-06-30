@@ -1,107 +1,67 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
-import { writeRouteCache } from "@/lib/client/route-data-cache";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import {
+  useAdminUsersQuery,
+  useDeleteAdminUserMutation,
+  useUpdateAdminUserRoleMutation,
+  type AdminUserRow,
+} from "@/lib/api/hooks/admin";
 import { roleLabel } from "@/lib/auth/roles";
 import type { UserRole } from "@/lib/auth/roles";
-
-type UserRow = {
-  id: string;
-  email: string;
-  name: string | null;
-  role: UserRole;
-  createdAt: string;
-};
 
 const ROLES: UserRole[] = ["user", "admin", "super_admin"];
 
 type AdminUsersManagerProps = {
-  initialUsers?: UserRow[];
+  initialUsers?: AdminUserRow[];
 };
 
 export default function AdminUsersManager({ initialUsers }: AdminUsersManagerProps) {
   const toast = useToast();
-  const [users, setUsers] = useState<UserRow[]>(initialUsers ?? []);
-  const [loading, setLoading] = useState(initialUsers === undefined);
-  const [hasLoaded, setHasLoaded] = useState(initialUsers !== undefined);
   const [q, setQ] = useState("");
-  const [savingId, setSavingId] = useState<string | null>(null);
-  const [deleteTarget, setDeleteTarget] = useState<UserRow | null>(null);
-  const [deleting, setDeleting] = useState(false);
-
-  const load = useCallback(() => {
-    setLoading(true);
-    const params = new URLSearchParams({ pageSize: "100" });
-    if (q.trim()) params.set("q", q.trim());
-    void fetch(`/api/admin/users?${params}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((data: { items?: UserRow[] }) => {
-        const items = data.items ?? [];
-        setUsers(items);
-        writeRouteCache("admin-users", items);
-        setHasLoaded(true);
-        setLoading(false);
-      })
-      .catch((err) => {
-        toast.error(err instanceof Error ? err.message : "Failed to load users");
-        setHasLoaded(true);
-        setLoading(false);
-      });
-  }, [q, toast]);
+  const [debouncedQ, setDebouncedQ] = useState("");
+  const [deleteTarget, setDeleteTarget] = useState<AdminUserRow | null>(null);
 
   useEffect(() => {
-    if (initialUsers !== undefined && q.trim() === "") return;
-    const t = window.setTimeout(load, 300);
+    const t = window.setTimeout(() => setDebouncedQ(q), 300);
     return () => window.clearTimeout(t);
-  }, [load, initialUsers, q]);
+  }, [q]);
 
-  async function onRoleChange(user: UserRow, role: UserRole) {
-    setSavingId(user.id);
+  const skipInitial = initialUsers !== undefined && debouncedQ.trim() === "";
+  const usersQuery = useAdminUsersQuery(debouncedQ, {
+    enabled: initialUsers === undefined || debouncedQ.trim() !== "",
+    initialData: skipInitial ? initialUsers : undefined,
+  });
+  const updateRole = useUpdateAdminUserRoleMutation();
+  const deleteUser = useDeleteAdminUserMutation();
+
+  const users = skipInitial ? (initialUsers ?? []) : (usersQuery.data ?? []);
+  const loading = usersQuery.isLoading && users.length === 0;
+  const refreshing = usersQuery.isFetching && !usersQuery.isLoading;
+
+  async function onRoleChange(user: AdminUserRow, role: UserRole) {
     try {
-      const res = await fetch(`/api/admin/users/${encodeURIComponent(user.id)}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) {
-        throw new Error(data.error ?? `Update failed (${res.status})`);
-      }
+      await updateRole.mutateAsync({ userId: user.id, role });
       toast.success("Role updated");
-      load();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Update failed");
-    } finally {
-      setSavingId(null);
+      toast.error(getApiErrorMessage(err, "Update failed"));
     }
   }
 
   async function confirmDelete() {
     if (!deleteTarget) return;
-    setDeleting(true);
     const user = deleteTarget;
     try {
-      const res = await fetch(`/api/admin/users/${encodeURIComponent(user.id)}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error ?? `Delete failed (${res.status})`);
-      }
+      await deleteUser.mutateAsync(user.id);
       toast.success("User deleted");
       setDeleteTarget(null);
-      load();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    } finally {
-      setDeleting(false);
+      toast.error(getApiErrorMessage(err, "Delete failed"));
     }
   }
 
@@ -132,12 +92,12 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         />
       </div>
 
-      {loading && !hasLoaded ? (
+      {loading ? (
         <p className="deck-hint">Loading users…</p>
       ) : users.length === 0 ? (
         <p className="deck-hint">No users found.</p>
       ) : (
-        <div className={`tags-table-wrap${loading ? " tags-table-wrap--refreshing" : ""}`}>
+        <div className={`tags-table-wrap${refreshing ? " tags-table-wrap--refreshing" : ""}`}>
         <table className="tags-table tags-table--users">
           <thead>
             <tr>
@@ -156,7 +116,7 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
                 <td>
                   <select
                     value={user.role}
-                    disabled={savingId === user.id}
+                    disabled={updateRole.isPending && updateRole.variables?.userId === user.id}
                     onChange={(e) =>
                       onRoleChange(user, e.target.value as UserRole)
                     }
@@ -174,9 +134,11 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
                     type="button"
                     className="tags-table__btn-danger"
                     onClick={() => setDeleteTarget(user)}
-                    disabled={deleting && deleteTarget?.id === user.id}
+                    disabled={deleteUser.isPending && deleteTarget?.id === user.id}
                   >
-                    {deleting && deleteTarget?.id === user.id ? "Deleting…" : "Delete"}
+                    {deleteUser.isPending && deleteTarget?.id === user.id
+                      ? "Deleting…"
+                      : "Delete"}
                   </button>
                 </td>
               </tr>
@@ -196,10 +158,10 @@ export default function AdminUsersManager({ initialUsers }: AdminUsersManagerPro
         }
         confirmLabel="Delete"
         danger
-        loading={deleting}
+        loading={deleteUser.isPending}
         onConfirm={() => void confirmDelete()}
         onCancel={() => {
-          if (!deleting) setDeleteTarget(null);
+          if (!deleteUser.isPending) setDeleteTarget(null);
         }}
       />
     </div>

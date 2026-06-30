@@ -4,6 +4,7 @@ import { PlayIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
 
 import { speakTextForHead } from "@/lib/audio/speak-text";
+import { useGenerateCardAudioMutation } from "@/lib/api/hooks/cards";
 
 type GrammarSpeakButtonProps = {
   german: string;
@@ -32,8 +33,8 @@ export default function GrammarSpeakButton({
   compact = true,
 }: GrammarSpeakButtonProps) {
   const playerRef = useRef<HTMLAudioElement | null>(null);
+  const generateAudio = useGenerateCardAudioMutation();
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
 
   const speakText =
     speakTextOverride?.trim() ||
@@ -42,7 +43,7 @@ export default function GrammarSpeakButton({
   const cls = compact ? "grammar-speak-btn" : "grammar-speak-btn grammar-speak-btn--lg";
 
   async function play() {
-    if (!speakText || busy) return;
+    if (!speakText || generateAudio.isPending) return;
 
     if (audioSrc) {
       if (!playerRef.current) playerRef.current = new Audio();
@@ -66,28 +67,18 @@ export default function GrammarSpeakButton({
       return;
     }
 
-    setBusy(true);
     try {
-      const res = await fetch("/api/cards/generate-audio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: speakText }),
-      });
-      if (res.ok) {
-        const data = (await res.json()) as { audio?: string };
-        if (data.audio) {
-          setAudioUrl(data.audio);
-          if (!playerRef.current) playerRef.current = new Audio();
-          const player = playerRef.current;
-          player.src = data.audio;
-          void player.play().catch(() => speakWithBrowserTts(speakText));
-          return;
-        }
+      const data = await generateAudio.mutateAsync({ text: speakText });
+      if (data.audio) {
+        setAudioUrl(data.audio);
+        if (!playerRef.current) playerRef.current = new Audio();
+        const player = playerRef.current;
+        player.src = data.audio;
+        void player.play().catch(() => speakWithBrowserTts(speakText));
+        return;
       }
     } catch {
       // fall through to browser TTS
-    } finally {
-      setBusy(false);
     }
 
     speakWithBrowserTts(speakText);
@@ -98,7 +89,7 @@ export default function GrammarSpeakButton({
       type="button"
       className={cls}
       aria-label={`Play pronunciation of ${german}`}
-      disabled={busy}
+      disabled={generateAudio.isPending}
       onClick={(e) => {
         e.preventDefault();
         void play();

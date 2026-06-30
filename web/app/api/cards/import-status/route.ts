@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import { getImportStatus } from "@/services/import.service";
+import { getImportStatus } from "@/services/backend/import.service";
 
 export async function GET() {
   const authResult = await requireAuthUserId();

@@ -1,8 +1,8 @@
 import { getAuthUserId } from "@/lib/auth/require-auth";
 import VocabularyDeck from "@/components/pages/vocabulary/VocabularyDeck";
-import * as cardsService from "@/services/cards.service";
-import * as decksService from "@/services/decks.service";
-import { getImportStatus } from "@/services/import.service";
+import * as cardsService from "@/services/backend/cards.service";
+import * as decksService from "@/services/backend/decks.service";
+import { getImportStatus } from "@/services/backend/import.service";
 
 export const dynamic = "force-dynamic";
 

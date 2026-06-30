@@ -22,7 +22,9 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.9.0",
+    "@tanstack/react-query": "^5.101.2",
     "@vercel/blob": "^2.4.0",
+    "axios": "^1.18.1",
     "bcryptjs": "^3.0.3",
     "edge-tts-universal": "^1.4.0",
     "next": "16.2.6",

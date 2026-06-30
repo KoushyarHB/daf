@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { tagListQuerySchema, tagWriteSchema } from "@/lib/api/schemas";
 import { isAuthError, requireAuthSession } from "@/lib/auth/require-auth";
-import * as tagsService from "@/services/tags.service";
+import * as tagsService from "@/services/backend/tags.service";
 
 export async function GET(request: NextRequest) {
   const parsed = tagListQuerySchema.safeParse(

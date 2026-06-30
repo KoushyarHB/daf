@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { cardUpdateSchema } from "@/lib/api/schemas";
 import { getAuthUserId, isAuthError, requireAuthUserId } from "@/lib/auth/require-auth";
-import * as cardsService from "@/services/cards.service";
+import * as cardsService from "@/services/backend/cards.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { useImportStatusQuery } from "@/lib/api/hooks/cards";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -41,7 +42,14 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const { data: session, status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showImportNav, setShowImportNav] = useState(false);
+  const importStatusQuery = useImportStatusQuery({
+    enabled: status === "authenticated",
+  });
+  const showImportNav = Boolean(
+    status === "authenticated" &&
+      importStatusQuery.data &&
+      !importStatusQuery.data.showImportOnHome,
+  );
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
@@ -93,19 +101,6 @@ export default function Navbar() {
   const userRole = session?.user?.role;
   const isSuperAdmin = userRole === "super_admin";
   const showAuthedNav = status === "authenticated" || (status === "loading" && Boolean(session));
-
-  useEffect(() => {
-    if (status !== "authenticated") {
-      setShowImportNav(false);
-      return;
-    }
-    void fetch("/api/cards/import-status")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json: { showImportOnHome?: boolean } | null) => {
-        setShowImportNav(Boolean(json && !json.showImportOnHome));
-      })
-      .catch(() => setShowImportNav(false));
-  }, [status, pathname]);
 
   return (
     <header

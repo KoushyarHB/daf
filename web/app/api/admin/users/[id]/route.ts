@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { adminUserUpdateSchema } from "@/lib/api/schemas";
 import { isAuthError, requireSuperAdminSession } from "@/lib/auth/require-auth";
-import * as adminUsersService from "@/services/admin-users.service";
+import * as adminUsersService from "@/services/backend/admin-users.service";
 
 type RouteContext = { params: Promise<{ id: string }> };
 

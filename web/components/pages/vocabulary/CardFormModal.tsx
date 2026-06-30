@@ -9,6 +9,13 @@ import TagMultiSelect from "@/components/shared/TagMultiSelect";
 import PronounceButton from "@/components/shared/PronounceButton";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
+import { getApiErrorMessage } from "@/services/frontend/http";
+import {
+  useGenerateCardAudioMutation,
+  useSaveCardMutation,
+  useSuggestCardMutation,
+} from "@/lib/api/hooks/cards";
+import { useDeckOptionsQuery } from "@/lib/api/hooks/decks";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import { TAG_USER } from "@/lib/tags/constants";
 import { CEFR_LEVELS, normalizeCefrLevel, type CefrLevel } from "@/lib/vocab/levels";
@@ -113,12 +120,15 @@ export default function CardFormModal({
   onSaved,
 }: CardFormModalProps) {
   const toast = useToast();
+  const deckOptionsQuery = useDeckOptionsQuery({
+    enabled: open && !adminDeckId,
+  });
+  const generateAudio = useGenerateCardAudioMutation();
+  const suggestCard = useSuggestCardMutation();
+  const saveCard = useSaveCardMutation();
   const examplesLegendId = useId();
   const [form, setForm] = useState<FormState>(() => emptyForm());
-  const [decks, setDecks] = useState<DeckOption[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [suggesting, setSuggesting] = useState(false);
   const [aiFillConfirmOpen, setAiFillConfirmOpen] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);
   const [generatingPronunciation, setGeneratingPronunciation] = useState(false);
@@ -139,18 +149,17 @@ export default function CardFormModal({
     setForm(
       mode === "edit" && card ? cardToForm(card) : emptyForm(initialDeck),
     );
-    if (adminDeckId) return;
-    void fetch("/api/decks?pageSize=100")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json: { items?: DeckOption[] } | null) => {
-        const items = json?.items ?? [];
-        setDecks(items);
-        if (mode === "create" && !initialDeck && items[0]) {
-          setForm((f) => (f.deckId ? f : { ...f, deckId: items[0].id }));
-        }
-      })
-      .catch(() => setDecks([]));
-  }, [open, mode, card, defaultDeckId, adminDeckId]);
+  }, [open, mode, card, defaultDeckId]);
+
+  useEffect(() => {
+    if (!open || adminDeckId) return;
+    const items = deckOptionsQuery.data ?? [];
+    if (mode === "create" && items[0]) {
+      setForm((f) => (f.deckId ? f : { ...f, deckId: items[0].id }));
+    }
+  }, [open, adminDeckId, deckOptionsQuery.data, mode]);
+
+  const decks: DeckOption[] = deckOptionsQuery.data ?? [];
 
   useEffect(() => {
     if (open) return;
@@ -204,21 +213,9 @@ export default function CardFormModal({
     text?: string;
     head?: string;
   }): Promise<string> {
-    const res = await fetch("/api/cards/generate-audio", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const data = (await res.json().catch(() => ({}))) as {
-      error?: string;
-      audio?: string;
-    };
-    if (!res.ok || !data.audio) {
-      throw new Error(
-        typeof data.error === "string"
-          ? data.error
-          : `Audio generation failed (${res.status})`,
-      );
+    const data = await generateAudio.mutateAsync(body);
+    if (!data.audio) {
+      throw new Error("Audio generation failed");
     }
     return data.audio;
   }
@@ -288,31 +285,10 @@ export default function CardFormModal({
     const head = form.head.trim();
     if (!head) return;
 
-    setSuggesting(true);
     setError(null);
 
     try {
-      const res = await fetch("/api/cards/suggest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ head }),
-      });
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        head?: string;
-        ipa?: string;
-        gloss?: string;
-        notes?: string;
-        examples?: { german: string; english: string }[];
-        pos?: VocabPos;
-        level?: string;
-      };
-
-      if (!res.ok) {
-        throw new Error(
-          typeof data.error === "string" ? data.error : `AI fill failed (${res.status})`,
-        );
-      }
+      const data = await suggestCard.mutateAsync(head);
 
       setForm((f) => ({
         ...f,
@@ -334,11 +310,9 @@ export default function CardFormModal({
       }));
       toast.success("Form filled from AI — review before saving.");
     } catch (err) {
-      const message = err instanceof Error ? err.message : "AI fill failed";
+      const message = getApiErrorMessage(err, "AI fill failed");
       setError(message);
       toast.error(message);
-    } finally {
-      setSuggesting(false);
     }
   }
 
@@ -386,7 +360,6 @@ export default function CardFormModal({
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSaving(true);
     setError(null);
 
     const gloss = form.gloss
@@ -420,24 +393,12 @@ export default function CardFormModal({
     };
 
     try {
-      const url =
-        mode === "edit" && card
-          ? adminDeckId
-            ? `/api/admin/decks/${encodeURIComponent(adminDeckId)}/cards/${encodeURIComponent(card.domId)}`
-            : `/api/cards/${encodeURIComponent(card.domId)}`
-          : "/api/cards";
-      const res = await fetch(url, {
-        method: mode === "edit" ? "PATCH" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+      const saved = await saveCard.mutateAsync({
+        mode,
+        domId: card?.domId,
+        adminDeckId,
+        body,
       });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(
-          typeof data.error === "string" ? data.error : `Save failed (${res.status})`,
-        );
-      }
-      const saved = (await res.json()) as EnrichedVocabCard;
       const successMessage =
         mode === "create"
           ? "Card created"
@@ -450,11 +411,9 @@ export default function CardFormModal({
       onSaved(saved);
       onClose();
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Save failed";
+      const message = getApiErrorMessage(err, "Save failed");
       setError(message);
       toast.error(message);
-    } finally {
-      setSaving(false);
     }
   }
 
@@ -517,10 +476,10 @@ export default function CardFormModal({
                 type="button"
                 className="card-form-ai-btn"
                 onClick={onAiFillClick}
-                disabled={suggesting || !form.head.trim()}
+                disabled={suggestCard.isPending || !form.head.trim()}
                 title="Fill gloss, notes, examples, IPA, and type from the headword"
               >
-                {suggesting ? "Filling…" : "✨ AI fill"}
+                {suggestCard.isPending ? "Filling…" : "✨ AI fill"}
               </button>
               <button
                 type="button"
@@ -772,9 +731,9 @@ export default function CardFormModal({
               <button
                 type="submit"
                 className="card-modal-btn-primary"
-                disabled={saving}
+                disabled={saveCard.isPending}
               >
-                {saving ? "Saving…" : mode === "create" ? "Create card" : "Save"}
+                {saveCard.isPending ? "Saving…" : mode === "create" ? "Create card" : "Save"}
               </button>
             </div>
           </div>

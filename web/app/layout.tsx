@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import QueryProvider from "@/components/providers/QueryProvider";
 import SessionProvider from "@/components/providers/SessionProvider";
 
 import "./globals.css";
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="de" className="h-full antialiased">
       <body className="min-h-full">
-        <SessionProvider>{children}</SessionProvider>
+        <QueryProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </QueryProvider>
       </body>
     </html>
   );

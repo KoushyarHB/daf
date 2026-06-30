@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/db/prisma";
-import { ensureDefaultImportUser } from "@/services/users.service";
+import { ensureDefaultImportUser } from "@/services/backend/users.service";
 
 const DEFAULT_IMPORT_EMAIL = "system@import.local";
 

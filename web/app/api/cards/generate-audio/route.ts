@@ -6,7 +6,7 @@ import {
   AudioStorageError,
   generateCardAudio,
   speakTextForCardHead,
-} from "@/services/audio.service";
+} from "@/services/backend/audio.service";
 
 const bodySchema = z.object({
   text: z.string().max(500).optional(),

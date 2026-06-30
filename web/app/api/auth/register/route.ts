@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { registerSchema } from "@/lib/api/schemas";
-import { registerUser } from "@/services/users.service";
+import { registerUser } from "@/services/backend/users.service";
 
 export async function POST(request: Request) {
   let body: unknown;

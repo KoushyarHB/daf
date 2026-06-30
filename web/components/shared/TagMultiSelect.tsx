@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -8,9 +9,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
-import type { PaginatedResponse } from "@/lib/api/types";
+import { fetchTags as fetchTagsApi, type TagOption } from "@/services/frontend/tags.client";
+import { tagKeys } from "@/lib/api/query-keys";
 
-export type TagOption = { slug: string; label: string };
+export type { TagOption };
 
 type TagMultiSelectProps = {
   value: string[];
@@ -54,6 +56,7 @@ export default function TagMultiSelect({
   searchPlaceholder = "Search tags…",
   noResultsText = "No tags found",
 }: TagMultiSelectProps) {
+  const queryClient = useQueryClient();
   const listboxId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const optionsContainerRef = useRef<HTMLDivElement>(null);
@@ -85,19 +88,21 @@ export default function TagMultiSelect({
     fetchInitialRef.current = false;
   }, []);
 
-  const fetchTags = useCallback(
+  const loadTagPage = useCallback(
     async (pageNum: number, query: string): Promise<TagOption[]> => {
-      const params = new URLSearchParams({
+      const params: Record<string, string> = {
         page: String(pageNum),
         pageSize: String(pageSize),
+      };
+      if (query.trim()) params.q = query.trim();
+      const data = await queryClient.fetchQuery({
+        queryKey: tagKeys.list(params),
+        queryFn: ({ signal }) => fetchTagsApi(params, signal),
+        staleTime: 60_000,
       });
-      if (query.trim()) params.set("q", query.trim());
-      const res = await fetch(`/api/tags?${params}`);
-      if (!res.ok) return [];
-      const data = (await res.json()) as PaginatedResponse<TagOption>;
       return data.items;
     },
-    [pageSize],
+    [pageSize, queryClient],
   );
 
   const loadFirstPage = useCallback(
@@ -106,7 +111,7 @@ export default function TagMultiSelect({
       fetchingRef.current = true;
       setIsLoading(true);
       try {
-        const data = await fetchTags(1, query);
+        const data = await loadTagPage(1, query);
         const selected = value.map((slug) => ({
           slug,
           label: labelBySlug.get(slug) ?? slug,
@@ -119,7 +124,7 @@ export default function TagMultiSelect({
         setIsLoading(false);
       }
     },
-    [fetchTags, pageSize, value, labelBySlug],
+    [loadTagPage, pageSize, value, labelBySlug],
   );
 
   const debouncedSearch = useCallback(
@@ -196,7 +201,7 @@ export default function TagMultiSelect({
       fetchingRef.current = true;
       setIsLoading(true);
       try {
-        const data = await fetchTags(page + 1, searchQuery);
+        const data = await loadTagPage(page + 1, searchQuery);
         setOptions((prev) => {
           const existing = new Set(prev.map((t) => t.slug));
           const append = data.filter((t) => !existing.has(t.slug));
@@ -210,7 +215,7 @@ export default function TagMultiSelect({
       }
     };
     void loadMore();
-  }, [fetchTags, hasMore, isLoading, page, pageSize, searchQuery]);
+  }, [loadTagPage, hasMore, isLoading, page, pageSize, searchQuery]);
 
   const toggleOpen = () => {
     if (disabled) return;

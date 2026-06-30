@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth/require-auth";
 import SignInPrompt from "@/components/shared/SignInPrompt";
 import TagsManager from "@/components/pages/tags/TagsManager";
-import * as tagsService from "@/services/tags.service";
+import * as tagsService from "@/services/backend/tags.service";
 
 export const dynamic = "force-dynamic";
 
