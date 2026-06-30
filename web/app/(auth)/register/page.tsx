@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { isAxiosError } from "axios";
 import type { z } from "zod";
 
-import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
+import { SubmitButton } from "@/components/shared/atoms/Button";
 import { useRegisterMutation } from "@/hooks/auth";
 import { registerSchema } from "@/lib/api/schemas";
 import { authInputClass, formPlaceholderClass } from "@/lib/styles/formControls";
@@ -114,9 +114,9 @@ export default function RegisterPage() {
         {serverError ? (
           <p className="m-0 text-[0.9rem] text-daf-danger">{serverError}</p>
         ) : null}
-        <AuthSubmitButton disabled={register.isPending}>
+        <SubmitButton disabled={register.isPending}>
           {register.isPending ? "Creating account…" : "Create account"}
-        </AuthSubmitButton>
+        </SubmitButton>
       </form>
       <p className="mt-5 text-center text-[0.9rem] text-daf-subtle">
         Already have an account?{" "}
