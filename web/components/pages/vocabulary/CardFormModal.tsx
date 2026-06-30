@@ -27,6 +27,11 @@ import {
 import { speakTextForHead } from "@/lib/audio/speak-text";
 import { VOCAB_POS_ORDER, posLabel } from "@/lib/vocab/types";
 import type { EnrichedVocabCard, VocabPos } from "@/lib/vocab/types";
+import { cardToForm } from "@/utils/cardToForm";
+import type { CardFormState } from "@/utils/cardFormTypes";
+import { emptyExample } from "@/utils/emptyExample";
+import { emptyForm } from "@/utils/emptyForm";
+import { newExampleKey } from "@/utils/newExampleKey";
 
 type CardFormModalProps = {
   mode: "create" | "edit";
@@ -39,76 +44,7 @@ type CardFormModalProps = {
   onSaved: (card: EnrichedVocabCard) => void;
 };
 
-type ExampleRow = {
-  key: string;
-  german: string;
-  english: string;
-  audio: string;
-};
-
-type FormState = {
-  head: string;
-  ipa: string;
-  gloss: string;
-  notes: string;
-  audio: string;
-  examples: ExampleRow[];
-  tagSlugs: string[];
-  deckId: string;
-  level: CefrLevel;
-  pos: VocabPos;
-};
-
 type DeckOption = { id: string; name: string };
-
-let exampleKeySeq = 0;
-
-function newExampleKey(): string {
-  exampleKeySeq += 1;
-  return `ex-${exampleKeySeq}`;
-}
-
-function emptyExample(): ExampleRow {
-  return { key: newExampleKey(), german: "", english: "", audio: "" };
-}
-
-function cardToForm(card: EnrichedVocabCard): FormState {
-  const examples =
-    card.examples.length > 0
-      ? card.examples.map((ex) => ({
-          key: newExampleKey(),
-          german: ex.german ?? "",
-          english: ex.english ?? "",
-          audio: ex.audio ?? "",
-        }))
-      : [emptyExample()];
-
-  return {
-    head: card.head,
-    ipa: card.ipa ?? "",
-    audio: card.audio ?? "",
-    gloss: (card.gloss ?? []).join("\n").trim(),
-    notes: (card.notes ?? []).join("\n").trim(),
-    examples,
-    tagSlugs: (card.tags ?? []).map((t) => t.slug),
-    deckId: card.deckId ?? "",
-    level: normalizeCefrLevel(card.level),
-    pos: card.pos ?? "other",
-  };
-}
-
-const emptyForm = (deckId = ""): FormState => ({
-  head: "",
-  ipa: "",
-  gloss: "",
-  notes: "",
-  audio: "",
-  examples: [emptyExample()],
-  tagSlugs: [TAG_USER],
-  deckId,
-  level: "A1",
-  pos: "other",
-});
 
 export default function CardFormModal({
   mode,
@@ -127,7 +63,7 @@ export default function CardFormModal({
   const suggestCard = useSuggestCardMutation();
   const saveCard = useSaveCardMutation();
   const examplesLegendId = useId();
-  const [form, setForm] = useState<FormState>(() => emptyForm());
+  const [form, setForm] = useState<CardFormState>(() => emptyForm());
   const [error, setError] = useState<string | null>(null);
   const [aiFillConfirmOpen, setAiFillConfirmOpen] = useState(false);
   const [jsonFillOpen, setJsonFillOpen] = useState(false);

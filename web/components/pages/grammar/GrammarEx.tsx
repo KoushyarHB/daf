@@ -1,14 +1,7 @@
 "use client";
 
 import GrammarSpeakButton from "@/components/pages/grammar/GrammarSpeakButton";
-
-function defaultSpeakText(de: string): string {
-  return de
-    .split(/\s*\/\s*/)
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .join(", ");
-}
+import { defaultSpeakText } from "@/utils/defaultSpeakText";
 
 export default function GrammarEx({
   de,

@@ -8,7 +8,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { useToast } from "@/components/shared/toast/ToastProvider";
 import {
-  invalidateCardQueries,
   useCardsQuery,
   useDeleteCardMutation,
   useFilterOptionsQuery,
@@ -22,13 +21,17 @@ import { cardKeys } from "@/hooks/query-keys";
 import type { PaginatedResponse } from "@/lib/api/types";
 import { isPristineCommunityCard } from "@/lib/vocab/card-manage";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
+import { apiPageSize } from "@/utils/apiPageSize";
+import { deckCountText } from "@/utils/deckCountText";
+import { hasActiveDeckFilters } from "@/utils/hasActiveDeckFilters";
+import { invalidateCardQueries } from "@/utils/invalidateCardQueries";
+import { studiedParam } from "@/utils/studiedParam";
 
 import CardFormModal from "./CardFormModal";
 import DeckControls, {
   DEFAULT_DECK_FILTER_VALUES,
-  hasActiveDeckFilters,
-  type DeckFilters,
   PageSizeControl,
+  type DeckFilters,
 } from "./DeckControls";
 import DeckEmpty from "./DeckEmpty";
 import DeckLoading from "./DeckLoading";
@@ -38,33 +41,6 @@ import ImportTagPanel, {
 } from "./ImportTagPanel";
 import VocabCard from "./VocabCard";
 import VocabList from "./VocabList";
-
-function apiPageSize(pageSize: string): number {
-  if (pageSize === "all") return 100;
-  const n = parseInt(pageSize, 10);
-  return Number.isNaN(n) || n < 1 ? 20 : Math.min(n, 100);
-}
-
-function studiedParam(studied: DeckFilters["studied"]): string | undefined {
-  if (studied === "studied") return "true";
-  if (studied === "unstudied") return "false";
-  return undefined;
-}
-
-function deckCountText(
-  page: number,
-  pageSize: number,
-  pageItems: number,
-  totalItems: number,
-): string {
-  if (totalItems === 0) return "0 cards";
-  if (pageSize >= totalItems && page === 1) {
-    return `${totalItems} cards`;
-  }
-  const start = (page - 1) * pageSize + 1;
-  const end = (page - 1) * pageSize + pageItems;
-  return `Showing ${start}\u2013${end} of ${totalItems}`;
-}
 
 type VocabularyDeckProps = {
   initialDeckId?: string;

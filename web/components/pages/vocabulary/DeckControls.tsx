@@ -1,46 +1,16 @@
+import { posLabel, type VocabPos } from "@/lib/vocab/types";
+import type { SortOrder, StudiedFilter, ViewMode } from "@/lib/vocab/types";
 import {
-  posLabel,
-  type SortOrder,
-  type StudiedFilter,
-  type ViewMode,
-  type VocabPos,
-} from "@/lib/vocab/types";
+  DEFAULT_DECK_FILTER_VALUES,
+  type DeckFilters,
+} from "@/utils/deckFilters";
+import { hasActiveDeckFilters } from "@/utils/hasActiveDeckFilters";
+import { labelClass } from "@/utils/labelClass";
 
-export type DeckFilters = {
-  deckId: string;
-  tag: string;
-  level: string;
-  pos: string;
-  studied: StudiedFilter;
-  sort: SortOrder;
-  view: ViewMode;
-  pageSize: string;
-};
-
-export const DEFAULT_DECK_FILTER_VALUES = {
-  deckId: "all",
-  tag: "all",
-  level: "all",
-  pos: "all",
-  studied: "all" as StudiedFilter,
-  sort: "deck-desc" as SortOrder,
-};
-
-export function hasActiveDeckFilters(
-  filters: DeckFilters,
-  options?: { includeStudied?: boolean },
-): boolean {
-  const includeStudied = options?.includeStudied ?? true;
-  return (
-    filters.deckId !== DEFAULT_DECK_FILTER_VALUES.deckId ||
-    filters.tag !== DEFAULT_DECK_FILTER_VALUES.tag ||
-    filters.level !== DEFAULT_DECK_FILTER_VALUES.level ||
-    filters.pos !== DEFAULT_DECK_FILTER_VALUES.pos ||
-    (includeStudied &&
-      filters.studied !== DEFAULT_DECK_FILTER_VALUES.studied) ||
-    filters.sort !== DEFAULT_DECK_FILTER_VALUES.sort
-  );
-}
+export {
+  DEFAULT_DECK_FILTER_VALUES,
+  type DeckFilters,
+} from "@/utils/deckFilters";
 
 type TagOption = { slug: string; label: string };
 type UserDeckOption = { id: string; name: string };
@@ -57,10 +27,6 @@ type DeckControlsProps = {
   onChange: (patch: Partial<DeckFilters>) => void;
   onClearFilters?: () => void;
 };
-
-function labelClass(active: boolean): string {
-  return active ? "is-active" : "";
-}
 
 export default function DeckControls({
   userDecks = [],

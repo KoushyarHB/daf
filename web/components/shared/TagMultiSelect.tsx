@@ -11,6 +11,8 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 
 import { fetchTags as fetchTagsApi, type TagOption } from "@/services/frontend/tags.client";
 import { tagKeys } from "@/hooks/query-keys";
+import { buildLabelMap } from "@/utils/buildLabelMap";
+import { mergeOptions } from "@/utils/mergeOptions";
 
 export type { TagOption };
 
@@ -26,25 +28,6 @@ type TagMultiSelectProps = {
 };
 
 const DEFAULT_PAGE_SIZE = 5;
-
-function mergeOptions(
-  selected: TagOption[],
-  fetched: TagOption[],
-): TagOption[] {
-  const selectedSlugs = new Set(selected.map((t) => t.slug));
-  const uniqueFetched = fetched.filter((t) => !selectedSlugs.has(t.slug));
-  return [...selected, ...uniqueFetched];
-}
-
-function buildLabelMap(
-  knownTags: TagOption[],
-  options: TagOption[],
-): Map<string, string> {
-  const m = new Map<string, string>();
-  for (const t of knownTags) m.set(t.slug, t.label);
-  for (const t of options) m.set(t.slug, t.label);
-  return m;
-}
 
 export default function TagMultiSelect({
   value,

@@ -2,7 +2,6 @@ import {
   useMutation,
   useQuery,
   useQueryClient,
-  type QueryClient,
 } from "@tanstack/react-query";
 
 import type {
@@ -14,6 +13,11 @@ import type { PaginatedResponse } from "@/lib/api/types";
 import type { EnrichedVocabCard } from "@/lib/vocab/types";
 import * as cardsClient from "@/services/frontend/cards.client";
 import { cardKeys, CARDS_STALE_TIME_MS } from "@/hooks/query-keys";
+import { invalidateCardQueries } from "@/utils/invalidateCardQueries";
+import { matchesInitialCardsQuery } from "@/utils/matchesInitialCardsQuery";
+
+export { invalidateCardQueries } from "@/utils/invalidateCardQueries";
+export { matchesInitialCardsQuery } from "@/utils/matchesInitialCardsQuery";
 
 export type {
   CardSuggestResult,
@@ -22,26 +26,6 @@ export type {
   ImportStatus,
   SaveCardBody,
 } from "@/lib/api/dto";
-
-export function invalidateCardQueries(queryClient: QueryClient): Promise<void> {
-  return queryClient.invalidateQueries({ queryKey: cardKeys.all });
-}
-
-export function matchesInitialCardsQuery(
-  params: CardsListParams,
-  initialDeckId?: string,
-): boolean {
-  return (
-    params.page === 1 &&
-    params.pageSize === 25 &&
-    params.sort === "deck-desc" &&
-    (params.deckId ?? undefined) === (initialDeckId || undefined) &&
-    !params.tag &&
-    !params.level &&
-    !params.pos &&
-    !params.studied
-  );
-}
 
 export function useCardsQuery(
   params: CardsListParams,

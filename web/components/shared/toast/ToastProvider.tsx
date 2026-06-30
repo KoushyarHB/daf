@@ -10,6 +10,8 @@ import {
   useState,
 } from "react";
 
+import { nextToastId } from "@/utils/nextToastId";
+
 type ToastVariant = "success" | "error" | "info";
 
 type Toast = {
@@ -27,10 +29,6 @@ type ToastContextValue = {
 const ToastContext = createContext<ToastContextValue | null>(null);
 
 const AUTO_DISMISS_MS = 4200;
-
-function nextToastId(): string {
-  return `toast-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-}
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
