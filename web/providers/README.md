@@ -1,4 +1,4 @@
-# `components/providers`
+# `providers`
 
 App-wide React context providers. Mounted once near the root (see `PrimaryLayout` or `app/layout.tsx`).
 

@@ -10,7 +10,7 @@ import PronounceButton from "@/components/pages/vocabulary/PronounceButton";
 import Button from "@/components/shared/atoms/Button";
 import ModalActions from "@/components/shared/molecules/ModalActions";
 import TextLink from "@/components/shared/atoms/TextLink";
-import { useToast } from "@/components/providers/ToastProvider";
+import { useToast } from "@/providers/ToastProvider";
 import { useIsClient } from "@/hooks/useIsClient";
 import CardJsonFillModal from "@/components/pages/vocabulary/CardJsonFillModal";
 import { getApiErrorMessage } from "@/services/frontend/http";

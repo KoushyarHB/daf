@@ -13,7 +13,7 @@ import ListPage from "@/components/shared/molecules/ListPage";
 import TableActions from "@/components/shared/molecules/TableActions";
 import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
 import DataTable from "@/components/shared/organisms/DataTable";
-import { useToast } from "@/components/providers/ToastProvider";
+import { useToast } from "@/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useDeleteTagMutation,

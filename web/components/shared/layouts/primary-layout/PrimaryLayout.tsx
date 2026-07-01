@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Navbar from "@/components/shared/layouts/navbar/Navbar";
 import { LightboxProvider } from "@/components/shared/organisms/media/ImageLightbox";
-import { ToastProvider } from "@/components/providers/ToastProvider";
+import { ToastProvider } from "@/providers/ToastProvider";
 
 type LayoutProps = { children: ReactNode };
 

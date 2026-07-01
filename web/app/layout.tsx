@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import QueryProvider from "@/components/providers/QueryProvider";
-import SessionProvider from "@/components/providers/SessionProvider";
+import QueryProvider from "@/providers/QueryProvider";
+import SessionProvider from "@/providers/SessionProvider";
 
 import "@/app/tailwind.css";
 

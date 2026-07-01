@@ -17,7 +17,7 @@ Reusable UI for the whole app, organized by **atomic design**. Domain-specific p
 |----------|--------|
 | `components/pages/vocabulary/` | `StudiedButton`, `PronounceButton` — deck/learning behavior |
 | `components/pages/tags/` | `TagMultiSelect` — tag domain + API |
-| `components/providers/` | `ToastProvider`, `QueryProvider` — app-wide React context |
+| `providers/` | `ToastProvider`, `QueryProvider` — app-wide React context |
 | `hooks/` | `useIsClient` — generic hooks, not visual |
 | `lib/styles/` | Tailwind class tokens (`button.ts`, `formControls.ts`) — no JSX |
 

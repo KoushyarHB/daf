@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import ConfirmModal from "@/components/shared/organisms/ConfirmModal";
-import { useToast } from "@/components/providers/ToastProvider";
+import { useToast } from "@/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import {
   useDeimportTagMutation,

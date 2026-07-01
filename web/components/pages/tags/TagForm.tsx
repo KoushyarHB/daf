@@ -9,7 +9,7 @@ import type { z } from "zod";
 import Input from "@/components/shared/atoms/Input";
 import FormActions from "@/components/shared/molecules/FormActions";
 import FormField from "@/components/shared/molecules/FormField";
-import { useToast } from "@/components/providers/ToastProvider";
+import { useToast } from "@/providers/ToastProvider";
 import { getApiErrorMessage } from "@/services/frontend/http";
 import { useSaveTagMutation } from "@/hooks/tags";
 import { tagFormSchema } from "@/lib/api/schemas";
