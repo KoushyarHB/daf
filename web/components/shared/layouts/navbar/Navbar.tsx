@@ -9,10 +9,10 @@ import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "@/components/shared/theme/ThemeToggle";
 
 const navLinkClass =
-  "box-border block w-full cursor-pointer rounded-[5px] border-none bg-transparent py-2 px-[0.65rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline hover:bg-daf-nav-hover-bg hover:text-daf-nav-active";
+  "box-border block w-full cursor-pointer rounded-md border-none bg-transparent py-2 px-[0.75rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline transition-colors duration-150 hover:bg-daf-nav-hover-bg hover:text-daf-nav-active";
 
 const navLinkActiveClass =
-  "bg-daf-head-soft text-daf-nav-active shadow-[inset_3px_0_0_var(--color-daf-head)]";
+  "bg-daf-head-soft text-daf-nav-active border-l-[3px] border-l-daf-head rounded-l-none font-bold";
 
 const authBtnBaseClass =
   "block flex-1 cursor-pointer rounded-[5px] border border-daf-border-input bg-daf-nav-btn-bg py-2 px-[0.65rem] text-center text-[0.92rem] font-semibold no-underline";
@@ -160,13 +160,13 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             type="button"
-            className={`inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${menuOpen ? " border-daf-nav-toggle-active-border bg-daf-head-soft" : ""}`}
+            className={`inline-flex h-[2.35rem] w-[5.5rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg font-inherit text-[0.8rem] font-semibold text-daf-nav-link transition-colors hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${menuOpen ? " border-daf-nav-toggle-active-border bg-daf-head-soft" : ""}`}
             aria-expanded={menuOpen}
             aria-controls="site-nav-menu"
             onClick={() => setMenuOpen((open) => !open)}
           >
             <MenuIcon open={menuOpen} />
-            <span className="text-[0.72rem] font-semibold tracking-wide max-sm:absolute max-sm:-m-px max-sm:h-px max-sm:w-px max-sm:overflow-hidden max-sm:whitespace-nowrap max-sm:border-0 max-sm:p-0">
+            <span className="text-[0.72rem] font-semibold tracking-wide">
               {menuOpen ? "Close" : "Menu"}
             </span>
           </button>
