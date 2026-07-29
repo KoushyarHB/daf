@@ -4,7 +4,7 @@ export const formInputClass =
 
 export const formSelectClass = `${formInputClass} appearance-none pr-8 cursor-pointer bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat bg-daf-select-chevron`;
 
-export const formPlaceholderClass = "placeholder:text-daf-disabled";
+export const formPlaceholderClass = "placeholder:text-daf-placeholder";
 
 /** Auth form inputs — slightly taller padding than default form fields. */
 export const authInputClass = `${formInputClass} py-[0.55rem] px-[0.65rem] border-daf-border focus:shadow-daf-focus-lg autofill:shadow-[inset_0_0_0_1000px_var(--color-daf-white)] autofill:[-webkit-text-fill-color:var(--color-daf-ink)]`;

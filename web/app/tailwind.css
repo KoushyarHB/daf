@@ -234,7 +234,7 @@
   --color-daf-faint: #888888;
   --color-daf-hint: #787878;
   --color-daf-disabled: #606060;
-  --color-daf-placeholder: #585858;
+  --color-daf-placeholder: #8a8a8a;
   --color-daf-icon-muted: #686868;
   --color-daf-nav-link: #7ab8ec;
   --color-daf-nav-active: #9acaf0;
@@ -372,4 +372,10 @@
   --color-toast-info: #7ab8ec;
   --color-toast-info-bg: #1a2538;
   --color-toast-info-border: #2a4060;
+}
+
+/* ─── Placeholder text ───────────────────────────────────────────── */
+::placeholder {
+  color: var(--color-daf-placeholder);
+  opacity: 1;
 }
