@@ -131,14 +131,23 @@ export default function Navbar() {
         />
       ) : null}
       <div className="mx-auto box-border flex w-full max-w-site flex-nowrap items-center justify-between gap-[1.2rem] px-4">
-        <div className="flex min-w-0 max-w-[calc(100%-3rem)] flex-[0_1_auto] items-center">
+        <div className="flex min-w-0 max-w-[calc(100%-7rem)] flex-[0_1_auto] items-center">
           <Link
             href="/"
             className="block h-[3.25rem] w-[7.84rem] leading-none max-sm:h-[2.95rem] max-sm:w-[7.1rem]"
           >
             <Image
-              className="block h-full w-full object-contain object-left max-sm:h-11"
+              className="block h-full w-full object-contain object-left max-sm:h-11 dark:hidden"
               src="/images/header-title.png"
+              alt="DaF kompakt — Deutsch als Fremdsprache"
+              width={309}
+              height={128}
+              priority
+              sizes="(max-width: 640px) 125px, 155px"
+            />
+            <Image
+              className="hidden h-full w-full object-contain object-left max-sm:h-11 dark:block"
+              src="/images/header-title-dark.png"
               alt="DaF kompakt — Deutsch als Fremdsprache"
               width={309}
               height={128}
@@ -147,21 +156,21 @@ export default function Navbar() {
             />
           </Link>
         </div>
-        <ThemeToggle />
-        <button
-          type="button"
-          className={`ml-auto inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${
-            menuOpen ? " border-daf-nav-toggle-active-border bg-daf-head-soft" : ""
-          }`}
-          aria-expanded={menuOpen}
-          aria-controls="site-nav-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <MenuIcon open={menuOpen} />
-          <span className="text-[0.72rem] font-semibold tracking-wide max-sm:absolute max-sm:-m-px max-sm:h-px max-sm:w-px max-sm:overflow-hidden max-sm:whitespace-nowrap max-sm:border-0 max-sm:p-0">
-            {menuOpen ? "Close" : "Menu"}
-          </span>
-        </button>
+        <div className="flex shrink-0 items-center gap-[0.4rem]">
+          <ThemeToggle />
+          <button
+            type="button"
+            className={`inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${menuOpen ? " border-daf-nav-toggle-active-border bg-daf-head-soft" : ""}`}
+            aria-expanded={menuOpen}
+            aria-controls="site-nav-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <MenuIcon open={menuOpen} />
+            <span className="text-[0.72rem] font-semibold tracking-wide max-sm:absolute max-sm:-m-px max-sm:h-px max-sm:w-px max-sm:overflow-hidden max-sm:whitespace-nowrap max-sm:border-0 max-sm:p-0">
+              {menuOpen ? "Close" : "Menu"}
+            </span>
+          </button>
+        </div>
       </div>
       <nav
         id="site-nav-menu"
