@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className="h-full antialiased [scrollbar-gutter:stable]">
+    <html lang="de" className="dark h-full antialiased [scrollbar-gutter:stable]" suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>

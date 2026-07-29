@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
+/* Tailwind v4: enable .dark class strategy (overrides default media query) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ============================================================
    DaF design tokens — CSS custom properties for dark mode.
    All color utilities in tailwind.config.ts reference these
