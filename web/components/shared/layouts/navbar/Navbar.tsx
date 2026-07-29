@@ -6,6 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useImportStatusQuery } from "@/hooks/cards";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import ThemeToggle from "@/components/shared/theme/ThemeToggle";
 
 const navLinkClass =
   "box-border block w-full cursor-pointer rounded-[5px] border-none bg-transparent py-2 px-[0.65rem] text-left text-[0.92rem] font-semibold text-daf-nav-link no-underline hover:bg-daf-nav-hover-bg hover:text-daf-nav-active";
@@ -146,6 +147,7 @@ export default function Navbar() {
             />
           </Link>
         </div>
+        <ThemeToggle />
         <button
           type="button"
           className={`ml-auto inline-flex h-[2.35rem] min-w-[2.35rem] shrink-0 cursor-pointer items-center justify-center gap-[0.35rem] rounded-[5px] border border-daf-border-input bg-daf-nav-toggle-bg px-[0.45rem] font-inherit text-[0.8rem] font-semibold text-daf-nav-link hover:border-daf-nav-toggle-border hover:bg-daf-head-soft${
