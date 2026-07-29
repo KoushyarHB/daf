@@ -26,7 +26,7 @@ type ImportTagPanelProps = {
 };
 
 const panelClass =
-  "mb-4 py-[0.9rem] px-4 bg-white border border-daf-border rounded-lg";
+  "mb-4 py-[0.9rem] px-4 bg-daf-white border border-daf-border rounded-lg";
 
 const importBtnBase =
   "appearance-none flex flex-col items-start gap-[0.15rem] w-full py-[0.55rem] px-[0.7rem] font-inherit text-left text-daf-import-text bg-daf-import-bg border border-daf-head/35 rounded-md cursor-pointer hover:enabled:bg-daf-import-hover hover:enabled:border-daf-head/55 disabled:opacity-70 disabled:cursor-wait";

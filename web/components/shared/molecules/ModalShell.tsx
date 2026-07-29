@@ -22,7 +22,7 @@ const panelSizeClasses = {
   sm: "w-full max-w-[22rem] rounded-lg border border-daf-border bg-daf-white p-[1.25rem_1.35rem_1.1rem] shadow-modal",
   lg: "w-full max-w-lg rounded-lg border border-daf-border bg-daf-white p-[1.25rem_1.35rem_1.1rem] shadow-modal",
   fullscreen:
-    "m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-white shadow-modal-lg",
+    "m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-daf-white shadow-modal-lg",
 };
 
 /** Portal overlay + panel — body scroll lock included. */

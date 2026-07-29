@@ -26,7 +26,7 @@ export default function EmptyState({
   return (
     <div
       className={cn(
-        "my-6 mb-8 py-7 px-5 text-center bg-white border border-daf-border rounded-lg shadow-card",
+        "my-6 mb-8 py-7 px-5 text-center bg-daf-white border border-daf-border rounded-lg shadow-card",
         className,
       )}
       role="status"

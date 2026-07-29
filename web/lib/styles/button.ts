@@ -43,7 +43,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   text: "border-0 bg-transparent p-0 text-[0.8rem] font-semibold text-daf-head underline underline-offset-2 hover:text-daf-head-link",
   ai: "shrink-0 border-daf-head/45 bg-gradient-to-b from-daf-ai-from to-daf-head-soft text-daf-ai-text hover:border-daf-head/65 hover:from-daf-ai-hover-from hover:to-daf-ai-hover-to disabled:opacity-55",
   outline:
-    "shrink-0 border-daf-head/45 bg-white font-mono text-daf-ai-text hover:border-daf-head/65 hover:bg-daf-head-softer disabled:opacity-55",
+    "shrink-0 border-daf-head/45 bg-daf-white font-mono text-daf-ai-text hover:border-daf-head/65 hover:bg-daf-head-softer disabled:opacity-55",
   tablePrimary:
     "inline-block align-middle text-white bg-daf-head border-daf-head-dark rounded-[5px] min-w-[6.75rem] hover:bg-daf-head-hover hover:border-daf-head-link hover:text-white focus:border-daf-head focus:shadow-daf-focus-lg disabled:opacity-55",
   tableSecondary:
