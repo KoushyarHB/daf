@@ -8,7 +8,7 @@ type LessonHubProps = {
 export default function LessonHub({ lessons }: LessonHubProps) {
   return (
     <>
-      <section className="mb-5 rounded-lg border border-daf-border bg-white px-4 py-[0.85rem]">
+      <section className="mb-5 rounded-lg border border-daf-border bg-daf-white px-4 py-[0.85rem]">
         <h2 className="m-0 mb-2.5 text-[1.05rem] text-daf-text">Lesson Links</h2>
         <ul className="m-0 pl-[1.1rem]">
           {lessons.map((lesson) => {
@@ -49,7 +49,7 @@ export default function LessonHub({ lessons }: LessonHubProps) {
             return (
               <li
                 key={lesson.lektion}
-                className="mb-[0.9rem] rounded-md border border-daf-border bg-white p-3"
+                className="mb-[0.9rem] rounded-md border border-daf-border bg-daf-white p-3"
               >
                 <h2 className="m-0 mb-2 text-xl font-semibold text-daf-head border-b-2 border-daf-head pb-1.5">
                   {lesson.title}

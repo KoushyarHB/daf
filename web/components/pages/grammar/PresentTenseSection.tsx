@@ -111,7 +111,7 @@ export default function PresentTenseSection() {
       </Lead>
 
       <section
-        className="my-[0.45rem] mb-[0.7rem] rounded-lg border border-grm-panel-border bg-white p-[0.5rem_0.6rem] shadow-grammar-card"
+        className="my-[0.45rem] mb-[0.7rem] rounded-lg border border-grm-panel-border bg-daf-white p-[0.5rem_0.6rem] shadow-grammar-card"
         aria-labelledby="grammar-pronoun-ref-title"
       >
         <header className="mb-[0.4rem]">
@@ -135,7 +135,7 @@ export default function PresentTenseSection() {
       </section>
 
       <div className="my-2 mt-2 mb-3 flex flex-col gap-[0.85rem]">
-        <div className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-white shadow-grammar">
+        <div className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-daf-white shadow-grammar">
           <header className="border-b border-grm-panel-border-row bg-grammar-travel-in px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-daf-head">
               Regular verbs
@@ -193,7 +193,7 @@ export default function PresentTenseSection() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-gold bg-white shadow-grammar">
+        <div className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-gold bg-daf-white shadow-grammar">
           <header className="border-b border-grm-panel-border-row bg-gradient-to-b from-grm-gold-bg to-daf-white px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-gold">
               Irregular verbs

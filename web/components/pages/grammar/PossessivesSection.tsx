@@ -70,7 +70,7 @@ export default function PossessivesSection() {
       </Lead>
 
       <section
-        className="mt-[0.45rem] mb-[0.7rem] rounded-lg border border-grm-panel-border bg-white p-[0.5rem_0.6rem] shadow-grammar-card"
+        className="mt-[0.45rem] mb-[0.7rem] rounded-lg border border-grm-panel-border bg-daf-white p-[0.5rem_0.6rem] shadow-grammar-card"
         aria-labelledby="grammar-poss-stems-title"
       >
         <header className="mb-[0.4rem]">

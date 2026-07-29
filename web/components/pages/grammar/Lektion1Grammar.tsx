@@ -72,7 +72,7 @@ export default function Lektion1Grammar() {
       </header>
 
       <nav
-        className="mb-7 rounded-[10px] border border-grm-toc-hover bg-white p-4 shadow-section"
+        className="mb-7 rounded-[10px] border border-grm-toc-hover bg-daf-white p-4 shadow-section"
         aria-label="On this page"
       >
         <p className="m-0 mb-[0.65rem] text-[0.72rem] font-bold tracking-wide text-daf-head uppercase">

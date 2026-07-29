@@ -73,7 +73,7 @@ export default function TravelCountriesSection() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-das bg-white shadow-grammar">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-das bg-daf-white shadow-grammar">
           <header className="border-b border-grm-panel-border-row bg-grammar-travel-nach px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-das">
               <em>nach</em> — no article
@@ -100,7 +100,7 @@ export default function TravelCountriesSection() {
           </ul>
         </section>
 
-        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-white shadow-grammar">
+        <section className="overflow-hidden rounded-[10px] border border-grm-panel-border border-t-[3px] border-t-grm-der bg-daf-white shadow-grammar">
           <header className="border-b border-grm-panel-border-row bg-grammar-travel-in px-3 py-[0.55rem]">
             <h3 className="m-0 text-[0.88rem] font-extrabold text-grm-der">
               <em>in</em> + Akkusativ — with article

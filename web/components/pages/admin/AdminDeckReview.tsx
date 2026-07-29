@@ -45,19 +45,19 @@ const btnPrimary =
   "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-head-dark bg-daf-head px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-daf-head-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/30 disabled:cursor-not-allowed disabled:opacity-50";
 
 const btnSecondary =
-  "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-border-badge bg-white px-4 py-2 text-sm font-semibold text-daf-head shadow-sm transition hover:border-grm-hub-card-hover hover:bg-daf-head-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/20";
+  "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-border-badge bg-daf-white px-4 py-2 text-sm font-semibold text-daf-head shadow-sm transition hover:border-grm-hub-card-hover hover:bg-daf-head-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-head/20";
 
 const btnDanger =
   "inline-flex shrink-0 items-center justify-center rounded-md border border-daf-danger-border bg-daf-danger-bg px-4 py-2 text-sm font-semibold text-daf-danger-strong shadow-sm transition hover:border-daf-danger-border-hover hover:bg-daf-danger-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-daf-danger-alt/15 disabled:cursor-not-allowed disabled:opacity-50";
 
 const panel =
-  "mb-5 rounded-xl border border-daf-border-table bg-white p-5 shadow-sm sm:p-6";
+  "mb-5 rounded-xl border border-daf-border-table bg-daf-white p-5 shadow-sm sm:p-6";
 
 const panelTitle =
   "mb-4 border-b border-grm-panel-border-row pb-3 text-base font-semibold text-daf-head";
 
 const fieldInput =
-  "w-full rounded-md border border-daf-border-input bg-white px-3 py-2 text-sm text-daf-ink shadow-sm focus:border-daf-head focus:outline-none focus:ring-2 focus:ring-daf-head/20";
+  "w-full rounded-md border border-daf-border-input bg-daf-white px-3 py-2 text-sm text-daf-ink shadow-sm focus:border-daf-head focus:outline-none focus:ring-2 focus:ring-daf-head/20";
 
 export default function AdminDeckReview({
   deckId,

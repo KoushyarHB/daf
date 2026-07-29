@@ -109,7 +109,7 @@ export function Section({
   return (
     <section
       id={id}
-      className="mb-9 scroll-mt-[calc(var(--site-header-h,3.5rem)+0.85rem)] rounded-xl border border-daf-border-nav bg-white p-[1.15rem_1.1rem_1.2rem] shadow-section"
+      className="mb-9 scroll-mt-[calc(var(--site-header-h,3.5rem)+0.85rem)] rounded-xl border border-daf-border-nav bg-daf-white p-[1.15rem_1.1rem_1.2rem] shadow-section"
     >
       <header className="mb-[0.85rem] flex items-start gap-3 border-b-2 border-grm-panel-border-section pb-[0.65rem]">
         <span
@@ -224,7 +224,7 @@ export function PatternItem({
   children: ReactNode;
 }) {
   return (
-    <li className="flex flex-wrap items-baseline gap-1 border-b border-black/5 py-[0.32rem] text-[0.82rem] leading-[1.45] last:border-b-0">
+    <li className="flex flex-wrap items-baseline gap-1 border-b border-daf-border-row py-[0.32rem] text-[0.82rem] leading-[1.45] last:border-b-0">
       {suffix ? (
         <>
           <strong className="font-extrabold">{suffix}</strong>
@@ -292,7 +292,7 @@ export function QuestionTypeCard({
 
   return (
     <div
-      className={`rounded-[10px] border border-grm-panel-border bg-white p-[0.85rem_0.95rem] shadow-grammar ${borderTop}`}
+      className={`rounded-[10px] border border-grm-panel-border bg-daf-white p-[0.85rem_0.95rem] shadow-grammar ${borderTop}`}
     >
       <h3 className="m-0 mb-[0.45rem] text-[0.92rem] font-extrabold text-daf-head">
         {title}

@@ -18,7 +18,7 @@ export default function WQuestionWordsSection() {
         {W_QUESTION_WORDS.map((word, index) => (
           <div
             key={word.id}
-            className={`rounded-[10px] border border-daf-border-table border-l-4 bg-white p-[0.8rem_0.9rem] shadow-grammar-card ${W_CARD_BORDER[index % 4]}`}
+            className={`rounded-[10px] border border-daf-border-table border-l-4 bg-daf-white p-[0.8rem_0.9rem] shadow-grammar-card ${W_CARD_BORDER[index % 4]}`}
           >
             <h3 className="m-0 text-[1.05rem] font-extrabold text-daf-head lowercase">
               {word.german}

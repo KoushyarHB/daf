@@ -15,7 +15,7 @@ function PluralPair({
   plural: string;
 }) {
   return (
-    <span className="inline-flex max-w-full flex-wrap items-center gap-[0.2rem_0.3rem] rounded-[5px] border border-black/6 bg-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight">
+    <span className="inline-flex max-w-full flex-wrap items-center gap-[0.2rem_0.3rem] rounded-[5px] border border-daf-border-row bg-daf-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight">
       <span className="inline-flex flex-wrap items-center gap-[0.2rem]">
         <span className="font-semibold whitespace-nowrap italic">{singular}</span>
         <span className="text-[0.68rem] font-bold not-italic opacity-55" aria-hidden="true">
@@ -42,7 +42,7 @@ export default function PluralPatternsSection() {
       </div>
 
       <section className="my-[0.4rem] mb-[0.6rem] overflow-hidden rounded-lg border border-grm-pl-border bg-grm-pl-bg text-grm-pl">
-        <header className="flex items-baseline justify-between gap-2 border-b border-black/6 px-[0.55rem] py-[0.35rem]">
+        <header className="flex items-baseline justify-between gap-2 border-b border-daf-border-row px-[0.55rem] py-[0.35rem]">
           <h3 className="m-0 text-[0.78rem] font-extrabold tracking-wide uppercase">
             How the plural is built
           </h3>
@@ -51,14 +51,14 @@ export default function PluralPatternsSection() {
 
         <ul className="m-0 list-none px-[0.45rem] py-[0.2rem] pb-[0.35rem]">
           {PLURAL_PATTERN_RULES.map((rule) => (
-            <li key={rule.id} className="border-b border-black/5 py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
+            <li key={rule.id} className="border-b border-daf-border-row py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
               <div className="flex flex-col gap-[0.15rem] min-[36rem]:flex-row min-[36rem]:items-start min-[36rem]:gap-2">
                 <span
                   className="max-w-full shrink-0 text-[0.72rem] leading-tight font-bold text-grm-pl-text min-[36rem]:w-[10.5rem]"
                   title={rule.hint}
                 >
                   {rule.label}
-                  <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
+                  <span className="ml-1 inline-block rounded-full border border-daf-border bg-daf-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
                     {rule.accuracy}
                   </span>
                 </span>

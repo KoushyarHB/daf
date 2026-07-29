@@ -22,7 +22,7 @@ function GenderWord({
   english: string;
 }) {
   return (
-    <span className="inline-flex max-w-full items-center gap-[0.2rem] rounded-[5px] border border-black/6 bg-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight">
+    <span className="inline-flex max-w-full items-center gap-[0.2rem] rounded-[5px] border border-daf-border-row bg-daf-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight">
       <span className="font-semibold whitespace-nowrap italic">{german}</span>
       <span className="text-[0.68rem] whitespace-nowrap italic text-daf-gray-en">
         ({english})
@@ -54,7 +54,7 @@ export default function GenderPatternsSection() {
             key={group.gender}
             className={`overflow-hidden rounded-lg border ${GENDER_PANEL[group.gender]}`}
           >
-            <header className="flex items-baseline justify-between gap-2 border-b border-black/6 px-[0.55rem] py-[0.35rem]">
+            <header className="flex items-baseline justify-between gap-2 border-b border-daf-border-row px-[0.55rem] py-[0.35rem]">
               <h3 className="m-0 text-[0.78rem] font-extrabold tracking-wide uppercase">
                 {group.title}
               </h3>
@@ -63,14 +63,14 @@ export default function GenderPatternsSection() {
 
             <ul className="m-0 list-none px-[0.45rem] py-[0.2rem] pb-[0.35rem]">
               {group.rules.map((rule) => (
-                <li key={rule.id} className="border-b border-black/5 py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
+                <li key={rule.id} className="border-b border-daf-border-row py-[0.28rem] last:border-b-0 last:pb-[0.1rem]">
                   <div className="flex flex-col gap-[0.15rem] min-[36rem]:flex-row min-[36rem]:items-start min-[36rem]:gap-2">
                     <span
                       className="rule-label max-w-full shrink-0 text-[0.72rem] leading-tight font-bold min-[36rem]:w-[9.5rem]"
                       title={rule.hint}
                     >
                       {rule.label}
-                      <span className="ml-1 inline-block rounded-full border border-black/8 bg-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
+                      <span className="ml-1 inline-block rounded-full border border-daf-border bg-daf-white/65 px-[0.3rem] py-px align-baseline text-[0.62rem] font-bold whitespace-nowrap text-grm-slate-chip">
                         {rule.accuracy}
                       </span>
                     </span>

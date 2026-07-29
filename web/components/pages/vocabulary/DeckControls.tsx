@@ -52,7 +52,7 @@ export default function DeckControls({
 
   return (
     <div
-      className="mb-[0.45rem] py-[0.45rem] px-[0.55rem] bg-white border border-daf-border rounded-md"
+      className="mb-[0.45rem] py-[0.45rem] px-[0.55rem] bg-daf-white border border-daf-border rounded-md"
       role="region"
       aria-label="Filter and sort"
     >

@@ -16,7 +16,7 @@ const LESSON_TOP_BAR: Record<number, string> = {
 };
 
 const LESSON_CARD_BASE =
-  "relative flex min-h-32 flex-col gap-[0.4rem] overflow-hidden rounded-[10px] border border-grm-hub-card-border bg-white p-[1.05rem_1.15rem] text-inherit no-underline before:absolute before:top-0 before:right-0 before:left-0 before:h-1 before:content-['']";
+  "relative flex min-h-32 flex-col gap-[0.4rem] overflow-hidden rounded-[10px] border border-grm-hub-card-border bg-daf-white p-[1.05rem_1.15rem] text-inherit no-underline before:absolute before:top-0 before:right-0 before:left-0 before:h-1 before:content-['']";
 
 export default function GrammarHub() {
   return (

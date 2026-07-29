@@ -390,7 +390,7 @@ export default function CardFormModal({
   const fieldLabel =
     "flex flex-col gap-[0.2rem] text-[0.82rem] font-semibold text-daf-body";
   const fieldInput =
-    "rounded-md border border-daf-border-input bg-white p-2 px-[0.6rem] font-inherit text-[0.95rem] font-normal focus:border-daf-head/55 focus:shadow-daf-focus focus:outline-none";
+    "rounded-md border border-daf-border-input bg-daf-white p-2 px-[0.6rem] font-inherit text-[0.95rem] font-normal focus:border-daf-head/55 focus:shadow-daf-focus focus:outline-none";
   const fieldTextarea = `${fieldInput} min-h-[3.25rem] resize-y`;
   const fieldSelect = `${fieldInput} cursor-pointer appearance-none bg-daf-select-chevron bg-[length:0.75rem] bg-[right_0.55rem_center] bg-no-repeat pr-8`;
   const fieldHint = "text-[0.75rem] font-normal leading-snug text-daf-muted";
@@ -402,7 +402,7 @@ export default function CardFormModal({
       role="presentation"
     >
       <div
-        className="m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-white shadow-modal-lg"
+        className="m-0 flex h-dvh max-h-dvh w-full max-w-site flex-col overflow-hidden rounded-none border-0 border-x border-daf-border bg-daf-white shadow-modal-lg"
         role="dialog"
         aria-modal="true"
         aria-labelledby="card-modal-title"
@@ -664,7 +664,7 @@ export default function CardFormModal({
             </div>
           </div>
 
-          <div className="shrink-0 border-t border-daf-border bg-white px-5 pt-[0.85rem] pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
+          <div className="shrink-0 border-t border-daf-border bg-daf-white px-5 pt-[0.85rem] pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
             {errors.root?.message ? (
               <p className="m-0 mb-2 text-[0.8rem] text-daf-danger">
                 {errors.root.message}

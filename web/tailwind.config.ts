@@ -266,7 +266,7 @@ const config = {
       },
       backgroundImage: {
         "daf-select-chevron":
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E\")",
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E\")",
         "grammar-hub":
           "linear-gradient(135deg, var(--color-grm-der-bg) 0%, var(--color-grm-hub-accent) 45%, var(--color-grm-das-bg) 100%)",
         "grammar-lead":

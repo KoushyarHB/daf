@@ -50,7 +50,7 @@ export default function DeckPagination({
 
   return (
     <nav
-      className="sticky top-[var(--site-header-h,4.55rem)] z-90 mb-[0.85rem] py-[0.45rem] px-[0.55rem] bg-white border border-daf-border rounded-md"
+      className="sticky top-[var(--site-header-h,4.55rem)] z-90 mb-[0.85rem] py-[0.45rem] px-[0.55rem] bg-daf-white border border-daf-border rounded-md"
       id="pagination"
       aria-label="Pagination"
     >

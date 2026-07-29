@@ -16,7 +16,7 @@ type VocabListProps = {
 };
 
 const listClass =
-  "mb-4 p-0 list-none bg-white border border-daf-border rounded-md";
+  "mb-4 p-0 list-none bg-daf-white border border-daf-border rounded-md";
 
 const listItemClass =
   "flex items-center gap-[0.45rem] py-[0.42rem] px-[0.65rem] border-b border-daf-border-row last:border-b-0";

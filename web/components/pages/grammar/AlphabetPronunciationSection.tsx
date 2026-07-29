@@ -67,7 +67,7 @@ function PronunciationRuleRow({ rule }: { rule: PronunciationRule }) {
         {rule.examples.map((ex) => (
           <span
             key={ex.german}
-            className="inline-flex max-w-full items-center gap-[0.2rem] rounded-[5px] border border-black/6 bg-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight"
+            className="inline-flex max-w-full items-center gap-[0.2rem] rounded-[5px] border border-daf-border-row bg-daf-white/72 px-[0.28rem] py-[0.12rem] text-[0.74rem] leading-tight"
           >
             <span className="font-semibold whitespace-nowrap italic">{ex.german}</span>
             <span className="text-[0.68rem] whitespace-nowrap italic text-daf-gray-en">
@@ -102,7 +102,7 @@ export default function AlphabetPronunciationSection() {
             {ALPHABET_LEGEND.map((item) => (
               <li
                 key={item.de}
-                className="flex flex-wrap gap-[0.2rem_0.35rem] border-b border-black/5 py-[0.18rem] last:border-b-0"
+                className="flex flex-wrap gap-[0.2rem_0.35rem] border-b border-daf-border-row py-[0.18rem] last:border-b-0"
               >
                 <strong>{item.de}</strong>
                 <span>{item.note}</span>
